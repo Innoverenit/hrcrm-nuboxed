@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import { withRouter } from "react-router";
 
 import { getItemHistoryInstock } from "../../../InventoryAction"
@@ -18,14 +17,12 @@ const ItemHistoryInStock = (props) => {
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%] p-1 bg-transparent font-bold sticky text-xs font-poppinsz-10">
-
-                        <div className=" md:w-[23.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[15.52rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" md:w-[15.25rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" md:w-[22.10rem]"><FormattedMessage id="app.wasted" defaultMessage="Wasted" /></div>
-                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.cell" defaultMessage="Cell" /></div>
-
+                    <div className=" md:w-[23.51rem]">Name</div>
+                        <div className=" md:w-[15.52rem]">GRN #</div>
+                        <div className=" md:w-[22.12rem]">Price</div>
+                        <div className=" md:w-[15.25rem]">Unit</div>
+                        <div className=" md:w-[22.01rem]">Wasted</div>
+                        <div className=" md:w-[22.01rem]">Cell</div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll

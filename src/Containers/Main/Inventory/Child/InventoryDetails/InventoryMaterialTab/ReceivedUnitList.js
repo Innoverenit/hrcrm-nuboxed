@@ -38,14 +38,11 @@ const ReceivedUnitList = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" w-[17.12rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}{props.translatedMenuItems[15]}
+                        <div className=" w-[17.12rem]">{props.translatedMenuItems[15]}
                         </div>
-                        <div className=" w-[12.42rem]">
-                            {/* <FormattedMessage id="app.id" defaultMessage="System ID" /> */}{props.translatedMenuItems[49]} ID
+                        <div className=" w-[12.42rem]">{props.translatedMenuItems[49]} ID
                         </div>
-                        <div className=" w-[15.05rem]">
-                            {/* <FormattedMessage id="app.part" defaultMessage="Part #" />  */} {props.translatedMenuItems[50]} #
+                        <div className=" w-[15.05rem]">{props.translatedMenuItems[50]} #
                         </div>
                         <div className=""></div>
                     </div>

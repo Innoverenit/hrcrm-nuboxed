@@ -199,10 +199,7 @@ const CompleteOrderTable = (props) => {
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins  z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]}</div>
                         <div className=" md:w-[11.41rem] ml-2">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order ID"
-                            /> */}
+                        {translatedMenuItems[1]} 
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
@@ -212,55 +209,31 @@ const CompleteOrderTable = (props) => {
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}   {/* <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
-                            /> */}
+                        {translatedMenuItems[4]}  
                         </div>
                         <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]} {/* <FormattedMessage
-                                id="app.quoted"
-                                defaultMessage="Quoted"
-                            /> */}
+                        {translatedMenuItems[5]} 
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
-                                id="app.finalprice"
-                                defaultMessage="Final"
-                            /> */}
+                        {translatedMenuItems[6]}  
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]} {/* <FormattedMessage
-                                id="app.revisedprice"
-                                defaultMessage="Revised"
-                            /> */}
+                        {translatedMenuItems[7]} 
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]}   {/* <FormattedMessage
-                                id="app.received"
-                                defaultMessage="Received"
-                            /> */}
+                        {translatedMenuItems[8]}  
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]} {/* <FormattedMessage
-                                id="app.supervisor"
-                                defaultMessage="Supervisor"
-                            /> */}
+                        {translatedMenuItems[9]} 
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}   {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
-                            /> */}
+                        {translatedMenuItems[10]}  
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]}  {/* <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            /> */}
+                        {translatedMenuItems[11]} 
                         </div>
                     </div>
 
@@ -322,10 +295,7 @@ const CompleteOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] font-bold">
-                                                                   {translatedMenuItems[14]} {/* {<FormattedMessage
-                                                                        id="app.new"
-                                                                        defaultMessage="New"
-                                                                    />} */}
+                                                                   {translatedMenuItems[14]} 
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -551,10 +521,7 @@ const CompleteOrderTable = (props) => {
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins z-10">
                     <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] " >{translatedMenuItems[12]}</div>
                         <div className=" md:w-[11.41rem] ml-2">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order ID"
-                            /> */}
+                        {translatedMenuItems[1]}  
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
@@ -564,55 +531,31 @@ const CompleteOrderTable = (props) => {
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}  {/* <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
-                            /> */}
+                        {translatedMenuItems[4]}  
                         </div>
                         <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]}   {/* <FormattedMessage
-                                id="app.quoted"
-                                defaultMessage="Quoted"
-                            /> */}
+                        {translatedMenuItems[5]}   
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}{/* <FormattedMessage
-                                id="app.finalprice"
-                                defaultMessage="Final"
-                            /> */}
+                        {translatedMenuItems[6]}
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]}  {/* <FormattedMessage
-                                id="app.revisedprice"
-                                defaultMessage="Revised"
-                            /> */}
+                        {translatedMenuItems[7]}  
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]} {/* <FormattedMessage
-                                id="app.received"
-                                defaultMessage="Received"
-                            /> */}
+                        {translatedMenuItems[8]} 
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]}  {/* <FormattedMessage
-                                id="app.supervisor"
-                                defaultMessage="Supervisor"
-                            /> */}
+                        {translatedMenuItems[9]} 
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]} {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
-                            /> */}
+                        {translatedMenuItems[10]}
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                         {translatedMenuItems[11]}   {/* <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            /> */}
+                         {translatedMenuItems[11]} 
                         </div>
                     </div>
 
@@ -674,10 +617,7 @@ const CompleteOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] font-bold">
-                                                                  {translatedMenuItems[14]}  {/* {<FormattedMessage
-                                                                        id="app.new"
-                                                                        defaultMessage="New"
-                                                                    />} */}
+                                                                  {translatedMenuItems[14]}  
                                                                 </span>
                                                             ) : null}
                                                         </div>

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import RepairPhoneListByTechnician from './RepairPhoneListByTechnician'
 import { getNoOfRepairTechnicianById } from "./RefurbishAction"
-import { FormattedMessage } from 'react-intl'
 import { BundleLoader } from '../../../Components/Placeholder'
 import RemainingPhoneList from './ProductionTab/RemainingPhoneList'
 import CompletedPhones from './ProductionTab/CompletedPhones'
@@ -100,47 +99,26 @@ const RepairTechnicianList = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[8rem] md:w-[8rem]">
-                            {/* <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                        /> */}
+                     
                         </div>
                         <div className=" md:w-[8rem]">
-                            {/* <FormattedMessage
-                                id="app.mobile"
-                                defaultMessage="Mobile #"
-                            /> */}
+                          
                         </div>
                         <div className="md:w-[7rem]">
-                            {/* <FormattedMessage
-                                id="app.totalUnit"
-                                defaultMessage="Total Units"
-                            /> */}
+                           
                             </div>
                         <div className=" md:w-[8rem]">
-                            {/* <FormattedMessage
-                                id="app.remaining"
-                                defaultMessage="Remaining"
-                            /> */}
+                           
                         </div>
                         <div className=" md:w-[8rem]">
 
-                            {/* <FormattedMessage
-                                id="app.InProgress"
-                                defaultMessage="In Progress"
-                            /> */}
+                        
                         </div>
                         <div className="md:w-[8rem]">
-                            {/* <FormattedMessage
-                                id="app.complete"
-                                defaultMessage="Complete"
-                            /> */}
+                           
                             </div>
                         <div className="md:w-[8rem]">
-                            {/* <FormattedMessage
-                                id="app.rejected"
-                                defaultMessage="Reject"
-                            /> */}
+                           
                             </div>
                     </div>
                     {props.repairByTechnician.map((item) => {

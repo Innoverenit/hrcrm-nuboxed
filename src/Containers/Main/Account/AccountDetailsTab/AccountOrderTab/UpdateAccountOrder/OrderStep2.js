@@ -5,7 +5,6 @@ import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addCarDetails } from "../../../AccountAction";
 import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
-import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
 function OrderStep2(props) {
@@ -115,11 +114,7 @@ function OrderStep2(props) {
                                     type="primary"
                                     htmlType="submit"
                                     loading={props.addingCar}
-                                >
-                                    <FormattedMessage
-                                        id="app.finish"
-                                        defaultMessage="Finish"
-                                    />
+                                >Finish
                                 </Button>
                             </div>
                         </Form>

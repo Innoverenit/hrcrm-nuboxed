@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
-import { FormattedMessage, } from "react-intl";
 import {
   getInventoryConsumptionList,
   setEditInventory,
@@ -27,14 +26,14 @@ function InventoryConsumptionTable(props) {
       <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
          <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
-         <div className=" md:w-[7%]"><FormattedMessage id="app.suppliesid" defaultMessage="Supplies ID"/></div>
-        <div className=" md:w-[5.2rem] "><FormattedMessage id="app.subcategory" defaultMessage="Sub Category"/></div>
-        <div className="md:w-[5.8rem]"><FormattedMessage id="app.attribute" defaultMessage="Attribute"/></div>
-        <div className="md:w-[5.2rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-        <div className="md:w-[8.5rem]"><FormattedMessage id="app.batchNo" defaultMessage="Batch No" /></div>
-        <div className="md:w-[8.5rem]"><FormattedMessage id="app.opening" defaultMessage="Opening"/></div>
-        <div className="md:w-[5.2rem]"><FormattedMessage id="app.closing" defaultMessage="Closing"/></div>
-        <div className=" md:w-[6.1rem]"><FormattedMessage id="app.mfg" defaultMessage="Mfg"/></div>
+         <div className=" md:w-[7%]">Supplies ID</div>
+        <div className=" md:w-[5.2rem] ">Sub Category</div>
+        <div className="md:w-[5.8rem]">Attribute</div>
+        <div className="md:w-[5.2rem]">Name</div>
+        <div className="md:w-[8.5rem]">Batch No</div>
+        <div className="md:w-[8.5rem]">Opening</div>
+        <div className="md:w-[5.2rem]">Closing</div>
+        <div className=" md:w-[6.1rem]">Mfg</div>
         <div className="w-12"></div>
             </div>
        

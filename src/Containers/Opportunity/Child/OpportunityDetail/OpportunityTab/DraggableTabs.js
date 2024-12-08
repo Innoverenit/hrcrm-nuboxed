@@ -1,23 +1,13 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import Tabs from "react-draggable-tabs";
-
-import ReactDOM from "react-dom";
 import QuotProAndService from "./QuotProAndService";
-import { Tooltip, Button, message, Icon } from "antd";
-import { ActionIcon } from "../../../../../Components/Utils";
-import AddTagProfileModal from "./Recruitment/AddTagProfileModal";
+import { Tooltip, Button, message, Icon } from "antd";;
 import { connect } from "react-redux";
-import AddRecruiterModal from "./Recruitment/AddRecruitModal";
 import SummaryTable from "./Recruitment/Child/SummaryTable";
 import RecruitmentTable from "./Recruitment/RecruitmentTable";
-import { Breadcrumb, Alert } from "antd";
-import {
-  TabsWrapper,
-} from "../../../../../Components/UI/Layout";
+import { Breadcrumb } from "antd";
 import LinkedGenerateQuote from "./LinkedGenerateQuote";
-import AddTaskModal from "../../../../Task/Child/AddTaskModal";
-
 class DraggableTabs extends Component {
   constructor(props) {
     super(props);
@@ -39,30 +29,18 @@ class DraggableTabs extends Component {
             <>
               <span onClick={this.handleQuoteClick}>
                 <Icon type="shopping" />
-                {/* <ShoppingOutlined /> */}
-                <FormattedMessage
-                  id="app.quotes"
-                  defaultMessage="Quotes"
-                />
-                {/* Quotes */}
+                Quotes
               </span>
 
               <>
                 {this.props.partnerLogin === "Yes" &&
                   this.props.department === "Partner" ? null : (
-                    <Tooltip //title="Create"
-                      title={<FormattedMessage
-                        id="app.create"
-                        defaultMessage="Create"
-                      />}
+                    <Tooltip title="Create"
                     >
                       <Icon
                        
-                        //tooltipTitle="Create"
-                        tooltiptitle={<FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />}
+                        tooltipTitle="Create"
+                       
                         onClick={this.handleOpenBreadCumb}
                         size="0.875em"
                         style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
@@ -80,24 +58,15 @@ class DraggableTabs extends Component {
                     }}
                   >
                     <Breadcrumb.Item>
-                      <FormattedMessage
-                        id="app.newquotation"
-                        defaultMessage="New Quotation"
-                      />
-                      {/* New Quotation */}
-                      <Tooltip //title="Create"
-                        title={<FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />}
+                     
+                      New Quotation
+                      <Tooltip title="Create"
+                       
                       >
                         <Icon
                           type="shopping-cart"
-                          // tooltipTitle="Create"
-                          tooltiptitle={<FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />}                     
+                           tooltipTitle="Create"
+                                              
                           size="0.875em"
                           style={{
                             marginLeft: "0.375em",
@@ -121,11 +90,8 @@ class DraggableTabs extends Component {
                           : this.handleButtonClick()
                       }
                     >
-                      <FormattedMessage
-                        id="app.generatequote"
-                        defaultMessage=" Generate Quote"
-                      />
-                      {/* Generate Quote */}
+                     
+                      Generate Quote
                     </Button>
                   </div>
                 </Suspense>
@@ -160,12 +126,9 @@ class DraggableTabs extends Component {
               // style={{ backgroundColor: "white", color: "blue" }}
               >
                 <Icon type="reconciliation" />
-                {/* <ReconciliationOutlined /> */}
-                <FormattedMessage
-                  id="app.recruitpro"
-                  defaultMessage="RecruitPro"
-                />
-                {/* RecruitPro */}
+               
+              
+                RecruitPro
               </span>
               &nbsp;&nbsp;&nbsp;
               <>
@@ -179,12 +142,8 @@ class DraggableTabs extends Component {
                   >
                     <Icon
                      
-                      //  tooltipTitle="Tag Document"
-                      tooltiptitle={<FormattedMessage
-                        id="app.tagdocument"
-                        defaultMessage="Tag Document"
-                      />}
-
+                   tooltipTitle="Tag Document"
+                      
                       // handleIconClick={() => handleDocumentUploadModal(true)}
                       size="0.875em"
                       style={{
@@ -193,20 +152,12 @@ class DraggableTabs extends Component {
                         cursor: "not-allowed",
                       }}
                     />
-                    <Tooltip //title="Tag Position"
-                      title={<FormattedMessage
-                        id="app.tagposition"
-                        defaultMessage="Tag Position"
-                      />}
+                    <Tooltip title="Tag Position"
 
                     >
                       <Icon
                         type="link"
-                        //  tooltipTitle="Tag Document"
-                        tooltiptitle={<FormattedMessage
-                          id="app.tagdocument"
-                          defaultMessage="Tag Document"
-                        />}
+                      tooltipTitle="Tag Document"
                         onClick={() => {
                           this.handlepartnerPopoverVisibleChange();
                           this.props.handleTagProfileModal(true);
@@ -222,20 +173,9 @@ class DraggableTabs extends Component {
                 )}
                 {this.props.subscriptionType !== "FREE" && (
                   <>
-                    <Tooltip //title="Add Requirement"
-                      title={<FormattedMessage
-                        id="app.addrequirement"
-                        defaultMessage="Add Requirement"
-                      />}
-
-                    >
-                      <Icon
-                       
-                        // tooltipTitle="Add Requirement"
-                        tooltiptitle={<FormattedMessage
-                          id="app.addrequirement"
-                          defaultMessage="Add Requirement"
-                        />}
+                    <Tooltip title="Add Requirement" >
+                      <Icon    tooltipTitle="Add Requirement"
+                        
 
                         onClick={() => this.props.handleRecruitModal(true)}
                         size="0.875em"
@@ -246,19 +186,12 @@ class DraggableTabs extends Component {
                       />
                     </Tooltip>
                     &nbsp;&nbsp;
-                    <Tooltip //title="Tag Position"
-                      title={<FormattedMessage
-                        id="app.tagposition"
-                        defaultMessage="Tag Position"
-                      />}
-                    >
+                    <Tooltip title="Tag Position"
+                        >
                       <Icon
                         type="link"
-                        //tooltipTitle="Tag Position"
-                        tooltip title={<FormattedMessage
-                          id="app.tagposition"
-                          defaultMessage="Tag Position"
-                        />}
+                      tooltipTitle="Tag Position"
+                      
                         onClick={() => {
                           this.handlepartnerPopoverVisibleChange();
                           this.props.handleTagProfileModal(true);

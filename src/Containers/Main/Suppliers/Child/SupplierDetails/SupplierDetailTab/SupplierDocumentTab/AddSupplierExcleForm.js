@@ -157,7 +157,6 @@ class AddSupplierExcleForm extends Component {
                   type="primary"
                   Loading={addingDocumentBySupplierId}
                 >
-                  {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                   Submit
                 </Button>
               </FlexContainer>

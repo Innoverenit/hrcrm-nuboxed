@@ -68,7 +68,6 @@ function handleSetCurrentLocationId(item) {
                     <div className=""></div>
                     <div className="w-[22.12rem] text-[#00A2E8] text-sm truncate max:w-[22.12rem]">
                     <LocationOnIcon className='!text-icon   '/>     Location
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
                       </div>
                 </div>
            

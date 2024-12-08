@@ -1,7 +1,6 @@
 import React, { useState, useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {updateOrdrSuplrItems,getLocationNamesByProductId} from "../../AccountAction";
 import { Tooltip,Button,Input,Select } from "antd";
@@ -124,49 +123,15 @@ const handleSelectChange = (value, key, dataIndex) => {
              <div className=' flex justify-end sticky flex-col z-auto'>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
              <div className=" flex rounded  max-sm:hidden w-[100%]  mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-                                    <div className=" md:w-[10rem]"><FormattedMessage
-                                        id="app.name"
-                                        defaultMessage="Name"
-                                    /></div>
-                                     <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Category"
-                                    /></div>
-                                        <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Attribute"
-                                    /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app.itemid"
-                                        defaultMessage="Item ID"
-                                    /></div>
-                                     <div className=" md:w-[5.1rem]"><FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.loc"
-                                        defaultMessage="Delivery"
-                                    /></div>
-                                    <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.shippingno"
-                                        defaultMessage="Ship By "
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.awb"
-                                        defaultMessage="AWB"
-                                    /></div>
-                                   
-                                   {/* <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app."
-                                        defaultMessage=""
-                                    /></div> */}
-                                    <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app."
-                                        defaultMessage="Pick up"
-                                    /></div>
-                        
-                                   
+                                    <div className=" md:w-[10rem]">Name</div>
+                                     <div className=" md:w-[4.5rem]">Category</div>
+                                        <div className=" md:w-[4.5rem]">Attribute</div>
+                                    <div className=" md:w-[4.5rem]">Item ID</div>
+                                     <div className=" md:w-[5.1rem]">Units</div>
+                                    <div className=" md:w-[5rem]">Delivery</div>
+                                    <div className="md:w-[6.2rem]">Ship By </div>
+                                    <div className=" md:w-[5rem]">AWB</div>
+                                    <div className=" md:w-[6.5rem]">Pick up</div>
                                     <div className="md:w-[2rem]"></div>
                  
                                 </div>

@@ -315,11 +315,7 @@ function OrderPhoneListById(props) {
         </div>
         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title= {translatedMenuItems[1]}>
-                                                     {/* {<FormattedMessage
-                                                        id="app.scan"
-                                                        defaultMessage="scan"
-                                                    />} */}
-
+                                                   
                                                         <Button
                                                             // onClick={() => {
                                                             //     props.handleInTagDrawer(true)
@@ -334,7 +330,7 @@ function OrderPhoneListById(props) {
 
                                                 </div>
                                                 </div>
-                    <div className=" flex max-sm:hidden  w-[90%] font-poppins font-bold text-xs  justify-between p-1 items-end bg-transparent font-bold sticky z-10">
+                    <div className=" flex max-sm:hidden  w-[90%] font-poppins text-xs  justify-between p-1 items-end bg-transparent font-bold sticky z-10">
                    
                         <div className="text-[#00A2E8] text-base w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[2]} {/* Brand */}
@@ -685,15 +681,9 @@ function OrderPhoneListById(props) {
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {props.user.repairCode === "qrcode" &&
                                                         <Tooltip title={translatedMenuItems[11]}
-                                                        // {<FormattedMessage
-                                                        //     id="app.Print"
-                                                        //     defaultMessage="Print"
-                                                        // />}\
+                                                     
                                                         >
-                                                            {/* <PrintOutlined
-                                                                            // onClick={handlePrint}
-                                                                            className="!text-base cursor-pointer"
-                                                                        /> */}
+                                                           
                                                             <ReactToPrint
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
                                                                 {translatedMenuItems[11]} QR{/* Print  */}

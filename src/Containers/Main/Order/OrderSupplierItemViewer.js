@@ -1,7 +1,6 @@
 import React, { useState, useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
  import {getOrdrSuppierDetails} from "./OrderAction";
 
@@ -31,35 +30,14 @@ function handleSetRowData(item) {
 <div className=' flex justify-end sticky flex-col z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-                                    <div className=" md:w-[10rem]"><FormattedMessage
-                                        id="app.name"
-                                        defaultMessage="Name"
-                                    /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                        id="app.model"
-                                        defaultMessage="Model"
-                                    /></div>
-                                    <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.brand"
-                                        defaultMessage="Brand"
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.category"
-                                        defaultMessage="Category"
-                                    /></div>
-                                    <div className=" md:w-[5.1rem]"><FormattedMessage
-                                        id="app.attribute"
-                                        defaultMessage="Attribute"
-                                    /></div>
+                                    <div className=" md:w-[10rem]">Name</div>
+                                    <div className=" md:w-[4.5rem]">Model</div>
+                                    <div className="md:w-[6.2rem]">Brand</div>
+                                    <div className=" md:w-[5rem]">Category</div>
+                                    <div className=" md:w-[5.1rem]">Attribute</div>
         
-                                    <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app.price"
-                                        defaultMessage="Price"
-                                    /></div>
-                         <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    /></div>
+                                    <div className=" md:w-[6.5rem]">Price</div>
+                         <div className=" md:w-[6.5rem]">Units</div>
                                    
                                     <div className=" md:w-[2rem]"></div>
                  

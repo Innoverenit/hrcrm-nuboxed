@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import AddProcurementInAccount from "./AddProcurementInAccount";
@@ -41,10 +40,7 @@ class ProcurementStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title: "Order",
                 icon: <GroupsIcon />,
                 content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
                 selectedLanguage={this.props.selectedLanguage}
@@ -53,10 +49,7 @@ class ProcurementStepper extends Component {
                 />,
             },
             {
-                title: <FormattedMessage
-                    id="app.phonedetails"
-                    defaultMessage="Phone details"
-                />,
+                title: "Phone details",
                 icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
@@ -74,17 +67,13 @@ class ProcurementStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description="Order Details"
+                       
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>
@@ -103,10 +92,7 @@ class ProcurementStepper extends Component {
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
+                                           Proceed
                                         </Button>
                                   {/* } */}
                                     </>
@@ -116,13 +102,10 @@ class ProcurementStepper extends Component {
 
                         {current > 0 && (
                             <Button
-                                className=" w-16 absolute top-3/4 right-0 mt"
-                                style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}
+                                className=" w-16 absolute top-3/4 right-0 m-1 mt-20"
+                                 onClick={() => this.prev()}
                             >
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                               Previous
                             </Button>
                         )}
                     </div>

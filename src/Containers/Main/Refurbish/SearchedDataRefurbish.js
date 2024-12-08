@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Tooltip, Button, Badge,Input } from "antd";
-import { FormattedMessage } from 'react-intl';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {
     getProductionOrderId,
@@ -230,39 +229,15 @@ const SearchedDataRefurbish = (props) => {
                
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[black]">Type </div>
-                        <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.orderid"
-                            defaultMessage="orderid"
-                        /></div>
-                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.customer"
-                            defaultMessage="customer"
-                        /></div>
-                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                            id="app.contact"
-                            defaultMessage="contact"
-                        /></div>
-                        <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /> </div>
-                        <div className="w-[6.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.assigned"
-                            defaultMessage="Assigned"
-                        /> </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.owner"
-                            defaultMessage="owner"
-                        /> </div>
+                        <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">orderid</div>
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">customer</div>
+                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">contact</div>
+                        <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Lead </div>
+                        <div className="w-[6.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned </div>
+                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">owner </div>
 
-                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.quoted"
-                            defaultMessage="Quoted"
-                        /></div>
-                        <div className="md:w-[5.8rem]"><FormattedMessage
-                            id="app.final"
-                            defaultMessage="Final"
-                        /></div>
+                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Quoted</div>
+                        <div className="md:w-[5.8rem]"> Final</div>
                         <div className="w-[21.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Delivery</div>
                         <div className="w-[7.2rem]"></div>
                     </div>

@@ -40,7 +40,6 @@ const SuppliesLocationItem = (props) => {
                         <div className=""></div>
          
                         <div className=" w-[13.52rem]">
-                            {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item Name
                         </div>
                         <div className=" w-[11.122rem]">       

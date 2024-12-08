@@ -119,25 +119,25 @@ function ProcureOrderDetails(props) {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky top-0 z-10">
         <div className="md:w-[8.4rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+        {translatedMenuItems[0]} 
           </div>
           <div className="md:w-[9.4rem]">
-          {translatedMenuItems[1]}  {/* <FormattedMessage id="app.brand" defaultMessage="Brand" /> */}
+          {translatedMenuItems[1]} 
           </div>
           <div className="md:w-[15.1rem]">
-          {translatedMenuItems[2]}{/* <FormattedMessage id="app.model" defaultMessage="Model" /> */}
+          {translatedMenuItems[2]}
           </div>
           <div className="md:w-[7.1rem]">
-          {translatedMenuItems[3]} {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
+          {translatedMenuItems[3]}
           </div>
           <div className="md:w-[7.1rem]">
-          {translatedMenuItems[4]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
+          {translatedMenuItems[4]} 
           </div>
           <div className="md:w-[7.8rem]">
-          {translatedMenuItems[5]}  {/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
+          {translatedMenuItems[5]} 
           </div>
           <div className="md:w-[4.8rem]">
-          {translatedMenuItems[6]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
+          {translatedMenuItems[6]} 
           </div>
           
         

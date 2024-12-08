@@ -5,7 +5,6 @@ import { Button, Switch, Select } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addQuotationCarDetails } from "../Account/AccountAction";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
-import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AddQuotationExcel from "../Account/AccountDetailsTab/AddQuotationExcel";
 
@@ -136,10 +135,7 @@ function QuotaionStepperFormStep2(props) {
                                     htmlType="submit"
                                     loading={props.addingQuotationCar}
                                 >
-                                    <FormattedMessage
-                                        id="app.finish"
-                                        defaultMessage="Finish"
-                                    />
+                                    Finish
                                 </Button>
                             </div>
                         </Form>

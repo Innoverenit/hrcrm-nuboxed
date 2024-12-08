@@ -471,40 +471,31 @@ const AWBtst=[
               {translatedMenuItems[0]}
                 </div>
               <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
-                {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
-                {translatedMenuItems[1]}
+               {translatedMenuItems[1]}
                 </div>
               <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
-                {/* <FormattedMessage id="app.inspection" defaultMessage="Inspection" /> */}
                 {translatedMenuItems[2]}
                 </div>
 
               <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]">
-                {/* <FormattedMessage id="app.packed" defaultMessage="Packed ?" /> */}
-                {translatedMenuItems[3]}
+              {translatedMenuItems[3]}
                 </div>
               <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
-                {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery" /> */}
                 {translatedMenuItems[4]}
                 </div>
               <div className=" w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]">
-                {/* <FormattedMessage id="app.shipper" defaultMessage="Shipper" /> */}
                 {translatedMenuItems[5]}
                 </div>
               < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
-              {/* <FormattedMessage id="app.pickup" defaultMessage="pickup" /> */}
               {translatedMenuItems[6]}
               </div>
               <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]">
-                {/* <FormattedMessage id="app.awb" defaultMessage="AWB" /> */}
                 {translatedMenuItems[7]}
                 </div>
               <div className=" w-[3.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
-                {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
-                {translatedMenuItems[8]}
+               {translatedMenuItems[8]}
                 </div>
               <div className="w-[3.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
-                {/* <FormattedMessage id="app.pickup" defaultMessage="Pick Up" /> */}
                 {translatedMenuItems[9]}
                 </div>
               <div className="w-[0.5%]"></div>

@@ -146,41 +146,31 @@ function ProcureDetailsCardList(props) {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className="md:w-[7.4rem]">
-          Category
-            {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+          categoryItem
           </div>
           <div className="md:w-[7.4rem]">
             Brand
-            {/* <FormattedMessage id="app.brand" defaultMessage="Brand" /> */}
           </div>
           <div className="md:w-[7.1rem]">
             Model
-            {/* <FormattedMessage id="app.model" defaultMessage="Model" /> */}
           </div>
           <div className="md:w-[7.1rem]">
-            Attribute
-            {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
+            attributeItem
           </div>
           <div className="md:w-[7.1rem]">
             Quality
-            {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
-          </div>
+            </div>
           <div className="md:w-[7.1rem]">
             Location
-            {/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
           </div>
           <div className="md:w-[8.8rem]">
             Specs
-            {/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
-          </div>
-   
+          </div>   
           <div className="md:w-[8.8rem]">
-            Unit
-            {/* <FormattedMessage id="app.unit" defaultMessage="Unit" /> */}
-          </div>
+            Units
+            </div>
           <div className="md:w-[8.8rem]">
             Price
-            {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
           </div>
         
         

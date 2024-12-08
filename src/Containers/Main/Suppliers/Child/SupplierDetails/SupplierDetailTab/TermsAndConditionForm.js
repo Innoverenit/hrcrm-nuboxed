@@ -84,10 +84,6 @@ console.log(props.termsnconditionofpo)
                                 <div class=" text-xs font-bold font-poppins">{translatedMenuItems[0]}</div>
                                 <Field
                                     name="specialTerms"
-                                    // label={<FormattedMessage
-                                    //     id="app.specialtermsandcondition"
-                                    //     defaultMessage="Special terms and condition"
-                                    // />}
                                     isRequired
                                     isColumn
                                     inlineLabel
@@ -99,10 +95,6 @@ console.log(props.termsnconditionofpo)
                             <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[1]}</div>
                                 <Field
                                     name="delivery"
-                                    // label={<FormattedMessage
-                                    //     id="app.delivery"
-                                    //     defaultMessage="Delivery"
-                                    // />}
                                     isRequired
                                     isColumn
                                     inlineLabel
@@ -114,10 +106,6 @@ console.log(props.termsnconditionofpo)
                             <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[2]}</div>
                                 <Field
                                     name="freight"
-                                    // label={<FormattedMessage
-                                    //     id="app.freight"
-                                    //     defaultMessage="Freight"
-                                    // />}
                                     F isRequired
                                     isColumn
                                     inlineLabel
@@ -143,10 +131,6 @@ console.log(props.termsnconditionofpo)
                             <div class=" text-xs font-bold font-poppins">{translatedMenuItems[3]}</div>
                                 <Field
                                     name="packing"
-                                    // label={<FormattedMessage
-                                    //     id="app.packing"
-                                    //     defaultMessage="Packing"
-                                    // />}
                                     isRequired
                                     isColumn
                                     inlineLabel
@@ -200,10 +184,7 @@ console.log(props.termsnconditionofpo)
                                     htmlType="submit"
                                     loading={props.addingTermsnCondition}
                                 >
-                                 {translatedMenuItems[8]}   {/* <FormattedMessage
-                                        id="app.submit"
-                                        defaultMessage="Submit"
-                                    /> */}
+                                 {translatedMenuItems[8]} 
                                 </Button>
                             </div>
                         </div>

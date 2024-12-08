@@ -459,10 +459,7 @@ const handleInfiniteScroll = () => {
                   </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title= {translatedMenuItems[12]}>
-                                            {/* // {<FormattedMessage
-                                            //                     id="app.status"
-                                            //                     defaultMessage="Status"
-                                            //                 />}> */}
+                                          
                                                                 <EventRepeatIcon
 
                                                                     className="!text-base cursor-pointer"

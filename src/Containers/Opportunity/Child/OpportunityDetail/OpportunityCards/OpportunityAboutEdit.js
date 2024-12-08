@@ -67,10 +67,8 @@
 //                 handleChange={this.handleChange}
 //                 placeholder="Proposal Value"
 //                 name={"proposalAmount"}
-//                 label={<FormattedMessage
-//                   id="app.proposalvalue"
-//                   defaultMessage="Proposal Value"
-//                 />}
+//                 label="Proposal Value"
+//                
 //                 value={this.state.fields.proposalAmount}
 //                 height={"2.375em"}
 //                 width="100%"
@@ -167,19 +165,13 @@
 //             Loading={updateOpportunityById}
 //           // onClick={this.handleUpdate}
 //           >
-//             {/* Save */}
-//             <FormattedMessage
-//                  id="app.save"
-//                  defaultMessage="Save"
-//                 />
+//              Save 
+//            
 //           </Button>
 //           &nbsp;
 //           <Button type="ghost" onClick={() => toggleViewType()}>
-//             {/* Cancel */}
-//             <FormattedMessage
-//                  id="app.cancel"
-//                  defaultMessage="Cancel"
-//                 />
+//              Cancel 
+//           
 //           </Button>
 //         </div>
 //       </>

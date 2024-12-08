@@ -12,7 +12,7 @@ const AddShipperActivityModal = (props) => {
   return (
     <div>
       <StyledModal
-        title={<FormattedMessage id="app.activity" defaultMessage="Activity"/>}
+        title="Activity"
         width="68vw"
         visible={props.addShipperActivityTableModal}
         maskClosable={false}

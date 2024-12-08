@@ -2,7 +2,6 @@ import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNoOfTechnicianById } from "./RefurbishAction";
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../Components/Placeholder';
 const QCPhoneListByTechnician = lazy(() => import('./QCPhoneListByTechnician'));
 
@@ -57,41 +56,22 @@ const TechnicianListByOrderId = (props) => {
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky z-10">
                         <div className=" md:w-[12rem]">
                             {translatedMenuItems[0]}
-                            {/* <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                        /> */}
                         </div>
                         <div className=" md:w-[8rem]">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                                id="app.mobile"
-                                defaultMessage="Mobile #"
-                            /> */}
+                        {translatedMenuItems[1]} 
                         </div>
                         <div className="md:w-[8rem]">
-                        {translatedMenuItems[2]}  {/* <FormattedMessage
-                                id="app.totalUnit"
-                                defaultMessage="Total Unit"
-                            /> */}
+                        {translatedMenuItems[2]} 
                             </div>
                         <div className=" md:w-[8rem]">
-                        {translatedMenuItems[3]} {/* <FormattedMessage
-                                id="app.remaining"
-                                defaultMessage="Remaining"
-                            /> */}
+                        {translatedMenuItems[3]}
                         </div>
                         <div className=" md:w-[8rem]">
 
-                        {translatedMenuItems[4]}{/* <FormattedMessage
-                                id="app.InProgress"
-                                defaultMessage="In Progress"
-                            /> */}
+                        {translatedMenuItems[4]}
                         </div>
                         <div className="md:w-[8rem]">
-                        {translatedMenuItems[5]} {/* <FormattedMessage
-                                id="app.complete"
-                                defaultMessage="Complete"
-                            /> */}
+                        {translatedMenuItems[5]}
                             </div>
 
                     </div>

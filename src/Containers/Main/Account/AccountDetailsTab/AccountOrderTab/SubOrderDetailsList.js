@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import QRCodeModal from "../../../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import { getSubOrderPhone } from "../../AccountAction"
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 
@@ -19,34 +18,15 @@ function SubOrderDetailsList(props) {
                 <div className='flex sticky z-auto'>
                     <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.OEM"
-                                defaultMessage="OEM"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.model"
-                                defaultMessage="Model"
-                            /></div>
-                            <div className="md:w-[7rem]"><FormattedMessage
-                                id="app.IMEI"
-                                defaultMessage="IMEI"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.os"
-                                defaultMessage="OS"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.gb"
-                                defaultMessage="GB"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.color"
-                                defaultMessage="Color"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.condition"
-                                defaultMessage="Condition"
-                            /></div>
+                            <div className=" md:w-[7rem]">OEM
+                           </div>
+                            <div className=" md:w-[7rem]">Model</div>
+                            <div className="md:w-[7rem]">IMEI
+                        </div>
+                            <div className=" md:w-[7rem]">OS</div>
+                            <div className=" md:w-[7rem]">GB</div>
+                            <div className=" md:w-[7rem]">Color</div>
+                            <div className=" md:w-[7rem]">Condition</div>
 
                             <div className=" md:w-[2rem]"></div>
 

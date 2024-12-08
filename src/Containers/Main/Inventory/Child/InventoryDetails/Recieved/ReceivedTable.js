@@ -142,7 +142,6 @@ const ReceivedTable = (props) => {
                 </div>
               </>
               )}
-              {/* <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div> */}
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[3]}
                 </div>

@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import dayjs from 'dayjs';
 import StartRepairReasonModal from './StartRepairReasonModal';
 import ShowPaymentHistoryModal from './ShowPaymentHistoryModal';
-import { FormattedMessage } from 'react-intl';
 import PaidButtonModal from './PaidButtonModal';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 
@@ -90,19 +89,9 @@ const StatusOfOrder = (props) => {
                         current={1}
                         items={[
                             {
-                                title: translatedMenuItems[0]
-                                //  <FormattedMessage
-                                //     id="app.ordercreated"
-                                //     defaultMessage="Order Created"
-                                // />
+                                title: translatedMenuItems[0]                              
                                 ,
-                                status: 
-                                // translatedMenuItems[1]
-                                <FormattedMessage
-                                    id="app.progress"
-                                    defaultMessage="progress"
-                                />
-                                ,
+                                status:"progress" ,
                                 description: <>
                                     <b>
                                         {/* On    */} {translatedMenuItems[2] } {dayjs(orderStatus.creationDate).format("DD-MM-YYYY")} {/* by */}{translatedMenuItems[3]} {orderStatus.userName}</b>

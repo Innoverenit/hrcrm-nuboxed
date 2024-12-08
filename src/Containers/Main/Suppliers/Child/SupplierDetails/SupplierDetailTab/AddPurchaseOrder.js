@@ -169,26 +169,7 @@ const AddPurchaseOrder = (props) => {
                           return <Option value={a.suppliesId}>{a.suppliesName}</Option>;
                         })}
                       </Select>
-                                        {/* <Field
-                                            name="suppliesId"
-                                            label={<FormattedMessage
-                                                id="app.material"
-                                                defaultMessage="Materials"
-                                            />}
-                                            isRequired
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            component={SelectComponent}
-                                            onSelect={(e) => {
-                                                console.log(e);
-                                                handleProductList(e, setFieldValue);
-                                            }}
-                                            options={Array.isArray(materialOption) ? materialOption : []}
-                                            style={{
-                                                borderRight: "0.18em solid red",
-                                            }}
-                                        />  */}
+                                      
                                     </div>
                                     <div class="w-w48  max-sm:w-wk">
                       <div className=' font-bold font-poppins text-xs mt-1'> {translatedMenuItems[1]} </div>

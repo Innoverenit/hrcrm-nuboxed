@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BundleLoader } from '../../../../../../Components/Placeholder';
 import { getPhonelistByOrderId } from "../../../InventoryAction"
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
@@ -30,34 +29,16 @@ const ReceivedMismatchPhoneList = (props) => {
                     <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                         <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
                             <div className=" md:w-[2rem]"></div>
-                            <div className=" md:w-[8.1rem]"><FormattedMessage
-                                id="app.oem"
-                                defaultMessage="OEM"
-                            /></div>
-                            <div className=" md:w-[8.1rem]"><FormattedMessage
-                                id="app.model"
-                                defaultMessage="model"
-                            /></div>
-                            <div className=" md:w-[7.8rem] "><FormattedMessage
-                                id="app.imei"
-                                defaultMessage="imei"
-                            /></div>
-                            <div className="md:w-[4.6rem]"><FormattedMessage
-                                id="app.os"
-                                defaultMessage="os"
-                            /> </div>
-                            <div className="md:w-[5.8rem]"><FormattedMessage
-                                id="app.gb"
-                                defaultMessage="gb"
-                            /></div>
-                            <div className="md:w-[7.7rem]"><FormattedMessage
-                                id="app.color"
-                                defaultMessage="color"
-                            /></div>
-                            <div className="md:w-[5.9rem]"><FormattedMessage
-                                id="app.conditions"
-                                defaultMessage="conditions"
-                            /></div>
+                            <div className=" md:w-[8.1rem]">OEM</div>
+                            <div className=" md:w-[8.1rem]">model</div>
+                            <div className=" md:w-[7.8rem] ">imei
+                            </div>
+                            <div className="md:w-[4.6rem]">os
+                           </div>
+                            <div className="md:w-[5.8rem]">GB</div>
+                            <div className="md:w-[7.7rem]">Color</div>
+                            <div className="md:w-[5.9rem]">conditions
+                          </div>
 
                         </div>
                         <div class="overflow-y-auto h-[65vh]">

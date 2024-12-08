@@ -9,7 +9,6 @@ import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectCo
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { Button, Tooltip, message } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { updateProcureStep1, getLobList } from '../../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -169,12 +168,7 @@ function ProcureStep1(props) {
                                     {values.paymentInTerms === "Custom" &&
                                         <div class="w-[45%]">
                                             <Field
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
-                                                    />
-                                                }
+                                                label="Custom Payment"                                                    
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -281,16 +275,10 @@ function ProcureStep1(props) {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></div>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority</div>
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title="High">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -308,10 +296,7 @@ function ProcureStep1(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
+                                                <Tooltip title="Medium">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -329,10 +314,7 @@ function ProcureStep1(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
+                                                <Tooltip title="Low">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -362,11 +344,7 @@ function ProcureStep1(props) {
                                             htmlType="Submit"
                                             loading={props.updatingProcureStep1}
                                         >
-                                            <FormattedMessage
-                                                id="app.update"
-                                                defaultMessage="Update"
-                                            />
-
+                                          Update
                                         </Button>
 
                                     </div>
