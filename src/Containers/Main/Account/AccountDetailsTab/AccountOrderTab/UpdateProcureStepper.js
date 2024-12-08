@@ -75,18 +75,6 @@ class UpdateProcureStepper extends Component {
                 translateText={this.props.translateText}
                  orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} /> </Suspense>,
             },
-            // {
-            //     title: <FormattedMessage
-            //         id="app.phonedetails"
-            //         defaultMessage="Phone details"
-            //     />,
-            //     icon: <CallIcon
-            //         style={{ color: "blue" }}
-            //     />,
-            //     content: <OrderStep2 orderId={this.props.particularRowData.orderId} distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
-            // },
-
-
         ];
         const { current } = this.state;
         return (

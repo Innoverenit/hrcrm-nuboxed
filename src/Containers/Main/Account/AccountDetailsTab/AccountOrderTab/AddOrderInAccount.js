@@ -11,7 +11,6 @@ import { TextareaComponent } from '../../../../../Components/Forms/Formik/Textar
 import { Button, Tooltip, message, Select,Input  } from 'antd';
 import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { getSaleCurrency,getAllDialCodeList } from "../../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderForm, getLobList } from '../../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -215,10 +214,8 @@ const handleAddContact = () => {
                         <div class=" flex justify-between">
                             <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
-                                        id="app.pickupaddress"
-                                        defaultMessage="Pickup Address"
-                                    /></h3></div>
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Pickup Address
+                                 </h3></div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -258,12 +255,7 @@ const handleAddContact = () => {
                                         <div class="w-[45%]">
                                             <Field
                                              type="number"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.CustomPayment"
-                                                        defaultMessage="Custom Payment (in days)"
-                                                    />
-                                                }
+                                                label="Custom Payment (in days)"                                                   
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -489,16 +481,11 @@ const handleAddContact = () => {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></div>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority
+                                       </div>
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title="High">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -516,31 +503,8 @@ const handleAddContact = () => {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                {/* <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("Medium")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "Medium"
-                                                                    ? "Orange"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    />
-                                                </Tooltip> */}
-                                                
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
+                                            
+                                                <Tooltip title="Low">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -570,11 +534,7 @@ const handleAddContact = () => {
                                             htmlType="Submit"
                                             loading={props.addingOrder}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
-
+                                            Save
                                         </Button>
 
                                     </div>

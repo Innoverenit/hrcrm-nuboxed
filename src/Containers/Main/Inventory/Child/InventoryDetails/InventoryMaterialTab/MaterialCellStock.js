@@ -18,15 +18,15 @@ const MaterialCellStock = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[30.05rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" md:w-[23.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[15.52rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" md:w-[15.25rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" md:w-[22.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" md:w-[15.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
-                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
-                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.room" defaultMessage="Cell" /></div>
+                        <div className=" md:w-[30.05rem]">PO #</div>
+                        <div className=" md:w-[23.51rem]">Name</div>
+                        <div className=" md:w-[15.52rem]">GRN #</div>
+                        <div className=" md:w-[22.12rem]">Price</div>
+                        <div className=" md:w-[15.25rem]">Unit</div>
+                        <div className=" md:w-[22.10rem]">Receive</div>
+                        <div className=" md:w-[15.42rem]">Damaged</div>
+                        <div className=" md:w-[22.01rem]">Remark</div>
+                        <div className=" md:w-[22.01rem]">Cell</div>
 
                         <div className=""></div>
                     </div>

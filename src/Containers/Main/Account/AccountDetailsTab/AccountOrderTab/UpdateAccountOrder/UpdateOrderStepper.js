@@ -8,7 +8,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import OrderStep1 from "./OrderStep1";
 import OrderStep2 from "./OrderStep2";
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 
@@ -42,18 +41,14 @@ class UpdateOrderStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title:"Order"
+               ,
                 icon: <GroupsIcon />,
                 content: <OrderStep1 orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {
-                title: <FormattedMessage
-                    id="app.phonedetails"
-                    defaultMessage="Phone details"
-                />,
+                title: "Phone details"
+                ,
                 icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
@@ -68,17 +63,15 @@ class UpdateOrderStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description=
+                        "Order Details"
+                        
+                        
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
                 </StyledSteps>
                 <div class="min-[50vh]"
@@ -96,11 +89,7 @@ class UpdateOrderStepper extends Component {
                                             onClick={() => this.next()}
 
 
-                                        >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
+                                        >Proceed
 
                                         </Button>
                                     </>
@@ -113,10 +102,7 @@ class UpdateOrderStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }}
                                 onClick={() => this.prev()}>
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                               Previous
 
                             </Button>
                         )}

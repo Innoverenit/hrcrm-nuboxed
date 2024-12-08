@@ -4,7 +4,6 @@ import { getTaggedSuppliesByBrand, addSpareList } from "../../AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
-import { FormattedMessage } from 'react-intl';
 import { getCurrency } from "../../../../Auth/AuthAction";
 const { Option } = Select;
 
@@ -126,11 +125,7 @@ const AddMultipleSpare = (props) => {
 
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
-
+                              Units
                                 </div>
                                 <Input
                                     type='text'
@@ -142,10 +137,7 @@ const AddMultipleSpare = (props) => {
                             </div>
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.hours"
-                                        defaultMessage="Hours"
-                                    />
+                                  Hours
                                 </div>
                                 <Input
                                     type='text'
@@ -157,11 +149,7 @@ const AddMultipleSpare = (props) => {
                             </div>
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.cost"
-                                        defaultMessage="Cost"
-                                    />
-
+                                   Cost
                                 </div>
                                 <Input
                                     type='text'
@@ -205,10 +193,7 @@ const AddMultipleSpare = (props) => {
                     type="primary"
                     onClick={handleAddRowClick}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
+                  Add More
                 </Button>
                 <Button
                     htmlType='submit'
@@ -216,10 +201,7 @@ const AddMultipleSpare = (props) => {
                     loading={props.addingSpareList}
                     onClick={buttonOnClick}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 

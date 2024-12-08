@@ -405,8 +405,6 @@ class UpdateSupplierContactForm extends Component {
                                     // icon={<PoweroffOutlined />}
                                     loading={this.props.updateSupplierContactById}
                                 >
-                                    {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
-
                                     Update
                                 </Button>
                             </FlexContainer>

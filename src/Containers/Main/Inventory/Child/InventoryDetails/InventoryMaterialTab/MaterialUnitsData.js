@@ -91,33 +91,23 @@ const GrnListOfPO = (props) => {
                         <div className="w-[2.5rem]"></div>
                         <div className=" md:w-[4.5rem]">PO ID</div>
                         <div className=" md:w-[9.21rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
                             {props.translatedMenuItems[15]}
                             </div>
-                        {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
-                        {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.ordered" defaultMessage="Ordered" /> */}  {props.translatedMenuItems[30]}
+                        <div className=" md:w-[4.25rem]">  {props.translatedMenuItems[30]}
 
                             </div>
-                        <div className=" md:w-[6.10rem]">
-                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */}  {props.translatedMenuItems[5]}
+                        <div className=" md:w-[6.10rem]">  {props.translatedMenuItems[5]}
 
                             </div>
-                        <div className=" md:w-[4.42rem]">
-                            {/* <FormattedMessage id="app.damaged" defaultMessage="Damaged" /> */}  {props.translatedMenuItems[20]}
+                        <div className=" md:w-[4.42rem]"> {props.translatedMenuItems[20]}
                         </div>
-                        <div className=" md:w-[5.01rem]">
-                            {/* <FormattedMessage id="app.balance" defaultMessage="Balance" /> */}  {props.translatedMenuItems[31]}
+                        <div className=" md:w-[5.01rem]">{props.translatedMenuItems[31]}
                         </div>
-                        <div className=" md:w-[5.01rem]">
-                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}  {props.translatedMenuItems[21]}
+                        <div className=" md:w-[5.01rem]"> {props.translatedMenuItems[21]}
                             </div>
-                        <div className=" md:w-[4.51rem]">
-                            {/* <FormattedMessage id="app.room" defaultMessage="Zone" /> */}  {props.translatedMenuItems[32]}
+                        <div className=" md:w-[4.51rem]">  {props.translatedMenuItems[32]}
                         </div>
-                        <div className=" md:w-[6.01rem]">
-                            {/* <FormattedMessage id="app.rack" defaultMessage="#Rack" /> */} #{props.translatedMenuItems[33]}
+                        <div className=" md:w-[6.01rem]"> #{props.translatedMenuItems[33]}
                         </div>
                         <div className=""></div>
                     </div>

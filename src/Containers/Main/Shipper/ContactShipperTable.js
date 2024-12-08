@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import {
   getContactShipperList,
   handleUpdateShipperContactModal,
@@ -186,19 +185,19 @@ class ShipperContactTable extends Component {
               <div className="md:w-[0.5rem]"></div>
 
               <div className="md:w-[5.1rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+                Name
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Email" defaultMessage="Email" />
+             Email
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.MobileNo" defaultMessage="Mobile No " />
+               Mobile No 
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Designation" defaultMessage="Designation" />
+             Designation
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Department" defaultMessage="Department" />
+               Department
               </div>
               <div class=" w-[2rem]"></div>
             </div>

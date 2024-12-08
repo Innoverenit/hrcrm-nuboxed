@@ -46,39 +46,17 @@ class SupplierOverDetailView extends Component {
       <>
         <ShipperItemRow
             label={this.state.translatedMenuItems[4]}
-            // {
-            //   <FormattedMessage id="app.street" defaultMessage="Street" />
-            // }
           value={addresses && addresses[0].street}
         />
         <ShipperItemRow 
            label={this.state.translatedMenuItems[0]}
-            // <FormattedMessage id="app.city" defaultMessage="City" />
           
         value={addresses && addresses[0].city} />
         <ShipperItemRow
    
          label={this.state.translatedMenuItems[1]}
-        //  {
-        //   <FormattedMessage id="app.state" defaultMessage="State" />
-        // }
           value={addresses && addresses[0].state} />
-        {/* <ShipperItemRow
-            label=
-            {this.state.translatedMenuItems[2]}
-            // {
-            //   <FormattedMessage id="app.pincode" defaultMessage="Pincode" />
-            // }
-            value={addresses && addresses[0].pinCode}
-        /> */}
-        {/* <ShipperItemRow
-             label={this.state.translatedMenuItems[3]}
-            //  {
-            //   <FormattedMessage id="app.country" defaultMessage="Country" />
-            // }
-     
-          value={addresses && addresses[0].country}
-        /> */}
+      
       </>
     );
   }

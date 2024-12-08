@@ -14,15 +14,12 @@ class ShipperDetailView extends Component {
       <>
         <ShipperItemRow 
         label="Phone"
-        // label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>} 
         value={phoneNo} />
         <ShipperItemRow 
         label="Email"
-        // label={<FormattedMessage id="app.email" defaultMessage="Email"/>} 
         value={emailId} />
         <ShipperItemRow 
         label="Ship By"
-        // label={<FormattedMessage id="app.shipby" defaultMessage="Ship By"/>} 
         value={shipByName} />
       </>
     );

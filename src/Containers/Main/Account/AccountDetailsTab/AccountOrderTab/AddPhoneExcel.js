@@ -6,7 +6,6 @@ import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addCarDetails,handleOpenNewModal } from "../../AccountAction"
 import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
-import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import AddOpenNewModal from "./AddOpenNewModal";
 
@@ -127,10 +126,7 @@ function AddPhoneExcel(props) {
                                     htmlType="submit"
                                     loading={props.addingCar}
                                 >
-                                    <FormattedMessage
-                                        id="app.finish"
-                                        defaultMessage="Finish"
-                                    />
+                                    Finish
                                 </Button>
                             </div>
                         </Form>

@@ -5,7 +5,6 @@ import axios from "axios";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import Swal from "sweetalert2";
-import { FormattedMessage } from 'react-intl';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Input,Badge,Checkbox,Popconfirm } from "antd";
 import QRCode from "qrcode.react";
@@ -521,10 +520,7 @@ console.log(selectedItems)
                       </div>
                       <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
-                          <Tooltip title={<FormattedMessage
-                            id="app.Print"
-                            defaultMessage="Print"
-                          />}>
+                          <Tooltip title="Print">
 
                             <ReactToPrint
                               trigger={() => <Button   type="primary" class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}><QrCodeIcon className="!text-icon"/> Print QR  </Button>}

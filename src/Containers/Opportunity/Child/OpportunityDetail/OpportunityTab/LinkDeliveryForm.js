@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import { Button } from "antd";
-
 import { Formik, Form, Field } from "formik";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
@@ -66,11 +64,7 @@ class LinkDeliveryForm extends Component {
                 <div style={{ width: 500 }}>
                   <Field
                     name="deliveryId"
-                    // label="Delivery UserName "
-                    label={<FormattedMessage
-                      id="app.deliveryId"
-                      defaultMessage="Delivery UserName"
-                    />}
+                    label="Delivery UserName "
                     selectType="deliveryUsers"
                     component={SearchSelect}
                     inlineLabel
@@ -80,11 +74,7 @@ class LinkDeliveryForm extends Component {
                   <Field
                     name="billingRate"
                     isDisabled
-                    //label="Billing Rate"
-                    label={<FormattedMessage
-                      id="app.billingRate"
-                      defaultMessage="Billing Rate"
-                    />}
+                    label="Billing Rate"
                     value={values.billingRate}
                     inlineLabel
                     component={InputComponent}
@@ -93,11 +83,7 @@ class LinkDeliveryForm extends Component {
                   <div class=" mt-3" />
                   <Field
                     name="deliveryStartDate"
-                    // label="Start Date"
-                    label={<FormattedMessage
-                      id="app.deliveryStartDate"
-                      defaultMessage="Start Date"
-                    />}
+                    label="Start Date"
                     component={DatePicker}
                     value={values.deliveryStartDate}
                     inlineLabel
@@ -106,11 +92,7 @@ class LinkDeliveryForm extends Component {
                   <div class=" mt-3" />
                   <Field
                     name="deliveryEndDate"
-                    // label="End Date"
-                    label={<FormattedMessage
-                      id="app.deliveryEndDate"
-                      defaultMessage="End Date"
-                    />}
+                    label="End Date"
                     component={DatePicker}
                     value={values.deliveryEndDate}
                     inlineLabel
@@ -120,11 +102,7 @@ class LinkDeliveryForm extends Component {
                   <Field
                     name="designation"
                     isDisabled
-                    //label="Designation"
-                    label={<FormattedMessage
-                      id="app.designation"
-                      defaultMessage="Designation"
-                    />}
+                    label="Designation"
                     value={values.designation}
                     inlineLabel
                     component={InputComponent}
@@ -137,11 +115,7 @@ class LinkDeliveryForm extends Component {
                     htmlType="submit"
                     Loading={addingDelivery}
                   >
-                    <FormattedMessage
-                      id="app.create"
-                      defaultMessage="Create"
-                    />
-                    {/* Create */}
+                    Create
                   </Button>
                 </div>
               </Form>

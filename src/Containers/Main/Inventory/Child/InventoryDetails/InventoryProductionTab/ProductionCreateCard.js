@@ -205,16 +205,10 @@ function ProductionCreateCard(props) {
                                                                 onClick={() => {
                                                                     handleSubmitRoomRack(item.manufactureId)
                                                                 }} >
-                                                                {/* <FormattedMessage
-                                                                    id="app.save"
-                                                                    defaultMessage="Save"
-                                                                /> */}  {props.translatedMenuItems[34]}
+                                                                {props.translatedMenuItems[34]}
                                                             </Button>
                                                             <Button onClick={() => handleCancelStore()}>
-                                                                {/* <FormattedMessage
-                                                                id="app.cancel"
-                                                                defaultMessage="Cancel"
-                                                            /> */} {props.translatedMenuItems[24]}
+                                                              {props.translatedMenuItems[24]}
                                                             </Button>
                                                         </>
                                                         :

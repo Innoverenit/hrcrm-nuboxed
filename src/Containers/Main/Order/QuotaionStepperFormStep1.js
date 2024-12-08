@@ -11,7 +11,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { TextareaComponent } from '../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../Account/AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -186,10 +185,8 @@ const handleOnSelectType =(ontype)=> {
 
 
 <div class="w-[46%]  ml-8 mt-2">
-    <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-        id="app.priority"
-        defaultMessage="Priority"
-    /></div>
+    <div class=" text-xs font-bold font-poppins text-black">Priority
+    </div>
     <div class="justify-between flex">
         <div>
             <Tooltip title="Urgent">
@@ -212,10 +209,8 @@ const handleOnSelectType =(ontype)=> {
             &nbsp;
        
             
-            <Tooltip title={<FormattedMessage
-                id="app.low"
-                defaultMessage="Low"
-            />}>
+            <Tooltip title="Low"
+           >
                 <Button
                     // type="primary"
                     shape="circle"
@@ -243,7 +238,7 @@ const handleOnSelectType =(ontype)=> {
                                     <div className="mt-3">
                                         <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
-                                                <FormattedMessage id="app.pickupaddress" defaultMessage="Pickup Address" />
+                                              Pickup Address
                                             </h3>
                                         </div>
                                         <FieldArray
@@ -261,7 +256,7 @@ const handleOnSelectType =(ontype)=> {
                                     <div className="mt-3">
                                         <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
-                                                <FormattedMessage id="app.deliveryaddress" defaultMessage="Delivery Address" />
+                                                Delivery Address
                                             </h3>
                                         </div>
                                         <FieldArray
@@ -302,12 +297,8 @@ const handleOnSelectType =(ontype)=> {
                                     {values.paymentInTerms === "Custom" &&
                                         <div class="w-[45%]">
                                             <Field
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
-                                                    />
-                                                }
+                                                label="Custom Payment"
+                                                  
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -436,11 +427,7 @@ const handleOnSelectType =(ontype)=> {
                                             htmlType="Submit"
                                             loading={props.addingQuotationOrder}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
-
+                                            Save
                                         </Button>
 
                                     </div>

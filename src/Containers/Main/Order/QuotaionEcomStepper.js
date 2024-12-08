@@ -6,7 +6,6 @@ import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate
 import { StyledSteps } from "../../../Components/UI/Antd";
 import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import QuotaionStepperFormStep1 from "./QuotaionStepperFormStep1";
 import QuotaionStepperFormStep2 from "./QuotaionStepperFormStep2";
@@ -41,18 +40,12 @@ class QuotaionEcomStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title: "Order",
                 icon: <GroupsIcon />,
                 content: <QuotaionStepperFormStep1  inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {
-                title: <FormattedMessage
-                    id="app.phonedetails"
-                    defaultMessage="Phone details"
-                />,
+                title:"Phone details",
                 icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
@@ -67,10 +60,7 @@ class QuotaionEcomStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.quotation"
-                            defaultMessage="Quotation"
-                        />}
+                        description="Quotation"
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
@@ -93,10 +83,7 @@ class QuotaionEcomStepper extends Component {
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
+                                         Proceed
                                         </Button>
                                         {/* }  */}
                                     </>
@@ -109,10 +96,7 @@ class QuotaionEcomStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}
                             >
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                              Previous
                             </Button>
                         )}
                     </div>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNoOfPhoneInQCById } from "./RefurbishAction";
 import { SubTitle } from '../../../Components/UI/Elements';
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
@@ -38,34 +37,13 @@ const QCPhoneListByTechnician = (props) => {
             <div className=' flex sticky z-10 h-60'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.oem"
-                            defaultMessage="OEM"
-                        /></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.model"
-                            defaultMessage="model"
-                        /></div>
-                        <div className=" md:w-[7.8rem] "><FormattedMessage
-                            id="app.imei"
-                            defaultMessage="imei"
-                        /></div>
-                        <div className="md:w-[5rem]"><FormattedMessage
-                            id="app.os"
-                            defaultMessage="os"
-                        /> </div>
-                        <div className="md:w-[4.8rem]"><FormattedMessage
-                            id="app.gb"
-                            defaultMessage="gb"
-                        /></div>
-                        <div className="md:w-[7.7rem]"><FormattedMessage
-                            id="app.color"
-                            defaultMessage="color"
-                        /></div>
-                        <div className="md:w-[5.9rem]"><FormattedMessage
-                            id="app.conditions"
-                            defaultMessage="conditions"
-                        /></div>
+                        <div className=" md:w-[8.1rem]">OEM</div>
+                        <div className=" md:w-[8.1rem]">Model</div>
+                        <div className=" md:w-[7.8rem] ">IMEI</div>
+                        <div className="md:w-[5rem]">OS </div>
+                        <div className="md:w-[4.8rem]">GB</div>
+                        <div className="md:w-[7.7rem]">Color</div>
+                        <div className="md:w-[5.9rem]">Condition</div>
                         <div className="md:w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll

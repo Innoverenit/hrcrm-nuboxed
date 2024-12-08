@@ -41,35 +41,6 @@ console.log(this.props.rowdata)
                       Performance
                     </span>
                   </span>
-                  {/* {activeKey === "1" && (
-                    <>
-                      <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                      >
-                      
-                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                           
-                           
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              handleInvestorContactModal(true);
-                            }}
-                            size="0.875em"
-                          />
-                       
-                      </Tooltip>
-                    </>
-                  )} */}
                 </>
               }
               key="1"
@@ -92,25 +63,7 @@ console.log(this.props.rowdata)
                     360 View
                     
                   </span>
-                  {/* {activeKey === "2" && (
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        title={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
-                        onClick={() => handleInvestorDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
-                      />
-                    </>
-                  )} */}
+                 
                 </>
               }
               key="2"

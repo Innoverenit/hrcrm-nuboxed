@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSpareListByPhoneId } from "../../AccountAction";
-import { FormattedMessage } from 'react-intl';
 
 function SpareListTable(props) {
     useEffect(() => {
@@ -16,34 +15,13 @@ function SpareListTable(props) {
             <div className='flex sticky z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.spare"
-                            defaultMessage="Spare"
-                        /></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.category"
-                            defaultMessage="category"
-                        /></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.attribute"
-                            defaultMessage="attribute"
-                        /></div>
-                        <div className=" md:w-[10.1rem]"><FormattedMessage
-                            id="app.units"
-                            defaultMessage="Units"
-                        /></div>
-                        <div className=" md:w-[5.8rem] "><FormattedMessage
-                            id="app.hours"
-                            defaultMessage="Hours"
-                        /></div>
-                        <div className="md:w-[4.6rem]"><FormattedMessage
-                            id="app.cost"
-                            defaultMessage="Cost"
-                        /></div>
-                        <div className="md:w-[4.6rem]"><FormattedMessage
-                            id="app.total"
-                            defaultMessage="Total"
-                        /></div>
+                        <div className=" md:w-[8.1rem]">Spare</div>
+                        <div className=" md:w-[8.1rem]">category</div>
+                        <div className=" md:w-[8.1rem]">attribute</div>
+                        <div className=" md:w-[10.1rem]">Units</div>
+                        <div className=" md:w-[5.8rem] ">Hours</div>
+                        <div className="md:w-[4.6rem]">Cost</div>
+                        <div className="md:w-[4.6rem]">Total</div>
 
                     </div>
                     {props.spareList.map((item) => {

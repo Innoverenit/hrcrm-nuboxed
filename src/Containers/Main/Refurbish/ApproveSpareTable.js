@@ -62,22 +62,13 @@ if (props.fetchingALlSPareList){
                 <OnlyWrapCard style={{ backgroundColor: "white" }}>
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[8.1rem]">
-                        {translatedMenuItems[0]}  {/* <FormattedMessage
-                        id="app.sparename"
-                        defaultMessage="Spare Name"
-                      /> */}
+                        {translatedMenuItems[0]} 
                       </div>
                         <div className=" md:w-[10.1rem]">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                        id="app.phoneimei"
-                        defaultMessage="Phone imei"
-                      /> */}
+                        {translatedMenuItems[1]} 
                       </div>
                         <div className=" md:w-[5.8rem] ">
-                        {translatedMenuItems[2]}    {/* <FormattedMessage
-                        id="app.phonemodel"
-                        defaultMessage="Phone Model"
-                      /> */}
+                        {translatedMenuItems[2]}  
                       </div>
                         <div className="md:w-[4.6rem]">
                         OEM 

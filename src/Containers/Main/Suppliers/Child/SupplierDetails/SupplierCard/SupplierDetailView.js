@@ -45,12 +45,10 @@ class SupplierDetailView extends Component {
       <>
         <ShipperItemRow
           label={translatedMenuItems[0]}
-            // <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
           
           value={phoneNo} />
         <ShipperItemRow
           label={translatedMenuItems[1]}
-            // <FormattedMessage id="app.email" defaultMessage="Email" />
           
           value={emailId} />
 

@@ -25,6 +25,9 @@ import {
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
+import EducationTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/EducationTable";
+import TrainingTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/TrainingTable";
+import EmploymentTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/EmploymentTable";
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
 const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
@@ -34,7 +37,7 @@ const CandidateTrainingTable = lazy(() => import("./Training/CandidateTrainingTa
 const AddCandidateEmploymentModal = lazy(() => import("./Employment/AddCandidateEmploymentModal"));
 const CandidateEmploymentTable = lazy(() => import("./Employment/CandidateEmploymentTable"));
 const AddBankModal = lazy(() => import("./Bank/AddBankModal"));
-const BankTable = lazy(() => import("./Bank/BankTable"));
+const BankTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/BankTable"));
 const PlacementTable = lazy(() => import("./Placement/PlacementTable"));
 const ActivityModal = lazy(() => import("./Activity/ActivityModal"));
 const ActivityTable = lazy(() => import("./Activity/ActivityTable"));
@@ -117,25 +120,25 @@ function CandidateDetailTab(props) {
             </div>;
             case "6":
               return  <div>
-                 <CandidateEducationTable 
+                 <EducationTable
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}/>
               </div>;
               case "7":
                 return  <div>
-                   <CandidateTrainingTable 
+                   <TrainingTable
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}/>
                 </div>;
  case "8":
   return  <div>
-    <CandidateEmploymentTable 
+    <EmploymentTable
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}/>
   </div>;
   case "8":
     return  <div>
-       <BankTable 
+       <BankTable
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}/>
     </div>;
@@ -414,9 +417,6 @@ function CandidateDetailTab(props) {
              
             </Suspense>
           </TabPane>
-
-
-
 
           <TabPane
             tab={

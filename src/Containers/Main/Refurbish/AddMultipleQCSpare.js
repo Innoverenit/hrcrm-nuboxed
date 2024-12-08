@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { message } from "antd";
 import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 const { Option } = Select;
 
 const AddMultipleQCSpare = (props) => {
@@ -134,10 +133,7 @@ const AddMultipleQCSpare = (props) => {
 
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
+                                  Units
 
                                 </div>
                                 <Input
@@ -179,11 +175,7 @@ const AddMultipleQCSpare = (props) => {
                     onClick={handleAddRowClick}
                     disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
-                </Button>
+                   Add More</Button>
                 <Button
                     htmlType='submit'
                     type='primary'
@@ -191,10 +183,7 @@ const AddMultipleQCSpare = (props) => {
                     loading={props.addingSpareList}
                     disabled={props.RowData.qcInspectionInd === 0 || props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 

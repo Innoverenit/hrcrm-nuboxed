@@ -5,8 +5,6 @@ import { bindActionCreators } from "redux";
 import RecruitmentDeletedTable from "../../OpportunityDetail/OpportunityTab/Recruitment/RecruitmentDeletedTable"
 import {Tooltip,Badge } from "antd";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import { FormattedMessage } from 'react-intl';
-
 import PieChartIcon from '@mui/icons-material/PieChart';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
@@ -370,11 +368,8 @@ return  <BundleLoader />
                   {activeKey === "2" && (
                     <>
                       <Tooltip 
-                        title={<FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />}
-                      >
+                        title="Create"
+                        >
                          {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
@@ -389,26 +384,7 @@ return  <BundleLoader />
                          {/* )} */}
                          
                       </Tooltip>
-                      {/* <Tooltip 
-                          title={<FormattedMessage
-                            id="app.tagexisting"
-                            defaultMessage="Tag Existing"
-                          />}
-                      >
-                        <LinkOutlined
-                            type="link"
-                            onClick={() => {
-                              this.handleContactPopoverVisibleChange();
-                              handleLinkContactModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "-0.31em",
-                              verticalAlign: "center",
-                            }}
-                          />
-
-                     </Tooltip> */}
+                     
                     </>
                   )}
                 </>
@@ -441,17 +417,12 @@ return  <BundleLoader />
                   {activeKey === "3" && (
                     <>
                       <Tooltip 
-                        title={<FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />}
-                      >
+                        title="Upload Document"
+                        >
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
-                          tooltiptitle={<FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />}
+                          tooltiptitle="Upload Document"
+                          
                           onClick={() =>
                             handleDocumentUploadModal(true)
                           }
@@ -491,39 +462,7 @@ return  <BundleLoader />
               </Suspense>
             </TabPane>
 
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{fontSize:"1.1rem"}}/>
-                    &nbsp;
-                    <FormattedMessage
-                      id="app.notes"
-                      defaultMessage="Notes"
-                    />
-                    &nbsp;
-                    {activeKey === "4" && (
-                      <>
-                        <Tooltip title="Voice to Text">
-                      <span                       
-                   onClick={()=>handleReactSpeechModal(true)}>
-                  <MicIcon
-                  style={{fontSize:"1.1rem"}}
-                 />
-                  
-                  </span>
-                  </Tooltip>
-                  </>
-                    )}
-                  </span>
-                </>
-              }
-              key="4">
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedNotes />
-              </Suspense>
-            </TabPane> */}
+          
           </StyledTabs>
           <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}

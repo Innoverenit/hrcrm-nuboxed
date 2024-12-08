@@ -13,7 +13,6 @@ import { updateOrderStep1, getLobList } from '../../../AccountAction'
 import { getContactDistributorList } from "../../../../Suppliers/SuppliersAction"
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
-import { FormattedMessage } from 'react-intl';
 
 import dayjs from "dayjs";
 
@@ -125,10 +124,8 @@ function OrderStep1(props) {
                         <div class=" flex justify-between">
                             <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
-                                        id="app.pickupaddress"
-                                        defaultMessage="Pickup Address"
-                                    /></h3></div>
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Pickup Address
+                                  </h3></div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -167,12 +164,7 @@ function OrderStep1(props) {
                                     {values.paymentInTerms === "Custom" &&
                                         <div class="w-[45%]">
                                             <Field
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
-                                                    />
-                                                }
+                                                label="Custom Payment"
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -279,16 +271,10 @@ function OrderStep1(props) {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></div>
+                                        <div class=" text-xs font-bold font-poppins text-black">"Priority"</div>
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title="High">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -306,10 +292,7 @@ function OrderStep1(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
+                                                <Tooltip title="Medium">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -327,10 +310,7 @@ function OrderStep1(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
+                                                <Tooltip title="Low">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -360,10 +340,7 @@ function OrderStep1(props) {
                                             htmlType="Submit"
                                             loading={props.updatingOrderStep1}
                                         >
-                                            <FormattedMessage
-                                                id="app.update"
-                                                defaultMessage="Update"
-                                            />
+                                           Update
 
                                         </Button>
 

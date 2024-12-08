@@ -4,7 +4,6 @@ import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../Components/UI/Antd";
@@ -110,29 +109,15 @@ handleEmailInd = (checked) => {
      //   console.log(this.props.offerStep1.offerId)
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title:"Order",
                 icon: <GroupsIcon className=" text-green-600" 
                 style={{ backgroundColor:"green"}} />,
                 content: <OpportunityForm {...formProps}/>,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
+                title: "Catalogue List",
                 icon: <CallIcon className=" text-green-500"/>,
                 content: <AddCatalogueForm
-                // handleChooseCatalogue={this.handleChooseCatalogue}
-                // catalogueId={this.state.catalogueId}
-                // handleUnit={this.handleUnit}
-                // unit={this.state.unit}
-                // handlePrice={this.handlePrice}
-                // price={this.state.price}
-                // addedOpportunity={this.props.addedOpportunity}
-                // createdOffers={this.props.createdOffers}
             />,
             },
 
@@ -144,17 +129,13 @@ handleEmailInd = (checked) => {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon className=" !text-icon"  />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description="Order Details"
+                      
                     />
                     <Step
                         title={<ControlPointDuplicateIcon className=" !text-icon" />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>

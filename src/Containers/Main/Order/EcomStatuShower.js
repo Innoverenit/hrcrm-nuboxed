@@ -2,7 +2,6 @@ import React, {useEffect ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Rate, Steps } from 'antd';
-import { FormattedMessage } from 'react-intl';
 import EcomStatusItemCard from "./EcomStatusItemCard";
 import {getEcomStatusItem} from "./OrderAction";
 import dayjs from 'dayjs';
@@ -46,10 +45,7 @@ function EcomStatuShower (props) {
                 {
                     title:`${translatedMenuItems[0]}`,
                                      
-                    status: <FormattedMessage
-                        id="app.progress"
-                        defaultMessage="progress"
-                    />,
+                    status:"progress",
                     description: <>
                  <b> {dayjs(props.statusEcomItems.creationDate).format("DD-MM-YYYY")} </b>
                     </>

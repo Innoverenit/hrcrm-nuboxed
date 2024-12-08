@@ -145,11 +145,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[0]}</div>
                     <Field
                       name="entryAmount"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.amount"
-                      //     defaultMessage="Amount"
-                      //   />}
                       isRequired
                       isColumn
                       inlineLabel
@@ -163,12 +158,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[1]}</div>
                     <Field
                       name="orderCurrencyId"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="currency"
-                      //   />
-                      // }
                       isRequired
                       isColumn
                       inlineLabel
@@ -197,11 +186,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
                     <Field
                       name="transactionNumber"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.transactionid"
-                      //     defaultMessage="Transaction ID"
-                      //   />}
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -231,11 +215,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     <Field
                       isRequired
                       name="paymentMode"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.mode"
-                      //     defaultMessage="Mode"
-                      //   />}
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -251,11 +230,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
                   <Field
                     name="remarks"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.reason"
-                    //     defaultMessage="Reason"
-                    //   />}
                     component={TextareaComponent}
                      style={{height:"3rem",width:"16em"}}
                   />
@@ -269,12 +243,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
                   <Field
                     name="docId"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentId"
-                    //     defaultMessage="Document Id"
-                    //   />
-                    // }
                     isRequired
                     component={DragableUpload}
                     // style={{height:"3rem",width:"27rem"}}
@@ -293,16 +261,11 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 htmlType="submit"
                 loading={props.addingPaidByDistributorId}
               >
-              {translatedMenuItems[8]}  {/* <FormattedMessage
-                  id="app.submit"
-                  defaultMessage="Submit"
-                /> */}
-
+              {translatedMenuItems[8]} 
               </Button>
             </div>
           </Form>
         )}
-        {/*  */}
       </Formik>
     </>
   );

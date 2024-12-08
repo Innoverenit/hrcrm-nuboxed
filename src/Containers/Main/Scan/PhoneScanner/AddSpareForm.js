@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 const { Option } = Select;
 
 const AddSpareForm = (props) => {
@@ -124,10 +123,7 @@ const AddSpareForm = (props) => {
 
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
+                                 Units
 
                                 </div>
                                 <Input
@@ -140,10 +136,7 @@ const AddSpareForm = (props) => {
                             </div>
                             <div class="w-[15%]">
                                 <div class="font-bold text-xs font-poppins text-black">
-                                    <FormattedMessage
-                                        id="app.hours"
-                                        defaultMessage="Hours"
-                                    />
+                                  Hours
                                 </div>
                                 <Input
                                     type='text'
@@ -171,20 +164,14 @@ const AddSpareForm = (props) => {
                     type="primary"
                     onClick={handleAddRowClick}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
+                   Add More
                 </Button>
                 <Button
                     htmlType='submit'
                     type='primary'
                     onClick={buttonOnClick}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 
