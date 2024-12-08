@@ -2,7 +2,6 @@ import React, { useState,useEffect, lazy } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNoOfPhoneInQCById } from "./RefurbishAction";
-import { SubTitle } from '../../../Components/UI/Elements';
 import InfiniteScroll from 'react-infinite-scroll-component';
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
@@ -106,7 +105,7 @@ const QCPhoneListByTechnician = (props) => {
                                     </div>
                                     <div className=" flex md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
-                                            <SubTitle>
+                                            <div>
                                                 {item.qrCodeId ? (
                                                     <QRCodeModal
                                                         qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
@@ -119,7 +118,7 @@ const QCPhoneListByTechnician = (props) => {
                                                         No QR
                                                     </span>
                                                 )}
-                                            </SubTitle>
+                                            </div>
                                         </div>
                                     </div>
 

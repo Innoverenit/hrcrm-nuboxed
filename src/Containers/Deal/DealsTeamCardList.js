@@ -3,7 +3,7 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2,  } from "../../Components/UI/Elements";
 import "jspdf-autotable";
 import {getTeamsDeals} from "./DealAction";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -271,7 +271,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium  w-[15rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
-                          <SubTitle>
+                          <div>
                             <MultiAvatar
                               primaryTitle={item.opportunityName}
                               imageId={item.imageId}
@@ -279,7 +279,7 @@ const DealsTeamCardList = (props) => {
                               imgWidth={"1.8em"}
                               imgHeight={"1.8em"}
                             />
-                          </SubTitle>
+                          </div>
                         </div>
                         <div>
 
@@ -319,7 +319,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                     <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1 md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins">
-                        <SubTitle>
+                        <div>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
                               primaryTitle={item.contactName}
@@ -329,7 +329,7 @@ const DealsTeamCardList = (props) => {
                               imgHeight={"1.8em"}
                             />
                           }
-                        </SubTitle>
+                        </div>
                       </div>
                     </div>
                

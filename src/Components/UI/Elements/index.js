@@ -3,7 +3,6 @@ export { default as StyledSkeleton } from "./StyledSkeleton";
 export { default as CodeSkeleton } from "./CodeSkeleton";
 export { default as GroupSkeleton } from "./GroupSkeleton";
 export { default as Title } from "./Title";
-export { default as SubTitle } from "./SubTitle";
 export { default as HeaderText } from "./HeaderText";
 export { default as BussinessCard } from "./BussinessCard";
 export { default as ViewEditCard } from "./ViewEditCard";

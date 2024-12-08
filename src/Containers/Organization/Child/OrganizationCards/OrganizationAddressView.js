@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/Edit';
-import { SubTitle } from "../../../../Components/UI/Elements";
 class OrganizationAddressView extends Component {
   render() {
     console.log(this.props.organizationList);
@@ -62,10 +61,8 @@ const OrganizationItemRow = ({ label, value }) => {
     <div class=" items-center flex flex-no-wrap"
       style={{ margin: "0.4rem" }}
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{
-         //marginLeft: "-1.875em" 
-         }}>{value}</SubTitle>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{value}</div>
     </div>
   );
 };

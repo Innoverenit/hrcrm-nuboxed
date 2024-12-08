@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getArchieveListOfProduction } from "../ProductionAction"
@@ -93,7 +93,7 @@ function ProductionArchieveList(props) {
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex">
                                                     <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:w-full  ">
-                                                        <SubTitle>
+                                                       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">
                                                             {item.imageId ? (
                                                                 <MultiAvatar
                                                                     imageId={item.imageId ? item.imageId : ''}
@@ -106,7 +106,7 @@ function ProductionArchieveList(props) {
                                                                     No Image
                                                                 </div>
                                                             )}
-                                                        </SubTitle>
+                                                        </div>
                                                     </div>
                                                     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
                                                         <div class="text-sm  font-semibold  font-poppins cursor-pointer">

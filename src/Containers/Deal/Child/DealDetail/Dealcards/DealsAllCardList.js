@@ -3,7 +3,7 @@ import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../../Components/UI/Elements";
 import "jspdf-autotable";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
@@ -250,7 +250,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex  w-[12rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
                      <div>
-                       <SubTitle>
+                       <div>
                          <MultiAvatar
                            primaryTitle={item.opportunityName}
                            imageId={item.imageId}
@@ -258,7 +258,7 @@ const DealsAllCardList = (props) => {
                            imgWidth={"1.8rem"}
                            imgHeight={"1.8rem"}
                          />
-                       </SubTitle>
+                       </div>
                      </div>
                      <div >
 
@@ -302,7 +302,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs font-poppins">
-                     <SubTitle>
+                     <div>
                        {item.contactName === null ? "None" :
                          <MultiAvatar2
                            primaryTitle={item.contactName}
@@ -312,7 +312,7 @@ const DealsAllCardList = (props) => {
                            imgHeight={"1.8rem"}
                          />
                        }
-                     </SubTitle>
+                     </div>
                    </div>
                  </div>
               

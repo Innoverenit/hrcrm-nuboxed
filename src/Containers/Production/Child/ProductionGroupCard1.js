@@ -1,8 +1,7 @@
 import React from "react";
 import {
   MultiAvatar,
-  Title,
-  SubTitle,
+  Title
 } from "../../../Components/UI/Elements";
 import { MainWrapper } from "../../../Components/UI/Layout";
 
@@ -49,8 +48,8 @@ const BussinessCard = (props) => {
           </div>
         </div>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-        </SubTitle>
+       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >
+        </div>
       {/* </div> */}
       </MainWrapper>
     </div>
