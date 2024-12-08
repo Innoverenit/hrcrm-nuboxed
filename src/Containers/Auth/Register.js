@@ -7,9 +7,6 @@ import * as Yup from "yup";
 import { get } from "lodash";
 import dayjs from "dayjs";
 import { Datepicker } from "./styled";
-import {
-  ValidationError,
-} from "../../Components/UI/Elements";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
@@ -139,7 +136,7 @@ class Register extends Component {
           onBlur={() => setFieldTouched(field.name, true)}
         />
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </div>
     );

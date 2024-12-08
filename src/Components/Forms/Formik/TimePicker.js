@@ -1,9 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import dayjs from "dayjs";
-
 import { StyledTimePicker } from "../../UI/Antd";
-import { ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 export const TimePicker = ({
   value,
@@ -35,7 +33,7 @@ export const TimePicker = ({
         />
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -61,7 +59,7 @@ export const TimePicker = ({
         </FlexContainer>
       </FlexContainer>
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </>
   );
