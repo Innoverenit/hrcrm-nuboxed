@@ -15,8 +15,8 @@ import {
   handleShipperAddress,
 } from "./ShipperAction";
 import Swal from 'sweetalert2'
-import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-import {getAllDialCodeList} from "../../Auth/AuthAction";
+// import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
+// import {getAllDialCodeList} from "../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Input,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -60,8 +60,8 @@ const [editingValue, setEditingValue] = useState("");
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
     fetchApiKeyList();
-    props.getAllDialCodeList();
-    props.getShipByData(props.orgId);
+    // props.getAllDialCodeList();
+    // props.getShipByData(props.orgId);
   }, []);
 
   useEffect(() => {
@@ -326,14 +326,10 @@ const fetchApiKeyList = async () => {
                 return (
                   <>
                     <div  >
-                      <div className="flex rounded max-sm:rounded-lg py-ygap
-                max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex rounded  py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-44 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
                           <div className=" flex font-medium w-[9.9rem] max-xl:w-[7.6rem] items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
-                  
-                         
                               <div class=" text-xs flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
-
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer   max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
@@ -418,16 +414,16 @@ className="cursor-pointer text-xs font-poppins">
 
                             <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs">
                             {editableField?.shipperId === item.shipperId &&
-   editableField?.field === 'emailId' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
+                        editableField?.field === 'emailId' ? (
+                      <Input
+                        type="text"
+                        className="h-7 w-[4rem] text-xs"
+                        value={editingValue}
+                        onChange={handleChangeRowItem}
+                        onBlur={handleUpdateSubmit}
+                        onKeyDown={handleKeyDown} 
+                        autoFocus
+                    />
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
@@ -614,8 +610,8 @@ const mapDispatchToProps = (dispatch) =>
       getShipperByUserId,
       setEditShipper,
       handleShipperAddress,
-      getAllDialCodeList,
-      getShipByData
+      // getAllDialCodeList,
+      // getShipByData
     },
     dispatch
   );
