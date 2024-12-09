@@ -101,7 +101,7 @@ const DashBoardSummary=(props) =>{
     <div className=" container  mx-auto  p-2 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto overflow-y-hidden  ">
       {/* TASK */}
       {(user.basicAccessInd === true || user.role === "ADMIN") && (
-      <div class="flex flex-col  w-[14rem] items-center min-">
+      <div class="flex flex-col  w-[14rem] items-center max-sm:min-h-9 ">
         <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></div>
           <div className=" overflow-x-auto overflow-y-hidden h-[89vh] min-w-[11rem]">
@@ -127,7 +127,7 @@ const DashBoardSummary=(props) =>{
           const endDate = dayjs(deal.endDate);
         const difference = currentDate.diff(endDate, 'days');
         return (
-          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem]  min-w-[11rem]">
             <div className="flex justify-between flex-col">
               <div>
                 <div className="font-semibold font-poppins truncate text-xs ">{deal.taskName}</div>
