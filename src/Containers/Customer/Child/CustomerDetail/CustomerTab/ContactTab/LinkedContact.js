@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
@@ -324,14 +323,14 @@ function LinkedContact(props) {
               title={translatedMenuItems[8]}
              
             >
-              <ActionIcon
-               className=" !text-icon cursor-pointer text-[#fb8500]"
+              <BorderColorIcon
+               className=" !text-icon cursor-pointer text-red-600"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={translatedMenuItems[9]}
                
                 iconType="api"
                 onClick={null}
-                size="1em"
+             
               />
             </StyledPopconfirm>
 

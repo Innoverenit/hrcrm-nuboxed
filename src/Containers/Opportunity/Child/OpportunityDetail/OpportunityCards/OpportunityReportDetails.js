@@ -12,13 +12,7 @@ class OpportunityReportDetails extends Component {
     return (
       <>
         <FlexContainer justifyContent="flex-end">
-            {/* <Tooltip title="Edit">
-              <ActionIcon
-                iconType="edit"
-                onClick={this.props.toggleViewType}
-                size="0.875em"
-              />
-            </Tooltip> */}
+           
         </FlexContainer>
         <OpportunityItemRow label="Customer"
          value={customer} 

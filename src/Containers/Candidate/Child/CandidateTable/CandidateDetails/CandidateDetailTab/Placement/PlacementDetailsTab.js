@@ -2,7 +2,7 @@ import React, { Component, Suspense } from "react";
 import { StyledTabs } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { ActionIcon } from "../../../../../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { TabsWrapper } from "../../../../../../../Components/UI/Layout";
 import RemarksTable from "../../../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RemarksTable";
  import { handleRemarksModal, } from "../../../../../../Opportunity/OpportunityAction";
@@ -38,11 +38,11 @@ class PlacementDetailsTab extends Component {
                     <>
                     
                       
-                        <ActionIcon
+                        <BorderColorIcon
                          
                            tooltipTitle="Tag Remarks"
-                           onClick={() => handleRemarksModal(true)}
-                          size="0.875em"
+                           onClick={() => handleRemarksModal(true)}                         
+                           className=" !text-red-600 cursor-pointer !text-icon "
                           style={{ marginLeft: 10, verticalAlign: "center" }}
                         />
 
