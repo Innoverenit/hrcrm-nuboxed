@@ -25,15 +25,16 @@ import {
   handleBankModal,
   handleEducationModal,handleDocumentUploadModal} from "../../../../../Profile/ProfileAction"
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
-import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
-import EducationTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/EducationTable";
-import TrainingTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/TrainingTable";
-import EmploymentTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/EmploymentTable";
-import AddBankModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/AddBankModal";
-import AddTrainingModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/AddTrainingModal";
-import AddEducationModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/AddEducationModal";
-import AddEmploymentModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/UpdateEmploymentModal";
+
+const AddDocumentModals = lazy(() => import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
+const LinkedDocuments = lazy(() => import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
+const EducationTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/EducationTable"));
+const TrainingTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/TrainingTable"));
+const EmploymentTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/EmploymentTable"));
+const AddBankModal = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/AddBankModal"));
+const AddTrainingModal = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/AddTrainingModal"));
+const AddEducationModal = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/AddEducationModal"));
+const AddEmploymentModal = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/UpdateEmploymentModal"));
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
 const BankTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/BankTable"));

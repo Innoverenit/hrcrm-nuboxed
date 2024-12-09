@@ -120,8 +120,9 @@ const handleConfirm = (quotationId) => {
 };
 
 const viewAnDownloadPdf= async (item) => {  
+  const type="quotation";
   try {
-    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.quotationId}`, {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${type}/${item.quotationId}`, {
       responseType: 'blob',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -154,7 +155,7 @@ const viewAnDownloadPdf= async (item) => {
 <div className="w-[7.9rem] truncate max-md:w-[6.4rem]" > 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
            <div className="w-[6.3rem] truncate max-md:w-[5.1rem]">
-                      <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
+                      <DateRangeIcon className='!text-icon'/>  {translatedMenuItems[10]}  </div>
                         <div className=" w-[10.3rem] max-md:w-[9.6rem] truncate"> 
                         <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
                         <div className="w-[17.9rem] max-md:w-[16.8rem] truncate ">
@@ -162,7 +163,7 @@ const viewAnDownloadPdf= async (item) => {
                         <div className="w-[7.3rem] max-md:w-[6.8rem] truncate">
                           <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
                         <div className="w-[7.7rem] max-md:w-[6.1rem] truncate"> 
-                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
+                          <ContactPageIcon className='!text-icon'/>  {translatedMenuItems[5]}</div>           
                         <div className="w-[8.1rem] max-md:w-[9.1rem] truncate">
                            <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {translatedMenuItems[8]}</div>                   
                    </div>                   

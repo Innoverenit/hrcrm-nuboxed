@@ -251,8 +251,138 @@ class Suppliesform extends Component {
                         inlineLabel
                         style={{ flexBasis: "80%" }}
                       />
+  <div class="flex justify-between">
+                    <div class="w-wk">
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[4]}</div>
+                      <Field
+                        name="name"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
+                      <Field
+                        name="hsn"
+                        //label="HSN"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                   
+                  </div>  
+                 <div class="flex justify-between">
+                 <div class="w-[47%]">
+                   <div class="font-bold text-xs font-poppins text-black">Shopify</div>
+                   <Field
+                       name="shopify"
+                       //label="Name"
+                       isColumn
+                       width={"100%"}
+                       inlineLabel
+                       component={InputComponent}
+                       // isRequired
+                     />
+                   </div>
+                   <div class="w-[47%]">
+                   <div class="font-bold text-xs font-poppins text-black">SEO Title</div>
+                   <Field
+                       name="seoTitle"
+                       //label="Name"
+                       isColumn
+                       width={"100%"}
+                       inlineLabel
+                       component={InputComponent}
+                       // isRequired
+                     />
+                   </div>
+                 </div>
+                 <div class="flex justify-between">
+                 <div class="w-[47%]">
+                   <div class="font-bold text-xs font-poppins text-black">SEO Descrption</div>
+                   <Field
+                       name="seoDescription"
+                       //label="Name"
+                       isColumn
+                       width={"100%"}
+                       inlineLabel
+                       component={InputComponent}
+                       // isRequired
+                     />
+                   </div>
+                   <div class="w-[47%]">
+                   <div class="font-bold text-xs font-poppins text-black">Tag</div>
+                   <Field
+                       name="tag"
+                       //label="Name"
+                       isColumn
+                       width={"100%"}
+                       inlineLabel
+                       component={InputComponent}
+                       // isRequired
+                     />
+                   </div>
+                 </div>
 
-                    <div className="relative  mx-auto mt-4">
+                  <div class="flex justify-between mt-2">
+                    <div class="w-[47%]">
+                    <Field
+                              name="fifoInd"
+                              component={SwitchComponent}
+                              data={values.fifoInd}
+                              checkedChildren={"LIFO"}
+                              unCheckedChildren={"FIFO"}
+                              width={"7em"}
+                            />
+                    </div>
+                
+                  </div>
+                  <div class="flex justify-between mt-4">
+                    <div class="w-full">
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[10]}</div>
+                      <Field
+                        name="description"
+                        //label="Description"
+                        isColumn
+                        width={"21.875em"}
+                        component={TextareaComponent}
+                        inlineLabel
+                      />
+                    </div>
+                  </div>
+
+               
+                  <div className="flex justify-between mt-4">
+                    <div className="w-full">
+                      <div class="font-bold text-xs font-poppins text-black">
+                      {this.state.translatedMenuItems[16]} {/*Availability Date */}
+                        </div>
+                      <Field name="availabilityDate">
+                        {({ field, form }) => (
+                          <input
+                            type="date"
+                            value={field.value || ''}
+                            onChange={(e) => {
+                              setFieldValue('availabilityDate', e.target.value);
+                            }}
+                            style={{ width: '100%' }}
+                          />
+                        )}
+                      </Field>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="h-full w-[50%]">
+                <div className="relative  mx-auto mt-4">
       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#F5F5F5] px-2">
         <span className="text-[0.65rem] font-poppins font-bold">Dimensions</span>
       </div>
@@ -531,136 +661,7 @@ class Suppliesform extends Component {
       </div>
       </div>
     </div>
-                </div>
-                <div class="h-full w-[50%]">
-                  <div class="flex justify-between">
-                    <div class="w-wk">
-                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[4]}</div>
-                      <Field
-                        name="name"
-                        //label="Name"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                        isRequired
-                      />
-                    </div>
-                  </div>
-                  <div class="flex justify-between">
-                  <div class="w-[47%]">
-                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
-                      <Field
-                        name="hsn"
-                        //label="HSN"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                      />
-                    </div>
-                   
-                  </div>  
-                 <div class="flex justify-between">
-                 <div class="w-[47%]">
-                   <div class="font-bold text-xs font-poppins text-black">Shopify</div>
-                   <Field
-                       name="shopify"
-                       //label="Name"
-                       isColumn
-                       width={"100%"}
-                       inlineLabel
-                       component={InputComponent}
-                       // isRequired
-                     />
-                   </div>
-                   <div class="w-[47%]">
-                   <div class="font-bold text-xs font-poppins text-black">SEO Title</div>
-                   <Field
-                       name="seoTitle"
-                       //label="Name"
-                       isColumn
-                       width={"100%"}
-                       inlineLabel
-                       component={InputComponent}
-                       // isRequired
-                     />
-                   </div>
-                 </div>
-                 <div class="flex justify-between">
-                 <div class="w-[47%]">
-                   <div class="font-bold text-xs font-poppins text-black">SEO Descrption</div>
-                   <Field
-                       name="seoDescription"
-                       //label="Name"
-                       isColumn
-                       width={"100%"}
-                       inlineLabel
-                       component={InputComponent}
-                       // isRequired
-                     />
-                   </div>
-                   <div class="w-[47%]">
-                   <div class="font-bold text-xs font-poppins text-black">Tag</div>
-                   <Field
-                       name="tag"
-                       //label="Name"
-                       isColumn
-                       width={"100%"}
-                       inlineLabel
-                       component={InputComponent}
-                       // isRequired
-                     />
-                   </div>
-                 </div>
-
-                  <div class="flex justify-between mt-2">
-                    <div class="w-[47%]">
-                    <Field
-                              name="fifoInd"
-                              component={SwitchComponent}
-                              data={values.fifoInd}
-                              checkedChildren={"LIFO"}
-                              unCheckedChildren={"FIFO"}
-                              width={"7em"}
-                            />
-                    </div>
                 
-                  </div>
-                  <div class="flex justify-between mt-4">
-                    <div class="w-full">
-                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[10]}</div>
-                      <Field
-                        name="description"
-                        //label="Description"
-                        isColumn
-                        width={"21.875em"}
-                        component={TextareaComponent}
-                        inlineLabel
-                      />
-                    </div>
-                  </div>
-
-               
-                  <div className="flex justify-between mt-4">
-                    <div className="w-full">
-                      <div class="font-bold text-xs font-poppins text-black">
-                      {this.state.translatedMenuItems[16]} {/*Availability Date */}
-                        </div>
-                      <Field name="availabilityDate">
-                        {({ field, form }) => (
-                          <input
-                            type="date"
-                            value={field.value || ''}
-                            onChange={(e) => {
-                              setFieldValue('availabilityDate', e.target.value);
-                            }}
-                            style={{ width: '100%' }}
-                          />
-                        )}
-                      </Field>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="flex justify-end mt-3">

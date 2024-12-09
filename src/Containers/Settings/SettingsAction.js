@@ -7285,4 +7285,54 @@ export const addApi = (opportunity, cb) => (dispatch, getState) => {
 
 
 
+export const deleteSequencedatalist = (stageId,type) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SEQUENCE_DATA_LIST_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/stage/sequence/delete/${stageId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Sequence Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.DELETE_SEQUENCE_DATA_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SEQUENCE_DATA_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
 

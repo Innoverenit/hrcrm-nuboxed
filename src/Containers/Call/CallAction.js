@@ -151,6 +151,7 @@ export const getCallListRangeByUserId = (employeeId, page,startDate, endDate) =>
   axios
     .get(`${base_url}${api_url}`, {
       headers: {
+        Connection: 'keep-alive', 
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
