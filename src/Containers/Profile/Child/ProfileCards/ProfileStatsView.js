@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
 import dayjs from "dayjs";
-import { ActionIcon } from "../../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 class ProfileStatsView extends Component {
   render() {
     const {
@@ -24,11 +24,11 @@ class ProfileStatsView extends Component {
     return (
       <>
         <div class=" flex justify-end" >
-          <ActionIcon
+          <BorderColorIcon
             tooltipTitle="Edit"
             iconType="edit"
             handleIconClick={toggleViewType}
-            size="1em"
+            className=" !text-red-600 cursor-pointer !text-icon "
           />
         </div>
         <ProfileItemRow label="Email" value={emailId} />

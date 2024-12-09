@@ -1,6 +1,6 @@
 import React, { Component,lazy } from "react";
 import { ActionHeader } from "../../Components/Utils";
-import RequirementActionRight from "./RequirementActionRight";
+const RequirementActionRight =lazy(()=>import("./RequirementActionRight"));
 const RequirementActionLeft =lazy(()=>import("./RequirementActionLeft"));
 
 class RequirementHeader extends Component {

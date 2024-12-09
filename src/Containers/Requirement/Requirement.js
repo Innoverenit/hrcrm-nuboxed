@@ -1,15 +1,11 @@
-import React, { Component, Suspense} from "react";
+import React, { Component, Suspense, lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import RequirementHeader from "./RequirementHeader";
-import AllRequirementTable from "../Requirement/AllRequirementTable"
-
-import {
-    getRecruitByOpportunityId,  handleRecruitModal,
-  } from "../Opportunity/OpportunityAction";
-
-  import { setRequirementViewType } from "./RequirementAction";
-import AddRecruitModal from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal";
+import { getRecruitByOpportunityId,  handleRecruitModal } from "../Opportunity/OpportunityAction";
+import { setRequirementViewType } from "./RequirementAction";
+const RequirementHeader = lazy(() => import("./RequirementHeader"));
+const AllRequirementTable = lazy(() => import("../Requirement/AllRequirementTable"));
+const AddRecruitModal = lazy(() => import("../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal"));
 class Requirement extends Component  {
     state = { currentData: undefined,responseData:null,text:undefined,currentSkillData: "" };
     handleClear = () => {
