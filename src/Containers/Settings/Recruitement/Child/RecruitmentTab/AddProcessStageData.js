@@ -6,13 +6,16 @@ import {addProcessStageForDeals,
   deleteDealsStagesData,
   LinkDealsStagePublish,
   addSequenceFlow,
-  getSequence
+  getSequence,
+  deleteSequencedatalist
    
      } from "../../../SettingsAction";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { DeleteOutlined } from "@mui/icons-material";
+import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 const { Option } = Select;
 
 const AddStageComponent = (props) => {
@@ -371,6 +374,14 @@ const handleInputChange = (stagesId, field, value) => {
                 
                  
                 </Select>
+                <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteSequencedatalist(stage.stagesId,"true",)}
+          >
+                <DeleteOutlined
+                style={{color:"tomato"}}
+                />
+                </StyledPopconfirm>
                 </>
                 )}
               </div>
@@ -422,6 +433,14 @@ const handleInputChange = (stagesId, field, value) => {
                 
                  
                 </Select>
+                <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteSequencedatalist(stage.stagesId,"False")}
+          >
+                <DeleteOutlined
+                 style={{color:"tomato"}}
+                />
+                </StyledPopconfirm>
                 </>
                 )}
               </div>
@@ -473,6 +492,16 @@ const handleInputChange = (stagesId, field, value) => {
                 
                  
                 </Select>
+
+
+                <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteSequencedatalist(stage.stagesId,"NoAction")}
+          >
+                <DeleteOutlined
+                 style={{color:"tomato"}}
+                />
+                </StyledPopconfirm>
                   </>
                
                 )}
@@ -480,7 +509,7 @@ const handleInputChange = (stagesId, field, value) => {
             )}
             {/* )} */}
         </div>
-          {index < stages.length - 1 && (
+          {/* {index < stages.length - 1 && (
             <div
               style={{
                 width: "3px",
@@ -490,7 +519,7 @@ const handleInputChange = (stagesId, field, value) => {
                 marginLeft:"48px"
               }}
             ></div>
-          )}
+          )} */}
           </>
       ))}
       </div>
@@ -517,7 +546,8 @@ const mapStateToProps = ({ settings, auth }) => ({
         updateStageForDeals,
         deleteDealsStagesData,
         LinkDealsStagePublish,
-        getSequence
+        getSequence,
+        deleteSequencedatalist
          
        
         },
