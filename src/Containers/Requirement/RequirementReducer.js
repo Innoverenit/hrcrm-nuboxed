@@ -10,6 +10,8 @@ const initialState = {
   fetchingRequirementRecordError: false,
   requirementRecord:{},
 
+  addNwRecruitModal:false,
+
   fetchingAllRequirementTable:false,
   fetchingAllRequirementTableError:false,
   requirementTable:[]
@@ -45,7 +47,7 @@ export const requirementReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingAllRequirementTable: false,
-            requirementTable: action.payload,
+            requirementTable: [action.payload, ...state.requirementTable],
           };
         case types. GET_ALL_REQUIREMENT_TABLE_FAILURE:
           return {
@@ -59,6 +61,10 @@ export const requirementReducer = (state = initialState, action) => {
               requirementTable: [], 
               // deletedTruck: [] 
             };
+
+            case types.HANDLE_NWRECRUIT_MODAL:
+              return { ...state, addNwRecruitModal: action.payload };
+
       default:
         return state;
     }

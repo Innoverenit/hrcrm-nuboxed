@@ -105,7 +105,7 @@ const PriceUpdateTable = (props) => {
               </div>
                             <div className="md:w-[8.12rem]">Buying Price</div>
                             <div className="md:w-[8.13rem]">Markup Factor</div>
-                            <div className="md:w-[8.23rem]">Suggested Price</div>
+                            {/* <div className="md:w-[8.23rem]">Suggested Price</div> */}
                             <div className="md:w-[8.83rem]">final Price </div>
                         </div>
                         <div className="h-[83vh]">
@@ -119,12 +119,52 @@ const PriceUpdateTable = (props) => {
                                        
                                         <div className="flex font-medium justify-between w-[10.25rem]">
                                             <div className="font-normal text-[0.85rem] font-poppins flex items-center">
-                                                {item.piId}
+                                                {item.hsn}
                                             </div>
                                         </div>
                                         <div className="flex w-[7.1rem]">
                                             <div className="text-xs font-poppins">
-                                                {item.piInquiryItemLinkId}
+                                                {item.newSuppliesNo}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                               {item.suppliesFullName}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.categoryName}{item.subCategoryName}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.brandName}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.modelName}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.attributeName}{item.subAttributeName}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.suggestPrice}
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                             
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins">
+                                                {item.finalPrice}
                                             </div>
                                         </div>
                                     </div>

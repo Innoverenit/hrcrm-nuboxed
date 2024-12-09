@@ -5,7 +5,7 @@ const RequirementActionLeft =lazy(()=>import("./RequirementActionLeft"));
 
 class RequirementHeader extends Component {
   render() {
-    const {viewType, setRequirementViewType, handleRecruitModal } = this.props;
+    const {viewType, setRequirementViewType, handleNwRecruitModal } = this.props;
     return (
       <div>
         <ActionHeader
@@ -25,7 +25,7 @@ class RequirementHeader extends Component {
             <RequirementActionRight         
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
-            handleRecruitModal={handleRecruitModal}
+            handleNwRecruitModal={handleNwRecruitModal}
             
             />
           }
