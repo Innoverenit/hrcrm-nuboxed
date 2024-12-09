@@ -105,7 +105,7 @@ function CallForm(props) {
   
   };
   useEffect(() => {
-    // props.getAssignedToList(props.orgId);
+    props.getAssignedToList();
     props.getAllSalesList();
     // props.getAllCustomerData(props.userId)
     // props.getFilteredEmailContact(userId);
@@ -176,73 +176,7 @@ function CallForm(props) {
         value: item.customerId,
       };
     });
-    const sortedEmployee =props.assignedToList.sort((a, b) => {
-      const nameA = a.empName.toLowerCase();
-      const nameB = b.empName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const employeesData = sortedEmployee.map((item) => {
-      return {
-        label: `${item.empName}`,
-        value: item.employeeId,
-      };
-    });
-    const filteredEmployeesData = employeesData.filter(
-      (item) => item.value !== props.user.userId
-    );
-    const sortedOpportunity =props.allOpportunityData.sort((a, b) => {
-      const nameA = a.opportunityName.toLowerCase();
-      const nameB = b.opportunityName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const opportunityNameOption = sortedOpportunity.map((item) => {
-      return {
-        label: `${item.opportunityName}`,
-        value: item.opportunityId,
-      };
-    });
-    const ContactData = props.filteredContact
-    .sort((a, b) => {
-      const libraryNameA = a.fullName && a.fullName.toLowerCase();
-      const libraryNameB = b.fullName && b.fullName.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    })
-    .map((item) => {
-      return {
-        label: `${item.fullName || ""}`,
-        value: item.contactId,
-      };
-    });
-
-
-    const salesNameOption = props.sales.map((item) => {
-      return {
-        label: `${item.fullName || ""}`,
-        value: item.employeeId,
-      };
-    });
+ 
 
     const handleChange = (value, placeIndex) => {
       console.log(value)
@@ -894,7 +828,7 @@ function CallForm(props) {
                   static
                   className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
-                  {include.map((includes) => (
+                  {props.assignedToList.map((includes) => (
                     <Listbox.Option
                       key={includes.employeeId}
                       className={({ active }) =>
@@ -912,7 +846,7 @@ function CallForm(props) {
                                 selected ? "font-semibold" : "font-normal"
                               }`}
                             >
-                              {includes.empName}
+                              {includes.fullName}
                             </span>
                           </div>
                           {selected && (

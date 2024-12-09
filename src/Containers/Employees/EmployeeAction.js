@@ -1136,13 +1136,13 @@ export const getAdminUser = (employeeId) => (dispatch) => {
     });
 };
 
-export const getAssignedToList = (orgId) => (dispatch) => {
+export const getAssignedToList = () => (dispatch) => {
  
   dispatch({
     type: types.GET_ASSIGENED_TO_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/active/user/drop-down/${orgId}`, {
+    .get(`${base_url}/opportunity/employee/create/all-employees`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
