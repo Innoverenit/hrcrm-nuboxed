@@ -333,7 +333,7 @@ const handleSelectedOrderDropDown =  async (value,item) => {
   
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderPhoneId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderPhoneId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
