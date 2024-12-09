@@ -245,8 +245,7 @@ function SuppliesTable(props) {
                               title= "Price Update"
                               jumpstartClick={()=> setPriceOpen(true)}
                               cursorData={"pointer"}
-                              value={"0"}
-                               //  value={ props.priceUpdatedCount.count}
+                              value={ props.priceUpdatedCount.matprccnt}
                             // isLoading={props.fetchingorderDetails}
                             />
                           </div>

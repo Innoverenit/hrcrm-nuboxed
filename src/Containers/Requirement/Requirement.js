@@ -1,8 +1,10 @@
 import React, { Component, Suspense, lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getRecruitByOpportunityId,  handleRecruitModal } from "../Opportunity/OpportunityAction";
-import { setRequirementViewType } from "./RequirementAction";
+import { getRecruitByOpportunityId } from "../Opportunity/OpportunityAction";
+import { setRequirementViewType,handleNwRecruitModal } from "./RequirementAction";
+import AddNwRecruitModal from "./AddNwRecruitModal";
+import RequirementTable from "./RequirementTable";
 const RequirementHeader = lazy(() => import("./RequirementHeader"));
 const AllRequirementTable = lazy(() => import("../Requirement/AllRequirementTable"));
 const AddRecruitModal = lazy(() => import("../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal"));
@@ -23,7 +25,7 @@ class Requirement extends Component  {
         const {
             viewType,
             setRequirementViewType,
-            handleRecruitModal,
+            handleNwRecruitModal,
           } = this.props;
     return (
         <>
@@ -35,18 +37,19 @@ class Requirement extends Component  {
         currentData={this.state.currentData}
         text={this.state.text}
         setCurrentData={this.setCurrentData}
-        handleRecruitModal={handleRecruitModal}
+        handleNwRecruitModal={handleNwRecruitModal}
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
-        <AddRecruitModal
-        addRecruitModal={this.props.addRecruitModal}
-        handleRecruitModal={this.props.handleRecruitModal}
+        <AddNwRecruitModal
+        addNwRecruitModal={this.props.addNwRecruitModal}
+        handleNwRecruitModal={this.props.handleNwRecruitModal}
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
           <Suspense fallback={"Loading..."}>
-        {viewType === 'card' &&  <AllRequirementTable/>}
+        {viewType === 'card' &&  <RequirementTable/>}
+        {viewType === 'All' &&  <AllRequirementTable/>}
         </Suspense>
         </>
     ); 
@@ -55,7 +58,7 @@ class Requirement extends Component  {
 const mapStateToProps = ({ requirement,opportunity }) => ({
   viewType:requirement.viewType,
   opportunityId: opportunity.opportunity.opportunityId,
-  addRecruitModal: opportunity.addRecruitModal,
+  addNwRecruitModal: requirement.addNwRecruitModal,
    
   });
   
@@ -64,7 +67,7 @@ const mapStateToProps = ({ requirement,opportunity }) => ({
       {
         getRecruitByOpportunityId,
         setRequirementViewType,
-        handleRecruitModal,
+        handleNwRecruitModal,
       },
       dispatch
     );
