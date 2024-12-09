@@ -41,11 +41,11 @@ export const setRequirementViewType = (viewType) => (dispatch) => {
   };
 
 
-  export const getAllRequirementTable = (orgId) => (dispatch) => {
+  export const getAllRequirementTable = (userId,pageNo) => (dispatch) => {
     dispatch({ type: types.GET_ALL_REQUIREMENT_TABLE_REQUEST });
   
     axios
-      .get(`${base_url}/link/recruitment/all/recruitment/${orgId}`, {
+      .get(`${base_url}/link/recruitment/all/recruitment/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -70,5 +70,12 @@ export const setRequirementViewType = (viewType) => (dispatch) => {
   export const ClearReducerDataOfRequirement = () => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_REQUIREMENT,
+    });
+  };
+
+  export const handleNwRecruitModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_NWRECRUIT_MODAL,
+      payload: modalProps,
     });
   };

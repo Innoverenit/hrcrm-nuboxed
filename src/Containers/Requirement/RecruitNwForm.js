@@ -4,32 +4,28 @@ import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray } from "formik";
-import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
+import AddressFieldArray from "../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";
 import dayjs from "dayjs";
 import {
   getTalentRoles,
-} from "../../../../../Settings/Category/Role/RoleAction";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
+} from "../Settings/Category/Role/RoleAction";
+import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
+import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import {
   getProcessForRecruit,
   getProcessStagesForRecruit,
-} from "../../../../../Settings/SettingsAction";
-import {
-  getContactListByCustomerId,
-} from "../../../../../Customer/CustomerAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+} from "../Settings/SettingsAction";
+import { FlexContainer } from "../../Components/UI/Layout";
 import {
   addRecruit,
-  getContactListByOpportunityId,
   getRecruiterName,
   getRecruitByOpportunityId,
-} from "../../../../OpportunityAction";
-import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction";
-import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
-import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
+} from "../Opportunity/OpportunityAction";
+import { getAllPartnerListByUserId } from "../Partner/PartnerAction";
+import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
+import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
+import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -41,7 +37,7 @@ const OpportunitySchema = Yup.object().shape({
   recruitmentProcessId: Yup.string().required("Select Workflow!"),
 });
 
-function RecruitForm(props) {
+function RecruitNwForm(props) {
   const [typeData1, setTypeData1] = useState(true);
   const [typeData, setTypeData] = useState(false);
   const [workTypeData, setWorkTypeData] = useState(false);
@@ -79,13 +75,6 @@ function RecruitForm(props) {
           value: item.recruitmentProcessId,
         };
       });
-
-  // const currency = props.currencies.map((item) => {
-  //   return {
-  //     label: item.currencyName || "",
-  //     value: item.currencyName,
-  //   };
-  // });
   const roleNameOption = props.talentRoles.map((item) => {
     return {
         label: `${item.roleType || ""}`,
@@ -107,28 +96,6 @@ function RecruitForm(props) {
       value: item.contactId,
     };
   });
-
-  // function getStagesOptions(filterOptionKey, filterOptionValue) {
-  //   const stagesOptions =
-  //     props.allProcessStagesForRecruit.length &&
-  //     props.allProcessStagesForRecruit
-  //       .filter((option) => {
-  //         if (
-  //           option.processId === filterOptionValue &&
-  //           option.probability !== 0 &&
-  //           option.probability !== 100
-  //         ) {
-  //           return option;
-  //         }
-  //       })
-  //       .map((option) => ({
-  //         label: option.stageName || "",
-  //         value: option.stageId,
-  //       }));
-
-  //   return stagesOptions;
-  // }
-
   const partnerNameOption = props.allpartnerByUserId.map((item) => {
     return {
       label: `${item.partnerName || ""}`,
@@ -144,9 +111,6 @@ function RecruitForm(props) {
 
   useEffect(() => {
     props.getProcessForRecruit(props.organizationId);
-    props.getContactListByCustomerId(props.opportunity.customerId);
-    //   props.getAllProcessStagesForRecruit();
-    props.getContactListByOpportunityId(props.opportunityId);
     props.getRecruiterName();
     props.getTalentRoles(props.orgId); 
     props.getAllPartnerListByUserId(props.userId);
@@ -155,9 +119,6 @@ function RecruitForm(props) {
     resetForm();
   }
 
-  // function handleCallback() {
-  //   props.getRecruitByOpportunityId(props.opportunityId);
-  // }
   if (!isLoaded) return <div>Loading...</div>;
   if (loadError) return <div>Error loading Google Maps API</div>;
 
@@ -720,7 +681,6 @@ const mapStateToProps = ({
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
   recruitProcessStages: settings.recruitProcessStages,
-  // allProcessStagesForRecruit: settings.allProcessStagesForRecruit,
   organizationId: auth.userDetails.organizationId,
   opportunityId: opportunity.opportunity.opportunityId,
   currencies: auth.currencies,
@@ -736,18 +696,14 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getProcessForRecruit,
-      getContactListByCustomerId,
       getAllPartnerListByUserId,
       getProcessStagesForRecruit,
       getRecruitByOpportunityId,
       getTalentRoles,
-      // getAllProcessStagesForRecruit,
       addRecruit,
-      // getCurrency,
-      getContactListByOpportunityId,
       getRecruiterName,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecruitForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RecruitNwForm);

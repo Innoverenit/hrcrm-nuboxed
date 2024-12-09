@@ -45,19 +45,7 @@ class EmployeeOverviewView extends Component {
             </div>
           </div>
           <div class=" flex justify-end w-[15%] ml-2" >
-            {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            />{" "}
-            &nbsp; */}
-            {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            /> */}
+          
       <Tooltip title="Edit">
             <BorderColorIcon
              

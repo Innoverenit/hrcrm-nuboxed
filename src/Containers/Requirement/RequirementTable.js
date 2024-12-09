@@ -17,14 +17,14 @@ import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import EmptyPage from "../Main/EmptyPage";
 
 
-const AllRequirementTable = (props) => {
+const RequirementTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        props.getAllRequirementTable("All",page)
+        props.getAllRequirementTable(props.userId,page)
         props.ClearReducerDataOfRequirement()
     }, []);
     const handleLoadMore = () => {
@@ -76,7 +76,7 @@ const AllRequirementTable = (props) => {
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-                           {props.fetchingAllRequirementTable === false ? (
+                            {props.fetchingAllRequirementTable === false ? (
   <NodataFoundPage/>
 ) : !props.fetchingAllRequirementTable && props.requirementTable.length === 0 ? (
   <EmptyPage/>
@@ -192,8 +192,8 @@ const AllRequirementTable = (props) => {
                                 )
                                
                                 
-                              })
-                            )}
+                            })
+                        )}
                      </InfiniteScroll>
                     </div>
                 </div>
@@ -219,4 +219,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllRequirementTable);
+export default connect(mapStateToProps, mapDispatchToProps)(RequirementTable);

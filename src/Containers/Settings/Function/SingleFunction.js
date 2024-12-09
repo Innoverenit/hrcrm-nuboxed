@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { Button } from "antd";
 import { TextInput } from "../../../Components/UI/Elements";
-import { ActionIcon } from "../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 class SingleFunctions extends Component {
     constructor(props) {
@@ -29,11 +29,11 @@ class SingleFunctions extends Component {
                                     {functionType}
                                 </FunctionName>
                                 <div>
-                                <ActionIcon
+                                <BorderColorIcon
                                 tooltipTitle="Edit"
                                  iconType="edit"
                                 handleIconClick={toggleViewType}
-                               size="0.75em"
+                                className=" !text-red-600 cursor-pointer !text-icon "
                                />
                                 &nbsp;                                                                                                   
                                 </div>

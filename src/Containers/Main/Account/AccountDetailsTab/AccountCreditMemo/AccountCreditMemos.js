@@ -73,7 +73,7 @@ function AccountCreditMemos(props) {
 
   const viewAnDownloadPdf= async (item) => {  
     try {
-      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.creditMemoId}`, {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`creditMemo`}/${item.creditMemoId}`, {
         responseType: 'blob',
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

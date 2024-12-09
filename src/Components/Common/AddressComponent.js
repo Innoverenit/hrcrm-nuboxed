@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionIcon } from "../Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import EditAddressField from "../Forms/Edit/EditAddressField";
 import AddAddressField from "../Forms/Edit/AddAddressField";
 export default class AddressComponent extends React.Component {
@@ -28,21 +28,19 @@ export default class AddressComponent extends React.Component {
         <div style={{ width: "100%", height: "100%" }}>
           {editable && (
            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
-              <ActionIcon
+              <BorderColorIcon
                 tooltipTitle="Edit"
                 iconType="edit"
-                handleIconClick={this.toggleEdit}
-                style={{}}
-                size="1em"
+                handleIconClick={this.toggleEdit} 
+                className=" !text-red-600 cursor-pointer !text-icon "
               />
               &nbsp;
               {addAddress && (
-                <ActionIcon
+                <BorderColorIcon
                   tooltipTitle="Add Address"
                   iconType="environment"
                   handleIconClick={this.toggleAdd}
-                  style={{}}
-                  size="1em"
+                     className=" !text-red-600 cursor-pointer !text-icon "
                 />
               )}
             </div>
