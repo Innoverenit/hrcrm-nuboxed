@@ -369,20 +369,20 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold !text-lm font-poppins text-xs sticky z-10">
                   
-                    <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[8.5rem]">
+                    <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[7.1rem]">
                     <ReceiptIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[0]} ID</div>
-                        <div className=" w-[7.4rem] max-md:w-[7.4rem]">
+                        <div className=" w-[14.4rem] max-md:w-[7.4rem]">
                         <DynamicFeedIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
            
-                        <div className="w-[7.107rem] max-md:w-[7.1rem]">
+                        <div className="w-[5.4rem] max-md:w-[7.1rem]">
                         <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
                
-                        <div className="w-[8.09rem] max-md:w-[8rem]">{translatedMenuItems[6]}</div>
-                        <div className="w-[8.3rem] max-md:w-[8rem]">
+                        <div className="w-[11.09rem] max-md:w-[8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[11.3rem] max-md:w-[8rem]">
                         <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{translatedMenuItems[7]}</div>
                         {/* Credit Memo */}
-                        <div className="w-[8.23rem] max-md:w-[8rem]"></div>
-                        <div className="w-[8.1rem] max-md:w-[8rem]">
+                        <div className="w-[10.23rem] max-md:w-[8rem]"></div>
+                        <div className="w-[11.1rem] max-md:w-[8rem]">
                         <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
