@@ -959,7 +959,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
     ) &&  ( 
           <Menu.Item key="/requirement" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/requirement' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
-            <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
+            <Link to="/requirement" onClick={() => handleSelect('/requirement')}>
 
               <RecentActorsIcon
               className='!text-base  text-[#e4eb2f]' />

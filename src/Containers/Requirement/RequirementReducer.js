@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 const initialState = {
 
     type : null,
-    viewType: "table",
+    viewType: "card",
 
     fetchingRequirementRecord: false,
   fetchingRequirementRecordError: false,
