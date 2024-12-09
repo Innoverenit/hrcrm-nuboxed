@@ -18,7 +18,7 @@ const PriceUpdateTable = (props) => {
     const [inputValues, setInputValues] = useState({}); 
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     useEffect(() => {
-     props.getPriceUpdated(props.categoryId)
+     props.getPriceUpdated(props.locationId)
         
     }, []);
     useEffect(() => {
@@ -144,7 +144,8 @@ const PriceUpdateTable = (props) => {
 const mapStateToProps = ({ supplies, auth }) => ({
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
-    priceUpdated:supplies.priceUpdated
+    priceUpdated:supplies.priceUpdated,
+    locationId:auth.userDetails.locationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
