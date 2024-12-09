@@ -79,7 +79,9 @@ function ContactTeamCardList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
-  
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -100,9 +102,8 @@ function ContactTeamCardList(props) {
     props.getTeamContact(props.userId, pageNo);
     setPageNo(pageNo + 1);
     props.getTeamUserList(props.userId)
-    props.getCustomerData(props.userId)
-    props.getDesignations()
-    props.getDepartments()
+   
+
   }, []);
 
   useEffect(()=>{
@@ -243,9 +244,24 @@ function ContactTeamCardList(props) {
     
   };
 
-
-
-
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      props.getDesignations();
+      setTouchedCustomer(true);
+    }
+  };
+  const handleSelectCustomerDataFocus = () => {
+    if (!touched) {
+      props.getCustomerData(props.userId)
+      setTouched(true);
+    }
+  };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
   const {
     //contact: { contactId, firstName, middleName, lastName },
     contactId,
@@ -466,6 +482,7 @@ if (loading) {
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectCustomerDataFocus}
   autoFocus
 >
 {props.customerData.map((country) => (
@@ -496,6 +513,7 @@ className="cursor-pointer text-xs font-poppins">
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectCustomerFocus}
   autoFocus
 >
 {props.designations.map((country) => (
@@ -526,6 +544,7 @@ className="cursor-pointer text-xs font-poppins">
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDepartmentFocus}
   autoFocus
 >
 {props.departments.map((country) => (
