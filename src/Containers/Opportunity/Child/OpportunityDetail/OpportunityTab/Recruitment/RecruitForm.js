@@ -2,7 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-
+import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";
@@ -45,6 +45,10 @@ function RecruitForm(props) {
   const [typeData1, setTypeData1] = useState(true);
   const [typeData, setTypeData] = useState(false);
   const [workTypeData, setWorkTypeData] = useState(false);
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
+    libraries: ["places"], // Ensure the 'places' library is loaded
+  });
   function handleWorkType(checked) {
     setWorkTypeData(checked);
   }
@@ -154,6 +158,8 @@ function RecruitForm(props) {
   // function handleCallback() {
   //   props.getRecruitByOpportunityId(props.opportunityId);
   // }
+  if (!isLoaded) return <div>Loading...</div>;
+  if (loadError) return <div>Error loading Google Maps API</div>;
 
   return (
     <>
@@ -308,7 +314,7 @@ function RecruitForm(props) {
           values,
           ...rest
         }) => (
-          <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
+          <div class="overflow-y-auto h-[37rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div
@@ -654,6 +660,7 @@ function RecruitForm(props) {
                       label="Address"
                       render={(arrayHelpers) => (
                         <AddressFieldArray
+                        {...props}
                           arrayHelpers={arrayHelpers}
                           values={values}
                         />
