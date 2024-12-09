@@ -18,7 +18,6 @@ import { StyledTable, StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
 import {
   MultiAvatar,
-  SubTitle,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -391,7 +390,7 @@ function CandidateTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div >
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -399,7 +398,7 @@ function CandidateTable(props) {
               imgWidth={"2.1em"}
               imgHeight={"2.1em"}
             />
-          </SubTitle>
+          </div >
         );
       },
     },

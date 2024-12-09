@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
-import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
@@ -47,7 +46,7 @@ class Login extends Component {
         <Input {...field} {...props} />
       </div>
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );

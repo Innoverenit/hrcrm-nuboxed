@@ -10,7 +10,7 @@ import {
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { getContactDistributorList, applyForLoginInContact } from "../../../Suppliers/SuppliersAction";
 import { Tooltip, Button, Input, Select } from "antd";
-import { getSaleCurrency } from "../../../../Auth/AuthAction";
+// import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -36,7 +36,7 @@ const AccountContactTable = (props) => {
     useEffect(() => {
         props.getContactDistributorList(props.uniqueId,props.type);
         props.getLobList(props.orgId);
-        props.getSaleCurrency();
+        // props.getSaleCurrency();
         fetchMenuTranslations();
     }, [props.selectedLanguage]);
 
@@ -125,7 +125,7 @@ const AccountContactTable = (props) => {
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
                         <div className="w-[5.1rem] text-[#00A2E8] text-sm max-md:w-[4.1rem]">
-                        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
+                        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
                         <div className="w-[10rem]  max-md:w-[10rem]">
                         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '/>{translatedMenuItems[1]}</div>
                         <div className="w-[5.5rem]  max-md:w-[5.5rem]">
@@ -367,7 +367,7 @@ const mapDispatchToProps = (dispatch) =>
             applyForLoginInContact,
             handleUpdateDistributorContactModal,
             getLobList,
-            getSaleCurrency,
+            // getSaleCurrency,
             setContactRoleForAccount
         },
         dispatch

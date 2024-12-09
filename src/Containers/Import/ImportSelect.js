@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { SelectInput, ValidationError } from "../../Components/UI/Elements";
+import { SelectInput,  } from "../../Components/UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
   field,
@@ -39,7 +39,8 @@ export const SelectComponent = ({
         ))}
       </SelectInput>
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
+      
       )}
     </div>
   );

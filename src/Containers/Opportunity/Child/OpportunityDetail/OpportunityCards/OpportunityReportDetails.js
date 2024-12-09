@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 class OpportunityReportDetails extends Component {
   render() {
     console.log(this.props.opportunity);
@@ -49,8 +48,8 @@ const OpportunityItemRow = ({ label, value }) => {
       flexWrap="nowrap"
       // style={{ margin: "5px" }}
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{ marginLeft: "-30px" ,overflow:"hidden",textOverflow:"ellipsis"}}>{value}</SubTitle>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{value}</div>
     </FlexContainer>
   );
 };

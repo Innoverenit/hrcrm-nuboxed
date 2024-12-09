@@ -9,7 +9,7 @@ import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
 import {  Tooltip, Select,Button } from "antd";
-import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import {
   getContactListByCustomerId,
   setEditCustomerContact,
@@ -197,7 +197,7 @@ function LinkedContact(props) {
                                 <div className=" flex w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex max-sm: items-center"> 
 <div>
-                                <SubTitle>
+                                <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -205,7 +205,7 @@ function LinkedContact(props) {
               imgWidth={"1.8em"}
               imgHeight={"1.8em"}
             />
-          </SubTitle></div>
+          </div></div>
           &nbsp;
           <div class="max-sm:">
                                         <Tooltip>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { ValidationError,  StyledAsync } from "../../UI/Elements";
+import {   StyledAsync } from "../../UI/Elements";
 
 class LazySelect extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class LazySelect extends Component {
           />
 
           {get(touched, field.name) && get(errors, field.name) && (
-            <ValidationError>{get(errors, field.name)}</ValidationError>
+            <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
           )}
         </>
       );
@@ -97,7 +97,7 @@ class LazySelect extends Component {
           </FlexContainer>
         </FlexContainer>
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );

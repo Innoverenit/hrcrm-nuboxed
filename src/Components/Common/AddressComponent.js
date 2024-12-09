@@ -1,5 +1,4 @@
 import React from "react";
-import { SubTitle } from "../UI/Elements";
 import { ActionIcon } from "../Utils";
 import EditAddressField from "../Forms/Edit/EditAddressField";
 import AddAddressField from "../Forms/Edit/AddAddressField";
@@ -114,7 +113,7 @@ function StaticAddressField({
       {/* {/ {postalCode && postalCode || '' } /} */}
       {actualFunnel && (
         <div class=" flex flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto flex-col">
-          <SubTitle
+          <div 
             style={{
               flexBasis: "40%",
               fontWeight: 400,
@@ -123,11 +122,11 @@ function StaticAddressField({
             }}
           >
             Win/Loss{" "}
-          </SubTitle>{" "}
-          <SubTitle style={{ margin: "0.3rem" }}>
+          </div >{" "}
+          <div  style={{ margin: "0.3rem" }}>
             {" "}
             {actualFunnel && actualFunnel.toFixed(2)}
-          </SubTitle>
+          </div >
         </div>
       )}
     </div>

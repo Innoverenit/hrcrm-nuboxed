@@ -9,6 +9,9 @@ import {
    getAllRecruitmentAvgTimeByOppId,
   getAllRecruitmentPositionFilledByOppId,
 } from "../../OpportunityAction";
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 class RecruitProJumpStart extends Component {
   componentDidMount() {
     this.props.getAllRecruitmentByOppId(this.props.opportunityId);
@@ -18,9 +21,15 @@ class RecruitProJumpStart extends Component {
   }
   render() {
     return (
-      <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
-    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
-          <JumpStartBox
+      <div class=" flex w-full items-center justify-center max-sm:flex-col mt-4" >
+    <div class="w-[14rem] max-md:w-1/2  max-xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-1">
+                                 <div class="rounded-full p-2 bg-green-600"><VolumeUpIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
             title="# Requirements"
             noProgress
             stringValue
@@ -28,7 +37,18 @@ class RecruitProJumpStart extends Component {
             isLoading={this.props.fetchingAllRecruitmentByOppId}
           />
           <CurrencySymbol />
-          <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-[14rem]  max-md:w-1/2  max-xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-1">
+                                 <div class="rounded-full p-2 bg-yellow-600"><EventAvailableIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
             title="# Positions"
             noProgress
             stringValue
@@ -36,8 +56,18 @@ class RecruitProJumpStart extends Component {
              value={this.props.allRecruitmentPositionByOppId}
            
           />
-
-          <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-[14rem]  max-md:w-1/2  max-xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f]  rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-1">
+                                 <div class="rounded-full p-2  bg-pink-600"><FactCheckIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
             noProgress
             stringValue
        
@@ -47,7 +77,18 @@ class RecruitProJumpStart extends Component {
              value={this.props.allRecruitmentPositionFilledByOppId}
            
           />
-          <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-[14rem]  max-md:w-1/2  max-xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-1">
+                                 <div class="rounded-full p-2 bg-blue-600"><EventAvailableIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
             noProgress
             stringValue
             // title="Average Time"
@@ -57,8 +98,13 @@ class RecruitProJumpStart extends Component {
               value={this.props.allRecruitmentAvgTimeByOppId.recruitProfileLinkDetails}
            
           />
+                         </div>
+                     </div>
+                 
+                 </div> 
+         
         </div>
-      </div>
+     
     );
   }
 }

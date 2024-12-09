@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
-import { ValidationError,  StyledAsync } from "../../UI/Elements";
+import {   StyledAsync } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -75,7 +75,7 @@ class ClearbitImage extends Component {
                     />
 
                     {get(touched, field.name) && get(errors, field.name) && (
-                        <ValidationError>{get(errors, field.name)}</ValidationError>
+                        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
                     )}
                 </>
             );
@@ -101,7 +101,7 @@ class ClearbitImage extends Component {
                     />
 
                     {get(touched, field.name) && get(errors, field.name) && (
-                        <ValidationError>{get(errors, field.name)}</ValidationError>
+                        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
                     )}
                 </>
             );
@@ -129,7 +129,7 @@ class ClearbitImage extends Component {
                     </FlexContainer>
                 </FlexContainer>
                 {get(touched, field.name) && get(errors, field.name) && (
-                    <ValidationError>{get(errors, field.name)}</ValidationError>
+                    <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
                 )}
             </>
         );

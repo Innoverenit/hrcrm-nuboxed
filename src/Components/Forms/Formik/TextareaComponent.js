@@ -1,7 +1,6 @@
 import React from "react";
 import { get } from "lodash";
 import { StyledTextarea } from "../../UI/Elements";
-import { ValidationError } from "../../UI/Elements";
 export const TextareaComponent = ({
   field,
   form,
@@ -21,7 +20,7 @@ export const TextareaComponent = ({
       )}
       <StyledTextarea {...field} {...props} validateOnChange={false} />
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </div>
   );

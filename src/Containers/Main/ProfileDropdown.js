@@ -11,7 +11,9 @@ import {
 } from "../../Components/UI/Antd";
 import {MainWrapper } from "../../Components/UI/Layout";
 import { logout } from "../Auth/AuthAction";
-
+import GroupsIcon from '@mui/icons-material/Groups';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LockResetIcon from '@mui/icons-material/LockReset';
 const Theme = lazy(() => import("../Settings/Theme/Theme"));
 
 
@@ -22,17 +24,17 @@ const ProfileMenu = ({ logout, history }) => (
         <StyledMenuItem  key="0" >
           <a href="#" onClick={() => history.push("/profile")}>
           
-            Profile
+           <GroupsIcon className=" !text-icon"/> Profile
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="3">
           <a href="#" onClick={() => history.push("/change-password")}>
        
-            Change Password
+          <LockResetIcon className=" !text-icon"/> Change Password
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="4">
-          <a onClick={() => logout(history)}>Logout</a>
+          <a onClick={() => logout(history)}><LogoutIcon className=" !text-icon"/>Logout</a>
         </StyledMenuItem>
         <Menu.Divider />
       </StyledMenu>

@@ -22,7 +22,7 @@ import {
 } from "../../EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
@@ -297,7 +297,7 @@ const getLocation = (item) => {
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {/* <Tooltip title={item.assignedToName}> */}
-              <SubTitle>
+              <div>
               <span>
               {item.assignedToName === null ? (
                 "Not available"
@@ -316,7 +316,7 @@ const getLocation = (item) => {
                 </>
               )}
             </span>
-              </SubTitle>
+              </div>
              {/* </Tooltip> */}
                                     </div>
                                 </div>

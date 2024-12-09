@@ -7,7 +7,6 @@ import {
 import { StyledCreatable } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { get, uniqBy } from "lodash";
-import ValidationError from "../../UI/Elements/ValidationError";
 import {
   getContactListByUserId,
 } from "../../../Containers/Contact/ContactAction";
@@ -1193,7 +1192,7 @@ class SearchSelect extends Component {
           {/* <AddUserModal addUserModal={this.props.addUserModal} handleUserModal={this.props.handleUserModal}/> */}
 
           {get(touched, field.name) && get(errors, field.name) && (
-            <ValidationError>{get(errors, field.name)}</ValidationError>
+            <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
           )}
         </>
       );
@@ -1273,7 +1272,7 @@ class SearchSelect extends Component {
         {/* <AddUserModal addUserModal={this.props.addUserModal} handleUserModal={this.props.handleUserModal}/> */}
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );

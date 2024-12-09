@@ -278,7 +278,7 @@ useEffect(() => {
                   <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                       <div className=" flex w-[4.5rem] items-center max-sm:w-auto h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
-                        <SubTitle>
+                       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
@@ -291,7 +291,7 @@ useEffect(() => {
                               No Image
                             </div>
                           )}
-                        </SubTitle>
+                        </div>
                       </div>
                       <div className=" flex w-[4.5rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs  text-blue-600  ml-gap  max-sm:text-sm  font-poppins cursor-pointer  "
