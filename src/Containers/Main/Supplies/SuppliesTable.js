@@ -94,7 +94,7 @@ function SuppliesTable(props) {
     props.getUOM()
     props.getBestBeforeJumpListCount(props.orgId)
     props.getReorderCount()
-    props.getPriceUpdatedCount()
+    props.getPriceUpdatedCount(props.locationId)
   }, []);
 
   const handleLoadMore = () => {
@@ -676,6 +676,7 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   suppliesSerachedData:supplies.suppliesSerachedData,
   fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData,
   orgId: auth.userDetails.organizationId,
+  locationId:auth.userDetails.locationId,
   suppliesBestBeforeCount:supplies.suppliesBestBeforeCount,
   reOrderCount:supplies.reOrderCount,
   priceUpdatedCount:supplies.priceUpdatedCount
