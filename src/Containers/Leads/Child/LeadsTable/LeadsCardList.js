@@ -248,41 +248,42 @@ const LeadsCardList = (props) => {
      <div className=' flex  sticky  z-auto'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
-        <div className="   flex justify-between w-[90%] font-bold font-poppins text-xs">
-         <div className=" ml-1   text-white w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-red-600  justify-center "> 
+        <div className="   flex justify-between w-[92%] font-bold font-poppins !text-lm">
+         <div className="    text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-red-600  justify-center "> 
           {translatedMenuItems[0]}</div>
-        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+          <div className=" w-[4.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[19.1rem] text-[#00A2E8] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
              <ApartmentIcon className="!text-icon  "/>
               {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  ">
+
+        <div className=" w-[17.4rem] truncate max-xl:w-[7.2rem] max-lg:w-[5.2rem]  ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
             {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
+        <div className=" w-[19.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
           {translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+        <div className=" w-[13.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/>
          {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[11.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/>
          {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+        <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
           {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <div className="truncate w-[7.81rem]  max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}  
              {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] "> 
+        <div className=" w-[7.2rem] truncate max-xl:w-[6.2rem] "> 
            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
            {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+        <div className=" w-[5.9rem] truncate max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
           {translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
+        <div className=" w-[7.3rem]  truncate max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
           {translatedMenuItems[11]}</div>
       
@@ -342,7 +343,7 @@ const LeadsCardList = (props) => {
               />
                         )}
                         </div>
-               <div class="flex flex-row mr-1 h-8 border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+               <div class="flex flex-row  h-8 border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
                       <ButtonGroup>
                         <RoleButton
@@ -392,7 +393,7 @@ const LeadsCardList = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex  w-[12rem] h-8 ml-gap bg-[#eef2f9] items-center justify-center max-xl:w-[9.5rem] max-lg:w-[5rem]  mr-1   max-sm:w-auto">
+                  <div className=" flex  w-[11.2rem] h-8 ml-gap bg-[#eef2f9] items-center max-xl:w-[9.5rem] max-lg:w-[5rem]     max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div >
                        
@@ -425,7 +426,7 @@ const LeadsCardList = (props) => {
                   </div> 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex  w-[6.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                  <div className=" flex  w-[6.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.countryDialCode && item.phoneNumber
@@ -444,7 +445,7 @@ const LeadsCardList = (props) => {
                      
                     </div>
                   </div>
-                  <div className=" flex   w-[10rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div className=" flex   w-[10rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
                     <div class=" text-xs   ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                       {item.companyName || "None"}
                     </div>
@@ -475,13 +476,13 @@ const LeadsCardList = (props) => {
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                  
                   
-                  <div className=" flex   w-[6.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                  <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
            
            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.source}
            </div>
          </div>
-         <div className=" flex   w-[6.51rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+         <div className=" flex   w-[5.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
            
            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.lob}
@@ -497,7 +498,7 @@ const LeadsCardList = (props) => {
             )}
 {/* Score */}
 
-                  <div className=" flex w-[2.02rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                  <div className=" flex w-[3.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       <div>
                       {item.assignedTo === null ? (
@@ -520,7 +521,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </div>
                   </div>
-                     <div className=" flex  w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                     <div className=" flex  w-[3.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
                     {/* <Tooltip title={item.assignedBy}> */}
@@ -538,7 +539,7 @@ const LeadsCardList = (props) => {
                     )}
                   </div>
            
-                  <div className=" flex w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div className=" flex w-[3.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -703,41 +704,42 @@ const LeadsCardList = (props) => {
 
       <div className=' flex   sticky z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-     <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10 max-sm:hidden">
-      <div class="  flex justify-between font-bold font-poppins text-xs w-[90%]">
+     <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10 max-sm:hidden">
+      <div class="  flex justify-between font-bold font-poppins !text-lm w-[90%]">
       <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]   bg-orange-400 text-white">
         {translatedMenuItems[12]}</div>
-      <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+          <div className=" w-[4.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+      <div className="  w-[19.1rem] text-[#00A2E8] text-sm max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
            <ApartmentIcon className="!text-icon  "/> 
       {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
+      
+        <div className=" w-[17.4rem] truncate max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
         {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
+        <div className=" w-[19.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
         {translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+        <div className=" w-[13.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
         {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[11.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/> 
         {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+        <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
           {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <div className="truncate w-[7.81rem]  max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   
             {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] ">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+        <div className=" w-[7.2rem] truncate max-xl:w-[6.2rem] ">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
         {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+        <div className=" w-[5.9rem]  truncate max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
           {translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">  
+        <div className=" w-[7.3rem] truncate max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">  
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
         {translatedMenuItems[11]}</div>
         <div className="w-12"></div>
@@ -785,25 +787,26 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between text-xs bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  py-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
-            >
+              className="flex  justify-between bg-white mt-1  items-center py-ygap max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+               max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {props.showCheckboxes && (
-                        <Checkbox
-                onChange={() => props.handleCheckboxChange(item.leadsId)}
-              checked={props.selectedDeals.includes(item.leadsId)}
-              />
-                        )}
-                        </div>
-             <div class="flex flex-row mr-1 items-center w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+                      {props.showCheckboxes && (
+                      <Checkbox
+              onChange={() => props.handleCheckboxChange(item.leadsId)}
+            checked={props.selectedDeals.includes(item.leadsId)}
+            />
+                      )}
+                      </div>
+             <div class="flex flex-row  h-8 border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
+                      className="!text-icon"
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip={translatedMenuItems[23]}
+                        tooltip=   {translatedMenuItems[23]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Hot";
@@ -815,10 +818,11 @@ const LeadsCardList = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton1
+                       className="!text-icon"
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip={translatedMenuItems[24]}
+                        tooltip=   {translatedMenuItems[24]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Warm";
@@ -830,10 +834,11 @@ const LeadsCardList = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton2
+                       className="!text-icon"
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip={translatedMenuItems[25]}
+                        tooltip=   {translatedMenuItems[25]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Cold";
@@ -843,9 +848,9 @@ const LeadsCardList = (props) => {
                     </ButtonGroup>
                   </div>
                 </div>
-                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[10rem] max-xl:w-[9.5rem] max-lg:w-[5rem] mr-1  max-sm:w-auto">
+                <div className=" flex  w-[11.2rem] h-8 ml-gap bg-[#eef2f9] items-center max-xl:w-[9.5rem] max-lg:w-[5rem]     max-sm:w-auto">
                   <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                  <div class=" mr-1 ">
+                    <div >
                      
                         <MultiAvatar
                           primaryTitle={item.name}
@@ -856,18 +861,16 @@ const LeadsCardList = (props) => {
                         />
                      
                     </div>
-                    <div class="w-[4%]"></div>
-
                     <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                         <div class="max-sm:w-full justify-between flex md:flex-col">
-                          <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                          <div class="text-xs flex  font-semibold ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                             {item.name}
                             &nbsp;&nbsp;
                             {date === currentdate ? (
-                              <div class="text-[0.65rem] text-[tomato] font-bold"                                
-                              >
-                               {translatedMenuItems[21]} {/* New */}
+                              <div class="text-[0.65rem]  text-[tomato] font-bold"  >                            
+                              
+                              {translatedMenuItems[21]}  {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -875,21 +878,20 @@ const LeadsCardList = (props) => {
                       </Tooltip>
                     </div>
                   </div>
+                </div> 
                 </div>
-
-                
-              </div>
-              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                <div className=" flex w-[6.8rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex  w-[6.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
        
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                    {item.countryDialCode && item.phoneNumber
-                      ? `${item.countryDialCode} ${item.phoneNumber}`
-                      : "None"}
-               
-                  </div>
-                </div>
-                <div className=" flex  w-[2.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+       <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+         {item.countryDialCode && item.phoneNumber
+           ? `${item.countryDialCode} ${item.phoneNumber}`
+           : "None"}
+    
+       </div>
+     </div>              
+                                          
+                <div className=" flex w-[2.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                    
                      <CountryFlag1 countryCode={countryCode} />
@@ -898,15 +900,12 @@ const LeadsCardList = (props) => {
                    
                   </div>
                 </div>
-                <div className=" flex  w-[6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
-                  <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                <div className=" flex   w-[10rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div class=" text-xs   ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                     {item.companyName || "None"}
                   </div>
                 </div>
-              </div>
-              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               
-                <div class=" items-center justify-center h-8 ml-gap bg-[#eef2f9] cursor-pointer w-8 ">
+                <div class="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  cursor-pointer  ">
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
@@ -923,19 +922,22 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.35rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
-         
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                <div className=" flex   w-[7.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                  <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
                   </div>
                 </div>
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+              </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+               
+                
+                <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.source}
          </div>
        </div>
-       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+       <div className=" flex   w-[5.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.lob}
@@ -943,15 +945,15 @@ const LeadsCardList = (props) => {
        </div>
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
               {props.user.aiInd && (
-           <div className=" flex text-xs  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-           {item.noteScoreInd}
-          
-            </div>
-            )}
-            {/* Score */}
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+         <div className=" flex text-xs justify-center items-center  h-8 ml-gap bg-[#eef2f9] w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+       {item.noteScoreInd}
+        
+          </div>
+          )}
+{/* Score */}
+
+                <div className=" flex w-[3.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     <div>
                     {item.assignedTo === null ? (
@@ -974,12 +976,12 @@ const LeadsCardList = (props) => {
                     </div>
                   </div>
                 </div>
-                   <div className=" flex  w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                   <div className=" flex  w-[3.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     {item.assignedBy && (
                   <div>
                   {/* <Tooltip title={item.assignedBy}> */}
               <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.assignedBy}> */}
+         
             <MultiAvatar
             
               primaryTitle={item.assignedBy}
@@ -987,115 +989,113 @@ const LeadsCardList = (props) => {
               imgWidth={"1.8rem"}
               imgHeight={"1.8rem"}
             />
-          {/* </Tooltip> */}
           </div>
-        {/* </Tooltip> */}
                   </div>
                   )}
                 </div>
          
-                <div className=" flex w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
-                    <div class=" text-xs  font-poppins"></div>
-                    <div>
-  {!item.companyName && item.leadType === "BtoC" ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
-      <Popconfirm
-        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
-        onConfirm={() => {
-          handleRowData(item);
-          if (item.leadType === "BtoB") {
-            props.handleLeadsConfirmationModal(true);
-          } else {
-            props.convertCustomerStatus(item.leadsId,props.userId);
-          }
-        }}
-        okText="Yes"
-        cancelText="No"
-      >
-        <ConnectWithoutContactIcon
-          className="!text-icon cursor-pointer text-[blue]"
-        />
-      </Popconfirm>
-    </Tooltip>
-  ) : item.companyName ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
-      <Popconfirm
-        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
-        onConfirm={() => {
-          handleRowData(item);
-          if (item.leadType === "BtoB") {
-            props.handleLeadsConfirmationModal(true);
-          } else {
-            props.convertCustomerStatus(item.leadsId,props.userId);
-          }
-        }}
-        okText="Yes"
-        cancelText="No"
-      >
-        <ConnectWithoutContactIcon
-          className="!text-icon cursor-pointer text-[blue]"
-        />
-      </Popconfirm>
-    </Tooltip>
-  ) : (
-    <Tooltip title="Company name is required to enable qualification action">
+                <div className=" flex w-[3.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div class=" text-xs  font-poppins"></div>
+                  <div>
+{!item.companyName && item.leadType === "BtoC" ? (
+  <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Popconfirm
+      title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+      onConfirm={() => {
+        handleRowData(item);
+        if (item.leadType === "BtoB") {
+          props.handleLeadsConfirmationModal(true);
+        } else {
+          props.convertCustomerStatus(item.leadsId,props.userId);
+        }
+      }}
+      okText="Yes"
+      cancelText="No"
+    >
       <ConnectWithoutContactIcon
-        className="!text-icon cursor-not-allowed text-gray-400"
+        className="!text-icon cursor-pointer text-[blue]"
       />
-    </Tooltip>
-  )}
+    </Popconfirm>
+  </Tooltip>
+) : item.companyName ? (
+  <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Popconfirm
+      title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+      onConfirm={() => {
+        handleRowData(item);
+        if (item.leadType === "BtoB") {
+          props.handleLeadsConfirmationModal(true);
+        } else {
+          props.convertCustomerStatus(item.leadsId,props.userId);
+        }
+      }}
+      okText="Yes"
+      cancelText="No"
+    >
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-pointer text-[blue]"
+      />
+    </Popconfirm>
+  </Tooltip>
+) : (
+  <Tooltip title="Company name is required to enable qualification action">
+    <ConnectWithoutContactIcon
+      className="!text-icon cursor-not-allowed text-gray-400"
+    />
+  </Tooltip>
+)}
 </div>
 
-                  </div>
                 </div>
-                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-center h-8 ml-gap bg-[#eef2f9]"> 
-             
-     <div>
-                      <Tooltip title={translatedMenuItems[15]}>
-                      
-                        <SubscriptionsIcon
-                         className=" !text-icon cursor-pointer text-green-800"
-                            onClick={() => {
-                            //handleRowData(item);
-                            props.handleLeadsSubscriptionModal(true);
-                         
-                          }}
-                         
-                        />
-                      </Tooltip>
-                      </div>
-                 
+                </div>
+                <div class="flex justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly max-sm:w-wk items-center"> 
+           
+                <div >
+                    <Tooltip title={translatedMenuItems[15]}>
+                    
+                      <SubscriptionsIcon
+                       className=" !text-icon cursor-pointer text-green-800"
+                       onClick={() => {
+                        handleSetCurrentLeadsId(true);
+                        props.handleLeadsSubscriptionModal(item);
+                            }}
+                        //   onClick={() => {
+                        //   handleSetCurrentLeadsId(item);
+                        //   // handleRowData(item);
+                        //   props.handleLeadsSubscriptionModal(true);                      
+                        // }}                     
+                      />
+                    </Tooltip>
+                  </div>
                   <div >
                     <Tooltip title={translatedMenuItems[16]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                           onClick={() => {
                           handleRowData(item);
-                          handleLeadsNotesDrawerModal(true);
-                       
-                        }}
-                       
+                          handleLeadsNotesDrawerModal(true);                     
+                        }}                        
                       />
                     </Tooltip>
                   </div>
-                    
-                <div>
-              <Tooltip title={translatedMenuItems[14]}>
- <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            // handleSetCurrentContact(item);
-            handleSetCurrentLeadsId(item);
-          }}
-          
-        />
-     </Tooltip>
-     </div>
+                  <div>
+            <Tooltip title={translatedMenuItems[14]}>
+<AddLocationAltIcon
+        className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+          props.handleLeadsAddressDrawerModal(true);
+          // handleSetCurrentContact(item);
+        handleSetCurrentLeadsId(item);
+        }}
+        
+      />
+   </Tooltip>
+   </div>
                   <div >
                     <Tooltip
                       title={translatedMenuItems[17]}
                     >
+                      {/* activity */}
                       <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
                           onClick={() => {
@@ -1105,7 +1105,7 @@ const LeadsCardList = (props) => {
                         }}
                       />
                     </Tooltip>
-                  </div>                                                                                       
+                  </div>                                          
                  
                   <div >
                     <Tooltip title={translatedMenuItems[18]}>
@@ -1134,8 +1134,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div >
-                     
+                    <div >                     
                       <StyledPopconfirm
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
@@ -1147,8 +1146,9 @@ const LeadsCardList = (props) => {
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>
-                  )}               
-             </div>            
+                  )}                
+             </div>
+             
             </div>
           </div>
           );
@@ -1160,41 +1160,41 @@ const LeadsCardList = (props) => {
       <div className=' flex   sticky  z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm top-0 z-10">
-       <div class=" flex justify-between font-bold font-poppins text-xs w-[90%]">
+       <div class=" flex justify-between font-bold font-poppins !text-lm w-[90%]">
       <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm   bg-blue-600 text-white">
         {translatedMenuItems[13]}</div>
-        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  ">   
+        <div className="  w-[7.1rem] text-[#00A2E8] text-sm truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  ">   
            <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
+        <div className=" w-[10.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[10.2rem]  truncate max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
            {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
+        <div className=" w-[15.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
            {translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] "> 
+        <div className=" w-[6.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] "> 
            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
            {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[9.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/>
             {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+        <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
           {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <div className="truncate w-[7.81rem]  max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}  
              {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] "> 
+        <div className=" w-[7.2rem] truncate max-xl:w-[6.2rem] "> 
            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>
             {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+        <div className=" w-[4.9rem] truncate max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
           {translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
+        <div className=" w-[5.3rem] truncate max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
           {translatedMenuItems[11]}</div>
         <div className="w-12"></div>
@@ -1241,25 +1241,26 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  py-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
-            >
+              className="flex  justify-between bg-white mt-1  items-center py-ygap max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+               max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {props.showCheckboxes && (
-                        <Checkbox
-                onChange={() => props.handleCheckboxChange(item.leadsId)}
-              checked={props.selectedDeals.includes(item.leadsId)}
-              />
-                        )}
-                        </div>
-             <div class="flex flex-row items-center  mr-1 w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+                      {props.showCheckboxes && (
+                      <Checkbox
+              onChange={() => props.handleCheckboxChange(item.leadsId)}
+            checked={props.selectedDeals.includes(item.leadsId)}
+            />
+                      )}
+                      </div>
+             <div class="flex flex-row  h-8 border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
+                      className="!text-icon"
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip={translatedMenuItems[23]}
+                        tooltip=   {translatedMenuItems[23]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Hot";
@@ -1271,10 +1272,11 @@ const LeadsCardList = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton1
+                       className="!text-icon"
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip={translatedMenuItems[24]}
+                        tooltip=   {translatedMenuItems[24]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Warm";
@@ -1286,10 +1288,11 @@ const LeadsCardList = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton2
+                       className="!text-icon"
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip={translatedMenuItems[25]}
+                        tooltip=   {translatedMenuItems[25]}
                         role={item.type}
                           onClick={() => {
                           const typ = "Cold";
@@ -1299,9 +1302,9 @@ const LeadsCardList = (props) => {
                     </ButtonGroup>
                   </div>
                 </div>
-                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[12rem] max-xl:w-[9.5rem] max-lg:w-[5rem]  max-sm:w-auto">
+                <div className=" flex  w-[11.2rem] h-8 ml-gap bg-[#eef2f9] items-center max-xl:w-[9.5rem] max-lg:w-[5rem]     max-sm:w-auto">
                   <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                  <div class=" mr-1 ">
+                    <div >
                      
                         <MultiAvatar
                           primaryTitle={item.name}
@@ -1312,19 +1315,16 @@ const LeadsCardList = (props) => {
                         />
                      
                     </div>
-                    <div class="w-[4%]"></div>
-
                     <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                         <div class="max-sm:w-full justify-between flex md:flex-col">
-                          <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                          <div class="text-xs flex  font-semibold ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                             {item.name}
                             &nbsp;&nbsp;
                             {date === currentdate ? (
-                              <div class="text-[0.65rem]  text-[tomato] font-bold"
-                                
-                              >
-                               {translatedMenuItems[21]} {/* New */}
+                              <div class="text-[0.65rem]  text-[tomato] font-bold"  >                            
+                              
+                              {translatedMenuItems[21]}  {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -1332,19 +1332,20 @@ const LeadsCardList = (props) => {
                       </Tooltip>
                     </div>
                   </div>
-                </div>          
-              </div>
-              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.8rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-       
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                    {item.countryDialCode && item.phoneNumber
-                      ? `${item.countryDialCode} ${item.phoneNumber}`
-                      : "None"}
-               
-                  </div>
+                </div> 
                 </div>
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex  w-[6.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+       
+       <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+         {item.countryDialCode && item.phoneNumber
+           ? `${item.countryDialCode} ${item.phoneNumber}`
+           : "None"}
+    
+       </div>
+     </div>              
+                                          
+                <div className=" flex w-[2.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                    
                      <CountryFlag1 countryCode={countryCode} />
@@ -1353,15 +1354,12 @@ const LeadsCardList = (props) => {
                    
                   </div>
                 </div>
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
-                  <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                <div className=" flex   w-[10rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div class=" text-xs   ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                     {item.companyName || "None"}
                   </div>
                 </div>
-              </div>
-              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               
-                <div class="items-center justify-center h-8 ml-gap bg-[#eef2f9] cursor-pointer w-8 justify-cente">
+                <div class="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  cursor-pointer  ">
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
@@ -1378,19 +1376,22 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.35rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
-         
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                <div className=" flex   w-[7.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                  <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
                   </div>
                 </div>
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+              </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+               
+                
+                <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.source}
          </div>
        </div>
-       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+       <div className=" flex   w-[5.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.lob}
@@ -1399,15 +1400,14 @@ const LeadsCardList = (props) => {
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               {props.user.aiInd && (
-           <div className=" flex text-xs  justify-center items-center h-8 ml-gap bg-[#eef2f9] w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
-          
-            </div>
-            )}
+         <div className=" flex text-xs justify-center items-center  h-8 ml-gap bg-[#eef2f9] w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+       {item.noteScoreInd}
+        
+          </div>
+          )}
 {/* Score */}
 
-
-                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                <div className=" flex w-[3.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     <div>
                     {item.assignedTo === null ? (
@@ -1430,12 +1430,12 @@ const LeadsCardList = (props) => {
                     </div>
                   </div>
                 </div>
-                   <div className=" flex  w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                   <div className=" flex  w-[3.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     {item.assignedBy && (
                   <div>
                   {/* <Tooltip title={item.assignedBy}> */}
               <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.assignedBy}> */}
+         
             <MultiAvatar
             
               primaryTitle={item.assignedBy}
@@ -1443,100 +1443,108 @@ const LeadsCardList = (props) => {
               imgWidth={"1.8rem"}
               imgHeight={"1.8rem"}
             />
-          {/* </Tooltip> */}
           </div>
-        {/* </Tooltip> */}
                   </div>
                   )}
                 </div>
          
-                <div className=" flex w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
-                    <div class=" text-xs  font-poppins"></div>
-                    <div>
-  {!item.companyName && item.leadType === "BtoC" ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
-      <Popconfirm
-        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
-        onConfirm={() => {
-          handleRowData(item);
-          if (item.leadType === "BtoB") {
-            props.handleLeadsConfirmationModal(true);
-          } else {
-            props.convertCustomerStatus(item.leadsId,props.userId);
-          }
-        }}
-        okText="Yes"
-        cancelText="No"
-      >
-        <ConnectWithoutContactIcon
-          className="!text-icon cursor-pointer text-[blue]"
-        />
-      </Popconfirm>
-    </Tooltip>
-  ) : item.companyName ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
-      <Popconfirm
-        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
-        onConfirm={() => {
-          handleRowData(item);
-          if (item.leadType === "BtoB") {
-            props.handleLeadsConfirmationModal(true);
-          } else {
-            props.convertCustomerStatus(item.leadsId,props.userId);
-          }
-        }}
-        okText="Yes"
-        cancelText="No"
-      >
-        <ConnectWithoutContactIcon
-          className="!text-icon cursor-pointer text-[blue]"
-        />
-      </Popconfirm>
-    </Tooltip>
-  ) : (
-    <Tooltip title="Company name is required to enable qualification action">
+                <div className=" flex w-[3.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div class=" text-xs  font-poppins"></div>
+                  <div>
+{!item.companyName && item.leadType === "BtoC" ? (
+  <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Popconfirm
+      title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+      onConfirm={() => {
+        handleRowData(item);
+        if (item.leadType === "BtoB") {
+          props.handleLeadsConfirmationModal(true);
+        } else {
+          props.convertCustomerStatus(item.leadsId,props.userId);
+        }
+      }}
+      okText="Yes"
+      cancelText="No"
+    >
       <ConnectWithoutContactIcon
-        className="!text-icon cursor-not-allowed text-gray-400"
+        className="!text-icon cursor-pointer text-[blue]"
       />
-    </Tooltip>
-  )}
+    </Popconfirm>
+  </Tooltip>
+) : item.companyName ? (
+  <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Popconfirm
+      title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+      onConfirm={() => {
+        handleRowData(item);
+        if (item.leadType === "BtoB") {
+          props.handleLeadsConfirmationModal(true);
+        } else {
+          props.convertCustomerStatus(item.leadsId,props.userId);
+        }
+      }}
+      okText="Yes"
+      cancelText="No"
+    >
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-pointer text-[blue]"
+      />
+    </Popconfirm>
+  </Tooltip>
+) : (
+  <Tooltip title="Company name is required to enable qualification action">
+    <ConnectWithoutContactIcon
+      className="!text-icon cursor-not-allowed text-gray-400"
+    />
+  </Tooltip>
+)}
 </div>
 
-                  </div>
                 </div>
-                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-center h-8 ml-gap bg-[#eef2f9]">
-                <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleSetCurrentLeadsId(item);
-          }}
-          
-        /> 
+                </div>
+                <div class="flex justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly max-sm:w-wk items-center"> 
+           
                 <div >
-                      <Tooltip title={translatedMenuItems[15]}>
-                      
-                        <SubscriptionsIcon
-                         className=" !text-icon cursor-pointer text-green-800"
-                            onClick={() => {
-                            //handleRowData(item);
-                            props.handleLeadsSubscriptionModal(true);
-                         
-                          }}                        
-                        />
-                      </Tooltip>
-                    </div>
+                    <Tooltip title={translatedMenuItems[15]}>
+                    
+                      <SubscriptionsIcon
+                       className=" !text-icon cursor-pointer text-green-800"
+                       onClick={() => {
+                        handleSetCurrentLeadsId(true);
+                        props.handleLeadsSubscriptionModal(item);
+                            }}
+                        //   onClick={() => {
+                        //   handleSetCurrentLeadsId(item);
+                        //   // handleRowData(item);
+                        //   props.handleLeadsSubscriptionModal(true);                      
+                        // }}                     
+                      />
+                    </Tooltip>
+                  </div>
                   <div >
                     <Tooltip title={translatedMenuItems[16]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                           onClick={() => {
                           handleRowData(item);
-                          handleLeadsNotesDrawerModal(true);                    
-                        }}                
+                          handleLeadsNotesDrawerModal(true);                     
+                        }}                        
                       />
                     </Tooltip>
                   </div>
+                  <div>
+            <Tooltip title={translatedMenuItems[14]}>
+<AddLocationAltIcon
+        className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+          props.handleLeadsAddressDrawerModal(true);
+          // handleSetCurrentContact(item);
+        handleSetCurrentLeadsId(item);
+        }}
+        
+      />
+   </Tooltip>
+   </div>
                   <div >
                     <Tooltip
                       title={translatedMenuItems[17]}
@@ -1551,7 +1559,7 @@ const LeadsCardList = (props) => {
                         }}
                       />
                     </Tooltip>
-                  </div>                                                                                  
+                  </div>                                          
                  
                   <div >
                     <Tooltip title={translatedMenuItems[18]}>
@@ -1580,8 +1588,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div >
-                     
+                    <div >                     
                       <StyledPopconfirm
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
@@ -1593,8 +1600,7 @@ const LeadsCardList = (props) => {
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>
-                  )}
-                
+                  )}                
              </div>
              
             </div>

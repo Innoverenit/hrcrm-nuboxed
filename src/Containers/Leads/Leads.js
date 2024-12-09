@@ -1,7 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
 import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
 import {handleLeadsModal,updateOwnerLeadById, handleLeadsImportModal,updateJunkLeadById } from "./LeadsAction";
@@ -216,7 +215,7 @@ class Leads extends Component {
         />
        
         {/* <LeadsTable/>  */}
-        <Suspense fallback={ <BundleLoader />}>
+        <Suspense fallback={ "Loading..."}>
          {teamsAccessInd ? (
           <LeadsTeamCardList 
           handleCheckboxChange={this.handleCheckboxChange}
