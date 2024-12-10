@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
-import {  Tooltip } from "antd";
+import { Input, Tooltip } from "antd";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
@@ -19,6 +19,7 @@ import {
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
   getTeamUserList,
+  updateContact
 } from "../../../Contact/ContactAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
@@ -38,6 +39,7 @@ import {getTeamsContactInvest,
   updateContactInvest,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import {getCustomerData} from "../../../Customer/CustomerAction";
 const AddContactInvestPulseModal = lazy(() =>  import("./AddContactInvestPulseModal"));
 const AddContactInvestAdressModal = lazy(() =>  import("./AddContactInvestAdressModal"));
 const AddContactInvestDealModal = lazy(() =>  import("./AddContactInvestDealModal"));
@@ -56,6 +58,12 @@ function ContactInvestTeamsCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [pageNo, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -148,6 +156,79 @@ function ContactInvestTeamsCardList(props) {
   //           )  ; 
   //           setPage(pageNo + 1);
   // }
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { contactId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+    } else if (field === 'designation') {
+      mappedField = 'designationTypeId';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.updateContact(updatedData,contactId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateContact(updatedData,contactId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      props.getDesignations();
+      setTouchedCustomer(true);
+    }
+  };
+  const handleSelectCustomerDataFocus = () => {
+    if (!touched) {
+      props.getCustomerData(props.userId)
+      setTouched(true);
+    }
+  };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
+
   const {
     user,
     fetchingAllContactInvest,
@@ -330,7 +411,28 @@ if (loading) {
   &nbsp;&nbsp;
   {date === currentdate ? (
     <span class="text-[tomato]  font-bold text-[0.65rem]">  New </span>
-  ) : null} 
+  ) : null}
+   <div>
+  {editableField?.contactId === item.contactId &&
+editableField?.field === 'fullName' ? (
+<Input
+type="text"
+className="h-7 w-[4rem] text-xs"
+value={editingValue}
+onChange={handleChangeRowItem}
+onBlur={handleUpdateSubmit}
+onKeyDown={handleKeyDown} 
+autoFocus
+/>
+) : (
+<div onClick={() => 
+handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+className="cursor-pointer text-xs font-poppins flex items-center">
+<BorderColorIcon  className=" !text-icon cursor-pointer"/>
+
+</div> 
+)}                 
+  </div>
                                       </div>
                                       </div>
                                   </Tooltip>
@@ -615,8 +717,11 @@ const mapDispatchToProps = (dispatch) =>
       handleContactInvestPulseDrawerModal,
       handleContactAddressDrawerModal,
       handleDealModal,
+      updateContactInvest,
       getTeamUserList,
-      updateContactInvest
+      updateContact,
+      getCustomerData,
+
     },
     dispatch
   );
