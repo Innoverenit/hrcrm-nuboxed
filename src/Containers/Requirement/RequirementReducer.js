@@ -47,7 +47,8 @@ export const requirementReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingAllRequirementTable: false,
-            requirementTable: [action.payload, ...state.requirementTable],
+            // requirementTable: action.payload,
+            requirementTable: [...state.requirementTable, ...action.payload],
           };
         case types. GET_ALL_REQUIREMENT_TABLE_FAILURE:
           return {

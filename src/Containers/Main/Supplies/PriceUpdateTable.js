@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import axios from "axios";
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
@@ -10,13 +11,19 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import PinIcon from '@mui/icons-material/Pin';
 import dayjs from "dayjs";
 import {getPriceUpdated } from "./SuppliesAction";
-import { Input, Switch, Button, Checkbox } from 'antd';
+import {message } from 'antd';
+import { base_url2 } from "../../../Config/Auth";
+import PriceFactorList from "./PriceFactorList";
 
 const PriceUpdateTable = (props) => {
-    const [editMode, setEditMode] = useState(false);
-    const [selectedItems, setSelectedItems] = useState([]); 
-    const [inputValues, setInputValues] = useState({}); 
+    const [finalInput, setFinalInput] = useState("");
+    const [fInput, setFInput] = useState("");
+    const [editingFinalPriceId, setEditingFinalPriceId] = useState(null);
+    const [editingSuggestPriceId, setEditingSuggestPriceId] = useState(null);    
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [rowData,setRowdata]=useState({})
+    const [open , setOpen] = useState(false);
+
     useEffect(() => {
      props.getPriceUpdated(props.locationId)
         
@@ -67,7 +74,63 @@ const PriceUpdateTable = (props) => {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
 
+      function handleRowData(item) {
+        setRowdata(item);
+      }
 
+      const updatedata = async (updatedData, suppliesId) => {
+        try {
+            const response = await axios.put(
+                `${base_url2}/po/update-price-po/${suppliesId}`,
+                updatedData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+                    },
+                }
+            );
+    
+            if (response.data === "Successfully !!!!") {
+                message.success("Update successful");
+                props.getPriceUpdated(props.locationId); // Refresh data after update
+            } else {
+                message.error("Update failed: " + response.data);
+            }
+        } catch (error) {
+            console.error("Error updating item:", error);
+            message.error("Error updating item");
+        }
+    };
+    
+    const handleUpdateField = (item, field) => {
+        if (field === "finalPrice" && !finalInput) {
+            message.warning("Please enter a valid final price.");
+            return;
+        }
+        if (field === "suggestPrice" && !fInput) {
+            message.warning("Please enter a valid suggested price.");
+            return;
+        }
+    
+        const updatedData = {
+            locationId: props.locationId,
+        };
+    
+        if (field === "finalPrice") {
+            updatedData.finalPrice = finalInput;
+        } else if (field === "suggestPrice") {
+            updatedData.value = fInput;
+        }
+    
+        updatedata(updatedData, item.suppliesId);
+    
+        // Reset only the relevant editing state
+        if (field === "finalPrice") setEditingFinalPriceId(null);
+        if (field === "suggestPrice") setEditingSuggestPriceId(null);
+    };
+    
+    
+    
     return (
         <div className="flex flex-col w-full p-4">
             <div className="flex sticky z-auto">
@@ -155,20 +218,95 @@ const PriceUpdateTable = (props) => {
                                         <div className="flex w-[7.1rem]">
                                             <div className="text-xs font-poppins">
                                                 {item.suggestPrice}
+                                               
+    {/* <div className="text-xs font-poppins">
+        {editingSuggestPriceId === item.suppliesId ? (
+            <input
+                type="text"
+                className="h-7 w-[4rem] text-sm"
+                value={fInput}
+                onChange={(e) => setFInput(e.target.value)}
+                onKeyDown={(e) =>
+                    e.key === "Enter" && handleUpdateField(item, "suggestPrice")
+                }
+                onBlur={() => handleUpdateField(item, "suggestPrice")}
+                autoFocus
+            />
+        ) : (
+            <div
+                onClick={() => {
+                    setEditingSuggestPriceId(item.suppliesId); // Track suggestPrice editing
+                    setFInput(item.suggestPrice || ""); // Pre-fill with current value
+                }}
+                className="cursor-pointer text-xl font-[Poppins]"
+            >
+                {item.suggestPrice || "Enter Suggested Price"}
+            </div>
+        )}
+    </div> */}
+
+                                            </div>
+                                        </div>
+                                        <div className="flex w-[7.1rem]">
+                                            <div className="text-xs font-poppins"
+                                             onClick={() => {
+                                                if (rowData.suppliesId === item.suppliesId && open) {
+                                                    setOpen(false);
+                                                    setRowdata({});
+                                                } else {
+                                                    setOpen(true);
+                                                    setRowdata(item);
+                                                }
+                                            }}
+                                            >
+                                             Open
                                             </div>
                                         </div>
                                         <div className="flex w-[7.1rem]">
                                             <div className="text-xs font-poppins">
-                                             
-                                            </div>
-                                        </div>
-                                        <div className="flex w-[7.1rem]">
-                                            <div className="text-xs font-poppins">
-                                                {item.finalPrice}
+                                                {/* {item.finalPrice} */}
+                                              
+                                                <div className="flex w-[7.1rem]">
+    <div className="text-xs font-poppins">
+        {editingFinalPriceId === item.suppliesId ? (
+            <input
+                type="text"
+                className="h-7 w-[4rem] text-sm"
+                value={finalInput}
+                onChange={(e) => setFinalInput(e.target.value)}
+                onKeyDown={(e) =>
+                    e.key === "Enter" && handleUpdateField(item, "finalPrice")
+                }
+                onBlur={() => handleUpdateField(item, "finalPrice")}
+                autoFocus
+            />
+        ) : (
+            <div
+                onClick={() => {
+                    setEditingFinalPriceId(item.suppliesId); // Track finalPrice editing
+                    setFinalInput(item.finalPrice || ""); // Pre-fill with current value
+                }}
+                className="cursor-pointer text-xl font-[Poppins]"
+            >
+                {item.finalPrice || "Enter Final Price"}
+            </div>
+        )}
+    </div>
+</div>
+
+
+
+
                                             </div>
                                         </div>
                                     </div>
-                                   
+                                    {open && item.suppliesId === rowData.suppliesId && (
+    <div>
+       <PriceFactorList
+       rowData={rowData}
+       />
+    </div>
+)}
                                     </>
                                 )
                                
