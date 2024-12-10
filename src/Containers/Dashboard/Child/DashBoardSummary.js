@@ -23,7 +23,7 @@ import {
   addToWaste,
 
 } from "../../Main/Inventory/InventoryAction";
-
+import {getPriceUpdated} from "../../../Containers/Main/Supplies/SuppliesAction";
 import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,
   getTaskDashboard,getTasklist,getDealDashboard,getDealDashboardCount,
   getOrderDashboard,getOrderDashboardCount,getBestDashboardCount,getReorderDashboardCount
@@ -79,6 +79,7 @@ const DashBoardSummary=(props) =>{
     props.getDealDashboardCount(props.userId)
     props.getOrderDashboard(props.userId,"procure")
     props.getOrderDashboardCount(props.userId,"procure")
+    props.getPriceUpdated(props.locationId)
   }, []);
 
 
@@ -404,10 +405,49 @@ const DashBoardSummary=(props) =>{
         </div>
       </div>
           )}
+{/* Price Update */}
+<div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+{(user.erpInd === true || user.pndAccessInd === true) && (
+      <div class="flex flex-col  w-[14rem] items-center max-sm:min-h-9 ">
+        <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>Price Update<span  className="font-bold text-[tomato] ml-1"> 
+          {/* {`${props.taskperCount.totalTask  ?? ""} `} */}
+          </span></div>
+          <div className=" overflow-x-auto overflow-y-hidden h-[89vh] min-w-[11rem]">
+       
+      {props.fetchingPriceUpdated ? (
+        <div className="flex justify-center items-center h-full min-w-[12rem]">
+          <BundleLoader/> 
+        </div>
+      ) : (
+        props.priceUpdated.map((deal, index) => {
+          const currentDate = dayjs();
+        const completionDate = dayjs(deal.completionDate);
+          const endDate = dayjs(deal.endDate);
+        const difference = currentDate.diff(endDate, 'days');
+        return (
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem]  min-w-[11rem]">
+            <div className="flex justify-between flex-col">
+              <div>
+                <div className="font-semibold font-poppins truncate text-xs ">{deal.newSuppliesNo}</div>
+                <div className="font-semibold font-poppins truncate text-xs ">{deal.suppliesFullName}</div>
+                <div className="font-semibold font-poppins truncate text-xs ">{deal.batchNo}</div>
+                <div className="font-semibold font-poppins truncate text-xs ">{deal.brandName}</div>
+              </div>
+             
+              
+            </div>
+          </div> 
+        )
+       
+})
+      )}
+    </div>
+      </div>
+)}
     </div>   
   );
 };
-const mapStateToProps = ({ dashboard,inventory, auth }) => ({
+const mapStateToProps = ({ dashboard,inventory, auth ,supplies}) => ({
   userId: auth.userDetails.userId,
   fetchingQuotationDashboard:dashboard.fetchingQuotationDashboard,
   locationId: auth.userDetails.locationId,
@@ -429,6 +469,9 @@ const mapStateToProps = ({ dashboard,inventory, auth }) => ({
   fetchingTaskDashboard:dashboard.fetchingTaskDashboard,
   bestDashboardCount:dashboard.bestDashboardCount,
   user: auth.userDetails,
+  locationId:auth.userDetails.locationId,
+  priceUpdated:supplies.priceUpdated,
+  fetchingPriceUpdated:supplies.fetchingPriceUpdated
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getQuotationDashboard,
@@ -444,7 +487,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getOrderDashboard,
   getOrderDashboardCount,
   getBestDashboardCount,
-  getReorderDashboardCount
+  getReorderDashboardCount,
+  getPriceUpdated
 
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoardSummary);
