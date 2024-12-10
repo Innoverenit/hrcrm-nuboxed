@@ -3,7 +3,7 @@ import React from "react";
 import { ProgressiveImage } from "../../Utils";
 import { Icon, Empty, Tooltip, Input, Button, Avatar, Rate } from "antd";
 import { base_url } from "../../../Config/Auth";
-import ProfilePreview from "../../../Assets/Images/ProfilePreview.png";
+import ProfilePreviewImg from "../../../Assets/Images/ProfilePreviewImg.webp";
 const MultiAvatar1 = ({
   imageId,
   imageURL,
@@ -29,22 +29,24 @@ const MultiAvatar1 = ({
         imageId ? (
           <div style={{  }}>
             <ProgressiveImage
-              preview={ProfilePreview}
+              preview={ProfilePreviewImg}
               image={`${base_url}/image/${imageId}`}
               width={imgWidth || "3.4375em"}
               height={imgHeight || "3.4375em"}
               // borderRadius={imgRadius}
               borderRadius={'1.0625em'}
+                 loading="lazy"
             />
           </div>
         ) : (
             <ProgressiveImage
-              preview={ProfilePreview}
+              preview={ProfilePreviewImg}
               image={imageURL}
               width={imgWidth || "3.4375em"}
               height={imgHeight || "3.4375em"}
               // borderRadius={imgRadius}
              borderRadius={'1.0625em'}
+                loading="lazy"
             />
           )
       ) : (

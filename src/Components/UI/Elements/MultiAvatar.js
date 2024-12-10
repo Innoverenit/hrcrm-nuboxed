@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { ProgressiveImage } from "../../Utils";
 import { Tooltip, Avatar } from "antd";
 import { base_url } from "../../../Config/Auth";
-import ProfilePreview from "../../../Assets/Images/ProfilePreview.png";
+import ProfilePreviewImg from "../../../Assets/Images/ProfilePreviewImg.webp";
 const MultiAvatar = ({
   imageId,
   imageURL,
@@ -26,7 +26,7 @@ const MultiAvatar = ({
         imageId ? (
           <div style={{}}>
             <ProgressiveImage
-              preview={ProfilePreview}
+              preview={ProfilePreviewImg}
               image={`${base_url}/image/${imageId}`}
               width={imgWidth || "3.4375em"}
               height={imgHeight || "3.4375em"}
@@ -37,7 +37,7 @@ const MultiAvatar = ({
           </div>
         ) : (
           <ProgressiveImage
-            preview={ProfilePreview}
+            preview={ProfilePreviewImg}
             image={imageURL}
             width={imgWidth || "3.4375em"}
             height={imgHeight || "3.4375em"}
@@ -64,3 +64,9 @@ const MultiAvatar = ({
 };
 
 export default MultiAvatar;
+
+
+
+
+
+

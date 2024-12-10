@@ -173,7 +173,7 @@ const EventActionLeft = (props) => {
         </Badge>
       </Tooltip>
     
-        <div class=" w-72 md:ml-4 max-sm:w-36 ml-0">
+      <div className="w-72 md:ml-4 max-sm:w-36 ml-0">
         <Input
          placeholder="Search by Name, Company"
          class="w-96"
