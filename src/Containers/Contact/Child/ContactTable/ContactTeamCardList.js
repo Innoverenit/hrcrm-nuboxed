@@ -82,6 +82,7 @@ function ContactTeamCardList(props) {
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [touched, setTouched] = useState(false);
   const [dtouched, setDTouched] = useState(false);
+  
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -433,7 +434,14 @@ if (loading) {
                                       <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
                                       <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
-</Link>                                               
+</Link>   
+{date === currentdate ? (
+ <div class="text-[0.65rem]  text-[tomato] font-bold"
+                            
+ >
+    {translatedMenuItems[9]}  {/* New */}
+    </div>
+  ) : null}                                            
 <div>
                       {editableField?.contactId === item.contactId &&
    editableField?.field === 'fullName' ? (
@@ -455,13 +463,7 @@ if (loading) {
     </div> 
 )}                 
                       </div>
-  {date === currentdate ? (
- <div class="text-[0.65rem]  text-[tomato] font-bold"
-                            
- >
-    {translatedMenuItems[9]}  {/* New */}
-    </div>
-  ) : null}
+
  
                                       </div>
                                       </div>

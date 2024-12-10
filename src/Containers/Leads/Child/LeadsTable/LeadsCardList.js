@@ -249,10 +249,10 @@ const LeadsCardList = (props) => {
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
         <div className="   flex justify-between w-[92%] font-bold font-poppins !text-lm">
-         <div className="    text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-red-600  justify-center "> 
+         <div className=" flex   text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem] items-center   bg-red-600  justify-center "> 
           {translatedMenuItems[0]}</div>
           <div className=" w-[4.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[19.1rem] text-[#00A2E8] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+        <div className=" w-[19.1rem] text-[#00A2E8] text-sm truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
              <ApartmentIcon className="!text-icon  "/>
               {translatedMenuItems[1]}</div>
 
@@ -706,10 +706,10 @@ const LeadsCardList = (props) => {
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
         <div className="   flex justify-between w-[92%] font-bold font-poppins !text-lm">
-         <div className="    text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-orange-400  justify-center "> 
+         <div className=" flex   text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]    bg-orange-400  items-center justify-center "> 
           {translatedMenuItems[12]}</div>
           <div className=" w-[4.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[19.1rem] text-[#00A2E8] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+        <div className=" w-[19.1rem] text-[#00A2E8] text-sm truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
              <ApartmentIcon className="!text-icon  "/>
               {translatedMenuItems[1]}</div>
 
@@ -1163,10 +1163,10 @@ const LeadsCardList = (props) => {
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
         <div className="   flex justify-between w-[92%] font-bold font-poppins !text-lm">
-         <div className="    text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-blue-600  justify-center "> 
+         <div className="  flex  text-white w-[8.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]    bg-blue-600 items-center  justify-center "> 
           {translatedMenuItems[13]}</div>
-          <div className=" w-[4.12rem] truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
-        <div className=" w-[19.1rem] text-[#00A2E8] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+          <div className=" w-[4.12rem]   truncate max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[19.1rem] text-[#00A2E8] text-sm truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
              <ApartmentIcon className="!text-icon  "/>
               {translatedMenuItems[1]}</div>
 

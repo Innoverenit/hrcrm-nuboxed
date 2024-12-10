@@ -6,12 +6,13 @@ import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
-import {  Tooltip, Select } from "antd";
+import { Input, Tooltip, Select } from "antd";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ScoreIcon from '@mui/icons-material/Score';
+import {getCustomerData} from "../../../Customer/CustomerAction";
 import {
   getContactListByUserId,
   handleUpdateContactModal,
@@ -26,7 +27,9 @@ import {
   handleContactNotesDrawerModal,
   emptyContact,
   handleContactPulseDrawerModal,
-  handleContactCETdrawer
+  handleContactCETdrawer,
+  getTeamUserList,
+  updateContact
 } from "../../ContactAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -58,6 +61,11 @@ function ContactCardList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -77,6 +85,7 @@ function ContactCardList(props) {
     })
     props.getContactListByUserId(props.userId, page,"creationdate");
     setPage(page + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(()=>{
@@ -160,6 +169,78 @@ function ContactCardList(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
  
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { contactId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+    } else if (field === 'designation') {
+      mappedField = 'designationTypeId';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.updateContact(updatedData,contactId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateContact(updatedData,contactId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      props.getDesignations();
+      setTouchedCustomer(true);
+    }
+  };
+  const handleSelectCustomerDataFocus = () => {
+    if (!touched) {
+      props.getCustomerData(props.userId)
+      setTouched(true);
+    }
+  };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
 
   const {
     user,
@@ -279,16 +360,37 @@ function ContactCardList(props) {
                                       <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
-</Link>                                               
-  
+</Link>   
 
-  {date === currentdate ? (
+{date === currentdate ? (
  <div class="text-[0.65rem]   text-[tomato] font-bold"
                             
  >
       {/* New */}{translatedMenuItems[8]}
     </div>
-  ) : null}
+  ) : null}                                            
+<div>
+                      {editableField?.contactId === item.contactId &&
+   editableField?.field === 'fullName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
+
  
                                       </div>
                                       </div>
@@ -592,7 +694,10 @@ const mapDispatchToProps = (dispatch) =>
       handleContactEmailDrawerModal,
       emptyContact,
       handleContactCETdrawer,
-      handleContactAddressDrawerModal
+      handleContactAddressDrawerModal,
+      getCustomerData,
+      getTeamUserList,
+      updateContact,
     },
     dispatch
   );

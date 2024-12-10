@@ -35,7 +35,9 @@ import {
   emptyContact,
   handleHospitalUploadModal,
   handleContactPulseDrawerModal,
-  handleContactAddressDrawerModal
+  handleContactAddressDrawerModal,
+  getTeamUserList,
+  updateContact
 } from "../../ContactAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -44,12 +46,13 @@ import AddContactDrawerModal from "../UpdateContact/AddContactDrawerModal";
 import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerModal";
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
-import {  Tooltip, Select } from "antd";
+import { Input, Tooltip, Select } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
 import ContactCETdrawer from "./ContactCETdrawer";
+import {getCustomerData} from "../../../Customer/CustomerAction";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -74,6 +77,11 @@ function ContactAllCardList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -93,6 +101,7 @@ function ContactAllCardList(props) {
     })
     props.getAllContact(page,"Customer");
     setPage(page + 1);
+    props.getTeamUserList(props.userId)
     // props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
   }, []);
 
@@ -169,6 +178,79 @@ function ContactAllCardList(props) {
     setCurrentContactId(item);
   }
 
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { contactId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+    } else if (field === 'designation') {
+      mappedField = 'designationTypeId';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.updateContact(updatedData,contactId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateContact(updatedData,contactId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      props.getDesignations();
+      setTouchedCustomer(true);
+    }
+  };
+  const handleSelectCustomerDataFocus = () => {
+    if (!touched) {
+      props.getCustomerData(props.userId)
+      setTouched(true);
+    }
+  };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
+
   const {
     user,
     fetchingContacts,
@@ -188,9 +270,6 @@ function ContactAllCardList(props) {
     handleHospitalUploadModal
   } = props;
 
-//  if(fetchingContacts){
-//   return <BundleLoader/>
-//  }
 if (loading) {
   return <div><BundleLoader/></div>;
 }
@@ -216,35 +295,24 @@ if (loading) {
             />
           </div>
           
-          <div class="flex overflow-hidden">
-          
+          <div class="flex overflow-hidden">        
           <div class="font-semibold font-poppins text-[#337df4] text-lm truncate  cursor-pointer  " >
           {item.empName}
-
         </div> 
+        </div>            
         </div>
-          
-       
-        </div>
-        <div className="flex flex-col max-sm:justify-between ">
-          
+        <div className="flex flex-col max-sm:justify-between ">      
               <div class="overflow-hidden font-poppins text-ellipsis text-lm truncate  cursor-pointer flex items-center">
                   </div>
                   {item.email} 
           <div>
-          <div class="font-medium text-xs ">
-       
+          <div class="font-medium text-xs ">   
               <div class="overflow-hidden font-poppins  text-ellipsis text-lm truncate cursor-pointer  flex items-center">
             {item.dailCode1} {item.mobileNo}  
-              </div>
-           
-            
+              </div>                  
           </div>
           </div>
-          </div>
-          
-      
-       
+          </div>      
       </div>
  )
 })}
@@ -346,6 +414,27 @@ if (loading) {
     {translatedMenuItems[9]}  {/* New */}
     </div>
   ) : null}
+  <div>
+                      {editableField?.contactId === item.contactId &&
+   editableField?.field === 'fullName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
  
                                       </div>
                                       </div>
@@ -702,6 +791,9 @@ const mapDispatchToProps = (dispatch) =>
       emptyContact,
       handleContactAddressDrawerModal,
       handleHospitalUploadModal,
+      getCustomerData,
+      getTeamUserList,
+      updateContact,
     },
     dispatch
   );
