@@ -236,8 +236,8 @@ return <div><BundleLoader/></div>;
                               </select>
               ) : (
 
-                  <div  style={{width:"12rem"}}>{region.department}
-                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                  <div className="w-[12rem] ml-1">{region.department}
+                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs ml-2 text-[tomato] font-bold"
                                         >
                                           New
                                         </span> : null}</div>
@@ -266,7 +266,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeRole(region.roleTypeId,props.orgId)}
                       >
-              <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+              <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

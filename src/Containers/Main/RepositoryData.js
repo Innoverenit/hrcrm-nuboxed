@@ -2,7 +2,6 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import React, { lazy ,Suspense } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../Components/Placeholder";
 import { handleRepositoryOrganizationModal } from "../Auth/AuthAction"
 import { Tooltip } from 'antd';
 const RepositoryOrganizationModal = lazy(() =>
@@ -15,7 +14,7 @@ function RepositoryData(props) {
       <div>
         <Tooltip title="Repository">
           <LibraryBooksIcon
-            className="!text-icon cursor-pointer text-[#1890ff] mr-1"
+            className="!text-2xl cursor-pointer text-[#1890ff] mr-1"
             onClick={() => {
 
               props.handleRepositoryOrganizationModal(true);
