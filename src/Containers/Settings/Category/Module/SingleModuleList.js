@@ -62,8 +62,8 @@ class SingleModuleList extends Component {
                 <div class="w-full flex-row">
               <div class=" flex " >
              
-              <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-              <div className=" flex h-28 justify-center "> 
+              <div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+              <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo}
@@ -93,8 +93,8 @@ class SingleModuleList extends Component {
                     </div>
            {this.props.moduleList.erpInd === true && ( 
             <> 
-            <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+            <div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo1}
@@ -122,8 +122,8 @@ class SingleModuleList extends Component {
                     <div class="text-xs text-center"> Cellular & Batch Manufacturing processes.</div>
                     </div>
                     </div>
-                    <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                    <div className=" flex h-28 justify-center "> 
+                    <div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo2}
@@ -151,8 +151,8 @@ class SingleModuleList extends Component {
                     <div class="text-xs text-center">  Track parts, suppliers, manage productivity.</div>
 </div>
 </div>                  
-  <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-  <div className=" flex h-28 justify-center "> 
+  <div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+  <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo3}
@@ -183,8 +183,8 @@ class SingleModuleList extends Component {
                     <div class="text-xs text-center"> Order to Cash.</div>
 </div>
 </div>
-<div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-<div className=" flex h-28 justify-center "> 
+<div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+<div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo4}
@@ -212,8 +212,8 @@ class SingleModuleList extends Component {
                     <div class="text-xs text-center">  Track shipments.</div>
 </div>
 </div>
-<div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-<div className=" flex h-28 justify-center "> 
+<div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+<div className=" flex h-28  w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo5}

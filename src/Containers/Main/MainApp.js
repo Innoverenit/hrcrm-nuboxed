@@ -556,7 +556,7 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper class="w-[89%]  max-sm:w-wk" >
+          <LayoutWrapper class="w-[90%]  max-sm:w-wk" >
             <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
               <div className="md:hidden" >
@@ -621,7 +621,7 @@ function MainApp(props) {
         shape="square"
       type="primary"
       style={{
-        insetInlineEnd: 100,   
+        insetInlineEnd: 12,   
       }}
       icon={
       <SubscriptionsIcon className="!text-icon" />
