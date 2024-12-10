@@ -94,7 +94,7 @@ function SuppliesTable(props) {
     props.getUOM()
     props.getBestBeforeJumpListCount(props.orgId)
     props.getReorderCount()
-    props.getPriceUpdatedCount()
+    props.getPriceUpdatedCount(props.locationId)
   }, []);
 
   const handleLoadMore = () => {
@@ -245,8 +245,7 @@ function SuppliesTable(props) {
                               title= "Price Update"
                               jumpstartClick={()=> setPriceOpen(true)}
                               cursorData={"pointer"}
-                              value={"0"}
-                               //  value={ props.priceUpdatedCount.count}
+                              value={ props.priceUpdatedCount.matprccnt}
                             // isLoading={props.fetchingorderDetails}
                             />
                           </div>
@@ -676,6 +675,7 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   suppliesSerachedData:supplies.suppliesSerachedData,
   fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData,
   orgId: auth.userDetails.organizationId,
+  locationId:auth.userDetails.locationId,
   suppliesBestBeforeCount:supplies.suppliesBestBeforeCount,
   reOrderCount:supplies.reOrderCount,
   priceUpdatedCount:supplies.priceUpdatedCount

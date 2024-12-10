@@ -4,12 +4,11 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
 import {  Tooltip, Select,Button } from "antd";
-import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import {
   getContactListByCustomerId,
   setEditCustomerContact,
@@ -197,7 +196,7 @@ function LinkedContact(props) {
                                 <div className=" flex w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex max-sm: items-center"> 
 <div>
-                                <SubTitle>
+                                <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -205,7 +204,7 @@ function LinkedContact(props) {
               imgWidth={"1.8em"}
               imgHeight={"1.8em"}
             />
-          </SubTitle></div>
+          </div></div>
           &nbsp;
           <div class="max-sm:">
                                         <Tooltip>
@@ -324,14 +323,14 @@ function LinkedContact(props) {
               title={translatedMenuItems[8]}
              
             >
-              <ActionIcon
-               className=" !text-icon cursor-pointer text-[#fb8500]"
+              <BorderColorIcon
+               className=" !text-icon cursor-pointer text-red-600"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={translatedMenuItems[9]}
                
                 iconType="api"
                 onClick={null}
-                size="1em"
+             
               />
             </StyledPopconfirm>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { SelectInput, ValidationError } from "../../UI/Elements";
+import { SelectInput } from "../../UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
   field,
@@ -75,7 +75,7 @@ export const SelectComponent = ({
         </SelectInput>
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -117,7 +117,7 @@ export const SelectComponent = ({
         </SelectInput>
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -160,7 +160,7 @@ export const SelectComponent = ({
         </FlexContainer>
       </FlexContainer>
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </>
   );

@@ -68,22 +68,7 @@ class SingleDesignation extends Component {
                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                       </Popconfirm>
                   </Tooltip>
-                  {/* {disableDelete && <ActionIcon
-                                        tooltipTitle='Delete'
-                                        iconType='delete'
-                                        handleIconClick={() => handleDeleteSource(documentTypeId)}
-                                        size='0.75em'
-                                        theme='filled'
-                                        style={{ color: '#666' }}
-                                    />} */}
-                  {/* <ActionIcon
-                    tooltipTitle="Delete"
-                    iconType="delete"
-                    handleIconClick={() => handleDeleteDesignation(designationTypeId)}
-                    size="0.75em"
-                    theme="filled"
-                    style={{ color: "#666" }}
-                  />*/}
+                 
                 </div>
               </div>
             ) : (

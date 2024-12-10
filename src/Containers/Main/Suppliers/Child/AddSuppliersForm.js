@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Switch } from "antd";
+import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
@@ -30,10 +31,18 @@ function AddSuppliersForm (props) {
     const selectedOption = props.employeeAsErp.find((item) => item.empName === selected);
     const [checked, setChecked] = useState(false);
 
+    const { isLoaded, loadError } = useJsApiLoader({
+      googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
+      libraries: ["places"], // Ensure the 'places' library is loaded
+    });
     const handleChange = (checked) => {
       setChecked(checked);
       console.log(checked);
     };
+
+    
+  if (!isLoaded) return <div>Loading...</div>;
+  if (loadError) return <div>Error loading Google Maps API</div>;
     return (
       <>
         <Formik     
@@ -258,6 +267,7 @@ function AddSuppliersForm (props) {
                       name="address"
                       render={(arrayHelpers) => (
                         <AddressFieldArray
+                        {...props}
                           singleAddress
                           arrayHelpers={arrayHelpers}
                           values={values}

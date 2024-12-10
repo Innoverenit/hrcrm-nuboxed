@@ -52,7 +52,7 @@ const BussinessCard = (props) => {
             </Title>
             
                    
-            <SubTitle>
+            <div>
        
              
  
@@ -62,15 +62,15 @@ const BussinessCard = (props) => {
  
            
    
-            </SubTitle>      
+            </div>      
           </div>
           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
 
           </div>
         </div>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-        </SubTitle>
+        <div style={{ color: "#337df4", fontSize: "0.75em" }}>
+        </div>
       {/* </div> */}
       <div class="flex items-center">
      

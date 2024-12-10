@@ -2,6 +2,7 @@ import { bindActionCreators } from "redux";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import SaveIcon from '@mui/icons-material/Save';
 import { Button } from "antd";
 import PlacesAutocomplete, {
@@ -159,8 +160,8 @@ const ErpAddressData = (props) => {
         <thead>
           <tr>
             <th>Address</th>
-            <th>Switch</th>
-            <th>Action</th>
+            <th>Billing Address</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -251,13 +252,12 @@ const ErpAddressData = (props) => {
               okText="Ok"
               cancelText="Cancel"
           >
-                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                    <DeleteOutlineIcon ClassName="!text-icon text-red-600 cursor-pointer"  />
                     </Popconfirm>
                   </>
                
                 )}
-              </td>
-              <td>
+              
                 {editingIndex === index ? (
                   <>
                     <SaveIcon onClick={() => handleSave(index)} />
@@ -265,7 +265,7 @@ const ErpAddressData = (props) => {
                         <Button onClick={() => handleCancel(index)}>Cancel</Button>
                   </>
                 ) : (
-                  <BorderColorIcon onClick={() => handleEdit(index)} />
+                  <BorderColorIcon onClick={() => handleEdit(index)} className=" !text-icon text-red-600" />
                 )}
               </td>
             
@@ -273,7 +273,9 @@ const ErpAddressData = (props) => {
           ))}
         </tbody>
       </table>
-      <Button onClick={handleAddRow}>Add Row</Button>
+      <div class=" flex mt-1 justify-end">
+      <Button onClick={handleAddRow} type="primary"><DataSaverOnIcon className=" !text-icon text-white"/>Add Row</Button>
+      </div>
     </div>
   );
 };

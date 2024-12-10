@@ -121,7 +121,7 @@ useEffect(() => {
   };
   const viewAnDownloadPdf= async (item) => {  
     try {
-      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.iteamId}`, {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.iteamId}`, {
         responseType: 'blob',
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

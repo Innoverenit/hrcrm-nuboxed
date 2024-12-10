@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
+import { useJsApiLoader } from "@react-google-maps/api";
 import { bindActionCreators } from "redux";
-import {Tooltip, Button ,Radio,Select} from "antd";
+import {Button ,Radio,Select} from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getAllCustomerData} from "../../Customer/CustomerAction"
@@ -14,9 +14,6 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import {
   addEvent,
   deleteEvent,
@@ -58,6 +55,10 @@ function EventForm (props) {
       const [isLoadingContacts, setIsLoadingContacts] = useState(false);
       const [contacts, setContacts] = useState([]);
 
+      const { isLoaded, loadError } = useJsApiLoader({
+        googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
+        libraries: ["places"], // Ensure the 'places' library is loaded
+      });
 
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
@@ -578,6 +579,9 @@ const {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+  if (!isLoaded) return <div>Loading...</div>;
+  if (loadError) return <div>Error loading Google Maps API</div>;
+
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
@@ -1133,6 +1137,7 @@ Investor
                     name="address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
+                      {...props}
                         singleAddress
                         arrayHelpers={arrayHelpers}
                         values={values}
@@ -1144,90 +1149,9 @@ Investor
                 setText={setText}
                 text={text}
                 />
-              {/* <div>
-            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
-            <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                           >
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span> 
+            
+                  </div>
                   
-                 
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea h-26"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
-                </div> */}
-                  </div>
-                 
-          
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-1/2 font-bold">
-                      <div class=" flex justify-between">
-                        <div>
-                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
                 </div>
               </div>
       

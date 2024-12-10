@@ -122,7 +122,7 @@ export const handleUpdateContactInvestModal = (modalProps) => (dispatch) => {
 export const updateContactInvest=(data,contactId)=>(dispatch)=>{
   dispatch({ type: types.UPDATE_CONTACT_INVEST_REQUEST });
   axios
-    .put(`${base_url}/contact/${contactId}`, data, {
+    .put(`${base_url}/contact/row-edit/${contactId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

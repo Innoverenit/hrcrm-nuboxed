@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
-import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -34,7 +33,7 @@ class ForgotPassword extends Component {
     <div>
       <Input {...field} {...props} />
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );

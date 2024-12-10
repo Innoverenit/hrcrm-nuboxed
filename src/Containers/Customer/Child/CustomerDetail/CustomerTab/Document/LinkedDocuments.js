@@ -14,7 +14,6 @@ import {
 } from "antd";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../../../Components/UI/Elements";
 import {
   getCustomerDocument,
@@ -302,13 +301,13 @@ const LinkedDocuments = (props) => {
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
                      <Tooltip title={item.uploadedBy}>
-            <SubTitle>
+            <div>
               <MultiAvatar
                 primaryTitle={item.uploadedBy}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            </SubTitle>
+            </div>
           </Tooltip>
                      </div>
 </div>

@@ -118,19 +118,6 @@ class ProfileOverviewView extends Component {
             </div>
           </div>
           <div class=" flex justify-end w-[15%]" >
-            {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            />{" "}
-            &nbsp; */}
-            {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            />{" "} */}
           
             <VisibilityIcon className=" !text-icon  ml-4"
               tooltipTitle="Edit"
@@ -153,11 +140,7 @@ class ProfileOverviewView extends Component {
             <div class=" flex">
               {!address ? (
                 <>
-                  {/* <ActionIcon
-                    iconType={addAddressVisible ? "close" : "plus"}
-                    tooltipTitle={addAddressVisible ? "Close" : "Add address"}
-                    handleIconClick={this.handleAddAddressVisible}
-                  /> */}
+                 
                   {addAddressVisible && (
                     <AddressField
                       userId={user.userId}

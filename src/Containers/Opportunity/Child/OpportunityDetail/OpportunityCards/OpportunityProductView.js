@@ -10,7 +10,6 @@ import {
 import { connect } from "react-redux";
 import { getQuotation } from "../../../OpportunityAction";
 import { bindActionCreators } from "redux";
-import { ActionIcon } from "../../../../../Components/Utils";
 
 class OpportunityProductView extends Component {
   componentDidMount() {

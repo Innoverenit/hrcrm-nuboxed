@@ -96,7 +96,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
 
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.procureOrderInvoiceId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`procureOrderInvoice`}/${item.procureOrderInvoiceId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

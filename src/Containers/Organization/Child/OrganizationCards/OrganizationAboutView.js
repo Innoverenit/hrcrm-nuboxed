@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import {
-  SubTitle,
-} from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/Edit';
@@ -62,16 +59,16 @@ const OrganizationItemRow = ({ label, value }) => {
     <div class=" items-center flex flex-no-wrap"
       style={{ margin: "0.4rem" }}
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600, width: 300 }}>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >
         {label}
-      </SubTitle>
-      <SubTitle
+      </div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk"
         overflow="hidden"
         textOverflow="ellipsis"
         style={{ marginLeft: "0.2rem" }}
       >
         {value}
-      </SubTitle>
+      </div>
     </div>
   );
 };

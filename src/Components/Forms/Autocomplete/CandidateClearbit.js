@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
 import { base_url } from "../../../Config/Auth";
-import { ValidationError,  StyledAsync } from "../../UI/Elements";
+import {   StyledAsync } from "../../UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setClearbitCandidateData } from "../../../Containers/Candidate/CandidateAction";
@@ -85,7 +85,7 @@ class OrderClearbit extends Component {
           />
 
           {get(touched, field.name) && get(errors, field.name) && (
-            <ValidationError>{get(errors, field.name)}</ValidationError>
+            <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
           )}
         </>
       );
@@ -116,7 +116,7 @@ class OrderClearbit extends Component {
           />
 
           {get(touched, field.name) && get(errors, field.name) && (
-            <ValidationError>{get(errors, field.name)}</ValidationError>
+            <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
           )}
         </>
       );
@@ -147,7 +147,7 @@ class OrderClearbit extends Component {
           </div>
         </div>
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );

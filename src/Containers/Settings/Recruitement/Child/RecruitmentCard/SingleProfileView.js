@@ -1,9 +1,8 @@
 import React from "react";
 import { TextInput, ViewEditCard } from "../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-
 import styled from "styled-components";
-import { ActionIcon } from "../../../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button } from "antd";
 
 class SingleProfileView extends React.Component {
@@ -50,11 +49,11 @@ class SingleProfileView extends React.Component {
                   <StageName>
                     {this.props.workflow.recruitmentProcessName}
                   </StageName>
-                  <ActionIcon
+                  <BorderColorIcon
                     tooltipTitle="Edit"
                     iconType="edit"
                     handleIconClick={toggleViewType}
-                    size="0.75em"
+                     className=" !text-red-600 cursor-pointer !text-icon "
                   />
                 </FlexContainer>
               ) : (

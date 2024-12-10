@@ -186,7 +186,7 @@ const handleLoadMoreLow = () => {
 };
 const viewAnDownloadPdf= async (item) => {  
   try {
-    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
       responseType: 'blob',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",

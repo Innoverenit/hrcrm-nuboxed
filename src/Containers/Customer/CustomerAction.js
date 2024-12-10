@@ -2407,6 +2407,7 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     axios
       .get(`${base_url}/customer/teams/${userId}/${pageNo}`, {
         headers: {
+          Connection: 'keep-alive', 
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })

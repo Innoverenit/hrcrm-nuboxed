@@ -281,7 +281,7 @@ const handleSave = (item) => {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] md:flex row-auto    max-sm:border-b-4 max-sm:border-blue-500"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[6.5rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">

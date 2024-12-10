@@ -18,18 +18,7 @@ const CallActionLeft = (props) => {
         
         </span>
       </Tooltip>
-            {/* <ActionIcon
-                style={{ marginRight: '0.3rem', color: props.viewType === 'grid' && '#1890ff' }}
-                iconType='appstore-o'
-                tooltipTitle='GRID VIEW'
-                handleIconClick={() => props.setCallViewType('grid')}
-            />
-            <TocIcon
-                style={{ marginRight: '0.3rem', color: props.viewType === 'table' && '#1890ff'  }}
-                iconType='table'
-                tooltipTitle='Table VIEW'
-                handleIconClick={() => props.setCallViewType('table')}
-            /> */}
+           
         </div>
     )
 }

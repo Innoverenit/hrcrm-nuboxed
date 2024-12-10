@@ -20,7 +20,7 @@ import {
 import {getEvents} from "../../../Settings/Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar,  } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -324,7 +324,7 @@ function EventAllcardList (props) {
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {/* <Tooltip title={item.assignedToName}> */}
-              <SubTitle>
+              <div>
               <span>
               {item.assignedToName === null ? (
                 "Not available"
@@ -343,7 +343,7 @@ function EventAllcardList (props) {
                 </>
               )}
             </span>
-              </SubTitle>
+              </div>
              {/* </Tooltip> */}
                                     </div>
                                 </div>

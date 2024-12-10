@@ -3,7 +3,6 @@ import {  MainWrapper } from "../../../Components/UI/Layout";
 import {
   MultiAvatar,
   Title,
-  SubTitle,
 } from "../../../Components/UI/Elements";
 
 
@@ -48,23 +47,23 @@ const BussinessCard = (props) => {
             >
               {primaryTitle || ""}
             </Title>
-            <SubTitle>
+            <div>
            
               {/* <i class="far fa-address-book"></i> */}
               &nbsp;&nbsp;
               {/* {currencyType && <CurrencySymbol currencyType={currencyType} />}
               &nbsp;
               {secondaryTitle || ""} */}
-            </SubTitle>
+            </div>
           </div>
           <div class=" flex flex-start"
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></div>
         </div>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
+        <div style={{ color: "#337df4", fontSize: "0.75em" }}>
           {/* {elipsize(subtitle1 || "", 23)} */}
-        </SubTitle>
+        </div>
       </MainWrapper>
     </div>
   );

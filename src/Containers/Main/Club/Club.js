@@ -77,7 +77,7 @@ componentDidUpdate(prevProps) {
           clubShareData={clubShareData}
         />
 
-        <Suspense fallback={<BundleLoader />}>
+        <Suspense fallback={"Loading..."}>
           {viewType === "table" ? (
               <TabsWrapper style={{height:"150vh" }}>
            <StyledTabs type="card">

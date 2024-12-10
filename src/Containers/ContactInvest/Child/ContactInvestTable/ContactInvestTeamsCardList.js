@@ -18,7 +18,7 @@ import {
   handleDonotCallModal,
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
-  getTeamUserList
+  getTeamUserList,
 } from "../../../Contact/ContactAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
@@ -29,11 +29,13 @@ import SourceIcon from '@mui/icons-material/Source';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
+import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
   handleDealModal,
+  updateContactInvest,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddContactInvestPulseModal = lazy(() =>  import("./AddContactInvestPulseModal"));
@@ -590,7 +592,8 @@ const mapStateToProps = ({
   addContactAddressModal:contactinvest.addContactAddressModal,
   addDrawerDealModal: contactinvest.addDrawerDealModal,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
-  teamUserList:customer.teamUserList
+  teamUserList:customer.teamUserList,
+  departments:departments.departments
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -599,6 +602,7 @@ const mapDispatchToProps = (dispatch) =>
       handleDonotCallModal,
       setEditContact,
       getDesignations,
+      getDepartments,
       updateOwnercontactById,
       handleContactReactSpeechModal,
       handleContactDrawerModal,
@@ -611,7 +615,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactInvestPulseDrawerModal,
       handleContactAddressDrawerModal,
       handleDealModal,
-      getTeamUserList
+      getTeamUserList,
+      updateContactInvest
     },
     dispatch
   );
