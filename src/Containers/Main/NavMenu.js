@@ -929,7 +929,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {/* 
            </SubMenu> 
      )}  */}
-      {((user.talentAccessInd === true && user.moduleMapper.recruitProInd === true) 
+    
+        <hr />
+        {((user.talentAccessInd === true && user.moduleMapper.recruitProInd === true) 
       ) && ( 
             <Menu.Item key="/candidate" style={{ height: "1.45rem", display:"flex", 
              color: selectedMenuItem === '/candidate' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
@@ -954,7 +956,6 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           )}   
         {/*Talent*/}
         {/*Requirement*/}
-        <hr />
         {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true )
     ) &&  ( 
           <Menu.Item key="/requirement" style={{ height: "1.45rem", display:"flex",
@@ -995,7 +996,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           {/* <hr/> */}
         {/* )} */}
         {/*Demand*/}
-        {(user.moduleMapper.recruitProInd === true &&  
+        {/* {(user.moduleMapper.recruitProInd === true &&  
           <Menu.Item key="/demand" style={{ height: "1.45rem", display:"flex", 
            color: selectedMenuItem === '/demand' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
@@ -1004,14 +1005,14 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
               className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
-              {/*Demand */}
+              Demand
               {translatedMenuItems[43]} 
               
                 &nbsp;&nbsp;&nbsp;&nbsp;
               </span>
             </Link>
           </Menu.Item>
-         )}
+         )} */}
         {/*Demand*/}
 
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
