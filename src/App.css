@@ -271,9 +271,9 @@
   height: 1.88rem;
 }
 
-
 .ant-select-selection--multiple {
   height: 1.88rem;
+  font-size: 0.75rem;
 }
 .ant-select {
   -webkit-box-sizing: border-box;
@@ -284,7 +284,6 @@
   color: rgba(0, 0, 0, 0.65);
   font-variant: tabular-nums;
   list-style: none;
-
   position: relative;
   display: inline-block;
   outline: 0;
@@ -321,8 +320,9 @@ style attribute {
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
   position: relative;
-  height: 1.75rem;
+  height: 1.88rem;
   font-family: "Poppins";
+  font-size: 0.75rem ;
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
   background-color: #fff;
@@ -455,8 +455,7 @@ iframe#webpack-dev-server-client-overlay {
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: "0.5rem";
-  padding-right:"0.5rem";
+  padding: 4px 10px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -467,6 +466,7 @@ iframe#webpack-dev-server-client-overlay {
   white-space: nowrap;
   will-change: box-shadow, transform;
   font-size: "0.8rem";
+  margin-left: 0.5rem;
 }
 .ant-btn-primary:active {
   height: 1.8rem!important;

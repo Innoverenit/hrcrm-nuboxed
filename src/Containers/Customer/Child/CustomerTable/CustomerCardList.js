@@ -74,9 +74,9 @@ const CustomerContactDrawerModal = lazy(() =>
 const CustomerOpportunityDrawerModal = lazy(() =>
   import("./CustomerOpportunityDrawerModal")
 );
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
+// const UpdateCustomerModal = lazy(() =>
+//   import("../UpdateCustomer/UpdateCustomerModal")
+// );
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -245,7 +245,7 @@ function CustomerCardList(props) {
     handleCustomerPulseDrawerModal,
     handleCustomerContactDrawerModal,
     handleCustomerOpportunityDrawerModal,
-    updateCustomerModal,
+    // updateCustomerModal,
     fetchingCustomersError,
     fetchingAllCustomers,
     user,
@@ -770,25 +770,7 @@ className="cursor-pointer text-xs font-poppins">
 
                         </div>                                        */}
                                                 
-                       
-                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title={translatedMenuItems[13]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditCustomer(item);
-                                  handleUpdateCustomerModal(true);
-                                  handleSetCurrentCustomerId(item.customerId);
-
-                                }}
-                              />
-                            </Tooltip>
-                          )}
-                          
-                         
-                        </div>  
+                            
                         {/* <div class=" text-xs  font-poppins"> */}
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >            
                         <StyledPopconfirm
@@ -814,11 +796,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
   )}
   <Suspense fallback={<BundleLoader />}>
-  {/* <UpdateUserModal
-      currentCustomerId={currentCustomerId}
-      updateUserModal={props.updateUserModal}
-      handleUpdateUserModal={props.handleUpdateUserModal}
-      /> */}
+
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -827,7 +805,7 @@ className="cursor-pointer text-xs font-poppins">
       translatedMenuItems={props.translatedMenuItems}
       />
 
-      <UpdateCustomerModal
+      {/* <UpdateCustomerModal
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
@@ -835,7 +813,7 @@ className="cursor-pointer text-xs font-poppins">
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
-      />
+      /> */}
       <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
@@ -917,7 +895,7 @@ const mapStateToProps = ({
   fetchingAllCustomers: customer.fetchingAllCustomers,
   fetchingCustomers: customer.fetchingCustomers,
   fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
+  // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
   countries: auth.countries,

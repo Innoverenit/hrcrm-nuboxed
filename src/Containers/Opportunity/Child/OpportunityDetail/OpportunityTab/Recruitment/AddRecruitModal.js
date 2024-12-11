@@ -10,7 +10,7 @@ const AddRecruitModal = (props) => {
       <StyledDrawer
         title="Requirement"
 
-        width="58%"
+        width="50%"
         style={{marginTop:"5rem"}}
         visible={props.addRecruitModal}
         maskClosable={false}

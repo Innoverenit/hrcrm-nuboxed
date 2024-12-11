@@ -44,15 +44,15 @@ class PlacementTable extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-       //0 Job
+      
       "1152",//1 Requirement 0 
        "213",//2Quotation 1
       "248",//3Customer 2
         "176", // Start Date 3 
        "1050", // Stages 4
-     // "", Result 5 
-        "126"// End Date 6
-        
+      "1743", //Result 5 
+        "126",// End Date 6
+        "1744",// //7 Job
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -160,7 +160,8 @@ class PlacementTable extends Component {
    <div className=' flex  sticky  z-auto h-[79vh]'>
    <div class="rounded m-1 p-1 w-[100%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">
-        <div className=" max-md:w-[10.5rem] w-[8.3rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
+        <div className=" max-md:w-[10.5rem] w-[8.3rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> 
+        {this.state.translatedMenuItems[0]}</div>        {/* Job ID */}
        <div className=" max-md:w-[8.1rem] w-[8.5rem] truncate">
         <RecentActorsIcon className="!text-icon mr-1 "/>{this.state.translatedMenuItems[0]}
         {/* Requirement */}
@@ -180,10 +181,11 @@ class PlacementTable extends Component {
         </div>
        <div className="max-md:w-[8.5rem] w-[6.4rem] truncate">
         <OutputIcon className="!text-icon mr-1 text-[#c42847]"/>
-        Result
+      {this.state.translatedMenuItems[5]} 
+      {/* Result  */}
         </div>
        <div className=" max-md:w-[8.2rem]  w-[7.2rem] truncate">
-        <EventIcon className="!text-icon text-[#5A189A] "/>{this.state.translatedMenuItems[5]} 
+        <EventIcon className="!text-icon text-[#5A189A] "/>{this.state.translatedMenuItems[6]} 
         {/* End Date */}
         </div>
       </div>
@@ -251,7 +253,7 @@ class PlacementTable extends Component {
           </span>
                             </div>
                           </div>
-                          <div className=" flex w-[6.2rem] bg-[#92f672]  max-md:w-[7.1rem]   max-sm:justify-between  items-center justify-center h-8  ml-gap">
+                          <div className=" flex w-[6.2rem] max-md:w-[7.1rem]   max-sm:justify-between  items-center justify-center h-8  ml-gap">
                           <div class="  text-xs  font-poppins">
                             <span>                    
                             <div class="text-[#1b911a]  text-xs ">{item.result}</div>   
@@ -268,7 +270,7 @@ class PlacementTable extends Component {
                             <div>
                             {close ? (
                     <Tooltip title="Close Details"
-                      
+                 
                     >
                         <span 
                         onClick={() => this.handleCloseIconClick()}

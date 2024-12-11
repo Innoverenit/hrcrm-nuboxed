@@ -2,7 +2,7 @@ import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { Tooltip, Button,Select } from "antd";
+import {  Button,Select } from "antd";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
@@ -15,7 +15,6 @@ import {
   setClearbitData,
   emptyClearbit
 } from "../CustomerAction";
-
 import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
 import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
@@ -25,10 +24,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
 import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
@@ -519,7 +514,7 @@ console.log(selectedSource)
         }) => (
           <div class="max-sm:h-[30rem] overflow-y-auto">
             <Form className="form-background h-[87vh]" >
-              <div class="flex justify-between  pr-2 max-sm:flex-col">
+              <div class="flex justify-around  max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
@@ -586,28 +581,7 @@ console.log(selectedSource)
  inlineLabel
 />    
 }
-{/* <Select
-        showSearch
-        style={{ width: 120 }}
-        placeholder="Search or select code"
-        optionFilterProp="children"
-        loading={isLoadingCode}
-        defaultValue={selectedCode}
-        onFocus={handleSelectCodeFocus}
-        onChange={handleSelectCode}
-      >
-        {code.map(codes => (
-          <Option key={codes.
-            country_dial_code
-            } value={codes.
-              country_dial_code
-              }>
-            {codes.
-country_dial_code
-}
-          </Option>
-        ))}
-      </Select> */}
+
 
                     </div>
                     <div class="w-[1px] h-full bg-gray-300">
@@ -716,7 +690,7 @@ country_dial_code
   </div>
   <div class="w-w47.5 flex">
     
-    <div class="w-24">
+    <div class="w-[4.5rem]">
     {props.customerConfigure.potentialInd===true&&
     <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
 }
@@ -740,7 +714,7 @@ country_dial_code
      {props.customerConfigure.potentialCurrencyInd===true&&
       <Select
         showSearch
-        style={{ width: 100 }}
+        style={{ width: 87 }}
         placeholder="Search or select currency"
         optionFilterProp="children"
         loading={isLoadingCurrency}
@@ -762,46 +736,7 @@ country_dial_code
 
 {/* {props.customerConfigure.noteInd===true&& */}
 <div class="mt-3">
-{/* <div>
-                    <span class="font-bold font-poppins text-xs"> {translatedMenuItems[12]}</span>
-                    
-                  <span>
-                    <span onClick={startListening}>
-                      <Tooltip title= {translatedMenuItems[13]}>
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
 
-                    <span onClick={stopListening}>
-                      <Tooltip title= {translatedMenuItems[14]}>
-                        <span
-                          
-                            >
-                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title= {translatedMenuItems[15]}>
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1" />
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handleTextChange}
-                    ></textarea>
-                  </div>
-                </div> */}
                 <ReactDescription
                 setText={setText}
                 text={text}
