@@ -20,7 +20,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
-}
+}  
 class PlacementTable extends Component {
   constructor(props) {
     super(props);
@@ -44,14 +44,15 @@ class PlacementTable extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "",//0 Job
-        "1152",//1 Requirement
-        "213",//2Quotation
-        "248",//3Customer
-       "176", // Start Date
-       "1050", // Stages
-        "",// Result
-        "126"// End Date
+       //0 Job
+      "1152",//1 Requirement 0 
+       "213",//2Quotation 1
+      "248",//3Customer 2
+        "176", // Start Date 3 
+       "1050", // Stages 4
+     // "", Result 5 
+        "126"// End Date 6
+        
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -156,17 +157,35 @@ class PlacementTable extends Component {
     console.log(candidateId);
     return (
       <>
-   <div className=' flex  sticky  z-auto h-[69vh]'>
+   <div className=' flex  sticky  z-auto h-[79vh]'>
    <div class="rounded m-1 p-1 w-[100%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-        <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold text-lm font-poppins sticky Items-end z-10">
-        <div className=" max-md:w-[10.5rem] w-[10.5rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
-       <div className=" max-md:w-[8.1rem] w-[8.1rem] truncate"><RecentActorsIcon className="!text-icon  "/>Requirement</div>
-       <div className=" max-md:w-[13.1rem] w-[13.1rem] truncate"><LightbulbIcon className="!text-icon  text-[#c42847]"/>Quotation</div>
-       <div className=" max-md:w-[8.5rem] w-[8.5rem] truncate "><AcUnitIcon className="!text-icon  text-[#c42847]"/>Customer</div>
-       <div className=" max-md:w-[8.2rem] w-[8.21rem] truncate"><EventIcon className="!text-icon text-[#5A189A] "/>Start Date</div>
-       <div className="max-md:w-[8.5rem] w-[8.5rem] truncate"><StairsIcon className="!text-icon  text-[#c42847]"/>Stages</div>
-       <div className="max-md:w-[8.5rem] w-[8.5rem] truncate"><OutputIcon className="!text-icon  text-[#c42847]"/>Result</div>
-       <div className=" max-md:w-[8.2rem]  w-[8.2rem] truncate"><EventIcon className="!text-icon text-[#5A189A] "/>End Date</div>
+        <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">
+        <div className=" max-md:w-[10.5rem] w-[8.3rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
+       <div className=" max-md:w-[8.1rem] w-[8.5rem] truncate">
+        <RecentActorsIcon className="!text-icon mr-1 "/>{this.state.translatedMenuItems[0]}
+        {/* Requirement */}
+        </div>
+       <div className=" max-md:w-[13.1rem] w-[12.2rem] truncate">
+        <LightbulbIcon className="!text-icon  text-[#c42847]"/>{this.state.translatedMenuItems[1]}{/* Quotation */}
+        </div>
+       <div className=" max-md:w-[8.5rem] w-[9.6rem] truncate ">
+        <AcUnitIcon className="!text-icon  text-[#c42847]"/>{this.state.translatedMenuItems[2]}{/* Customer */}
+       </div>
+       <div className=" max-md:w-[8.2rem] w-[7.21rem] truncate">
+        <EventIcon className="!text-icon text-[#5A189A] "/> {this.state.translatedMenuItems[3]}        {/* Start Date*/}
+    </div> 
+       <div className="max-md:w-[8.5rem] w-[6.1rem] truncate">{this.state.translatedMenuItems[4]} 
+        <StairsIcon className="!text-icon mr-1 text-[#c42847]"/>
+        {/* Stages */}
+        </div>
+       <div className="max-md:w-[8.5rem] w-[6.4rem] truncate">
+        <OutputIcon className="!text-icon mr-1 text-[#c42847]"/>
+        Result
+        </div>
+       <div className=" max-md:w-[8.2rem]  w-[7.2rem] truncate">
+        <EventIcon className="!text-icon text-[#5A189A] "/>{this.state.translatedMenuItems[5]} 
+        {/* End Date */}
+        </div>
       </div>
       {placement.map((item) => { 
   const close =
@@ -176,33 +195,35 @@ class PlacementTable extends Component {
                      <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
                         <div class="flex">
-                          <div className=" flex max-md:w-[20.12rem] w-[20.12rem]  justify-between ">
-                          <div class="  text-xs font-poppins max-md:w-[10.1rem] w-[10.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] items-center  ">
+                          <div className=" flex items-center max-md:w-[20.12rem] ">
+                          <div class="flex ml-gap  text-xs font-poppins max-md:w-[10.1rem] w-[7.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] items-center  ">
+                          <div class=" ml-gap text-xs  font-poppins">
                               {item.jobOrder}
+                              </div>
                             </div>
-                          <div className=" flex  max-md:w-[10.001rem] w-[10.001rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between">
-                           <div class="  text-xs  font-poppins">
+                          <div className=" flex  max-md:w-[10.001rem] w-[8.001rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between">
+                           <div class=" ml-gap text-xs  font-poppins">
                               {item.requirementName}
                             </div>
                           </div>
                         </div>
-                          <div className=" flex  max-md:w-[9.21rem]  w-[9.21rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between">
-                          <div class="  text-xs  font-poppins">
+                          <div className=" flex  max-md:w-[9.21rem]  w-[12.21rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between">
+                          <div class="  text-xs ml-gap font-poppins">
                           {item.opprtunityName}
                             </div>
                           </div>
                           <div className=" flex  max-md:w-[9.22rem] w-[9.22rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between">
-                          <div class="  text-xs  font-poppins">
+                          <div class="  text-xs  ml-gap font-poppins">
                          {item.accountName}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 bg-[#eef2f9] ml-gap max-md:w-[11.12rem] w-[11.12rem]   max-sm:justify-between">
-                          <div class="  text-xs  font-poppins">
+                          <div className=" flex items-center justify-center h-8 bg-[#eef2f9] ml-gap max-md:w-[11.12rem] w-[7.12rem]   max-sm:justify-between">
+                          <div class="  text-xs ml-gap font-poppins">
                             <span>{` ${dayjs(item.avilableDate).format("DD/MM/YYYY")}`}</span>
                             </div>
                           </div>
-                          <div className=" flex  max-md:w-[7.1rem] w-[7.1rem] items-center justify-center h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between ">
-                           <div class="  text-xs  font-poppins">
+                          <div className=" flex  max-md:w-[7.1rem] w-[6.1rem] items-center justify-center h-8 bg-[#eef2f9] ml-gap  max-sm:justify-between ">
+                           <div class="  text-xs ml-gap font-poppins">
                             <span>
             <Dropdown
               overlay={
@@ -230,15 +251,14 @@ class PlacementTable extends Component {
           </span>
                             </div>
                           </div>
-                          <div className=" flex  max-md:w-[7.1rem]   max-sm:justify-between  items-center justify-start h-8 bg-[#eef2f9] ml-gap">
+                          <div className=" flex w-[6.2rem] bg-[#92f672]  max-md:w-[7.1rem]   max-sm:justify-between  items-center justify-center h-8  ml-gap">
                           <div class="  text-xs  font-poppins">
-                            <span>
-            
-            {item.result} 
-           </span>
+                            <span>                    
+                            <div class="text-[#1b911a]  text-xs ">{item.result}</div>   
+                            </span>
                             </div>
                           </div>
-                          <div className=" flex  max-md:w-[7.1rem]   max-sm:justify-between items-center justify-center h-8 bg-[#eef2f9] ml-gap">
+                          <div className=" flex  max-md:w-[7.1rem] w-[7.01rem]  max-sm:justify-between items-center justify-center h-8 bg-[#eef2f9] ml-gap">
                           <div class="  text-xs  font-poppins">
                             <span>{` ${dayjs(item.endDate).format("DD/MM/YYYY")}`}</span>
                             </div>
@@ -306,6 +326,8 @@ class PlacementTable extends Component {
                  candidateId={this.state.candidateId}
             stageList={this.state.stageList}
             profileId={this.state.profileId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             />
           )}
       </>

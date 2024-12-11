@@ -40,6 +40,8 @@ import {
          getOpportunitySKill,
          getTeamOpportunity,
          getTeamUserList,
+          updateOpportunity
+
 } from "../../OpportunityAction";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
