@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Input } from "../../../../Auth/styled";
 import Button from "antd/lib/button";
 
  import { verifyUserEmailurL ,
   validateEmailOtpurL,
   addEmailLinkSave
 } from "../../../ProfileAction";
+import { Input } from "../../../../../Components/UI/Layout";
 
 class LinkAccountForm extends Component {
   

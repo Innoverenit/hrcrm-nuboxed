@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Input } from "./styled";
+
 import Button from "antd/lib/button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import FWLogo from "../../Assets/Images/name.webp";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
+import { Input } from "../../Components/UI/Layout";
 
 class ForgotPassword extends Component {
   state = {
