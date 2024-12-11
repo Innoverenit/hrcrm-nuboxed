@@ -46,6 +46,14 @@ function RecruitNwForm(props) {
   const [workTypeData, setWorkTypeData] = useState(false);
   const [selectedWorkflow, setSelectedWorkflow] = useState([]);
   const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [customers, setCustomers] = useState([]);
+  const [contacts, setContacts] = useState([]);
+
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
     libraries: ["places"], // Ensure the 'places' library is loaded
@@ -135,6 +143,62 @@ function RecruitNwForm(props) {
   function handleReset(resetForm) {
     resetForm();
   }
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+      const apiEndpoint = `${base_url}/customer/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+  const fetchContacts = async (customerId) => {
+    setIsLoadingContacts(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    fetchContacts(customerId);
+  };
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
 
   if (!isLoaded) return <div>Loading...</div>;
   if (loadError) return <div>Error loading Google Maps API</div>;
@@ -195,10 +259,8 @@ function RecruitNwForm(props) {
           category: typeData1 ? "White" : "Blue",
           workType: workTypeData ? "Full Time" : "Part Time",
           closedPosition: 0,
-          contactId: "",
-          country: "",
+          country: props.currency_name,
           currency:"",
-          customerId:"",
           dataCount:"",
           experience:"",
           jobOrder:"",
@@ -297,6 +359,8 @@ function RecruitNwForm(props) {
           props.addNwRecruit(
             {
               ...values,
+              customerId:selectedCustomer,
+              contactId:selectedContact,
               avilableDate: `${newavilableDate}T00:00:00Z`,
               workflowDetailsId:selectedWorkflow,
               endDate: `${newEndDate}T00:00:00Z`,
@@ -317,7 +381,7 @@ function RecruitNwForm(props) {
           values,
           ...rest
         }) => (
-          <div class="overflow-y-auto h-[37rem] overflow-x-hidden max-sm:h-[30rem]">
+          <div class="overflow-y-auto h-[40rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div
@@ -506,7 +570,7 @@ function RecruitNwForm(props) {
                         />
                       </div>
                       <div style={{ width: "52%" }}>
-                        <Field
+                        <Field 
                           name="currency"
                           isColumnWithoutNoCreate
                           label="Currency"
@@ -514,7 +578,7 @@ function RecruitNwForm(props) {
                           width="100%"
                           isColumn
                           selectType="currencyName"
-                          value={values.currencyName}
+                          value={values.currency_name}
                           isRequired
                           component={SearchSelect}
                           // flag={values.currency}
@@ -528,27 +592,45 @@ function RecruitNwForm(props) {
 
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "47%" }}>
-                  <Field
-                    name="contactId"
-                    //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                    label=" Customer Contact"
-                     
-                    component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
-                    value={values.contactId}
-                    // isDisabled={defaultContacts}
-                    defaultValue={{
-                      label: `${props.fullName || ""} `,
-                      value: props.contactId,
-                    }}
-                    inlineLabel
-                  />
-                  </div>
-                  <div style={{ width: "47%" }}>
+                <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  Customer
+  </div>
+      <Select
+       
+        placeholder="Select Customer"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.customerId} value={customer.customerId}>
+            {customer.name}
+          </Option>
+        ))}
+      </Select>
+          
+            </div>
+            <div class=" w-w47.5 max-sm:w-wk">   
+            <div className="font-bold text-xs">
+Contact
+</div>     
+            <Select
+        placeholder="Select Contact"
+        loading={isLoadingContacts}
+        onChange={handleContactChange}
+        disabled={!selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select> 
+      </div>    
+                </FlexContainer>
+                <div style={{ width: "47%" }}>
                   {" "}
                   <Field
                     name="closeByDate"
@@ -563,7 +645,6 @@ function RecruitNwForm(props) {
 
                   />
                 </div>
-                </FlexContainer>
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />
 
                 <FlexContainer justifyContent="space-between">
@@ -723,7 +804,8 @@ const mapStateToProps = ({
   recruitProcessStages: settings.recruitProcessStages,
   organizationId: auth.userDetails.organizationId,
   opportunityId: opportunity.opportunity.opportunityId,
-  currencies: auth.currencies,
+  currency_name: auth.currency_name,
+  token: auth.token,
   opportunityProcess:settings.opportunityProcess,
   contactByCustomerId: customer.contactByCustomerId,
   linkingNwRecruitToOpportunity: requirement.linkingNwRecruitToOpportunity,
