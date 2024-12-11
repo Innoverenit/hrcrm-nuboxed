@@ -104,7 +104,7 @@ function CustomerDashboardJumpStart (props) {
       }
     };
   useEffect(() => {
-    props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+    props.getFinaceOrderDetails(props.userId,props.timeRangeType,"customer")
     fetchDashCutomerCount();
     fetchDashContactCount();  
   }, [props.timeRangeType]);

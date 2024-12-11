@@ -49,17 +49,17 @@ function DashboardFinanceJumpstart(props) {
   }, [props.selectedLanguage]);
 
   useEffect(() => {
-     props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+     props.getFinaceOrderDetails(props.userId,props.timeRangeType,"repair")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
 
   useEffect(() => {
     if(props.buttonName==="My View"){
-      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+      props.getFinaceOrderDetails(props.userId,props.timeRangeType,"repair")
 
     } else if(props.buttonName==="Enterprise"){
-    props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
+    props.getFinaceOrderDetails(props.orgId,props.timeRangeType,"repair")
     }
  }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
 
