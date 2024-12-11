@@ -51,9 +51,7 @@ const AllRequirementTable = (props) => {
         requirementTable,
         fetchingAllRequirementTable
       } = props;
-    if (fetchingAllRequirementTableError) {
-        return <NodataFoundPage/>;
-      }
+  
     return (
         <div className="flex flex-col w-full p-4">
         <div className="flex sticky z-auto">
@@ -78,13 +76,19 @@ const AllRequirementTable = (props) => {
     dataLength={requirementTable.length}
     next={handleLoadMore}
     hasMore={hasMore}
-    loader={fetchingAllRequirementTable?<div  class="flex justify-center">Loading...</div>:null}
+    loader={fetchingAllRequirementTable?<div  class="flex justify-center"><BundleLoader/></div>:null}
     height={"83vh"}
     style={{scrollbarWidth:"thin"}}
     endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
   >
     
-    { !fetchingAllRequirementTable && requirementTable.length === 0 ?<EmptyPage />:requirementTable.map((item,index) =>  {
+ {
+  fetchingAllRequirementTableError ? (
+    <NodataFoundPage />
+  ) : !fetchingAllRequirementTable && requirementTable.length === 0 ? (
+    <EmptyPage />
+  ) : (
+    requirementTable.map((item, index) => {
      const currentdate = dayjs().format("DD/MM/YYYY");
      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
      const date2 = dayjs(item.avilableDate).format("DD/MM/YYYY");
@@ -194,7 +198,7 @@ const AllRequirementTable = (props) => {
                         </div>
                     </div>
                 )
-            })}
+            }))}
 
  </InfiniteScroll> 
                 </div>

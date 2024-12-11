@@ -10,6 +10,9 @@ const initialState = {
   fetchingRequirementRecordError: false,
   requirementRecord:{},
 
+  linkingNwRecruitToOpportunity: false,
+  linkingNwRecruitToOpportunityError: false,
+
   addNwRecruitModal:false,
 
   fetchingAllRequirementTable:false,
@@ -65,6 +68,29 @@ export const requirementReducer = (state = initialState, action) => {
 
             case types.HANDLE_NWRECRUIT_MODAL:
               return { ...state, addNwRecruitModal: action.payload };
+
+
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_REQUEST:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: true,
+                };
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_SUCCESS:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: false,
+                  addNwRecruitModal: false,
+                  requirementTable: [
+                    action.payload,
+                    ...state.requirementTable,
+                  ],
+                };
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_FAILURE:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: false,
+                  linkingNwRecruitToOpportunityError: true,
+                };   
 
       default:
         return state;

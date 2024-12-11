@@ -24,31 +24,41 @@ const RequirementTable = (props) => {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
     useEffect(() => {
+      window.addEventListener('error', e => {
+        if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
+          const resizeObserverErrDiv = document.getElementById(
+            'webpack-dev-server-client-overlay-div'
+          )
+          const resizeObserverErr = document.getElementById(
+            'webpack-dev-server-client-overlay'
+          )
+          if (resizeObserverErr) {
+            resizeObserverErr.setAttribute('style', 'display: none');
+          }
+          if (resizeObserverErrDiv) {
+            resizeObserverErrDiv.setAttribute('style', 'display: none');
+          }
+        }
+      })
+       
         props.getAllRequirementTable(props.userId,page)
+        setPage(page + 1);
         props.ClearReducerDataOfRequirement()
     }, []);
     const handleLoadMore = () => {
-        const PageMapd = props.requirementTable && props.requirementTable.length && props.requirementTable[0].pageCount
-        setTimeout(() => {  
-          if  (props.requirementTable)
-          {
-            if (page < PageMapd) {    
-              setPage(page + 1);
-              props.getAllRequirementTable(props.userId, page);
-                }
-                  if (page === PageMapd){
-                    setHasMore(false)
-                  }
-                }
-                }, 100);
-      };
+   
+      setPage(page + 1);
+      props.getAllRequirementTable(
+        props.userId,page,
+      );
+  };
     const {
         fetchingAllRequirementTableError,
         requirementTable,
         fetchingAllRequirementTable
       } = props;
-    if (fetchingAllRequirementTableError) {
-        return <NodataFoundPage/>;
+      if (fetchingAllRequirementTable) {
+        return <div><BundleLoader/></div>;
       }
 console.log(requirementTable)
     return (
@@ -75,13 +85,19 @@ console.log(requirementTable)
         dataLength={requirementTable.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllRequirementTable?<div  class="flex justify-center">Loading...</div>:null}
+        loader={fetchingAllRequirementTable?<div  class="flex justify-center"><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         
-        { !fetchingAllRequirementTable && requirementTable.length === 0 ?<EmptyPage />:requirementTable.map((item,index) =>  {
+        {
+  fetchingAllRequirementTableError ? (
+    <NodataFoundPage />
+  ) : !fetchingAllRequirementTable && requirementTable.length === 0 ? (
+    <EmptyPage />
+  ) : (
+    requirementTable.map((item, index) => {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const date2 = dayjs(item.avilableDate).format("DD/MM/YYYY");
@@ -191,7 +207,7 @@ console.log(requirementTable)
                             </div>
                         </div>
                     )
-                })}
+                }))}
 
      </InfiniteScroll> 
                     </div>
