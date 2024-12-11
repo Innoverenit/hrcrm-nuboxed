@@ -4,6 +4,10 @@ const initialState = {
   viewType: "table",
   addCustomerModal: false,
 
+  fetchingHeader:false,
+  fetchingHeaderError:false,
+  headerdata:[],
+
   addCustomerContactJumpstartModal: false,
 
   fetchingTeamUserList: false,
@@ -1142,7 +1146,21 @@ export const customerReducer = (state = initialState, action) => {
       };
 
 
-
+      case types.GET_HEADER_REQUEST:
+        return { ...state, fetchingHeader: true };
+      case types.GET_HEADER_SUCCESS:
+        return {
+          ...state,
+          fetchingHeader: false,
+          headerdata: action.payload,
+        };
+      case types.GET_HEADER_FAILURE:
+        return {
+          ...state,
+          fetchingHeader: false,
+          fetchingHeaderError: true,
+        };
+  
       case types.UPDATE_PROSPECT_USER_REQUEST:
         return { ...state, updateProspectUserById: true };
       case types.UPDATE_PROSPECT_USER_SUCCESS:

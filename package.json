@@ -22,6 +22,7 @@
     "antd": "^5.21.6",
     "apexcharts": "^4.0.0",
     "axios": "^1.7.7",
+    "browser-image-compression": "^2.0.2",
     "cheerio": "^1.0.0-rc.10",
     "d3-funnel": "^2.1.1",
     "dayjs": "^1.11.13",
@@ -35,6 +36,7 @@
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
     "lodash": "^4.17.15",
+    "pako": "^2.1.0",
     "pareto-chart": "^1.0.22",
     "qrcode.react": "^3.1.0",
     "react": "^16.14.0",
@@ -78,6 +80,7 @@
     "twilio-client": "^1.15.1",
     "video-react": "^0.16.0",
     "webrtc-adapter": "^8.2.3",
+    "xlsx": "^0.18.5",
     "yup": "^1.0.2"
   },
   "scripts": {

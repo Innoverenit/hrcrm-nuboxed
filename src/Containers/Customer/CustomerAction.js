@@ -3222,6 +3222,34 @@ export const updateActivityCallForm = (data, callId, cb) => (dispatch) => {
     });
 };
 
+
+export const getHeader = (type) => (dispatch) => {
+  console.log("inside add candidate");
+  dispatch({
+    type: types.GET_HEADER_REQUEST,
+  });
+  axios
+    .get(`${base_url}/getEntityFields/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_HEADER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_HEADER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const updateActivityTaskForm = (data, taskId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_ACTIVITY_TASK_FORM_REQUEST });
