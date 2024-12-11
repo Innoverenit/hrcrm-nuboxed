@@ -2205,11 +2205,11 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
 };
 
 
-export const getFinaceOrderDetails = (userId,type) => (dispatch) => {
+export const getFinaceOrderDetails = (userId,type,ptype) => (dispatch) => {
   dispatch({ type: types.GET_FINACE_ORDER_DETAIL_REQUEST });
   axios
     .get(
-      `${base_url2}/dashboard/repairCount/${userId}/${type}`,
+      `${base_url2}/dashboard/repairCount/${userId}/${type}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

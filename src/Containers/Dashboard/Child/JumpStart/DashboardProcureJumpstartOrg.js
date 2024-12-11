@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
+  getFinaceOrderDetails,
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
@@ -16,6 +17,7 @@ import CustomerPieChart from "./CustomerPieChart"
 import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
+import DynamicPieChart from "./DynamicPieChart";
 
 function DashboardProcureJumpstartOrg(props) {
 
@@ -49,9 +51,8 @@ function DashboardProcureJumpstartOrg(props) {
   }, [props.selectedLanguage]);
   
   useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    props.getFinaceOrderDetails(props.orgId,props.timeRangeType,"procure")
   }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
 
   useEffect(() => {
     if (props.orderAddedList) {
@@ -200,11 +201,13 @@ function DashboardProcureJumpstartOrg(props) {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
-        <CustomerPieChart/>
+        <DynamicPieChart dtype={"ProcureOrder"} 
+        userId={props.orgId} timeRangeType={props.timeRangeType}/>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
-        <CustomerPieChart/>
+        <DynamicPieChart dtype={"ProcureOrderValue"} 
+        userId={props.orgId} timeRangeType={props.timeRangeType}/>
         </div>
       </div>
       </div>
@@ -243,9 +246,7 @@ function DashboardProcureJumpstartOrg(props) {
 }
 const mapStateToProps = ({ dashboard, auth }) => ({
   user: auth.userDetails,
-  orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
-  fetchingorderDetails: dashboard.fetchingorderDetails,
   userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
   orderClosedModal:dashboard.orderClosedModal,
@@ -256,6 +257,8 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderOpenList:dashboard.orderOpenList,
   orderClosedList:dashboard.orderClosedList,
   orderCancelList:dashboard.orderCancelList,
+  finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
+  fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

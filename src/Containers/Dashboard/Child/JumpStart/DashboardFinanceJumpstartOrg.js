@@ -73,7 +73,7 @@ function DashboardFinanceJumpstart(props) {
   useEffect(() => {
     props.getFinaceOrderDetails(
       props.buttonName === "My View" ? props.userId : props.orgId,
-      props.timeRangeType
+      props.timeRangeType,"repair"
     );
   }, [props.buttonName, props.orgId, props.userId, props.timeRangeType]);
 
