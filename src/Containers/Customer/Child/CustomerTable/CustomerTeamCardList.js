@@ -61,9 +61,6 @@ const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
 const CustomerPulseDrawerModal =lazy(()=> import("./CustomerPulseDrawerModal"));
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -268,7 +265,7 @@ const [rowdata, setrowdata] = useState("");
     handleUpdateCustomerModal,
     addDrawerCustomerPulseModal,
     handleCustomerPulseDrawerModal,
-    updateCustomerModal,
+   
     fetchingCustomersError,
     fetchingAllCustomers,
     user,
@@ -899,7 +896,7 @@ handleRowData(item);
       translatedMenuItems={props.translatedMenuItems}
       />
 
-      <UpdateCustomerModal
+      {/* <UpdateCustomerModal
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
@@ -907,7 +904,7 @@ handleRowData(item);
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
-       />
+       /> */}
          <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
@@ -984,7 +981,7 @@ const mapStateToProps = ({
   sectors: sector.sectors,
   fetchingTeamCustomer: customer.fetchingTeamCustomer,
   fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
+  // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
   countries: auth.countries,

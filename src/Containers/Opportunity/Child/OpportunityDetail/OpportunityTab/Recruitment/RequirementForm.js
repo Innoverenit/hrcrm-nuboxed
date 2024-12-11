@@ -13,7 +13,6 @@ import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { updateRecruitment, getContactListByOpportunityId, getRecruiterName } from "../../../../OpportunityAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -77,11 +76,7 @@ function RequirementForm(props) {
         value: item.contactId,
       };
     });
-  
-  
-  
-  
-  
+ 
     const processOption = useMemo(() => {
       debugger;
       if (!props.recruitProcess) return [];
@@ -95,7 +90,6 @@ function RequirementForm(props) {
         })
       );
     }, [props.recruitProcess]);
-  
   
     function handleReset(resetForm) {
       resetForm();
@@ -255,15 +249,12 @@ function RequirementForm(props) {
             ...rest
           }) => (
             <Form className="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
+              <div class="flex justify-around">
+                <div class="h-[100%] w-[45%]"
+                
                 >
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                    <div className="w-[47%]">
                       <Field
                         name="jobOrder"
                          label="Sponsor"
@@ -288,9 +279,9 @@ function RequirementForm(props) {
                         component={InputComponent}
                       />
                     </div>
-                  </FlexContainer>   
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                  </div>   
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                    <div className="w-[47%]">
                       {" "}
                       <Field
                         name="number"
@@ -302,7 +293,7 @@ function RequirementForm(props) {
                         component={InputComponent}
                       />
                     </div>
-                    <div style={{ width: "47%" }}>
+                    <div className="w-[47%]">
                       <div class=" text-xs font-bold font-poppins text-black">Type </div> 
                       <Switch
                         checked={typeData}
@@ -311,9 +302,9 @@ function RequirementForm(props) {
                         unCheckedChildren="Contractor"
                       />
                     </div>
-                  </FlexContainer> 
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                  </div> 
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[47%]">
                       {" "}
                       <Field
                         name="avilableDate"
@@ -340,7 +331,7 @@ function RequirementForm(props) {
                         }}
                       />
                     </div>
-                    <div style={{ width: "47%", }}>
+                    <div className="w-[47%]">
                       {" "}
                       <Field
                         name="endDate"
@@ -368,9 +359,9 @@ function RequirementForm(props) {
                       />
                     </div>
   
-                  </FlexContainer>              
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                  </div>              
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                    <div className="w-[47%] mt-1">
                       <Field
                         name="experience"
                          label="Experience (in Years)"
@@ -382,7 +373,7 @@ function RequirementForm(props) {
                       // options={Array.isArray(Sponsor) ? Sponsor : []}
                       />
                     </div>
-                    <div style={{ width: "47%" }}>
+                    <div className="w-[47%] mt-1">
                       <Field
                         // isRequired
                         // type="email"
@@ -403,9 +394,9 @@ function RequirementForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                  </div>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[47%] ">
                       <Field
                         name="department"
                         selectType="departmentName"
@@ -417,7 +408,7 @@ function RequirementForm(props) {
                         inlineLabel
                       />
                     </div>
-                    <div style={{ width: "47%" }}>
+                    <div className="w-[47%] ">
                       <Field
                         name="role"
                         selectType="roleType"
@@ -430,17 +421,14 @@ function RequirementForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer> 
+                  </div> 
                  
-                  <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "25%" }}>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[25%] mt-1">
                     <div class=" text-xs font-bold font-poppins">Category</div>
                    
-                    <Switch
-                      style={{
-                        width: "5em",
-                        marginLeft: "7px"
-                      }}
+                    <Switch className="w-[5rem] ml-[7px]"
+                    
                       checked={typeData1}
                       onChange={handleWhiteBlue}
                       // disabled={this.state.availability}
@@ -448,8 +436,8 @@ function RequirementForm(props) {
                       unCheckedChildren="Blue"
                     />
                     </div>
-                    <div style={{ width: "47%", }}>
-                      <FlexContainer justifyContent="space-between">
+                    <div className="w-[47%] mt-1">
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div style={{ width: "45%" }}>
                           {" "}
                           <Field
@@ -462,7 +450,7 @@ function RequirementForm(props) {
                             component={InputComponent}
                           />
                         </div>
-                        <div style={{ width: "52%" }}>
+                        <div className="w-[52%] ">
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
@@ -479,12 +467,12 @@ function RequirementForm(props) {
                         />
                       </div>
   
-                      </FlexContainer>
+                      </div>
                     </div>
-                  </FlexContainer>
-                  <div class=" mt-3" style={{marginTop:"1.25em"}} />
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%", }}>
+                  </div>
+                  <div class=" mt-1"  />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[47%]">
                       <Field
                         name="sponserId"
                         //  label="Sponsor"
@@ -497,7 +485,7 @@ function RequirementForm(props) {
                         options={Array.isArray(Sponsor) ? Sponsor : []}
                       />
                     </div>
-                    <div style={{ width: "47%" }}>
+                    <div className="w-[47%]">
                       {" "}
                       <Field
                         name="closeByDate"
@@ -508,27 +496,14 @@ function RequirementForm(props) {
                         width={"100%"}
                         value={values.closeByDate}
                         inlineLabel
-                       
-                        // disabledDate={(currentDate) => {
-                        //   if (values.avilableDate) {
-                        //     if (
-                        //       dayjs(currentDate).isBefore(
-                        //         dayjs(values.avilableDate)
-                        //       )
-                        //     ) {
-                        //       return true;
-                        //     } else {
-                        //       return false;
-                        //     }
-                        //   }
-                        // }}
+
                       />
                     </div>
-                  </FlexContainer>     
+                  </div>     
                   
-                  <div class=" mt-3" style={{marginTop:"1.25em"}} />             
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "100%" }}>
+                  <div class=" mt-1" />             
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[100%]">
                        <div class=" text-xs font-bold font-poppins text-black">Recruiter</div> 
   
                       <Select
@@ -538,8 +513,7 @@ function RequirementForm(props) {
                         placeholder="Select"
                         defaultValue={recruiterNames}
                         onChange={handleChangeRecruiter}
-                      >
-  
+                      >  
                         {props.recruiterName.map((item, i) => {
                           return (
                             <Option value={item.employeeId}>{item.fullName}</Option>
@@ -548,10 +522,10 @@ function RequirementForm(props) {
                       </Select>
   
                     </div>
-                  </FlexContainer>
-                  <div class=" mt-3" />
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
+                  </div>
+                  <div class=" mt-1" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  <div className="w-[47%]">
                       <Field
                         name="recruitmentProcessId"
                         label="Workflow"
@@ -563,9 +537,8 @@ function RequirementForm(props) {
                         options={Array.isArray(processOption) ? processOption : []}
                       />
                     </div>
-                    <div style={{ width: "47%" }}>
+                    <div className="w-[47%]">
                        <div class=" text-xs font-bold font-poppins text-black">Vendor</div> 
-  
                        <Select
                         name="partnerId"
   
@@ -581,48 +554,19 @@ function RequirementForm(props) {
                             <Option value={item.partnerId}>{item.partnerName}</Option>
                           )
                         })}
-                      </Select> 
-  
+                      </Select>   
                     </div>
-                  </FlexContainer>
-  
-                  {/* <Field
-                      name="recruiterId"
-                      //  selectType="contactList"
-                      // isColumnWithoutNoCreate
-                      // label="Contact"
-                      label={
-                       
-                      }
-                      // isRequired
-                      component={SelectComponent}
-                      isColumn
-                      margintop={"4px"}
-                      options={Array.isArray(recruiterNameOption) ? recruiterNameOption : []}
-                      
-                      //  value={values.recruiterId}
-                      // defaultValue={{ label: firstName, value: documentId }}
-                      // isDisabled={defaultContacts}
-                      // defaultValue={defaultContacts ? defaultContacts : null}
-                      inlineLabel
-                      style={{ flexBasis: "80%" }}
-                    /> */}
-                  {/*  */}
+                  </div>
                 </div>
                 &nbsp;
-                <div
-                  style={{
-                    height: "100%",
-                    width: "47%",
-                  }}
-                >
-                  <FlexContainer justifyContent="space-between">
+                <div className="w-[47%] h-[100%]">
+                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                       <div class="font-semibold text-white text-xs flex"> Location</div>
                   </div>
                   </div>
-                  <div style={{ width: "100%" }}>
+                  <div className="w-[100%]">
                   <FieldArray
                     name="address"
                     label="Address"
@@ -634,9 +578,9 @@ function RequirementForm(props) {
                     )}
                   />
                   </div>
-                  </FlexContainer>
-                  <div class=" mt-3" style={{marginTop:"1.25em"}} /> 
-                    <div style={{ width: "100%" }}>
+                  </div>
+                  <div class=" mt-1"  /> 
+                  <div className="w-[100%]">
                       <Field
                         name="description"
                         label="Description"
@@ -651,8 +595,8 @@ function RequirementForm(props) {
                     </div>
                 </div>
               </div>
-              <div class=" mt-3"/>
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-1"/>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -661,7 +605,7 @@ function RequirementForm(props) {
                   Update
                 
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

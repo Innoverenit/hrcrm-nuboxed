@@ -8,11 +8,7 @@ import { Button, Badge } from "antd";
 import { handleUpdateCustomerModal } from "../../../Containers/Customer/CustomerAction";
 import { MultiAvatar1 } from "../Elements";
 import { Title,  } from "./";
-const UpdateCustomerModal = lazy(() =>
-  import(
-    "../../../Containers/Customer/Child/UpdateCustomer/UpdateCustomerModal"
-  )
-);
+
 const BussinessCard = (props) => {
   const {
     handleClick,
