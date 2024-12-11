@@ -31,6 +31,14 @@ const ContactActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
   const [searchOnEnter, setSearchOnEnter] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
