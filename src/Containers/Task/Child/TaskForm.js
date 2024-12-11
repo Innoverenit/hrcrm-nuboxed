@@ -10,9 +10,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";

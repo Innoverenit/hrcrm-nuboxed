@@ -34,7 +34,9 @@ class ActivityModal extends Component {
              candidateId={this.props.candidateId}
                uniqueId={this.props.candidate.candidateId}
                name={this.props.candidate.name}
-               candidate={this.props.candidate} />
+               candidate={this.props.candidate} 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>
