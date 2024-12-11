@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, Select,Switch,Input } from "antd";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../Components/Forms/Formik/AddressFieldArray";
@@ -15,36 +15,48 @@ import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import {
   getProcessForRecruit,
   getProcessStagesForRecruit,
+  getProcessForOpportunity
 } from "../Settings/SettingsAction";
 import { FlexContainer } from "../../Components/UI/Layout";
 import {
-  addRecruit,
   getRecruiterName,
   getRecruitByOpportunityId,
 } from "../Opportunity/OpportunityAction";
+import {addNwRecruit} from "../Requirement/RequirementAction"
 import { getAllPartnerListByUserId } from "../Partner/PartnerAction";
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
+import { base_url } from "../../Config/Auth";
 
 /**
  * yup validation scheme for creating a opportunity
  */
-
+const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
   // requirementName: Yup.string().required("Please provide Requirement"),
   number: Yup.string().required("Please provide Number"),
-  recruitmentProcessId: Yup.string().required("Select Workflow!"),
+  // recruitmentProcessId: Yup.string().required("Select Workflow!"),
 });
 
 function RecruitNwForm(props) {
   const [typeData1, setTypeData1] = useState(true);
   const [typeData, setTypeData] = useState(false);
   const [workTypeData, setWorkTypeData] = useState(false);
+  const [selectedWorkflow, setSelectedWorkflow] = useState([]);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
     libraries: ["places"], // Ensure the 'places' library is loaded
   });
+
+  useEffect(() => {
+    props.getProcessForRecruit(props.organizationId);
+    props.getRecruiterName();
+    props.getTalentRoles(props.orgId); 
+    props.getAllPartnerListByUserId(props.userId);
+  
+  }, []);
   function handleWorkType(checked) {
     setWorkTypeData(checked);
   }
@@ -78,7 +90,7 @@ function RecruitNwForm(props) {
   const roleNameOption = props.talentRoles.map((item) => {
     return {
         label: `${item.roleType || ""}`,
-        value: item.roleTypeId,
+        value: item.roleTypeExternalId,
     };
 });
 
@@ -108,13 +120,17 @@ function RecruitNwForm(props) {
       value: item.employeeId,
     };
   });
+  const handleSelectWorkflowTypeFocus = () => {
+    if (!touchedWorkFlowType) {
+      props.getProcessForOpportunity(props.orgId,"Hiring")
+      setTouchedWorkFlowType(true);
+    }
+  };
 
-  useEffect(() => {
-    props.getProcessForRecruit(props.organizationId);
-    props.getRecruiterName();
-    props.getTalentRoles(props.orgId); 
-    props.getAllPartnerListByUserId(props.userId);
-  }, []);
+  const handleSelectChange = (values) => {
+    setSelectedWorkflow(values); // Update selected values
+  };
+
   function handleReset(resetForm) {
     resetForm();
   }
@@ -127,34 +143,6 @@ function RecruitNwForm(props) {
       <Formik
         // enableReinitialize
         initialValues={{
-          requirementName: "",
-          role: "",
-          workPreference: "Remote",
-          department: "",
-          number: "",
-          jobOrder: "",
-          experience: "",
-          endDate: "",
-          partnerId: [],
-          sponserId: undefined,
-          userId: props.userId,
-          recruitersId: [],
-
-          description: "",
-          closeByDate: props.closeByDate || dayjs(),
-          avilableDate: props.avilableDate || dayjs(),
-          endDate: props.endDate || dayjs().add(1, "years"),
-          // endDate:props.endDate || dayjs().add(1,'years'),
-          billing: "",
-          currency: props.user.currency,
-          recruitmentProcessId: undefined,
-          // stageId: undefined,
-          opportunityId: props.opportunityId,
-          // recruiterId:"",
-          type: typeData ? "Permanent" : "Contractor",
-          category: typeData1 ? "White" : "Blue",
-          workType: workTypeData ? "Full Time" : "Part Time",
-
           address: [
             {
               addressType: "",
@@ -164,12 +152,69 @@ function RecruitNwForm(props) {
               street: "",
               city: "",
               postalCode: "",
-              // country: this.props.user.countryName,
               latitude: "",
-              skills: [],
               longitude: "",
+              addressId:"",
+              contactPersonId: "",
+              country: "",
+              countryCode: "",
+              country_alpha2_code: "",
+              country_alpha3_code: "",
+              creatorId: "",
+              employeeId: "",
+              houseNo: "",
+              primaryInd: true,
+              state: "",
+              town: "",
+              type: "",
+              xlAddress: ""
             },
           ],
+          requirementName: "",
+          workPreference: "Remote",
+          department: "",
+          role:"",
+          number: "",
+          jobOrder: "",
+          experience: "",
+          endDate: "",
+          partnerId: [],
+          sponserId: "",
+          userId: props.userId,
+          recruitmentId:"",
+          description: "",
+          closeByDate: props.closeByDate || dayjs(),
+          avilableDate: props.avilableDate || dayjs(),
+          endDate: props.endDate || dayjs().add(1, "years"),
+          billing: "",
+          currency: props.user.currency,
+          recruitmentProcessId: undefined,
+          opportunityId: "",
+          type: typeData ? "Permanent" : "Contractor",
+          category: typeData1 ? "White" : "Blue",
+          workType: workTypeData ? "Full Time" : "Part Time",
+          closedPosition: 0,
+          contactId: "",
+          country: "",
+          currency:"",
+          customerId:"",
+          dataCount:"",
+          experience:"",
+          jobOrder:"",
+          listCount:"",
+          location:"",
+          note:"",
+          number:"",
+          openedPosition:"",
+          orgId:props.orgId,
+          pageCount:"",
+          publishInd:true,
+          recruiterId:"",
+          reviewer:"",
+          skillSetList:[],
+          tagUserId:"",
+          workDays:"",
+          
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -248,20 +293,16 @@ function RecruitNwForm(props) {
           // var new_date = dayjs(enddate, "DD-MM-YYYY").add(5, 'days');
 
           let newEndTime = `${finalEndTime}${timeEndPart}`;
-          props.addRecruit(
+          props.addNwRecruit(
             {
               ...values,
               avilableDate: `${newavilableDate}T00:00:00Z`,
-              //  endDate: `${newavilableDate}T00:00:00Z`,
-              //endDate:props.endDate || dayjs().add(1,'years'),
-              opportunityId: props.opportunityId,
+              workflowDetailsId:selectedWorkflow,
               endDate: `${newEndDate}T00:00:00Z`,
               type: typeData ? "Permanent" : "Contractor",
               category: typeData1 ? "White" : "Blue",
               workType: workTypeData ? "Full Time" : "Part Time",
             },
-            props.opportunityId,
-
             () => handleReset(resetForm)
           );
         }}
@@ -330,9 +371,6 @@ function RecruitNwForm(props) {
                       onChange={handleType}
                       checkedChildren="Permanent"
                       unCheckedChildren="Contractor"
-                      // style={{
-                      //   margin:"0.56em 0px 0px 0.56em",
-                      // }}
                     />
                   </div>
 
@@ -425,11 +463,11 @@ function RecruitNwForm(props) {
                   </div>
                   <div style={{ width: "47%" }}>
                        <Field
-                                                            name="roleTypeId"
+                                                            name="role"
                                                             label="Role"
                                                             options={Array.isArray(roleNameOption) ? roleNameOption : []}
                                                             component={SelectComponent}
-                                                            value={values.roleTypeId}
+                                                            value={values.role}
                                                             placeholder
                                                             isColumn
                                                             inlineLabel
@@ -524,7 +562,6 @@ function RecruitNwForm(props) {
 
                   />
                 </div>
-                
                 </FlexContainer>
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />
 
@@ -550,24 +587,24 @@ function RecruitNwForm(props) {
                 <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
-                    <Field
-                      name="recruitmentProcessId"
-                      label="Workflow"
-                     
-                      isRequired
-                      isColumn
-                      style={{
-                        flexBasis: "80%",
-                        width: "100%",
-
-                        // marginTop: "0.25em",
-                      }}
-                      // component={InputComponent}
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(processOption) ? processOption : []
-                      }
-                    />
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>
+  Workflow
+  </label>
+                     <Select
+       
+       placeholder="Select Workflow"
+    //  loading={isLoadingWorkflowType}
+       onChange={handleSelectChange}
+       onFocus={handleSelectWorkflowTypeFocus}
+       defaultValue={selectedWorkflow} 
+       // disabled={!selectedWorkFlowType}
+     >
+       {props.opportunityProcess.map(work => (
+         <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+           {work.workflowName}
+         </Option>
+       ))}
+     </Select>
                   </div>
                   <div style={{ width: "47%" }}>
                     <Field
@@ -652,7 +689,7 @@ function RecruitNwForm(props) {
               <Button
                 type="primary"
                 htmlType="submit"
-                Loading={props.linkingRecruitToOpportunity}
+                Loading={props.linkingNwRecruitToOpportunity}
               >
              Create
               </Button>
@@ -675,6 +712,7 @@ const mapStateToProps = ({
   account,
   settings,
   partner,
+  requirement
 }) => ({
   recruitProcess: settings.recruitProcess,
   user: auth.userDetails,
@@ -684,8 +722,9 @@ const mapStateToProps = ({
   organizationId: auth.userDetails.organizationId,
   opportunityId: opportunity.opportunity.opportunityId,
   currencies: auth.currencies,
+  opportunityProcess:settings.opportunityProcess,
   contactByCustomerId: customer.contactByCustomerId,
-  linkingRecruitToOpportunity: opportunity.linkingRecruitToOpportunity,
+  linkingNwRecruitToOpportunity: requirement.linkingNwRecruitToOpportunity,
   contactListByOpportunityId: opportunity.contactListByOpportunityId,
   recruiterName: opportunity.recruiterName,
   talentRoles: role.talentRoles,
@@ -700,8 +739,9 @@ const mapDispatchToProps = (dispatch) =>
       getProcessStagesForRecruit,
       getRecruitByOpportunityId,
       getTalentRoles,
-      addRecruit,
+      addNwRecruit,
       getRecruiterName,
+      getProcessForOpportunity
     },
     dispatch
   );
