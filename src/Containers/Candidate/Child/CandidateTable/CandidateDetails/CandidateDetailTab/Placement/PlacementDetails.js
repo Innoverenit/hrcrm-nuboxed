@@ -19,7 +19,8 @@ class PlacementDetails extends Component {
                     <PlacementDetailsLeft 
                     stageList={this.props.stageList}
                     profileId={this.props.profileId}
-                   
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}
                      />
                   </div>
                 

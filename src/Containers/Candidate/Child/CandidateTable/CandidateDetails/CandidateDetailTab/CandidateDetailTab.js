@@ -60,15 +60,16 @@ function CandidateDetailTab(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          // 'RecruitPro' 
-'1697', // 'Experience', // 0
-"1165",// ' Activity', 1
-"316",// 'Notes', // 2
-"138", // ' Documents',3
-'1195',// Education   4
-'1196',//Employment 5
- '1194',//Training 6
- '1198',//Bank Details 8
+          "1165",// ' Activity', 0
+             "1286", // 'RecruitPro' 1
+      '1697', // 'Experience', // 2
+      "1166", // ' Documents',3
+       "316",// 'Notes', // 4
+      '1195',// Education   5
+      '1194',//Training 6
+      '1196',//Employment 7
+     '1198',//Bank Details 8
+
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -98,8 +99,9 @@ function CandidateDetailTab(props) {
       case "2":
         return  <div>
           <PlacementTable
-                 selectedLanguage={props.selectedLanguage}
-                 translateText={props.translateText}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
               />
         </div>;
     case "3":
@@ -185,8 +187,8 @@ function CandidateDetailTab(props) {
                 <span>
                 <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                 <span class="ml-1 !text-tab font-poppins ">
-               
-                   Activity
+                {/* Activity */}
+                 {translatedMenuItems[0]}
 
 
                   </span>
@@ -226,8 +228,8 @@ function CandidateDetailTab(props) {
                 <TransferWithinAStationIcon
                   className=" !text-icon"
                 />
-                <span class=" ml-1 !text-tab" >
-                  RecruitPro
+                <span class=" ml-1 !text-tab" >   {translatedMenuItems[1]}
+                  {/* RecruitPro */}
                   {/* {translatedContent[0]} */}
                 </span>
 
@@ -247,8 +249,8 @@ function CandidateDetailTab(props) {
 
                 <WorkspacePremiumIcon className=" !text-icon" />
                 <span class=" ml-1 !text-tab" >
-                  {/* {translatedContent[0]} */}
-                  Experience
+                {translatedMenuItems[2]}
+                  {/* Experience */}
                 </span>
               </>
             }
@@ -265,9 +267,9 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <FileCopyIcon className=" !text-icon" />
-                <span class=" ml-1 !text-tab">
-                  Documents
-                  {/* {translatedContent[1]} */}
+                <span class=" ml-1 !text-tab">   {translatedMenuItems[3]}
+                  {/* Documents */}
+           
                 </span>
                 <Badge
                 count={props.documentsByCount.document}
@@ -300,9 +302,9 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span  className="  !text-tab">
-                  <NoteAltIcon className=" !text-icon mr-1" />
-                Notes
-                  {/* {translatedContent[2]} */}
+                  <NoteAltIcon className=" !text-icon mr-1" />{translatedMenuItems[4]}
+                {/* Notes */}
+            
                   &nbsp;
                   {activeKey === "5" && (
                     <>
@@ -332,9 +334,9 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <SchoolIcon className=" !text-icon" />
-                <span class=" ml-1 !text-tab" >
-                  Education
-                  {/* {translatedContent[5]} */}
+                <span class=" ml-1 !text-tab" >{translatedMenuItems[5]}
+                  {/* Education */}
+  
                 </span>
                 {activeKey === "6" && (
                   <>
@@ -368,8 +370,8 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <HeadphonesIcon className=" !text-icon" />
-                <span class=" ml-1 !text-tab" >
-                  Training
+                <span class=" ml-1 !text-tab" > {translatedMenuItems[6]}
+                  {/* Training */}
                   {/* {translatedContent[7]} */}
                 </span>
                 {activeKey === "7" && (
@@ -397,8 +399,8 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <AccountBalanceIcon className=" !text-icon" />
-                <span class=" ml-1 !text-tab" >
-                  Employment
+                <span class=" ml-1 !text-tab" >{translatedMenuItems[7]}
+                  {/* Employment */}
                   {/* {translatedContent[6]} */}
                 </span>
                 {activeKey === "8" && (
@@ -427,8 +429,8 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <AccountBalanceIcon className=" !text-icon" />
-                <span class=" ml-1 !text-tab" >
-                  Bank Details
+                <span class=" ml-1 !text-tab" > {translatedMenuItems[8]}
+                  {/* Bank Details */}
                   {/* {translatedContent[8]} */}
                 </span>
                 {activeKey === "9" && (

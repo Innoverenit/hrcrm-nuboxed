@@ -573,13 +573,15 @@ export const setEditOpportunity = (name) => (dispatch) => {
  */
 
 
- export const updateOpportunity = (data, opportunityId) => (
+ export const updateOpportunity = (data, invOpportunityId) => (
   dispatch,
 ) => {
   
   dispatch({ type: types.UPDATE_OPPORTUNITY_BY_ID_REQUEST });
   axios
-    .put(`${base_url}/opportunity/${opportunityId}`, data, {
+  .put(`${base_url}/investorOpportunity/rowEdit/${invOpportunityId}`, data, {
+ 
+    // .put(`${base_url}/opportunity/${opportunityId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
