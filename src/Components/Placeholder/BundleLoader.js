@@ -1,9 +1,15 @@
 import React,{Suspense} from 'react'
 
+import { Helmet } from "react-helmet";
+
 import FWLogo1 from "../../Assets/Images/smallLogoImg.webp";
 
 const BundleLoader = () => {
   return (
+    <>
+     <Helmet>
+        <link rel="preload" as="image" href={FWLogo1} />
+      </Helmet>
 
 <div className="flex justify-center items-center h-[83vh] w-full max-md:h-[23vh] max-sm:h[34vh]">
       <div className="relative w-16 h-16">
@@ -14,12 +20,16 @@ const BundleLoader = () => {
         <img 
           src={FWLogo1} // Use your image URL
           alt="Loading"
+             width="48"
+            height="48"
+            loading="lazy"
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12"
         />
               
 
       </div>
     </div>
+    </>
 
   )
 }
