@@ -17,6 +17,7 @@ import {
   getProcessStagesForRecruit,
   getProcessForOpportunity
 } from "../Settings/SettingsAction";
+import {getAllCustomerEmployeelist} from "../Employees/EmployeeAction"
 import { FlexContainer } from "../../Components/UI/Layout";
 import {
   getRecruiterName,
@@ -55,7 +56,7 @@ function RecruitNwForm(props) {
     props.getRecruiterName();
     props.getTalentRoles(props.orgId); 
     props.getAllPartnerListByUserId(props.userId);
-  
+    props.getAllCustomerEmployeelist()
   }, []);
   function handleWorkType(checked) {
     setWorkTypeData(checked);
@@ -114,7 +115,7 @@ function RecruitNwForm(props) {
       value: item.partnerId,
     };
   });
-  const recruiterNameOption = props.recruiterName.map((item) => {
+  const recruiterNameOption = props.allCustomerEmployeeList.map((item) => {
     return {
       label: `${item.fullName || ""}`,
       value: item.employeeId,
@@ -435,11 +436,11 @@ function RecruitNwForm(props) {
                       width={"100%"}
                       component={SelectComponent}
                       options={[
-                        "Home",
+                        "Remote",
                         "Office-1 Day/Week",
-                        "Office-2 Day/Week",
-                        "Office-3 Day/Week",
-                        "Office-4 Day/Week",
+                        "Office-2 Days/Week",
+                        "Office-3 Days/Week",
+                        "Office-4 Days/Week",
                         "Office"
                       ]}
                       inlineLabel
@@ -712,7 +713,8 @@ const mapStateToProps = ({
   account,
   settings,
   partner,
-  requirement
+  requirement,
+  employee
 }) => ({
   recruitProcess: settings.recruitProcess,
   user: auth.userDetails,
@@ -729,6 +731,7 @@ const mapStateToProps = ({
   recruiterName: opportunity.recruiterName,
   talentRoles: role.talentRoles,
   allpartnerByUserId: partner.allpartnerByUserId,
+  allCustomerEmployeeList:employee.allCustomerEmployeeList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -741,7 +744,8 @@ const mapDispatchToProps = (dispatch) =>
       getTalentRoles,
       addNwRecruit,
       getRecruiterName,
-      getProcessForOpportunity
+      getProcessForOpportunity,
+      getAllCustomerEmployeelist
     },
     dispatch
   );

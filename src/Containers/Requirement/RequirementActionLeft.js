@@ -64,7 +64,7 @@ return (
           </span>
        
       </Tooltip>   
-      {/* <Tooltip
+      <Tooltip
         title="All"
       >
        
@@ -84,7 +84,7 @@ return (
 
           </span>
        
-      </Tooltip> */}
+      </Tooltip>
 <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
 <Input
       placeholder="Search By Job ID"
