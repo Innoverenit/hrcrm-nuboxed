@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Input } from "./styled";
 import Button from "antd/lib/button";
 import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
@@ -16,6 +15,7 @@ import FWLogo2 from "../../Assets/Images/nuboxnew.webp"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.webp";// testhr
 import KAPSSN from "../../Assets/Images/KAPSSNLogo.webp";// KPSSN
 import OneDi from "../../Assets/Images/1DiLogo.webp";//1Di 
+import Input from "./styled/Input";
 
 
 
@@ -80,7 +80,7 @@ class Login extends Component {
              <div className=" flex justify-start ">
               <img
               className="w-[9rem] h-12"
-              src={FWLogo2}
+              src={DevelopTk}
               alt="Tekorero logo"
             /></div>
             

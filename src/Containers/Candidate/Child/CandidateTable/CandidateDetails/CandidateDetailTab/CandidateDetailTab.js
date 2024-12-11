@@ -25,6 +25,7 @@ import {
   handleBankModal,
   handleEducationModal,handleDocumentUploadModal} from "../../../../../Profile/ProfileAction"
 import HeadphonesIcon from '@mui/icons-material/Headphones';
+import ActivityListData from "../../../../../Activity/ActivityListData";
 
 const AddDocumentModals = lazy(() => import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const LinkedDocuments = lazy(() => import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
@@ -86,8 +87,10 @@ function CandidateDetailTab(props) {
     switch (key) {
       case "1":
         return     <div> 
-          <ActivityTable
+          <ActivityListData
+          uniqueId={props.candidate.candidateId}
                 candidate={props.candidate.candidateId}
+                type={"talent"}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}             
               />
@@ -148,6 +151,7 @@ function CandidateDetailTab(props) {
     }
   };  
   const {
+    candidate: { candidateId, name },
     handleEmploymentModal,
     handleTrainingModal,
     handleBankModal,
@@ -478,6 +482,11 @@ function CandidateDetailTab(props) {
           selectedLanguage={props.selectedLanguage}
         />
         <ActivityModal
+        defaultValue={[{ label: name, value: candidateId }]}
+        candidateId={{value: candidateId}}
+          uniqueId={props.candidate.candidateId}
+          name={props.candidate.name}
+          candidate={props.candidate}
           addCandidateActivityModal={addCandidateActivityModal}
           handleCandidateActivityModal={handleCandidateActivityModal}
           translateText={props.translateText}

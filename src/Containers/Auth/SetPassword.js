@@ -7,9 +7,9 @@ import { Button } from "antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import * as Yup from "yup";
-import { Input } from "./styled";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { setPassword } from "./AuthAction";
+import { Input } from "../../Components/UI/Layout";
 
 const SetPasswordSchema = Yup.object().shape({
   password: Yup.string()

@@ -6,14 +6,16 @@ import { Button, Carousel} from "antd";
 import * as Yup from "yup";
 import { get } from "lodash";
 import dayjs from "dayjs";
-import { Datepicker } from "./styled";
+import "./autoplaycarousel.scss";
+import { cardDetails } from "./carousel-config";
+import CarouselItem from "./CarouselItem";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { register, getTimeZone, getCurrency } from "./AuthAction";
 import FlagWithoutDialCode from "../../Components/Forms/Formik/FlagWithoutDialCode";
-import RandomImageScreen from "./RandomImageScreen";
 import { DaysCompressorWithMonth } from "./DaysCompressorWithMonth";
+import { Datepicker } from "../../Components/UI/Layout";
 
 const MONTHS = [
   "Jan",
@@ -512,7 +514,26 @@ class Register extends Component {
               </span>
             </div>
           </div>
-          <RandomImageScreen />
+          <div className=" flex flex-col mt-8">
+            <div class=" text-2xl text-white"> Simplify Your Workflow: Let Automation Drive Your Success 🚀</div>
+            <div class="flex mt-2  text-white justify-center text-base">Transform Your Lead Management with CRM Automation</div>
+            <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
+        </div>
+
+        
+            <div className="carousel-container">
+      <div className="carousel-track ">
+
+        {Object.keys(cardDetails).map((detailKey) => {
+          return (
+            <CarouselItem
+              imgUrl={cardDetails[detailKey].imgUrl}
+              imgTitle={cardDetails[detailKey].title}
+            ></CarouselItem>
+          );
+        })}
+      </div>
+    </div>
         </div>
       </>
     );
