@@ -123,22 +123,6 @@ const Prmotion = lazy(() =>
   import("./Promotion/Prmotion")
 );
 
-const AddCustomerModal = lazy(() =>
-  import("../Customer/Child/AddCustomerModal")
-);
-
-const AddOpportunityModal = lazy(() =>
-  import("../Opportunity/Child/AddOpportunityModal")
-);
-
-const AddContactModal = lazy(() =>
-  import("../Contact/Child/AddContactModal")
-);
-
-const AddAccountModal = lazy(() =>
-  import("./Account/AddAccountModal")
-);
-
 const AddAccountOpportunityModal = lazy(() =>
   import("./Account/AccountDetailsTab/AccountQuotationDrawer")
 );
@@ -1806,20 +1790,6 @@ function MainApp(props) {
         addMessageModal={props.addMessageModal}
         handleMessageModal={props.handleMessageModal}
       /> */}
-       <AddOpportunityModal
-          translateText={translateText}
-          selectedLanguage={selectedLanguage}
-        
-          addOpportunityModal={props.addOpportunityModal}
-          handleOpportunityModal={props.handleOpportunityModal}
-        />
-        <AddAccountModal
-       selectedLanguage={selectedLanguage}
-       translateText={translateText}
-       // addPitchModal={addPitchModal}
-        handleDistributorModal={props.handleDistributorModal}
-        addDistributorModal={props.addDistributorModal}
-      />
       <AddPartnerModal
         addPartnerModal={props.addPartnerModal}
         handlePartnerModal={props.handlePartnerModal}
@@ -1832,20 +1802,6 @@ function MainApp(props) {
         rowData={rowData}
         createSubscriptiondrawer={props.createSubscriptiondrawer}
         handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
-      />
-        <AddCustomerModal
-          addCustomerModal={props.addCustomerModal}
-          handleCustomerModal={props.handleCustomerModal}
-          translateText={translateText}
-          selectedLanguage={selectedLanguage}
-          
-        />
-          <AddContactModal
-        addContactModal={props.addContactModal}
-        handleContactModal={props.handleContactModal}
-        translateText={translateText}
-            selectedLanguage={selectedLanguage}
-        
       />
        {props.addAccountOpportunityModal && props.distributorData?.distributorId && (
   <AddAccountOpportunityModal

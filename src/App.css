@@ -737,3 +737,9 @@ scrollbar-width: thin;
   width: auto;
 }
 
+:where(.css-dev-only-do-not-override-apn68).ant-menu-inline.ant-menu-root .ant-menu-item >.ant-menu-title-content, :where(.css-dev-only-do-not-override-apn68).ant-menu-inline.ant-menu-root .ant-menu-submenu-title >.ant-menu-title-content {
+  flex: auto;
+  min-width: 10rem;
+  overflow: visible;
+  text-overflow: ellipsis;
+}

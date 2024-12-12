@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState,lazy } from "react";
+import React, { Suspense, useEffect, useState,lazy} from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
@@ -15,8 +15,6 @@ import {
   handleShipperAddress,
 } from "./ShipperAction";
 import Swal from 'sweetalert2'
-// import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-// import {getAllDialCodeList} from "../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Input,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -344,8 +342,9 @@ const fetchApiKeyList = async () => {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 /></div>
 ) : (
@@ -371,6 +370,7 @@ const fetchApiKeyList = async () => {
                                 style={{ width: "7rem" }}
                                 value={editingValue}
                                 onChange={handleChangeRowSelectItem} 
+                                onBlur={() => handleEditRowField(null, null, null)}
                                 autoFocus
                               >
                               {props.dialcodeList.map((country) => (
@@ -396,8 +396,9 @@ const fetchApiKeyList = async () => {
                                 className="h-7 w-[4rem] text-xs"
                                 value={editingValue}
                                 onChange={handleChangeRowItem}
-                                onBlur={handleUpdateSubmit}
+                                onMouseDown={handleUpdateSubmit}
                                 onKeyDown={handleKeyDown} 
+                                onBlur={() => handleEditRowField(null, null, null)}
                                 autoFocus
                               />
                               ) : (
@@ -423,8 +424,9 @@ const fetchApiKeyList = async () => {
                         className="h-7 w-[4rem] text-xs"
                         value={editingValue}
                         onChange={handleChangeRowItem}
-                        onBlur={handleUpdateSubmit}
+                        onMouseDown={handleUpdateSubmit}
                         onKeyDown={handleKeyDown} 
+                        onBlur={() => handleEditRowField(null, null, null)}
                         autoFocus
                     />
                               ) : (
@@ -450,6 +452,7 @@ const fetchApiKeyList = async () => {
       style={{ width: "6.12rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
+      onBlur={() => handleEditRowField(null, null, null)}
       autoFocus
     >
      {props.ShipByData.map((ship) => (
