@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import OutputIcon from '@mui/icons-material/Output';
 import {
    getPlacement,
+   handlePlacementPulseModal
 } from "../../../../../CandidateAction";
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import EventIcon from '@mui/icons-material/Event';
@@ -18,6 +19,7 @@ import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import StairsIcon from '@mui/icons-material/Stairs';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import AddPlacementPulseModal from "./AddPlacementPulseModal"
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }  
@@ -157,7 +159,7 @@ class PlacementTable extends Component {
     console.log(candidateId);
     return (
       <>
-   <div className=' flex  sticky  z-auto h-[79vh]'>
+   <div className='sticky  z-auto h-[79vh]'>
    <div class="rounded m-1 p-1 w-[100%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">
         <div className=" max-md:w-[10.5rem] w-[8.3rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> 
@@ -268,37 +270,20 @@ class PlacementTable extends Component {
                     
                           <div class="flex  w-[5%] max-sm:w-[10%] items-center justify-center h-8 bg-[#eef2f9] ml-gap">
                             <div>
-                            {close ? (
-                    <Tooltip title="Close Details"
-                 
-                    >
-                        <span 
-                        onClick={() => this.handleCloseIconClick()}
-                        style={{
-                          fontSize: "1.125em",
-                          color:
-                          this.state.show === true &&
-                          this.state.profileId === item.profileId &&
-                          "#1890ff",
-                        }}
-                        size="30"
-                      >{user.pulseAccessInd ===true && ( 
-                           <MonitorHeartIcon className=" !text-icon text-[#df9697] hover:text-blue-600"/>
-                           )}
-                           </span>
-                    </Tooltip>
-                  ) :
-                   (
-                      <>
+               
                         <Tooltip title="Access Details"
                        
                         >
                 <span
-                            onClick={() =>
-                              this.handleIconClick(
-                                item.profileId,
-                              )
-                            }
+                            // onClick={() =>
+                            //   this.handleIconClick(
+                            //     item.profileId,
+                            //   )
+                            // }
+                               onClick={() => {
+                                              this.props.handlePlacementPulseModal(true);
+                                              // handleSetCurrentOpportunityId(item);
+                                            }}
                             style={{
                               fontSize: "1.125em",
                               color:
@@ -309,21 +294,19 @@ class PlacementTable extends Component {
                                 
                             }}
                             size="30"
-                          >{user.pulseAccessInd ===true && ( 
+                          >
+                            {/* {user.pulseAccessInd ===true && (  */}
                             <MonitorHeartIcon className=" !text-icon text-[#df9697]"/>
-                             )}
+                             {/* )} */}
                           </span>
                         </Tooltip>
-                      </>
-                    )}
-                            </div></div> </div>
+                    </div></div> </div>
                       </div>
                     </div>
                     )
                 })}
       </div>
-      </div>
-          {this.state.show && (
+      {/* {this.state.show && (
             <PlacementDetails
                  candidateId={this.state.candidateId}
             stageList={this.state.stageList}
@@ -331,7 +314,19 @@ class PlacementTable extends Component {
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
             />
-          )}
+          )} */}
+      </div>
+      <AddPlacementPulseModal
+       candidateId={this.state.candidateId}
+       stageList={this.state.stageList}
+       profileId={this.state.profileId}
+       translateText={this.props.translateText}
+       selectedLanguage={this.props.selectedLanguage}
+      handlePlacementPulseModal={this.props.handlePlacementPulseModal}
+      updatePlacementModal={this.props.updatePlacementModal}
+
+      />
+         
       </>
     );
   }
@@ -343,12 +338,14 @@ const mapStateToProps = ({ candidate,auth }) => ({
   user: auth.userDetails,
   fetchingPlacementError:candidate.fetchingPlacementError,
   candidateId: candidate.candidate.candidateId,
+  updatePlacementModal:candidate.updatePlacementModal
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
        getPlacement,
+       handlePlacementPulseModal
     },
     dispatch
   );

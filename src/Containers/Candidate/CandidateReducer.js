@@ -262,6 +262,9 @@ const initialState = {
   fetchingActivityCandidateError: false,
   activityCandidate: [],
 
+
+  updatePlacementModal:false,
+
   fetchingCandidatesTreeMap:false,
   fetchingCandidatesTreeMapError:false,
   candidateTreeMap:{},
@@ -717,6 +720,10 @@ export const candidateReducer = (state = initialState, action) => {
         addingCandidateEmploymentDetails: false,
         addingCandidateEmploymentDetailsError: true,
       };
+
+
+       case types.HANDLE_PLACEMENT_PULSE_MODAL:
+              return { ...state, updatePlacementModal: action.payload };
 
     //FETCH CANDIDATE EMPLOYMENT DETAILS
     case types.GET_CANDIDATE_EMPLOYMENT_DETAILS_REQUEST:

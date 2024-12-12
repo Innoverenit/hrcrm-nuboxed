@@ -39,3 +39,12 @@ const mappropsToProps = ({ candidate }) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mappropsToProps, mapDispatchToProps)(PlacementDetails);
+
+
+
+
+
+
+
+
+
