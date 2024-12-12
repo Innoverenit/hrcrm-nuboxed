@@ -289,6 +289,20 @@ const ContactActionLeft = (props) => {
             <Option value="descending">Z To A</Option>
           </StyledSelect>
         </div>
+         {/* <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDepartmentFocus}
+  autoFocus
+>
+{props.departments.map((country) => (
+   <Option key={country.departmentId} value={country.departmentId}>
+  {country.departmentName}
+   </Option>
+ ))}
+</Select> */}
     </div>
   );
 };
