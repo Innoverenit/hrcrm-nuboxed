@@ -6,6 +6,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import SkillBarChatModal from "../../OpportunityTab/Recruitment/Child/SkillBarChartModal";
 import AddRequirementModal from "./AddRequirementModal";
 import DeleteIcon from '@mui/icons-material/Delete';
+import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import AddRequirementDetailModal from "../Recruitment/AddRequirementDetailModal";
 import {
@@ -763,7 +764,10 @@ class RecruitmentTable extends Component {
                       this.props.handleBarChartOrderModal(true);
                     }}
                   >
-                    <HelpIcon style={{ fontSize: "1rem" }} />
+                    <HelpIcon 
+                    // style={{ fontSize: "1rem" }} 
+                    className="cursor-pointer !text-icon text-[blue]"
+                    />
                   </span>
                 </Tooltip>
               </span>
@@ -816,7 +820,9 @@ class RecruitmentTable extends Component {
                       this.props.handleRecruiterModal(true);
                     }}
                   >
-                    <PsychologyAltIcon style={{ fontSize: "1rem" }} />
+                    <InterpreterModeIcon 
+                  className="cursor-pointer !text-icon text-[orange]"
+                    />
                   </span>
                 )}
               </>
