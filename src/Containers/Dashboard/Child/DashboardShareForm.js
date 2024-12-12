@@ -2,7 +2,13 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDashUserlist,getJumpBulblist2,
-  getJumpBulblist,getTasklist,getJumpTasklist,getJumpCustomerlist,getJumpCustomerlist2
+  getJumpBulblist,getTasklist,getJumpTasklist,getJumpCustomerlist,getJumpCustomerlist2,
+  getQuotationDashboard,
+  getQuotationDashboardCount,
+  getTaskDashboard,
+ getDealDashboard,
+ getOrderDashboard,
+ getOrderDashboardCount,
 } from "../DashboardAction";
 import {
   getTasks
@@ -30,23 +36,39 @@ function DashboardShareForm(props) {
   useEffect(() => {
     props.getDashUserlist(props.orgId);
 
-  }, []);
+  }, [props.orgId]);
 
-  const [selectedUser,setselectedUser]=useState("");
+  const [selectedUser,setselectedUser]=useState(props.userId);
+
   function handleSelect(usr){
+    const userIdToUse = usr === "all" ? props.userId : usr;
+
     const startDate = `${startDatestart.format("YYYY-MM-DD")}T20:00:00Z`
     const endDate = `${endDateend.format("YYYY-MM-DD")}T20:00:00Z`
-    setselectedUser(usr)
-    props.getJumpBulblist(usr,startDate,endDate)
-   props.getJumpBulblist2(usr,startDate,endDate)
-  props.getTasklist(usr)
-   props.getJumpTasklist(usr,startDate,endDate)
-   props.getTasks(usr)
-   props.getJumpTasklist(usr,startDate,endDate)
- props.getJumpCustomerlist(usr, startDate, endDate)
-props.getJumpCustomerlist2(usr, startDate, endDate)
+
+setselectedUser(userIdToUse);
+
+ if(props.activeButton==="task") {
+    props.getJumpBulblist(userIdToUse,startDate,endDate);
+   props.getJumpBulblist2(userIdToUse,startDate,endDate);
+  props.getTasklist(userIdToUse);
+   props.getJumpTasklist(userIdToUse,startDate,endDate);
+   props.getTasks(userIdToUse);
+   props.getJumpTasklist(userIdToUse,startDate,endDate);
+ props.getJumpCustomerlist(userIdToUse, startDate, endDate);
+props.getJumpCustomerlist2(userIdToUse, startDate, endDate);}
+ else if(props.activeButton==="Summary"){
+     props.getQuotationDashboard(userIdToUse);
+     props.getQuotationDashboardCount(userIdToUse);
+     props.getTaskDashboard(userIdToUse, "0");
+    props.getTasklist(userIdToUse);
+    props.getDealDashboard(userIdToUse);
+    props.getOrderDashboard(userIdToUse, "procure");
+    props.getOrderDashboardCount(userIdToUse, "procure");
+ }
 
   }
+
 console.log("usrrr",selectedUser)
   return (
     <>
@@ -56,6 +78,7 @@ console.log("usrrr",selectedUser)
         placeholder="Select to View"
         onChange={(e) => handleSelect(e)}
       >
+        <Option value={"all"}>{"All"} </Option>
         {props.dashboardUserlist.map((item) => {
           return <Option value={item.employeeId}>{item.empName} </Option>;
         })}
@@ -83,8 +106,13 @@ const mapDispatchToProps = (dispatch) =>
       getJumpTasklist,
       getJumpBulblist2,
       getJumpCustomerlist2,
-      getJumpCustomerlist
-
+      getJumpCustomerlist,
+      getQuotationDashboard,
+      getQuotationDashboardCount,
+      getTaskDashboard,
+     getDealDashboard,
+     getOrderDashboard,
+     getOrderDashboardCount,
 
     },
     dispatch

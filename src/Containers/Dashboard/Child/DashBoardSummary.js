@@ -29,6 +29,8 @@ import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,
   getOrderDashboard,getOrderDashboardCount,getBestDashboardCount,getReorderDashboardCount
 } from "../../Dashboard/DashboardAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { base_url2 } from "../../../Config/Auth";
+import axios from "axios";
 
 const ButtonGroup = Button.Group;
 const DashBoardSummary=(props) =>{
@@ -36,6 +38,7 @@ const DashBoardSummary=(props) =>{
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+ 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -64,23 +67,64 @@ const DashBoardSummary=(props) =>{
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+
+  const [BestBefore, setBestBefore] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+  const [error1,setError1]=useState(null);
+
+    const fetchBestBefore = async (Ids) => {
+      try {
+        const response = await axios.get(`${base_url2}/po/getBestBeforeItemList/${Ids}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setBestBefore(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError1(error);
+        setLoading1(false);
+      }
+    };
+
   useEffect(() => {
-
-
-    props.getQuotationDashboard(props.userId);
-    props.getQuotationDashboardCount(props.userId)
-    props.getMaterialBestBefore(props.locationId)
-    props.getBestDashboardCount(props.locationId)
-    props.getTaskDashboard(props.userId,page)
-    props.getTasklist(props.userId)
-    props.getReorderdata()
-    props.getDealDashboard(props.userId)
-    props.getReorderDashboardCount()
-    props.getDealDashboardCount(props.userId)
-    props.getOrderDashboard(props.userId,"procure")
-    props.getOrderDashboardCount(props.userId,"procure")
-    props.getPriceUpdated(props.locationId)
-  }, []);
+    const fetchData = async () => {
+      if (props.viewType === "ME") {
+        console.log("Fetching for user", props.viewType);
+        props.getQuotationDashboard(props.userId);
+        props.getQuotationDashboardCount(props.userId);
+        props.getMaterialBestBefore(props.locationId);
+        props.getBestDashboardCount(props.locationId);
+        props.getTaskDashboard(props.userId, page);
+        props.getTasklist(props.userId);
+        props.getReorderdata();
+        props.getDealDashboard(props.userId);
+        props.getReorderDashboardCount();
+        props.getDealDashboardCount(props.userId);
+        props.getOrderDashboard(props.userId, "procure");
+        props.getOrderDashboardCount(props.userId, "procure");
+        props.getPriceUpdated(props.locationId);
+        fetchBestBefore(props.userId);
+      } else if (props.viewType === "ALL") {
+        console.log("Fetching for organization", props.viewType);
+        props.getQuotationDashboard(props.orgId);
+        props.getQuotationDashboardCount(props.orgId);
+        props.getTaskDashboard(props.orgId, page);
+        props.getTasklist(props.orgId);
+        props.getReorderdata();
+        props.getDealDashboard(props.orgId);
+        props.getReorderDashboardCount();
+        props.getDealDashboardCount(props.orgId);
+        props.getOrderDashboard(props.orgId, "procure");
+        props.getOrderDashboardCount(props.orgId, "procure");
+        props.getPriceUpdated(props.locationId);
+        fetchBestBefore(props.orgId);
+      }
+    };
+  
+    fetchData();
+  }, [props.viewType, props.userId, props.orgId, props.locationId, page]);
+  
 
 
   const handleLoadMore = () => {
@@ -90,8 +134,12 @@ const DashBoardSummary=(props) =>{
       {
         if (page < callPageMapd) {    
     setPage(page + 1);
-    props.getTaskDashboard(props.userId,page)
-            }
+    if (props.viewType === "ME") {
+      props.getTaskDashboard(props.userId, page);
+    } else if (props.viewType === "ALL") {
+      props.getTaskDashboard(props.orgId, page);
+    }
+     }
               if (page === callPageMapd){
                 setHasMore(false)
               }
@@ -471,7 +519,8 @@ const mapStateToProps = ({ dashboard,inventory, auth ,supplies}) => ({
   user: auth.userDetails,
   locationId:auth.userDetails.locationId,
   priceUpdated:supplies.priceUpdated,
-  fetchingPriceUpdated:supplies.fetchingPriceUpdated
+  fetchingPriceUpdated:supplies.fetchingPriceUpdated,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getQuotationDashboard,

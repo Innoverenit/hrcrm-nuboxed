@@ -311,7 +311,7 @@ const DashboardActionLeft = (props) => {
                 </span>
               
   )} */}
-              {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
+              {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm activeButton={props.activeButton}/></Suspense> }
             </>
          
         ) : (
