@@ -259,7 +259,7 @@ const LeadsTeamColdCard = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex  w-[14rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                  <div className=" flex  w-[14.4rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-1 ">
                       <div>
                          <MultiAvatar
@@ -422,7 +422,7 @@ const LeadsTeamColdCard = (props) => {
                    </div>
                       </div>
          
-                      <div className=" flex w-[3.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                      <div className=" flex w-[4.7rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -536,7 +536,7 @@ const LeadsTeamColdCard = (props) => {
                           title={translatedMenuItems[19]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                             <Tooltip title="Delete">
-                            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                            <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                               </Tooltip>
                         </StyledPopconfirm>
                       </div>

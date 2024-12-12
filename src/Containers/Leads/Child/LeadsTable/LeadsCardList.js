@@ -258,13 +258,13 @@ const LeadsCardList = (props) => {
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
             {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[19.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
+        <div className=" w-[19.9rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
           {translatedMenuItems[4]}</div>
-        <div className=" w-[13.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+        <div className=" w-[14.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/>
          {translatedMenuItems[5]}</div> 
-        <div className= " w-[11.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[13.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/>
          {translatedMenuItems[6]}</div> 
         <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
@@ -285,7 +285,7 @@ const LeadsCardList = (props) => {
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
           {translatedMenuItems[11]}</div>
       
-        <div className="w-12"></div>
+        <div className="w-4"></div>
 </div>
       </div>
       <InfiniteScroll
@@ -465,7 +465,7 @@ const LeadsCardList = (props) => {
                     ) : null}
                   </div>
 
-                  <div className=" flex   w-[7.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                  <div className=" flex   w-[8.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.sector}
                     </div>
@@ -474,7 +474,7 @@ const LeadsCardList = (props) => {
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                  
                   
-                  <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                  <div className=" flex   w-[7.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
            
            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.source}
@@ -701,13 +701,13 @@ const LeadsCardList = (props) => {
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
             {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[19.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
+        <div className=" w-[19.9rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
           {translatedMenuItems[4]}</div>
-        <div className=" w-[13.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+        <div className=" w-[14.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/>
          {translatedMenuItems[5]}</div> 
-        <div className= " w-[11.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[13.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/>
          {translatedMenuItems[6]}</div> 
         <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
@@ -728,7 +728,7 @@ const LeadsCardList = (props) => {
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
           {translatedMenuItems[11]}</div>
       
-        <div className="w-12"></div>
+        <div className="w-4"></div>
 </div>
       </div>
       <InfiniteScroll
@@ -908,7 +908,7 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex   w-[7.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                <div className=" flex   w-[8.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
                   <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
                   </div>
@@ -917,7 +917,7 @@ const LeadsCardList = (props) => {
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                
                 
-                <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                <div className=" flex   w-[7.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.source}
@@ -1145,13 +1145,13 @@ const LeadsCardList = (props) => {
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
             {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[19.5rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
+        <div className=" w-[19.9rem] truncate max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
           {translatedMenuItems[4]}</div>
-        <div className=" w-[13.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+        <div className=" w-[14.8rem] truncate max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/>
          {translatedMenuItems[5]}</div> 
-        <div className= " w-[11.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+        <div className= " w-[13.91rem] truncate max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
            <SourceIcon className="!text-icon  text-[#4b5043]"/>
          {translatedMenuItems[6]}</div> 
         <div className= " w-[9.82rem] truncate max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
@@ -1172,7 +1172,7 @@ const LeadsCardList = (props) => {
           <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
           {translatedMenuItems[11]}</div>
       
-        <div className="w-12"></div>
+        <div className="w-4"></div>
 </div>
       </div>
       <InfiniteScroll
@@ -1351,7 +1351,7 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex   w-[7.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                <div className=" flex   w-[8.35rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
                   <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
                   </div>
@@ -1360,7 +1360,7 @@ const LeadsCardList = (props) => {
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                
                 
-                <div className=" flex   w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                <div className=" flex   w-[7.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
            {item.source}
