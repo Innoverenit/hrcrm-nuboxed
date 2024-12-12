@@ -123,7 +123,7 @@ const InventoryMaterialDamagedData = (props) => {
                     > */}
                      {materialDamage.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
-                            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                            // const date= dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">

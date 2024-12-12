@@ -142,7 +142,7 @@ const LocationCard = (props) => {
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" max-md:w-[3.9rem]  w-[3.9rem] ">
+            <div className=" max-md:w-[3.9rem]  w-[4.9rem] ">
             <OnDeviceTrainingIcon className=" !text-icon text-[#06D6A0]"/> {translatedMenuItems[3]}{/* Refurbish */}
             </div>
             <div className="max-md:w-[4.5rem]  w-[4.5rem]">
@@ -156,7 +156,7 @@ const LocationCard = (props) => {
             <ApartmentIcon className="!text-icon text-[#9B2226] "/>
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="max-md:w-[3.3rem] w-[3.3rem] ">
+            <div className="max-md:w-[3.3rem] w-[4.3rem] ">
             < AccountTreeIcon  className="!text-icon text-[#EF476F]"/>
             {translatedMenuItems[7]} {/* Project */}
               </div>
