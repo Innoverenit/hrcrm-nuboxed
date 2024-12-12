@@ -9,6 +9,7 @@ import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotati
   getSourceCountAcc,
   getCategoryCountAcc
 } from "./DashboardAction";
+
 const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
 const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));
@@ -219,15 +220,23 @@ class Dashboard extends Component {
         translateText={this.props.translateText}
         />
             
-            {this.state.activeButton==="Summary" ?
+            {viewType==="ME" && this.state.activeButton==="Summary" ?
          <div>
              <DashBoardSummary
               buttonName={buttonName} 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
+              viewType={viewType}
              />
-              </div>
-              :
+              </div> :
+              viewType==="ALL" && this.state.activeButton==="Summary" ? <div>
+                <DashBoardSummary
+              buttonName={buttonName} 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+              viewType={viewType}
+             />
+              </div>:
               this.state.activeButton==="totaLists" ? 
                 (<Totalists  selectedLanguage={this.props.selectedLanguage}
                  translateText={this.props.translateText}
@@ -251,7 +260,7 @@ class Dashboard extends Component {
             // ( <DashboardJumpstart 
             //  selectedLanguage={this.props.selectedLanguage}
             //  translateText={this.props.translateText}/>)
- 
+            
               this.state.activeButton==="Procure" ?
              (<DashboardProcureJumpstartUser
               selectedLanguage={this.props.selectedLanguage}
@@ -803,7 +812,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   fetchingOpenQuotationYear:dashboard.fetchingOpenQuotationYear,
   timeRangeType: dashboard.timeRangeType,
   sourceCountAcc:dashboard.sourceCountAcc,
-  categoryCountAcc:dashboard.categoryCountAcc
+  categoryCountAcc:dashboard.categoryCountAcc,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
