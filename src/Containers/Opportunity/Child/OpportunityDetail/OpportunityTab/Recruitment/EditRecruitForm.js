@@ -4,8 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
-
+import { useJsApiLoader } from "@react-google-maps/api";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -22,6 +21,10 @@ import { TextareaComponent } from "../../../../../../Components/Forms/Formik/Tex
 const OpportunitySchema = Yup.object().shape({});
 
 function EditRecruitForm(props) {
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
+    libraries: ["places"], // Ensure the 'places' library is loaded
+  });
   const currency = props.currencies.map((item) => {
     return {
       label: item.currencyName || "",
@@ -33,7 +36,8 @@ function EditRecruitForm(props) {
     props.getCurrency();
   }, []);
   // console.log("djbhfkdhg", props.currentRecruitmentData);
-
+  if (!isLoaded) return <div>Loading...</div>;
+  if (loadError) return <div>Error loading Google Maps API</div>;
   return (
     <>
       <Formik

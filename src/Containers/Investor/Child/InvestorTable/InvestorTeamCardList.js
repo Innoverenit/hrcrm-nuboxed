@@ -7,13 +7,14 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select,Checkbox } from "antd";
+import { Tooltip, Select,Checkbox,Input,Switch } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-
+import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
+import { getSectors } from "../../../../Containers/Settings/Sectors/SectorsAction";
 import {
   MultiAvatar,
   MultiAvatar2 } from "../../../../Components/UI/Elements";
@@ -38,7 +39,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData,handleInvestorPriceDrawer} from "../../InvestorAction";
+  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData,handleInvestorPriceDrawer,UpdateInvestor} from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
@@ -74,6 +75,10 @@ function InvestorTeamCardList(props) {
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState(""); 
+  const [touchedSector, setTouchedSector] = useState(false);
+  const [touchedSource, setTouchedSource] = useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -165,6 +170,89 @@ function InvestorTeamCardList(props) {
             }, 100);
   }
 
+  const handleEditRowField = (investorId, field, currentValue) => {
+    setEditableField({ investorId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { investorId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+    } else if (field === 'source') {
+      mappedField = 'source';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.UpdateInvestor(updatedData,investorId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { investorId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+      } else if (field === 'source') {
+        mappedField = 'source';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.UpdateInvestor(updatedData,investorId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleContract = async (checked, investorId) => {
+    const newCategory = checked ? "Institutional" : "Private";
+  
+    // Map the field to the correct key
+    //  if (field === 'name') {
+    //   mappedField = 'name'; 
+    const mappedField = "pvtAndIntunlInd";
+    const updatedData = { [mappedField]: newCategory }; // Update the value with toggle state
+  
+    // Call the prop function to update the data
+    props.UpdateInvestor(updatedData, investorId);
+  
+    // Optionally reset any temporary state (if required)
+    setEditableField(null);
+  };
+  const handleSelectSectorFocus = () => {
+    if (!touchedSector) {
+      props.getSectors();
+      setTouchedSector(true);
+    }
+  };
+  const handleSelectSourceFocus = () => {
+    if (!touchedSource) {
+      props.getSources(props.orgId);
+      setTouchedSource(true);
+    }
+  };
+
+  
   const {
     fetchingTeamInvestor,
     teamInvestor,
@@ -364,7 +452,28 @@ function InvestorTeamCardList(props) {
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                   
-       
+  <div>
+                      {editableField?.investorId === item.investorId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.investorId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
         {date === currentdate ? (
           <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
             New
@@ -380,7 +489,32 @@ function InvestorTeamCardList(props) {
                                 <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs ml-gap  font-poppins max-sm:text-sm">   
-                                    {item.sector}
+                                    {/* {item.sector} */}
+                                    <div>
+{editableField?.investorId === item.investorId && editableField?.field === 'sector' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSectorFocus}
+  autoFocus
+>
+{props.sectors.map((item) => (
+   <Option key={item.sectorId} value={item.sectorId}>
+  {item.sectorName}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.investorId, 'sector', item.sector)} 
+className="cursor-pointer text-xs font-poppins">
+{item.sector || "Update..."}
+
+</div>         
+                        )}
+                      </div>
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.30rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
@@ -402,13 +536,61 @@ function InvestorTeamCardList(props) {
                                    {/* Category */}
 
                                     <div class=" text-xs justify-center ml-gap font-poppins max-sm:text-sm">
-                                    {Category}
+                                    {/* {Category} */}
+                                    <div>
+  {editableField?.investorId === item.investorId && editableField?.field === 'Category' ? (
+    <Switch
+      style={{ width: "6.25em", marginLeft: "0.625em" }}
+      onChange={(checked) => handleContract(checked, item.investorId)}
+      checked={Category === "Institutional"} // Assuming `category` has values like "Institutional" or "Private"
+      checkedChildren="Institutional"
+      unCheckedChildren="Private"
+      onBlur={() => handleEditRowField(null, null, null)}
+      autoFocus
+    />
+  ) : (
+    <div
+      onClick={() =>
+        handleEditRowField(item.investorId, 'Category', Category)
+      }
+      className="cursor-pointer text-xs font-poppins"
+    >
+      {Category || "Update..."}
+    </div>
+  )}
+</div>
+
                                     </div>
                                 </div>
                                 <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-sm:text-sm">
-                                    {item.source}
+                                    {/* {item.source} */}
+                                    <div>
+{editableField?.investorId === item.investorId && editableField?.field === 'source' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSourceFocus}
+  autoFocus
+>
+{props.sources.map((item) => (
+   <Option key={item.sourceId} value={item.sourceId}>
+  {item.name}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.investorId, 'source', item.source)} 
+className="cursor-pointer text-xs font-poppins">
+{item.source || "Update..."}
+
+</div>         
+                        )}
+                      </div>
                                     </div>
                                 </div>
                          
@@ -687,10 +869,12 @@ const mapStateToProps = ({
   sector,
   opportunity,
   employee,
-  investor
+  investor,
+  source
 }) => ({
   userId: auth.userDetails.userId,
   teamInvestor:investor.teamInvestor,
+  sources: source.sources,
   addDrawerInvestorNotesModal:investor.addDrawerInvestorNotesModal,
   fetchingAllCustomers: customer.fetchingAllCustomers,
   sectors: sector.sectors,
@@ -698,6 +882,7 @@ const mapStateToProps = ({
   fetchingInvestorsError: investor.fetchingInvestorsError,
   updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
+  orgId: auth.userDetails.organizationId,
   priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,
   investorSerachedData:investor.investorSerachedData,
@@ -726,7 +911,10 @@ const mapDispatchToProps = (dispatch) =>
       handleInvestorContModal,
       handleInvestorAddressDrawerModal,
       handleInvestorPriceDrawer,
-      getTeamUserList
+      getTeamUserList,
+      UpdateInvestor,
+      getSectors,
+      getSources
     },
     dispatch
   );

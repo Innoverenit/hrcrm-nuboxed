@@ -3,23 +3,21 @@ import { connect } from "react-redux";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { bindActionCreators } from "redux";
 import {
-  StyledTable,
-} from "../../../../../../Components/UI/Antd";
-import {
   Tooltip,
   Input, Button,
   message,
   Badge,
 } from "antd";
-import { Link } from "../../../../../../Components/Common";
+import { Link } from "../../../../../Components/Common";
 import Highlighter from 'react-highlight-words';
 import dayjs from "dayjs";
-import { getCustomerRecruit } from "../../../../CustomerAction";
+import { getCustomerRecruit } from "../../../../Customer/CustomerAction";
 import SearchIcon from '@mui/icons-material/Search';
-import { MultiAvatar } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../../Components/UI/Elements";
+import { StyledTable } from "../../../../../Components/UI/Antd";
 
 
-class RecruitmentTable extends Component {
+class RecruitProContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -394,4 +392,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecruitmentTable);
+export default connect(mapStateToProps, mapDispatchToProps)(RecruitProContact);

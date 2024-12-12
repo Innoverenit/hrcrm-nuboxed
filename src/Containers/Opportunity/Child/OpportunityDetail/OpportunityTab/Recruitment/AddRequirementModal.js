@@ -19,8 +19,6 @@ const AddRequirementModal = (props) => {
         visible={props.addRequirementModal}
         maskClosable={false}
         destroyOnClose
-        maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{ top: 40 }}
         onClose={() => props.handleAddRequirementModal(false)}
         footer={null}
       >
