@@ -59,13 +59,13 @@ const ContactActionLeft = (props) => {
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       if (props.viewType === "table") {
-      props.inputContactDataSearch(currentData,"table","customer");
+      props.inputContactDataSearch(currentData,"user","customer");
       }
       else if (props.viewType === "teams") {
-        props.inputContactDataSearch(currentData,"teams","customer");
+        props.inputContactDataSearch(currentData,"team","customer");
         }
         else if (props.viewType === "all") {
-          props.inputContactDataSearch(currentData,"all","customer");
+          props.inputContactDataSearch(currentData,"All","customer");
           }
       setSearchOnEnter(true);  
     } 
