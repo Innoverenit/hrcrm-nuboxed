@@ -54,16 +54,16 @@ function RemarkForm(props) {
           score:props.sentiment.score,
           userId:props.userId,
           note: props.sentiment.feedback,
-          candidateId:props.candidateId,
+          // candidateId:props.candidateId,
            //note:transcript?transcript:text,
-          profileId: props.profileId,
+          // profileId: props.profileId,
         }}
         validationSchema={ProfileSchema}
         onSubmit={(values, { resetForm }) => {
           props.addRemark({...values,
             //note:transcript?transcript:text
           }, 
-            props.profileId,
+            // props.profileId,
             );
         }}
       >

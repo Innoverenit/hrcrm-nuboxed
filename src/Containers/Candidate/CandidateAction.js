@@ -16,6 +16,15 @@ export const handleCandidateModal = (modalProps) => (dispatch) => {
 };
 
 
+export const handlePlacementPulseModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PLACEMENT_PULSE_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
 export const handleCandidatesTasksDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CANDIDATES_TASKS_DRAWER_MODAL,
