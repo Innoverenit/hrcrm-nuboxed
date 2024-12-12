@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch ,Select} from "antd";
 import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
-
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
-import SpeechRecognition, {
+import {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
@@ -15,6 +14,9 @@ import { getUnits } from "../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {
   addTask,
   updateTask,
@@ -29,7 +31,6 @@ import {
   getTaskForWorkflow,
  } from "../../Settings/SettingsAction";
 import { handleChooserModal } from "../../Planner/PlannerAction";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
@@ -53,23 +54,16 @@ function TaskForm (props) {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
-
-
   const [include, setInclude] = useState([]);
 const [isLoadingInclude, setIsLoadingInclude] = useState(false);
 const [touchedInclude, setTouchedInclude] = useState(false);
 const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
-
-  const [contact, setContact] = useState([]);
+const [contact, setContact] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
   const [isLoadingContact, setIsLoadingContact] = useState(false);
   const [touchedContact, setTouchedContact] = useState(false);
-
-
   const [opportunity, setOpportunity] = useState([]);
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
-//   const[selectedTaskType,setselectedTaskType]=useState("")
-// const[selectedWorkflow,setselectedWorkflow]=useState("");
 const[workflow,setworkflow]=useState([]);
 const[active,setactive]=useState(props.selectedTask ? props.selectedTask.taskStatus
   : "To Start");
@@ -87,11 +81,7 @@ const [priority,setpriority]=useState(props.selectedTask
     : "Email");
   const[reminder,setreminder]=useState(true);
   useEffect(()=> {
-    // props.getAssignedToList(props.orgId);
-      props.getTaskForStages();
-      // props.getAllCustomerData(userId)
-      // props.getAllOpportunityData(userId)
-      // props.getFilteredEmailContact(userId);
+    props.getTaskForStages();
     props.getProjectTaskList(props.orgId);
     props.getTasks();
     props.getUnits(props.orgId);
@@ -116,8 +106,7 @@ const [priority,setpriority]=useState(props.selectedTask
          "73" ,// "Contact",//10
         "99" , // "Opportunity",//11
          "91" ,// "Link",//12
-        "73"  // "Contact",//13
-         
+        "73"  // "Contact",//13       
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -228,9 +217,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
     return listOptions;
   };
-  
-
-
   const handlecandidateOptions = (filterOptionKey, filterOptionValue) => {
     const candidateOptions =
       props.candidateFilterTaskList.length &&
@@ -251,10 +237,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
     return candidateOptions;
   };
-
-
- 
-  
     console.log(selectedWorkflow)
     console.log(selectedTaskType)
     const customerData = props.customerTaskList
@@ -267,7 +249,6 @@ const [priority,setpriority]=useState(props.selectedTask
         if (customerNameA > customerNameB) {
           return 1;
         }
-
         // names must be equal
         return 0;
       })
@@ -366,9 +347,6 @@ const [priority,setpriority]=useState(props.selectedTask
        setTouchedCustomer(true);
      }
    };
- 
- 
- 
    const fetchContact = async (customerId) => {
      setIsLoadingContact(true);
      try {
@@ -390,7 +368,6 @@ const [priority,setpriority]=useState(props.selectedTask
        setIsLoadingContact(false);
      }
    };
- 
  
    const handleSelectChangeContact = (value) => {
      setSelectedContact(value)
@@ -427,17 +404,13 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
      }
    };
  
- 
    const handleSelectChangeOpportunity = (value) => {
      setSelectedOpportunity(value)
      console.log('Selected user:', value);
    };
  
    const handleSelectOpportunityFocus = () => {
-     if (!touchedOpportunity) {
-      
-      //  fetchOpportunity();
- 
+     if (!touchedOpportunity) {    
        setTouchedOpportunity(true);
      }
    };
@@ -520,8 +493,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   startTime: startDate || null,
                   endTime: endDate || null,
                   value: "",
-                  assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                
+                  assignedTo: selectedOption ? selectedOption.employeeId:userId,                
                 }
           }
           // validationSchema={TaskSchema}
@@ -605,9 +577,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
               ? updateTask(
                   prefillTask.taskId,
                   {
-                    ...values,
-                   
-                   
+                    ...values,                                   
                     // taskTypeId: "",
                     taskStatus: active,
                     priority: priority,
@@ -656,15 +626,12 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
           }) => (
             <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
-              <div class="flex justify-around pr-2 max-sm:flex-col">
-               
-                <div class=" h-full w-w47.5 max-sm:w-wk">
-              
+              <div class="flex justify-around pr-2 max-sm:flex-col">             
+                <div class=" h-full w-w47 max-sm:w-wk">             
                   <div class=" flex justify-between ">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <FastField name="imageId" component={Upload} />
                     )}
-
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-4/6 max-sm:w-wk">
                         <Field
@@ -686,8 +653,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                    
                      <div class="flex">
                        <Tooltip title="High">
-                         <Button
-                           
+                         <Button                      
                             shape="circle"
                            onClick={() => handleButtonClick("High")}
                            style={{
@@ -700,32 +666,17 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Medium">
-                         <Button
-                           
-                            shape="circle"
-             
+                         <Button className="bg-[orange] rounded"                        
+                            shape="circle"        
                            onClick={() => handleButtonClick("Medium")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
                          />
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Low">
-                         <Button
-                           
-                            shape="circle"
-                   
+                         <Button className=" rounded bg-[teal] "                          
+                            shape="circle"              
                            onClick={() => handleButtonClick("Low")}
-                           style={{
-                             backgroundColor:"teal",
-                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                 width: "31px", // Adjust the width as needed
-                                 height: "31px"
-                           }}
+                       
                          ></Button>
                        </Tooltip>
                      </div>
@@ -734,9 +685,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   {translatedMenuItems[1]} 
                           <Field
                             isRequired
-                            name="taskName"
-                            //label="Name"
-                           
+                            name="taskName"                     
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -747,13 +696,10 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                     {translatedMenuItems[2]} 
                       <Field
                         isRequired
-                        name="endDate"
-                        // label="End "
-                     
+                        name="endDate"                    
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
-                        // defaultValue={dayjs("2015-01-01")}
                         inlineLabel
                         style={{
                           width: "100%",
@@ -772,16 +718,10 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                           }
                         }}
                       />
-                    </div>
-                   
-                  </div>
-                 
-            
-                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">
-                   
-                  </div>
-              
-
+                    </div>                 
+                  </div>                        
+                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">                
+                  </div>            
 <div class=" flex justify-between ">
                                                  
              <div class=" w-[39.5%]  max-sm:w-wk ">
@@ -790,7 +730,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
              {translatedMenuItems[3]} 
                      </div>
                <select 
-                 style={{ border: "0.06em solid #aaa" }}
+                 style={{ border: "0.06em solid #aaa6" }}
                 onChange={handleTaskTypeChange}
                >
    <option value="">Select</option>
@@ -801,15 +741,13 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
    ))}
  </select>
                
-             </div>
-                   
-               <div class=" w-[40%] ml-2 max-sm:w-wk">
-                   
+             </div>               
+               <div class=" w-[40%] ml-2 max-sm:w-wk">                 
                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                {translatedMenuItems[4]}         
                      </div>
                    <select
-          style={{ border: "0.06em solid #aaa",width:"100%" }}
+          style={{ border: "0.06em solid #aaa6",width:"100%" }}
                 onChange={handleWorkflowChange}
                 disabled={filteredWorkflow.length === 0}
              >
@@ -817,54 +755,40 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
    {filteredWorkflow.map((item, index) => (
      <option key={index}
      // disabled
-   
       value={item.taskChecklistId}>
        {item.taskChecklistName}
      </option>
    ))}
- </select>
-                                         
-               </div>
-                    
-             <div class="w-[16%] ml-2">
-              
+ </select>                            
+               </div>           
+             <div class="w-[16%] ml-2">          
              <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-             {translatedMenuItems[5]}  
-               
+             {translatedMenuItems[5]}               
                </div>
-
-               <div class="w-[100%]">
+               <div className=" text-gray-500 font-poppins flex justify-start ">
                  <ButtonGroup>
                    <StatusIcon
-                     color="blue"
-                     type="To Start"
-                     iconType="fa-hourglass-start"
-                     tooltip="To Start"
-                     tooltipTitle="To Start"
-                       
+                       type="To Start"
+                       iconType={<HourglassEmptyIcon className="!text-icon" />}
+                     tooltip="To Start"                     
                      status={active}
                      onClick={() => glassButtoClick("To Start")}
                    />
 
                    <StatusIcon
                      type="In Progress"
-                     iconType="fa-hourglass-half"
-                     tooltip="In Progress"
-                     tooltipTitle="inprogress"
-                       
+                     iconType={<HourglassTopIcon className="!text-icon" />}
+                     tooltip="In Progress"                                      
                      status={active}
                      onClick={() => glassButtoClick("In Progress")}
                    />
 
                    <StatusIcon
-                     type="Completed"
-                     iconType="fa-hourglass"
-                     tooltip="Completed"
-                     tooltipTitle="completed"
-                       
+                    type="Completed"
+                    iconType={<HourglassBottomIcon className="!text-icon" />}
+                     tooltip="Completed"                                   
                      status={active}
-                     onClick={() => glassButtoClick("Completed")}
-                   
+                     onClick={() => glassButtoClick("Completed")}                
                    />
                  </ButtonGroup>
                </div>
@@ -883,47 +807,6 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                 setText={setText}
                 text={text}
                 />
-              {/* <div>
-            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</span>
-            <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                           >
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span> 
-                  
-                 
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea h-26"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
-                </div> */}
                   </div>
                      
                   <div class=" flex justify-between">
@@ -932,16 +815,13 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                         <Field
                           // isRequired
                           name="customerId"
-                          label="customer"
-                            
+                          label="customer"                           
                           isColumn
                           component={SelectComponent}
                           value={values.customerId}
                           options={
                             Array.isArray(customerData) ? customerData : []
                           }
-                          // use12Hours
-
                           inlineLabel
                           style={{
                             width: "100%",
@@ -1092,8 +972,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                               isColumn
                               value={values.assignedDate}
                               // defaultValue={dayjs("2015-01-01")}
-                              inlineLabel
-                            
+                              inlineLabel                          
                             />
                           </div>
                         )}
@@ -1103,9 +982,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   <div>                            
                  </div>
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-wk">
-                 
-            
+                <div class="h-full w-w47 max-sm:w-wk">                
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -1174,14 +1051,11 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
         )}
       </Listbox>
                                                           
-              <div class="mt-1" style={{display:"flex",flexDirection:"column"}}>
-                  
-
+              <div class="mt-1" style={{display:"flex",flexDirection:"column"}}>             
    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                    <Select
-          showSearch
-          
-          placeholder="Search or select include"
+          showSearch        
+          placeholder="Search or select"
           optionFilterProp="children"
           loading={isLoadingInclude}
           onFocus={handleSelectIncludeFocus}
@@ -1204,7 +1078,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
 {/* prospect */}
 <Select
         showSearch
-        placeholder="Search or select prospect"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingCustomer}
         onFocus={handleSelectCustomerFocus}
@@ -1225,10 +1099,9 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   <>
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                   {/* Contact */}
-
 <Select
         showSearch
-        placeholder="Search or select contact"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingContact}
         onFocus={handleSelectContactFocus}
@@ -1243,17 +1116,15 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
       </Select>
       </>
                   )} 
-                  </div>
-              
+                  </div>       
                   <div class="mt-3">
-                  {props.user.crmInd === true &&(
-             
+                  {props.user.crmInd === true &&(          
               <>
    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
 {/* Opportunity */}
               <Select
         showSearch
-        placeholder="Search or select opportunity"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
         disabled={!selectedCustomer}
@@ -1268,24 +1139,18 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
       </Select>
       </>
                   )} 
-                  </div>
-                
+                  </div>            
                      <div class="   mt-2">
                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                       <Field
                             type="text"
-                            name="link"
-                           
+                            name="link"                    
                             component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel
                           />
                       </div>
-                
-                 
-                  
-             
                   <div class="mt-3 flex justify-between">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2 font-bold">

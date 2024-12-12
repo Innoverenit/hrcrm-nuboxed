@@ -6,7 +6,7 @@ const EventForm = lazy(() => import("./EventForm"));
 const AddEventModal = (props) => {
   const { addEventModal, handleEventModal, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "50%";
   return (
     <>
       <StyledDrawer

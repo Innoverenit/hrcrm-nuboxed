@@ -27,7 +27,6 @@ export const InputComponent = ({
           </div>
         )}
         <TextInput
-        //style={{ height: "1.89em" }}
           layout={"vertical"}
           {...field}
           {...props}
@@ -50,14 +49,12 @@ export const InputComponent = ({
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
             <div class=" text-xs font-bold font-poppins"
-            //  style={{ flexBasis: labelWidth || "20%" }}
              >
               {label}
             </div>
           )}
 
           <TextInput
-         // style={{ height: "1.89em" }}
             layout={"vertical"}
             {...field}
             {...props}

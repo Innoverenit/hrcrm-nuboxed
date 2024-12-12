@@ -192,74 +192,42 @@ function EventForm (props) {
         value: item.customerId,
       };
     });
-const selectedOption = props.assignedToList.find((item) => item.empName === selected);
-
-const [customer, setCustomer] = useState([]);
+   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
+   const [customer, setCustomer] = useState([]);
    const [selectedCustomer, setSelectedCustomer] = useState(null);
    const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
    const [touchedCustomer, setTouchedCustomer] = useState(false);
-
    const [contact, setContact] = useState([]);
    const [selectedContact, setSelectedContact] = useState(null);
    const [isLoadingContact, setIsLoadingContact] = useState(false);
    const [touchedContact, setTouchedContact] = useState(false);
-
-
    const [opportunity, setOpportunity] = useState([]);
    const [selectedOpportunity, setSelectedOpportunity] = useState(null);
    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
-
    const [selectedValue, setSelectedValue] = useState('Prospect');
    const [include, setInclude] = useState([]);
   const [isLoadingInclude, setIsLoadingInclude] = useState(false);
   const [touchedInclude, setTouchedInclude] = useState(false);
   const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
-
-
-
-
   const [investor, setInvestor] = useState([]);
   const [selectedInvestor, setSelectedInvestor] = useState(null);
   const [isLoadingInvestor, setIsLoadingInvestor] = useState(false);
   const [touchedInvestor, setTouchedInvestor] = useState(false);
-
-
-
-
-
   const [investorContact, setInvestorContact] = useState([]);
   const [selectedContactInvestor, setSelectedContactInvestor] = useState(null);
   const [isLoadingContactInvestor, setIsLoadingCOntactInvestor] = useState(false);
-
-
   const [deal, setDeal] = useState([]);
   const [selectedDeal, setSelectedDeal] = useState(null);
   const [isLoadingDeal, setIsLoadingDeal] = useState(false);
-  
-
   const handleRadioChange = (e) => {
     setSelectedValue(e.target.value);
   };
 
-
-
-
-
-
-
   const handleSelectChangeInvestorContact = (value) => {
     setSelectedContactInvestor(value)
-   
-    // fetchContacts(value);
-    // fetchOpportunity(value)
-    // console.log('Selected user:', value);
   };
-
-
-
-
-  const handleSelectInvestorFocus = () => {
+ const handleSelectInvestorFocus = () => {
     if (!touchedInvestor) {
      
     fetchInvestor();
@@ -267,7 +235,6 @@ const [customer, setCustomer] = useState([]);
       setTouchedInvestor(true);
     }
   };
-
 
   const fetchInvestor = async () => {
     setIsLoadingInvestor(true);
@@ -296,14 +263,7 @@ const [customer, setCustomer] = useState([]);
     setSelectedInvestor(value)
     fetchContactInvestor(value);
     fetchDeal(value)
-    // fetchContacts(value);
-    // fetchOpportunity(value)
-    // console.log('Selected user:', value);
   };
-
-
-
-
 
   const fetchContactInvestor = async (value) => {
     setIsLoadingCOntactInvestor(true);
@@ -327,11 +287,6 @@ const [customer, setCustomer] = useState([]);
     }
   };
 
-
-
-
-
-
   const fetchDeal = async (value) => {
     setIsLoadingDeal(true);
     try {
@@ -353,7 +308,6 @@ const [customer, setCustomer] = useState([]);
       setIsLoadingDeal(false);
     }
   };
-
 
   const handleContactChange=(value)=>{
     setSelectedContact(value);
@@ -380,12 +334,9 @@ const [customer, setCustomer] = useState([]);
     }
   };
 
-
-
   const handleSelectChangeInclude = (values) => {
     setSelectedIncludeValues(values); // Update selected values
   };
-
 
   const handleSelectIncludeFocus = () => {
     if (!touchedInclude) {
@@ -393,7 +344,6 @@ const [customer, setCustomer] = useState([]);
       setTouchedInclude(true);
     }
   };
-
 
    const fetchCustomer = async () => {
     setIsLoadingCustomer(true);
@@ -433,8 +383,6 @@ const [customer, setCustomer] = useState([]);
     }
   };
 
-
-
   const fetchContact = async () => {
     setIsLoadingContact(true);
     try {
@@ -457,7 +405,6 @@ const [customer, setCustomer] = useState([]);
     }
   };
 
-
   const handleSelectChangeContact = (value) => {
     setSelectedContact(value)
     console.log('Selected user:', value);
@@ -471,8 +418,6 @@ const [customer, setCustomer] = useState([]);
       setTouchedContact(true);
     }
   };
-
-
 
   const fetchOpportunity = async (value) => {
     setIsLoadingOpportunity(true);
@@ -497,7 +442,6 @@ ${base_url}/opportunity/open/${value}`;
     }
   };
 
-
   const handleSelectChangeOpportunity = (value) => {
     setSelectedOpportunity(value)
     console.log('Selected user:', value);
@@ -516,7 +460,6 @@ ${base_url}/opportunity/open/${value}`;
       setTouchedOpportunity(true);
     }
   };
-
 
   const fetchContacts = async (value) => {
     setIsLoadingContacts(true);
@@ -540,12 +483,6 @@ ${base_url}/opportunity/open/${value}`;
     }
   };
 
-
-
-
-
- 
-   
 const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
       isEditing,
@@ -748,8 +685,8 @@ const {
           }) => (
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]  "  style={{scrollbarWidth:"thin"}}>
             <Form className="form-background max-sm:w-[90%]">
-              <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5  max-sm:w-wk">
+              <div class=" flex justify-around max-sm:flex-col">
+                <div class=" h-full w-w47  max-sm:w-wk">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
@@ -895,9 +832,7 @@ const {
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
                   
-                  <>
-                 
-
+                  <>              
 <Select
         showSearch
       
@@ -919,10 +854,8 @@ const {
                   </div>
                   <div class="mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
-                  {props.user.crmInd === true &&(
-             
+                  {props.user.crmInd === true &&(          
               <>
-
               <Select
         showSearch
       
@@ -944,9 +877,6 @@ const {
                   </div>
                   </div>
                    )}
-
-
-
 {selectedValue === 'Investor' && ( 
         <div>    
                    <div class="mt-3" >
@@ -954,15 +884,12 @@ const {
                     {/* {translatedMenuItems[7]} */}
 Investor
                    </div>
-                  {props.user.crmInd === true &&(
-              
+                  {props.user.crmInd === true &&(           
      <>        
-
-
 <Select
         showSearch
        
-        placeholder="Search or select investor"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingInvestor}
         onFocus={handleSelectInvestorFocus}
@@ -983,13 +910,11 @@ Investor
                     </div>
                   {props.user.crmInd === true &&(
                   
-                  <>
-                 
-
+                  <>                
 <Select
         showSearch
       
-        placeholder="Search or select contact"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingContactInvestor}
         disabled={!selectedInvestor}
@@ -1011,14 +936,12 @@ Investor
                     {/* {translatedMenuItems[9]} */}
                     Deal
                     </div>
-                  {props.user.crmInd === true &&(
-             
+                  {props.user.crmInd === true &&(            
               <>
-
               <Select
         showSearch
       
-        placeholder="Search or select deal"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingDeal}
         disabled={!selectedContactInvestor}
@@ -1039,7 +962,7 @@ Investor
                 
                                
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-wk ">
+                <div class="h-full w-w47 max-sm:w-wk ">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                 <div class="mt-1">
                  <Listbox value={selected} onChange={setSelected}>
