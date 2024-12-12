@@ -33,7 +33,7 @@ const StatusOfOrder = (props) => {
                           "1420", //  Receive Payment 5
                           "80",  //  "Yes"6
                           "81",  //  "No"7
-                          "1481",  //  Approve QC 8
+                          "1418",  //  Approve QC 8
                           "1417",  //  QC approved on 9
                           "1396", //  Advance as per Order10
                           "1085",  //  Received 11
@@ -301,7 +301,7 @@ const StatusOfOrder = (props) => {
                                                     //     qcRepairUserId: props.userId
                                                     // }, props.distributorId)}
                                                     >
-                                                      {translatedMenuItems[28]}  {/* Start Repair Without Approve */}
+                                                      {translatedMenuItems[25]}  {/* Start Repair Without Approve */}
                                                     </Button>
                                                     ) :
                                                     <b>{(orderStatus.qcRepairInd === 2 || orderStatus.qcRepairInd === 3) &&
