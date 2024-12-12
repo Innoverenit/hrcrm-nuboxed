@@ -51,9 +51,7 @@ import EmptyPage from "../../../Main/EmptyPage";
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
-const UpdateContactModal = lazy(() =>
-  import("../UpdateContact/UpdateContactModal")
-);
+
 
 function ContactCardList(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -223,24 +221,7 @@ function ContactCardList(props) {
     
   };
 
-  const handleSelectCustomerFocus = () => {
-    if (!touchedCustomer) {
-      props.getDesignations();
-      setTouchedCustomer(true);
-    }
-  };
-  const handleSelectCustomerDataFocus = () => {
-    if (!touched) {
-      props.getCustomerData(props.userId)
-      setTouched(true);
-    }
-  };
-  const handleSelectDepartmentFocus = () => {
-    if (!dtouched) {
-      props.getDepartments()
-      setDTouched(true);
-    }
-  };
+
 
   const {
     user,
@@ -255,7 +236,6 @@ function ContactCardList(props) {
     handleContactPulseDrawerModal,
     handleContactReactSpeechModal,
     addContactSpeechModal,
-    updateContactModal,
     contactCETdrawer
   } = props;
   
@@ -269,14 +249,14 @@ function ContactCardList(props) {
       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold sticky  z-10">
-      <div class=" flex justify-between w-[99%] font-bold  font-poppins !text-lm items-end ">
-        <div className=" w-[22.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div class=" flex justify-between w-[100%] font-bold  font-poppins !text-lm items-end ">
+        <div className=" w-[27.4rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[29.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[30.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
-        <div className="w-[24.1rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
+        <div className="w-[25.4rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
         {translatedMenuItems[2]}</div>
         {/* Designation */}
@@ -377,8 +357,9 @@ function ContactCardList(props) {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -461,15 +442,9 @@ No
            {item.noteScoreInd}
           
             </div>
-            )}
-                         
-                       
-                          </div>
-                       
-          
-             <div class="flex  items-center justify-center max-sm:justify-between max-sm:w-wk">
-          
-           
+            )}                   
+                          </div>     
+             <div class="flex  items-center justify-center max-sm:justify-between max-sm:w-wk">      
               <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
               <Tooltip title={translatedMenuItems[12]}>
  <NoteAltIcon
@@ -477,8 +452,7 @@ No
             onClick={() => {
             handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
-          }}
-          
+          }}         
         />
      </Tooltip>
      </div>
@@ -489,12 +463,10 @@ No
             onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
-          }}
-          
+          }}        
         />
      </Tooltip>
      </div>
- 
 <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
                 <Tooltip
                   title={translatedMenuItems[13]}
@@ -507,9 +479,7 @@ No
                     }}
                   />
                 </Tooltip>
-              </div>
-     
-                        
+              </div>                    
               <div class=" items-center justify-center bg-[#eef2f9] h-8  flex" >
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
@@ -535,8 +505,7 @@ No
     </Tooltip>
                   </div>
                <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
-                  <Tooltip title={item.emailId}>
-     
+                  <Tooltip title={item.emailId}> 
       <MailOutlineIcon
         type="mail"
         className=" !text-icon cursor-pointer text-[red]"
@@ -547,23 +516,7 @@ No
       />
      </Tooltip>
              </div>                               
-        {user.contactUpdateInd === true &&  user.crmInd === true && (
-      <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
-     
-      <Tooltip title={translatedMenuItems[14]}>
-        <BorderColorIcon
-          className=" !text-icon cursor-pointer text-[tomato]"
-            onClick={() => {
-            props.setEditContact(item);
-            handleUpdateContactModal(true);
-            handleSetCurrentContactId(item);
-            
-          }}
-        />
-      </Tooltip>
-
-      </div>
-        )}               
+                 
                 </div>
                       </div>
                   </div>
@@ -572,17 +525,6 @@ No
                       </InfiniteScroll>
       </div>
 
-
-      <UpdateContactModal
-        contactData={currentContactId}
-        // fullName={currentContactId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-        updateContactModal={updateContactModal}
-        handleUpdateContactModal={handleUpdateContactModal}
-        handleSetCurrentContactId={handleSetCurrentContactId}
-      />
        <AddContactNotesDrawerModal
         contactData={currentContact}
         // fullName={currentContactId}
@@ -668,7 +610,6 @@ const mapStateToProps = ({
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
   fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
-  updateContactModal: contact.updateContactModal,
   addDrawerContactNotesModal:contact.addDrawerContactNotesModal,
   designations: designations.designations,
   departments: departments.departments,

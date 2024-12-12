@@ -183,8 +183,6 @@ class Customer extends Component {
           selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}
         />
-        
-
         {teamsAccessInd ? (
             <CustomerTeamCardList
             handleCheckboxChange={this.handleCheckboxChange}

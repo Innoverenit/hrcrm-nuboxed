@@ -160,7 +160,7 @@ const filterData = filteredData.filter(item =>
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={"Loading..."}>
 
       {teamsAccessInd ? (
         <ContactTeamCardList

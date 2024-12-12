@@ -323,14 +323,14 @@ if (loading) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
-            <div class=" flex justify-between font-poppins w-[93%] items-end">
+            <div class=" flex justify-between font-poppins w-[92%] items-end">
          
-            <div className="truncate text-[#00A2E8] text-sm  w-[16.7rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8] text-sm  w-[16.3rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" truncate w-[13.5rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[13.1rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
@@ -338,7 +338,7 @@ if (loading) {
             <div className=" w-[3.9rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
               {/* CountryFlag */}
             </div>
-            <div className=" truncate w-[13.1rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" truncate w-[13rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
@@ -350,7 +350,7 @@ if (loading) {
              {/* "Source" */}
          
             </div>         
-            <div className=" truncate w-[8.5rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" truncate w-[10.5rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
@@ -367,7 +367,7 @@ if (loading) {
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className=" truncate w-[13.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+            <div className=" truncate w-[11.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon  text-[#667761]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
@@ -454,8 +454,9 @@ if (loading) {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -508,8 +509,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -525,7 +527,6 @@ className="cursor-pointer text-xs font-poppins">
                           `${item.countryDialCode} ${item.phoneNumber}`
                           } */}
                         </div>
-
                       </div>
                       <div className=" flex max-sm:w-auto  w-[3.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Country */}
@@ -540,19 +541,15 @@ className="cursor-pointer text-xs font-poppins">
                         <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
                           {item.sector}
                         </div>
-
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex max-sm:w-auto  w-[10.215rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm  ">
                           {item.source}
                         </div>
-
                       </div>
-                      <div className=" flex   max-sm:w-auto w-[6.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[8.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
@@ -591,7 +588,7 @@ className="cursor-pointer text-xs font-poppins">
           
             </div>
             )}               
-                      <div className=" flex  max-sm:w-auto   w-[6.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto   w-[6.30rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm  ">
@@ -629,11 +626,8 @@ className="cursor-pointer text-xs font-poppins">
                           </div>
 
                         </div>
-                      </div>
-          
-              
+                      </div>                   
                       <div className=" flex  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title={translatedMenuItems[9]}
@@ -676,8 +670,7 @@ className="cursor-pointer text-xs font-poppins">
                              
                             />
                           </Tooltip>
-                        </div>
-                     
+                        </div>                  
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
@@ -757,21 +750,7 @@ className="cursor-pointer text-xs font-poppins">
 
                             />
                           </Tooltip>
-                        </div>
-                        {/* <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
-                          <Tooltip title={translatedMenuItems[10]}>
-                          <LightbulbIcon
-                              className=" !text-icon cursor-pointer text-[#AF5910]"
-                            
-
-                            />
-                        
-                          </Tooltip>
-
-                        </div>                                        */}
-                                                
-                            
-                        {/* <div class=" text-xs  font-poppins"> */}
+                        </div>            
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >            
                         <StyledPopconfirm
                           title= "Do you want to delete?"
@@ -805,15 +784,6 @@ className="cursor-pointer text-xs font-poppins">
       translatedMenuItems={props.translatedMenuItems}
       />
 
-      {/* <UpdateCustomerModal
-        customerId={currentCustomerId}
-        updateCustomerModal={updateCustomerModal}
-        handleUpdateCustomerModal={handleUpdateCustomerModal}
-        handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      /> */}
       <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
@@ -849,8 +819,6 @@ className="cursor-pointer text-xs font-poppins">
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-
-
       <AddCustomerNotesDrawerModal
         rowdata={rowdata}
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}

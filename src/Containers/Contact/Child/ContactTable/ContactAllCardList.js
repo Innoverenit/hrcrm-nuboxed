@@ -55,9 +55,7 @@ import ContactCETdrawer from "./ContactCETdrawer";
 import {getCustomerData} from "../../../Customer/CustomerAction";
 
 const Option = Select;
-const UpdateContactModal = lazy(() =>
-  import("../UpdateContact/UpdateContactModal")
-);
+
 dayjs.extend(relativeTime);
 
 const getRelativeTime = (creationDate) => {
@@ -264,7 +262,6 @@ function ContactAllCardList(props) {
     handleContactPulseDrawerModal,
     handleContactReactSpeechModal,
     addContactSpeechModal,
-    updateContactModal,
     fetchingAllContacts,
     allContacts,
     handleHospitalUploadModal
@@ -320,10 +317,10 @@ if (loading) {
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[94%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
-        <div class=" flex justify-between w-[89%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
-        <div className=" w-[28.1rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div class=" flex justify-between w-[91%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
+        <div className=" w-[31.1rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
-        <div className=" w-[22.4rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[22.7rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
         <div className=" max-md:w-[10.1rem] truncate w-[16.1rem]  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
@@ -332,19 +329,15 @@ if (loading) {
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
         <div className=" max-md:w-[10.2rem] truncate w-[16.2rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon truncate  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
-        {/* <div className=" md:w-[14.3rem]  w-[13.3rem]   max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
         <div className=" w-[14.11rem] max-md:w-[8.11rem] truncate  max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
             <div className=" truncate  w-[11.81rem] max-md:w-[5.81rem] max-xl:w-[3.81rem]">
-             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
-          
+             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}        
             </div>
             )}            
                <div className=" w-[8.1rem] max-md: w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-               <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>
-      
+               <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>     
         <div className="w-[4.2rem]"></div>
         </div>
       </div>
@@ -355,10 +348,8 @@ if (loading) {
         loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
-      >
-        
-        { !fetchingAllContacts && allContacts.length === 0 ?<EmptyPage/>:allContacts.map((item,index) =>  {
-        
+      >      
+        { !fetchingAllContacts && allContacts.length === 0 ?<EmptyPage/>:allContacts.map((item,index) =>  {     
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
@@ -383,8 +374,7 @@ if (loading) {
                       <div>
                       <div
                 className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-              >
-                               
+              >                              
                           <div className=" flex   w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
@@ -400,16 +390,14 @@ if (loading) {
     &nbsp;
     <div class="max-sm:w-full  flex items-center">
                                   <Tooltip>
-                                  <div class=" flex max-sm:w-full justify-between  md:flex-col">
-                                    
+                                  <div class=" flex max-sm:w-full justify-between  md:flex-col">                                  
                                       <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
                                       <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
   {date === currentdate ? (
- <div class="text-[0.65rem]  text-[tomato] font-bold"
-                            
+ <div class="text-[0.65rem]  text-[tomato] font-bold"                          
  >
     {translatedMenuItems[9]}  {/* New */}
     </div>
@@ -422,8 +410,9 @@ if (loading) {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -435,7 +424,6 @@ if (loading) {
     </div> 
 )}                 
                       </div>
- 
                                       </div>
                                       </div>
                                   </Tooltip>
@@ -443,9 +431,7 @@ if (loading) {
                                   </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
-
-                          <div className=" flex  max-sm:w-auto  w-[10.01rem] items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
-                             
+                          <div className=" flex  max-sm:w-auto  w-[10.01rem] items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">                  
                               <div class=" text-xs ml-gap font-poppins max-sm:text-sm  max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
@@ -466,7 +452,6 @@ if (loading) {
                         <div class="flex max-sm:justify-between max-sm:w-wk">
                         <div className="flex  w-[7.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
                         <div className="flex  w-[3.01rem] items-center justify-center h-8 ml-gap max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
 <div className="text-xs  font-poppins text-center max-sm:text-sm ">
 {item.oppNo}
 </div>
@@ -507,9 +492,7 @@ No
             {item.noteScoreInd}
           
             </div>
-            )}
-                      
-
+            )}                   
                           <div className="flex w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
@@ -531,19 +514,17 @@ No
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
 {getRelativeTime(item.creationDate)}
-</span></div>
-          
+</span></div>       
                </div>
 
-               <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
-          
+               <div class="flex max-sm:justify-between max-sm:w-wk items-center">        
                <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
               <Tooltip title={translatedMenuItems[13]}>
- <NoteAltIcon
-          className=" !text-icon cursor-pointer text-green-800"
-            onClick={() => {
-            handleContactNotesDrawerModal(true);
-            handleSetCurrentContact(item);
+       <NoteAltIcon
+            className=" !text-icon cursor-pointer text-green-800"
+               onClick={() => {
+               handleContactNotesDrawerModal(true);
+               handleSetCurrentContact(item);
           }}
           
         />
@@ -560,8 +541,7 @@ No
           
         />
      </Tooltip>
-     </div>
-  
+     </div> 
      <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                 <Tooltip
                   title={translatedMenuItems[14]}
@@ -574,9 +554,7 @@ No
                     }}
                   />
                 </Tooltip>
-              </div>
-     
-                        
+              </div>                    
               <div class="rounded-full  cursor-pointer items-center justify-center  bg-[#eef2f9] h-8  flex">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
@@ -624,53 +602,23 @@ No
         <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]"/>
       )}
       </span>
-                                                   
-
-      <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
+      {/* <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
                         tooltiptitle={translatedMenuItems[16]}
                           onClick={() => {
                           handleSetCurrentContactId(item);
                           handleHospitalUploadModal(true)}}                          
-                      /></div>
-        {user.contactUpdateInd === true &&  user.crmInd === true && (
-      <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
-     
-      <Tooltip title={translatedMenuItems[15]}>
-        <BorderColorIcon
-          className=" !text-icon cursor-pointer text-[tomato]"
-            onClick={() => {
-            props.setEditContact(item);
-            handleUpdateContactModal(true);
-            handleSetCurrentContactId(item);
-            
-          }}
-        />
-      </Tooltip>
-
-      </div>
-        )}             
+                      /></div>            */}
                 </div>
                       </div>
                   </div>
-
-
                     )
                 })}
                       </InfiniteScroll>
       </div>
       </div>
-      <UpdateContactModal
-        contactData={currentContactId}
-        // fullName={currentContactId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-        updateContactModal={updateContactModal}
-        handleUpdateContactModal={handleUpdateContactModal}
-        handleSetCurrentContactId={handleSetCurrentContactId}
-      />
+  
        <AddContactNotesDrawerModal
         contactData={currentContact}
         // fullName={currentContactId}
@@ -710,11 +658,6 @@ No
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-      {/* <AddDonotCallModal
-        addDonotCallModal={props.addDonotCallModal}
-        contactId={currentContactId}
-        handleDonotCallModal={props.handleDonotCallModal}
-      /> */}
       <AddContactDrawerModal
         item={currentContactId}
         addDrawerContactModal={props.addDrawerContactModal}
@@ -761,7 +704,6 @@ const mapStateToProps = ({
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
    fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
-  updateContactModal: contact.updateContactModal,
   addDrawerContactNotesModal:contact.addDrawerContactNotesModal,
   designations: designations.designations,
   departments: departments.departments,
