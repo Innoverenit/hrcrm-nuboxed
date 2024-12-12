@@ -195,12 +195,14 @@ const DashBoardSummary=(props) =>{
     </div>
       </div>
         )}
-      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+     
 
       {/* QUOTATION */}
       {(user.opportunityAccessInd === true && user.crmInd === true 
 
       ) && (
+        <>
+        <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       <div class="flex flex-col w-[14rem]  items-center">
   <div className="text-xl font-poppins font-bold mb-2 uppercase">  <LightbulbIcon className='!text-icon mr-1 text-[#84a59d]'/>
   {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1"> 
@@ -243,14 +245,17 @@ const DashBoardSummary=(props) =>{
    </InfiniteScroll>
   </div>
 </div>
+</>
   )}
-<div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+
     
 
   {/* Re Order */}
   {(user.materialAccessInd === true && user.erpInd === true )
         && (user.supplierAccessInd === true && user.erpInd === true
       ) &&  (
+        <>
+        <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
   <div class="flex flex-col min-h-[89vh] w-[14rem] items-center">
         <div className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
         {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">   {`${props.ReorderDashboardCount.bbcnt ?? ""} `}</span> </div>
@@ -272,13 +277,16 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
+      </>
         )}
         
-      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+     
          {/* Best Before */}
          {(user.materialAccessInd === true && user.erpInd === true )
         && (user.supplierAccessInd === true && user.erpInd === true
       ) &&  (
+        <>
+        <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
          <div class="flex flex-col w-[14rem] items-center">
         <div className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
               /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
@@ -330,6 +338,7 @@ const DashBoardSummary=(props) =>{
 
         </div>
       </div>
+      </>
    )}
       <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
         {/* ORDER */}
@@ -369,11 +378,13 @@ const DashBoardSummary=(props) =>{
               </InfiniteScroll>
         </div>
       </div>
-      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+      
       {/* DEALS */}
       {(user.imInd === true && user.dealAccessInd === true 
       
       ) && (
+        <>
+        <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       <div class="flex flex-col w-[14rem]  items-center">
         <div className="text-xl font-bold font-poppins mb-2 uppercase">
         <CurrencyExchangeIcon className='!text-icon  text-[#1d4e89]'/> {translatedMenuItems[9]}
@@ -404,10 +415,13 @@ const DashBoardSummary=(props) =>{
          </InfiniteScroll>
         </div>
       </div>
+      </>
           )}
 {/* Price Update */}
-<div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
+
 {(user.erpInd === true || user.pndAccessInd === true) && (
+  <>
+  <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       <div class="flex flex-col  w-[14rem] items-center max-sm:min-h-9 ">
         <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>Price Update<span  className="font-bold text-[tomato] ml-1"> 
           {/* {`${props.taskperCount.totalTask  ?? ""} `} */}
@@ -443,6 +457,7 @@ const DashBoardSummary=(props) =>{
       )}
     </div>
       </div>
+      </>
 )}
     </div>   
   );
