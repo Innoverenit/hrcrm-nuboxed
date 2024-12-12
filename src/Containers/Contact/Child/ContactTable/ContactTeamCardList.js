@@ -428,11 +428,11 @@ if (loading) {
     </div>
     &nbsp;
     <div class="max-sm:w-full  flex items-center">
-                                  <Tooltip>
-                                  <div class=" flex max-sm:w-full justify-between  md:flex-col">
-                                    
-                                      <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+        <Tooltip>
+        <div class=" flex max-sm:w-full justify-between  md:flex-col">
+          
+            <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
+            <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>   
 {date === currentdate ? (
