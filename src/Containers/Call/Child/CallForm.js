@@ -14,9 +14,6 @@ import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../CallAction";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -64,9 +61,6 @@ const CallSchema = Yup.object().shape({
     .nullable()
     .required("Input required !"),
 
-  // reminder:Yup.string()
-  // .nullable()
-  // .required("Input required !"),
 });
 function CallForm(props) {
 
@@ -107,9 +101,6 @@ function CallForm(props) {
   useEffect(() => {
     props.getAssignedToList();
     props.getAllSalesList();
-    // props.getAllCustomerData(props.userId)
-    // props.getFilteredEmailContact(userId);
-    // props.getAllOpportunityData(userId)
   }, []);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -586,7 +577,7 @@ function CallForm(props) {
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]" style={{scrollbarWidth:"thin"}}>
             <Form className="form-background ">
               <div class=" flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6  max-sm:w-wk ">
                      
@@ -706,13 +697,9 @@ function CallForm(props) {
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
+                    {/* Channel */}
                       <FastField
-
                         name="modeType"
-                     
-                      //   label={
-                      //   {translatedMenuItems[2]}
-                      //  }
                         isColumn
                         options={[
                           "Phone",
@@ -812,7 +799,7 @@ function CallForm(props) {
                   </div>
                              
                 </div>
-                <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" mt-3 h-3/4 w-w47 max-sm:w-wk " 
                 >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                 <Listbox value={selected} onChange={handleSelectChangeInclude} className=" h-[1.88rem]" style={{ height:"1.88rem"}}>
       {({ open }) => (
@@ -886,7 +873,7 @@ function CallForm(props) {
                    <Select
           showSearch
           className=" mt-1"
-          placeholder="Search or select include"
+          placeholder="Search or select"
           optionFilterProp="children"
           loading={isLoadingInclude}
           onFocus={handleSelectIncludeFocus}
@@ -906,11 +893,9 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
-
 <Select
         showSearch 
-        placeholder="Search or select prospect"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingCustomer}
         onFocus={handleSelectCustomerFocus}
@@ -931,7 +916,6 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -956,7 +940,6 @@ function CallForm(props) {
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
                   {props.user.crmInd === true &&(       
               <>
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
         placeholder="Search or select opportunity"
@@ -974,26 +957,20 @@ function CallForm(props) {
       </Select>
       </>
                   )} 
-                  </div>
-                
-                 
-                <div class="mt-2">
+                  </div>               
+                <div class="mt-3">
                 <ReactDescription
                 setText={setText}
                 text={text}
-                />
-            
+                />          
                 </div>
-              </div>
-             
-              
+              </div>              
               </div>
               <div class=" flex mt-1 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      title="Do you want to delete?"
-                    
+                      title="Do you want to delete?"                  
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -1001,8 +978,7 @@ function CallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        Delete
-                        
+                        Delete                       
                       </Button>
                     </StyledPopconfirm>
                   </>

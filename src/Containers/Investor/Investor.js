@@ -160,7 +160,7 @@ const handleChange = (e) => {
              selectedLanguage={props.selectedLanguage}
             />
             ):(
-<InvestorCardList
+         <InvestorCardList
              translateText={props.translateText}
              showCheckboxes={showCheckboxes}
              selectedDeals={selectedDeals}

@@ -52,7 +52,6 @@ const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDraw
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const OpenTaskModal = lazy(() => import("./OpenTaskModal"));
 const DownloadTaskModal = lazy(() => import("./DownloadTaskModal"));
-const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
 const AddTaskFeedbackDrawerModal = lazy(() => import("./AddTaskFeedbackDrawerModal"));
 const UpdateDocumentDrawerModal = lazy(() => import("../Child/UpdateDocumentDrawerModal"));
 const ButtonGroup = Button.Group;
@@ -90,7 +89,6 @@ const TaskCardList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-   
          "71", //  "Type",//0
           "110",  // "Name",//1
           "111" , // "End",//2
@@ -101,9 +99,7 @@ const TaskCardList = (props) => {
           "106" , // "Urgent",//7
            "107" ,// "High",
            "108", // "Normal"
-
         ];
-
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
         setLoading(false);
@@ -223,7 +219,6 @@ const TaskCardList = (props) => {
     handleUpdateTaskModal,
     handleDownloadTaskModal,
     handleTaskProjectDrawerModal,
-    updateTaskModal,
     downloadTaskModal,
     addDrawerTaskNotesModal,
     addDrawerTaskFeedbackModal,
@@ -622,20 +617,7 @@ const TaskCardList = (props) => {
                              </Tooltip>         
         
             </div>
-                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
-          <Tooltip title="Edit">
-          {props.userId === item.userId && (
-                      <BorderColorIcon
-                        type="edit"
-                        className="!text-icon cursor-pointer"                   
-                        onClick={() => {
-                          props.setEditTask(item);
-                          handleUpdateTaskModal(true);
-                        }}
-                      />
-                    )}
-            </Tooltip>
-            </div>
+              
           
             <div>
            
@@ -1043,20 +1025,6 @@ taskStatus: "To Start",
                       </Tooltip>         
  
      </div>
-             <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
-   <Tooltip title="Edit">
-   {props.userId === item.userId && (
-               <BorderColorIcon
-                 type="edit"
-                 className="!text-icon cursor-pointer"                   
-                 onClick={() => {
-                   props.setEditTask(item);
-                   handleUpdateTaskModal(true);
-                 }}
-               />
-             )}
-     </Tooltip>
-     </div>
    
      <div>
     
@@ -1462,20 +1430,7 @@ taskStatus: "To Start",
                       </Tooltip>         
  
      </div>
-             <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
-   <Tooltip title="Edit">
-   {props.userId === item.userId && (
-               <BorderColorIcon
-                 type="edit"
-                 className="!text-icon cursor-pointer"                   
-                 onClick={() => {
-                   props.setEditTask(item);
-                   handleUpdateTaskModal(true);
-                 }}
-               />
-             )}
-     </Tooltip>
-     </div>
+          
    
      <div>
     
@@ -1506,12 +1461,6 @@ taskStatus: "To Start",
       </div>
 </div>
 <Suspense fallback={<BundleLoader />}>
-   <UpdateTaskModal
-          updateTaskModal={updateTaskModal}
-          handleUpdateTaskModal={handleUpdateTaskModal}
-          translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-        />
         <DownloadTaskModal
           item={currentprocessName}
           downloadTaskModal={downloadTaskModal}
@@ -1587,7 +1536,6 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
     userId: auth.userDetails.userId,
     employeeId: auth.userDetails.employeeId,
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
-    updateTaskModal: task.updateTaskModal,
     downloadTaskModal:task.downloadTaskModal,
     addUpdatedocumentTaskModal:task.addUpdatedocumentTaskModal,
     addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal,

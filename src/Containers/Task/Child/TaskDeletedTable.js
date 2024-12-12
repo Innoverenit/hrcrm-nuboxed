@@ -26,7 +26,6 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-const UpdateTaskModal=lazy(()=>import("./UpdateTaskModal"));
 const ButtonGroup = Button.Group;
 class TaskDeletedTable extends React.Component {
   constructor(props){
@@ -164,7 +163,6 @@ class TaskDeletedTable extends React.Component {
       rejectTaskByTaskId,
       handleUpdateTaskModal,
       handleTaskProjectDrawerModal,
-      updateTaskModal,
       setEditTask,
       userDetails: { employeeId },
     } = this.props;
@@ -671,13 +669,7 @@ class TaskDeletedTable extends React.Component {
               );
             }} 
           /> */}
-           <UpdateTaskModal
-          updateTaskModal={updateTaskModal}
-          handleUpdateTaskModal={handleUpdateTaskModal}
-          translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
-        />
-
+         
 
 <AddTaskProjectDrawerModal
 handleTaskProjectDrawerModal={this.props.handleTaskProjectDrawerModal}
@@ -697,7 +689,6 @@ const mapStateToProps = ({ auth, task, opportunity }) => ({
  
   userId: auth.userDetails.userId,
   addDrawerTaskProjectModal:task.addDrawerTaskProjectModal,
-  updateTaskModal: task.updateTaskModal,
   fetchingTaskListRangeByUserId: task.fetchingTaskListRangeByUserId,
   taskDeleteList: task.taskDeleteList,
 });
