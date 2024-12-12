@@ -67,6 +67,12 @@ function AddPhoneExcel(props) {
                                             isRequired
                                             component={DraggableUpload1}
                                         />
+                                                   <p style={{color: "tomato",
+    fontWeight: "600",
+    padding: "0.1rem 0", 
+    borderRadius: "0.1rem" }}>
+                {values.excelId===""? "Please upload File" :""}
+              </p>
                                     </div>
                                     <AddBoxIcon className=" !text-icon  ml-1 items-center
  text-[#6f0080ad]"

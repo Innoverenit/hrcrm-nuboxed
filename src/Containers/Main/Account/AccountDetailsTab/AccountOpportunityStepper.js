@@ -19,8 +19,19 @@ class AccountOpportunityStepper extends Component {
         super(props);
         this.state = {
             current: 0,
+            resetStepperKey: props.resetStepperKey,
             thirdPageData: {},
         };
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.resetStepperKey !== prevState.resetStepperKey) {
+            return {
+                current: 0, // Reset to first step
+                resetStepperKey: nextProps.resetStepperKey, // Update key
+            };
+        }
+        return null;
     }
     handleSubmit = (data) => {
         this.setState({ thirdPageData: data });

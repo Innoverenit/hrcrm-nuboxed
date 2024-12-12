@@ -29,6 +29,7 @@ import {
   getRecruiterList,
   handleUpdateOpportunityModal,
   setEditOpportunity,
+  LinkStageOpportunity,
   deleteOpportunityData,
   updateOwneroppById,
       handleOpportunityDrawerModal,
@@ -49,6 +50,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { base_url2 } from "../../../../Config/Auth";
 import EmptyPage from "../../../Main/EmptyPage";
 import axios from "axios";
+import OpportunitySelectStages from "./OpportunitySelectStages";
 
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
@@ -426,6 +428,27 @@ overlay={
     backgroundColor: "#F5F5F5",
   }}
 >
+    <OpportunitySelectStages
+        rec={item}
+        oppStage={item.oppStage}
+        // recruitOwner={item.recruitOwner}
+        // candidateName={item.candidateName}
+        // approveInd={item.approveInd}
+        // rejectInd={item.rejectInd}
+        stageClick={(stagesId) => {
+          props.LinkStageOpportunity(
+            {
+              opportunityId: item.opportunityId,
+              //oppStage: item.oppStage,
+              opportunityStagesId:stagesId
+              // recruitmentProcessId: item.recruitmentProcessId,
+              // recruitmentId: item.recruitmentId,
+              // profileId: item.profileId,
+            },
+           
+          );
+        }}
+      />{" "}
   
 </Menu.Item>
 </Menu>
@@ -699,6 +722,7 @@ const mapDispatchToProps = (dispatch) =>
          getAllRecruitmentDetailsByOppId,
          getTeamOpportunity,
        getTeamUserList,
+       LinkStageOpportunity
     //      LinklostdOpportunity,
     //      deleteLostOpportunity,
     },
