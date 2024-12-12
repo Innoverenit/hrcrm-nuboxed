@@ -40,13 +40,12 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import SearchedData from "./SearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
 import EmptyPage from "../../../Main/EmptyPage";
-const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
+
 const OpenCETmodal = lazy(() => import("./OpenCETmodal")); //ActivityModal
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const AddLeadsNotesDrawerModal = lazy(() => import("../AddLeadsNotesDrawerModal"));
@@ -223,7 +222,6 @@ const LeadsCardList = (props) => {
     deleteLeadsData,
     handleUpdateLeadsModal,
     handleLeadsNotesDrawerModal,
-    updateLeadsModal,
     fetchingLeads,
     leadsAllData,
     user,
@@ -629,7 +627,6 @@ const LeadsCardList = (props) => {
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
             onClick={() => {
             props.handleLeadsAddressDrawerModal(true);
-            // handleSetCurrentContact(item);
           handleSetCurrentLeadsId(item);
           }}
           
@@ -664,20 +661,7 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div >
-                        <Tooltip title={translatedMenuItems[19]}>
-                          <BorderColorIcon
-                           className="!text-icon cursor-pointer text-[tomato]"
-                              onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
+                
                     {user.leadsDeleteInd === true && user.crmInd === true && (
                       <div >                     
                         <StyledPopconfirm
@@ -1121,20 +1105,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[19]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                     <div >                     
                       <StyledPopconfirm
@@ -1577,20 +1548,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[19]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+                
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                     <div >                     
                       <StyledPopconfirm
@@ -1616,15 +1574,7 @@ const LeadsCardList = (props) => {
       </div>
       </>
       )}
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        translateText={props.translateText}
-       selectedLanguage={props.selectedLanguage}
-       translatedMenuItems={props.translatedMenuItems}
-      />
+    
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
@@ -1698,7 +1648,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   lead: leads.lead,
   serachedData:leads.serachedData,
   user: auth.userDetails,
-  updateLeadsModal: leads.updateLeadsModal,
+
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingLeads: leads.fetchingLeads,
   openCETmodal: leads.openCETmodal,

@@ -24,7 +24,6 @@ import {
 import { Button, Tooltip,Checkbox ,Popconfirm } from "antd";
 
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -112,7 +111,7 @@ const LeadsJunkList = (props) => {
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-  const { deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingJunkedLeads,junkedLeadsData,handleLeadsNotesDrawerModal,user  } = props;
+  const { deleteLeadsData, handleUpdateLeadsModal, fetchingJunkedLeads,junkedLeadsData,handleLeadsNotesDrawerModal,user  } = props;
 
   const handleLoadMore = () => {
     const callPageMapd = props.junkedLeadsData && props.junkedLeadsData.length &&props.junkedLeadsData[0].pageCount
@@ -545,13 +544,6 @@ const LeadsJunkList = (props) => {
          </InfiniteScroll>
       </div>
       </div>
-
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-      />
        <AddLeadsNotesDrawerModal
         rowdata={rowdata}
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
@@ -575,7 +567,6 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   userId: auth.userDetails.userId,
   lead: leads.lead,
   user: auth.userDetails,
-  updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingJunkedLeads:leads.fetchingJunkedLeads
 });

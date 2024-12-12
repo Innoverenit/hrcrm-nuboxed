@@ -34,10 +34,7 @@ import {
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
-
-import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
@@ -145,7 +142,6 @@ const LeadsTeamHotcard = (props) => {
     deleteLeadsData,
     handleUpdateLeadsModal,
     handleLeadsNotesDrawerModal,
-    updateLeadsModal,
     fetchingTeamLeadsHot,
     teamLeadsHot,
     user,
@@ -534,20 +530,7 @@ const LeadsTeamHotcard = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div >
-                        <Tooltip title={translatedMenuItems[18]}>
-                          <BorderColorIcon
-                           className="!text-icon cursor-pointer text-[tomato]"
-                              onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
+             
                     {user.leadsDeleteInd === true && user.crmInd === true && (
                     <div >                     
                     <StyledPopconfirm
@@ -577,15 +560,6 @@ const LeadsTeamHotcard = (props) => {
      
       </>
 
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
@@ -628,7 +602,6 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   lead: leads.lead,
   user: auth.userDetails,
   countries: auth.countries,
-  updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingTeamLeads: leads.fetchingTeamLeads,
   openCETmodal: leads.openCETmodal,

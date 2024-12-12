@@ -44,7 +44,6 @@ import SearchedData from "./SearchedData";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
 import EmptyPage from "../../../Main/EmptyPage";
-const UpdateLeadsModal =lazy(()=>import("../UpdateLeads/UpdateLeadsModal"));
 const AddLeadsEmailDrawerModal =lazy(()=>import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const BorderColorIcon =lazy(()=>import("@mui/icons-material/BorderColor"));
 const OpenCETmodal =lazy(()=>import("./OpenCETmodal"));
@@ -197,7 +196,6 @@ const LeadsAllCardList = (props) => {
     deleteLeadsData,
     handleUpdateLeadsModal,
     handleLeadsNotesDrawerModal,
-    updateLeadsModal,
     fetchingAllLeads,
     allleadsInfo,
     user,
@@ -504,7 +502,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   )}
                 </div>
-                <div className=" flex  w-[3.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                <div className=" flex  w-[4.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                   <div>
                   {/* <Tooltip title={item.ownerName}> */}
               <div class="max-sm:flex justify-end">
@@ -521,7 +519,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                 </div>
           
-                <div className=" flex w-[3.1rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                <div className=" flex w-[4.5rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -625,20 +623,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[18]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                  <div >                     
                  <StyledPopconfirm
@@ -944,7 +929,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   )}
                 </div>
-                <div className=" flex  w-[3.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                <div className=" flex  w-[4.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                   <div>
                   {/* <Tooltip title={item.ownerName}> */}
               <div class="max-sm:flex justify-end">
@@ -961,7 +946,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                 </div>
           
-                <div className=" flex w-[3.1rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                <div className=" flex w-[4.5rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -1065,20 +1050,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[18]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                    <div >                     
                    <StyledPopconfirm
@@ -1384,7 +1356,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   )}
                 </div>
-                <div className=" flex  w-[3.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                <div className=" flex  w-[4.11rem]  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                   <div>
                   {/* <Tooltip title={item.ownerName}> */}
               <div class="max-sm:flex justify-end">
@@ -1401,7 +1373,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                 </div>
           
-                <div className=" flex w-[3.1rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                <div className=" flex w-[4.5rem] items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -1505,20 +1477,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[18]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                    <div >                     
                    <StyledPopconfirm
@@ -1548,14 +1507,7 @@ const LeadsAllCardList = (props) => {
 )}
 
       <Suspense fallback={<BundleLoader/>}>
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      />
+  
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
@@ -1602,7 +1554,6 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   userId: auth.userDetails.userId,
   lead: leads.lead,
   user: auth.userDetails,
-  updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingAllLeads: leads.fetchingAllLeads,
   openCETmodal: leads.openCETmodal,

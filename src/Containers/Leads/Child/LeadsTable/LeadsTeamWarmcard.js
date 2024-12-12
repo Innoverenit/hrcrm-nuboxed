@@ -27,7 +27,6 @@ import {
   convertCustomerStatus
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
@@ -36,16 +35,12 @@ import ScoreIcon from '@mui/icons-material/Score';
 import FWLogo1 from "../../../../../src/Assets/Images/smallLogo.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
-
-import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import EmptyPage from "../../../Main/EmptyPage";
-import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -145,7 +140,6 @@ const LeadsTeamWarmcard = (props) => {
     deleteLeadsData,
     handleUpdateLeadsModal,
     handleLeadsNotesDrawerModal,
-    updateLeadsModal,
     fetchingTeamLeadsWarm,
     teamLeadsWarm,
     user,
@@ -528,20 +522,7 @@ const LeadsTeamWarmcard = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[18]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
                        <div >                     
                        <StyledPopconfirm
@@ -566,18 +547,6 @@ const LeadsTeamWarmcard = (props) => {
          </InfiniteScroll>
       </div>
       </div>
-
-
-
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
@@ -625,7 +594,6 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   lead: leads.lead,
   user: auth.userDetails,
   countries: auth.countries,
-  updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingTeamLeads: leads.fetchingTeamLeads,
   openCETmodal: leads.openCETmodal,
