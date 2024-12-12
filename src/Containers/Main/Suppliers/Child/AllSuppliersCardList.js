@@ -22,7 +22,6 @@ import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
 
 const EmptyPage =lazy(()=>import("../../EmptyPage"));
-const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
 
@@ -366,18 +365,7 @@ className="cursor-pointer text-xs ">
           }}
           
         />            
- {/* <div>
-<Tooltip title={props.translatedMenuItems[19]}>
-            <BorderColorIcon
-             className="!text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
-              onClick={() => {
-                 props.setEditSuppliers(item);
-                handleRowData(item);
-                props.handleUpdateSupplierModal(true);            
-              }}
-            />
-          </Tooltip>
-          </div> */}
+ 
           <div>
           <Popconfirm
               title={`${props.translatedMenuItems[22]} ?`}
@@ -398,13 +386,7 @@ className="cursor-pointer text-xs ">
   </div>
  )}
  <Suspense>
-  <UpdateSupplierModal
-        rowdata={rowdata}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+  
        <AddSuppliersAdressModal    
         item={rowdata}
          type="supplier"

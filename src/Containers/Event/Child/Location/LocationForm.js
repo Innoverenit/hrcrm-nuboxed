@@ -200,7 +200,7 @@ class LocationForm extends Component {
           }) => (
             <div class="overflow-y-auto h-[30rem] overflow-x-hidden">
             <Form class="form-background">
-              <div class="flex justify-between max-sm:flex-col">
+              <div class="flex justify-around max-sm:flex-col">
                 <div class="h-full w-[45%] max-sm:w-wk">
               
                   <div>

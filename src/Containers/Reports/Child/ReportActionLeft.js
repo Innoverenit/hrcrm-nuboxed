@@ -94,9 +94,9 @@ class ReportActionLeft extends React.Component {
                     }}
                   >
                 {this.props.userorgflipClick ?
-                    "Enterprise"
+                   this.state.translatedMenuItems[0]
                     
-                     : "My View"
+                     : this.state.translatedMenuItems[1]
                   }
                   </Tag>
                 </div>

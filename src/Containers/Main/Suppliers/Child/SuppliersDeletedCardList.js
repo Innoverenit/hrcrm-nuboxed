@@ -16,7 +16,6 @@ import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const EmptyPage =lazy(()=>import("../../EmptyPage"));
-const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const ReInstateSuppliers =lazy(()=>import("../ReInstateSuppliers"));
 function SuppliersDeletedCardList(props) {
@@ -192,13 +191,7 @@ function SuppliersDeletedCardList(props) {
       </div>
 )}
  <Suspense fallback={<BundleLoader />}>
-      <UpdateSupplierModal
-        rowdata={rowdata}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+    
       </Suspense>
     </>
   )

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -15,8 +15,9 @@ import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import EmptyPage from "../../../Main/EmptyPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+
+const EmptyPage=lazy(()=>import ("../../../Main/EmptyPage"));
 
 const ButtonGroup = Button.Group;
 
@@ -32,6 +33,53 @@ const ReportTaskList = (props) => {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
+   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+ useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '71', // 0type
+'110', // 1name
+'111', // 2  end
+'112', // 3 Ageing
+'76', // 4assignedto
+'77', // 5owner
+'143', // 6 To Start
+'144', // 7 In Progress
+'78', // 8Completed
+ '118', // 9 Not available
+'1389', // 10Feedback
+'116', // 11 Approve
+'117', //12    Reject
+'316', //13 Notes
+'138',//Document 14
+'170',//Edit 15
+'316',//notes
+'113',// 17 Info
+'140',// 18 email
+'170',//19 edit
+'1259',//20 "Do you want to delete?"
+"100",// Delete 21
+ 
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+
 //   useEffect(() => {
 //     setPage(page + 1);
 //     //props.getTaskListRangeByUserId(props.employeeId,page);
@@ -66,26 +114,25 @@ const ReportTaskList = (props) => {
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent text-xs font-poppins font-bold sticky  z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">type</div>
         <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[9rem]">
-                         name
+        {translatedMenuItems[1]} {/* name */}
                      </div>
              <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">
                         
-                        end"
+             {translatedMenuItems[2]}{/* end */}
                        </div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
         <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
-                         Ageing
+        {translatedMenuItems[3]}{/* Ageing */}
                     </div>
-                        <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">assignedto
+                        <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]"> {translatedMenuItems[17]}</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"> {translatedMenuItems[4]}
                         </div>
-        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">owner</div>
+        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]"> {translatedMenuItems[5]}</div>
         <div className="w-[6.01rem]"></div>
-        <div className="w-[3%]"></div>
-        <div className="w-[5%]"></div>
-        <div className="w-[3.1rem]"></div>
-        <div className="w-12"></div>
-        {/* <div className="w-12"></div> */}
+        
+      
+       
+       
       </div>
      
       {!props.gettingReportTask &&  props.reportTask.length=== 0 ? <EmptyPage/> :props.reportTask.map((item) => { 
@@ -166,7 +213,7 @@ const ReportTaskList = (props) => {
           <StatusIcon
   type="To Start"
   iconType="fa-hourglass-start"
-  tooltip="To Start"
+  tooltip={translatedMenuItems[6]}
   status={item.taskStatus}
   difference={difference} 
 //   onClick={() =>
@@ -182,52 +229,28 @@ const ReportTaskList = (props) => {
             <StatusIcon
               type="In Progress"
               iconType="fa-hourglass-half"
-              tooltip="In Progress"
+              tooltip={translatedMenuItems[7]}
               status={item.taskStatus}
               difference={difference}
-            //   onClick={() =>
-            //     linkTaskStatus(item.taskId, {
-                 
-            //        taskStatus: "In Progress",
-            //     })
-            //   }
+            
             />
-          {/* )} */}
-          {/* {item.complitionStatus === "completed" && ( */}
+          
             <StatusIcon
               type="Completed"
               iconType="fa-hourglass"
-              tooltip="Completed"
+              tooltip={translatedMenuItems[8]}
               status={item.taskStatus}
               difference={difference}
-            //   onClick={() =>
-            //     linkTaskStatus(item.taskId, {
-                 
-            //        taskStatus: "Completed",
-            //     })
-            //   }
-            />
-          {/* )} */}
+           />
         </ButtonGroup>
         <div></div>
                         </div>
-                        {/* <div>
-                       
-                        {item.complitionStatus === "completed" && (
-              <TaskStatusToggle
-                completionInd={item.completionInd}
-                taskId={item.taskId}
-              />
-            )}
-                    </div> */}
+                      
                     </div>
                    
                     <div className="flex   w-[3.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
-                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
-                       {/* <div class="text-xs  font-poppins"> 
-                       {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
-                   </div> */}
+                      
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
@@ -252,11 +275,10 @@ const ReportTaskList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex   w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                 <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
-                "Not available"
+translatedMenuItems[9]
               ) : (
                 <>
                 {item.assignedToName === item.submittedBy ? (
@@ -288,42 +310,7 @@ const ReportTaskList = (props) => {
                                     </div>
                                 </div>
                                
-                               
-                                {/* <div className=" flex   w-32 ">
-                                    <div class=" text-sm  font-poppins">Team</div>
-
-                                    <div class=" text-sm  font-poppins">
-                                    <Avatar.Group
-  maxCount={2}
-  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
->
-  {item.owner &&
-    item.owner.map((candidate, i) => {
-      if (candidate && candidate.fullName) {
-        const data1 = candidate.fullName.slice(0, 2);
-        console.log("datas", data1);
-        return (
-          <Tooltip title={candidate.fullName} key={i}>
-            <Avatar style={{ backgroundColor: "#94b3e4" }}>
-              {data1}
-            </Avatar>
-          </Tooltip>
-        );
-      } else {
-        return null; 
-      }
-    })}
-</Avatar.Group>
-                                    </div>
-                                </div> */}
-                                {/* <div className="flex   md:w-32 max-sm:flex-row justify-between w-full ">
-                                    <div class="text-sm  font-poppins">Start</div>
-
-                                    <div class="text-sm  font-poppins">
-                                     {`${dayjs(item.startDate).format("YYYY/MM/DD")}`}
-                                    </div>
-                                </div> */}
-                       
+                             
 <div>
 {item.taskStatus==="Completed"&&(
                    <div className="flex   w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
@@ -353,7 +340,7 @@ const ReportTaskList = (props) => {
      </div>
      <div className="flex   w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
-                         <Tooltip title="Feedback">
+                         <Tooltip title={translatedMenuItems[10]}>
                          <FeedbackIcon
                                 //   onClick={() => {
                                 //     handleTaskFeedbackDrawerModal(true);
@@ -373,12 +360,7 @@ const ReportTaskList = (props) => {
      <div className="flex   w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadIcon
-            //   onClick={() => {
-            //     props.handleUpdateDocumentDrawerModal(true);
-            //     handleSetTaskNameId(item);
-            //   }}
-          />    
+          <UploadIcon className="!text-icon cursor-pointer text-[orange]"/>    
               
 
      
@@ -386,16 +368,7 @@ const ReportTaskList = (props) => {
      <div className="flex   w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
-        //  onClick={() => {
-        //   handleTaskStepperDrawerModal(true);
-        //   handleSetTaskNameId(item);
-        // }}
-     />
-               
- 
-      
-      </div> 
+     <StairsIcon  className="!text-icon cursor-pointer text-[green]"  />   </div> 
   
                   
                    
@@ -404,11 +377,11 @@ const ReportTaskList = (props) => {
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
       <div>
-        <Button
+        <Button className="!text-icon cursor-pointer text-[teal]"
         //onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
+         
         >
-          Approve
+          {translatedMenuItems[11]}
         </Button>
         <Button
           style={{
@@ -417,7 +390,7 @@ const ReportTaskList = (props) => {
           }}
           //onClick={() => rejectTaskByTaskId(item.taskId)}
         >
-   Reject
+   {translatedMenuItems[12]}
         </Button>
       </div>
     </>
@@ -429,7 +402,8 @@ const ReportTaskList = (props) => {
           theme="twoTone"
           twoToneColor="#52c41a"
           size={140}
-          style={{ fontSize: "1rem" }}
+          className="!text-icon cursor-pointer "
+         
         />
       ) : item.approvedInd === "Rejected" ? (
         <HighlightOffIcon
@@ -437,7 +411,7 @@ const ReportTaskList = (props) => {
           theme="twoTone"
           twoToneColor="red"
           size={140}
-          style={{ fontSize: "1rem" }}
+         className="!text-icon cursor-pointer "
         />
       ) : (
         <></>
@@ -450,27 +424,16 @@ const ReportTaskList = (props) => {
                           
 <div class="flex  max-sm:justify-end max-sm:w-wk items-center">    
                     <div class="flex  w-6 max-sm:flex-row  max-sm:w-auto justify-evenly  ">
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[13]}>
        <NoteAltIcon
-                // onClick={() => {
-                //   handleTaskNotesDrawerModal(true);
-                //   handleSetTaskNameId(item);
-                // }}
+               
                 className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
   
    
-          {/* {props.userId === item.userId && ( */}
-                      {/* <DownloadForOfflineIcon
-                        // type="edit"
-                        className="!text-icon cursor-pointer"
-                        onClick={() => {
-                          handleSetCurrentProcessName(item)
-                          handleDownloadTaskModal(true);
-                        }}
-                      /> */}
-                         <Tooltip title="Document">
+          
+                         <Tooltip title={translatedMenuItems[14]}>
                          <DownloadForOfflineIcon
                                 //   onClick={() => {
                                 //     props.handleTaskDocumentDrawerModal(true);
@@ -486,7 +449,7 @@ const ReportTaskList = (props) => {
                     <div class="flex  w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">
    
    
-          <Tooltip title="Edit">
+          <Tooltip title={translatedMenuItems[15]}>
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
@@ -503,10 +466,10 @@ const ReportTaskList = (props) => {
            
             {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[20]}
                             //onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
-                                <Tooltip title="Delete">
+                                <Tooltip title={translatedMenuItems[21]}>
                                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Tooltip>
                           </StyledPopconfirm>
@@ -567,14 +530,8 @@ const ReportTaskList = (props) => {
         <Tooltip title={`${tooltip} (${daysLabel})`}>
           <Button
             ghost={status !== type}
-            style={{
-              padding: "0.375em",
-              borderColor: "transparent",
-              color: iconColor,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+             className=" flex flex-col items-center p-1 border-transparent "
+          
             onClick={onClick}
           >
             <i className={`fas ${iconType}`} style={{ fontSize: "1.375em" }} />
@@ -591,12 +548,12 @@ const ReportTaskList = (props) => {
         //debugger;
         if (pendingDays === -1) {
           //debugger;
-          return <span style={{ color: "red", fontStyle: "italic" }}>1 Day</span>;
+          return <span className=" font-poppins text-red-500" >1 Day</span>;
         }
         if (pendingDays < 0) {
           //debugger;
           return (
-            <span style={{ color: "red", fontStyle: "italic" }}>{`${Math.abs(
+            <span className=" font-poppins text-red-500">{`${Math.abs(
               pendingDays
             )} Days`}</span>
           );
@@ -604,16 +561,14 @@ const ReportTaskList = (props) => {
         if (pendingDays === 1) {
           //debugger;
           return (
-            <span
-              style={{ color: "#21ce21", fontStyle: "italic" }}
+            <span className=" font-poppins text-[#21ce21]"
             >{`${pendingDays} Day`}</span>
           );
         }
         if (pendingDays > 0) {
           //debugger;
           return (
-            <span
-              style={{ color: "#21ce21", fontStyle: "italic" }}
+            <span className=" font-poppins text-[#21ce21]"
             >{`${pendingDays} Days`}</span>
           );
         }
