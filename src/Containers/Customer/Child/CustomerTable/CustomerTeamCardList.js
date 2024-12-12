@@ -355,25 +355,25 @@ console.log(selectedAssign)
          <div className=' flex sticky  w-[87%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
-         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
-            <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[83%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
+            <div className=" text-[#00A2E8] truncate text-sm  w-[12.7rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[9.9rem]  truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[10.9rem]  truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
              <div className=" w-[2.1rem]  truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            </div>
             </div>
-            <div className=" w-[7.2rem]  truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[7.7rem]  truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
             </div>                
-            <div className=" w-[6.9rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
@@ -494,8 +494,9 @@ console.log(selectedAssign)
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -514,7 +515,7 @@ console.log(selectedAssign)
               </div>
             </div>
                             </div> 
-                            <div className=" flex  max-sm:w-auto    w-[7.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
+                            <div className=" flex  max-sm:w-auto    w-[8.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
                             <div class="flex text-xs  max-sm:text-sm font-poppins   ml-gap">   
                             <div>
 {editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
@@ -548,8 +549,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -605,7 +607,7 @@ className="cursor-pointer text-xs font-poppins">
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 
-<div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
@@ -635,8 +637,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -664,8 +667,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -687,7 +691,7 @@ className="cursor-pointer text-xs font-poppins">
          {isAssignDropdownVisible === item.customerId ? (
           <Select
             style={{ width: "8rem" }}
-            value={selectedAssign}
+            value={selectedAssign}          
             onChange={(value) => {
               setSelectedAssign(value); 
               handleAssignChange(item.customerId,value); 
