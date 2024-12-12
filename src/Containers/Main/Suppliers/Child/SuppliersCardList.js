@@ -32,7 +32,6 @@ const SupplierAddListModal =lazy(()=>import("./SupplierAddListModal"));
 const SuplierPublishToggle =lazy(()=>import("./SuplierPublishToggle"));
 const SuplierNotApprovalPublish =lazy(()=>import("./SuplierNotApprovalPublish"));
 const EmptyPage =lazy(()=>import("../../EmptyPage"));
-const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
  
@@ -435,13 +434,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
  )}
  <Suspense>
-      <UpdateSupplierModal
-        rowdata={rowdata}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+    
       <SupplierPriceModal
         rowdata={rowdata}
         suppliersPriceOpenDrawer={props.suppliersPriceOpenDrawer}

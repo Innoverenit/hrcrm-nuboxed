@@ -52,18 +52,18 @@ class ForgotPassword extends Component {
   render() {
     return (
       <>
-        <div className="main flex justify-evenly" >
+        <div className="flex justify-between p-4 w-wk" >
 
-          <div className="forgot_password">
+          {/* <div className="forgot_password"> */}
 
-          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
-          <div class="  w-full  min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-white  ">
-           
+          <div class=" flex flex-col bg-[#fffafa] relative justify-center items-center  max-sm:w-wk h-[80vh] ">
+          <div className=" flex justify-start w-[9rem] h-12 ">
                 <img
                   className="w-18 h-18"
                   src={FWLogo}           
                   alt="Tekorero logo"
                 />
+                </div>
            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
                   <div class=" text-lg font-poppins font-bold text-black ">Forgot Password</div>
                   <div class=" text-sm font-poppins text-black">Link will be sent to your registered email id</div>
@@ -244,8 +244,8 @@ class ForgotPassword extends Component {
               </div>
 
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+
       </>
     );
   }

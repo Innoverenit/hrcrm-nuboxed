@@ -62,10 +62,20 @@ class Suppliesform extends Component {
         "1242",//Length
         "1243",//Width
         "1244",//Height
-       "1275" // Availability date
-
+       "1275", // Availability date
+      // "",//  Dimensions
+      // "",//  Inner Height
+      // "",//  Master Length
+      // "", //  Master Height
+      // "", //  Master Width
+      // "",//  Inner Width
+      "1369",//  Volume
+      // "",//  Inner Volume
+      // "", //  Master Volume
+    
+      // "", //  Master Weight
+      // "",//  Inner Weight
       ];
-
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations });
     } catch (error) {
@@ -142,8 +152,7 @@ class Suppliesform extends Component {
             console.log(values);
             this.props.addSupplies(
               {
-                ...values,
-                
+                ...values,                
                 fifoInd: values.fifoInd ? true : false,
                 availabilityDate: this.convertToUTC(values.availabilityDate),
               },
@@ -160,13 +169,36 @@ class Suppliesform extends Component {
             ...rest
           }) => (
             <Form class="form-background">
-              <div class="flex justify-between">
+              <div class="flex justify-around">
                 <div class="h-full w-[45%]">
-                  <div class="flex-nowrap">
+                  <div class="flex flex-row justify-between">
                     <div class="w-[40%]">
                       <div class="mt-3">
                         <Field name="imageId" component={PostImageUpld} />
                       </div>
+                    </div>
+                    <div class="flex flex-col justify-between items-center">
+                    <div class="w-w47 ">
+                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
+                      <Field
+                        name="hsn"
+                        //label="HSN"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-w47">
+                    <Field
+                              name="fifoInd"
+                              component={SwitchComponent}
+                              data={values.fifoInd}
+                              checkedChildren={"LIFO"}
+                              unCheckedChildren={"FIFO"}
+                              width={"7em"}
+                            />
+                    </div>  
                     </div>
                   </div>
                   <div class=" mt-2 font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[0]}</div>
@@ -266,21 +298,11 @@ class Suppliesform extends Component {
                     </div>
                   </div>
                   <div class="flex justify-between">
-                  <div class="w-[47%]">
-                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
-                      <Field
-                        name="hsn"
-                        //label="HSN"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                      />
-                    </div>
+                  
                    
                   </div>  
                  <div class="flex justify-between">
-                 <div class="w-[47%]">
+                 <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">Shopify</div>
                    <Field
                        name="shopify"
@@ -289,10 +311,10 @@ class Suppliesform extends Component {
                        width={"100%"}
                        inlineLabel
                        component={InputComponent}
-                       // isRequired
+                    
                      />
                    </div>
-                   <div class="w-[47%]">
+                   <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">SEO Title</div>
                    <Field
                        name="seoTitle"
@@ -301,12 +323,12 @@ class Suppliesform extends Component {
                        width={"100%"}
                        inlineLabel
                        component={InputComponent}
-                       // isRequired
+                    
                      />
                    </div>
                  </div>
                  <div class="flex justify-between">
-                 <div class="w-[47%]">
+                 <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">SEO Descrption</div>
                    <Field
                        name="seoDescription"
@@ -314,11 +336,10 @@ class Suppliesform extends Component {
                        isColumn
                        width={"100%"}
                        inlineLabel
-                       component={InputComponent}
-                       // isRequired
+                       component={InputComponent}                    
                      />
                    </div>
-                   <div class="w-[47%]">
+                   <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">Tag</div>
                    <Field
                        name="tag"
@@ -326,24 +347,12 @@ class Suppliesform extends Component {
                        isColumn
                        width={"100%"}
                        inlineLabel
-                       component={InputComponent}
-                       // isRequired
+                       component={InputComponent}                    
                      />
                    </div>
                  </div>
-
                   <div class="flex justify-between mt-2">
-                    <div class="w-[47%]">
-                    <Field
-                              name="fifoInd"
-                              component={SwitchComponent}
-                              data={values.fifoInd}
-                              checkedChildren={"LIFO"}
-                              unCheckedChildren={"FIFO"}
-                              width={"7em"}
-                            />
-                    </div>
-                
+                                
                   </div>
                   <div class="flex justify-between mt-4">
                     <div class="w-full">
@@ -357,9 +366,7 @@ class Suppliesform extends Component {
                         inlineLabel
                       />
                     </div>
-                  </div>
-
-               
+                  </div>               
                   <div className="flex justify-between mt-4">
                     <div className="w-full">
                       <div class="font-bold text-xs font-poppins text-black">
@@ -388,7 +395,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-                  <div class="w-[47%]">
+                  <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
                     <Field
                         name="innerHeight"
@@ -397,17 +404,16 @@ class Suppliesform extends Component {
                         width={"100%"}
                         inlineLabel
                         component={InputComponent}
-                        // isRequired
+                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
                       <Field
                         name="height"
                         isColumn
                         inlineLabel
-                        component={InputComponent}
-                      
+                        component={InputComponent}                      
                         style={{
                           width: "100%",
                         }}
@@ -416,21 +422,19 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                    
-                   <div class="w-[47%]">
+                   <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                      <Field
-                       name="length"
-     
+                       name="length"     
                        isColumn
                        inlineLabel
-                       component={InputComponent}
-                     
+                       component={InputComponent}                     
                        style={{
                          width: "100%",
                        }}
                      />
                    </div>
-                   <div class="w-[47%]">
+                   <div class="w-w47">
                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
                      <Field
                        name="width"
@@ -442,7 +446,7 @@ class Suppliesform extends Component {
                    </div>
                  </div>
                   <div class="flex justify-between">
-                  <div class="w-[47%]">
+                  <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Master Length</div>
                     <Field
                         name="masterLength"
@@ -450,11 +454,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
                     <Field
                         name="innerLength"
@@ -462,13 +465,12 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
                     </div>
                     <div class="flex justify-between">
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Master Height</div>
                     <Field
                         name="masterHeight"
@@ -476,11 +478,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Master Width</div>
                     <Field
                         name="masterWidth"
@@ -488,13 +489,12 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
                     </div>
                     <div class="flex justify-between">
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
                     <Field
                         name="innerWidth"
@@ -502,11 +502,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                     <Field
                         name="uom"
@@ -523,8 +522,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     </div>
-      <div >
-       
+      <div >       
       </div>
       </div>
     </div>
@@ -534,7 +532,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-      <div class="w-[47%]">
+      <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
                     <Field
                         name="innerVolume"
@@ -542,11 +540,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
                     <Field
                         name="masterVolume"
@@ -554,13 +551,12 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
       </div>
       <div class="flex justify-between">
-      <div class="w-[47%]">
+      <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Volume</div>
                     <Field
                         name="volume"
@@ -568,11 +564,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-      <div class="w-[47%]">
+      <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                     <Field
                         name="volUom"
@@ -600,7 +595,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-      <div class="w-[47%]">
+      <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Weight</div>
                     <Field
                         name="weight"
@@ -608,11 +603,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
                     <Field
                         name="masterWeight"
@@ -620,13 +614,12 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
         </div>
         <div class="flex justify-between">
-        <div class="w-[47%]">
+        <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
                     <Field
                         name="innerWeight"
@@ -634,11 +627,10 @@ class Suppliesform extends Component {
                         isColumn
                         width={"100%"}
                         inlineLabel
-                        component={InputComponent}
-                        // isRequired
+                        component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-w47">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="wtUom"
@@ -648,7 +640,6 @@ class Suppliesform extends Component {
                         value={values.unitName}
                         component={SelectComponent}
                         options={Array.isArray(uomType) ? uomType : []}
-                        // options={["g", "kg"]}
                         style={{
                           width: "100%",
                         }}
@@ -661,7 +652,6 @@ class Suppliesform extends Component {
       </div>
       </div>
     </div>
-                
                 </div>
               </div>
               <div class="flex justify-end mt-3">

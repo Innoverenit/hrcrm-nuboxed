@@ -26,38 +26,7 @@ class ExpenseActionRight extends React.Component {
   render() {
     return (
       <div class=" flex items-center" >
-        {/* <Button
-                    type="primary"
-                    default
-                    disabled
-                >
-                    Import
-                </Button>
-
-                <Button
-                    type="primary"
-                    default
-                    disabled
-                >
-                    Import
-                </Button> */}
-        {/* <Button
-          type={this.state.isClicked === "import" ? "primary" : ""}
-          onClick={() => this.handleClicked("import")}
-        >
-          Import
-        </Button>
-        &nbsp; */}
-    <div>
-        <Tooltip placement="left" title="Create">
-          <Button
-            type="primary"
-            onClick={() => this.props.handleExpenseModal(true)}
-          >
-            < DataSaverOnIcon/>Add           
-          </Button>
-        </Tooltip>
-        </div>
+  
         <div  class=" ml-2">
         <Button
           type={this.state.isClicked === "export" ? "primary" : ""}
@@ -67,18 +36,23 @@ class ExpenseActionRight extends React.Component {
          <UploadIcon className=" !text-icon"/> Export
         </Button>
         </div>
+        <div>
+        <Tooltip placement="left" title="Create">
+          <Button
+            type="primary"
+            onClick={() => this.props.handleExpenseModal(true)}
+          >
+            < DataSaverOnIcon/>Add           
+          </Button>
+        </Tooltip>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ auth, team, Expense }) => ({
-  //   userId: auth.userDetails.userId,
-  //   subscriptionType: auth.userDetails.metaData.organization.subscriptionType,
-  //   ExpenseFilterText: Expense.ExpenseFilterText,
-  //   users: team.users,
-  //   filterByUserOption: team.filterByUserOption,
-  //   user: auth.userDetails,
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -90,20 +64,3 @@ const mapDispatchToProps = (dispatch) =>
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ExpenseActionRight)
 );
-
-// function onChangeDatePicker(date, dateString, dataPass) {
-//   console.log(date);
-//   console.log(dateString);
-//   console.log(dataPass);
-//   setRows((value) => {
-//     console.log(value);
-//     return value.map((data) => {
-//       if (`${data.id}date` === dataPass) {
-//         console.log(dateString);
-//         return { ...data, date: dateString };
-//       } else {
-//         return data;
-//       }
-//     });
-//   });
-// }

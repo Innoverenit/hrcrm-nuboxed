@@ -25,26 +25,7 @@ class MileageActionRight extends React.Component {
   render() {
     return (
       <div class=" flex items-center ml2" >
-        {/* <Button
-          type={this.state.isClicked === "import" ? "primary" : ""}
-          onClick={() => this.handleClicked("import")}
-          // onClick={() => this.props.history.push("/import/product")}
-        >
-          Import
-        </Button> */}   
-      <div class=" ml-2">
-        <Tooltip placement="left" title="Create">
-          <Button
-            type="primary"
-            onClick={() => this.props.handleMileageModal(true)}
-          >
-            {/* <Icon /> */}
-
-           <DataSaverOnIcon/> Add
-          </Button>
-        </Tooltip>
-        </div>
-        <div class=" ml-2">
+      <div >
           
         <Button
           type={this.state.isClicked === "export" ? "primary" : ""}
@@ -52,6 +33,17 @@ class MileageActionRight extends React.Component {
         >
          <UploadIcon className=" !text-icon"/> Export
         </Button>
+        </div>
+        <div class=" ml-2">
+        <Tooltip placement="left" title="Create">
+          <Button
+            type="primary"
+            onClick={() => this.props.handleMileageModal(true)}
+          >
+          
+           <DataSaverOnIcon className=" !text-icon"/> Add
+          </Button>
+        </Tooltip>
         </div>
       </div>
     );
