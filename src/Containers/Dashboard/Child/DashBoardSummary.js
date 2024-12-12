@@ -97,7 +97,7 @@ const DashBoardSummary=(props) =>{
         props.getBestDashboardCount(props.locationId);
         props.getTaskDashboard(props.userId, page);
         props.getTasklist(props.userId);
-        props.getReorderdata();
+        props.getReorderdata("user");
         props.getDealDashboard(props.userId);
         props.getReorderDashboardCount();
         props.getDealDashboardCount(props.userId);
@@ -111,7 +111,7 @@ const DashBoardSummary=(props) =>{
         props.getQuotationDashboardCount(props.orgId);
         props.getTaskDashboard(props.orgId, page);
         props.getTasklist(props.orgId);
-        props.getReorderdata();
+        props.getReorderdata("org");
         props.getDealDashboard(props.orgId);
         props.getReorderDashboardCount();
         props.getDealDashboardCount(props.orgId);
@@ -332,12 +332,12 @@ const DashBoardSummary=(props) =>{
               /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
         {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </div>
         <div className="overflow-y-hidden max-h-[78vh]">
-      {props.fetchingMaterialBestBefore ? (
+      {loading1 ? (
         <div className="flex justify-center items-center h-full  min-w-[12rem]">
           <BundleLoader /> {/* Spinner component */}
         </div>
       ) : (
-        props.materialBestBefore.map((colleague, index) => (
+        BestBefore.map((colleague, index) => (
           <div key={index} className="mb-2  p-1  ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex  w-full truncate text-xs">
               <div className="font-semibold font-poppins  truncate text-xs ">{colleague.suppliesFullName} {colleague.batchNo}</div>
