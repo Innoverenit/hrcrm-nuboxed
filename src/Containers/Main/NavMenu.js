@@ -967,7 +967,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
 
               <span class="text-white text-ls ml-1">
                 {translatedMenuItems[45]}
-                &nbsp;&nbsp;
+                &nbsp;
                 <Badge
                   count={props.opportunityRecord.RecruitmentList}
                   overflowCount={999}

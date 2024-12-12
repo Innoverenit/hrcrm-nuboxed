@@ -309,7 +309,7 @@ console.log(selectedAssign)
         {props.teamUserList.map((item,index) =>{
            return (
          <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] mt-1  max-sm:w-wk flex  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  text-[#444444] mt-1  max-sm:w-wk  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center  h-16">
           <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
@@ -692,7 +692,7 @@ className="cursor-pointer text-xs font-poppins">
               setSelectedAssign(value); 
               handleAssignChange(item.customerId,value); 
             }}
-            // onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
             autoFocus
           >
              {props.crmAllData.map(customer => (
