@@ -235,7 +235,7 @@ class ContactForm extends Component {
       customerId,
       tagWithCompany,
     } = this.props;
-    console.log(linkContact);
+    console.log(this.props.name);
 
       
     const {loading,translatedMenuItems } = this.state;

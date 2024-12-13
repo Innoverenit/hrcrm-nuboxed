@@ -225,6 +225,7 @@ return  <BundleLoader />
     if (loading) {
       return <div><BundleLoader/></div>;
     } 
+    console.log(this.props.opportunity.customer)
     return (
       <>
         <TabsWrapper>
@@ -491,12 +492,16 @@ return  <BundleLoader />
             linkContact
           /> */}
           <AddCustomerContactModal
+          name={this.props.opportunity.customer}
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             opportunityId={opportunityId}
+            customerId={this.props.opportunity.customerId}
+            id={this.props.opportunity.customerId}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.state.translatedMenuItems}
+          customer={this.props.opportunity}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, Switch,Select } from "antd";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
@@ -30,7 +30,8 @@ import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-
+import { base_url } from "../../../../../../Config/Auth";
+const { Option } = Select;  
 /**
  * yup validation scheme for creating a opportunity
  */
@@ -45,6 +46,10 @@ function RecruitForm(props) {
   const [typeData1, setTypeData1] = useState(true);
   const [typeData, setTypeData] = useState(false);
   const [workTypeData, setWorkTypeData] = useState(false);
+         const [contact, setContact] = useState([]);
+         const [selectedContact, setSelectedContact] = useState(null);
+         const [isLoadingContact, setIsLoadingContact] = useState(false);
+         const [touchedContact, setTouchedContact] = useState(false);
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
     libraries: ["places"], // Ensure the 'places' library is loaded
@@ -144,7 +149,7 @@ function RecruitForm(props) {
 
   useEffect(() => {
     props.getProcessForRecruit(props.organizationId);
-    props.getContactListByCustomerId(props.opportunity.customerId);
+    props.getContactListByCustomerId(props.opportunity.customerId,"contact");
     //   props.getAllProcessStagesForRecruit();
     props.getContactListByOpportunityId(props.opportunityId);
     props.getRecruiterName();
@@ -155,6 +160,40 @@ function RecruitForm(props) {
     resetForm();
   }
 
+const fetchContact = async () => {
+    setIsLoadingContact(true);
+    try {
+      const apiEndpoint = `
+     ${base_url}/customer/contact/drop/${props.opportunity.customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContact(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingContact(false);
+    }
+  };
+  const handleSelectContactFocus = () => {
+    if (!touchedContact) {
+     
+      fetchContact();
+
+      setTouchedContact(true);
+    }
+  };
+
+  const handleSelectChangeContact = (customerId) => {
+    setSelectedContact(customerId)
+    // console.log('Selected user:', value);
+  };
   // function handleCallback() {
   //   props.getRecruitByOpportunityId(props.opportunityId);
   // }
@@ -293,6 +332,8 @@ function RecruitForm(props) {
               avilableDate: `${newavilableDate}T00:00:00Z`,
               //  endDate: `${newavilableDate}T00:00:00Z`,
               //endDate:props.endDate || dayjs().add(1,'years'),
+              customerId:props.opportunity.customerId,
+              contactId:selectedContact,
               opportunityId: props.opportunityId,
               endDate: `${newEndDate}T00:00:00Z`,
               type: typeData ? "Permanent" : "Contractor",
@@ -529,7 +570,7 @@ function RecruitForm(props) {
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
-                  <Field
+                  {/* <Field
                     name="contactId"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
@@ -546,7 +587,21 @@ function RecruitForm(props) {
                       value: props.contactId,
                     }}
                     inlineLabel
-                  />
+                  /> */}
+                  <Select
+        showSearch 
+        placeholder="Search or select"
+        optionFilterProp="children"
+        loading={isLoadingContact}
+        onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeContact}
+      >
+        {contact.map(contacts => (
+         <Option key={contacts.contactId} value={contacts.contactId}>
+         {contacts.fullName}
+       </Option>
+        ))}
+      </Select>
                   </div>
                   <div style={{ width: "47%" }}>
                   {" "}
@@ -729,6 +784,7 @@ const mapStateToProps = ({
   contactListByOpportunityId: opportunity.contactListByOpportunityId,
   recruiterName: opportunity.recruiterName,
   talentRoles: role.talentRoles,
+  token: auth.token, 
   allpartnerByUserId: partner.allpartnerByUserId,
 });
 

@@ -467,20 +467,19 @@ export const deleteDocument = (documentId) => (dispatch, getState) => {
 /**
  * add skills of a candidateId
  */
-export const addTopicByCandidateId = (data, candidateId) => (dispatch) => {
-  console.log(candidateId);
+export const addTopicByCandidateId = (data,userType) => (dispatch) => {
   dispatch({
     type: types.ADD_TOPIC_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/skillSet`, data, {
+    .post(`${base_url}/employee/employeeCertificationLink/save/skill/${userType}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      dispatch(getTopicsByCandidateId(candidateId));
+      // dispatch(getTopicsByCandidateId(userType,id));
       dispatch({
         type: types.ADD_TOPIC_BY_CANDIDATE_ID_SUCCESS,
         payload: res.data,
@@ -496,12 +495,12 @@ export const addTopicByCandidateId = (data, candidateId) => (dispatch) => {
 };
 
 //get skills by candidateId
-export const getTopicsByCandidateId = (candidateId) => (dispatch) => {
+export const getTopicsByCandidateId = (userType,id) => (dispatch) => {
   dispatch({
     type: types.GET_TOPICS_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/skill-set/${candidateId}`, {
+    .get(`${base_url}/employee/employeeCertificationLink/get-all/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2181,20 +2180,20 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       });
   };
 
-  export const addCertificationByCandidateId = (data, candidateId) => (dispatch) => {
+  export const addCertificationByCandidateId = (data, userType) => (dispatch) => {
     
     dispatch({
       type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .post(`${base_url}/candidate/certification  `, data, {
+      .post(`${base_url}/employee/employeeCertificationLink/save/certification/${userType}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
         console.log(res);
-        dispatch(getCertificationByCandidateId(candidateId));
+        // dispatch(getCertificationByCandidateId(candidateId));
         dispatch({
           type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_SUCCESS,
           payload: res.data,
@@ -2209,12 +2208,12 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       });
   };
   
-  export const getCertificationByCandidateId = (candidateId) => (dispatch) => {
+  export const getCertificationByCandidateId = (userType,id) => (dispatch) => {
     dispatch({
       type: types.GET_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .get(`${base_url}/candidate/certification/${candidateId}`, {
+      .get(`${base_url}/candidate/certification/${userType}/${id}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -2437,7 +2436,12 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
     });
   };
 
- 
+  export const ClearReducerCertification = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_REDUCER_CERTIFICATION,
+    });
+  };
+
 
 
 
