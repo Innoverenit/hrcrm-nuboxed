@@ -74,10 +74,10 @@ function VatTable(props) {
         <div className="flex justify-end sticky flex-col z-auto">
           <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className="flex rounded max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-              <div className="md:w-[10rem]">
+              <div className="w-[33rem] md:w-[33rem]">
                Name
               </div>
-              <div className="md:w-[4.5rem]">Value %</div>
+              <div className="w-[4.5rem] md:w-[4.5rem]">Value %</div>
             </div>
 
             {props.allVat.map((item) => {
@@ -86,23 +86,29 @@ function VatTable(props) {
                   <div className="flex items-center justify-between p-2 bg-white shadow-md rounded mb-2">
                     {editingItemId === item.id ? (
                       <>
-                        {/* Country dropdown */}
+                      <div className="flex flex-col mb-4 w-full max-w-[15rem]"> 
+                        <label className="font-semibold mb-2">Country</label> 
                         <Select
                           value={editedData.country}
                           onChange={handleCountryChange}
-                          style={{ width: 150 }}
+                          className="w-full overflow-hidden whitespace-nowrap text-ellipsis border border-gray-300 rounded-md" // Tailwind styles for dropdown
+                          dropdownStyle={{ maxWidth: '15rem' }} 
                         >
                           {props.countries.map((option) => (
                             <Option
                               key={option.country_id}
                               value={option.country_name}
+                              className="overflow-hidden whitespace-nowrap text-ellipsis"
                             >
-                              {option.country_name}
+                              <div className="truncate" style={{ width: "15rem" }}>
+                                {option.country_name}
+                              </div>
                             </Option>
                           ))}
                         </Select>
-
-                        {/* Editable Value Input */}
+                      </div>
+                      <div className="flex flex-col mb-4 w-full max-w-[15rem]"> 
+                        <label className="font-semibold mb-2">Value</label> 
                         <Input
                           value={editedData.value}
                           onChange={(e) =>
@@ -112,19 +118,32 @@ function VatTable(props) {
                             })
                           }
                           onKeyPress={(e) => handleKeyPress(e, item.id)}
+                          className="w-full p-2 border border-gray-300 rounded-md"
                         />
-
-                        <div className="flex gap-2">
-                          <Button onClick={() => handleUpdateVat(item.id)}>
-                            Save
-                          </Button>
-                          <Button onClick={handleCancel}>Cancel</Button> {/* Cancel Button */}
-                        </div>
-                      </>
+                      </div>
+                    
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 mt-6 justify-start">
+                        <Button
+                          onClick={() => handleUpdateVat(item.id)}
+                          className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition"
+                        >
+                          Save
+                        </Button>
+                        <Button
+                          onClick={handleCancel}
+                          className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 transition"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </>
+                    
+                    
                     ) : (
                       <>
                         {/* Display current data */}
-                        <div>{item.country}</div>
+                        <div className="w-[10rem] ">{item.country}</div>
                         <div>{item.value}</div>
                         <Button onClick={() => handleEdit(item)}>Edit</Button>
                       </>
