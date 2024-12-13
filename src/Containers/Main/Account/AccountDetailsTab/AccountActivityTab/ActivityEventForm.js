@@ -285,7 +285,7 @@ function ActivityEventForm(props) {
                     <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form className="form-background">
                             <div class=" flex justify-around max-sm:flex-col">
-                                <div class=" h-full w-w47.5 max-sm:w-wk">
+                                <div class=" h-full w-w47.5.5 max-sm:w-wk">
                                     < div class="mt-3" />
                                     <Field
                                         isRequired
@@ -550,7 +550,7 @@ function ActivityEventForm(props) {
                                     </div>
                                     < div class="mt-3" />
                                        </div>
-                                <div class=" h-full w-w47.5 max-sm:w-wk ">
+                                <div class=" h-full w-w47.5.5 max-sm:w-wk ">
                                     < div class="mt-3" />
                                     <FieldArray
                                         name="address"

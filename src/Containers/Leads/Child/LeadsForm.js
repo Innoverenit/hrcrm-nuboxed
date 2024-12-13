@@ -430,7 +430,7 @@ props.emptyClearbit();
                   </div> 
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                 {props.customerConfigure.imageUploadInd===true&&
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
@@ -611,7 +611,7 @@ props.emptyClearbit();
                    )}
                                         
                   <div class=" flex  justify-between mt-3">
-                   <div class="flex flex-col w-w47.5" >
+                   <div class="flex flex-col w-w47.5.5" >
                    {props.customerConfigure.sectorInd===true&&
                   <div className="font-bold text-xs">{translatedMenuItems[8]}</div>
 }
@@ -633,7 +633,7 @@ props.emptyClearbit();
       </Select>
 }                 
                     </div>
-                    <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                    <div class=" w-w47.5.5"  style={{display:"flex",flexDirection:"column"}}>
                     {props.customerConfigure.sourceInd===true&&
                          <div className="font-bold text-xs">{translatedMenuItems[9]}</div>
                     }
@@ -658,7 +658,7 @@ props.emptyClearbit();
                     </div>
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     {props.customerConfigure.lobInd===true&&
                   <div className="font-bold text-xs">{translatedMenuItems[10]}</div>
 }
@@ -680,7 +680,7 @@ props.emptyClearbit();
       </Select>
 }
                     </div>
-                    <div class="flex items-center justify-center w-w47.5 max-sm:w-wk">
+                    <div class="flex items-center justify-center w-w47.5.5 max-sm:w-wk">
                     {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">
@@ -736,7 +736,7 @@ props.emptyClearbit();
                   </div>                            
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     {values.leadType === "BtoB" && (
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     {props.customerConfigure.vatNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <div className="font-bold text-xs">{translatedMenuItems[11]}</div>
@@ -753,7 +753,7 @@ props.emptyClearbit();
                     </div>
                     )}
                      {values.leadType === "BtoB" && (
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     {props.customerConfigure.businessRegInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <div className="font-bold text-xs">{translatedMenuItems[12]}</div>
@@ -772,7 +772,7 @@ props.emptyClearbit();
                      )}
                   </div>               
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >
                     {props.customerConfigure.assignedToInd===true&&
                    <Listbox value={selected} onChange={setSelected}>
@@ -891,7 +891,7 @@ translatedMenuItems={props.translatedMenuItems}
                   </div>
                  
                   <div class=" flex justify-between mt-3">         
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5.5">
                     <Field
                       name="propertyType"
                       label="Property Type"

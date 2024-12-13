@@ -98,7 +98,7 @@ function AddSuppliersForm (props) {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[33rem]">
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
-                <div class="h-full w-w47.5 max-sm:w-full">
+                <div class="h-full w-w47.5.5 max-sm:w-full">
                 <div className=" text-xs font-poppins font-bold "> {props.translatedMenuItems[0]} </div>
                   <Field
                     isRequired
@@ -186,7 +186,7 @@ function AddSuppliersForm (props) {
                     }
                   </div>       
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-full">
+                <div class="h-full w-w47.5.5 max-sm:w-full">
                 {props.customerConfigure.assignedToInd===true&&
                 <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>

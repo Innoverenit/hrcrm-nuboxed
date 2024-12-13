@@ -87,7 +87,7 @@ function WonForm(props) {
               <div class=" flex  max-sm:flex-col">
                 <div class=" h-full w-wk">
                  
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <Field
                   isRequired
                   name="paymentReceived"
@@ -113,7 +113,7 @@ function WonForm(props) {
                   inlineLabel
                 />
                </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                     <Field
                       name="paymentReceivedDate"
                       label="Date"

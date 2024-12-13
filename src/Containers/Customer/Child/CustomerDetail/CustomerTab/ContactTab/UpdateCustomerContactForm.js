@@ -443,7 +443,7 @@ class UpdateCustomerContactForm extends Component {
                 
 
                     <div class="  flex justify-between max-sm:mt-20">
-        <div class="flex flex-col w-w47.5">
+        <div class="flex flex-col w-w47.5.5">
                 
                   <div class=" text-xs font-bold font-poppins"> 
                     {/* {translatedMenuItems[9]} */}
@@ -472,7 +472,7 @@ class UpdateCustomerContactForm extends Component {
                     </div>              
                
 
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
                    
                     <div class=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[15]}</div>
                     
@@ -498,7 +498,7 @@ class UpdateCustomerContactForm extends Component {
                   </div>
 
                     <div class=" flex justify-between">
-                    <div class="  w-w47.5">
+                    <div class="  w-w47.5.5">
                     <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[10]}</div>
                         <FastField
                          name="designationTypeId"
@@ -511,7 +511,7 @@ class UpdateCustomerContactForm extends Component {
                          inlineLabel
                         />
                      </div>
-                     <div class="w-w47.5">
+                     <div class="w-w47.5.5">
                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[11]}</div>
                       <FastField
                         name="departmentId"

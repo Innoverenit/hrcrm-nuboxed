@@ -76,7 +76,7 @@ function ProductionPaymentForm(props) {
                 }) => (
                     <Form>
                         <div class="flex justify-around max-sm:flex-col">
-                            <div class=" h-full w-w47.5 max-sm:w-wk">
+                            <div class=" h-full w-w47.5.5 max-sm:w-wk">
                                 <div class="flex justify-between">
                                     <div class="w-[31%]">
                                         <Field
@@ -125,7 +125,7 @@ function ProductionPaymentForm(props) {
                                     />
                                 </div>
                             </div>
-                            <div class=" h-full w-w47.5 max-sm:w-wk">
+                            <div class=" h-full w-w47.5.5 max-sm:w-wk">
                                 <div class="flex justify-between">
                                     <div class="w-[48%]">
                                         <Field

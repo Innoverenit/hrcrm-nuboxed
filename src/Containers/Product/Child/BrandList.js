@@ -179,7 +179,7 @@ const handleSave = (item) => {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col"
               >
-                <div class=" h-full w-w47.5 max-sm:w-wk"
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"
                 >
                   <div class=" flex  flex-nowrap justify-between">
                 

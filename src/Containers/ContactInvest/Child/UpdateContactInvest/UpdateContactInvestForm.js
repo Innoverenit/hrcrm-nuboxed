@@ -245,7 +245,7 @@ class UpdateContactInvestForm extends Component {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col  ">
-                <div class=" h-full w-w47.5 max-sm:w-wk" >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk" >
                  <div class=" flex justify-between  flex-nowrap">
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
@@ -387,9 +387,9 @@ class UpdateContactInvestForm extends Component {
                   </div>
                 </div>
                 
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "> 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "> 
                 <div class=" flex  justify-between">
-                <div class="  font-bold font-poppins text-xs w-w47.5">
+                <div class="  font-bold font-poppins text-xs w-w47.5.5">
             {translatedMenuItems[9]}  
                       <Field
                         name="customerId"
@@ -405,7 +405,7 @@ class UpdateContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>          
-                <div class="  font-bold font-poppins text-xs w-w47.5 ">
+                <div class="  font-bold font-poppins text-xs w-w47.5.5 ">
                 {translatedMenuItems[10]} 
                   <FastField
                     name="designationTypeId"
@@ -421,7 +421,7 @@ class UpdateContactInvestForm extends Component {
                 </div>
               </div>             
               <div class=" flex justify-between mt-3">   
-              <div class=" font-bold font-poppins text-xs w-w47.5">
+              <div class=" font-bold font-poppins text-xs w-w47.5.5">
               {translatedMenuItems[11]} 
                     <FastField
                       name="departmentId"
@@ -434,7 +434,7 @@ class UpdateContactInvestForm extends Component {
                       inlineLabel    
                     />
                     </div>
-                    <div class=" font-bold font-poppins text-xs w-w47.5">
+                    <div class=" font-bold font-poppins text-xs w-w47.5.5">
                    {translatedMenuItems[12]}  
                   <FastField
                             name="sourceId"                                   

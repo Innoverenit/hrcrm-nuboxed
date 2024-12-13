@@ -515,7 +515,7 @@ console.log(selectedSource)
           <div class="max-sm:h-[30rem] overflow-y-auto">
             <Form className="form-background h-[87vh]" >
               <div class="flex justify-around  max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
@@ -616,7 +616,7 @@ console.log(selectedSource)
                  
 
                   <div class=" flex justify-between mt-3">
-                    <div class= " flex flex-col w-w47.5 max-sm:w-w47.5">                  
+                    <div class= " flex flex-col w-w47.5.5 max-sm:w-w47.5.5">                  
                        {props.customerConfigure.sectorInd===true&&
                    <div className="font-bold text-[0.75rem]">
                         {translatedMenuItems[4]}
@@ -641,7 +641,7 @@ console.log(selectedSource)
       </Select>
 }
                     </div>
-                    <div class="w-w47.5 flex flex-col">                
+                    <div class="w-w47.5.5 flex flex-col">                
                 
  {props.customerConfigure.sourceInd===true&&
 <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>
@@ -669,7 +669,7 @@ console.log(selectedSource)
                     </div>
                   </div>
                   <div class="flex justify-between mt-2">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   {props.customerConfigure.typeInd===true&&
   <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
                   }
@@ -688,7 +688,7 @@ console.log(selectedSource)
     />
 }
   </div>
-  <div class="w-w47.5 flex">
+  <div class="w-w47.5.5 flex">
     
     <div class="w-[4.5rem]">
     {props.customerConfigure.potentialInd===true&&
@@ -744,7 +744,7 @@ console.log(selectedSource)
                   </div>
 {/* } */}
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
                 >
 {props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
@@ -821,7 +821,7 @@ console.log(selectedSource)
 }
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   {props.customerConfigure.vatNoInd===true&&
                       <Field
                         name="vatNo"
@@ -836,7 +836,7 @@ console.log(selectedSource)
                       />
 }
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     {props.customerConfigure.businessRegInd===true&&
                       <Field
                         name="businessRegistration"

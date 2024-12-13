@@ -262,7 +262,7 @@ useEffect(() => {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col"
               >
-                <div class=" h-full w-w47.5 max-sm:w-wk"
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"
                 >
                   <div class=" flex  flex-nowrap justify-between">
                     <FastField name="imageId" component={PostImageUpld} />
@@ -466,11 +466,11 @@ useEffect(() => {
                 
                  
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
                 >
                   <div class=" flex  justify-between max-sm:mt-20">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
-                    <div class="  w-w47.5">
+                    <div class="  w-w47.5.5">
                       <Field
                         name="customerId"
                         // selectType="customerList"
@@ -496,7 +496,7 @@ useEffect(() => {
                     </div>
 
                    
-                    <div class=" w-w47.5">
+                    <div class=" w-w47.5.5">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     <FastField
                             name="source"
@@ -520,7 +520,7 @@ useEffect(() => {
                  
                   <div class=" flex justify-between mt-3">    
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>     
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5.5">
                     <Field
                       name="departmentId"
                      //  label={translatedMenuItems[11]}
@@ -537,7 +537,7 @@ useEffect(() => {
             unCheckedChildren="Hidden"
           />
                   </div>
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                   <FastField
                         name="designationTypeId"
@@ -587,7 +587,7 @@ useEffect(() => {
                 >
                   <div class=" flex  justify-between max-sm:mt-20">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
-                    <div class="  w-w47.5">
+                    <div class="  w-w47.5.5">
                       <Field
                         name="bedrooms"
                         // selectType="customerList"
@@ -601,7 +601,7 @@ useEffect(() => {
                     </div>
 
                    
-                    <div class=" w-w47.5" >
+                    <div class=" w-w47.5.5" >
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>
                     <FastField
                             name="price"
@@ -621,7 +621,7 @@ useEffect(() => {
                   
                   <div class=" flex justify-between mt-3">     
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[16]}</div>    
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5.5">
                     <Field
                       name="propertyType"
                       // label="Property Type"
