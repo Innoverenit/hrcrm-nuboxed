@@ -14,7 +14,7 @@ const AddCustomerContactModal = (props) => {
     handleCustomerContactModal,
     ...formProps
   } = props;
-  console.log(props.opportunityId)
+  console.log(props.customerId)
   return (
     <>
       <StyledDrawer

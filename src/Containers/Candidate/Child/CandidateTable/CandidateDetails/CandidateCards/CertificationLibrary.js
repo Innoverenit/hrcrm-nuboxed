@@ -40,10 +40,10 @@ class certificationLibrary extends React.Component {
     if (inputValue) {
       addCertificationByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          candidateId: this.props.uniqueId,
           candidateCertificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.candidate.candidateId
+        this.props.userType
       );
     }
     this.setState({
@@ -60,10 +60,10 @@ class certificationLibrary extends React.Component {
     } = this.props;
       addCertificationByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          candidateId: this.props.uniqueId,
           candidateCertificationName:"",
         },
-        this.props.candidate.candidateId
+        this.props.userType
       );
   };
   handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
@@ -73,7 +73,7 @@ class certificationLibrary extends React.Component {
 
   saveInputRef = (input) => (this.input = input);
   componentDidMount = () => {
-     this.props.getCertificationByCandidateId(this.props.candidate.candidateId);
+     this.props.getCertificationByCandidateId(this.props.userType,this.props.uniqueId);
      this.props.getCertification(this.props.orgId)
   };
 
@@ -100,7 +100,8 @@ class certificationLibrary extends React.Component {
               <div>
                       <CertificationSelect
                       certifications={this.props.certifications}
-                      candidateId={this.props.candidate.candidateId}
+                      candidateId={this.props.uniqueId}
+                      userType={this.props.userType}
                       />
                       </div>
                       </div>

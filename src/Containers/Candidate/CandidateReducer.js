@@ -1682,6 +1682,10 @@ case types.ADD_EXPERIENCE_BY_CANDIDATE_ID_REQUEST:
                     case types.HANDLE_EMAIL_DRAWER_MODAL:
                       return { ...state, addemaildrawermodal: action.payload };
                 
+                      case types.HANDLE_CLAER_REDUCER_DATA_CANDIDATE:
+                        return { ...state, 
+                          topicsByCandidateId: [], 
+                        }; 
 
     default:
       return state;
