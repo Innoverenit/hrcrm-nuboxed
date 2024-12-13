@@ -147,7 +147,8 @@ export const setDealViewType = (viewType) => (dispatch) => {
 
     dispatch({ type: types.UPDATE_DEAL_BY_ID_REQUEST });
     axios
-      .put(`${base_url}/investorOpportunity/${invOpportunityId}`, data, {
+   
+      .put(`${base_url}/investorOpportunity/rowEdit/${invOpportunityId}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

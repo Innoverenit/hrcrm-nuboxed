@@ -50,9 +50,6 @@ import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
-const UpdateInvestorModal = lazy(() =>
-  import("../UpdateInvestor/UpdateInvestorModal")
-);
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -155,7 +152,6 @@ function InvestorSearchedData(props) {
     addDrawerInvestorPulseModal,
     addDrawerInvestorDocumentModal,
     addDrawerInvestorContactModal,
-    updateInvestorModal,
     investor,
     priceInvestorDrawer,
     deleteInvestorData,
@@ -590,17 +586,6 @@ function InvestorSearchedData(props) {
 
      {/* </InfiniteScroll>  */}
      </div>
-  
-
-      <UpdateInvestorModal
-        RowData={RowData}
-        updateInvestorModal={updateInvestorModal}
-        handleUpdateInvestorModal={handleUpdateInvestorModal}
-        handleCurrentRowData={handleCurrentRowData}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
 
 <ContactsInvestorModal
         RowData={RowData}
@@ -678,7 +663,6 @@ const mapStateToProps = ({
   fetchingAllCustomers: customer.fetchingAllCustomers,
   fetchingInvestors: investor.fetchingInvestors,
   fetchingInvestorsError: investor.fetchingInvestorsError,
-  updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
   priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,

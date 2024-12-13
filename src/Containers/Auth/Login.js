@@ -80,7 +80,7 @@ class Login extends Component {
              <div className=" flex justify-start ">
               <img
               className="w-[9rem] h-12"
-              src={FWLogo2}
+              src={DevelopTk}
               alt="Tekorero logo"
             /></div>
             
