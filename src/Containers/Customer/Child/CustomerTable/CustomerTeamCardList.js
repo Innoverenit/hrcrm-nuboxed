@@ -502,7 +502,7 @@ console.log(selectedAssign)
 ) : (
 <div onClick={() => 
     handleEditRowField(item.customerId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 

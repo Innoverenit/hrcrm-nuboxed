@@ -467,8 +467,9 @@ console.log(selectedAssign)
 
                       <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
-                                          <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            <div class=" text-xs flex text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
+                                          <div class="flex max-sm:flex-row w-[100%] justify-between md:flex-col">
+                                            <div class=" text-xs flex items-center justify-between
+                                             text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>    
@@ -495,7 +496,7 @@ console.log(selectedAssign)
 ) : (
 <div onClick={() => 
     handleEditRowField(item.customerId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>   
     </div> 
 )}                 
