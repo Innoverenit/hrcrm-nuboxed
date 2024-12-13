@@ -281,6 +281,7 @@ const CustomerActionLeft = (props) => {
   };
 
   const { user } = props;
+  console.log(props.viewType)
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"
