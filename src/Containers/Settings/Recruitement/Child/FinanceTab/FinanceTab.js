@@ -11,11 +11,8 @@ const CurrencyCoversionForm = lazy(() => import("./CurrencyCoversionForm"));
 const CurrencyCoversionForm2 = lazy(() => import("./CurrencyCoversionForm2"));
 const OneTimeTable = lazy(() => import("./OneTimeTable"));
 
-
 const TabPane = StyledTabs.TabPane;
-
 function DistributionTab(props) {
-
     return (
         <>
             <TabsWrapper>
