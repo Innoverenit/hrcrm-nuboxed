@@ -327,8 +327,6 @@ const DashBoardSummary=(props) =>{
       </div>
       </>
         )}
-        
-     
          {/* Best Before */}
          {(user.materialAccessInd === true && user.erpInd === true )
         && (user.supplierAccessInd === true && user.erpInd === true
@@ -336,7 +334,7 @@ const DashBoardSummary=(props) =>{
         <>
         <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
          <div class="flex flex-col w-[14rem] items-center">
-        <div className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
+        <div className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon text-[#7dcfb6]'
               /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
         {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </div>
         <div className="overflow-y-hidden max-h-[78vh]">

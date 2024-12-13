@@ -10,7 +10,14 @@ import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
 import { getDesignationWiseBilling } from "../BillingAction";
-
+import InfiniteScroll from "react-infinite-scroll-component";
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import GroupsIcon from '@mui/icons-material/Groups';
+import EmptyPage from '../../../Containers/Main/EmptyPage';
 // import { BundleLoader } from '../../../Components/Placeholder';
 const BundleLoader = lazy(() => import("../../../Components/Placeholder"));
 
@@ -151,190 +158,230 @@ function BillingListTable(props) {
 
 
 
-  const columns = [
-    {
-      title: "",
-      //dataIndex: "logo",
-      width: "2%",
-    },
-    {
-      title: "Talent",
-      dataIndex: "candidateName",
-      width: "10%",
-    },
-    {
-      title: "Customer",
-      dataIndex: "customerName",
-      width: "10%",
-      filters: customerlistType,
-      onFilter: (value, record) => {
-        return record.customerName === value;
-      },
-      render: (name, item, i) => {
-        return (
-          <>
-            <Tooltip title={item.customerName}>
-              <span>
-                <MultiAvatar
-                  primaryTitle={item.customerName}
-                  // imageId={item.ownerImageId}
-                  // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
-                />
-              </span>
-            </Tooltip>
-          </>
-        );
-      },
-    },
-    {
-      title: "Project",
-      dataIndex: "projectName",
-      width: "10%",
-      render: (name, item, i) => {
-        return (
-          <>
-            <Tooltip title={item.projectName}>
-              <span>
-                <MultiAvatar
-                  primaryTitle={item.projectName}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
-                />
-              </span>
-            </Tooltip>
-          </>
-        );
-      },
-    },
-    {
-      title: "Billing",
-      dataIndex: "billingAmount",
-      render: (text, item) => {
-        return (
-          <>
-            <span>
-              <CurrencySymbol currencyType={item.billableCurency} />
-              &nbsp;
-              {`${Number(item.billingAmount).toFixed(2)}`}
-            </span>
-          </>
-        )
-      },
-      width: "10%",
-    },
-    {
-      title: "Billable Hour",
-      dataIndex: "hour",
-      width: "10%",
-    },
-    {
-      title: "Actual Hour (Total)",
-      dataIndex: "finalBillableHour",
-      width: "10%",
-    },
-    {
-      title: "Actual Amount (Total)",
-      render: (text, item) => {
-        return (
-          <>
-            <span>
-              <CurrencySymbol currencyType={item.billableCurency} />
-              &nbsp;
-              {`${Number(item.finalBillableAmount).toFixed(2)} `}
-            </span>
-          </>
-        )
-      },
-      dataIndex: "finalBillableAmount",
-      width: "10%",
-    },
-    {
-      title: "Projected Hour (Total)",
-      dataIndex: "actualBillableHour",
-      width: "10%",
-    },
-    {
-      title: "Projected Amount(Total)",
-      dataIndex: "actualBillableAmount",
-      render: (text, item) => {
-        return (
-          <>
-            <span>
-              <CurrencySymbol currencyType={item.billableCurency} />
-              &nbsp;
-              {`${Number(item.actualBillableAmount).toFixed(2)}  `}
-            </span>
-          </>
-        )
-      },
-      width: "10%",
-    },
-    {
-      title: "Deviation Hour (Total)",
-      width: "10%",
-      dataIndex: "deviationBillableHour",
-      render: (text, item) => {
-        const deviationBillableHr = Number(item.deviationBillableHour)
-        // const amt = item.actualBillableAmount - item.finalBillableAmount
-        // const devAmt=Number(amt).toFixed(2)
-        return (
-          <>
-            <div
-              style={{
-                color:
-                  deviationBillableHr < 0
-                    ? "green"
-                    : "red"
+  // const columns = [
+  //   {
+  //     title: "",
+  //     //dataIndex: "logo",
+  //     width: "2%",
+  //   },
+  //   {
+  //     title: "",
+  //     dataIndex: "candidateName",
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Customer",
+  //     dataIndex: "customerName",
+  //     width: "10%",
+  //     filters: customerlistType,
+  //     onFilter: (value, record) => {
+  //       return record.customerName === value;
+  //     },
+  //     render: (name, item, i) => {
+  //       return (
+  //         <>
+  //           <Tooltip title={item.customerName}>
+  //             <span>
+  //               <MultiAvatar
+  //                 primaryTitle={item.customerName}
+  //                 // imageId={item.ownerImageId}
+  //                 // imageURL={item.imageURL}
+  //                 imgWidth={"2.1em"}
+  //                 imgHeight={"2.1em"}
+  //               />
+  //             </span>
+  //           </Tooltip>
+  //         </>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     title: "Project",
+  //     dataIndex: "projectName",
+  //     width: "10%",
+  //     render: (name, item, i) => {
+  //       return (
+  //         <>
+  //           <Tooltip title={item.projectName}>
+  //             <span>
+  //               <MultiAvatar
+  //                 primaryTitle={item.projectName}
+  //                 imgWidth={"2.1em"}
+  //                 imgHeight={"2.1em"}
+  //               />
+  //             </span>
+  //           </Tooltip>
+  //         </>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     title: "Billing",
+  //     dataIndex: "billingAmount",
+  //     render: (text, item) => {
+  //       return (
+  //         <>
+  //           <span>
+  //             <CurrencySymbol currencyType={item.billableCurency} />
+  //             &nbsp;
+  //             {`${Number(item.billingAmount).toFixed(2)}`}
+  //           </span>
+  //         </>
+  //       )
+  //     },
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Billable Hour",
+  //     dataIndex: "hour",
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Actual Hour (Total)",
+  //     dataIndex: "finalBillableHour",
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Actual Amount (Total)",
+  //     render: (text, item) => {
+  //       return (
+  //         <>
+  //           <span>
+  //             <CurrencySymbol currencyType={item.billableCurency} />
+  //             &nbsp;
+  //             {`${Number(item.finalBillableAmount).toFixed(2)} `}
+  //           </span>
+  //         </>
+  //       )
+  //     },
+  //     dataIndex: "finalBillableAmount",
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Projected Hour (Total)",
+  //     dataIndex: "actualBillableHour",
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Projected Amount(Total)",
+  //     dataIndex: "actualBillableAmount",
+  //     render: (text, item) => {
+  //       return (
+  //         <>
+  //           <span>
+  //             <CurrencySymbol currencyType={item.billableCurency} />
+  //             &nbsp;
+  //             {`${Number(item.actualBillableAmount).toFixed(2)}  `}
+  //           </span>
+  //         </>
+  //       )
+  //     },
+  //     width: "10%",
+  //   },
+  //   {
+  //     title: "Deviation Hour (Total)",
+  //     width: "10%",
+  //     dataIndex: "deviationBillableHour",
+  //     render: (text, item) => {
+  //       const deviationBillableHr = Number(item.deviationBillableHour)
+  //       // const amt = item.actualBillableAmount - item.finalBillableAmount
+  //       // const devAmt=Number(amt).toFixed(2)
+  //       return (
+  //         <>
+  //           <div
+  //             style={{
+  //               color:
+  //                 deviationBillableHr < 0
+  //                   ? "green"
+  //                   : "red"
 
-              }}
-            >
+  //             }}
+  //           >
 
-              {deviationBillableHr}
-            </div>
-          </>
-        )
-      },
-    },
-    {
-      title: "Deviation Amount(Total)",
-      dataIndex: "deviationBillableAmount",
-      render: (text, item) => {
-        return (
-          <>
-            <div
-              style={{
-                color:
-                  item.deviationBillableAmount < 0
-                    ? "green"
-                    : "red"
+  //             {deviationBillableHr}
+  //           </div>
+  //         </>
+  //       )
+  //     },
+  //   },
+  //   {
+  //     title: "Deviation Amount(Total)",
+  //     dataIndex: "deviationBillableAmount",
+  //     render: (text, item) => {
+  //       return (
+  //         <>
+  //           <div
+  //             style={{
+  //               color:
+  //                 item.deviationBillableAmount < 0
+  //                   ? "green"
+  //                   : "red"
 
-              }}
-            >
-              <CurrencySymbol currencyType={item.billableCurency} />
-              &nbsp;
-              {`${Number(item.deviationBillableAmount).toFixed(2)}  `}
-            </div>
-          </>
-        )
-      },
-      width: "10%",
-    },
+  //             }}
+  //           >
+  //             <CurrencySymbol currencyType={item.billableCurency} />
+  //             &nbsp;
+  //             {`${Number(item.deviationBillableAmount).toFixed(2)}  `}
+  //           </div>
+  //         </>
+  //       )
+  //     },
+  //     width: "10%",
+  //   },
 
-  ]
+  // ]
 
   if (props.fetchingLeadsTabData) {
     return <Suspense > <BundleLoader /> </Suspense>
   }
   return (
     <>
-      <StyledTable
+     <div className=' flex   sticky  z-auto'>
+     <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+     <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold items-end sticky  z-10">
+        <div className=" flex justify-between w-[79%] text-xs font-poppins">
+        <div className="flex  w-[11.14rem] truncate ">            
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  /> Talent
+     
+        </div>
+        <div className="flex w-[18.9rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />    Customer</div>
+        <div className=" flex  w-[14.5rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>Project</div>
+        <div className="flex  w-[14.4rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>Billing</div>
+        <div className=" flex  w-[15.1rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Billable Hour</div> 
+        <div className=" flex w-[9.2rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>Actual Hour (Total) </div>
+        <div className="flex w-[18.9rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />  Actual Amount (Total)</div>
+        <div className=" flex  w-[14.5rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>Projected Hour (Total)</div>
+        <div className="flex  w-[14.4rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>Projected Amount(Total)</div>
+        <div className=" flex  w-[15.1rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Deviation Hour (Total)</div> 
+        <div className=" flex w-[9.2rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>Deviation Amount(Total)</div>
+         </div>    
+      </div>
+      { !props.fetchingDesignationWiseBilling && props.billingByDesignation.length ===0 ?<EmptyPage/>: props.billingByDesignation.map((item, index) => {
+    return (
+        <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+           >
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+              <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           {item.candidateName}
+                </div>
+                </div>
+                </div>
+                
+    )
+               
+              }
+            )}
+ 
+    
+      </div>    
+      </div>
+      {/* <StyledTable
         columns={columns}
         dataSource={props.billingByDesignation}
         pagination={false}
         scroll={{ y: 600 }}
-      />
+      /> */}
     </>
   )
 }
@@ -347,6 +394,7 @@ const mapStateToProps = ({ billings, auth, task }) => ({
   orgId: auth.userDetails.organizationId,
   customerTaskList: task.customerTaskList,
   organizationId: auth.userDetails.organizationId,
+  fetchingDesignationWiseBilling: billings.fetchingDesignationWiseBilling
 
 });
 const mapDispatchToProps = (dispatch) =>

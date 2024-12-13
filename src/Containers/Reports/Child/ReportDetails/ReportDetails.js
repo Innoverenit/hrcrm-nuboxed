@@ -7,20 +7,12 @@ const ReportDetailLeft=lazy(()=> import("./ReportDetailLeft"));
 const ReportDetailRight=lazy(()=> import("./ReportDetailRight"));
 
 class ReportDetails extends Component {
-//   componentDidMount() {
-//     this.props.getCustomerDetailsById(this.props.match.params.customerId);
-//   }
   render() {
     const { customer, fetchingCustomerDetailsById } = this.props;
     return (
       <>
         <>
-          {/* <CustomerDetailHeader />
-          {fetchingCustomerDetailsById ? (
-            <MainWrapper>
-              <BundleLoader />
-            </MainWrapper>
-          ) : ( */}
+      
               <div>
                 <Suspense fallback={"Loading..."}>
                 <div className=" flex  flex-row">

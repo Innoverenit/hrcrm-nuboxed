@@ -7,13 +7,13 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
-import {  Tooltip, Select,Button } from "antd";
+import {  Tooltip, Select,Button,Input } from "antd";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import {
   getContactListByCustomerId,
   setEditCustomerContact,
   handleUpdateCustomerContactModal,
-  putCustomerContactToggle
+  putCustomerContactToggle,updateCustomerContact
 } from "../../../../CustomerAction";
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
@@ -76,6 +76,11 @@ function LinkedContact(props) {
   const [currentContactId, setCurrentContactId] = useState("");
   const [currentContact, setCurrentContact] = useState("");
   const [itemHistory, setItemHistory] = useState(false);
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+  const [editableField, setEditableField] = useState(null); 
 
   const handleItemHistory = () => {
       setItemHistory(!itemHistory)
@@ -101,6 +106,79 @@ function LinkedContact(props) {
 
   };
 
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+
+    const handleUpdateSubmit = async () => {
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+      if (field === 'fullName') {
+        mappedField = 'name'; 
+      } else if (field === 'tagWithCompany') {
+        mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = editingValue;
+      props.updateCustomerContact(updatedData,props.uniqueId)
+      setEditableField(null);
+        setEditingValue("");
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleUpdateSubmit(); 
+      }
+    };
+    const handleChangeRowSelectItem = async (value) => {
+      setEditingValue(value);
+  
+        const { contactId, field } = editableField;
+        const updatedData = {};
+        let mappedField = field;
+      
+       // Map the field to the correct key if needed
+       if (field === 'fullName') {
+        mappedField = 'name'; 
+      } else if (field === 'tagWithCompany') {
+        mappedField = 'customerId';
+        } else if (field === 'designation') {
+          mappedField = 'designationTypeId';
+        } else if (field === 'department') {
+          mappedField = 'departmentId';
+        }
+        updatedData[mappedField] = value; // Update the value with selected option
+        props.updateCustomerContact(updatedData,props.uniqueId)
+        setEditableField(null);
+        setEditingValue("");
+      
+    };
+  
+    const handleSelectCustomerFocus = () => {
+      if (!touchedCustomer) {
+        props.getDesignations();
+        setTouchedCustomer(true);
+      }
+    };
+    const handleSelectCustomerDataFocus = () => {
+      if (!touched) {
+        props.getCustomerData(props.userId)
+        setTouched(true);
+      }
+    };
+    const handleSelectDepartmentFocus = () => {
+      if (!dtouched) {
+        props.getDepartments()
+        setDTouched(true);
+      }
+    };
   const {
     //   opportunity: { opportunityId },
     fetchingCustomerContact,
@@ -208,9 +286,9 @@ function LinkedContact(props) {
           &nbsp;
           <div class="max-sm:">
                                         <Tooltip>
-                                          <div class=" flex max-sm: justify-between flex-row">
+                                          <div class=" flex w-[100%] justify-between flex-row">
                                           
-                                            <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center justify-between">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                
@@ -225,6 +303,26 @@ function LinkedContact(props) {
            {translatedMenuItems[6]} {/* New */}
           </span>
         ) : null}
+                      {editableField?.contactId === item.contactId &&
+   editableField?.field === 'fullName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}    
        
                                             </div>
                                             </div>
@@ -387,7 +485,7 @@ function LinkedContact(props) {
       </div>
 
 <Suspense>
-      <AddCustomerUpdateContactModal
+      {/* <AddCustomerUpdateContactModal
           addUpdateCustomerContactModal={addUpdateCustomerContactModal}
            contactId={contactId}
           defaultCustomers={props.defaultCustomers}
@@ -397,7 +495,7 @@ function LinkedContact(props) {
           selectedLanguage={props.selectedLanguage}
           translatedMenuItems={translatedMenuItems}
 
-        />
+        /> */}
        
        </Suspense>
      
@@ -423,7 +521,8 @@ const mapDispatchToProps = (dispatch) =>
       getContactListByCustomerId,
       setEditCustomerContact,
       handleUpdateCustomerContactModal,
-      putCustomerContactToggle
+      putCustomerContactToggle,
+      updateCustomerContact
     },
     dispatch
   );

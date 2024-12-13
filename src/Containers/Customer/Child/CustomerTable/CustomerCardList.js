@@ -55,6 +55,7 @@ import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
+import { Link } from 'react-router-dom';
 import EmptyPage from "../../../Main/EmptyPage";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
@@ -437,8 +438,9 @@ if (loading) {
                               <div class="flex max-sm:flex-row justify-between w-full max-md:flex-col">
                                 <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                
+                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
+                                    </Link>    
                                     &nbsp;&nbsp;
                                   {date === currentdate ? (
                                     <div class="text-[0.65rem] text-[tomato] font-bold"
@@ -462,7 +464,7 @@ if (loading) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.customerId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 

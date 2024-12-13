@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useMemo, lazy } from 'react'
+import React, {  useState } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Icon, Button, Input, Popconfirm, Modal,Badge } from "antd";
-import styled from 'styled-components';
 import InvoiceOrgCompleteCard from './InvoiceOrgCompleteCard';
 import InvoiceOrgInCompleteCard from './InvoiceOrgInCompleteCard';
 import InvoiceOrgAllCard from './InvoiceOrgAllCard';
@@ -55,13 +53,19 @@ function InvoiceReportOrgTab (props) {
       <InvoiceOrgInCompleteCard               
       selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}
       />
 ) : clickedTab === "complete" ?
 <InvoiceOrgCompleteCard selectedButtonIcon={props.selectedButtonIcon}
-      selectedCategory={props.selectedCategory}/>
+      selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}/>
 : clickedTab === "all" ?
 <InvoiceOrgAllCard selectedButtonIcon={props.selectedButtonIcon}
-      selectedCategory={props.selectedCategory}/> 
+      selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}/> 
       :null
 }
        </>

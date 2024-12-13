@@ -1539,10 +1539,10 @@ export const setEditCustomerContact = (name) => (dispatch) => {
     payload: name,
   });
 };
-export const updateCustomerContact = (data, contactId) => (dispatch) => {
+export const updateCustomerContact = (data, customerId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CUSTOMER_CONTACT_BY_ID_REQUEST });
   axios
-    .put(`${base_url}/contact/${contactId}`, data, {
+    .put(`${base_url}/customer/{customerId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
