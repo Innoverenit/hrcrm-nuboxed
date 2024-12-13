@@ -541,7 +541,7 @@ class RecruitmentTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const creationDate = dayjs(item.creationDate).format("L");
+          const creationDate = dayjs(item.creationDate).format("YYYY/MM/DD");
 
           return {
             props: {
@@ -628,7 +628,7 @@ class RecruitmentTable extends Component {
               },
             },
 
-            children: <span>{dayjs(item.avilableDate).format("L")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("YYYY/MM/DD")}</span>,
           };
         },
         sorter: (a, b) => {
