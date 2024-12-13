@@ -466,7 +466,7 @@ function ActivityCallForm(props) {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background h-wk">
               <div class=" flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6 max-sm:w-wk">
                   
@@ -689,7 +689,7 @@ function ActivityCallForm(props) {
                   </div>
                               
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (

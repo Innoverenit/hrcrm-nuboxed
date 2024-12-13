@@ -342,7 +342,7 @@ function InvesterForm(props) {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem] " style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
@@ -446,7 +446,7 @@ function InvesterForm(props) {
                   
                   <div class=" flex justify-between mt-3">
                   {contract ?
-                  <div class=" w-w47.5 flex flex-col">
+                  <div class=" w-w47.5.5 flex flex-col">
                  
                              <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
@@ -468,7 +468,7 @@ function InvesterForm(props) {
                     </div>
                      : ( null)}
                       {contract ?
-                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                    <div class=" w-w47.5.5" style={{display:"flex",flexDirection:"column"}}>
                    
                           <div class="font-bold text-xs font-poppins text-black">Source</div>
 
@@ -491,7 +491,7 @@ function InvesterForm(props) {
                           : ( null)}
                   </div>
                   <div class=" flex justify-between">
-                  <div class="font-bold font-poppins text-xs w-w47.5 ">
+                  <div class="font-bold font-poppins text-xs w-w47.5.5 ">
                   {translatedMenuItems[5]}
                   <Field                     
                             name="investorCategoryId"                          
@@ -562,7 +562,7 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div> */}
-                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
+                  <div class=" w-w47.5.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}  
                   {/* Date */}
                     <Field
@@ -575,7 +575,7 @@ function InvesterForm(props) {
                   </div>
                  
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "  
                 >
                  
                  <div class=" flex justify-between">

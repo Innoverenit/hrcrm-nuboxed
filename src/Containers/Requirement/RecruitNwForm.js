@@ -592,7 +592,7 @@ function RecruitNwForm(props) {
 
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="space-between">
-                <div class=" w-w47.5 max-sm:w-wk">                
+                <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   Customer
@@ -612,7 +612,7 @@ function RecruitNwForm(props) {
       </Select>
           
             </div>
-            <div class=" w-w47.5 max-sm:w-wk">   
+            <div class=" w-w47.5.5 max-sm:w-wk">   
             <div className="font-bold text-xs">
 Contact
 </div>     

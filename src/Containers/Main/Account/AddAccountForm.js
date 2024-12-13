@@ -247,7 +247,7 @@ const AddAccountForm = ({
           // <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form class="form-background h-[77vh]">
             <div class=" flex justify-between max-sm:flex-col ">
-              <div class=" h-full w-w47.5 max-sm:w-wk">
+              <div class=" h-full w-w47.5.5 max-sm:w-wk">
                 <div>
                   {clearbit && clearbit.hasOwnProperty("logo") && (
                     <ProgressiveImage
@@ -339,7 +339,7 @@ const AddAccountForm = ({
                 <div class="flex justify-between mt-4 text-xs font-bold font-poppins" >
                
            
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                     <FastField
                       name="country"           
@@ -369,7 +369,7 @@ const AddAccountForm = ({
                   </div>
                
                 <div class="flex justify-between mt-2" >
-                <div class="w-w47.5">
+                <div class="w-w47.5.5">
 
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                     <Field
@@ -388,7 +388,7 @@ const AddAccountForm = ({
                     />
                   </div>
                  
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
                       name="clientId"
@@ -405,9 +405,9 @@ const AddAccountForm = ({
                     />
                   </div>
                 </div>
-                <div class="flex justify-between w-w47.5 mt-4" >
+                <div class="flex justify-between w-w47.5.5 mt-4" >
                
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                     <FastField
                       name="currencyPrice"
@@ -418,7 +418,7 @@ const AddAccountForm = ({
                       isColumn
                     />
                   </div>
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                     <Field
                       name="currency"
@@ -437,7 +437,7 @@ const AddAccountForm = ({
                 </div>
                 <div class="flex justify-between mt-4" >
                
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     <FastField
                       name="payment"
@@ -449,7 +449,7 @@ const AddAccountForm = ({
                       isColumn
                     />
                   </div>
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                     <Field
                       name="insuranceGrade"
@@ -461,7 +461,7 @@ const AddAccountForm = ({
                     />
                   </div>
                  
-                  {values.payment === "Custom" && <div class="w-w47.5">
+                  {values.payment === "Custom" && <div class="w-w47.5.5">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                     <FastField
                       name="customPayment"
@@ -474,7 +474,7 @@ const AddAccountForm = ({
                 </div>
 
               </div>
-              <div class=" h-full w-w47.5 max-sm:w-wk">
+              <div class=" h-full w-w47.5.5 max-sm:w-wk">
                 <div class=" h-full w-full mt-3">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
                 <Listbox value={selected} onChange={setSelected}>

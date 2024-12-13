@@ -265,7 +265,7 @@ console.log(props.contactId)
                   </div>
                   </div>
                   {(props.type === "customer" || props.type === "investor" ) && (
-                  <div class=" w-w47.5 max-sm:w-wk">                
+                  <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[7]}
   {/* Contact */}

@@ -153,7 +153,7 @@ function AddSuppliersForm(props) {
           <div className="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[33rem]">
             <Form className="form-background">
               <div className="flex justify-between max-sm:flex-col">
-                <div className="h-full w-w47.5 max-sm:w-full">
+                <div className="h-full w-w47.5.5 max-sm:w-full">
                   <Field
                     isRequired
                     name="name"
@@ -233,7 +233,7 @@ function AddSuppliersForm(props) {
                     />
                   </div>
                 </div>
-                <div className="h-full w-w47.5 max-sm:w-full">
+                <div className="h-full w-w47.5.5 max-sm:w-full">
                   <div className="h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
                       {({ open }) => (

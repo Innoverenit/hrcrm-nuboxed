@@ -161,7 +161,7 @@ console.log(this.state.firstCase)
           }) => (
             <Form className="form-background">
             <div class="flex justify-between  pr-2 max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
               
               
                {/* <Radio.Group name="radiogroup">
@@ -292,10 +292,10 @@ console.log(this.state.firstCase)
 
                
               </div>
-              <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+              <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
               >
 
-<div class="mt-3 w-w47.5 max-sm:w-wk">
+<div class="mt-3 w-w47.5.5 max-sm:w-wk">
     <Field
       name="coverDetails"
       label="Cover"
