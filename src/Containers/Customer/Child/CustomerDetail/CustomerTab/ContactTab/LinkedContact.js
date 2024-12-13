@@ -478,7 +478,6 @@ function LinkedContact(props) {
                                             </div>
                         </div>
 
-
                     )
                 })}
                     

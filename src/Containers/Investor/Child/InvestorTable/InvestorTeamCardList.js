@@ -38,8 +38,17 @@ import ScoreIcon from '@mui/icons-material/Score';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
-import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData,handleInvestorPriceDrawer,UpdateInvestor} from "../../InvestorAction";
+import {getTeamInvestor,
+  handleInvestorNotesDrawerModal,
+  emptyInvestor,
+  handleInvestorPulseDrawerModal, 
+   handleInvestorAddressDrawerModal,
+  handleUpdateInvestorModal,
+  handleInvestorContModal,
+  deleteInvestorData,
+  handleInvestorPriceDrawer,
+  UpdateInvestor} 
+  from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
@@ -49,7 +58,6 @@ const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
 const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
 const  AddInvestorAdressModal = lazy(() =>import("./AddInvestorAdressModal"));
 const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
-const UpdateInvestorModal = lazy(() =>import("../UpdateInvestor/UpdateInvestorModal"));
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -257,7 +265,6 @@ function InvestorTeamCardList(props) {
     fetchingTeamInvestor,
     teamInvestor,
     handleUpdateInvestorModal,
-    updateInvestorModal,
     fetchingInvestorsError,
     fetchingAllCustomers,
     handleInvestorPulseDrawerModal,
@@ -445,13 +452,18 @@ function InvestorTeamCardList(props) {
                                    <div>
                                    </div>                                 
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                         
+                                        <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                            
-                                            <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-xs text-blue-500 flex justify-between font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
-  </Link>                                   
+  </Link>    
+  {date === currentdate ? (
+          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
+            New
+          </span>
+        ) : null}                               
   <div>
                       {editableField?.investorId === item.investorId &&
    editableField?.field === 'name' ? (
@@ -468,17 +480,13 @@ function InvestorTeamCardList(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.investorId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
 )}                 
                       </div>
-        {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
-            New
-          </span>
-        ) : null}
+    
        
                                             </div>
 </div>
@@ -562,7 +570,7 @@ className="cursor-pointer text-xs font-poppins">
 
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-sm:text-sm">
                                     {/* {item.source} */}
@@ -603,13 +611,7 @@ className="cursor-pointer text-xs font-poppins">
                                 </div>    
                                 </div>    
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                             
-                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                                
-                                    <div class=" text-xs justify-center  font-poppins max-sm:text-sm">
-                                    {item.signed}
-                                    </div>
-                                </div> */}
-                            
+
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -673,24 +675,7 @@ className="cursor-pointer text-xs font-poppins">
             </span>           
                                     </div>
                                 </div>
-                              
-                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]  max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                         Owner
-                       <span>
-                       <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </Tooltip>
-            </div>
-          </Tooltip>
-            </span>
-                   </div> */}
+
                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -772,18 +757,7 @@ className="cursor-pointer text-xs font-poppins">
               />
             </Tooltip>
             </div>                                                              
-            <div>
-            {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title={translatedMenuItems[13]}>
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onClick={() => {
-                    handleUpdateInvestorModal(true);
-                    handleCurrentRowData(item);                
-                }}
-              />
-            </Tooltip>
-           )} 
-            </div>
+
             <div >
             <StyledPopconfirm
                         title="Do you want to delete?"
@@ -812,14 +786,6 @@ className="cursor-pointer text-xs font-poppins">
 </div>
         )}  
 <Suspense fallback={<BundleLoader />}>
-      <UpdateInvestorModal
-        RowData={RowData}
-        updateInvestorModal={updateInvestorModal}
-        handleUpdateInvestorModal={handleUpdateInvestorModal}
-        handleCurrentRowData={handleCurrentRowData}
-        translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-      />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
@@ -880,7 +846,6 @@ const mapStateToProps = ({
   sectors: sector.sectors,
   fetchingTeamInvestor: investor.fetchingTeamInvestor,
   fetchingInvestorsError: investor.fetchingInvestorsError,
-  updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
   orgId: auth.userDetails.organizationId,
   priceInvestorDrawer: investor.priceInvestorDrawer,
