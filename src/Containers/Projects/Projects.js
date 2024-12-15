@@ -45,10 +45,17 @@ class Projects extends Component {
         />
           <Suspense fallback={<BundleLoader/>}>
       {this.props.viewType === "list" ? (
-        <ProjectsTable/>
+        <ProjectsTable
+        translateText={this.props.translateText}
+        translatedMenuItems={this.translatedMenuItems}
+        selectedLanguage={this.props.selectedLanguage}/>
       ) : this.props.viewType === "all" ?
         (
-          <ProjectsAllTable />
+          <ProjectsAllTable 
+          translateText={this.props.translateText}
+          translatedMenuItems={this.translatedMenuItems}
+          selectedLanguage={this.props.selectedLanguage}
+          />
         ) : null}
 </Suspense>
       

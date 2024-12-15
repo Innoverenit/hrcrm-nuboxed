@@ -791,28 +791,7 @@ function AccountTable(props) {
                                   }
                                 </Tooltip>
 
-                              </div>
-                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
-                                <Tooltip title="Quotation">
-                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
-                                   
-                                
-                                      <LightbulbIcon className="!text-icon text-[#bfa89e]"
-                                     
-                                      onClick={() => {
-                                        props.setEditDistributor(item)
-                                        props.handleAccountOpportunityModal(true);
-                                        handleCurrentRowData(item);
-                                      }}
-                                    />
-                                     <Opportunity/>
-                                     </Link>
-                                </Tooltip>
-
-                              </div> */}
-                              
-
-                     
+                              </div>                                                              
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                               <Tooltip title={translatedMenuItems[19]}>
