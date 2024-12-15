@@ -368,7 +368,7 @@ function BillingListTable(props) {
      <div className=' flex   sticky  z-auto'>
      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
-        <div className=" flex justify-between w-[100%] !text-lm font-poppins">
+        <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
         <div className="  w-[16.7rem] text-sm text-[#00A2E8]  truncate ">            
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]}
          {/* Talent */}
