@@ -1,12 +1,13 @@
 import React, { lazy, Suspense ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ProductionCellList from "../Production/ProductionCellList"
-import ProductionDashCard from "./ProductionDashCard"
-import ProductionHeader from "./Child/ProductionHeader";
 import { handleCreateProduction, setProductionViewType,getProductionTable } from "./ProductionAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import ProductionArchieveList from "./Child/ProductionArchieveList";
+
+const ProductionCellList = lazy(() => import("../Production/ProductionCellList"));
+const ProductionDashCard = lazy(() => import("./ProductionDashCard"));
+const ProductionHeader=lazy(()=>import("./Child/ProductionHeader"));
+const ProductionArchieveList=lazy(()=>import("./Child/ProductionArchieveList"));
 const CreateProductionDrawer = lazy(() => import("./Child/CreateProductionDrawer"));
 const ProductionAllCardView=lazy(()=>import("./Child/ProductionAllCardView"));
 const ProductionBoard=lazy(()=>import("./Child/ProductionBoard"));

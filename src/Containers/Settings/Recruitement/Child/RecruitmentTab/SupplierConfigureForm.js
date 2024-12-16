@@ -340,7 +340,7 @@ function AddSuppliersForm(props) {
                   htmlType="submit"
                   loading={props.addingSuppliers}
                 >
-                  Update
+                  Submit
                 </Button>
               </div>
             </Form>

@@ -659,7 +659,7 @@ useEffect(() => {
                 >
                   <div class=" text-xs font-bold font-poppins"> 
                     {/* {translatedMenuItems[17]} */}
-                    Update
+                    Submit
                     </div>
                 
                 </Button>

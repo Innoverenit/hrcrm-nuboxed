@@ -24,9 +24,9 @@ const DynamicInputForm = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "System ID",//0
-              "Part # ",//1
-              "Tag",//2
+           "1055", //  "System ID",//0
+            "1056",//   "Part # ",//1
+           "1057", //   "Tag",//2
           
            
               

@@ -11,7 +11,6 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import LOB from "./LOB/LOB";
 import CategoryList from "./CategoryList/CategoryList";
 import CameraIcon from '@mui/icons-material/Camera';
-import GavelIcon from '@mui/icons-material/Gavel';
 import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
 
 const Payment = lazy(() =>

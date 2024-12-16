@@ -3521,7 +3521,7 @@ export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) =>
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'created Successfully!',
+        title: 'Updated Successfully!',
         showConfirmButton: false,
         timer: 1500
       })
@@ -6340,11 +6340,11 @@ export const addProcessTaskStage = (customer) => (dispatch, getState) => {
     .then((res) => {
       // Swal.fire({
       //   icon: 'success',
-      //   title: 'Prospect created Successfully!',
+      //   title: 'Prospect Updated Successfully!',
       // })
       // Swal.fire({
       //   icon: 'success',
-      //   title: 'Prospect created Successfully!',
+      //   title: 'Prospect Updated Successfully!',
       //   showConfirmButton: false,
       //   // timer: 1500
       // })
@@ -6543,7 +6543,7 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
     .then((res) => {
      // dispatch(getSectorCount(orgId));
      
-     if (res.data.message === "WorkflowCategory can not be created as same name already exists!!!") {
+     if (res.data.message === "WorkflowCategory can not be Updated as same name already exists!!!") {
       Swal.fire({
         icon: 'error',
         title: res.data.message,

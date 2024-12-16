@@ -681,7 +681,7 @@ function InvesterForm(props) {
                   htmlType="submit"
                   loading={addingInvestor}
                 >
-                Create
+                Submit
                 </Button>
               </div>
             </Form>

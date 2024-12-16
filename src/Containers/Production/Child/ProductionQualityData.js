@@ -23,9 +23,9 @@ useEffect(() => {
   return (
     <>
     
-    <div className='flex justify-end sticky z-auto'>
-            <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className='flex  sticky z-auto'>
+            <div className="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div className="flex w-[95%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">Step</div>
                     <div className="md:w-[15.5rem]">Serial No</div>

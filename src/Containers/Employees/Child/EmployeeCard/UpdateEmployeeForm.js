@@ -683,14 +683,13 @@ class UpdateEmployeeForm extends Component {
                         isColumn
                         margintop={"0"}
                         inlineLabel
-                        style={{ flexBasis: "80%" }}
+                        // style={{ flexBasis: "80%" }}
                  
                       />
                     </div>
-                      <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <div class=" w-w48 flex  max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[15]}</div>
                       <Field
-                     
                         name="salary"
                         type="text"
                         isColumn

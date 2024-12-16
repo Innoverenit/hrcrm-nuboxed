@@ -1553,7 +1553,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                 htmlType="submit"
                 loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button>
             </div>
