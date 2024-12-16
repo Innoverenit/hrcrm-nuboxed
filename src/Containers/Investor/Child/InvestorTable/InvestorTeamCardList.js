@@ -346,7 +346,7 @@ function InvestorTeamCardList(props) {
       </div>
       <div className=' flex sticky  w-[87%] z-auto'>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-  <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+  <div className=" flex justify-between max-sm:hidden  w-[82%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
         <div className=" flex text-[#00A2E8] text-sm truncate w-[9.6rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* "Name" */}              
@@ -355,16 +355,16 @@ function InvestorTeamCardList(props) {
         <FactoryIcon className="!text-icon mr-1  text-[#84a59d]"/> {translatedMenuItems[1]}
         {/* Sector" */}          
                 </div>   
-                <div className=" w-[5.23rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
+                <div className=" w-[5.6rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
           <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-          <div className=" w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" w-[7.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
           <SourceIcon className="!text-icon  mr-1 text-[#4b5043]"/>{translatedMenuItems[6]}
          {/* Source" */}         
           </div> 
-        <div className=" w-[6.12rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
+        <div className=" w-[6.4rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' /> {translatedMenuItems[2]}
          {/* Deals */}      
                 </div>      
           <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
@@ -377,7 +377,7 @@ function InvestorTeamCardList(props) {
         {/* Club */}
           </div>
           {props.user.aiInd && (
-            <div className=" w-[3.81rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
+            <div className=" w-[4.1rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
           {/* Score */}
             </div>
@@ -785,7 +785,7 @@ className="cursor-pointer text-xs font-poppins">
 </div>
 </div>
         )}  
-<Suspense fallback={<BundleLoader />}>
+<Suspense fallback={"Loading"}>
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}

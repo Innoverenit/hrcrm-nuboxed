@@ -1113,7 +1113,7 @@ handleCurrentRowData(item);
 }
     </div> 
        )}     
-<Suspense fallback={<BundleLoader />}>
+<Suspense fallback={"Loading"}>
   <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
