@@ -35,9 +35,7 @@ class PlacementTable extends Component {
     translatedMenuItems: [],
     };
   }
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+ 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
       this.fetchMenuTranslations();
@@ -144,6 +142,7 @@ class PlacementTable extends Component {
     if (candidateId) {
       getPlacement(candidateId);
     }
+    this.fetchMenuTranslations();
   }
   
   render() {
@@ -163,31 +162,30 @@ class PlacementTable extends Component {
    <div class="rounded m-1 p-1 w-[100%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">
         <div className=" max-md:w-[10.5rem] w-[8.3rem] truncate text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> 
-        {this.state.translatedMenuItems[0]}</div>        {/* Job ID */}
+      {this.state.translatedMenuItems[7]} ID</div>     
        <div className=" max-md:w-[8.1rem] w-[8.5rem] truncate">
-        <RecentActorsIcon className="!text-icon mr-1 "/>{this.state.translatedMenuItems[0]}
+        <RecentActorsIcon className="!text-icon  "/> {this.state.translatedMenuItems[0]}
         {/* Requirement */}
         </div>
        <div className=" max-md:w-[13.1rem] w-[12.2rem] truncate">
-        <LightbulbIcon className="!text-icon  text-[#c42847]"/>{this.state.translatedMenuItems[1]}{/* Quotation */}
+        <LightbulbIcon className="!text-icon  text-[#c42847]"/> {this.state.translatedMenuItems[1]}{/* Quotation */}
         </div>
        <div className=" max-md:w-[8.5rem] w-[9.6rem] truncate ">
-        <AcUnitIcon className="!text-icon  text-[#c42847]"/>{this.state.translatedMenuItems[2]}{/* Customer */}
+        <AcUnitIcon className="!text-icon  text-[#c42847]"/> {this.state.translatedMenuItems[2]}{/* Customer */}
        </div>
        <div className=" max-md:w-[8.2rem] w-[7.21rem] truncate">
         <EventIcon className="!text-icon text-[#5A189A] "/> {this.state.translatedMenuItems[3]}        {/* Start Date*/}
     </div> 
-       <div className="max-md:w-[8.5rem] w-[6.1rem] truncate">{this.state.translatedMenuItems[4]} 
-        <StairsIcon className="!text-icon mr-1 text-[#c42847]"/>
+       <div className="max-md:w-[8.5rem] w-[6.1rem] truncate"><StairsIcon className="!text-icon text-[#c42847]"/> {this.state.translatedMenuItems[4]} 
+        
         {/* Stages */}
         </div>
        <div className="max-md:w-[8.5rem] w-[6.4rem] truncate">
-        <OutputIcon className="!text-icon mr-1 text-[#c42847]"/>
-      {this.state.translatedMenuItems[5]} 
+        <OutputIcon className="!text-icon  text-[#c42847]"/> {this.state.translatedMenuItems[5]} 
       {/* Result  */}
         </div>
        <div className=" max-md:w-[8.2rem]  w-[7.2rem] truncate">
-        <EventIcon className="!text-icon text-[#5A189A] "/>{this.state.translatedMenuItems[6]} 
+        <EventIcon className="!text-icon text-[#5A189A] "/> {this.state.translatedMenuItems[6]} 
         {/* End Date */}
         </div>
       </div>

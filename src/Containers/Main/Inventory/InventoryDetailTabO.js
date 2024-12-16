@@ -135,7 +135,8 @@ class InventoryDetailTabO extends PureComponent {
                 <>
                    <span class="!text-tab">
                     <i class="far fa-share-square text-[#9B2226]"></i>&nbsp;
-                   Complete Dispatch  
+                   {/* Complete Dispatch  */}
+                    {this.props.translatedMenuItems[45]} {this.props.translatedMenuItems[18]}
 
                   </span>
                 

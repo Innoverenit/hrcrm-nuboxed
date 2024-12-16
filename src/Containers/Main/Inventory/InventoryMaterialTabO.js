@@ -309,9 +309,9 @@ class InventoryMaterialTabO extends PureComponent {
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <WaterDamageIcon className="!text-icon text-[#9B2226]"/>&nbsp;
-                                        {/* Stock */} 
-                                      Damaged
-                                        {/* {this.props.translatedMenuItems[19]} */}
+                                     
+                                      {/* Damaged */}
+                                        {this.props.translatedMenuItems[27]}
 
                                     </span>
                                     {activeKey === "5" && (
@@ -411,8 +411,8 @@ class InventoryMaterialTabO extends PureComponent {
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <FolderDeleteIcon className="!text-icon text-[#386641]"/>&nbsp;
                                      
-                                      Waste
-                                        {/* {this.props.translatedMenuItems[36]} */}
+                                      {/* Wast */}
+                                        {this.props.translatedMenuItems[40]}
 
                                     </span>
                                     {activeKey === "7" && (

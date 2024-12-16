@@ -160,7 +160,7 @@ function NavMenu(props) {
   return (
     <div >
  <aside
-        className={` text-white w-[10vw] h-[-webkit-fill-available] overflow-x-auto max-sm:w-[34vw] fixed md:relative z-[100] md:translate-x-0 transform ${
+        className={` text-white w-[9vw] max-md:w-[9vw] min-w-[9vw] h-[-webkit-fill-available] overflow-x-auto max-sm:w-[34vw] fixed md:relative z-[100] md:translate-x-0 transform ${
           props.collapsed ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-30 ease-in-out`}
       >
