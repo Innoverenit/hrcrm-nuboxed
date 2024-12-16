@@ -1155,6 +1155,8 @@ const AccountOrderTable = (props) => {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    activeTab={props.activeTab}
+  
                 />
                 <AccountproductionModal
                 selectedLanguage={props.selectedLanguage}

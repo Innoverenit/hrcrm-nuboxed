@@ -542,7 +542,9 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                 translateText={props.translateText} 
                     type={props.type}
                     addPaidButtonModal={props.addPaidButtonModal}
-                    handlePaidModal={props.handlePaidModal}   
+                    handlePaidModal={props.handlePaidModal} 
+                    activeTab={props.activeTab}
+                  
                 />
                 <InvoiceStatusDrawer
                    selectedLanguage={props.selectedLanguage}
