@@ -369,6 +369,8 @@ function BillingListTable(props) {
      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
         <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
+      
+        <div className="  w-[4.02rem] truncate ">   </div>
         <div className="  w-[16.7rem] text-sm text-[#00A2E8]  truncate ">            
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]}
          {/* Talent */}
@@ -411,72 +413,84 @@ function BillingListTable(props) {
         <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-              <div class="flex  w-[8.1rem] items-center justify-start  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+              <div class="flex  w-[3.1rem] items-center justify-start  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
               <div className='text-xs ml-gap font-poppins'>
-           {item.candidateName}
+         {item.logo}
            </div>
                 </div>
                 </div>
                 <div class="flex  w-[8.2rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-            {/* 2 */}
+            {/* 2 */}  {item.candidateName}
           </div>
           </div> 
           <div class="flex  w-[8.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-            {/* 3 */}
+           {/* props.customerTaskList.map((item) => {
+    return {
+      value={item.name}
+    };
+  }); */}
+            {item.customerName}
           </div>
           </div> 
           <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-            {/* 4 */}
-          </div>
-          </div> 
-          <div class="flex  w-[8.5rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'>
-            {/* 5 */}
-          </div>
-          </div> 
-          <div class="flex  w-[8.6rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'> 
-            {/* 6 */}
-          </div>
-          </div> 
-          <div class="flex  w-[8.7rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'> 
-            {/* 7 */}
-          </div>
-          </div> 
-          <div class="flex  w-[8.8rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'>
-            {/* 8 */}
-          </div>
-          </div> 
-          <div class="flex  w-[7.1rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'>
-            {/* 9 */}
-          </div>
-          </div> 
-          <div class="flex  w-[7.2rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs font-poppins'>
-            {/* 10 */}
+            {/* 4 */}{item.projectName}
           </div>
           </div> 
           <div class="flex  w-[7.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-            {/* 11 */}
+            {item.billingAmount}
           </div>
           </div> 
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+            {/* 4 */}{item.hour}
+          </div>
+          </div> 
+          <div class="flex  w-[8.5rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+            {/* 5 */}{item.finalBillableHour}
+          </div>
+          </div> 
+          <div class="flex  w-[8.6rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+            {/* 6 */}{item.finalBillableAmount}
+          </div>
+          </div> 
+          <div class="flex  w-[8.7rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+            {/* 7 */}{item.actualBillableHour}
+          </div>
+          </div> 
+          <div class="flex  w-[8.8rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+            {/* 8 */}{item.actualBillableAmount}
+          </div>
+          </div> 
+          <div class="flex  w-[7.1rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+            {/* 9 */}{item.deviationBillableHour}
+          </div>
+          </div> 
+          <div class="flex  w-[7.2rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+            {/* 10 */}{item.deviationBillableAmount}
+          </div>
+          </div> 
+        
                 </div>             
     ) }
             )} 
