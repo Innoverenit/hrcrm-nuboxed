@@ -330,19 +330,14 @@ function ContactCardList(props) {
         imgHeight={"1.8rem"}
       />
     </div>
-  
-    <div class="max-sm:w-full flex items-center">
                                   <Tooltip>
-                                    <div class=" flex max-sm:w-full justify-between w-full  md:flex-col">
-                                    
-                                      <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                  <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                                                         
+                                  <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>   
-
 {date === currentdate ? (
- <div class="text-[0.65rem]   text-[tomato] font-bold"
-                            
+ <div class="text-[0.65rem]   text-[tomato] font-bold"                      
  >
       {/* New */}{translatedMenuItems[8]}
     </div>
@@ -369,30 +364,23 @@ function ContactCardList(props) {
     </div> 
 )}                 
                       </div>
-
- 
                                       </div>
                                       </div>
-                                  </Tooltip>
-                                  </div>
+                                  </Tooltip>                    
                                   </div>
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk">
-
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap  w-[16.01rem] bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
-                             
+                         <div class="flex max-sm:justify-between max-sm:w-wk">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap  w-[16.01rem] bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">                          
                               <div class=" text-xs ml-gap font-poppins max-sm:text-sm  max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
-                             
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">                           
                               <div class="text-xs  ml-gap font-poppins max-sm:text-sm ">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
-                          
+                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">                         
                             <div class="text-xs  ml-gap max-sm:text-sm font-poppins ">
                                  {item.department}
                             </div>
@@ -401,24 +389,18 @@ function ContactCardList(props) {
                         <div class="flex max-sm:justify-evenly max-sm:w-wk">
                         <div className=" flex items-center justify-center   w-[8.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                         <div className="flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
 <div className="text-xs font-poppins text-center max-sm:text-sm ">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
-                              
-
+<div className=" flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">                          
                               <div class=" text-xs  max-sm:text-sm font-poppins text-center ">
                               {item.totalProposalValue}
-
                               </div>
                           </div>
 </div>
-                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                          
+                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                     
                           <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm ">
-
                           {item.thirdPartyAccessInd === true
 ?<Tooltip title={translatedMenuItems[9]}>
   <div className="flex text-green-600 w-wk font-bold bg-green-100 justify-center   py-1 rounded max-h-max">
@@ -432,13 +414,11 @@ No
 </div>
 {/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/> */}
 </Tooltip>}
-
                           </div>
                       </div>
                           {props.user.aiInd && (
            <div className=" flex   items-center justify-center   w-[5.12rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-           {item.noteScoreInd}
-          
+           {item.noteScoreInd}     
             </div>
             )}                   
                           </div>     
@@ -513,8 +493,7 @@ No
         }}
       />
      </Tooltip>
-             </div>                               
-                 
+             </div>                                             
                 </div>
                       </div>
                   </div>
