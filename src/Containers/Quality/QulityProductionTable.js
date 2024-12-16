@@ -8,6 +8,10 @@ import { Tooltip, Button,message, Popconfirm, Select,Switch } from "antd";
 import { bindActionCreators } from "redux";
 import AddQualityManufactureDrawerModal from "../Quality/AddQualityManufactureDrawerModal"
 import InfiniteScroll from "react-infinite-scroll-component";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { getProductionQualityData,updateQualityStatus,handleQualityManufactureModal } from "../Main/Inventory/InventoryAction";
 import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
@@ -42,8 +46,8 @@ export const QulityProductionTable = (props) => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-        "774",//  "Manufacture ID",
-         "110", // "Name",
+        "774",//  "Manufacture ID",0
+         "110", // "Name",1
          "74" ,// "Date",//2
          "142", // "Status",//3
         "778" , // "To Dispatch",//4
@@ -183,16 +187,20 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]">
+                    <div className="md:w-[22.12rem] truncate  text-sm text-[#00A2E8]">
+                    <PrecisionManufacturingIcon  className="!text-icon mr-1 text-[#00A2E8]" />
                     {translatedMenuItems[0]}
                       </div>
                     <div className="md:w-[22.12rem]">
+                    <ContactsIcon className="!text-icon mr-1 text-[#00A2E8]"/>
                     {translatedMenuItems[1]}
                       </div>
                     <div className="md:w-[15.5rem]">
+                      <DateRangeIcon className="  !text-icon text-[#8e71ed]" />
                     {translatedMenuItems[2]}
                       </div>
                     <div className="md:w-[15.5rem]">
+                    <AutorenewIcon className="  !text-icon text-[#42858c]" />
                     {translatedMenuItems[3]}
                       </div>
                     <div className=""></div>
