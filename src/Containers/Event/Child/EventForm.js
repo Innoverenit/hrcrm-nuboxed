@@ -55,10 +55,7 @@ function EventForm (props) {
       const [isLoadingContacts, setIsLoadingContacts] = useState(false);
       const [contacts, setContacts] = useState([]);
 
-      const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-        libraries: ["places"], // Ensure the 'places' library is loaded
-      });
+    
 
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
@@ -516,8 +513,8 @@ const {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-  if (!isLoaded) return <div>Loading...</div>;
-  if (loadError) return <div>Error loading Google Maps API</div>;
+  
+
 
 
   if (!browserSupportsSpeechRecognition) {
@@ -1060,7 +1057,7 @@ Investor
                     name="address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
-                      {...props}
+                     
                         singleAddress
                         arrayHelpers={arrayHelpers}
                         values={values}
