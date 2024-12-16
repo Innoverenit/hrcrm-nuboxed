@@ -21,6 +21,8 @@ import "jspdf-autotable";
 } from "../Projects/ProjectsAction";
 import { Link } from 'react-router-dom';
 import { OnlyWrapCard } from "../../Components/UI/Layout";
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const UpdateProjectsModal =lazy(()=> import('./Child/UpdateProject/UpdateProjectsModal'));
 const AddInvoiceProjectsModal =lazy(()=> import('./Child/ProjectsDetail/AddInvoiceProjectsModal'));
 
@@ -186,12 +188,16 @@ function ProjectsAllTable(props) {
                       {/* project  */}
                       </div>
                     <div className="w-[19.1rem] truncate max-md:w-[27.1rem]">
+                    <AcUnitIcon  className="!text-icon text-[#4f5d75]  "/>
                       {translatedMenuItems[1]}
                       {/* customer */}
                       </div>
                     <div className="w-[18.8rem] truncate max-md:w-[9.8rem] ">
+                    
+                    <AccountCircleIcon  className="!text-icon  text-[#C1121F]  " />
+                   
                     {/* {translatedMenuItems[2]}        */}          
-                         Creator</div>
+                    Owner</div>
                     <div className="w-[13.8rem] truncate max-md:w-[5.8rem]"></div>
                     
                 </div>
@@ -218,7 +224,10 @@ function ProjectsAllTable(props) {
                   color: "tomato",
                    fontWeight: "bold",
                  }}
-                 >{translatedMenuItems[2]} 
+                 ><div class="text-[0.65rem] text-[tomato] font-bold">
+                  {translatedMenuItems[2]} 
+                 </div>
+                  
                  {/* New */}
                </span>
             ) : null}

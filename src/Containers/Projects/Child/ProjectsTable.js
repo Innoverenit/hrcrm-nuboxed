@@ -9,7 +9,8 @@ import {
 import { Link } from 'react-router-dom';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Tooltip, Button, Input } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from "@mui/icons-material/Search";
@@ -188,12 +189,14 @@ function ProjectsTable(props) {
                       {/* project  */}
                       </div>
                     <div className="w-[19.1rem] truncate max-md:w-[27.1rem]">
+                    <AcUnitIcon  className="!text-icon text-[#4f5d75]  "/>
                       {translatedMenuItems[1]}
                       {/* customer */}
                       </div>
                     <div className="w-[18.8rem] truncate max-md:w-[9.8rem] ">
+                    <AccountCircleIcon  className="!text-icon  text-[#C1121F]  " />
                     {translatedMenuItems[5]}                 
-                         Creator</div>
+                         </div>
                     <div className="w-[13.8rem] truncate max-md:w-[5.8rem]"></div>
                     
                 </div>
@@ -220,7 +223,10 @@ function ProjectsTable(props) {
                   color: "tomato",
                    fontWeight: "bold",
                  }}
-               >{translatedMenuItems[2]} 
+               >
+                <div class="text-[0.65rem] text-[tomato] font-bold">
+                  {translatedMenuItems[2]} 
+                 </div> 
                  {/* New */}
                </span>
             ) : null}
