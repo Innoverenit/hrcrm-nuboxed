@@ -68,7 +68,7 @@ class certificationLibrary extends React.Component {
   };
   handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
     const { deleteCertificationByCandidateId } = this.props;
-    deleteCertificationByCandidateId(candiCertiLinkId, candidateId);
+    deleteCertificationByCandidateId(this.props.userType,candiCertiLinkId, candidateId);
   };
 
   saveInputRef = (input) => (this.input = input);
