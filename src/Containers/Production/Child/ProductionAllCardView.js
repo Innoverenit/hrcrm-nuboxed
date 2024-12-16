@@ -9,6 +9,10 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import ButtonGroup from "antd/lib/button/button-group";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AttractionsIcon from '@mui/icons-material/Attractions';
+import UpdateIcon from '@mui/icons-material/Update';
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -140,11 +144,11 @@ function ProductionAllCardView(props) {
                                 </div>
                         <div className="w-[10.5rem] truncate  max-md:w-[8rem]">
                             {/* Category */}
-                            {translatedMenuItems[5]}
+                            <FormatListNumberedIcon className='!text-icon  mr-1   text-[#42858c]' />   {translatedMenuItems[5]}
                             </div>
                         <div className="w-[15.4rem] truncate  max-md:w-[9rem]">
                             {/* Attribute */}
-                            {translatedMenuItems[6]}
+                            <AttractionsIcon className="  !text-icon text-[#8e71ed]" />  {translatedMenuItems[6]}
                             </div>
                         <div className="w-[10.04rem] truncate  max-md:w-[5rem]">
                             {/* Start */}
@@ -160,11 +164,11 @@ function ProductionAllCardView(props) {
                             </div>
                         <div className="w-[9.3rem] truncate  max-md:w-[5rem] ">
                             {/* Status */}
-                            {translatedMenuItems[10]}
+                            <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[10]}
                             </div>
                         <div className="w-[9.8rem] truncate  max-md:w-[5rem]">
                             {/* Inspected */}
-                            {translatedMenuItems[11]}
+                            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[11]}
                             </div>
                         <div className="w-[8.2rem] truncate  max-md:w-[5rem]"> 
                             {/* Dispatch  */}

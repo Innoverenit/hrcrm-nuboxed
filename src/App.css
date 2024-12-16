@@ -527,7 +527,6 @@ iframe#webpack-dev-server-client-overlay {
   text-align: center;
 }
 
-
 .matrix-table th {
   background-color: #f2f2f2;
 }
@@ -614,22 +613,9 @@ iframe#webpack-dev-server-client-overlay {
   font-size: 18px;
   color: #333;
 }
-
-.switches {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 10px;
-}
-
-.checkboxes {
-  margin-bottom: 10px;
-}
-
 .ant-checkbox-wrapper {
   margin-right: 10px;
 }
-
-
 .address-table {
   width: 100%;
   margin: 20px auto;

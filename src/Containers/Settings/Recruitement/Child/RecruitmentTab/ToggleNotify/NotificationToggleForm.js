@@ -69,15 +69,16 @@ const NameList = (props) => {
   }
 
   return (
-    <div className="max-h-[45vh] overflow-y-auto border p-2 ">
+    <div className="max-h-[79vh] overflow-y-auto border p-2 ">
       <div className="flex flex-col gap-[20px]">
         {data.map((item, index) => (
           <div key={index} className="name-item">
-            <h3>{item.name}</h3>
-            <div className="switches">
+            <div className='font-poppins font-semibold text-xl'>{item.name}</div>
+            <div className='flex w-[100%]'>
+            <div className="flex w-[50%]">
               <div classname="flex items-center">
-                <div class="font-bold text-xs font-poppins text-black">Admin:</div>
-                <Switch
+                <div class="font-bold text-xs mr-2 mb-2 font-poppins text-black">Admin:</div>
+                <Switch 
                  checkedChildren="Yes"
                         unCheckedChildren="No"
                   checked={item.admin}
@@ -85,7 +86,7 @@ const NameList = (props) => {
                 />
               </div>
               <div classname="flex items-center">
-                <div class="font-bold text-xs font-poppins text-black">Reporting Manager:</div>
+                <div class="font-bold text-xs mr-2 mb-2  font-poppins text-black">Reporting Manager:</div>
                 <Switch
                  checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -94,7 +95,7 @@ const NameList = (props) => {
                 />
               </div>
               <div classname="flex items-center">
-                <div class="font-bold text-xs font-poppins text-black">Reporting Manager1:</div>
+                <div class="font-bold text-xs mr-2 mb-2  font-poppins text-black">Reporting Manager+1:</div>
                 <Switch
                  checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -103,7 +104,8 @@ const NameList = (props) => {
                 />
               </div>
             </div>
-            <div className="checkboxes">
+           
+            <div className="flex w-[30%] items-center justify-center">
               {["Create", "Update", "Delete"].map((type, typeIndex) => (
                 <Checkbox
                   key={typeIndex}
@@ -114,7 +116,10 @@ const NameList = (props) => {
                 </Checkbox>
               ))}
             </div>
-            <Button onClick={() => handleUpdateClick(index)}>Update</Button>
+         <div className='flex items-center justify-center w-[20%]'>
+            <Button type='primary' onClick={() => handleUpdateClick(index)}>Update</Button>
+            </div>
+          </div>
           </div>
         ))}
       </div>
