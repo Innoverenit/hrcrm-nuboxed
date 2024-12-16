@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import ButtonGroup from "antd/lib/button/button-group";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -115,70 +117,66 @@ function ProductionAllCardView(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky h-8 z-10">
                         <div className=""></div>
-                        <div className=" w-[8.1rem] text-[#00A2E8] truncate text-sm  max-md:w-[8.1rem]">
+                        <div className=" w-[13.1rem] text-[#00A2E8] truncate text-sm  max-md:w-[8.1rem]">
                             {/* MFG ID */}
                             {translatedMenuItems[0]}
                             </div>
-                        <div className="w-[7.09rem] truncate max-md:w-[7rem]">
+                        <div className="w-[12.09rem] truncate max-md:w-[7rem]">
                             {/* Location */}
-                            {translatedMenuItems[1]}
+                           < LocationOnIcon className="!text-icon "/> {translatedMenuItems[1]}
                             </div>
-                        <div className="w-[7.1rem] truncate  max-md:w-[7rem]">
+                        <div className="w-[11.5rem] truncate  max-md:w-[7rem]">
                             {/* Cell */}
                             {translatedMenuItems[2]}
                             </div>
-                        <div className="w-[8.2rem] truncate  max-md:w-[7rem]">
+                        <div className="w-[7.2rem] truncate  max-md:w-[7rem]">
                             {/* Created */}
-                            {translatedMenuItems[3]}
+                            <DateRangeIcon className="!text-icon "/> {translatedMenuItems[3]}
                             </div>
-                        <div className="w-[9.1rem] truncate  max-md:w-[9rem]">
+                        <div className="w-[12.1rem] truncate  max-md:w-[9rem]">
                             {/* Item */}
                             {translatedMenuItems[4]}
                             
                                 </div>
-                        <div className="w-[8.3rem] truncate  max-md:w-[8rem]">
+                        <div className="w-[10.5rem] truncate  max-md:w-[8rem]">
                             {/* Category */}
                             {translatedMenuItems[5]}
                             </div>
-                        <div className="w-[9.2rem] truncate  max-md:w-[9rem]">
+                        <div className="w-[15.4rem] truncate  max-md:w-[9rem]">
                             {/* Attribute */}
                             {translatedMenuItems[6]}
                             </div>
-                        <div className="w-[9.4rem] truncate  max-md:w-[5rem]">
+                        <div className="w-[10.04rem] truncate  max-md:w-[5rem]">
                             {/* Start */}
-                            {translatedMenuItems[7]}
+                            <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[7]}
                             </div>
                         <div className="w-[9.5rem] truncate  max-md:w-[5rem]">
                             {/* End */}
-                            {translatedMenuItems[8]}
+                            <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[8]}
                             </div>
-                        <div className="w-[8.4rem] truncate  max-md:w-[5.2rem]">
+                        <div className="w-[10.4rem] truncate  max-md:w-[5.2rem]">
                             {/* Workflow */}
                             {translatedMenuItems[9]}
                             </div>
-                        <div className="w-[5.1rem] truncate  max-md:w-[5.2rem]"></div>
-                        <div className="w-[5.3rem] truncate  max-md:w-[5rem] ">
+                        <div className="w-[9.3rem] truncate  max-md:w-[5rem] ">
                             {/* Status */}
                             {translatedMenuItems[10]}
                             </div>
-                        <div className=" w-[5.6rem] truncate  max-md:w-[5rem]"></div>
-                        <div className="w-[5.8rem] truncate  max-md:w-[5rem]">
+                        <div className="w-[9.8rem] truncate  max-md:w-[5rem]">
                             {/* Inspected */}
                             {translatedMenuItems[11]}
                             </div>
-                        <div className="w-[6.2rem] truncate  max-md:w-[5rem]"> 
+                        <div className="w-[8.2rem] truncate  max-md:w-[5rem]"> 
                             {/* Dispatch  */}
                             {translatedMenuItems[12]}
                             </div>
-                        <div className="w-[3.1rem] truncate  max-md:w-[3rem]"></div>
-                        <div className=" w-[3.2rem] truncate  max-md:w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={productionAllByOrgId.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={fetchingAllProductionOrgId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"80vh"}
+                        height={"82vh"}
                         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {productionAllByOrgId.length ?
@@ -219,7 +217,7 @@ function ProductionAllCardView(props) {
                                                         {item.cellChamberName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[7.04rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
+                                                <div className=" flex w-[4.04rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs  font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
                                                             <MultiAvatar
@@ -232,26 +230,21 @@ function ProductionAllCardView(props) {
                                                         </div>
                                                         {/* <div class=" text-xs  font-poppins">
                                                             {date}
-                                                        </div> */}
-
+                                                       </div> */}
                                                     </div>
                                                     <div className=" flex w-[7.07rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-start ml-gap bg-[#eef2f9]  max-sm:w-auto">
 
                                                         <div class=" text-xs ml-gap  font-poppins">
                                                             {item.productName}
-                                                        </div>
-
-                                                    </div>
-
+                                                        </div>                                                 </div>
                                                 </div>
-
                                                 <div className=" flex w-[7.08rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-start ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs ml-gap font-poppins">
 
                                                         {item.categoryName}  {item.subCategoryName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[6.9rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-start ml-gap bg-[#eef2f9]  max-sm:w-auto">
+                                                <div className=" flex w-[9.9rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-start ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs  ml-gap  font-poppins">
                                                         {item.attributeName}  {item.subAttributeName}
                                                     </div>
@@ -289,7 +282,6 @@ function ProductionAllCardView(props) {
                                                                   },item.productionProductId);
                                                                   }}
                                                             />)}
-
                                                             {item.type==="In Progress" ? 
                                                             <StatusIcon
                                                                 type="Complete"
@@ -306,26 +298,12 @@ function ProductionAllCardView(props) {
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[6.5rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
+                                                {/* <div className=" flex w-[6.5rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs   font-poppins">
 
                                                     </div>
-                                                </div>
-                                                {/* <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                {item.type==="Complete" ? 
-                                                    <div class=" text-xs  font-semibold  font-poppins">
-                                                        <Button
-                                                            type="primary"
-                                                            onClick={() => {
-                                                                handleParticularRowData(item);
-                                                                handleBuilderProduction(true);
-                                                            }}
-                                                        >
-                                                            Add Parts
-                                                        </Button>
-                                                    </div>:null}
-                                                </div> */}
-                                                <div className=" flex w-[5.1rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
+                                                </div>                                     */}
+                                                <div className=" flex w-[6.5rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs   font-poppins">
                                                         {/* <InpectProductionToggle item={item}/> */}
                                                         <div class=" text-xs  font-poppins">
@@ -338,25 +316,14 @@ function ProductionAllCardView(props) {
                   imgHeight={"2.1em"}
                 />
                                                         </div>
-                                                        </div>
+                                                        </div>   </div>  
                                                         <div className=" flex w-[5.9rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                         <div class=" text-xs  font-poppins">
                                                             {/* {date} */}
                                                             {`  ${dayjs(item.inspectedDate).format("DD-MM-YYYY")}`}
                                                         </div>
-                                                        </div>
-                                                   
-        
-                                                    </div>
-                                             
-                                              
-                                                    {/* <div class=" text-xs  font-semibold  font-poppins">
-                                                        {/* <MoveToggleProduction item={item} />
-                                                    </div> */}
-                                              
-                                           
-
-                                              
+                                                        </div>                                                   
+                                                                                    
                                             </div>
                                         </div>
                                     );
