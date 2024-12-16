@@ -26,6 +26,7 @@ const optionsData = [
   "Production",
   "Quotation",
   "Repair",
+  "Hiring",
   "Supplier-Onboarding",
   "Task",
   "User-Onboarding",
@@ -308,7 +309,8 @@ return <div><BundleLoader/></div>;
                                       </span> : null}</div>
             )}
 <div>
-  <VisibilityIcon/>
+  {region.navType}
+  {/* <VisibilityIcon/> */}
 </div>
            
             <div>

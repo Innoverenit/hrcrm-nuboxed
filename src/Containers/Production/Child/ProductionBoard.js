@@ -80,14 +80,14 @@ function ProductionBoard(props) {
   }, [props.productionProcess]);
 
   useEffect(() => {
-    props.getProcessForProduction(props.orgId);
+    props.getProcessForProduction(props.orgId,"Production");
      props.getAllstageProductions(props.userId)
      props.getProductionsbyLocId(props.userId, 0);
   }, []);
 
   useEffect(() => {
     if (!processData) return;
-    props.getProcessStagesForProduction(processData.productionWorkflowDetailsId);
+    props.getProcessStagesForProduction(props.orgId,processData.workflowDetailsId);
   }, [processData]);
 
 
@@ -140,7 +140,7 @@ function ProductionBoard(props) {
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForProduction(item.productionWorkflowDetailsId);
+    props.getProcessStagesForProduction(props.orgId,item.workflowDetailsId);
   }
 
 
@@ -187,7 +187,7 @@ function ProductionBoard(props) {
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.productionStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
