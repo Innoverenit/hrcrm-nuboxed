@@ -79,7 +79,9 @@ class ContactDetailTab extends Component {
          /></div>;
          case "3":
           return  <div> 
-            <RecruitProContact/>
+            <RecruitProContact
+             contactId={contactId}
+            />
           </div>;
         default:
           return null;

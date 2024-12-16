@@ -58,11 +58,11 @@ const ContactActionLeft = (props) => {
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      if (props.viewType === "table") {
-      props.inputContactDataSearch(currentData,"user","customer");
+      if (props.teamsAccessInd) {
+      props.inputContactDataSearch(currentData,"team","customer");
       }
-      else if (props.viewType === "teams") {
-        props.inputContactDataSearch(currentData,"team","customer");
+      else if (props.viewType === "table") {
+        props.inputContactDataSearch(currentData,"user","customer");
         }
         else if (props.viewType === "all") {
           props.inputContactDataSearch(currentData,"All","customer");
