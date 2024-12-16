@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
+import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import { Tooltip, Badge, Avatar } from "antd";
 
 import {getReaasignProduct} from "../ProductionAction"
@@ -115,6 +116,28 @@ const ProductionActionLeft = (props) => {
                            
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                        <TokenIcon className="text-white !text-icon cursor-pointer" /></Avatar>
+
+
+                        </span>
+                    {/* </Badge> */}
+                </Tooltip>
+
+
+                <Tooltip title="Batch">
+                    {/* <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        overflowCount={999}
+                    > */}
+                        <span class=" mr-1  "
+                            onClick={() => setProductionViewType("batch")}
+                            style={{
+
+                                color: viewType === "batch" && "#1890ff",
+                            }}
+                        >
+                           
+                            <Avatar style={{ background: viewType === "batch" ? "#f279ab" : "#28a355" }}>
+                       <BatchPredictionIcon className="text-white !text-icon cursor-pointer" /></Avatar>
 
 
                         </span>

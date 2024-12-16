@@ -2,12 +2,13 @@ import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductHsn,addProductBuilder,getSearchBuilder } from "../../ProductAction";
-import { Select } from "antd";
+import { Select,Input } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ProBuildSearchedCard =lazy(()=>import("./ProBuildSearchedCard"));
 
 const { Option } = Select;
+const { Search } = Input;
 
 function ProductbuilderTable (props) {
 
@@ -16,10 +17,12 @@ function ProductbuilderTable (props) {
   },[]);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
 
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+    const [currentData, setCurrentData] = useState("");
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -54,11 +57,33 @@ function ProductbuilderTable (props) {
 
   const [showCard, setshowCard] = useState(false);
 
-  const handleChange = (ev) => {
-    setSelectedValue(ev);
-      props.getSearchBuilder(ev);
-      setshowCard(true)
-  };
+  // const handleChange = (ev) => {
+  //   setSelectedValue(ev);
+  //     props.getSearchBuilder(ev);
+  //     setshowCard(true)
+  // };
+
+
+   const handleSearch = () => {
+        if (currentData.trim() !== "") {
+        
+          props.getSearchBuilder(currentData)
+          setSearchOnEnter(true);  // Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+
+       const handleChange = (e) => {
+            setCurrentData(e.target.value);
+            setshowCard(true)
+        
+       
+              setSearchOnEnter(false);
+            }
+          
+
+      
 
   if(props.fetchingProductHsn){
     return <BundleLoader/>
@@ -75,7 +100,7 @@ function ProductbuilderTable (props) {
                                     <div class="flex justify-between">
                                     <div class={`${isMobile ? "w-wk" : "w-[18%]"}`}>
                                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[0]}</div>
-                                    <Select
+                                    {/* <Select
                                     showSearch
                 // value={selectedValue}
                 style={{ width: "100%" }}
@@ -85,7 +110,15 @@ function ProductbuilderTable (props) {
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>
 })}
-      </Select>
+      </Select> */}
+       <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          // suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
       </div>
 
         <div>
