@@ -1801,3 +1801,30 @@ export const addContactMand = (addressId,primaryInd) => (dispatch) => {
       // cb();
     });
 };
+
+export const getContactRecruit = (contactId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_RECRUIT_REQUEST,
+  });
+  axios
+  .get(`${base_url}/recuitment/contact/open/recuitment/${contactId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_RECRUIT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_RECRUIT_FAILURE,
+        payload: err,
+      });
+    });
+};

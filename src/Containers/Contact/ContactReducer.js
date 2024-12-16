@@ -12,6 +12,10 @@ const initialState = {
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
 
+  fetchingContactrecruit: false,
+  fetchingContactrecruitError: true,
+  contactRecruit:[],
+
   fetchingContactDistributor: false,
                 fetchingContactDistributorError: false,
                 contactDistributor:[],
@@ -1200,6 +1204,21 @@ export const contactReducer = (state = initialState, action) => {
           ...state,
           fetchingContactAllRecords: false,
           fetchingContactAllRecordsError: true,
+        };
+
+        case types.GET_CONTACT_RECRUIT_REQUEST:
+        return { ...state, fetchingContactrecruit: true };
+      case types.GET_CONTACT_RECRUIT_SUCCESS:
+        return {
+          ...state,
+          fetchingContactrecruit: false,
+          contactRecruit: action.payload,
+        };
+      case types.GET_CONTACT_RECRUIT_FAILURE:
+        return {
+          ...state,
+          fetchingContactrecruit: false,
+          fetchingContactrecruitError: true,
         };
 
         case types.UPLOAD_CONTACT_LIST_REQUEST:
