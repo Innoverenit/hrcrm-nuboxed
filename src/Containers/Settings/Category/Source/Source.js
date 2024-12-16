@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
@@ -154,8 +155,9 @@ return <div><BundleLoader/></div>;
                       <button onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
-                  <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddSource}> Add More</button>
+                  <button  type="Primary" 
+                  // style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddSource}><DataSaverOnIcon className=" !text-icon"/> Add More</button>
               )}
           </div>
           </div>

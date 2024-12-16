@@ -9,22 +9,6 @@ import NodataFoundPage from '../../Helpers/ErrorBoundary/NodataFoundPage';
 const ProductionDashCard = (props) => {
    
     return (
-        // <div className="parentContainer">
-            
-        //     <div className="leftContainer">
-             
-        //         <ProductionTableView
-        //         fetchingProductionTable={props.fetchingProductionTable}
-        //         productionTableData={props.productionTableData}
-        //         />
-        //     </div>
-        //     <div className="rightContainer">
-               
-        //         <ProductionTimeLine 
-        //         productionTableData={props.productionTableData}
-        //         />
-        //     </div>
-        // </div>
         <div className="parentContainer">
 
     {!props.fetchingProductionTable && props.productionTableData.length === 0 ? (

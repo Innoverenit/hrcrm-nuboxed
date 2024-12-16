@@ -410,7 +410,7 @@ function AddShipperForm(props) {
                   htmlType="submit"
                  loading={props.addingCustomerConfig}
                 >
-                    Update
+                    Submit
                     {/* {props.translatedMenuItems[15]} */}
                 
                 </Button>
