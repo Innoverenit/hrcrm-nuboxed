@@ -38,12 +38,12 @@ function ProjectsTable(props) {
         const itemsToTranslate = [
            "137", // 'project', // 0
          "248", // 'Customer', // 1
-          // "",  // 'Creator', // 2
+       
      "100",//new 2
         // Create Invoice
        "170" ,// Edit
-       "1259" // Delete
-
+       "1259" ,// Delete
+       "77",  // 'Creator', // 2
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -192,7 +192,7 @@ function ProjectsTable(props) {
                       {/* customer */}
                       </div>
                     <div className="w-[18.8rem] truncate max-md:w-[9.8rem] ">
-                    {/* {translatedMenuItems[2]}        */}          
+                    {translatedMenuItems[5]}                 
                          Creator</div>
                     <div className="w-[13.8rem] truncate max-md:w-[5.8rem]"></div>
                     

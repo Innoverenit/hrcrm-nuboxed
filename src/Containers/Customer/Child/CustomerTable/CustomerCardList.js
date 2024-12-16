@@ -408,7 +408,7 @@ if (loading) {
                 className="flex rounded justify-between  bg-white mt-1 items-center  w-[100%] py-ygap  max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[13rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex  w-[14rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                         <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
@@ -538,7 +538,7 @@ className="cursor-pointer text-xs font-poppins">
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[10.21rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[12.41rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
                           {item.sector}
@@ -551,7 +551,7 @@ className="cursor-pointer text-xs font-poppins">
                           {item.source}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto w-[8.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[9.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
@@ -629,7 +629,7 @@ className="cursor-pointer text-xs font-poppins">
 
                         </div>
                       </div>                   
-                      <div className=" flex  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  w-[10.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title={translatedMenuItems[9]}
@@ -642,9 +642,9 @@ className="cursor-pointer text-xs font-poppins">
                               style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs   flex items-center w-wk " >
                               <NextPlanIcon  className="!text-icon mr-1 "/>
-                                {item.convertInd === 0 && translatedMenuItems[17]}
-                                {item.convertInd === 1 && translatedMenuItems[16]}
-                                {item.convertInd === 2 && translatedMenuItems[18]}
+                                {item.convertInd === 0 && translatedMenuItems[16]}
+                                {item.convertInd === 1 && translatedMenuItems[15]}
+                                {item.convertInd === 2 && translatedMenuItems[17]}
                       
                               </div>
                             </Button>
