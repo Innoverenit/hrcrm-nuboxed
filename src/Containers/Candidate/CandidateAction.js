@@ -500,7 +500,7 @@ export const getTopicsByCandidateId = (userType,id) => (dispatch) => {
     type: types.GET_TOPICS_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/employeeCertificationLink/get-all/${userType}/${id}`, {
+    .get(`${base_url}/employee/employeeCertificationLink/get-all/skill/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -548,14 +548,14 @@ export const getCandidateFilter = (candidate) => (dispatch,getState) => {
     });
 };
 //delete candidate skill
-export const deleteTopicByCandidateId = (skillSetDetailsId, candidateId) => (
+export const deleteTopicByCandidateId = (userType,id, candidateId) => (
   dispatch
 ) => {
   dispatch({
     type: types.DELETE_TOPIC_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .delete(`${base_url}/candidate/skilsset/${skillSetDetailsId}`, {
+    .delete(`${base_url}/employee/employeeCertificationLink/delete/skill/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2233,14 +2233,14 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
         });
       });
   };
-  export const deleteCertificationByCandidateId = (candiCertiLinkId,candidateId) => (
+  export const deleteCertificationByCandidateId = (userType,id,candidateId) => (
     dispatch
   ) => {
     dispatch({
       type: types.DELETE_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .delete(`${base_url}/candidate/certification/${candiCertiLinkId}`, {
+      .delete(`${base_url}/employee/employeeCertificationLink/delete/certification/${userType}/${id}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

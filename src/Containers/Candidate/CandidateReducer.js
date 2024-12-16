@@ -772,14 +772,14 @@ export const candidateReducer = (state = initialState, action) => {
         ...state,
         updatingCandidateEmploymentDetails: false,
         updateCandidateEmploymentModal: false,
-        skillExperince:[action.payload,...state.skillExperince]
-        // skillExperince: state.skillExperince.map((item) => {
-        //   if (item.skillSetDetailsId === action.payload.skillSetDetailsId) {
-        //     return action.payload;
-        //   } else {
-        //     return item;
-        //   }
-        // }),
+        // skillExperince:[action.payload,...state.skillExperince]
+        skillExperince: state.skillExperince.map((item) => {
+          if (item.skillSetDetailsId === action.payload.skillSetDetailsId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_CANDIDATE_EMPLOYMENT_DETAILS_FAILURE:
       return {

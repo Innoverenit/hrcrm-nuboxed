@@ -76,9 +76,9 @@ class CandidateTopicOfInterest extends React.Component {
     //   selectValue: "",
     // });
   };
-  handleTopicDelete = ({ skillSetDetailsId, candidateId }) => {
+  handleTopicDelete = ({ skillSetDetailsId }) => {
     const { deleteTopicByCandidateId } = this.props;
-    deleteTopicByCandidateId(skillSetDetailsId, candidateId);
+    deleteTopicByCandidateId(this.props.userType,skillSetDetailsId);
   };
 
   saveInputRef = (input) => (this.input = input);

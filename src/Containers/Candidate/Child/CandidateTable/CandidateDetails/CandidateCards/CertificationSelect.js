@@ -14,9 +14,9 @@ function CertificationSelect(props) {
     props.addCertificationByCandidateId(
       {
         candidateCertificationName: selectType,
-        candidateId: props.uniqueId,
+        candidateId: props.candidateId,
       },
-      this.props.userType
+      props.userType
     );
   }
 
@@ -45,3 +45,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CertificationSelect);
+
