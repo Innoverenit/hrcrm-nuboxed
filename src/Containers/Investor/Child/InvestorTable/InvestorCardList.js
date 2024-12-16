@@ -500,8 +500,11 @@ function InvestorCardList(props) {
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
-                                    <div class="text-xs   text-center  justify-center  font-poppins  max-sm:text-sm">
-                                    {item.oppNo} &nbsp;/&nbsp; {item.totalProposalValue && ( <span> {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}</span>)} </div>
+                                    
+                                    <div class="text-xs w-[4.1rem]  text-center  justify-center  font-poppins  max-sm:text-sm"> 
+                                      {item.oppNo}  </div>
+                                    <div class="text-xs w-[4.3rem]  text-center  justify-center  font-poppins  max-sm:text-sm">
+                                       {item.totalProposalValue && ( <span> {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}</span>)} </div>
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
@@ -679,7 +682,7 @@ function InvestorCardList(props) {
      </InfiniteScroll> 
      </div>
      )}  
- <Suspense fallback={<BundleLoader />}>
+<Suspense fallback={"Loading"}>
 
 <ContactsInvestorModal
         RowData={RowData}
