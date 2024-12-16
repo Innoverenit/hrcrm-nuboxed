@@ -182,12 +182,14 @@ function AccountDetailsTab(props) {
                 return  <div>  {openOrder === true &&
                     <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
                     selectedLanguage={props.selectedLanguage}
-                  translateText={props.translateText} /> }
+                  translateText={props.translateText} 
+                  currentOrderType={currentOrderType}
+                  /> }
                   {openOrder === false &&
                     <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
                     selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText}
-                  
+                  activeTab={activeKey}
                   />
                 }</div>;
                 case "4":
@@ -244,7 +246,9 @@ function AccountDetailsTab(props) {
                                 return  <div>  
                                  <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} /></div>;
+                            translateText={props.translateText} 
+                            activeTab={activeKey}
+                            /></div>;
                             case "12":
                                 return  <div>  
                                  <AccountCreditMemos

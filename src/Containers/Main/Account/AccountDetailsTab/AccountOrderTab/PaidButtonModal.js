@@ -11,7 +11,9 @@ class PaidButtonModal extends Component {
             handlePaidModal,
             ...formProps
         } = this.props;
-        console.log("modll",this.props.particularRowData)
+        console.log("modll",this.props.particularRowData);
+
+        console.log("TbS", this.props.activeTab);
 
         return (
             <>
@@ -34,18 +36,22 @@ class PaidButtonModal extends Component {
                                 type={this.props.type}
                                 selectedLanguage={this.props.selectedLanguage}
                                 translateText={this.props.translateText} 
+                                activeTab={this.props.activeTab}
                                 />
                                 <OrderPaymentTable
                                  particularRowData={this.props.particularRowData} 
                                   type={this.props.type}
                                   selectedLanguage={this.props.selectedLanguage}
                                   translateText={this.props.translateText} 
+                                  activeTab={this.props.activeTab}
                                 />
                             </> :
                             <OrderPaymentTable 
                             particularRowData={this.props.particularRowData} 
                             selectedLanguage={this.props.selectedLanguage}
-                            translateText={this.props.translateText} />}
+                            translateText={this.props.translateText}
+                            activeTab={this.props.activeTab}
+                            />}
                     </Suspense>
                 </StyledDrawer>
             </>
