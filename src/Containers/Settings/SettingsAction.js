@@ -5016,13 +5016,13 @@ export const addProcessForProductionOnboarding = (data, orgId, cb) => (
     });
 };
 
-export const getProcessForProduction = (orgId) => (dispatch) => {
+export const getProcessForProduction = (orgId,type) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_PRODUCTION_REQUEST,
   });
   axios
-    .get(`${base_url}/productionWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5126,14 +5126,14 @@ export const addProcessStageForProduction = (stage, cb) => (dispatch) => {
     });
 };
 
-export const getProcessStagesForProduction = (productionWorkflowDetailsId) => (
+export const getProcessStagesForProduction = (orgId,workflowId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_PRODUCTION_REQUEST,
   });
   axios
-    .get(`${base_url}/productionWorkflow/Stages/${productionWorkflowDetailsId}`, {
+    .get(`${base_url}/workflow/stages/for_dropdown/${orgId}/${workflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
