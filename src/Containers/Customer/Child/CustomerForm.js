@@ -1,7 +1,6 @@
 import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { useJsApiLoader } from "@react-google-maps/api";
 import {  Button,Select } from "antd";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
@@ -43,10 +42,7 @@ function CustomerForm(props) {
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
 
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-    libraries: ["places"], // Ensure the 'places' library is loaded
-  });
+
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -434,10 +430,6 @@ console.log(selectedSource)
   };
  
  
-
-  if (!isLoaded) return <div>Loading...</div>;
-  if (loadError) return <div>Error loading Google Maps API</div>;
-
   console.log(selectedSector)
   if (loading) {
     return <div><BundleLoader/></div>;
@@ -491,7 +483,7 @@ console.log(selectedSource)
               ...values,
               category: checked ? "Both" : whiteblue ? "White" : "Blue",
               currencyId:selectedCurrency,
-              sourceId: selectedSource,
+              source: selectedSource, 
               sectorId: selectedSector,
               notes: text,
               currencyId:selectedCurrency,
@@ -870,7 +862,7 @@ console.log(selectedSource)
                       // label="Address"                 
                       render={(arrayHelpers) => (
                         <AddressFieldArray
-                        {...props}
+                         singleAddress
                           arrayHelpers={arrayHelpers}
                           values={values}
                         />

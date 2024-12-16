@@ -215,7 +215,7 @@ class Customer extends Component {
               selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
             /> }
-            {viewType === 'table' &&    <CustomerCardList
+            {/* {viewType === 'table' &&    <CustomerCardList
              filter={this.state.filter}
              handleCheckboxChange={this.handleCheckboxChange}
              currentUser={this.state.currentUser} 
@@ -227,7 +227,7 @@ class Customer extends Component {
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
-             /> }
+             /> } */}
             {viewType === 'map' &&    <CustomerMap/> }
             {viewType === 'all' &&        <CustomerAllCardList
                handleCheckboxChange={this.handleCheckboxChange}
