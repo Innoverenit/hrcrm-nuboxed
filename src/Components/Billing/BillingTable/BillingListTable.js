@@ -370,8 +370,8 @@ function BillingListTable(props) {
      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
         <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
       
-        <div className="  w-[4.02rem] truncate ">   </div>
-        <div className="  w-[16.7rem] text-sm text-[#00A2E8]  truncate ">            
+        <div className="  w-[7.02rem] truncate ">   </div>
+        <div className="  w-[15.7rem] text-sm text-[#00A2E8]  truncate ">            
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]}
          {/* Talent */}
      
@@ -419,15 +419,15 @@ function BillingListTable(props) {
            </div>
                 </div>
                 </div>
-                <div class="flex  w-[8.2rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+                <div class="flex  w-[8.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  ml-gap font-poppins'>
             {/* 2 */}  {item.candidateName}
           </div>
           </div> 
-          <div class="flex  w-[8.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+          <div class="flex  w-[8.3rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  ml-gap font-poppins'>
            {/* props.customerTaskList.map((item) => {
     return {
       value={item.name}
@@ -436,9 +436,9 @@ function BillingListTable(props) {
             {item.customerName}
           </div>
           </div> 
-          <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  ml-gap font-poppins'>
             {/* 4 */}{item.projectName}
           </div>
           </div> 
@@ -472,21 +472,21 @@ function BillingListTable(props) {
             {/* 7 */}{item.actualBillableHour}
           </div>
           </div> 
-          <div class="flex  w-[8.8rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+          <div class="flex  w-[8.8rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  ml-gap font-poppins'>
             {/* 8 */}{item.actualBillableAmount}
           </div>
           </div> 
           <div class="flex  w-[7.1rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  font-poppins'>
             {/* 9 */}{item.deviationBillableHour}
           </div>
           </div> 
-          <div class="flex  w-[7.2rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+          <div class="flex  w-[7.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
-           <div className='text-xs font-poppins'>
+           <div className='text-xs  ml-gap font-poppins'>
             {/* 10 */}{item.deviationBillableAmount}
           </div>
           </div> 
