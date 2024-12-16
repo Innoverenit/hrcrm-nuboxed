@@ -265,7 +265,7 @@ return  <BundleLoader />
                           </Tooltip>                                        
 
                         <Tooltip title="Summary">
-                      <span className=" -ml-1"                   
+                      <span className=" ml-1"                   
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
@@ -280,7 +280,7 @@ return  <BundleLoader />
 
                         <Tooltip title="Close">
                          <span
-                         className=" ml-1 "
+                        //  className=" ml-1 "
                   
                           type="area-chart"
                           // tooltipTitle="Summary"
@@ -298,7 +298,7 @@ return  <BundleLoader />
 
                         <Tooltip title="Delete">
                          <span
-                      className=" ml-1 !text-icon text-[#c42847]"
+                      className="  !text-icon text-[#c42847]"
                       
                           type="area-chart"
                           // tooltipTitle="Summary"
@@ -308,7 +308,7 @@ return  <BundleLoader />
                                           
                           >
                             <DeleteIcon
-                      className=" ml-1 !text-icon "
+                      className=" !text-icon "
                             onClick={() => {
                             this.handledeletedPopoverVisibleChange();
                           }}

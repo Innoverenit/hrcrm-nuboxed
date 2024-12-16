@@ -35,8 +35,6 @@ const UpdateEmployeeModal =lazy(()=>import("./UpdateEmployeeModal"));
 const OpenNotifyDrawer =lazy(()=>import("./OpenNotifyDrawer"));
 const StepperEmployeeModal =lazy(()=>import("./StepperEmployeeModal"));
 
-
-
 function InternalUserdata (props) {
   const [userData, setUserData] = useState("");
   const [currentEmployeeId, setCurrentEmployeeId] = useState("");
@@ -59,6 +57,7 @@ function InternalUserdata (props) {
            "10",// "Admin"
           "1551",//  Onboarding
           "170",//  "Edit" 
+          "1507"
                  
         ];
 
@@ -202,17 +201,25 @@ console.log(props.filteredData)
        </div>
            <div className=" flex flex-row justify-between w-full  mb-1 items-center absolute bottom-0">
            <div class=" flex justify-start ">
-          
-           <Button
-                        type="delete"
+          {item.role === "USER"  ? (  <Button
+                        type="primary"
                        
                         onClick={() => {
                           handleSetCurrentEmployeeId(item);
                           props.handleNotifyDrawer(true);
                          }}
-                    >
-                       {translatedMenuItems[6]}
-                    </Button>
+                    >  {translatedMenuItems[9]}
+                       
+                    </Button>): (  <Button
+                        type="Primary"
+                       
+                        onClick={() => {
+                          handleSetCurrentEmployeeId(item);
+                          props.handleNotifyDrawer(true);
+                         }}
+                    >{translatedMenuItems[6]}
+                    </Button>)}
+         
             </div>
           
            <div class="flex justify-end  items-center mr-2">

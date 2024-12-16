@@ -208,17 +208,24 @@ function handleSetCurrentUser(item) {
        </div>
            <div className=" flex flex-row justify-between w-full  mb-1 items-center absolute bottom-0">
            <div class=" flex justify-start ">
-          
-           <Button
-                        type="delete"
-                       
-                        onClick={() => {
-                          handleSetCurrentEmployeeId(item);
-                          props.handleNotifyDrawer(true);
-                         }}
-                    >
-                       {translatedMenuItems[6]} 
-                    </Button>
+             {item.role === "USER"  ? (  <Button
+                                  type="primary"
+                                 
+                                  onClick={() => {
+                                    handleSetCurrentEmployeeId(item);
+                                    props.handleNotifyDrawer(true);
+                                   }}
+                              >  {translatedMenuItems[9]}
+                                 
+                              </Button>): (  <Button
+                                  type="primary"
+                                 
+                                  onClick={() => {
+                                    handleSetCurrentEmployeeId(item);
+                                    props.handleNotifyDrawer(true);
+                                   }}
+                              >{translatedMenuItems[6]}
+                              </Button>)}
 
             </div>
           

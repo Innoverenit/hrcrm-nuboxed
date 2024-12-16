@@ -101,7 +101,7 @@ function CandidateDetailTab(props) {
           <PlacementTable
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
-           translatedMenuItems={props.translatedMenuItems}
+          //  translatedMenuItems={props.translatedMenuItems}
               />
         </div>;
     case "3":
