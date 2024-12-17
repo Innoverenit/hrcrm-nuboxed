@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getArchieveListOfProduction } from "../ProductionAction"
 import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
@@ -11,7 +10,7 @@ import AttractionsIcon from '@mui/icons-material/Attractions';
 import ExploreIcon from "@mui/icons-material/Explore";
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 
-
+const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
 function ProductionArchieveList(props) {
     const [page, setPage] = useState(0);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -148,7 +147,7 @@ function ProductionArchieveList(props) {
                                     );
                                 })}
                             </> : !props.archieveProduction.length
-                                && !props.fetchingArchieveProduction ? <NodataFoundPage /> : null}
+                                && !props.fetchingArchieveProduction ? <Suspense><NodataFoundPage /></Suspense> : null}
                     </InfiniteScroll>
                 </div>
             </div>

@@ -1,9 +1,7 @@
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-
 import { BundleLoader } from "../../../Components/Placeholder";
 const CreateProduction = lazy(() => import("../Child/CreateProduction"));
-
 class CreateProductionDrawer extends Component {
   render() {
     const { openProductiondrawer, handleCreateProduction, ...formProps } = this.props;

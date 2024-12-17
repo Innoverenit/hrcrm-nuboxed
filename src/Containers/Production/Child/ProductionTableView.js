@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState,useEffect,useRef, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import QRCode from "qrcode.react";
@@ -18,18 +18,18 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Select } from "antd";
-import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ButtonGroup from "antd/lib/button/button-group";
 import {updateProStatus,handleProductionQuality,updateProductionPauseStatus} from "../ProductionAction"
 import {  PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
-import InpectProductionToggle from "./InpectProductionToggle.js";
 import { base_url2 } from "../../../Config/Auth";
-import AddProductionQualityModal from "../Child/AddProductionQualityModal.js"
-import MoveToggleProduction from "../Child/MoveToggleProduction.js"
 
+const OnboardingProduction=lazy(()=>import("../Child/OnboardingProduction.js"));
+const InpectProductionToggle=lazy(()=>import("./InpectProductionToggle.js"));
+const AddProductionQualityModal=lazy(()=>import("../Child/AddProductionQualityModal.js"));
+const MoveToggleProduction=lazy(()=>import("../Child/MoveToggleProduction.js"));
 
 const { Option } = Select;
 
@@ -341,7 +341,7 @@ function ProductionTableView(props) {
                                                 
 
                                                 <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                    <div class=" text-xs    font-poppins">
                                      
                                                         <ButtonGroup>
                                                             {item.type === "To Start" && (
@@ -488,7 +488,7 @@ function ProductionTableView(props) {
                                            
                     <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                  <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9]  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" >
+                                                    <div class=" text-xs    font-poppins" >
                                                         {/* {stage} */}
                                                         {item.workflowName}
                                                     </div>
@@ -496,7 +496,7 @@ function ProductionTableView(props) {
                                               
 
                                                 <div className=" flex items-center md:w-[9.54rem] h-8 ml-gap bg-[#eef2f9]  justify-center    max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                    <div class=" text-xs    font-poppins">
                                                         {/* {stage} */}
 
                                                         {item.stage}
@@ -504,7 +504,7 @@ function ProductionTableView(props) {
                                                 </div>
 
                                                 <div className=" flex  items-center md:w-[14.081rem] h-8 ml-gap bg-[#eef2f9]  justify-center    max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class="flex flex-row text-xs  font-semibold  font-poppins">
+                                                    <div class="flex flex-row text-xs    font-poppins">
                                                         {/* {stage} */}
                                                         {item.type === "Complete" && (
                                                         <InpectProductionToggle item={item} />
@@ -522,7 +522,7 @@ function ProductionTableView(props) {
 
 
                                                 <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                    <div class=" text-xs    font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
                                                         {item.inspectedInd===true&&(
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 146 }}
@@ -559,7 +559,8 @@ function ProductionTableView(props) {
 
 
                                                 <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                    <div class=" text-xs    font-poppins">
+                                                    <Suspense>
                                                         {selectedRack &&  
                                                         <MoveToggleProduction 
                                                         item={item} 
@@ -567,7 +568,7 @@ function ProductionTableView(props) {
                                                         selectedRack={selectedRack}
 
                                                         />
-                                                        }
+                                                        }</Suspense>
                                                     </div>
                                                 </div>
                                                
@@ -587,7 +588,7 @@ function ProductionTableView(props) {
  
             </div>
 
-
+<Suspense>
            <AddProductionQualityModal
            particularDiscountData={particularDiscountData}
            handleProductionQuality={props.handleProductionQuality}
@@ -602,7 +603,7 @@ function ProductionTableView(props) {
                         selectedLanguage={props.selectedLanguage}
                         translatedMenuItems={translatedMenuItems}
             />
-
+</Suspense>
        
         </>
     );
@@ -611,22 +612,10 @@ function ProductionTableView(props) {
 
 const mapStateToProps = ({ production, auth, inventory }) => ({
     token: auth.token,
-    // productionByLocsId: production.productionByLocsId,
-    // fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
     productionQualityModal:production.productionQualityModal,
-    // orgId: auth.userDetails.organizationId,
-    // user: auth.userDetails,
-    
-    //productionTableData:production.productionTableData,
-    // openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
-    // clickedProductionIdrwr: production.clickedProductionIdrwr,
-    // organizationId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    orgId: auth.userDetails.organizationId,
-    // roomRackbyLoc: inventory.roomRackbyLoc,
-    // rackList: inventory.rackList,
-    // orgId: auth.userDetails.organizationId,
+    orgId: auth.userDetails.organizationId
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -634,16 +623,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             updateProStatus,
             updateProductionPauseStatus,
-            //getProductionTable,,
             handleProductionQuality
-            // getProductionsbyLocId,
-            // handleBuilderProduction,
-            // updatePauseStatus,
-            // handleProductionIDrawer,
-            // updateProStatus,
-            // getRoomRackByLocId,
-            // updateRoomRackProduction,
-            // getRackList
         },
         dispatch
     );
