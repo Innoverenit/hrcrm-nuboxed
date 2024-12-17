@@ -31,6 +31,7 @@ class AddProductionQualityModal extends Component {
         particularDiscountData={this.props.particularDiscountData}
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
         />
           </Suspense>
 

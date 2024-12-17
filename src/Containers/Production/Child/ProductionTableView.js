@@ -3,9 +3,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
+import SchemaIcon from '@mui/icons-material/Schema';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+import StairsIcon from '@mui/icons-material/Stairs';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import TokenIcon from '@mui/icons-material/Token';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import AttractionsIcon from '@mui/icons-material/Attractions';
+import SourceIcon from '@mui/icons-material/Source';
+import StoreIcon from '@mui/icons-material/Store';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
- import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Select } from "antd";
 import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
@@ -132,14 +143,16 @@ function ProductionTableView(props) {
            "744", //   "Cell",//1
            "679", //   "Created",//2
            "1044", //   "Item",//3
-            "14",//   "Category",//5
-              "259",//6
-           "142", //   "Status",//7
-           "141", //   "Workflow",//8
+            "14",//   "Category",//4
+              "259",//5
+           "142", //   "Status",//6
+           "141", //   "Workflow",//7
            "1050" ,//   "Stage",//8
             "1051",//   "Inspected",//8
            "1052", //   "Store",//8
-            "1053"//   "To Quality",//8
+            "1053",//   "To Quality",//8
+            "1043",
+            "1624"
               
             ];
     
@@ -193,39 +206,39 @@ function ProductionTableView(props) {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1   p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex justify-between w-[100%]  font-poppins !text-lm p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" md:w-[9rem]"> 
+                        <div className=" max-md:w-[9rem] w-[9rem] text-[#00A2E8] text-sm truncate "> 
                             {/* MFG ID */}
-                            {translatedMenuItems[0]}
+                            <PrecisionManufacturingIcon className="!text-icon  "/> {translatedMenuItems[0]}
                             </div>
-                        <div className=" md:w-[6.01rem]">
+                        <div className=" max-md:w-[6.01rem] w-[6.01rem]">
                             {/* Cell */}
-                            {translatedMenuItems[1]}
+                            <TokenIcon className="!text-icon  text-[#1E213D]"/> {translatedMenuItems[1]}
                             </div>
-                        <div className=" md:w-[6rem]">
+                        <div className=" max-md:w-[6rem] w-[6rem]">
                             {/* Created */}
-                            {translatedMenuItems[2]}
+                            <DateRangeIcon className="!text-icon  text-[#006600]"/>{translatedMenuItems[2]}
                             </div>
-                        <div className="md:w-[2rem]"></div>
+                        <div className="max-md:w-[2rem] w-[2rem]"></div>
                         <div className=" md:w-[4.3rem]">
                             {/* Item */}
-                            {translatedMenuItems[3]}
+                            <AddShoppingCartIcon className="!text-icon  text-[#D64045]"/>{translatedMenuItems[3]}
                             </div>
-                        <div className="md:w-[8.4rem]">
+                        <div className="max-md:w-[8.4rem] w-[8.4rem]">
                             {/* Category */}
-                            {translatedMenuItems[4]}
+                            <WidgetsIcon className="!text-icon  text-[#4B2206]"/> {translatedMenuItems[4]}
                             </div>
-                        <div className="md:w-[8.5rem]">
+                        <div className="max-md:w-[8.5rem] w-[8.5rem]">
                             {/* Attribute */}
-                            {translatedMenuItems[5]}
+                            <AttractionsIcon className="!text-icon  text-[teal]"/>{translatedMenuItems[5]}
                             </div>
-                            <div className=" md:w-[5.51rem] ">
+                            <div className=" max-md:w-[5.51rem] w-[5.51rem] ">
                           
                             </div>
-                        <div className=" md:w-[5.51rem] ">
+                        <div className=" max-md:w-[5.51rem] w-[5.51rem] ">
                             {/* Status */}
-                            {translatedMenuItems[6]}
+                            <SourceIcon className="!text-icon  text-[#4b5043]"/>  {translatedMenuItems[6]}
                             </div>
    
  
@@ -238,9 +251,9 @@ function ProductionTableView(props) {
                                     return (
                             
                                         <div key={item.productId} >
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                            <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex">
-                                                    <div className=" flex   items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9]   items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             // onClick={() => {
@@ -266,7 +279,7 @@ function ProductionTableView(props) {
                                                            </div>
 
                                                     
-                                                    <div className=" flex  items-center  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
@@ -285,13 +298,13 @@ function ProductionTableView(props) {
 
                                                     </div>
 
-                                                    <div className=" flex  items-center  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
 </div>
 
 </div>
-                                                    <div className=" flex  items-center  md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center     md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             {item.categoryName} {item.subCategoryName}
@@ -301,7 +314,7 @@ function ProductionTableView(props) {
 
                                                 </div>
 
-                                                <div className=" flex  items-center md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {item.attributeName}  {item.subAttributeName} 
@@ -310,7 +323,7 @@ function ProductionTableView(props) {
 
 
 
-                                                <div className=" flex  items-center md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins">
                                                     {item.qualityCheckRejectInd === true && (
                                                     <Tooltip title="Quality">
@@ -327,7 +340,7 @@ function ProductionTableView(props) {
                                                 </div>
                                                 
 
-                                                <div className=" flex  items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
@@ -399,7 +412,7 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
                                                
-                                                <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Print"
                                                        
@@ -445,26 +458,26 @@ function ProductionTableView(props) {
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                       
-                        <div className=" md:w-[9rem]">
+                        <div className=" md:w-[9rem] text-[#00A2E8] text-sm">
                             {/* Workflow */}
-                            {translatedMenuItems[8]}
+                            <SchemaIcon className="!text-icon  "/>  {translatedMenuItems[7]}
                             </div>
                         <div className=" md:w-[6.06rem]">
                             {/* Stage */}
-                            {translatedMenuItems[9]}
+                            <StairsIcon className="!text-icon  text-[#1E213D]"/> {translatedMenuItems[8]}
                             </div>
                         <div className="md:w-[5rem]">
                             {/* Inspected */}
-                            {translatedMenuItems[10]}
+                            <InsertChartIcon className="!text-icon  text-[#006600]"/> {translatedMenuItems[9]}
                             </div>
                         <div className=" md:w-[6.07rem]">
                             {/* Store */}
-                            {translatedMenuItems[11]}
+                            <StoreIcon className="!text-icon  text-[#4B2206]"/>  {translatedMenuItems[10]}
                             </div>
                         <div className="md:w-[1.08rem]"></div>
                         <div className="md:w-[5.07rem]">
                             {/* To Quality */}
-                            {translatedMenuItems[12]}
+                           <VerifiedUserIcon className="!text-icon  text-[#D64045]"/> {translatedMenuItems[11]}
                             </div>
                         
                     </div>
@@ -473,8 +486,8 @@ function ProductionTableView(props) {
                                     return (
                     <div key={item.productId} >
                                            
-                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                                 <div className=" flex font-medium  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                                 <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9]  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins" >
                                                         {/* {stage} */}
                                                         {item.workflowName}
@@ -482,7 +495,7 @@ function ProductionTableView(props) {
                                                 </div>
                                               
 
-                                                <div className=" flex font-medium items-center md:w-[9.54rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex items-center md:w-[9.54rem] h-8 ml-gap bg-[#eef2f9]  justify-center    max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                         {/* {stage} */}
 
@@ -490,7 +503,7 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex  items-center md:w-[14.081rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  items-center md:w-[14.081rem] h-8 ml-gap bg-[#eef2f9]  justify-center    max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class="flex flex-row text-xs  font-semibold  font-poppins">
                                                         {/* {stage} */}
                                                         {item.type === "Complete" && (
@@ -508,7 +521,7 @@ function ProductionTableView(props) {
 
 
 
-                                                <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
                                                         {item.inspectedInd===true&&(
                                                     <Select placeholder="Select zone" 
@@ -545,7 +558,7 @@ function ProductionTableView(props) {
 
 
 
-                                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                         {selectedRack &&  
                                                         <MoveToggleProduction 
@@ -581,11 +594,13 @@ function ProductionTableView(props) {
            productionQualityModal={props.productionQualityModal}
            translateText={props.translateText}
                         selectedLanguage={props.selectedLanguage}
+                        translatedMenuItems={translatedMenuItems}
            />
             <OnboardingProduction
             productionTableData={props.productionTableData}
             translateText={props.translateText}
                         selectedLanguage={props.selectedLanguage}
+                        translatedMenuItems={translatedMenuItems}
             />
 
        
