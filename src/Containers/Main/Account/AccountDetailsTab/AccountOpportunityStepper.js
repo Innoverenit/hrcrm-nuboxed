@@ -76,22 +76,19 @@ class AccountOpportunityStepper extends Component {
                 translateText={this.props.translateText}
                 />:<AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
-
-
         ];
         const { current } = this.state;
         return (
             <>
-                <StyledSteps current={current} style={{width:"70%"}}>
+                <StyledSteps className="w-[100%]"current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className="!text-icon" />}
                         description={`${this.props.currentOrderType}`}
                     />
                     <Step
                         title={<ControlPointDuplicateIcon className=" !text-icon" />}
                         description="Item Info"
                     />
-
                 </StyledSteps>
                 <div
                     class="min-[45vh]"

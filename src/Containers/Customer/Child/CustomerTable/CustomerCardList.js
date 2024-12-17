@@ -657,18 +657,13 @@ className="cursor-pointer text-xs font-poppins">
                           <Tooltip title={translatedMenuItems[11]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
-                              // onClick={() => {
-                              //   handleCustomerPulseDrawerModal(true);
-                              //   handleSetCurrentCustomer(item);
-                              // }}
+              
                               onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
-                                // handleMouseEnter(item);
-                                //handleSetCurrentCustomer(item);
+
                               }}
-                             // onClick={handleMouseEnter}
-                            //  onMouseLeave={handleMouseLeave}
+
                              
                             />
                           </Tooltip>
@@ -677,10 +672,6 @@ className="cursor-pointer text-xs font-poppins">
                           <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
-                              // onClick={() => {
-                              //   handleCustomerNotesDrawerModal(true);
-                              //   handleSetCurrentCustomer(item);
-                              //   handleRowData(item);
                                 onClick={() => {
                                   handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);

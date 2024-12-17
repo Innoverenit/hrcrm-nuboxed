@@ -13,7 +13,6 @@ import { Button, Tooltip, Select,Input } from 'antd';
 import { getSaleCurrency, getAllDialCodeList, } from "../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm,addOrderProcurementForm,addOrderForm, getLobList } from '../AccountAction'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ValidationAddressField from '../../../../Components/Forms/Formik/ValidationAddressField';
@@ -240,26 +239,10 @@ const handleAddContact = () => {
             {({ values, handleChange }) => (
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
-
                         <div class=" flex justify-between">
-
-                            
-     
-                            <div class=" w-[47%] flex-col flex">
-                          
+                            <div class=" w-[45%] flex-col flex">                       
                             <div class=" flex justify-between">
- <div class="w-[45%]">
-                                        {/* <Field
-                                            name="orderType"
-                                            label="Type"
-                                            isColumn
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={[
-                                                { label: "Repair", value: "Repair" },
-                                                { label: "Procure", value: "Procure" },
-                                            ]}
-                                        /> */}
+                               <div class="flex items-center justify-center w-[35%]">                           
                                        <div class="flex h-fit">
                                        {props.currentOrderType==="Quotation" && 
                                        <>
@@ -280,8 +263,7 @@ const handleAddContact = () => {
                                         </div>
                                    </div> 
 
-
-<div class="w-[46%]  ml-8 mt-2">
+<div class="w-[35%] ">
     <div class=" text-xs font-bold font-poppins text-black">Priority</div>
     <div class="justify-between flex">
         <div>
@@ -289,7 +271,6 @@ const handleAddContact = () => {
                 <Button
                     // type="primary"
                     shape="circle"
-                    icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                     onClick={() => handleButtonClick("High")}
                     style={{
                         backgroundColor:
@@ -302,15 +283,12 @@ const handleAddContact = () => {
                     }}
                 />
             </Tooltip>
-            &nbsp;
-       
-            
+            &nbsp;        
             <Tooltip title="Low"
             >
                 <Button
                     // type="primary"
-                    shape="circle"
-                    icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
+                    shape="circle"      
                     onClick={() => handleButtonClick("Low")}
                     style={{
                         backgroundColor:
@@ -323,19 +301,41 @@ const handleAddContact = () => {
                     }}
                 ></Button>
             </Tooltip>
-        </div>
-    </div>
-</div>
+             </div>
+         </div>
+      </div>
+                              <div class="w-[30%]">
+                                        <Field
+                                            name="deliveryDate"
+                                            label="Delivery Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+                                            disable={!values.availabilityDate}
+                                            component={DatePicker}
+                                            disabledDate={(currentDate) => {
+                                                if (values.availabilityDate) {
+                                                    if (
+                                                        dayjs(currentDate).isBefore(
+                                                            dayjs(values.availabilityDate)
+                                                        )
+                                                    ) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            }}
+                                            value={values.deliveryDate}
+                                        />
+                                    </div>        
  </div>
-
-                                 
-
                                     {values.orderType === "Repair" ? (
                                     <div className="mt-3">
                                         <div class=" text-xs font-bold font-poppins text-black">
-                                            <h3>
+                                            <div>
                                                Pickup Address
-                                            </h3>
+                                            </div>
                                         </div>
                                         <FieldArray
                                             name="loadingAddress"
@@ -352,9 +352,9 @@ const handleAddContact = () => {
                                 ) : (
                                     <div className="mt-3">
                                         <div class=" text-xs font-bold font-poppins text-black">
-                                            <h3>
+                                            <div>
                                                 Delivery Address
-                                            </h3>
+                                            </div>
                                         </div>
                                         <FieldArray
                                             name="loadingAddress"
@@ -404,20 +404,74 @@ const handleAddContact = () => {
                                                 isColumn
                                             />
                                         </div>}
-
                                 </div>
                                 <div class="justify-between flex mt-3">
+                                          <div class="w-[45%]">
+                                        <Field
+                                            name="orderCurrencyId"
+                                            label="Currency"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(currencyOption) ? currencyOption : []}
+                                        />
+                                    </div>
+                                  
                                     <div class="w-[45%]">
+                                        <Field
+                                            width={"100%"}
+                                            // style={{ borderRight: "3px red solid" }}
+                                            name="advancePayment"
+                                            label="Advance Payment(%)"
+                                            isColumn
+                                            inlineLabel
+                                            component={InputComponent}
+                                        />
+                                    </div>
+                                </div>
+                                <div class="justify-between flex mt-3">
+                              
+                                      <div class="w-[45%] ">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <div>
+                                        <Field
+                                            label="LOB"
+                                            name="lobDetsilsId"
+                                            component={SelectComponent}
+                                            options={Array.isArray(lobOption) ? lobOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
+                                            isColumn
+                                        />
+                                       
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="w-[45%] mt-2">
+                                        {/* <Tooltip title="Contact" > */}
                                     <div class="flex items-center">
                                     <div class="font-bold font-poppins text-xs">
                                         Contact</div>
-                                        <div>
-<AddCircleIcon
+                                        <span>
+<AddCircleIcon className='text-[red] !text-icon'
   onClick={handleAddContact}
-  style={{color:"red"}}
 />
+</span>
 </div>
-</div>
+{/* </Tooltip> */}
                                         <Field
                                             // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
@@ -429,11 +483,10 @@ const handleAddContact = () => {
                                             width={"100%"}
                                             isColumn
                                         />
-
-
 {isAddingContact && (
-                        <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5.5 max-sm:w-wk">                
+                        <div class="flex  justify-between max-sm:flex-col mt-[0.75rem]">
+                            <div className='flex justify-between w-[100%]'>
+<div class=" w-[100%] max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -448,7 +501,7 @@ const handleAddContact = () => {
           
             </div>
 
-            <div class=" w-w47.5.5 max-sm:w-wk">                
+            <div class=" w-[100%] max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -462,6 +515,8 @@ const handleAddContact = () => {
             />
           
             </div>
+</div>
+<div className='flex flex-col w-[100%]'>
 
             <div class=" w-w47.5.5 max-sm:w-wk">                         
 
@@ -483,7 +538,8 @@ const handleAddContact = () => {
       </Select>   
                 </div>
 
-            <div class=" w-w47.5.5 max-sm:w-wk">                         
+
+            <div class=" w-[100%] max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
   </div>
@@ -496,13 +552,8 @@ const handleAddContact = () => {
              
               style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
             />    
-
-
-                </div>
-
-
-             
-            <div class=" w-w47.5.5 max-sm:w-wk">                
+                </div>   
+            <div class=" w-[100%] max-sm:w-wk">                
 <div className="font-bold text-xs">
   </div>
   <Input
@@ -512,123 +563,16 @@ const handleAddContact = () => {
               onChange={handleInputChange}
               onKeyPress={handleMobileKeyPress}
             />
-
-
-<CancelIcon
+<CancelIcon  className='cursor-pointer text-[red] ml-2'
               onClick={handleRemoveFields}
-              style={{
-                marginLeft: 8,
-                cursor: 'pointer',
-                color: 'red', 
-              }}
-            />
-          
-            </div>
-            
-            
+            />      
+            </div>   
+            </div> 
                         </div>
                         )}
                                     </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            width={"100%"}
-                                            // style={{ borderRight: "3px red solid" }}
-                                            name="advancePayment"
-                                            label="Advance Payment(%)"
-                                            isColumn
-                                            inlineLabel
-                                            component={InputComponent}
-                                        />
-                                    </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="orderCurrencyId"
-                                            label="Currency"
-                                            isColumn
-                                            style={{ borderRight: "3px red solid" }}
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={Array.isArray(currencyOption) ? currencyOption : []}
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <div>
-                                        <Field
-                                            label="LOB"
-                                            name="lobDetsilsId"
-                                            component={SelectComponent}
-                                            options={Array.isArray(lobOption) ? lobOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            style={{ borderRight: "3px red solid" }}
-                                            isColumn
-                                        />
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                <div class="w-[45%]">
-                                        <Field
-                                            name="deliveryDate"
-                                            label="Delivery Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            disable={!values.availabilityDate}
-                                            component={DatePicker}
-                                            disabledDate={(currentDate) => {
-                                                if (values.availabilityDate) {
-                                                    if (
-                                                        dayjs(currentDate).isBefore(
-                                                            dayjs(values.availabilityDate)
-                                                        )
-                                                    ) {
-                                                        return true;
-                                                    } else {
-                                                        return false;
-                                                    }
-                                                }
-                                            }}
-                                            value={values.deliveryDate}
-
-                                        />
-                                    </div>
-                                {/* <div class="w-[45%]">
-  {values.orderType === "Procure" ? null : (
-    <Field
-      name="availabilityDate"
-      label="Pickup Date"
-      isColumn
-      inlineLabel
-      width={"100%"}
-      disabledDate={disabledDate}
-      component={DatePicker}
-      value={values.availabilityDate}
-    />
-  )}
-</div> */}
-
-                               
-
-                                </div>
-                                <div class="w-[45%]">
-                                        <Field
-                                            name="shipById"
-                                            label="Category"
-                                            isColumn
-                                            style={{ borderRight: "3px red solid" }}
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={Array.isArray(categoryOption) ? categoryOption : []}
-                                        />
-                                    </div>
-
                                 <div class=" mt-3 flex justify-between">
-
-                                    <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
+                                    <div class="w-[100%]  mt-[68px] flex justify-end">
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"
