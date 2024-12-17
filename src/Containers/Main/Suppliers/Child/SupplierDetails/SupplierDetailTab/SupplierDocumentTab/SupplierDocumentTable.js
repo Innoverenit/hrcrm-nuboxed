@@ -137,9 +137,7 @@ const SupplierDocumentTable = (props) => {
                      {/* Contract */}
         
         
-      </div>
-   
-        
+      </div>        
       { !fetchingdocumentsBySupplierId && documentsBySupplierId.length === 0 ?<EmptyPage className=" overflow-hidden"/>: documentsBySupplierId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -171,7 +169,7 @@ const SupplierDocumentTable = (props) => {
                           <div class="flex">
 
                        
-                          <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex w-[13.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="flex text-xs ml-gap items-center  font-poppins">
                                  

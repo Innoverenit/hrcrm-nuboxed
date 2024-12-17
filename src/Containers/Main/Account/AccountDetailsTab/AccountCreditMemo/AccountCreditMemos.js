@@ -100,10 +100,10 @@ function AccountCreditMemos(props) {
     <>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex max-sm:hidden justify-between w-[94%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[95%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end  z-10">
             <div className="text-[#00A2E8] text-sm  w-[14.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/>{translatedMenuItems[1]} </div>
-            <div className=" w-[15.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[16.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             <ReceiptIcon className="!text-icon text-[#b91372]"/>{translatedMenuItems[2]}</div>         
             <div className="w-[18.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {/* Date */}
             <DateRangeIcon className='!text-icon'  /> {translatedMenuItems[5]}</div>
@@ -123,7 +123,7 @@ function AccountCreditMemos(props) {
                         {item.newOrderNo}
                       </div>
                     </div>
-                    <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]   w-[15.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]   w-[16.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.invoiceNum}
                       </div>
