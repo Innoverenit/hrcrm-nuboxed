@@ -45,7 +45,7 @@ class CandidateTopicOfInterest extends React.Component {
           candidateId: this.props.uniqueId,
           skillName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.userType
+        this.props.userType,this.props.uniqueId
       );
     }
     this.setState({
@@ -113,7 +113,7 @@ class CandidateTopicOfInterest extends React.Component {
     //     value: item.name,
     //   };
     // });
-    console.log(this.props.candidate.candidateId)
+    // console.log(this.props.candidate.candidateId)
 
     console.log("select",this.state.selectValue)
 

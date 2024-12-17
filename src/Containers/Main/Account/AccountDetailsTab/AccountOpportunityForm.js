@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { bindActionCreators } from 'redux';
-import { useJsApiLoader } from "@react-google-maps/api";
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
@@ -52,10 +51,6 @@ const [newContact, setNewContact] = useState({
     countryDialCode:"",
   });
 
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-    libraries: ["places"], // Ensure the 'places' library is loaded
-  });
 const handleOnSelectType =(ontype)=> {
     setselectOnType(ontype)
 }
@@ -153,8 +148,6 @@ const handleAddContact = () => {
     };
 
     
-  if (!isLoaded) return <div>Loading...</div>;
-  if (loadError) return <div>Error loading Google Maps API</div>;
     return (
         <Formik
             initialValues={{

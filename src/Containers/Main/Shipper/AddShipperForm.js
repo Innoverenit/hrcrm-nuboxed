@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
@@ -51,10 +50,6 @@ function AddShipperForm(props) {
   const handleApiToggle = () => {
     setApiInd(!apiInd)
   }
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-    libraries: ["places"], // Ensure the 'places' library is loaded
-  });
   return (
     <>
       <Formik

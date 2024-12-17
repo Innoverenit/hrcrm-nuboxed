@@ -77,7 +77,8 @@ console.log(requirementTable)
         <div className="max-md:w-[2.3rem] truncate w-[6.3rem]"> <EventIcon className="!text-icon  "/> Start</div>
         <div className="max-md:w-[5.3rem] truncate w-[6rem]"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
         <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
-        <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>                           
+        <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>    
+        <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>                          
                         </div>
                         <InfiniteScroll
         dataLength={requirementTable.length}
@@ -185,7 +186,7 @@ console.log(requirementTable)
                  </div>   
                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
                                     <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
-                               {/* Talent */}
+                               {item.opportunityId}
                                     </div>
                                     
                                 </div>  

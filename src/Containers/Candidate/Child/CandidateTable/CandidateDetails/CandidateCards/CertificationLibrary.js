@@ -43,7 +43,7 @@ class certificationLibrary extends React.Component {
           candidateId: this.props.uniqueId,
           candidateCertificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.userType
+        this.props.userType,this.props.uniqueId
       );
     }
     this.setState({
