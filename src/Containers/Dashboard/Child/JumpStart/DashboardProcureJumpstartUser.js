@@ -41,6 +41,8 @@ function DashboardOrderJumpstart(props) {
      "1230", //  "Orders Open", // 1
       "1231",//   "Orders Closed", // 2
       "1232",//  "Orders Cancelled"//3
+      "1596",    // By Order Value 4
+        "1597",    // By Order Volume 5
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -203,7 +205,7 @@ function DashboardOrderJumpstart(props) {
         </div>
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]} </div>
         <Suspense fallback={<BundleLoader />}>
         
         <DynamicPieChart dtype={"ProcureOrder"} 
@@ -211,7 +213,7 @@ function DashboardOrderJumpstart(props) {
 </Suspense>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]} </div>
         <Suspense fallback={<BundleLoader />}>
         
         <DynamicPieChart dtype={"ProcureOrderValue"} 

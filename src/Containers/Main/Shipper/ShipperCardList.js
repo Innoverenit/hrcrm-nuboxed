@@ -327,9 +327,9 @@ const fetchApiKeyList = async () => {
                     <div>
                       <div className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-md:flex-initial">
-                          <div className=" flex font-medium w-[9.9rem] max-md:w-44 items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
-                              <div class=" text-xs flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer truncate   max-sm:text-xs"
+                          <div className=" flex font-medium  flex-row  w-[9.9rem] max-md:w-44 items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                              <div class=" text-xs flex w-full    text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
+                                <Link class=" w-[100%]  overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer truncate   max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
@@ -350,7 +350,7 @@ const fetchApiKeyList = async () => {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs flex items-center font-poppins opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>   
     </div> 
 )}                 

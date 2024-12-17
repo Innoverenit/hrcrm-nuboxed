@@ -55,6 +55,8 @@ function DashboardFinanceJumpstart(props) {
         "1232",    // "Orders  Cancelled"
         // "",    // By Order Value
         // "",    // By Order Volume
+        "1596",    // By Order Value 4
+        "1597",    // By Order Volume 5
 
         ];
 
@@ -339,11 +341,11 @@ function DashboardFinanceJumpstart(props) {
 
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]}</div>
         <RepairValuePieChart/>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]}</div>
         <RepairVolumePieChart/>
         </div>
       </div>
