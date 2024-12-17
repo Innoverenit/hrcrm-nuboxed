@@ -1,17 +1,17 @@
-import React, { Suspense, useState,useEffect } from "react";
+import React, { Suspense, useState,useEffect, lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import EcomCardList from "./EcomCardList";
 import {quatationDrawer,invoiceDrawer} from "../Order/OrderAction";
-import QuotationDrawer from "./QuotationDrawer";
-import InvoiceDrawer from "./InvoiceDrawer";
-import QuotationCardList from "./QuotationCardList";
-import InvoiceCardList from "./InvoiceCardList";
 
+const EcomCardList=lazy(()=>import("./EcomCardList"));
+const QuotationDrawer=lazy(()=>import("./QuotationDrawer"));
+const InvoiceDrawer = lazy(() => import("./InvoiceDrawer"));
+const QuotationCardList = lazy(() => import("./QuotationCardList")); //2
+const InvoiceCardList = lazy(() => import("./InvoiceCardList"));
 
 
 const TabPane = StyledTabs.TabPane;

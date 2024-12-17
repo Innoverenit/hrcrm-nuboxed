@@ -1,5 +1,5 @@
 import { Button, Steps, Popconfirm } from 'antd';
-import React, { useEffect , useState} from 'react';
+import React, { useEffect , useState, lazy, Suspense} from 'react';
 import {
     startQCStatus,
     startRepairInStatus,
@@ -11,11 +11,12 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import dayjs from 'dayjs';
-import StartRepairReasonModal from './StartRepairReasonModal';
-import ShowPaymentHistoryModal from './ShowPaymentHistoryModal';
-import PaidButtonModal from './PaidButtonModal';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 
+
+const StartRepairReasonModal = lazy(() => import("./StartRepairReasonModal"));
+const ShowPaymentHistoryModal=lazy(()=>import("./ShowPaymentHistoryModal"));
+const PaidButtonModal = lazy(() => import("./PaidButtonModal"));
 
 const StatusOfOrder = (props) => {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -356,6 +357,7 @@ const StatusOfOrder = (props) => {
                         ]}
                     />
                 </div>
+                <Suspense>
                 < StartRepairReasonModal
                     particularRowData={props.orderStatus}
                     handleRepairReason={props.handleRepairReason}
@@ -371,6 +373,7 @@ const StatusOfOrder = (props) => {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={props.orderStatus}
                 />
+                </Suspense>
             </>
         )
     }

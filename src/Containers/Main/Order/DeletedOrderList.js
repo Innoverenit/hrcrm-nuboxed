@@ -1,10 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Select, Button, Badge } from "antd";
 import dayjs from "dayjs";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   emptyMOrders,
@@ -16,23 +15,23 @@ import {
     handlePaidModal
 } from "./OrderAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
-import ReInstateOrderToggle from "./ReInstateOrderToggle";
-import OrderSearchedData from "./OrderSearchedData";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios"
 
+const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage")); //2
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
+const ReInstateOrderToggle = lazy(() => import("./ReInstateOrderToggle")); //2
+const OrderSearchedData = lazy(() => import("./OrderSearchedData"));
 const { Option } = Select;
 
 function DeletedOrderList(props) {
@@ -730,6 +729,7 @@ const viewAnDownloadPdf= async (item) => {
                     </InfiniteScroll>
                 </div>
             </div>
+            <Suspense>
             <AddNotesOrderDrawer
                 particularRowData={particularRowData}
                 addNotesInOrder={props.addNotesInOrder}
@@ -749,7 +749,7 @@ const viewAnDownloadPdf= async (item) => {
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}
-                addOrderDetailsModal={props.addOrderDetailsModal} />
+                addOrderDetailsModal={props.addOrderDetailsModal} /></Suspense>
 
         </>
           )}

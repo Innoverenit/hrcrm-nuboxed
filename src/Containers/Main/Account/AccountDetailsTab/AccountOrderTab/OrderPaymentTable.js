@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Input, Select } from "antd";
@@ -13,13 +13,13 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import { base_url2 } from "../../../../../Config/Auth";
 import AddIcon from '@mui/icons-material/Add';
-import MultiOrderList from "./MultiOrderList";
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import axios from "axios";
 
+const MultiOrderList = lazy(() => import("./MultiOrderList"));
 const { Option } = Select;
 
 function OrderPaymentTable(props) {

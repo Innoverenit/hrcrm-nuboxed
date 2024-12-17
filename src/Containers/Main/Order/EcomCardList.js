@@ -1,4 +1,4 @@
-import React, {  useEffect, useState  } from "react";
+import React, {  useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInventory,  } from "../Inventory/InventoryAction";
@@ -13,16 +13,10 @@ import {
 } from "./OrderAction";
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
-import EcomSearchedData from "./EcomSearchedData";
-import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer";
-import ProcureItemViewDrawer from "./ProcureItemViewDrawer";
-import CBMdrawer from "./CBMdrawer";
+import EventRepeatIcon from '@mui/icons-material/EventRepeat'
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { base_url2 } from "../../../Config/Auth";
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -32,6 +26,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import axios from "axios";
+
+const EcomStatusCardDrawer = lazy(() => import("./EcomStatusCardDrawer"));
+const EcomSearchedData=lazy(()=>import("./EcomSearchedData"));
+const EcomInvoiceListDrawer = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer"));
+const ProcureItemViewDrawer = lazy(() => import("./ProcureItemViewDrawer")); //2
+const CBMdrawer = lazy(() => import("./CBMdrawer"));
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -363,6 +363,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
           })}
         </InfiniteScroll>
       </div>
+      <Suspense>
       <EcomInvoiceListDrawer
                     particularRowData={particularRowData}
          openInvoiceModal={openInvoiceModal}
@@ -385,6 +386,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                 particularRowData={particularRowData}
                 modalVisible={modalVisible}
                 closeModal={closeModal} />
+                </Suspense>
 
     </>
        )}

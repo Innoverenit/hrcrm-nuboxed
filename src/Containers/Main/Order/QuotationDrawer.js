@@ -3,9 +3,8 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
-import QuotaionEcomStepper from "./QuotaionEcomStepper";
 
-
+const QuotaionEcomStepper=lazy(()=>import("./QuotaionEcomStepper"));
 
 const QuotationDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
