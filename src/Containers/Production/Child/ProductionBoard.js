@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
+import StageProductionColumnsBoard from "./StageProductionColumnsBoard"
 import styled from "styled-components"; 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs} from "../../../Components/UI/Antd";
@@ -82,7 +83,7 @@ function ProductionBoard(props) {
   useEffect(() => {
     props.getProcessForProduction(props.orgId,"Production");
      props.getAllstageProductions(props.userId)
-     props.getProductionsbyLocId(props.userId, 0);
+     props.getProductionsbyLocId(props.locationId, 0);
   }, []);
 
   useEffect(() => {
@@ -210,21 +211,21 @@ function ProductionBoard(props) {
                                       droppableProps={{ hello: "world" }}
                                       style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
-                                      {/* {props.productionByLocsId
+                                      {props.productionByLocsId
                                         .filter(
                                           (opp, index) =>
-                                            opp.productionStagesId === stage.investorOppStagesId
+                                            opp.stageId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (
-                                            <DealStageColumn
+                                            <StageProductionColumnsBoard
                                               key={index}
-                                              dealDetailsbyID={opp}
+                                              employee={opp}
                                               index={index}
                                               history={props.history}
                                             />
                                           );
-                                        })} */}
+                                        })}
                                     </StageColumn>
                                   </Spin>
                                 </div>
@@ -253,6 +254,7 @@ const mapStateToProps = ({
     orgId: auth.userDetails && auth.userDetails.organizationId,
    userId: auth.userDetails.userId,
    dealsByuserId:deal.dealsByuserId,
+   locationId: auth.userDetails.locationId,
    productionStageAll:production.productionStageAll,
 productionProcessStages: settings.productionProcessStages,
 productionByLocsId: production.productionByLocsId,
