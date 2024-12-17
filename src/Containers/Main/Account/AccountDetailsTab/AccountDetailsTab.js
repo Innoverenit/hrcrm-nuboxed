@@ -80,6 +80,7 @@ function AccountDetailsTab(props) {
 
     const [currentOrderType, setCurrentOrderType] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [current, setCurrent] = useState(0);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -149,6 +150,12 @@ function AccountDetailsTab(props) {
     // const handleTabChange = (key) => setactiveKey(key);
     // console.log(props.productionInd)
     // console.log(props.activeKey)
+
+useEffect(() => {
+    if (isModalOpen) {
+        setCurrent(0);  
+    }
+}, [isModalOpen]);
 
     const handleTabChange = (key) => {
         setactiveKey(key);
@@ -924,8 +931,10 @@ distributorData={props.distributorData}
             <AccountOrderCreateDrawer
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
+             current={current}  
+             setCurrent={setCurrent} 
              isModalOpen={isModalOpen}
-             setIsModalOpen={() => setIsModalOpen(false)}
+             setIsModalOpen={setIsModalOpen}
              title={currentOrderType}
              currentOrderType={currentOrderType}
              distributorId={props.distributorData.distributorId}

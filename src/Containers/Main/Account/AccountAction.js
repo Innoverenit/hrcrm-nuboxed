@@ -1407,7 +1407,7 @@ export const addCarDetails = (customer, id, cb) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url2}/excel/import/phone-details`, customer, {
+    .post(`${base_url2}/excel/import/phone-details/tst`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

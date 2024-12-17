@@ -132,7 +132,7 @@ function AddQuotationRepairExcel(props) {
                             <div className="justify-end flex mt-3">
                                 <Button
                                     type="primary"
-                                    onClick={()=> props.handleAccountOpportunityModal(false)}
+                                    onClick={()=> props.setIsModalOpen(false)}
                                 >
                                    Finish
                                 </Button>

@@ -12,7 +12,7 @@ const AccountOrderCreateDrawer = (props) => {
         title={`${props.title}`}
         width="60%"
         visible={props.isModalOpen}
-        onClose={props.setIsModalOpen}
+        onClose={() => props.setIsModalOpen(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
@@ -20,6 +20,8 @@ const AccountOrderCreateDrawer = (props) => {
           currentOrderType={props.currentOrderType}
          isModalOpen={props.isModalOpen}
          setIsModalOpen={props.setIsModalOpen}
+         current={props.current} 
+         setCurrent={props.setCurrent} 
          type={props.type}
          distributorId={props.distributorId}
           />{" "}
