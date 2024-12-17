@@ -317,11 +317,9 @@ function ContactCardList(props) {
                      
           <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                               
-      <div className=" flex   w-[21rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
-<div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
-<div>
-                         
+  <div className="flex max-sm:w-auto">   
+       <div className=" flex   w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
+     <div>                      
       <MultiAvatar2
         primaryTitle={item.firstName}
         imageId={item.imageId}
@@ -331,7 +329,7 @@ function ContactCardList(props) {
       />
     </div>
                                   <Tooltip>
-                                  <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                                                         
+                                  <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
                                   <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}

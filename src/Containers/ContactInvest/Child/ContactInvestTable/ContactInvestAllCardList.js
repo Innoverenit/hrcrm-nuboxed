@@ -399,9 +399,9 @@ if (loading) {
     &nbsp;
     <div class="max-sm:w-full md:w-[12.1rem]">
                                   <Tooltip>
-                                    <div class=" flex  max-sm:w-full justify-between  md:flex-col">
+                                    <div class=" flex  max-sm:w-full w-[100%] justify-between  md:flex-col">
                                       
-                                      <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                      <div class="text-xs flex text-blue-500 justify-between   font-poppins font-semibold  cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
@@ -428,7 +428,7 @@ autoFocus
 ) : (
 <div onClick={() => 
 handleEditRowField(item.contactId, 'fullName', item.fullName)} 
-className="cursor-pointer text-xs font-poppins flex items-center">
+className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
 <BorderColorIcon  className=" !text-icon cursor-pointer"/>
 
 </div> 
@@ -487,12 +487,12 @@ className="cursor-pointer text-xs font-poppins flex items-center">
                     
                       {/* Score */}
                       {props.user.aiInd && (
-       <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
+       <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
         {item.noteScoreInd}
       
         </div>
         )}                   
-                      <div className="flex items-center justify-center w-[4.5rem] h-8 ml-gap bg-[#eef2f9] max-md:w-[4.5rem]  max-sm:w-full max-sm:justify-between">             
+                      <div className="flex items-center justify-center w-[5.5rem] h-8 ml-gap bg-[#eef2f9] max-md:w-[4.5rem]  max-sm:w-full max-sm:justify-between">             
            {/* Owner */}
          
     <Tooltip title={item.ownerName}>
@@ -569,20 +569,7 @@ className="cursor-pointer text-xs font-poppins flex items-center">
         }}
       />
      </Tooltip>            
-      
-     <div>
-      {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-      <Tooltip title= {translatedMenuItems[12]}>
-        <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato]"
-            onClick={() => {
-            handleUpdateContactInvestModal(true);
-            handleCurrentContactIdata(item);          
-          }}
-        />
-      </Tooltip>
-      )}
-      </div>
+
              </div>
                                      
                   </div>

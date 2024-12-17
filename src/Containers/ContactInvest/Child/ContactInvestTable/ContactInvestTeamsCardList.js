@@ -399,13 +399,13 @@ if (loading) {
         imgHeight={"1.8em"}
       />
     </div>
-    &nbsp;
+
     <div class="max-sm:w-full md:w-[12.1rem]">
                                   <Tooltip>
-                                    <div class=" flex  max-sm:w-full justify-between  md:flex-col">
+                                    <div class=" flex w-[100%] max-sm:w-full justify-between  md:flex-col">
                                       
-                                      <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <div class="text-xs flex text-blue-500   justify-between font-poppins font-semibold  cursor-pointer">
+                                      <Link class="overflow-ellipsis whitespace-nowrap justify-between  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   &nbsp;&nbsp;
@@ -427,7 +427,7 @@ autoFocus
 ) : (
 <div onClick={() => 
 handleEditRowField(item.contactId, 'fullName', item.fullName)} 
-className="cursor-pointer text-xs font-poppins flex items-center">
+className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
 <BorderColorIcon  className=" !text-icon cursor-pointer"/>
 
 </div> 
@@ -485,12 +485,12 @@ className="cursor-pointer text-xs font-poppins flex items-center">
                         
                           {/* Score */}
                           {props.user.aiInd && (
-           <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
+           <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
             {item.noteScoreInd}
           
             </div>
             )}                   
-                          <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4rem]  max-sm:w-full max-sm:justify-between">             
+                          <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5rem]  max-sm:w-full max-sm:justify-between">             
                {/* Owner */}
              
         <Tooltip title={item.ownerName}>
@@ -580,19 +580,7 @@ className="cursor-pointer text-xs font-poppins flex items-center">
      </div>      
    
      
-     <div>
-      {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-      <Tooltip title=     {translatedMenuItems[12]}>
-        <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-            onClick={() => {
-            handleUpdateContactInvestModal(true);
-            handleCurrentContactIdata(item);           
-          }}
-        />
-      </Tooltip>
-      )}
-      </div>
+
       </div>
     
                       </div>
@@ -637,23 +625,6 @@ className="cursor-pointer text-xs font-poppins flex items-center">
         addContactAddressModal={props.addContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
       /> 
-      {/* <AddContactEmailDrawerModal
-        contactData={currentContactId}
-        addDrawerContactEmailModal={props.addDrawerContactEmailModal}
-        handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
-      />
-      <ReactContactSpeechModal
-        contactData={currentContactId}
-        handleContactReactSpeechModal={handleContactReactSpeechModal}
-        addContactSpeechModal={addContactSpeechModal}
-        handleSetCurrentContactId={handleSetCurrentContactId}
-      />
-      
-      <AddContactDrawerModal
-        item={currentContactId}
-        addDrawerContactModal={props.addDrawerContactModal}
-        handleContactDrawerModal={props.handleContactDrawerModal}
-      /> */}
       <AddContactInvestDealModal
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
