@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Select ,Popconfirm} from "antd";
@@ -11,14 +11,12 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
-import EmptyPage from "../../Main/EmptyPage";
 import { handleOrderDetailsModal, handleLeadModal,} from "../Account/AccountAction";
 import {
 
@@ -31,17 +29,17 @@ import {
   getRepairMediumOrderList,
   getRepairLowOrderList
 } from "./OrderAction";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
-import AddLeadModal from "./AddLeadModal";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import OrderSearchedData from "./OrderSearchedData";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
+const AddLeadModal = lazy(() => import("./AddLeadModal")); //2
+const OrderSearchedData = lazy(() => import("./OrderSearchedData"));
 const { Option } = Select;
 
 dayjs.extend(relativeTime);
@@ -255,8 +253,9 @@ const viewAnDownloadPdf= async (item) => {
           height={"38vh"}
           endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
-                        {props.repairHighCompleteOrder.length === 0 ?
-                            <><EmptyPage/>
+                        {/* {props.repairHighCompleteOrder.length === 0 ? */}
+                            <>
+                            {/* <EmptyPage/> */}
                                 {props.repairHighCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -473,7 +472,8 @@ const viewAnDownloadPdf= async (item) => {
 
                                     )
                                 })}
-                            </> : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null}
+                            </> 
+                            {/* : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null} */}
                     </InfiniteScroll>
 
             
@@ -510,8 +510,9 @@ const viewAnDownloadPdf= async (item) => {
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-                        {props.repairLowCompleteOrder.length === 0 ?
-                            <><EmptyPage/>
+                        {/* {props.repairLowCompleteOrder.length === 0 ? */}
+                            <>
+                            {/* <EmptyPage/> */}
                                 {props.repairLowCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -736,13 +737,15 @@ const viewAnDownloadPdf= async (item) => {
 
                                     )
                                 })}
-                            </> : !props.repairLowCompleteOrder.length && !props.fetchingRepairLowOrderList ? <NodataFoundPage /> : null}
+                            </>
+                            {/* : !props.repairLowCompleteOrder.length && !props.fetchingRepairLowOrderList ? <NodataFoundPage /> : null} */}
                     </InfiniteScroll>
 
                     {/* </div> */}
 
                 </div>
             </div >
+            <Suspense>
       <AddNotesOrderDrawer
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -778,6 +781,7 @@ const viewAnDownloadPdf= async (item) => {
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal} />
+        </Suspense>
     </>
   )}
   </div>
