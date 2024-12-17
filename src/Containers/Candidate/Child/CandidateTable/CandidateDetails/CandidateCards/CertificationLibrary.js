@@ -41,7 +41,7 @@ class certificationLibrary extends React.Component {
       addCertificationByCandidateId(
         {
           candidateId: this.props.uniqueId,
-          candidateCertificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
+          certificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
         this.props.userType,this.props.uniqueId
       );
@@ -61,7 +61,7 @@ class certificationLibrary extends React.Component {
       addCertificationByCandidateId(
         {
           candidateId: this.props.uniqueId,
-          candidateCertificationName:"",
+          certificationName:"",
         },
         this.props.userType
       );
@@ -112,7 +112,7 @@ class certificationLibrary extends React.Component {
                 certificationByCandidateId.map((topic, index) => {
                   console.log(topic);
                   
-                  const isLongTopic = topic.candidateCertificationName===null?[]:topic.candidateCertificationName.length >= 30;
+                  const isLongTopic = topic.certificationName===null?[]:topic.certificationName.length >= 30;
                   const topicElem = (
                     <Tag
                       key={topic.candiCertiLinkId}
@@ -122,13 +122,13 @@ class certificationLibrary extends React.Component {
                       style={{ marginBottom: "0.4rem" }}
                     >
                       {isLongTopic
-                        ? `${topic.candidateCertificationName===null?[]:topic.candidateCertificationName.slice(0, 30)}...`
-                        : topic.candidateCertificationName}
+                        ? `${topic.certificationName===null?[]:topic.certificationName.slice(0, 30)}...`
+                        : topic.certificationName}
                     </Tag>
                   );
                   return isLongTopic ? (
                     <Tooltip
-                      title={topic.candidateCertificationName}
+                      title={topic.certificationName}
                       key={topic.candiCertiLinkId}
                     >
                       {topicElem}

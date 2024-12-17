@@ -10,6 +10,10 @@ const initialState = {
   fetchingRequirementRecordError: false,
   requirementRecord:{},
 
+  fetchingRequirementOrg: false,
+  fetchingRequirementOrgError: false,
+  requirementOrg:[],
+
   linkingNwRecruitToOpportunity: false,
   linkingNwRecruitToOpportunityError: false,
 
@@ -39,7 +43,17 @@ export const requirementReducer = (state = initialState, action) => {
           fetchingRequirementRecordError: true,
         }; 
 
-
+        case types.GET_REQUIREMENT_ORG_REQUEST:
+          return { ...state, fetchingRequirementOrg: true };
+        case types.GET_REQUIREMENT_ORG_SUCCESS:
+          return { ...state, fetchingRequirementOrg: false,
+             requirementOrg: action.payload };
+        case types.GET_REQUIREMENT_ORG_FAILURE:
+          return {
+            ...state,
+            fetchingRequirementOrg: false,
+            fetchingRequirementOrgError: true,
+          }; 
 
         case types. GET_ALL_REQUIREMENT_TABLE_REQUEST:
           return {

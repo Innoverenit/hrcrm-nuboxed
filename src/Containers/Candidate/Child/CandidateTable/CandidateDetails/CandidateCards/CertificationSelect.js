@@ -13,7 +13,7 @@ function CertificationSelect(props) {
   
     props.addCertificationByCandidateId(
       {
-        candidateCertificationName: selectType,
+        certificationName: selectType,
         candidateId: props.candidateId,
       },
       props.userType,props.candidateId

@@ -41,6 +41,33 @@ export const setRequirementViewType = (viewType) => (dispatch) => {
   };
 
 
+  export const getRequirementOrg = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_REQUIREMENT_ORG_REQUEST,
+    });
+    axios
+      .get(`${base_url}/employee/getRequitproUser-dropDown/${orgId}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },   
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REQUIREMENT_ORG_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_REQUIREMENT_ORG_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
   export const getAllRequirementTable = (userId,pageNo) => (dispatch) => {
     dispatch({ type: types.GET_ALL_REQUIREMENT_TABLE_REQUEST });
   
