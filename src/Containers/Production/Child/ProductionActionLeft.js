@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import { Tooltip, Badge, Avatar } from "antd";
-
 import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';

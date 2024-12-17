@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button  } from "antd";
@@ -13,9 +13,10 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import UpdateIcon from '@mui/icons-material/Update';
-import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+
+const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
@@ -105,10 +106,6 @@ function ProductionAllCardView(props) {
         );
     }
 
-    const handleCallBack = () => {
-        // props.getPhoneOrderIdByUser(props.rowData.orderproductId, props.userId)
-        // props.getOrderByUser(props.locationId, props.userId)
-    }
     const {
         fetchingAllProductionOrgId,
         productionAllByOrgId,
@@ -223,18 +220,13 @@ function ProductionAllCardView(props) {
                                                 </div>
                                                 <div className=" flex w-[4.04rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs  font-poppins">
-                                                            {/* {props.productionTableData.createdBy} */}
                                                             <MultiAvatar
                   primaryTitle={item.createdBy}
-                  // imageId={item.ownerImageId}
-                  // imageURL={item.imageURL}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />
                                                         </div>
-                                                        {/* <div class=" text-xs  font-poppins">
-                                                            {date}
-                                                       </div> */}
+                                                      
                                                     </div>
                                                     <div className=" flex w-[7.07rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-start ml-gap bg-[#eef2f9]  max-sm:w-auto">
 
@@ -302,22 +294,13 @@ function ProductionAllCardView(props) {
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                {/* <div className=" flex w-[6.5rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
-                                                    <div class=" text-xs   font-poppins">
-
-                                                    </div>
-                                                </div>                                     */}
                                                 <div className=" flex w-[6.5rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
                                                     <div class=" text-xs   font-poppins">
-                                                        {/* <InpectProductionToggle item={item}/> */}
                                                         <div class=" text-xs  font-poppins">
-                                                            {/* {props.productionTableData.createdBy} */}
                                                             <MultiAvatar
                   primaryTitle={item.inspectedUserName}
-                  // imageId={item.ownerImageId}
-                  // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
                                                         </div>
                                                         </div>   </div>  
@@ -334,11 +317,11 @@ function ProductionAllCardView(props) {
                                 })}
                             </>
                             : !productionAllByOrgId.length
-                                && !fetchingAllProductionOrgId ? <NodataFoundPage /> : null}
+                                && !fetchingAllProductionOrgId ?  <Suspense><NodataFoundPage /></Suspense> : null}
                     </InfiniteScroll>
                 </div>
             </div>
-
+           <Suspense>
             <BuilderProductionDrawer
                 particularDiscountData={particularDiscountData}
                 openbUILDERProductiondrawer={openbUILDERProductiondrawer}
@@ -348,7 +331,7 @@ function ProductionAllCardView(props) {
                 particularDiscountData={particularDiscountData}
                 clickedProductionIdrwr={clickedProductionIdrwr}
                 handleProductionIDrawer={handleProductionIDrawer}
-            />
+            /></Suspense>
         </>
     );
 }

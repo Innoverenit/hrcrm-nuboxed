@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handleCreateProduction, setProductionViewType,getProductionTable } from "./ProductionAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import ProductionBatchCard from "../Production/ProductionBatchCard"
 
+const ProductionBatchCard = lazy(() => import("../Production/ProductionBatchCard"));
 const ProductionCellList = lazy(() => import("../Production/ProductionCellList"));
 const ProductionDashCard = lazy(() => import("./ProductionDashCard"));
 const ProductionHeader=lazy(()=>import("./Child/ProductionHeader"));
