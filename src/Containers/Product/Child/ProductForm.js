@@ -148,7 +148,7 @@ class Productform extends Component {
 
   componentDidMount() {
     this.props.getCurrency()
-    this.props.getWorkflowList(this.props.orgId)
+    this.props.getWorkflowList(this.props.orgId,"Production")
     this.fetchMenuTranslations();
 
 
@@ -158,7 +158,7 @@ class Productform extends Component {
 
     const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
-        value: item.productionWorkflowDetailsId,
+        value: item.workflowDetailsId,
         label: `${item.workflowName || ""}`
       }
     })
