@@ -43,7 +43,8 @@ function AddPhoneExcel(props) {
                             distributorId: props.distributorId,
                             type: "Non-Catalogue"
                         },
-                        props.distributorId
+                        props.distributorId,
+                        props.setIsModalOpen(false)
                     );
 
                 }}

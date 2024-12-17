@@ -44,6 +44,7 @@ import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import CommerceOpenTrackDrawer from "./CommerceOpenTrackDrawer";
+import CommerceOpenTrackDrawerCard from "./CommerceOpenTrackDrawerCard";
 
 // Repair -Dis-2
 
@@ -123,10 +124,7 @@ const timerRef = useRef(null);
     }, 100);
   };
   const [rowData, setRowData] = useState({})
-  const [particularRowData, setParticularRowData] = useState({});
-  function handleSetParticularOrderData(item) {
-    setParticularRowData(item);
-}
+
   const handleRowData = (item) => {
     setRowData(item)
   }
@@ -136,6 +134,9 @@ const timerRef = useRef(null);
       setCheckAwb(!checkAwb)
   }
 
+ const handleOpenTrack = ()=>{
+    setOpenTrack(!OpenTrack);
+  }
 const AWBtst=[
   {
       "userId": "EMP16818052295222021",
@@ -1150,7 +1151,7 @@ useEffect(() => {
                                                    
                                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins  max-sm:text-sm cursor-pointer text-blue-600"  onClick={() => {
-                                                                  setOpenTrack(true);
+                                                                  handleOpenTrack();
                                                                   handleRowData(item);              
                                                               }}>
                               "HHHHH"
@@ -1227,12 +1228,21 @@ useEffect(() => {
                           </div>
                         </div>
                       </div>
-                      {checkAwb && (item.orderId === particularRowData.orderId) &&
+                      {checkAwb && (item.orderId === rowData.orderId) &&
                    
-                                                <SubOrderList orderId={particularRowData.orderId}
+                                                <SubOrderList orderId={rowData.orderId}
                                                 translateText={props.translateText}
                                                 selectedLanguage={props.selectedLanguage} />
                                             }
+                                             {OpenTrack && (item.orderPhoneId === rowData.orderPhoneId) &&
+                   
+                  <CommerceOpenTrackDrawerCard  
+                                         newOrderNo={rowData.newOrderNo}
+                                          orderPhoneId={rowData.orderPhoneId}
+                                          translateText={props.translateText}
+                                          selectedLanguage={props.selectedLanguage}
+                                          />
+               }
                     </div>
                   );
                 })}
@@ -1280,13 +1290,13 @@ useEffect(() => {
         handlepackId={props.handlepackId}
         addPackDataID={props.addPackDataID}
       />
-      <CommerceOpenTrackDrawer
+      {/* <CommerceOpenTrackDrawer
              rowData={rowData}
       OpenTrack={OpenTrack}
       setOpenTrack={setOpenTrack}
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
-      />
+      /> */}
     </>
   );
 }
