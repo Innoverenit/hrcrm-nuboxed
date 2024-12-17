@@ -10,12 +10,12 @@ function DispatchToggle(props) {
 
     function handleToggleCollection(item) {
         
-            props.linkDispatchStatus(
-                {
-                    orderPhoneId: props.item.orderPhoneId,
-                    moveToHistoryInd: true,
+            props.linkDispatchStatus(props.item.orderPhoneId,true
+                // {
+                //     orderPhoneId: props.item.orderPhoneId,
+                //     moveToHistoryInd: true,
                   
-                },
+                // },
                 // props.partnerId,
                 // props.userId,
                 // handleCallbackFalse
