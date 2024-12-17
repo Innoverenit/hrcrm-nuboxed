@@ -23,6 +23,8 @@ function CustomerDashJumpstart(props) {
          "1293",   // "Revenue this Year",//1
           "1294",  // ""Revenue Life Time",//2
            "1295", // "Open Orders,//3
+           "1594",// By sector 4 
+        "1595",// By Source 5
          ];
  
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -130,7 +132,7 @@ function CustomerDashJumpstart(props) {
         <CustomerCategoryPieChart />
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <div class=" font-poppins font-bold text-base "> {translatedMenuItems[5]}</div>
         <CustomerSectorPieChart/>
         </div>
       </div>

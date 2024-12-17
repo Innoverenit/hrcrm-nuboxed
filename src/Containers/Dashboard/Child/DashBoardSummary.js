@@ -55,7 +55,8 @@ const DashBoardSummary=(props) =>{
      "490", //  DEALS9
      "143",//  "To Start"
      "144",//  "In Progress",
-     "78",//  "Completed"
+     "78",//  "Completed",
+     "1724",//"Price Update "13
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -469,7 +470,9 @@ const DashBoardSummary=(props) =>{
   <>
   <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       <div class="flex flex-col  w-[14rem] items-center max-sm:min-h-9 ">
-        <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>Price Update<span  className="font-bold text-[tomato] ml-1"> 
+        <div className="text-xl font-bold font-poppins mb-2 uppercase"> 
+           <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>
+           {translatedMenuItems[13]}<span  className="font-bold text-[tomato] ml-1"> 
           {/* {`${props.taskperCount.totalTask  ?? ""} `} */}
           </span></div>
           <div className=" overflow-x-auto overflow-y-hidden h-[89vh] min-w-[11rem]">

@@ -162,8 +162,8 @@ const [editingValue, setEditingValue] = useState("");
                             </div>
                             </div>
                               <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div class=" font-semibold text-[0.85rem] font-poppins">
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
+                                <div class="w-[100%] font-semibold text-[0.85rem] font-poppins">
+                                  <Link class=" overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
@@ -183,7 +183,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 

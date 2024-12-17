@@ -140,22 +140,6 @@ class Dashboard extends Component {
     });
   };
 
-  // componentDidMount() {
-  //   fetchDasRepairCount = async () => {
-  //     try {
-  //       const response = await axios.get(`${base_url2}/dashboard/approveCount/${this.props.userId}/${this.props.timeRangeType}`, {
-  //         headers: {
-  //           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //         },
-  //       });
-  //       this.setState({ dashRepairCount: response.data, loading: false });
-  //     } catch (error) {
-  //       this.setState({ error: error, loading: false });
-  //     }
-  //   };
-
-  //   this.fetchDasRepairCount();
-  // }
   handleMapClick = (event) => { 
     console.log("event",event) 
     const geocoder = new window.google.maps.Geocoder();
