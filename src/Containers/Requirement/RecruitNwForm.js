@@ -22,7 +22,7 @@ import {
   getRecruiterName,
   getRecruitByOpportunityId,
 } from "../Opportunity/OpportunityAction";
-import {addNwRecruit} from "../Requirement/RequirementAction"
+import {addNwRecruit,getRequirementOrg} from "../Requirement/RequirementAction"
 import { getAllPartnerListByUserId } from "../Partner/PartnerAction";
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
@@ -52,7 +52,8 @@ function RecruitNwForm(props) {
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [contacts, setContacts] = useState([]);
-
+    const [touchedRecruit, setTouchedRecruit] = useState(false);
+    const [selectedRecruit, setSelectedRecruit] = useState(null);
 
   useEffect(() => {
     props.getProcessForRecruit(props.organizationId);
@@ -194,8 +195,15 @@ function RecruitNwForm(props) {
   const handleContactChange=(value)=>{
     setSelectedContact(value);
   }
-
-
+  const handleSelectRecruitFocus = () => {
+    if (!touchedRecruit) {
+      props.getRequirementOrg(props.orgId);
+      setTouchedRecruit(true);
+    }
+  };
+  const handlerecruitChange = (value) => {
+    setSelectedRecruit(value);
+  };
   return (
     <>
       <Formik
@@ -642,7 +650,7 @@ Contact
 
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%" }}>
-                    <Field
+                    {/* <Field
                       name="recruitersId"
                     
                       label="Recruiter"
@@ -656,7 +664,20 @@ Contact
                           ? recruiterNameOption
                           : []
                       }
-                    />
+                    /> */}
+                      <Select
+       
+       placeholder="Select Recruiter"
+       onChange={handlerecruitChange}
+       onFocus={handleSelectRecruitFocus}
+       defaultValue={selectedRecruit} 
+     >
+       {props.requirementOrg.map(work => (
+         <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+           {work.workflowName}
+         </Option>
+       ))}
+     </Select>
                   </div>
                 </FlexContainer>
                 <div class=" mt-3" />
@@ -806,7 +827,8 @@ const mapStateToProps = ({
   recruiterName: opportunity.recruiterName,
   talentRoles: role.talentRoles,
   allpartnerByUserId: partner.allpartnerByUserId,
-  allCustomerEmployeeList:employee.allCustomerEmployeeList
+  allCustomerEmployeeList:employee.allCustomerEmployeeList,
+  requirementOrg:requirement.requirementOrg
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -820,7 +842,8 @@ const mapDispatchToProps = (dispatch) =>
       addNwRecruit,
       getRecruiterName,
       getProcessForOpportunity,
-      getAllCustomerEmployeelist
+      getAllCustomerEmployeelist,
+      getRequirementOrg
     },
     dispatch
   );

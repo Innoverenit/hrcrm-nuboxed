@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import CategoryIcon from '@mui/icons-material/Category';
 import EventIcon from '@mui/icons-material/Event';
+import { Tooltip, Avatar,Button } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
@@ -68,6 +69,7 @@ console.log(requirementTable)
                            
                         <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
         <div className=" max-md:w-[4.2rem] truncate w-[9.2rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
+        <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>
         <div className="max-md:w-[5.8rem] truncate w-[8.3rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
         <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
         <div className="max-md:w-[3.3rem] truncate w-[8rem]"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>  
@@ -78,7 +80,7 @@ console.log(requirementTable)
         <div className="max-md:w-[5.3rem] truncate w-[6rem]"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
         <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
         <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>    
-        <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>                          
+                                  
                         </div>
                         <InfiniteScroll
         dataLength={requirementTable.length}
@@ -99,7 +101,6 @@ console.log(requirementTable)
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const date2 = dayjs(item.avilableDate).format("DD/MM/YYYY");
-    
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );    
@@ -126,7 +127,13 @@ console.log(requirementTable)
                                 <div className="text-xs  font-poppins ml-gap ">
                                                  {item.requirementName}                                         
                                         </div>  
-                                        </div>                                                                                
+                                        </div>   
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
+                               {item.opportunityId}
+                                    </div>
+                                    
+                                </div>                                                                               
                                         <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto">                                      
                                             {/* Name */}                        
                                             <div class=" flex items-center   text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">                                                            
@@ -142,7 +149,7 @@ console.log(requirementTable)
                                     </div>
                                  </div>         
                                  <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">    
-                                  {/* Contact */}
+                                {item.contactName}
                                   </div>                
                                           <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Category */}
@@ -154,7 +161,26 @@ console.log(requirementTable)
                                     {/* >Source */}
 
                                     <div class="text-xs ml-gap font-poppins  max-sm:text-sm">
-                                    {item.recruiterName}
+                                    <Avatar.Group
+                   maxCount={7}
+                  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                >
+                    {item.recruiterList &&
+                  item.recruiterList.map((candidate, i) => {
+                    
+                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[11]}`
+                    // "None"
+                    return (
+                      <Tooltip title={candidate.empName} key={i}>
+                      <Avatar style={{ backgroundColor: "#f56a00" }}>
+                      {data1}
+                    
+                    </Avatar>
+                    </Tooltip>        
+                    );
+                  })}
+                 
+            </Avatar.Group>
                                     </div>
                                 </div>
                               </div>                
@@ -184,12 +210,7 @@ console.log(requirementTable)
                                     
                                 </div>                         
                  </div>   
-                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
-                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
-                               {item.opportunityId}
-                                    </div>
-                                    
-                                </div>  
+                
                             </div>
                         </div>
                     )
