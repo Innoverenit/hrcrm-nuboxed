@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { Button, Tooltip, Switch, Select, message } from "antd";
 import { getDepartmentwiserUser } from "../../Settings/SettingsAction"
 import { getCurrency } from "../../Auth/AuthAction"
@@ -54,10 +53,6 @@ function EmployeeForm(props) {
   const [role, setRole] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [workType, setWorkType] = useState("employee");
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-    libraries: ["places"], // Ensure the 'places' library is loaded
-  });
 
   const radioClick = (c) => {
     setWorkType(c);
@@ -334,8 +329,6 @@ function EmployeeForm(props) {
   // if (bundleLoading) {
   //   return <div><BundleLoader/></div>;
   // }
-  if (!isLoaded) return <div>Loading...</div>;
-  if (loadError) return <div>Error loading Google Maps API</div>;
   const { addEmployee, addingEmployee } = props;
   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
  

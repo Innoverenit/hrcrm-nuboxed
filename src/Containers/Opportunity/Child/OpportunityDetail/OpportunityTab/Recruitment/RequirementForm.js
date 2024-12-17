@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field,FieldArray } from "formik";
 import {
   getProcessForRecruit,
@@ -33,10 +32,6 @@ function RequirementForm(props) {
     const [typeData, setTypeData] = useState(true);
    const [recruiterNames, setRecruters] = useState(recruiterOptionNameOption);
    const [partners, setPartners] = useState(partnerOptionNameOption);
-   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-    libraries: ["places"], // Ensure the 'places' library is loaded
-  });
     useEffect(() => {
       console.log("helo")
       const recruiterOptionNameOption = props.currentOpportunityRecruitmentData.recruiterList===null?[]:props.currentOpportunityRecruitmentData.recruiterList.map((item) => {
@@ -102,8 +97,6 @@ function RequirementForm(props) {
     // if (!props.currentOpportunityRecruitmentData.requirementName) {
     //   return (<BundleLoader />)
     // }
-    if (!isLoaded) return <div>Loading...</div>;
-    if (loadError) return <div>Error loading Google Maps API</div>;
   
     return (
   

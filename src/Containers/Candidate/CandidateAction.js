@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { base_url, } from "../../Config/Auth";
 import { message } from "antd";
 import { ActionHeader } from "../../Components/Utils";
-
+import Swal from 'sweetalert2'
 /**
  * candidate modal action
  */
@@ -467,7 +467,7 @@ export const deleteDocument = (documentId) => (dispatch, getState) => {
 /**
  * add skills of a candidateId
  */
-export const addTopicByCandidateId = (data,userType) => (dispatch) => {
+export const addTopicByCandidateId = (data,userType,id) => (dispatch) => {
   dispatch({
     type: types.ADD_TOPIC_BY_CANDIDATE_ID_REQUEST,
   });
@@ -479,7 +479,23 @@ export const addTopicByCandidateId = (data,userType) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      // dispatch(getTopicsByCandidateId(userType,id));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          showConfirmButton: false,
+   timer: 1500,
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Added Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+       dispatch(getTopicsByCandidateId(userType,id));
       dispatch({
         type: types.ADD_TOPIC_BY_CANDIDATE_ID_SUCCESS,
         payload: res.data,
@@ -566,7 +582,7 @@ export const deleteTopicByCandidateId = (userType,id, candidateId) => (
         type: types.DELETE_TOPIC_BY_CANDIDATE_ID_SUCCESS,
         payload: res.data,
       });
-      dispatch(getTopicsByCandidateId(candidateId));
+     // dispatch(getTopicsByCandidateId(candidateId));
     })
     .catch((err) => {
       console.log(err);
@@ -2180,7 +2196,7 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       });
   };
 
-  export const addCertificationByCandidateId = (data, userType) => (dispatch) => {
+  export const addCertificationByCandidateId = (data, userType,id) => (dispatch) => {
     
     dispatch({
       type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
@@ -2193,7 +2209,23 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       })
       .then((res) => {
         console.log(res);
-        // dispatch(getCertificationByCandidateId(candidateId));
+          if (res.data.message) {
+                Swal.fire({
+                  icon: 'error',
+                  title: res.data.message,
+                  showConfirmButton: false,
+           timer: 1500,
+                });
+              } else {
+               
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Added Successfully!',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+         dispatch(getCertificationByCandidateId(userType,id));
         dispatch({
           type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_SUCCESS,
           payload: res.data,
@@ -2213,7 +2245,7 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       type: types.GET_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .get(`${base_url}/candidate/certification/${userType}/${id}`, {
+      .get(`${base_url}/employee/employeeCertificationLink/get-all/certification/${userType}/${id}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -2251,7 +2283,7 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
           type: types.DELETE_CERTIFICATION_BY_CANDIDATE_ID_SUCCESS,
           payload: res.data,
         });
-        dispatch(getCertificationByCandidateId(candidateId));
+       // dispatch(getCertificationByCandidateId(candidateId));
       })
       .catch((err) => {
         console.log(err);

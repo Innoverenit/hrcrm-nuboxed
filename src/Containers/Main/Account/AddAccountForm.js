@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button} from "antd";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -118,11 +117,6 @@ const AddAccountForm = ({
     };
   }, [emptyClearbit]);
 
-  // const { isLoaded, loadError } = useJsApiLoader({
-  //   googleMapsApiKey: "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY", // Replace with your API key
-  //   libraries: ["places"], // Ensure the 'places' library is loaded
-  // });
-
   const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
 
   const handleToggleChange = () => {
@@ -176,8 +170,6 @@ const AddAccountForm = ({
   } = useSpeechRecognition();
 
   
-  // if (!isLoaded) return <div>Loading...</div>;
-  // if (loadError) return <div>Error loading Google Maps API</div>;
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
