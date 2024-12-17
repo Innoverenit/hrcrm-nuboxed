@@ -255,10 +255,7 @@ function ContactInvestCardList(props) {
         <i className="fab fa-artstation  text-[#b744b8]"></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
-        {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
-        department               
-                </div> */}
+
                     <div className=" w-[13.2rem] truncate max-md:w-[11.2rem]">
         <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
@@ -329,9 +326,9 @@ function ContactInvestCardList(props) {
           &nbsp;
           <div class="max-sm:w-full md:w-[12.1rem]">
                                         <Tooltip>
-                                          <div class=" flex  max-sm:w-full justify-between  md:flex-col">
+                                          <div class=" flex  max-sm:w-full w-[100%] justify-between  md:flex-col">
                                             
-                                            <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-xs flex text-blue-500 justify-between font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
@@ -358,7 +355,7 @@ autoFocus
 ) : (
 <div onClick={() => 
 handleEditRowField(item.contactId, 'fullName', item.fullName)} 
-className="cursor-pointer text-xs font-poppins flex items-center">
+className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
 <BorderColorIcon  className=" !text-icon cursor-pointer"/>
 
 </div> 
@@ -378,7 +375,7 @@ className="cursor-pointer text-xs font-poppins flex items-center">
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[11.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[12.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  ml-gap font-poppins">
                                          {item.designation}
@@ -487,18 +484,7 @@ className="cursor-pointer text-xs font-poppins flex items-center">
               }}
             />
            </Tooltip>
-                      
-            {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-            <Tooltip title=    {translatedMenuItems[10]}>
-              <BorderColorIcon
-                className="flex !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onClick={() => {
-                  handleUpdateContactInvestModal(true);
-                  handleCurrentContactIdata(item);                
-                }}
-              />
-            </Tooltip>
-            )}                    
+                                      
                       </div>                                         
             
             </div>

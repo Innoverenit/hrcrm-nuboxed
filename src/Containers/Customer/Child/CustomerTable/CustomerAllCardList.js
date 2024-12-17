@@ -441,8 +441,8 @@ console.log(selectedAssign)
                               <div
                 className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-lg:text-[0.45rem] w-[100%] max-xl:text-[0.65rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex  w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                
+                                <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">    
                                    <div class=" text-xs  font-poppins max-sm:text-sm  ">
                         {props.showCheckboxes && (
                         <Checkbox
@@ -451,25 +451,20 @@ console.log(selectedAssign)
               />
                         )}
                         </div>
-                                   <div className="flex max-sm:w-full">
-                      <div class="flex items-center">
-                        
-                          <MultiAvatar
+                        </div>
+                                   <div className="flex max-sm:w-full">          
+                      <div className=" flex  w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                       <div>  <MultiAvatar
                             primaryTitle={item.name}
                             imageId={item.imageId}
                             imageURL={item.imageURL}
                             imgWidth={"1.8rem"}
                             imgHeight={"1.8rem"} 
                           />
-                       
-                      </div>
-                      <div class="w-[4%]"></div>
-
-                      <div class="max-sm:w-full md:flex items-center">
+                       </div> 
                       <Tooltip>
-                                          <div class="flex max-sm:flex-row w-[100%] justify-between md:flex-col">
-                                            <div class=" text-xs flex items-center justify-between
-                                             text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
+                      <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
+                      <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>    
@@ -504,8 +499,8 @@ console.log(selectedAssign)
                                             </div>
                                             </div>
                                         </Tooltip>
-                      </div>
-                    </div>
+                                        </div>
+                 
                                     </div> 
 
                                         <div className=" flex  max-sm:w-auto    w-[8.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
@@ -597,7 +592,6 @@ className="cursor-pointer text-xs font-poppins">
                 </div>
 
               </div>
-                      </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   
 <div className=" flex  w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
