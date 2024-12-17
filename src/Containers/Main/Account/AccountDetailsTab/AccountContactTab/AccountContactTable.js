@@ -246,8 +246,8 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
             {item.accessInd === 0 ? (
-                <div className="text-xs font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
-                    <Button className="w-[8.5rem]"
+                <div className="text-xs w-[9rem]  font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                    <Button className="w-[8rem]"
                         type="primary"
                         loading={rowData.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
                         onClick={() => {
@@ -266,11 +266,11 @@ const AccountContactTable = (props) => {
                     </Button>
                 </div>
             ) : item.accessInd === 2 ? (
-                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs w-[8.5rem]">
+                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs w-[9rem]">
                    {translatedMenuItems[9]} {/* Login Applied */}
                     </b>
             ) : (
-                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs  w-[8.5rem]">
+                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs  w-[9rem]">
                   {translatedMenuItems[10]}  {/* Login Approved */}
                     </b>
             )}

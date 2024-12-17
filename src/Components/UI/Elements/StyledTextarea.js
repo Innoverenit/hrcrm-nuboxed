@@ -5,7 +5,7 @@ const StyledTextarea = styled.textarea.attrs({
   size: props => (props.small ? 4 : undefined),
 })`
     width: 100%;
-    min-height: 4em;
+    min-height: 6.5em;
     border-radius: 0.1875em;
     border: 0.0625em solid gainsboro;
     background-color: ${props => props.theme.backgroundColor};

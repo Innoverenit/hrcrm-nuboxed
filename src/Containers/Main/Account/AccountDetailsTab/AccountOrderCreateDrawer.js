@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import AccountOpportunityStepper from "./AccountOpportunityStepper";
@@ -10,7 +10,7 @@ const AccountOrderCreateDrawer = (props) => {
     <>
       <StyledDrawer
         title={`${props.title}`}
-        width="75%"
+        width="60%"
         visible={props.isModalOpen}
         onClose={props.setIsModalOpen}
         footer={null}

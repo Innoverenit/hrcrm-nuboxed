@@ -24,10 +24,6 @@ function OrderTableC(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
 
-//   useEffect(() => {
-//     setData(props.ecomList.map((item, index) => ({ ...item, key: String(index) })));
-//   }, [props.ecomList]);
-
   useEffect(() => {
     props.getCustomerOrder(props.distributorId, page);
     setPage(page + 1);
@@ -122,21 +118,17 @@ useEffect(() => {
     setModalVisible(false);
   };
 
-  
-
 const {handleProcureNotesDrawerModal,
   addDrawerProcureNotesModal
 } = props;
   return (
     <div>
-  
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:hidden">
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font-poppins !text-lm sticky  z-10">
-
                         <div className="text-[#00A2E8] text-sm w-[12.4rem]   truncate max-md:w-[25rem]">
                         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} </div>
-                        <div className=" w-[20.8rem]  truncate max-md:w-[14.4rem]">
+                        <div className=" w-[21.8rem]  truncate max-md:w-[14.4rem]">
                         <DynamicFeedIcon className='!text-icon mr-1  text-[#e4eb2f]'/>{translatedMenuItems[1]} ID</div>
                         <div className="  w-[15.7rem] truncate max-md:w-[16.4rem]">
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
@@ -181,23 +173,16 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max
                         </div>
                       
                         </div>
-                        <div className=" flex   md:w-[20.1rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex   md:w-[21.1rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs ml-gap  items-center font-poppins">
                              {item.newOrderNo}
-                            </div>
-                    
+                            </div>                   
                         </div>
-
-
-
                         <div className=" flex   md:w-[15.2rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                             {date}
                             </div>
-
                         </div>
-
-
                         <div className=" flex  md:w-[15.3rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 
@@ -214,14 +199,12 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max
                             <div class=" text-xs   font-poppins">
                                 {item.paymentAmount}
                             </div>
-
                         </div>
                         <div class="items-center  justify-center w-[7rem] ml-gap bg-[#eef2f9] h-8 flex">
                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={translatedMenuItems[5]}>
                                              
                                                                 <EventRepeatIcon
-
                                                                     className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
@@ -237,9 +220,6 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max
     onClick={()=> viewAnDownloadPdf(item)}
     />
           </div>
-                       
-
-              
             </div>
             </div>
             );
@@ -257,9 +237,6 @@ translateText={props.translateText}
            />
   </div>
   );
-
-
-
 }
 
 const mapStateToProps = ({ distributor,procre,auth }) => ({
