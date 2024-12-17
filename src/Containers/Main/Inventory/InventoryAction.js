@@ -2735,10 +2735,10 @@ export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState
 
 
 
-export const linkDispatchStatus = (data) => (dispatch) => {
+export const linkDispatchStatus = (orderPhoneId,moveToHistoryInd) => (dispatch) => {
   dispatch({ type: types.LINK_DISPATCH_STATUS_REQUEST });
   axios
-    .put(`${base_url2}/phoneOrder/moveToHistory`, data, {
+    .put(`${base_url2}/phoneOrder/moveToHistory/${orderPhoneId}/${moveToHistoryInd}`, {}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2747,7 +2747,7 @@ export const linkDispatchStatus = (data) => (dispatch) => {
       console.log(res);
       dispatch({
         type: types.LINK_DISPATCH_STATUS_SUCCESS,
-        payload: res.data,
+        payload: orderPhoneId,
       });
     })
     .catch((err) => {

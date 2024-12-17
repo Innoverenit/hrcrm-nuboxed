@@ -50,7 +50,7 @@ function RefurbishToggle(props) {
           <Switch
             className="toggle-clr"
             checked={props.newDispatchInd || toggle}
-            disabled={props.item.showNewDispatchInd === false || props.item.dispatchInspectionInd === 0 || props.item.dispatchInspectionInd === 3 }
+            disabled={props.item.showNewDispatchInd === false || props.item.dispatchInspectionInd === 0 || props.item.dispatchInspectionInd === 1 ||props.item.dispatchInspectionInd === 3 }
             isLoading={true}
          
             checkedChildren="Yes"
