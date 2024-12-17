@@ -20,6 +20,7 @@ import {
   clearDispatch,
   getCompleteDispatchSearch
 } from "./InventoryAction"
+import DispatchToggle from "./DispatchToggle"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { withRouter } from "react-router";
@@ -980,7 +981,8 @@ useEffect(() => {
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[86%]  p-1 bg-transparent font-bold !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] sticky items-end z-10">
               <div className=" w-[15.51rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
-              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  {translatedMenuItems[0]}
+              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  
+              {translatedMenuItems[0]}
                 </div>
               <div className="w-[6.9rem] truncate max-md:w-[3.5rem]  max-xl:w-[3.5rem]">
                 {/* Units" /> */}
@@ -1210,6 +1212,17 @@ useEffect(() => {
                                                         />
 
                                                     </Tooltip>
+                            </div>
+                          </div>
+
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                              {/* {item.dispatchInspectionInd === 4 && item.newAwbNo && */}
+                                <DispatchToggle
+                                  //locationDetailsId={props.locationDetailsId}
+                                  item={item}
+                                />
+                                {/* } */}
                             </div>
                           </div>
                         </div>

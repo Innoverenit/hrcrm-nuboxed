@@ -135,12 +135,12 @@ export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
     });
 };
 
-export const getWorkflowList = (orgId) => (dispatch) => {
+export const getWorkflowList = (orgId,type) => (dispatch) => {
   dispatch({
     type: types.GET_WORKFLOW_LIST_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/productionWorkflow/for_dropdown/${orgId}`,
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
