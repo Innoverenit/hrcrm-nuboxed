@@ -682,7 +682,7 @@ const {
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]  "  style={{scrollbarWidth:"thin"}}>
             <Form className="form-background max-sm:w-[90%]">
               <div class=" flex justify-around max-sm:flex-col">
-                <div class=" h-full w-w47.5  max-sm:w-wk">
+                <div class=" h-full w-w47.5.5  max-sm:w-wk">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
@@ -958,7 +958,7 @@ Investor
                 
                                
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-wk ">
+                <div class="h-full w-w47.5.5 max-sm:w-wk ">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                 <div class="mt-1">
                  <Listbox value={selected} onChange={setSelected}>

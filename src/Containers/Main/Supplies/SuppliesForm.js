@@ -178,7 +178,7 @@ class Suppliesform extends Component {
                       </div>
                     </div>
                     <div class="flex flex-col justify-between items-center">
-                    <div class="w-w47.5 ">
+                    <div class="w-w47.5.5 ">
                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         name="hsn"
@@ -189,7 +189,7 @@ class Suppliesform extends Component {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <Field
                               name="fifoInd"
                               component={SwitchComponent}
@@ -302,7 +302,7 @@ class Suppliesform extends Component {
                    
                   </div>  
                  <div class="flex justify-between">
-                 <div class="w-w47.5">
+                 <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">Shopify</div>
                    <Field
                        name="shopify"
@@ -314,7 +314,7 @@ class Suppliesform extends Component {
                     
                      />
                    </div>
-                   <div class="w-w47.5">
+                   <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">SEO Title</div>
                    <Field
                        name="seoTitle"
@@ -328,7 +328,7 @@ class Suppliesform extends Component {
                    </div>
                  </div>
                  <div class="flex justify-between">
-                 <div class="w-w47.5">
+                 <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">SEO Descrption</div>
                    <Field
                        name="seoDescription"
@@ -339,7 +339,7 @@ class Suppliesform extends Component {
                        component={InputComponent}                    
                      />
                    </div>
-                   <div class="w-w47.5">
+                   <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">Tag</div>
                    <Field
                        name="tag"
@@ -395,7 +395,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
                     <Field
                         name="innerHeight"
@@ -407,7 +407,7 @@ class Suppliesform extends Component {
                      
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
                       <Field
                         name="height"
@@ -422,7 +422,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                    
-                   <div class="w-w47.5">
+                   <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                      <Field
                        name="length"     
@@ -434,7 +434,7 @@ class Suppliesform extends Component {
                        }}
                      />
                    </div>
-                   <div class="w-w47.5">
+                   <div class="w-w47.5.5">
                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
                      <Field
                        name="width"
@@ -446,7 +446,7 @@ class Suppliesform extends Component {
                    </div>
                  </div>
                   <div class="flex justify-between">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Master Length</div>
                     <Field
                         name="masterLength"
@@ -457,7 +457,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
                     <Field
                         name="innerLength"
@@ -470,7 +470,7 @@ class Suppliesform extends Component {
                     </div>
                     </div>
                     <div class="flex justify-between">
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Master Height</div>
                     <Field
                         name="masterHeight"
@@ -481,7 +481,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Master Width</div>
                     <Field
                         name="masterWidth"
@@ -494,7 +494,7 @@ class Suppliesform extends Component {
                     </div>
                     </div>
                     <div class="flex justify-between">
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
                     <Field
                         name="innerWidth"
@@ -505,7 +505,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                     <Field
                         name="uom"
@@ -532,7 +532,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-      <div class="w-w47.5">
+      <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
                     <Field
                         name="innerVolume"
@@ -543,7 +543,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
                     <Field
                         name="masterVolume"
@@ -556,7 +556,7 @@ class Suppliesform extends Component {
                     </div>
       </div>
       <div class="flex justify-between">
-      <div class="w-w47.5">
+      <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Volume</div>
                     <Field
                         name="volume"
@@ -567,7 +567,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-      <div class="w-w47.5">
+      <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                     <Field
                         name="volUom"
@@ -595,7 +595,7 @@ class Suppliesform extends Component {
       </div>
       <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
       <div class="flex justify-between">
-      <div class="w-w47.5">
+      <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Weight</div>
                     <Field
                         name="weight"
@@ -606,7 +606,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
                     <Field
                         name="masterWeight"
@@ -619,7 +619,7 @@ class Suppliesform extends Component {
                     </div>
         </div>
         <div class="flex justify-between">
-        <div class="w-w47.5">
+        <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
                     <Field
                         name="innerWeight"
@@ -630,7 +630,7 @@ class Suppliesform extends Component {
                         component={InputComponent}                     
                       />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="wtUom"
