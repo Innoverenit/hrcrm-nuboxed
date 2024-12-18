@@ -47,9 +47,6 @@ const EmptyPage = lazy(() =>  import("../../../Main/EmptyPage"));
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
-const UpdateContactInvestModal = lazy(() =>
-  import("../UpdateContactInvest/UpdateContactInvestModal")
-);
 
 function ContactInvestTeamsCardList(props) {
 
@@ -238,7 +235,6 @@ function ContactInvestTeamsCardList(props) {
     handleUpdateContactModal,
     handleContactReactSpeechModal,
     addContactSpeechModal,
-    updateContactInvestModal,
     addDrawerContactInvestNotesModal,
     handleUpdateContactInvestModal,
     handleContactInvestNotesDrawerModal,
@@ -592,15 +588,7 @@ className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover
       </div>
 </div>
 <Suspense fallback={<BundleLoader />}>
-      <UpdateContactInvestModal
-        contactiData={contactiData}
-        updateContactInvestModal={updateContactInvestModal}
-        handleUpdateContactInvestModal={handleUpdateContactInvestModal}
-        handleCurrentContactIdata={handleCurrentContactIdata}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-        translatedMenuItems={props.translatedMenuItems}
-      />   
+     
       <AddContactInvestNotesDrawerModal
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
@@ -653,7 +641,6 @@ const mapStateToProps = ({
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,
   fetchingTeamsContactInvest: contactinvest.fetchingTeamsContactInvest,
   fetchingContactsInvestError: contactinvest.fetchingContactsInvestError,
-  updateContactInvestModal: contactinvest.updateContactInvestModal,
   designations: designations.designations,
   departments: departments.departments,
   addDrawerContactEmailModal: contact.addDrawerContactEmailModal,

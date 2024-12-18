@@ -577,7 +577,7 @@ function CallForm(props) {
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]" style={{scrollbarWidth:"thin"}}>
             <Form className="form-background ">
               <div class=" flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6  max-sm:w-wk ">
                      
@@ -799,7 +799,7 @@ function CallForm(props) {
                   </div>
                              
                 </div>
-                <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" mt-3 h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                 <Listbox value={selected} onChange={handleSelectChangeInclude} className=" h-[1.88rem]" style={{ height:"1.88rem"}}>
       {({ open }) => (

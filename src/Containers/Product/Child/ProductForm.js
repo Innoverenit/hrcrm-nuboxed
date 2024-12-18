@@ -306,7 +306,7 @@ brandName:"",
                         </div>
                       </div>
                        {/* <div class="flex flex-col justify-between items-center">
-                                          <div class="w-w47.5 ">
+                                          <div class="w-w47.5.5 ">
                                         <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
                                             <Field
                                               name="hsn"
@@ -317,7 +317,7 @@ brandName:"",
                                               component={InputComponent}
                                             />
                                           </div>
-                                          <div class="w-w47.5">
+                                          <div class="w-w47.5.5">
                                           <Field
                                                     // name="fifoInd"
                                                     component={SwitchComponent}
@@ -543,7 +543,7 @@ brandName:"",
                      </div>
                      <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
                      <div class="flex justify-between">
-                                 <div class="w-w47.5">
+                                 <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
                                    <Field
                                        name="innerHeight"
@@ -555,7 +555,7 @@ brandName:"",
                                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
                                      <Field
                                        name="height"
@@ -570,7 +570,7 @@ brandName:"",
                                  </div>
                                  <div class="flex justify-between">
                                   
-                                  <div class="w-w47.5">
+                                  <div class="w-w47.5.5">
                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                                     <Field
                                       name="length"     
@@ -582,7 +582,7 @@ brandName:"",
                                       }}
                                     />
                                   </div>
-                                  <div class="w-w47.5">
+                                  <div class="w-w47.5.5">
                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
                                     <Field
                                       name="width"
@@ -594,7 +594,7 @@ brandName:"",
                                   </div>
                                 </div>
                                  <div class="flex justify-between">
-                                 <div class="w-w47.5">
+                                 <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Master Length</div>
                                    <Field
                                        name="masterLength"
@@ -605,7 +605,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
                                    <Field
                                        name="innerLength"
@@ -618,7 +618,7 @@ brandName:"",
                                    </div>
                                    </div>
                                    <div class="flex justify-between">
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Master Height</div>
                                    <Field
                                        name="masterHeight"
@@ -629,7 +629,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Master Width</div>
                                    <Field
                                        name="masterWidth"
@@ -642,7 +642,7 @@ brandName:"",
                                    </div>
                                    </div>
                                    <div class="flex justify-between">
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
                                    <Field
                                        name="innerWidth"
@@ -653,7 +653,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                                    <Field
                                        name="uom"
@@ -680,7 +680,7 @@ brandName:"",
                      </div>
                      <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
                      <div class="flex justify-between">
-                     <div class="w-w47.5">
+                     <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
                                    <Field
                                        name="innerVolume"
@@ -691,7 +691,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
                                    <Field
                                        name="masterVolume"
@@ -704,7 +704,7 @@ brandName:"",
                                    </div>
                      </div>
                      <div class="flex justify-between">
-                     <div class="w-w47.5">
+                     <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Volume</div>
                                    <Field
                                        name="volume"
@@ -715,7 +715,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                     <div class="w-w47.5">
+                     <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                                    <Field
                                        name="volUom"
@@ -743,7 +743,7 @@ brandName:"",
                      </div>
                      <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
                      <div class="flex justify-between">
-                     <div class="w-w47.5">
+                     <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
                                    <Field
                                        name="weight"
@@ -754,7 +754,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
                                    <Field
                                        name="masterWeight"
@@ -767,7 +767,7 @@ brandName:"",
                                    </div>
                        </div>
                        <div class="flex justify-between">
-                       <div class="w-w47.5">
+                       <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
                                    <Field
                                        name="innerWeight"
@@ -778,7 +778,7 @@ brandName:"",
                                        component={InputComponent}                     
                                      />
                                    </div>
-                                   <div class="w-w47.5">
+                                   <div class="w-w47.5.5">
                                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                                      <Field
                                        name="wtUom"

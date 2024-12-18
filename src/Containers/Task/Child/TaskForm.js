@@ -627,7 +627,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
             <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class="flex justify-around pr-2 max-sm:flex-col">             
-                <div class=" h-full w-w47.5 max-sm:w-wk">             
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">             
                   <div class=" flex justify-between ">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <FastField name="imageId" component={Upload} />
@@ -982,7 +982,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   <div>                            
                  </div>
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-wk">                
+                <div class="h-full w-w47.5.5 max-sm:w-wk">                
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
