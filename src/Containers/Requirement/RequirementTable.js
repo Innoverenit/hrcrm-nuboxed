@@ -20,10 +20,11 @@ import EmptyPage from "../Main/EmptyPage";
 const RequirementTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  
     useEffect(() => {
+      
       window.addEventListener('error', e => {
         if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
           const resizeObserverErrDiv = document.getElementById(
@@ -65,12 +66,12 @@ console.log(requirementTable)
         <div className="flex flex-col w-full ">
             <div className="flex sticky z-auto">
                     <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                        <div className="flex justify-between w-[99.5%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
+                        <div className="flex justify-between w-[97.5%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
                            
                         <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
-        <div className=" max-md:w-[4.2rem] truncate w-[9.2rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
+        <div className=" max-md:w-[4.2rem] truncate w-[11.5rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
         <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>
-        <div className="max-md:w-[5.8rem] truncate w-[8.3rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
+        <div className="max-md:w-[10.2rem] truncate w-[10.2rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
         <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
         <div className="max-md:w-[3.3rem] truncate w-[8rem]"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>  
         <div className="max-md:w-[3.8rem] truncate w-[6.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/> Created</div> 
@@ -128,8 +129,8 @@ console.log(requirementTable)
                                                  {item.requirementName}                                         
                                         </div>  
                                         </div>   
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
-                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
+                                        <div className=" flex items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                    <div class="text-xs truncate  font-poppins  max-sm:text-sm">
                                {item.opportunityId}
                                     </div>
                                     

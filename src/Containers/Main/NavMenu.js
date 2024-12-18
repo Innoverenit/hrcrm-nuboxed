@@ -670,7 +670,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           </Link>
         </Menu.Item>
  )}
-  {(user.warAccInd === true &&  user.erpInd === true 
+  {(user.warAccInd === true &&  user.erpInd === true && user.hrInd === true
   || user.productionInd === true &&  user.repairInd === true 
        
       ) &&  (
@@ -909,8 +909,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
        )} 
 
 
-{(user.hrInd === true   
- && user.role === "ADMIN" && user.moduleMapper.recruitProInd === true
+{( user.hrInd === true   && user.role === "ADMIN" && user.moduleMapper.recruitProInd === true 
+
 ) && ( 
         <Menu.Item key="/assessment" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>

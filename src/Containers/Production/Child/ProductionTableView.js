@@ -54,13 +54,6 @@ function ProductionTableView(props) {
         { value: 'strawberry', label: 'Strawberry' },
       ];
 
-  
-    // useEffect(() => {
-    //     props.getProductionTable(props.userId);
-    //     // setPage(page + 1);
-    //     // props.getRoomRackByLocId(props.locationId, props.orgId);
-    // }, []);
-
     function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, productId, indStatus }) {
 
         if (role === type) {
@@ -84,13 +77,6 @@ function ProductionTableView(props) {
             </Tooltip>
         );
     }
-
-    // const {
-    //     fetchingProductionLocId,
-    //     productionByLocsId,
-    //     user,
-    //     openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
-    // } = props;
 
     function handleParticularRowData(item) {
         setParticularDiscountData(item);
@@ -208,7 +194,7 @@ function ProductionTableView(props) {
                 <div class="rounded m-1   p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%]  font-poppins !text-lm p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" max-md:w-[9rem] w-[9rem] text-[#00A2E8] text-sm truncate "> 
+                        <div className=" max-md:w-[9rem] w-[9.5rem] text-[#00A2E8] text-sm truncate "> 
                             {/* MFG ID */}
                             <PrecisionManufacturingIcon className="!text-icon  "/> {translatedMenuItems[0]}
                             </div>
@@ -216,7 +202,7 @@ function ProductionTableView(props) {
                             {/* Cell */}
                             <TokenIcon className="!text-icon  text-[#1E213D]"/> {translatedMenuItems[1]}
                             </div>
-                        <div className=" max-md:w-[6rem] w-[6rem]">
+                        <div className=" max-md:w-[13rem] w-[13rem]">
                             {/* Created */}
                             <DateRangeIcon className="!text-icon  text-[#006600]"/>{translatedMenuItems[2]}
                             </div>
@@ -273,7 +259,7 @@ function ProductionTableView(props) {
 
                                                     </div>
 
-                                                    <div class=" text-xs  font-poppins flex items-center w-[3rem]">
+                                                    <div class=" text-xs  ml-gap bg-[#eef2f9]  font-poppins flex items-center w-[5rem]">
 
                                                    {item.cellChamberName}
                                                            </div>
@@ -340,7 +326,7 @@ function ProductionTableView(props) {
                                                 </div>
                                                 
 
-                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs    font-poppins">
                                      
                                                         <ButtonGroup>
@@ -457,8 +443,8 @@ function ProductionTableView(props) {
 
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                       
-                        <div className=" md:w-[9rem] text-[#00A2E8] text-sm">
+                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky   font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">                       
+                        <div className=" md:w-[6rem] text-[#00A2E8] text-sm">
                             {/* Workflow */}
                             <SchemaIcon className="!text-icon  "/>  {translatedMenuItems[7]}
                             </div>
@@ -487,7 +473,7 @@ function ProductionTableView(props) {
                     <div key={item.productId} >
                                            
                     <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                                 <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9]  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                 <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9]  items-center md:w-[13rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs    font-poppins" >
                                                         {/* {stage} */}
                                                         {item.workflowName}
@@ -521,7 +507,7 @@ function ProductionTableView(props) {
 
 
 
-                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-[21.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs    font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
                                                         {item.inspectedInd===true&&(
                                                     <Select placeholder="Select zone" 
