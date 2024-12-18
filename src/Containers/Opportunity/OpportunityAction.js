@@ -1322,7 +1322,7 @@ export const getRecruiterName = () => (dispatch) => {
     });
 };
 
-export const getRecruiter = (skill,recruitmentId,opportunityId) => (dispatch) => {
+export const getRecruiter = (skill,recruitmentId) => (dispatch) => {
   // let api_url = "";
   // if (userId) {
   //   api_url = `/sort/all/Customers/user/${userId}`;
@@ -1333,7 +1333,7 @@ export const getRecruiter = (skill,recruitmentId,opportunityId) => (dispatch) =>
     type: types.GET_RECRUITER_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/${skill}/${recruitmentId}/${opportunityId}`, {
+    .get(`${base_url}/candidate/${skill}/${recruitmentId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

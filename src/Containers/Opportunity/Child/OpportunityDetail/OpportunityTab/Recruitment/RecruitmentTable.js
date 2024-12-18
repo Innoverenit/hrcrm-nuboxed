@@ -804,7 +804,7 @@ class RecruitmentTable extends Component {
                     }}
                     onClick={() => {
                       this.props.LinkSkillsRecruit({
-                        opportunityId: item.opportunityId,
+                        // opportunityId: item.opportunityId,
                         stageId: item.stageId,
                         recruitmentProcessId: item.recruitmentProcessId,
                         skillName: this.state.skillSetData || item.skillName,
@@ -814,7 +814,7 @@ class RecruitmentTable extends Component {
                       this.props.getRecruiter(
                         this.state.skillSetData || item.skillName,
                         item.recruitmentId,
-                        item.opportunityId
+                        // item.opportunityId
                       );
                       this.handleCandidateDataSet(item);
                       this.props.handleRecruiterModal(true);
