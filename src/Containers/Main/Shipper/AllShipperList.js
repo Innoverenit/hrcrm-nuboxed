@@ -231,7 +231,7 @@ const [dataShipper, setdataShipper] = useState([]);
                  
                           <div class="flex w-[100%] text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
 
-<Link class="w-[100%] overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+<Link class="w-[100%] overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 items-center text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
   to={`shipper/${item.shipperId}`} title={item.shipperName}>
   {item.shipperName}
 </Link>
@@ -293,7 +293,7 @@ className="cursor-pointer text-xs font-poppins">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xs ml-[0.25rem]"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -303,7 +303,7 @@ className="cursor-pointer text-xs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs font-poppins ml-[0.25rem]">
     {item.phoneNo || "Update..."}
     
     </div> 
