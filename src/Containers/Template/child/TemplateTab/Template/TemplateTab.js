@@ -134,6 +134,7 @@ class TemplateTab extends Component {
                   <InvoiceTemplateTable />
                </Suspense>             
             </TabPane>
+            {this.props.user.moduleMapper.erpInd || this.props.user.moduleMapper.crmInd ?
             <TabPane
               tab={
                 <>
@@ -151,7 +152,7 @@ class TemplateTab extends Component {
                            
                             tooltipTitle="Create"
                             onClick={() =>
-                              this.props.handleTemplateModal(true)
+                              this.this.handleTemplateModal(true)
                             }
                             size="0.875em"
                             style={{
@@ -172,7 +173,8 @@ class TemplateTab extends Component {
                   {" "}
                   <QuotationTemplate/>
                </Suspense>             
-            </TabPane>
+            </TabPane>:""}
+            {this.props.user.moduleMapper.erpInd  ?
             <TabPane
               tab={
                 <>
@@ -211,7 +213,9 @@ class TemplateTab extends Component {
                   {" "}
                   <TemplateOrderTable />
                </Suspense>             
-            </TabPane>
+            </TabPane>:""}
+
+            
             <TabPane
               tab={
                 <>
@@ -251,6 +255,7 @@ class TemplateTab extends Component {
                   {/* <TemplateTable /> */}
                </Suspense>             
             </TabPane>
+            {this.props.user.moduleMapper.erpInd ?
             <TabPane
               tab={
                 <>
@@ -289,7 +294,8 @@ class TemplateTab extends Component {
                   {" "}
                   {/* <TemplateTable /> */}
                </Suspense>             
-            </TabPane>
+            </TabPane>:""}
+
             {/* <TabPane
               tab={
                 <>
@@ -380,9 +386,10 @@ class TemplateTab extends Component {
   }
 }
 
-const mapStateToProps = ({ rule }) => ({
+const mapStateToProps = ({ rule,auth }) => ({
   addTemplateModal: rule.addTemplateModal,
-  addTemplateNotificatonModal:rule.addTemplateNotificatonModal
+  addTemplateNotificatonModal:rule.addTemplateNotificatonModal,
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>
