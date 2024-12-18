@@ -16,6 +16,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import TemplateOrderTable from "./TemplateOrderTable";
 import QuotationTemplate from "./QuotationTemplate";
 import InvoiceTemplateTable from "./InvoiceTemplateTable";
+
 const AddTemplateModal = lazy(() => import("./AddTemplateModal"));
 const AddTemplateNotificatonModal = lazy(() => import("../AddTemplateNotificatonModal"));
 
