@@ -364,7 +364,7 @@ function InvestorTeamCardList(props) {
          {/* Source" */}         
           </div> 
         <div className=" w-[6.4rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' /> {translatedMenuItems[2]}
+        <CurrencyExchangeIcon className='!text-icon   text-[#e4eb2f]' /> {translatedMenuItems[2]}
          {/* Deals */}      
                 </div>      
           <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">

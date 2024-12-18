@@ -43,7 +43,7 @@ const MaterialCellCardViewOut = (props) => {
     }, [])
     console.log(props.cellData)
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, marginLeft: "1rem" }}>
+        <div  className="flex flex-wrap ml-4 !text-lm" style={{  gap: 20 }}>
             {props.cellData.map((item, index) => (
                 <Card key={index} title={`${item.cellChamber}`}>
                     {item.suppliesData.map((itemlist, ind) => {

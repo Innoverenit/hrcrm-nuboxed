@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import { Tooltip, Menu, Dropdown, Progress } from "antd";
+import { Tooltip, Menu, Dropdown, Progress,Select } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
@@ -17,7 +17,6 @@ import {
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
@@ -51,7 +50,7 @@ import { base_url2 } from "../../../../Config/Auth";
 import EmptyPage from "../../../Main/EmptyPage";
 import axios from "axios";
 import OpportunitySelectStages from "./OpportunitySelectStages";
-
+const Option = Select;
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
@@ -79,6 +78,8 @@ function OpportunityTeamsCard(props) {
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+    const [selectedAssign, setSelectedAssign] = useState();
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
@@ -136,11 +137,14 @@ function OpportunityTeamsCard(props) {
       }
     };
 
-
-
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
+  const handleAssignChange = (newOppId,value) => {
+
+    props.updateProspectUser(newOppId,value);
+    setIsAssignDropdownVisible(null); // Hide the dropdown after the request
+  };
   useEffect(() => {
     return () => props.emptyLeads();
   }, []);
@@ -277,12 +281,6 @@ function OpportunityTeamsCard(props) {
 })}
         </div>
         </div>
-        {/* <div className=" truncate">
-            <DraftsIcon  className="!text-base cursor-pointer text-green-400 mr-1" /> 
-          <Tooltip title={item.emailId}>
-          {elipsize(item.emailId || "", 25)}
-          </Tooltip>
-          </div> */}
   <div className=' flex  sticky  w-[87%] z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
  <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end z-10">
@@ -292,8 +290,6 @@ function OpportunityTeamsCard(props) {
         <div className=" w-[12.1rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
           <RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>
         {translatedMenuItems[0]}</div>
-        {/* <div className=" w-[14.11rem] truncate max-xl:text-[0.65rem]  max-md:w-[14.11rem] max-lg:text-[0.45rem]">
-        <ApartmentIcon className="!text-icon text-[#d66853] "/> {translatedMenuItems[1]}</div>     */}
         <div className=" w-[16.5rem] truncate max-md:w-[12.2rem]  "> 
         <ContactPageIcon className='!text-icon text-[#f28482] '  />  {translatedMenuItems[13]}</div>
         <div className=" w-[8.2rem] truncate max-md:w-[12.2rem] ">
@@ -327,67 +323,44 @@ function OpportunityTeamsCard(props) {
                    }
                  });
                  return (
-
-                  <div className="max-sm:w-wk">
-               
-                   <div className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[8rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="max-sm:w-wk">        
+                   <div className="flex rounded justify-between  bg-white  items-center py-ygap max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[8rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    <div className=" flex   w-[8.3rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
 <div class=" text-xs ml-gap items-center font-poppins  max-sm:text-sm">   
-
 {item.newOppId}
-
 </div>
 </div>
                     <div className=" flex  w-[10rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div className=" flex items-center">
-
                                   <MultiAvatar
                                     primaryTitle={item.opportunityName}
                                     imageId={item.imageId}
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
-                                  />
-        
-                             </div>
-                              
-                                 
+                                  />        
+                             </div>                                
                                       <Tooltip>
-                                      <div class=" flex max-sm:w-full  flex-row items-center">
-        
-                                          <div class=" text-xs text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">
-                                              
+                                      <div class=" flex max-sm:w-full  flex-row items-center">    
+                                          <div class=" text-xs text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">                                       
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-     
                                           </div>
 </div>
-                                      </Tooltip>
-                            
+                                      </Tooltip>                    
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex   w-[14rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                               <div className=" flex   w-[9rem] items-center   max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
-                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">   
-                                  
-                                  {item.customer}
-                  
+                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">                                 
+                                  {item.customer}               
                                   </div>
-                              </div>
-                             
-                            
-                              
-                             
-                              <div className=" flex  w-[5rem] items-center justify-center  max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                
-
-                                <div class=" text-xs font-poppins  max-sm:text-sm">
-                               
+                              </div>                      
+                              <div className=" flex  w-[5rem] items-center justify-center  max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                            
+                                <div class=" text-xs font-poppins  max-sm:text-sm">                            
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
             primaryTitle={item.contactName}
@@ -402,20 +375,15 @@ function OpportunityTeamsCard(props) {
                             </div>    
                             </div>                                             
                               <div className=" flex  w-[6.45rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-   
-
                                   <div class=" text-xs ml-gap font-poppins text-center  max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
-
                                   </div>
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex   w-[7.01rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-           
-
                                   <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
                                   <Dropdown
 overlay={
@@ -431,19 +399,11 @@ overlay={
     <OpportunitySelectStages
         rec={item}
         oppStage={item.oppStage}
-        // recruitOwner={item.recruitOwner}
-        // candidateName={item.candidateName}
-        // approveInd={item.approveInd}
-        // rejectInd={item.rejectInd}
         stageClick={(stagesId) => {
           props.LinkStageOpportunity(
             {
               opportunityId: item.opportunityId,
-              //oppStage: item.oppStage,
               opportunityStagesId:stagesId
-              // recruitmentProcessId: item.recruitmentProcessId,
-              // recruitmentId: item.recruitmentId,
-              // profileId: item.profileId,
             },
            
           );
@@ -470,25 +430,58 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                    
-
-                                  <div class=" text-xs  font-poppins  max-sm:text-sm">
-                                  
-                                  <span>
-                                  <MultiAvatar2
-            primaryTitle={item.assignedTo}
-            imgWidth={"1.8rem"}
-            imgHeight={"1.8rem"}
-          />
-          </span>
-           
-                                  </div>
-                              </div>
-                              <div className=" flex w-20 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
-                     
-
-
+                              {/* <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                  
+                              <div class=" text-xs  font-poppins">
+                            {item.assignedTo === null ? (
+        "None"
+      ) : (
+                            <div>
+         {isAssignDropdownVisible === item.newOppId ? (
+          <Select
+            style={{ width: "8rem" }}
+            value={selectedAssign}          
+            onChange={(value) => {
+              setSelectedAssign(value); 
+              handleAssignChange(item.newOppId,value); 
+            }}
+             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+            autoFocus
+          >
+             {props.crmAllData.map(customer => (
+                 <Option key={customer.employeeId} value={customer.employeeId}>
+                  <div className="flex">
+                   <MultiAvatar
+          primaryTitle={customer.empName} 
+          imageId={item.imageId}
+                    imageURL={item.imageURL}
+                    imgWidth={"1.8rem"}
+                    imgHeight={"1.8rem"} 
+        />
+                  <span>{customer.empName}</span> 
+                  </div>
+                 </Option>
+               ))}
+          </Select>
+        ):(
+          <div 
+          onClick={() => {
+            setIsAssignDropdownVisible(item.newOppId); 
+            setSelectedAssign(item.assignedTo); 
+            }}  
+          className="cursor-pointer"
+        >
+          <MultiAvatar2
+          primaryTitle={item.assignedTo}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
+        />   
+        </div>  
+                              )}  
+    </div>
+       )}
+                            </div>
+                              </div> */}
+                              <div className=" flex w-20 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between "> 
             <Tooltip title={item.ownerName}>
         <span>
           <MultiAvatar2
@@ -512,16 +505,11 @@ strokeColor={"#005075"}
                  <div class="flex max-sm:justify-between max-sm:w-wk h-8 ml-gap bg-[#eef2f9] items-center justify-end ">
                  <div>
                   <ReinstateToggleForLost 
-          opportunityId={item.opportunityId} 
-          
-          
+          opportunityId={item.opportunityId}                
           />
-                  </div>
-               
-                
+                  </div>                         
                  <div>
-                 <span
-       
+                 <span   
        className=" cursor-pointer"
   onClick={() => {
 props.getAllRecruitmentByOppId(item.opportunityId);
@@ -542,10 +530,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
            />
          )}
        </span>
-                      </div>
-         
-        
-                 
+                      </div>       
                   <div>
                   <Tooltip title={translatedMenuItems[8]}><span
          onClick={() => {
@@ -556,33 +541,27 @@ handleSetCurrentOpportunityId(item.opportunityName);
           }
                
         );         
-      }}         
-     
+      }}            
        >
         <LockIcon
          className=" !text-icon cursor-pointer"
             />
           </span>
    </Tooltip> 
-                  </div>
-                
-               
+                  </div>         
                   <div >
                   <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
     />
-          </div> 
-                 
+          </div>              
                     <div>
                        <Tooltip
                       placement="right"
                       title={translatedMenuItems[9]}
                     >
-                      {user.opportunityUpdateInd ===true && (
-            
+                      {user.opportunityUpdateInd ===true && (          
             <span
-            className=" !text-icon cursor-pointer text-[grey]"
-             
+            className=" !text-icon cursor-pointer text-[grey]"           
                 onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
@@ -590,15 +569,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-icon cursor-pointer text-[tomato]"
-                            
+                          className=" !text-icon cursor-pointer text-[tomato]"                         
                           />
                         </span>
                       )}
                     </Tooltip>
-                    </div>
-                  
-                  
+                    </div>         
                     <div>
                     <StyledPopconfirm
                       title={translatedMenuItems[10]}
@@ -606,32 +582,21 @@ handleSetCurrentOpportunityId(item.opportunityName);
                         deleteLostOpportunity(item.opportunityId)
                       }
                     >
-                         <Tooltip
-                    
+                         <Tooltip                  
                       title={translatedMenuItems[11]}
                     >
-                        {user.opportunityDeleteInd ===true && (
-                      
-                      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                        {user.opportunityDeleteInd ===true && (                    
+                      <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                         )}
                         </Tooltip>
                         </StyledPopconfirm>
-                    </div>
-           
-                  <div></div>
-                
+                   </div>          
+                  <div></div>               
                 </div>
                 </div> 
-                            
-                    
-                          </div>
-                  
-
+             </div>            
                  )  
             })}
-             
-  
-
       </InfiniteScroll>
       </div>
       </div>
