@@ -44,6 +44,7 @@ const QuotationTemplate = (props) => {
       net: "720.00",
     },
   ];
+  
   useEffect(() => {
     // Simulate an initial POST request to show the first invoice
     if (invoices.length > 0) {
@@ -53,10 +54,10 @@ const QuotationTemplate = (props) => {
     }
   }, []);
 
-  const sendInvoiceData = (style) => {
+  const sendInvoiceData = (invoice) => {
     const payload = {
         orgId: props.orgId,
-        type: style.style,
+        type: invoice?.style || "Smart",
     };
 
     axios
@@ -104,12 +105,138 @@ const QuotationTemplate = (props) => {
               </li>
               </>
             ))}
+
+<div className="font-semibold text-sm">Smart</div>
+              <li
+                className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
+                  selectedInvoice?.style === "Smart" ? "bg-green-100" : "bg-gray-100"
+                }`}
+                onClick={() => setSelectedInvoice({ style: "Smart" })}
+              >
+                <div className="font-bold">Invoice #302218158</div>
+                <div>Date: 30-09-2024</div>
+                <div></div>
+              </li>
           </ul>
         </div>
 
         {/* Right Column - Preview of Selected Invoice */}
         <div className="w-3/4 bg-white font-sans h-[80vh] overflow-x-auto p-5">
-          {selectedInvoice ? (
+        {selectedInvoice ? (
+            selectedInvoice.style === "Smart" ? (
+              <div className="container mx-auto p-5">
+              <div className="text-center">
+                <h1 className="text-3xl font-bold text-blue-700">KRG ASIAN FOOD</h1>
+                <h5 className="text-sm">
+                  BTW: NL86402939B01 BANKDETAILS: ING Bank: 0878381 BIC Code: INGBNL2A IBAN: NL74INGB0000878381
+                </h5>
+              </div>
+        
+              <div>
+                <table className="w-full table-auto">
+                  <tbody>
+                    <tr>
+                      <td className="p-2">
+                        Remon Afro Asian Market<br />
+                        West-Kruiskade 87<br />
+                        3014 AN Rotterdam<br />
+                        Nederland<br />
+                        afro_asianmarket@hotmail.com
+                      </td>
+                      <td className="text-center p-2">
+                        <h1 className="text-2xl font-bold">Offerte</h1>
+                      </td>
+                      <td className="text-right p-2">
+                        Offertenummer: 302218158<br />
+                        Relatienummer: 2 <br />
+                        Datum: 30-09-2024<br />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        
+              <div>
+                <table className="w-full table-auto border-collapse border border-gray-300 mt-4">
+                  <thead>
+                    <tr>
+                      <th className="p-2 border border-gray-300 text-left">Aantal</th>
+                      <th className="p-2 border border-gray-300 text-left">Omschrijving</th>
+                      <th className="p-2 border border-gray-300 text-left">BTW</th>
+                      <th className="p-2 border border-gray-300 text-left">Prijs</th>
+                      <th className="p-2 border border-gray-300 text-left">Totaal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Sample Invoice Data */}
+                    <tr>
+                      <td className="p-2 border border-gray-300">1.00</td>
+                      <td className="p-2 border border-gray-300">TRS Gramflour Besan (12 x 1 kg)</td>
+                      <td className="p-2 border border-gray-300">9</td>
+                      <td className="p-2 border border-gray-300">25.07</td>
+                      <td className="p-2 border border-gray-300">25.07</td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border border-gray-300">3.00</td>
+                      <td className="p-2 border border-gray-300">Heera Powa Medium (6 x 1 kg)</td>
+                      <td className="p-2 border border-gray-300">9</td>
+                      <td className="p-2 border border-gray-300">14.02</td>
+                      <td className="p-2 border border-gray-300">42.06</td>
+                    </tr>
+                    {/* More rows can be added here following the same structure */}
+                  </tbody>
+                </table>
+              </div>
+        
+              <div className="footer mt-8">
+                <div className="flex justify-between">
+                  <table className="w-1/2 table-auto">
+                    <thead>
+                      <tr>
+                        <th className="p-2 border border-gray-300 text-left">BTW %</th>
+                        <th className="p-2 border border-gray-300 text-left">Grondslag</th>
+                        <th className="p-2 border border-gray-300 text-left">Bedrag</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="p-2 border border-gray-300">0.00</td>
+                        <td className="p-2 border border-gray-300">0.00</td>
+                        <td className="p-2 border border-gray-300">0.00</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 border border-gray-300">9.00</td>
+                        <td className="p-2 border border-gray-300">565.42</td>
+                        <td className="p-2 border border-gray-300">50.89</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 border border-gray-300">21.00</td>
+                        <td className="p-2 border border-gray-300">0.00</td>
+                        <td className="p-2 border border-gray-300">0.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+        
+                  <table className="w-1/2 table-auto ml-4">
+                    <tbody>
+                      <tr>
+                        <td className="p-2 text-right font-bold">Totaal excl. btw</td>
+                        <td className="p-2">€ 565.42</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 text-right font-bold">Totaal btw</td>
+                        <td className="p-2">€ 50.89</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 text-right font-bold">Offertebedrag</td>
+                        <td className="p-2">€ 616.31</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            ) :  (
             <>
               {/* Header */}
               <div className="flex justify-between">
@@ -243,8 +370,8 @@ const QuotationTemplate = (props) => {
         <footer className="font-bold mt-12 flex justify-center">
           Please send all EFT remittance to Sales@1Di.ca
         </footer>
-            </>
-          ) : (
+            </>  )
+        ) : (
             <div className="text-center text-gray-500">Select an invoice to preview</div>
           )}
         </div>
