@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button  } from "antd";
+import { Tooltip, Button,Input  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
@@ -13,7 +13,7 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import UpdateIcon from '@mui/icons-material/Update';
-import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction";
+import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer,updateBatchData } from "../ProductionAction";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 
 const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
@@ -21,6 +21,8 @@ const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
 function ProductionAllCardView(props) {
+
+    const [prodData, setprodData] = useState("")
 
     const [page, setPage] = useState(0);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -30,6 +32,14 @@ function ProductionAllCardView(props) {
         props.getAllProductionsbyOrgId(props.organizationId);
         setPage(page + 1);
     }, []);
+
+    useEffect(() => {
+      // Check if data is available
+      if (props.productionAllByOrgId.length > 0) {
+        // Update activeTab when data is available
+        setprodData(props.productionAllByOrgId);
+      }
+    }, [props.productionAllByOrgId]);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -62,7 +72,20 @@ function ProductionAllCardView(props) {
       }, [props.selectedLanguage]);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
-
+    const handleBatchNoChange = (index, value) => {
+        const updatedData = [...prodData];
+        updatedData[index].batchNumber = value;
+        setprodData(updatedData);
+      };
+    
+      const handleEnterPress = (value,item, index) => {
+        console.log(value)
+        let data={
+            batchNumber:value
+        }
+        props.updateBatchData(data,item.productionProductId)
+        // console.log(`Batch No for ${data[index].name}: ${value}`);
+      };
 
     function handleParticularRowData(item) {
         setParticularDiscountData(item);
@@ -173,16 +196,16 @@ function ProductionAllCardView(props) {
                             </div>
                     </div>
                     <InfiniteScroll
-                        dataLength={productionAllByOrgId.length}
+                        dataLength={prodData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={fetchingAllProductionOrgId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"82vh"}
                         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
-                        {productionAllByOrgId.length ?
+                        {prodData.length ?
                             <>
-                                {productionAllByOrgId.map((item) => {
+                                {prodData.map((item,index) => {
                                      const currentdate = dayjs().format("DD/MM/YYYY");
                                      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -309,7 +332,20 @@ function ProductionAllCardView(props) {
                                                             {/* {date} */}
                                                             {`  ${dayjs(item.inspectedDate).format("DD-MM-YYYY")}`}
                                                         </div>
-                                                        </div>                                                   
+                                                        </div>   
+
+
+                                                           <div className=" flex w-[5.9rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] items-center justify-center ml-gap bg-[#eef2f9]  max-sm:w-auto">
+                                                        <div class=" text-xs  font-poppins">
+                                                            {/* {date} */}
+                                                            <Input
+            placeholder="Enter Batch No"
+         value={item.batchNumber || ""}
+            onChange={(e) => handleBatchNoChange(index, e.target.value)}
+            onPressEnter={(e) => handleEnterPress(e.target.value,item, index)}
+          />
+                                                        </div>
+                                                        </div>                                                 
                                                                                     
                                             </div>
                                         </div>
@@ -353,7 +389,8 @@ const mapDispatchToProps = (dispatch) =>
             getAllProductionsbyOrgId,
             handleBuilderProduction,
             handleProductionIDrawer,
-            updateProStatus
+            updateProStatus,
+            updateBatchData
         },
         dispatch
     );
