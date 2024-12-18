@@ -615,6 +615,37 @@ dispatch(getProductionTable(userId));
 
 
 
+export const updateBatchData = (data, productionProductId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_BATCH_DATA_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/update/batchNo/${productionProductId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_BATCH_DATA_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_BATCH_DATA_FAILURE,
+        payload: err
+      });
+    });
+};
+
+
+
+
 export const getProductionSteps = (userId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_STEPS_REQUEST,

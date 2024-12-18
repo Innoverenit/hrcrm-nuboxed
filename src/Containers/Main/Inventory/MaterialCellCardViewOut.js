@@ -39,7 +39,7 @@ const data = [
 const MaterialCellCardViewOut = (props) => {
 
     useEffect(() => {
-        props.getCellData(props.inventory.locationDetailsId, props.orgId)
+        props.getCellData(props.locationId, props.orgId)
     }, [])
     console.log(props.cellData)
     return (
@@ -69,6 +69,7 @@ const MaterialCellCardViewOut = (props) => {
 const mapStateToProps = ({ inventory, auth }) => ({
     cellData: inventory.cellData,
     orgId: auth.userDetails.organizationId,
+    locationId:auth.userDetails.locationId
     // locationId: inventory.inventoryDetailById.locationDetailsId,
 });
 
