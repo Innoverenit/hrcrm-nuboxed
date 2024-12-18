@@ -910,13 +910,13 @@ export const addProcessForRecruiter = (data, organizationId, cb) => (
 
 
 
-export const getProcessForRecruit = (organizationId) => (dispatch) => {
+export const getProcessForRecruit = (organizationId,type) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_RECRUIT_REQUEST,
   });
   axios
-    .get(`${base_url}/admin/setting/process/${organizationId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${organizationId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

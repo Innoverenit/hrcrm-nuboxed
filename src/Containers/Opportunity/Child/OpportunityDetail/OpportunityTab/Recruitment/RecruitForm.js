@@ -2,7 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";
 import dayjs from "dayjs";
@@ -75,8 +75,8 @@ function RecruitForm(props) {
       })
       .map((item) => {
         return {
-          label: item.recruitmentProcessName || "",
-          value: item.recruitmentProcessId,
+          label: item.workflowName || "",
+          value: item.workflowDetailsId,
         };
       });
 
@@ -143,7 +143,7 @@ function RecruitForm(props) {
   });
 
   useEffect(() => {
-    props.getProcessForRecruit(props.organizationId);
+    props.getProcessForRecruit(props.organizationId,"Hiring");
     props.getContactListByCustomerId(props.opportunity.customerId,"contact");
     //   props.getAllProcessStagesForRecruit();
     props.getContactListByOpportunityId(props.opportunityId);
@@ -198,6 +198,7 @@ const fetchContact = async () => {
         // enableReinitialize
         initialValues={{
           requirementName: "",
+          type:"",
           role: "",
           workPreference: "Remote",
           department: "",
@@ -328,7 +329,7 @@ const fetchContact = async () => {
               contactId:selectedContact,
               opportunityId: props.opportunityId,
               endDate: `${newEndDate}T00:00:00Z`,
-              type: typeData ? "Permanent" : "Contractor",
+              // type: typeData ? "Permanent" : "Contractor",
               category: typeData1 ? "White" : "Blue",
               workType: workTypeData ? "Full Time" : "Part Time",
             },
@@ -397,15 +398,23 @@ const fetchContact = async () => {
                   <div style={{ width: "47%" }}>
                     <div class=" text-xs font-bold font-poppins text-black">Type </div>
                    
-                    <Switch
+                    {/* <Switch
                       checked={typeData}
                       onChange={handleType}
                       checkedChildren="Permanent"
                       unCheckedChildren="Contractor"
-                      // style={{
-                      //   margin:"0.56em 0px 0px 0.56em",
-                      // }}
-                    />
+                    
+                    /> */}
+                       <FastField
+                                                name="type"
+                                             
+                                                // label="ID Proof"
+                                                  
+                                                isColumn
+                                                options={["Permanent", "Customer Contact","Organization Contract"]}
+                                                component={SelectComponent}
+                                                inlineLabel
+                                              />
                   </div>
 
                 

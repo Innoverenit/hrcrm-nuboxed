@@ -1333,7 +1333,7 @@ export const getRecruiter = (skill,recruitmentId) => (dispatch) => {
     type: types.GET_RECRUITER_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/${skill}/${recruitmentId}`, {
+    .get(`${base_url}/candidate/filter-candi/${skill}/${recruitmentId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
