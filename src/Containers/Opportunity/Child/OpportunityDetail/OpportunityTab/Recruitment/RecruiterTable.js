@@ -636,7 +636,7 @@ type="primary"
         if (props.role === "USER" && props.user.department === "Recruiter") {
         props.LinkRecruitCandidate(
           {
-            opportunityId: props.candidatePostData.opportunityId,
+            //opportunityId: props.candidatePostData.opportunityId,
             stageId: props.candidatePostData.stageId,
             recruitOwner :props.userId,
             recruitmentProcessId: props.candidatePostData.recruitmentProcessId,
@@ -650,7 +650,7 @@ type="primary"
       } else {
         props.LinkCandidateRecruit(
           {
-            opportunityId: props.candidatePostData.opportunityId,
+           // opportunityId: props.candidatePostData.opportunityId,
             stageId: props.candidatePostData.stageId,
             recruitOwner :props.userId,
             recruitmentProcessId: props.candidatePostData.recruitmentProcessId,
