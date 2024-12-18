@@ -46,11 +46,9 @@ const QuotationTemplate = (props) => {
   ];
   
   useEffect(() => {
-    // Simulate an initial POST request to show the first invoice
     if (invoices.length > 0) {
       const firstInvoice = invoices[0];
-      setSelectedInvoice(firstInvoice); // Set the first invoice as selected
-     // Post the data of the first invoice
+      setSelectedInvoice(firstInvoice); 
     }
   }, []);
 
