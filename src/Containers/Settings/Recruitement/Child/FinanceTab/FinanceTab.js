@@ -38,13 +38,13 @@ function DistributionTab(props) {
                         <Vat /> 
                         </div>
                     </TabPane>
+                    {props.user.moduleMapper.erpInd || props.user.moduleMapper.orderManagementInd ?
                     <TabPane tab={`Discount`} key="4">
                         <div class=" mt-3">
                        <DiscountCategory/>
-                      
-                  
                         </div>
-                    </TabPane>
+                    </TabPane>:""}
+
                     {/* <TabPane tab={`Fiscal`} key="2">
                        fiscla
                     </TabPane> */}
@@ -55,7 +55,7 @@ function DistributionTab(props) {
 }
 
 const mapStateToProps = ({ settings, auth }) => ({
-
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>
