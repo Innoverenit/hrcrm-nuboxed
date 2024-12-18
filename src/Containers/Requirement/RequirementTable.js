@@ -20,10 +20,11 @@ import EmptyPage from "../Main/EmptyPage";
 const RequirementTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  
     useEffect(() => {
+      
       window.addEventListener('error', e => {
         if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
           const resizeObserverErrDiv = document.getElementById(
