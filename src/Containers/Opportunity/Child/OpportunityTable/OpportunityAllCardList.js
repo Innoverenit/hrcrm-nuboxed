@@ -224,28 +224,18 @@ function OpportunityAllCardList(props) {
           
           <div class="font-semibold text-[#337df4] cursor-pointer !text-lm font-poppins" 
               onClick={() => handleButtonClick(item.employeeId)} 
-          >
-        
+          >     
           {item.empName}
-
         </div> 
+        </div>     
         </div>
-          
-       
-        </div>
-        <div className="flex flex-col max-sm:justify-between ">
-          
+        <div className="flex flex-col max-sm:justify-between ">       
         <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
-                </div>
-            
+                </div>         
           <div>
-          <div class="font-medium text-xs ">
-       
+          <div class="font-medium text-xs ">      
           <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
-
-              </div>
-           
-            
+              </div>        
           </div>
           </div>
           </div>
@@ -324,33 +314,21 @@ function OpportunityAllCardList(props) {
                                               
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link>
-     
+    </Link>  
                                           </div>
 </div>
                                       </Tooltip>
                             
                               </div>
                               </div>
-
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
                               <div className=" flex  w-[14rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                               <div className=" flex  w-[9rem] items-center justify-start  max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
-                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">   
-                                  
-                                  {item.customer}
-                  
+                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">                                   
+                                  {item.customer}               
                                   </div>
-                              </div>
-                           
-                            
-                              
-                           
-                              <div className=" flex  w-[5rem] items-center justify-center max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                
-
+                              </div>                         
+                              <div className=" flex  w-[5rem] items-center justify-center max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                              
                                 <div class=" text-xs  font-poppins  max-sm:text-sm">
                                
                                 {item.contactName === null ? "None" :
@@ -367,7 +345,6 @@ function OpportunityAllCardList(props) {
                             </div>                         
                            </div>
                               <div className=" flex   w-[6.45rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-   
 
                                   <div class=" text-xs ml-gap  font-poppins text-center  max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
@@ -379,8 +356,6 @@ function OpportunityAllCardList(props) {
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex   w-[7.01rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-           
-
            <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
            <Dropdown
 overlay={
@@ -411,22 +386,17 @@ strokeColor={"#005075"}
 />
 </Tooltip>
 </Dropdown>
-
            </div>
        </div>
-                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                    
-
-                                  <div class=" text-xs items-center font-poppins  max-sm:text-sm">
-                                  
+                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">           
+                                  <div class=" text-xs items-center font-poppins  max-sm:text-sm">                                
                                   <span>
                                   <MultiAvatar2
             primaryTitle={item.assignedTo}
             imgWidth={"1.8rem"}
             imgHeight={"1.8rem"}
           />
-          </span>
-           
+          </span>          
                                   </div>
                               </div>
                               <div className=" flex w-20 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
@@ -455,16 +425,11 @@ strokeColor={"#005075"}
                               <div class="flex max-sm:justify-between max-sm:w-wk  items-center  h-8 ml-gap bg-[#eef2f9]">
                               <div>
                                 <ReinstateToggleForLost 
-                        opportunityId={item.opportunityId} 
-                        
-                        
+                        opportunityId={item.opportunityId}                                            
                         />
-                                </div>
-               
-                
+                                </div>     
                  <div>
-                 <span
-       
+                 <span    
        className=" cursor-pointer"
   onClick={() => {
 props.getAllRecruitmentByOppId(item.opportunityId);
@@ -485,14 +450,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
            />
          )}
        </span>
-                      </div>
-         
+                      </div>     
                       <div>
                       <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
     />
-          </div> 
-                 
+          </div>                
                   <div>
                   <Tooltip title={translatedMenuItems[8]}><span
          onClick={() => {
@@ -500,11 +463,9 @@ handleSetCurrentOpportunityId(item.opportunityName);
           item.opportunityId,
           {
             closeInd:false,
-          }
-               
+          }              
         );         
-      }}         
-     
+      }}           
        >
         <LockIcon
          className=" !text-icon cursor-pointer"
@@ -512,20 +473,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </span>
    </Tooltip> 
                   </div>
-                
-               
-               
-                 
-                    <div>
+              <div>
                        <Tooltip
                       placement="right"
                       title={translatedMenuItems[9]}
                     >
-                      {user.opportunityUpdateInd ===true && (
-            
+                      {user.opportunityUpdateInd ===true && (           
             <span
-            className=" !text-icon cursor-pointer text-[grey]"
-             
+            className=" !text-icon cursor-pointer text-[grey]"            
                 onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
@@ -533,15 +488,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-icon cursor-pointer text-[tomato]"
-                            
+                          className=" !text-icon cursor-pointer text-[tomato]"                         
                           />
                         </span>
                       )}
                     </Tooltip>
-                    </div>
-                  
-                  
+                    </div>          
                     <div>
                     <StyledPopconfirm
                       title={translatedMenuItems[10]}

@@ -10,7 +10,6 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import dayjs from "dayjs";
-import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -19,6 +18,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import {
   // getAllCustomerlIST,
   getAllContact,
@@ -57,7 +57,6 @@ import {getCustomerData} from "../../../Customer/CustomerAction";
 const Option = Select;
 
 dayjs.extend(relativeTime);
-
 const getRelativeTime = (creationDate) => {
     const now = dayjs();
     const creationDay = dayjs(creationDate);
@@ -100,7 +99,6 @@ function ContactAllCardList(props) {
     props.getAllContact(page,"Customer");
     setPage(page + 1);
     props.getTeamUserList(props.userId)
-    // props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
   }, []);
 
   useEffect(() => {
@@ -165,8 +163,6 @@ function ContactAllCardList(props) {
 
   const handleLoadMore = () => {
             setPage(page + 1);
-        //       props.getAllCustomerlIST( page,
-        // props.filter?props.filter:"creationdate"
             props.getAllContact(page,
               "Customer"
               );
@@ -227,7 +223,7 @@ function ContactAllCardList(props) {
       props.updateContact(updatedData,contactId)
       setEditableField(null);
       setEditingValue("");
-    
+
   };
 
   const handleSelectCustomerFocus = () => {
@@ -248,7 +244,6 @@ function ContactAllCardList(props) {
       setDTouched(true);
     }
   };
-
   const {
     user,
     fetchingContacts,
@@ -285,8 +280,6 @@ if (loading) {
         <div class="flex items-center  h-16">
           <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
-              // primaryTitle={item.opportunityName}
-              // imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
@@ -317,17 +310,17 @@ if (loading) {
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[94%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
-        <div class=" flex justify-between w-[91%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
-        <div className=" w-[31.1rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div class=" flex justify-between w-[93%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
+        <div className=" w-[30.9rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
-        <div className=" w-[22.9rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[23.9rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
-        <div className=" max-md:w-[10.1rem] truncate w-[16.1rem]  max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
+        <div className=" max-md:w-[10.1rem] truncate w-[16rem]  max-xl:w-[10.11rem]">
+        <DesignServicesIcon className="!text-icon mr-1 text-[#b744b8]"/>
             {translatedMenuItems[2]}</div>
-        <div className="  max-md:w-[9.1rem]  truncate w-[14.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="  max-md:w-[9.1rem]  truncate w-[15.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
-        <div className=" max-md:w-[10.2rem] truncate w-[16.2rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className=" max-md:w-[10.2rem] truncate w-[16.1rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon truncate  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
         <div className=" w-[14.11rem] max-md:w-[8.11rem] truncate  max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[6]}</div>
@@ -336,7 +329,7 @@ if (loading) {
              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}        
             </div>
             )}            
-               <div className=" w-[8.1rem] max-md:w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+               <div className=" w-[8rem] max-md:w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
                <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>
         <div className="w-[4.2rem]"></div>
         </div>
@@ -601,14 +594,6 @@ No
         <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]"/>
       )}
       </span>
-      {/* <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
-         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                     
-                        tooltiptitle={translatedMenuItems[16]}
-                          onClick={() => {
-                          handleSetCurrentContactId(item);
-                          handleHospitalUploadModal(true)}}                          
-                      /></div>            */}
                 </div>
                       </div>
                   </div>

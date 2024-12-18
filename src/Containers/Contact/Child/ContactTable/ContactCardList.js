@@ -221,9 +221,6 @@ function ContactCardList(props) {
       setEditingValue("");
     
   };
-
-
-
   const {
     user,
     fetchingContacts,
@@ -245,16 +242,14 @@ function ContactCardList(props) {
   }
 
   return (
-    <>
-      
-      
+    <> 
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold sticky  z-10">
       <div class=" flex justify-between w-[100%] font-bold  font-poppins !text-lm items-end ">
-        <div className=" w-[39.4rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[27.4rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[31.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[30.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
         <div className="w-[25.4rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
@@ -267,7 +262,7 @@ function ContactCardList(props) {
         <div className="w-[16.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
          {/* Quotation */}
-        <div className=" w-[11.11rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[13.15rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (

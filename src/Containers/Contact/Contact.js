@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../Components/Placeholder";
 import AddContactImportModal from "./AddContactImportModal";
 import {
   handleContactModal,

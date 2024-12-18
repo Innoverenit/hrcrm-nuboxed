@@ -738,56 +738,45 @@ handleCurrentRowData(item);
      :
      <div className=' flex sticky  w-[87%] z-auto'>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-  <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end max-xl:text-xs max-lg:text-[0.45rem] z-10">
-        <div className="text-[#00A2E8] text-sm w-[10.6rem] truncate max-md:w-[14.6rem] max-xl:w-[14.4rem] ">
-        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}
-     
-        {/* "Name" */}           
+  <div className=" flex justify-between max-sm:hidden  w-[82%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" flex text-[#00A2E8] text-sm truncate w-[10.68rem] max-xl:w-[14.4rem] ">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
+        {/* "Name" */}              
                 </div>
-        <div className=" w-[11.1rem]  max-xl:w-[16.1rem] truncate max-md:w-[8.1rem] max-lg:w-[18.1rem]">
-        <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}  
-        {/* Sector" */}            
-                </div>
-
-                <div className=" w-[5.23rem] truncate max-md:w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[10]}
-          {/* "Category */}
-          </div> 
-
-          <div className="  w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-          <SourceIcon className="!text-icon mr-1  text-[#4b5043]"/>{translatedMenuItems[4]}      
-        {/* Source */}               
-        </div>  
-        <div className="  w-[4.2rem] truncate max-md:w-[6.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
-   
-        {/* "Deals" */}          
+        <div className="flex  w-[10.9rem] truncate max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon mr-1  text-[#84a59d]"/> {translatedMenuItems[1]}
+        {/* Sector" */}          
                 </div>   
-        
-        <div className="  w-[8.212rem]  truncate max-md:w-[7.212rem]  max-xl:w-[8.2rem]">
-        <ShowChartIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[9]}
-       {/* Shares # */}
+                <div className=" w-[5.3rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}
+          {/* "Category */}
+          </div>
+          <div className=" w-[7.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <SourceIcon className="!text-icon  mr-1 text-[#4b5043]"/>{translatedMenuItems[6]}
+         {/* Source" */}         
           </div> 
-          <div className=" w-[4.21rem] truncate max-md:w-[5.21rem] max-xl:w-[8.2rem]">
-          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[8]}
+        <div className=" w-[4.4rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon   text-[#e4eb2f]' /> {translatedMenuItems[2]}
+         {/* Deals */}      
+                </div>      
+          <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[9]}
+       {/* Shares # */}
+          </div>              
+          <div className=" w-[4.21rem] truncate max-md:w-[4.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[18]}
         {/* Club */}
           </div>
-      
-        {props.user.aiInd && (
-            <div className=" w-[4.81rem] truncate max-md:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-        <ScoreIcon className="!text-icon   text-[#f28482]"/> {translatedMenuItems[7]}
-                           
+          {props.user.aiInd && (
+            <div className=" w-[5.1rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
           {/* Score */}
             </div>
             )}
-              
-        <div className="  w-[4.3rem]  truncate max-md:w-[5.3rem] max-xl:w-[10.3rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]}
-         {/* Assigned" */}             
-         </div>
-
-       
-           
+        <div className=" w-[4.3rem] truncate max-md:w-[6.3rem] max-xl:w-[10.3rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
+        {/* Assigned" */}           
+         </div>      
       </div>
         <InfiniteScroll
         dataLength={allInvestorsbyId.length}
@@ -1044,7 +1033,7 @@ handleCurrentRowData(item);
           }}
           
         />                                                                                                  
-                   <div>
+                   <div className="w-[1.1rem]">
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"

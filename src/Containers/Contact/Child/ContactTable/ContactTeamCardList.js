@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -54,6 +54,7 @@ import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
 import ContactCETdrawer from "./ContactCETdrawer";
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 
 const Option = Select;
 
@@ -234,7 +235,6 @@ function ContactTeamCardList(props) {
       props.updateContact(updatedData,contactId)
       setEditableField(null);
       setEditingValue("");
-    
   };
 
   const handleSelectCustomerFocus = () => {
@@ -302,21 +302,18 @@ if (loading) {
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
-          </div>
-          
+          </div>       
          <div class="flex overflow-hidden">        
           <div class="font-semibold text-[#337df4] font-poppins cursor-pointer text-lm truncate " >  
           {item.fullName} 
         </div> 
         </div>     
         </div>
-        <div className="flex flex-col max-sm:justify-between ">
-          
+        <div className="flex flex-col max-sm:justify-between ">      
               <div class="overflow-hidden text-ellipsis  font-poppins cursor-pointer text-lm truncate  flex items-center">
               {item.mobileNo}                     </div>            
           <div>
-          <div class="font-medium text-xs ">
-       
+          <div class="font-medium text-xs ">    
               <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
                        {item.emailId}  
               </div>
@@ -336,7 +333,7 @@ if (loading) {
         <div className=" w-[22.9rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
         <div className=" max-md:w-[10.1rem] truncate w-[16.1rem]  max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
+        <DesignServicesIcon className="!text-icon mr-1 text-[#b744b8]"/>
             {translatedMenuItems[2]}</div>
         <div className="  max-md:w-[9.1rem]  truncate w-[14.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
