@@ -24,7 +24,6 @@ const RequirementTable = (props) => {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   
     useEffect(() => {
-      
       window.addEventListener('error', e => {
         if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
           const resizeObserverErrDiv = document.getElementById(
@@ -46,8 +45,31 @@ const RequirementTable = (props) => {
         setPage(page + 1);
         props.ClearReducerDataOfRequirement()
     }, []);
+    
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+           "1744",//Job 0
+           "1152",//Requirement
+           "213",
+            
+            "1010",  // "Billing",//5
+             
+             
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
     const handleLoadMore = () => {
-   
       setPage(page + 1);
       props.getAllRequirementTable(
         props.userId,page,
@@ -68,7 +90,7 @@ console.log(requirementTable)
                     <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                         <div className="flex justify-between w-[97.5%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
                            
-                        <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
+                        <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/>Job ID</div>
         <div className=" max-md:w-[4.2rem] truncate w-[11.5rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
         <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>
         <div className="max-md:w-[10.2rem] truncate w-[10.2rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>

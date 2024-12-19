@@ -126,11 +126,11 @@ const LocationCard = (props) => {
           endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
           height={"83vh"}
         >
-          <div className=" flex  font-bold font-poppins items-end  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  text-lm z-10 max-sm:hidden">
+          <div className=" flex  font-bold font-poppins items-end  justify-between w-[94%] mt-3 p-1 bg-transparent  sticky  text-lm z-10 max-sm:hidden">
             <div className=" max-md:w-[7.5rem] w-[7.5rem] text-[#00A2E8] text-sm">
             <ContactsIcon className="!text-icon  "/>
             {translatedMenuItems[0]}</div>
-            <div className="   max-md:w-[9.1rem] w-[9.1rem] ">
+            <div className="   max-md:w-[8.5rem] w-[8.5rem] ">
               
             </div>
             <div className=" max-md:w-[15.1rem] w-[15.1rem] ">
@@ -142,25 +142,25 @@ const LocationCard = (props) => {
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" max-md:w-[3.9rem]  w-[4.9rem] ">
+            <div className=" max-md:w-[3.9rem]  w-[4.9rem] truncate">
             <OnDeviceTrainingIcon className=" !text-icon text-[#06D6A0]"/> {translatedMenuItems[3]}{/* Refurbish */}
             </div>
-            <div className="max-md:w-[4.5rem]  w-[4.5rem]">
+            <div className="max-md:w-[5.5rem]  w-[5.5rem] truncate">
             <InventoryIcon className=" !text-icon text-[#480CA8]"/> {translatedMenuItems[4]} {/* Inventory */}
               </div>
-            <div className="max-md:w-[4.6rem] w-[4.6rem] ">
-            <LocalAtmIcon  className="!text-icon text-[#001219]"/>
+            <div className="max-md:w-[4.6rem] w-[4.6rem] truncate ">
+            <LocalAtmIcon  className="!text-icon text-[#001219] "/>
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="max-md:w-[5.52rem] w-[5.52rem]  ">
+            <div className="max-md:w-[5.52rem] w-[5.52rem] truncate ">
             <ApartmentIcon className="!text-icon text-[#9B2226] "/>
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="max-md:w-[3.3rem] w-[4.3rem] ">
+            <div className="max-md:w-[3.3rem] w-[4.3rem] truncate ">
             < AccountTreeIcon  className="!text-icon text-[#EF476F]"/>
             {translatedMenuItems[7]} {/* Project */}
               </div>
-            <div className="max-md:w-[3.9rem] w-[3.9rem] ">
+            <div className="max-md:w-[3.9rem] w-[3.9rem] truncate ">
             <PointOfSaleIcon  className="!text-icon text-[#005F73]"/>
             {translatedMenuItems[8]}{/* Retail */}
               </div>
@@ -271,7 +271,7 @@ const LocationCard = (props) => {
                         
                       </div>
                     </div>
-                    <div className=" flex  w-[2.9rem] md:w-[11.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full  max-sm:justify-between">
+                    <div className=" flex  w-[6.41rem] md:w-[6.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full  max-sm:justify-between">
 
                       <div class=" text-xs  font-poppins">
                         <RetailToggle
