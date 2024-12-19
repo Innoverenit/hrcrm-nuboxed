@@ -113,14 +113,14 @@ const [editingValue, setEditingValue] = useState("");
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm text-xs sticky max-lg:text-[0.45rem] max-xl:w-[14.9rem]  max-xl:text-[0.65rem] max-lg:text-text-xs    items-end z-10">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8] text-sm "> 
+          <div className=" w-[9.6rem] truncate text-[#00A2E8] text-sm "> 
                {/* Supplier ID */}
                <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[13.4rem] max-md:w-[13.4rem] truncate "> 
+            <div className=" w-[13.9rem] max-md:w-[13.4rem] truncate "> 
               <ApartmentIcon className="!text-icon text-[#4f5d75] "/> {props.translatedMenuItems[0]} 
               </div>
-            <div className=" w-[16.4rem] max-md:w-[16.4rem]  truncate ">
+            <div className=" w-[16.2rem] max-md:w-[16.4rem]  truncate ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>     {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[17.4rem] max-md:w-[17.4rem]  truncate  "> 
@@ -129,7 +129,7 @@ const [editingValue, setEditingValue] = useState("");
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
-            <div className="w-[6.9rem] max-md:w-[13.4rem]  truncate ">
+            <div className="w-[8.3rem] max-md:w-[13.4rem]  truncate ">
             <CheckCircleIcon className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[17]}
             {/* Approve */}
             </div>
@@ -198,7 +198,7 @@ const [editingValue, setEditingValue] = useState("");
                               </div>
                               <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
-                                <div class="text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
+                                <div class="flex text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                 <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
@@ -217,7 +217,7 @@ const [editingValue, setEditingValue] = useState("");
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
 className="cursor-pointer text-xs font-poppins">
-{item.dialCode || "Update..."}
++{item.dialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -273,12 +273,8 @@ className="cursor-pointer text-xs font-poppins">
                                 </div>
                               </div>      
                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem]  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
-
-
-
 </div>                    
-                            </div>                        
-                   
+                            </div>                                       
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
                                <Suspense> <SuplierNotApprovalPublishToggle
@@ -296,19 +292,7 @@ className="cursor-pointer text-xs font-poppins">
           }}
           
         />     
-         <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                // onClick={() => {
-                                //   props.setEditCustomer(item);
-                                //   handleUpdateCustomerModal(true);
-                                //   handleSetCurrentCustomerId(item.customerId);
-
-                                // }}
-                              />              </div>
-
-                          
-                           
+                    </div>                    
                           </div>
                         </div>
                       </>

@@ -156,15 +156,13 @@ function SuppliersDeletedCardList(props) {
 
                             </div>
                             </div>
-                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[14.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class="  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
                                   ""}
                               </div>
-
                             </div>
                             <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[6.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -172,8 +170,7 @@ function SuppliersDeletedCardList(props) {
                                   item.address.length &&
                                   item.address[0].postalCode) ||
                                   ""}
-                              </div>
-                              
+                              </div>                           
                             </div>
                             <div class="flex items-center w-[5.01rem] justify-center h-8 ml-gap bg-[#eef2f9]  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <Suspense fallback={<BundleLoader />}> <ReInstateSuppliers supplierId={item.supplierId} /></Suspense>

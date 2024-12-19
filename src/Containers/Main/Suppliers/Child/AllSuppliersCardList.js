@@ -136,8 +136,6 @@ return(
 
       </div> 
       </div>
-        
-     
       </div>
       <div className="flex flex-col max-sm:justify-between ">
         
@@ -149,15 +147,10 @@ return(
      
             <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
              itisrichudhuryiti@gmail.com
-            </div>
-         
-          
+            </div>         
         </div>
         </div>
         </div>
-        
-    
-     
     </div>
 
       </div>
@@ -208,15 +201,12 @@ return(
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[7.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                           <div class=" text-xs ml-gap  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {item.newSuppNo}
-                            
+                            {item.newSuppNo}                  
 </div>
-
-
 </div>
                             <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div className="flex w-[100%]"  >
-                              <a class=" w-[100%] overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
+                              <a class="flex items-center w-[100%] overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
                             <div className="flex">
                       {editableField?.supplierId === item.supplierId &&
@@ -251,7 +241,7 @@ return(
                             </div>      
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">             
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-                              <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" flex text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                               <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
@@ -270,7 +260,7 @@ return(
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
 className="cursor-pointer text-xs ">
-{item.dialCode || "Update..."}
++{item.dialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -297,11 +287,9 @@ className="cursor-pointer text-xs ">
 )}                 
                       </div>
                               </div>
-
-                            </div>
-                                                    
+                            </div>                                                 
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
-                                <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="flex  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'emailId' ? (
 <Input
@@ -323,12 +311,9 @@ className="cursor-pointer text-xs ">
 )}   
                               </div>
                             </div>
-                                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[17.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
-
-{/* URL */}
-                              
-</div>
-                     
+                                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[19.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+{/* URL */}                           
+</div>        
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                    
                      <Tooltip title={item.userName}>
                  <span>
@@ -371,7 +356,7 @@ className="cursor-pointer text-xs ">
               title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
-            <DeleteOutlineIcon ClassName="!text-icon text-[#ff6347] cursor-pointer"  />
+            <DeleteOutlineIcon className="!text-icon text-[#ff6347] cursor-pointer"  />
             </Popconfirm>
             </div>
             </div> 
