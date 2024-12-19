@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../Opportunity/OpportunityAction"
-
+import InputIcon from '@mui/icons-material/Input';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 import { Button,  Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -12,9 +14,6 @@ import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../CallAction";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -62,9 +61,6 @@ const CallSchema = Yup.object().shape({
     .nullable()
     .required("Input required !"),
 
-  // reminder:Yup.string()
-  // .nullable()
-  // .required("Input required !"),
 });
 function CallForm(props) {
 
@@ -103,11 +99,8 @@ function CallForm(props) {
   
   };
   useEffect(() => {
-    // props.getAssignedToList(props.orgId);
+    props.getAssignedToList();
     props.getAllSalesList();
-    // props.getAllCustomerData(props.userId)
-    // props.getFilteredEmailContact(userId);
-    // props.getAllOpportunityData(userId)
   }, []);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -174,73 +167,7 @@ function CallForm(props) {
         value: item.customerId,
       };
     });
-    const sortedEmployee =props.assignedToList.sort((a, b) => {
-      const nameA = a.empName.toLowerCase();
-      const nameB = b.empName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const employeesData = sortedEmployee.map((item) => {
-      return {
-        label: `${item.empName}`,
-        value: item.employeeId,
-      };
-    });
-    const filteredEmployeesData = employeesData.filter(
-      (item) => item.value !== props.user.userId
-    );
-    const sortedOpportunity =props.allOpportunityData.sort((a, b) => {
-      const nameA = a.opportunityName.toLowerCase();
-      const nameB = b.opportunityName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const opportunityNameOption = sortedOpportunity.map((item) => {
-      return {
-        label: `${item.opportunityName}`,
-        value: item.opportunityId,
-      };
-    });
-    const ContactData = props.filteredContact
-    .sort((a, b) => {
-      const libraryNameA = a.fullName && a.fullName.toLowerCase();
-      const libraryNameB = b.fullName && b.fullName.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    })
-    .map((item) => {
-      return {
-        label: `${item.fullName || ""}`,
-        value: item.contactId,
-      };
-    });
-
-
-    const salesNameOption = props.sales.map((item) => {
-      return {
-        label: `${item.fullName || ""}`,
-        value: item.employeeId,
-      };
-    });
+ 
 
     const handleChange = (value, placeIndex) => {
       console.log(value)
@@ -648,9 +575,9 @@ function CallForm(props) {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]" style={{scrollbarWidth:"thin"}}>
-            <Form className="form-background">
+            <Form className="form-background ">
               <div class=" flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6  max-sm:w-wk ">
                      
@@ -673,7 +600,7 @@ function CallForm(props) {
                                   : null,
                             }}
                           >
-                            <i className="fas fa-sign-in-alt"></i>
+                            <InputIcon className=" !text-icon "/>
                           </div>
                         </Tooltip>
                         {/* <Tooltip title="Outbound"> */}
@@ -691,7 +618,7 @@ function CallForm(props) {
                                   : null,
                             }}
                           >
-                            <i className="fas fa-sign-out-alt"></i>
+                               <LogoutIcon className=" !text-icon "/>
                           </div>
                         </Tooltip>
                         {/* <Tooltip title="Conference"> */}
@@ -709,7 +636,7 @@ function CallForm(props) {
                                   : null,
                             }}
                           >
-                            <i className="fas fa-network-wired"></i>
+                              <Diversity3Icon className=" !text-icon "/>
                           </div>
                         </Tooltip>
                       </div>
@@ -770,13 +697,9 @@ function CallForm(props) {
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
+                    {/* Channel */}
                       <FastField
-
                         name="modeType"
-                     
-                      //   label={
-                      //   {translatedMenuItems[2]}
-                      //  }
                         isColumn
                         options={[
                           "Phone",
@@ -876,9 +799,9 @@ function CallForm(props) {
                   </div>
                              
                 </div>
-                <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" mt-3 h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
-                <Listbox value={selected} onChange={setSelected} className=" h-[1.88rem]" style={{ height:"1.88rem"}}>
+                <Listbox value={selected} onChange={handleSelectChangeInclude} className=" h-[1.88rem]" style={{ height:"1.88rem"}}>
       {({ open }) => (
         <>
                   
@@ -892,15 +815,15 @@ function CallForm(props) {
                   static
                   className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
-                  {props.assignedToList.map((item) => (
+                  {props.assignedToList.map((includes) => (
                     <Listbox.Option
-                      key={item.employeeId}
+                      key={includes.employeeId}
                       className={({ active }) =>
                         `relative cursor-default select-none py-2 pl-3 pr-9 ${
                           active ? "text-white bg-indigo-600" : "text-gray-900"
                         }`
                       }
-                      value={item.empName}
+                      value={includes.employeeId}
                     >
                       {({ selected, active }) => (
                         <>
@@ -910,7 +833,7 @@ function CallForm(props) {
                                 selected ? "font-semibold" : "font-normal"
                               }`}
                             >
-                              {item.empName}
+                              {includes.fullName}
                             </span>
                           </div>
                           {selected && (
@@ -950,7 +873,7 @@ function CallForm(props) {
                    <Select
           showSearch
           className=" mt-1"
-          placeholder="Search or select include"
+          placeholder="Search or select"
           optionFilterProp="children"
           loading={isLoadingInclude}
           onFocus={handleSelectIncludeFocus}
@@ -970,11 +893,9 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
-
 <Select
         showSearch 
-        placeholder="Search or select prospect"
+        placeholder="Search or select"
         optionFilterProp="children"
         loading={isLoadingCustomer}
         onFocus={handleSelectCustomerFocus}
@@ -995,7 +916,6 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -1020,7 +940,6 @@ function CallForm(props) {
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
                   {props.user.crmInd === true &&(       
               <>
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
         placeholder="Search or select opportunity"
@@ -1038,24 +957,20 @@ function CallForm(props) {
       </Select>
       </>
                   )} 
-                  </div>
-                
-                 
-                <div class="mt-2">
+                  </div>               
+                <div class="mt-3">
                 <ReactDescription
                 setText={setText}
                 text={text}
-                />
-            
+                />          
                 </div>
+              </div>              
               </div>
-             
               <div class=" flex mt-1 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      title="Do you want to delete?"
-                    
+                      title="Do you want to delete?"                  
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -1063,8 +978,7 @@ function CallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        Delete
-                        
+                        Delete                       
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1081,7 +995,6 @@ function CallForm(props) {
                   <div className="font-bold font-poppins text-xs">{translatedMenuItems[15]}</div>
                   )}
                 </Button>
-              </div>
               </div>
             </Form>
             </div>

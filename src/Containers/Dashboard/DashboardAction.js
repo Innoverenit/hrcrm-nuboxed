@@ -2205,11 +2205,11 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
 };
 
 
-export const getFinaceOrderDetails = (userId,type) => (dispatch) => {
+export const getFinaceOrderDetails = (userId,type,ptype) => (dispatch) => {
   dispatch({ type: types.GET_FINACE_ORDER_DETAIL_REQUEST });
   axios
     .get(
-      `${base_url2}/dashboard/repairCount/${userId}/${type}`,
+      `${base_url2}/dashboard/repairCount/${userId}/${type}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3109,11 +3109,11 @@ export const getRepairVolumeChart = (userId,type,dtype) => (dispatch) => {
 
 
 
-export const getReorderdata = () => (dispatch) => {
+export const getReorderdata = (userType) => (dispatch) => {
   dispatch({ type: types.GET_REORDER_DATA_REQUEST });
 
   axios
-    .get(`${base_url2}/po/getReorder/all/material`, {
+    .get(`${base_url2}/po/getReorder/all/material/${userType}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

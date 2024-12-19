@@ -68,6 +68,7 @@ function General(props) {
     packageInd: props.requirementDuration.packageInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    manfProcInd: props.requirementDuration.manfProcInd,
     nwTypInd: props.requirementDuration.nwTypInd,
     mfaLogInd: props.requirementDuration.mfaLogInd,
     mfaCPInd: props.requirementDuration.mfaCPInd,
@@ -137,6 +138,7 @@ function General(props) {
     enaShipInd: props.requirementDuration.enaShipInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    manfProcInd: props.requirementDuration.manfProcInd,
     nwTypInd: props.requirementDuration.nwTypInd,
     mfaLogInd: props.requirementDuration.mfaLogInd,
     mfaCPInd: props.requirementDuration.mfaCPInd,
@@ -223,6 +225,7 @@ function General(props) {
           bestBfrDayRng: formValues.bestBfrDayRng,
           packageInd: formValues.packageInd,
           disPackInd: formValues.disPackInd,
+          manfProcInd: formValues.manfProcInd,
           nwTypInd: formValues.nwTypInd,
           mfaLogInd: formValues.mfaLogInd,
           mfaCPInd: formValues.mfaCPInd,
@@ -1176,6 +1179,27 @@ function General(props) {
         checkedChildren={"Item"}
         unCheckedChildren={"Order"}
         onChange={(checked) => handleToggleChange("disPackInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">Manufacturing process</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("Manufacturing process")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.manfProcInd}
+        checkedChildren={"Cell"}
+        unCheckedChildren={"Batch"}
+        onChange={(checked) => handleToggleChange("manfProcInd", checked)}
       />
     </Popconfirm>
   </div>

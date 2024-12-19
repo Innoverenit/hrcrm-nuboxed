@@ -1,5 +1,5 @@
 
-import React, {  useEffect, useState } from "react";
+import React, {  useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,  Badge } from "antd";
@@ -17,12 +17,12 @@ import {
     emptyOrders
 } from "./OrderAction";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
 function CompleteOrder(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -224,6 +224,7 @@ function CompleteOrder(props) {
                     })}
                 </InfiniteScroll>
             </OnlyWrapCard>
+            <Suspense>
             <AddNotesOrderDrawer
                 particularRowData={particularRowData}
                 addNotesInOrder={props.addNotesInOrder}
@@ -244,6 +245,7 @@ function CompleteOrder(props) {
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}
                 addOrderDetailsModal={props.addOrderDetailsModal} />
+            </Suspense>
         </>
     );
 

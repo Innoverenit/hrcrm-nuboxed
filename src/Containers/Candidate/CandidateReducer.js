@@ -262,6 +262,9 @@ const initialState = {
   fetchingActivityCandidateError: false,
   activityCandidate: [],
 
+
+  updatePlacementModal:false,
+
   fetchingCandidatesTreeMap:false,
   fetchingCandidatesTreeMapError:false,
   candidateTreeMap:{},
@@ -718,6 +721,10 @@ export const candidateReducer = (state = initialState, action) => {
         addingCandidateEmploymentDetailsError: true,
       };
 
+
+       case types.HANDLE_PLACEMENT_PULSE_MODAL:
+              return { ...state, updatePlacementModal: action.payload };
+
     //FETCH CANDIDATE EMPLOYMENT DETAILS
     case types.GET_CANDIDATE_EMPLOYMENT_DETAILS_REQUEST:
       return { ...state, fetchingCandidateEmploymentDetails: true };
@@ -765,14 +772,14 @@ export const candidateReducer = (state = initialState, action) => {
         ...state,
         updatingCandidateEmploymentDetails: false,
         updateCandidateEmploymentModal: false,
-        skillExperince:[action.payload,...state.skillExperince]
-        // skillExperince: state.skillExperince.map((item) => {
-        //   if (item.skillSetDetailsId === action.payload.skillSetDetailsId) {
-        //     return action.payload;
-        //   } else {
-        //     return item;
-        //   }
-        // }),
+        // skillExperince:[action.payload,...state.skillExperince]
+        skillExperince: state.skillExperince.map((item) => {
+          if (item.skillSetDetailsId === action.payload.skillSetDetailsId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_CANDIDATE_EMPLOYMENT_DETAILS_FAILURE:
       return {
@@ -1675,6 +1682,10 @@ case types.ADD_EXPERIENCE_BY_CANDIDATE_ID_REQUEST:
                     case types.HANDLE_EMAIL_DRAWER_MODAL:
                       return { ...state, addemaildrawermodal: action.payload };
                 
+                      case types.HANDLE_CLAER_REDUCER_DATA_CANDIDATE:
+                        return { ...state, 
+                          topicsByCandidateId: [], 
+                        }; 
 
     default:
       return state;

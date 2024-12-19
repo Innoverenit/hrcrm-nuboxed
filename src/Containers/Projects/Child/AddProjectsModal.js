@@ -9,8 +9,7 @@ const AddProjectsModal = (props) => {
     <>
       <StyledDrawer
         title="Project"
-        width="60%"
-        style={{marginTop:"3rem"}}
+        width="50%"
         visible={props.addProjectsModal}
         closable
         destroyOnClose

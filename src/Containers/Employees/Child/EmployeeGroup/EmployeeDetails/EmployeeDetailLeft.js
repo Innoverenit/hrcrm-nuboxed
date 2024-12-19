@@ -1,6 +1,8 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProfileTopicOfIntrest from "../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateCards/CandidateTopicOfInterest"
+import CertificationLibrary from "../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateCards/CertificationLibrary";
 const EmployeeOverviewCard = lazy(() => import("./EmployeeCards/EmployeeOverviewCard"));
 const EmployeeTopicOfInterest = lazy(() => import("./EmployeeCards/EmployeeTopicOfInterest"));
 const EmployeeStatusCard = lazy(() => import("./EmployeeCards/EmployeeStatusCard"));
@@ -11,20 +13,37 @@ const EmployeeCertificationLibrary = lazy(() => import("./EmployeeCards/Employee
 class EmployeeDetailLeft extends Component {
   render() {
     const { singleEmployee } = this.props;
-    
+    console.log(singleEmployee)
     return (
       <div class=" flex flex-col display-block" >
-        <EmployeeOverviewCard singleEmployee={singleEmployee}
+        {/* <EmployeeOverviewCard singleEmployee={singleEmployee}
          translateText={this.props.translateText}
-         selectedLanguage={this.props.selectedLanguage} />
-        <EmployeeTopicOfInterest singleEmployee={singleEmployee} 
+         selectedLanguage={this.props.selectedLanguage} /> */}
+        {/* <EmployeeTopicOfInterest singleEmployee={singleEmployee} 
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}/>
         <EmployeeCertificationLibrary 
         singleEmployee={singleEmployee} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}
+        /> */}
+ <ProfileTopicOfIntrest
+         userType={"employee"}
+         uniqueId={this.props.singleEmployee.employeeId}
+        // candidate={candidate}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+      translatedMenuItems={this.props.translatedMenuItems}
         />
+        <CertificationLibrary
+         userType={"employee"}
+         uniqueId={this.props.singleEmployee.employeeId}
+        // candidate={candidate} 
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+        />
+
         <EmployeeStatusCard singleEmployee={singleEmployee} 
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}/>

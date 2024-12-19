@@ -9,7 +9,6 @@ import {
   YAxis,
   Tooltip
 } from "recharts";
-import { SubTitle } from "../UI/Elements";
 import { CurrencySymbol } from "../Common";
 const colors = [
   { color: "rgba(160, 200, 241, 1)" },
@@ -76,31 +75,15 @@ class LineChart_ extends Component {
 
 export default LineChart_;
 
-// const getIntroOfPage = (label) => {
-//     if (label === 'Page A') {
-//       return "Page A is about men's clothing";
-//     } if (label === 'Page B') {
-//       return "Page B is about women's dress";
-//     } if (label === 'Page C') {
-//       return "Page C is about women's bag";
-//     } if (label === 'Page D') {
-//       return 'Page D is about household goods';
-//     } if (label === 'Page E') {
-//       return 'Page E is about food';
-//     } if (label === 'Page F') {
-//       return 'Page F is about baby food';
-//     }
-//   };
-
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
     return (
       <div>
-        <SubTitle>{`${dayjs(label).format("l")}`}</SubTitle>
-        <SubTitle>
+       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">{`${dayjs(label).format("l")}`}</div>
+       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">
           <CurrencySymbol currencyType={payload[0].payload.currency} />
           {`  ${payload[0].value}`}
-        </SubTitle>
+        </div>
       </div>
     );
   }

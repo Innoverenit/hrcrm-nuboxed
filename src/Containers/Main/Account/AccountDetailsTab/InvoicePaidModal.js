@@ -11,6 +11,9 @@ class InvoicePaidModal extends Component {
             handlePaidModal,
             ...formProps
         } = this.props;
+
+        console.log("Tyyy",this.props.activeTab);
+        
         return (
             <>
                 <StyledDrawer
@@ -29,13 +32,17 @@ class InvoicePaidModal extends Component {
                                  particularRowData={this.props.particularRowData}  
                                 distributorId={this.props.distributorId}
                                 selectedLanguage={this.props.selectedLanguage}
-                                translateText={this.props.translateText}  />
+                                translateText={this.props.translateText}  
+                                activeTab={this.props.activeTab}
+                                />
 </div>
 <div class="w-[75%] flex ml-2">
                                 <OrderPaymentTable 
                                 particularRowData={this.props.particularRowData}
                                    selectedLanguage={this.props.selectedLanguage}
-                                   translateText={this.props.translateText}  />
+                                   translateText={this.props.translateText}  
+                                   activeTab={this.props.activeTab}
+                                   />
 </div>
                     </div>
                                 

@@ -58,8 +58,15 @@ function Inventory(props) {
        "1083",//Supplier36
        "771", //  Final37
        "1044",
-       "800"
-      //  ""//  Waste
+       "800",
+     "1715",//  Waste
+     "1721",
+     "1719",
+     "1492",
+     "1720",
+     "268"
+    
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

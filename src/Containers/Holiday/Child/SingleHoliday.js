@@ -6,7 +6,7 @@ import { addapplyOffer } from "../HolidayAction";
 import styled from "styled-components";
 import { Button, DatePicker, Switch } from "antd";
 import { TextInput, } from "../../../Components/UI/Elements";
-import { ActionIcon } from "../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 import { elipsize } from "../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
@@ -127,23 +127,23 @@ class SingleHoliday extends Component {
               
                 {this.props.role === "ADMIN" && (
                   <div style={{}}>
-                    <ActionIcon
+                    <BorderColorIcon
                       tooltipTitle="Edit"
                       iconType="edit"
                       handleIconClick={toggleViewType}
-                      size="0.75em"
+                       className=" !text-red-600 cursor-pointer !text-icon "
                     />
                   </div>)}
                 
                   {this.props.role === "ADMIN" && (
                   <div class=" ml-2">
-                    <ActionIcon
+                    <BorderColorIcon
                       tooltipTitle="Delete"
                       iconType="delete"
                       //  onClick={() => this.props.handleDeleteHoliday(holidayId)}
                       // handleIconClick={item.holidayId}
                       handleIconClick={() => this.props.handleDeleteHoliday(holidayId)}
-                      size="0.75em"
+                       className=" !text-red-600 cursor-pointer !text-icon "
                     />
                   </div>)}
               </div>

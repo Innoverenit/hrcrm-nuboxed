@@ -40,10 +40,12 @@ class ReportDetailView extends Component {
  {buttonData.filter(button => visibilityConditions[button.name])
  .map((button, index) => (
 
-        <div key={index} style={{ marginBottom: '10px' }}>
+        <div key={index} className=" m-1 mb-2">
 
-          <Button style={{backgroundColor:this.props.selectedCategory === button.name ? "tomato":""}}
-          onClick={() => this.props.handleButtonClick(button.name)}>
+          <Button style={{backgroundColor:this.props.selectedCategory === button.name ? "tomato":"",
+            color:this.props.selectedCategory === button.name ? "white":""
+           }}
+          onClick={() => this.props.handleButtonClick(button.name)} >
             {button.name}
             </Button>
          

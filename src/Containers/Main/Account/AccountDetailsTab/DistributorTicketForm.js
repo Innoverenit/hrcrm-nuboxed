@@ -229,7 +229,7 @@ const [selectedStage, setSelectedStage] = useState(null);
           <div class="max-sm:h-[30rem] overflow-y-auto">
             <Form className="form-background">
               <div class="flex justify-between  pr-2 max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                
                   <div class=" mt-3">
                   <Field
@@ -280,7 +280,7 @@ Assign Form
                    
                   </div>
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                  
                       {/* <Field
                         name="vatNo"
@@ -309,7 +309,7 @@ Assign Form
       </Select>
 
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                    
                     <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
                     <Select
@@ -346,12 +346,12 @@ Assign Form
 
 
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
                 >
 
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                  
                       {/* <Field
                         name="vatNo"
@@ -389,7 +389,7 @@ Assign Form
                                         />
 
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                    
                     <Field
                                             name="endOn"

@@ -1,4 +1,4 @@
-import React, {  useEffect, useState  } from "react";
+import React, {  useEffect, useState, lazy, Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input } from "antd";
@@ -18,14 +18,15 @@ import dayjs from "dayjs";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { MultiAvatar } from "../../../Components/UI/Elements";
-import ProcureOrderModal from "./Child/ProcureOrderModal";
-import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
-import ProcureSearchedData from "./ProcureSearchedData";
 import { base_url2 } from "../../../Config/Auth";
-import EmptyPage from "../EmptyPage";
 import axios from "axios";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
+
+const ProcureOrderModal = lazy(() => import("./Child/ProcureOrderModal"));
+const AddProcureNotesDrawerModal=lazy(()=>import("./AddProcureNotesDrawerModal"));
+const ProcureSearchedData = lazy(() => import("./ProcureSearchedData"));
+const EmptyPage = lazy(() => import("../EmptyPage")); //2
+const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
@@ -121,7 +122,7 @@ useEffect(() => {
   };
   const viewAnDownloadPdf= async (item) => {  
     try {
-      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.iteamId}`, {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.iteamId}`, {
         responseType: 'blob',
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -476,7 +477,7 @@ console.log(props.fetchingAllProcure)
         )}
         </InfiniteScroll>
       </div>
-
+<Suspense>
       <ProcureOrderModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -490,7 +491,7 @@ console.log(props.fetchingAllProcure)
         particularRowData={particularRowData}
         addDrawerProcureNotesModal={props.addDrawerProcureNotesModal}
         handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}
-      />
+      /></Suspense>
     </>
       )}
   </div>

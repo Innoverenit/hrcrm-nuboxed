@@ -8,8 +8,8 @@ const AddSuppliersModal = (props) => {
     return (
         <>
             <StyledDrawer
-              title={props.translatedMenuItems[13]} 
-                width="60%"
+              title={props.translatedMenuItems[40]} 
+                width="50%"
                 visible={addSuppliersModal}
                 closable
                 destroyOnClose

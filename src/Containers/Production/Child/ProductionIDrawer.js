@@ -1,6 +1,5 @@
 import React, { lazy, Component,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-
 import { BundleLoader } from "../../../Components/Placeholder";
 const ProductionIDCard = lazy(() => import("./ProductionIDCard"));
 

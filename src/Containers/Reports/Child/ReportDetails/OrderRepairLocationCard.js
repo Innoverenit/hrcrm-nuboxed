@@ -26,6 +26,39 @@ const OrderRepairLocationCard = (props) => {
   const [data1, setData1] = useState([]);
   const [loading1, setLoading1] = useState(false);
 
+     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+          const [loading, setLoading] = useState(true);
+      
+         useEffect(() => {
+            const fetchMenuTranslations = async () => {
+              try {
+                setLoading(true); 
+                const itemsToTranslate = [
+            '71', // 0type
+        '660', // 1Order
+        '111', // 2end
+        '218', // 3 Value
+        '76', // assignedto
+        '228',// all
+        '268',// complete 
+        // '', // incomplete
+      
+       
+         
+        
+                ];
+        
+                const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+                setTranslatedMenuItems(translations);
+                setLoading(false);
+              } catch (error) {
+                setLoading(false);
+                console.error('Error translating menu items:', error);
+              }
+            };
+        
+            fetchMenuTranslations();
+          }, [props.selectedLanguage]);
     const fetchData1 = async (ev) => {
         const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;
         const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
@@ -111,23 +144,14 @@ const OrderRepairLocationCard = (props) => {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[5rem] text-[white] flex justify-center bg-[#ff5e00]">
-       All
+        {translatedMenuItems[5]}
            </div>
-           <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-          Name
-          </div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">
-        Order
-                   #</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem]" >end
-                       </div>
+           <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">{translatedMenuItems[0]}</div>
+        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[1]} #</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[2]}</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Value"
-                       </div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-           
-                       
-                       </div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">{translatedMenuItems[3]}</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">{translatedMenuItems[4]}</div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -237,20 +261,14 @@ const OrderRepairLocationCard = (props) => {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[5rem] text-[white] flex justify-center bg-[#0ba0db]">
-       Complete
+        {translatedMenuItems[6]}
            </div>
-           <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-          Name
-          </div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">Order #</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">end"
-                      </div>
+           <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">{translatedMenuItems[0]}</div>
+        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[1]} #</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[2]}</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Value</div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-           
-                       
-                       </div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">{translatedMenuItems[3]}</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">{translatedMenuItems[4]}</div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -361,24 +379,16 @@ const OrderRepairLocationCard = (props) => {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[5rem] text-[white] flex justify-center bg-[#db0bae]">
-       Incomplete
+        incomplete{/* {translatedMenuItems[7]} */}
            </div>
-           <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-          Name
-          </div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">Order
-                       #</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">end
-                    </div>
+        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">{translatedMenuItems[0]}</div>
+        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[1]} #</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[2]}</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Value
-                      </div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-           
-                       
-                       </div>
-                        <div className="md:w-[6.12rem]"></div>
-                     
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">{translatedMenuItems[3]}</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">{translatedMenuItems[4]}</div>
+       
+        <div className="w-[6.01rem]"></div>
 
 
                     </div>

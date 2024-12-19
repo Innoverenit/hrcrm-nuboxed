@@ -46,7 +46,7 @@ country:props.countryId,
         {({ values }) => (
           <Form className="form-background">
             <div class="flex justify-between  pr-2 max-sm:flex-col">
-            <div class=" h-full w-w47.5 max-sm:w-wk"   >
+            <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
             <div class=" mt-2">
                 <Field
                   isRequired
@@ -82,7 +82,7 @@ country:props.countryId,
                 />
                    </div>                                                 
               </div>
-              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
               <div class=" mt-2">
                 <Field
                   isRequired

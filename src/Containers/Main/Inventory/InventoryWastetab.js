@@ -441,7 +441,7 @@ console.log(selectedLocation)
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-sm w-[14.5rem] truncate max-md:w-[19.5rem]">PO ID</div>
                         <div className=" w-[25.52rem] truncate max-md:w-[11.52rem] " >
-                        <AddShoppingCartIcon className="!text-icon "/> Item 
+                        <AddShoppingCartIcon className="!text-icon "/> {props.translatedMenuItems[38]}
                            </div>
                            <div className=" w-[15.122rem] truncate max-md:w-[12.122rem]" >       
                         <FactoryIcon className='!text-base  text-[#e4eb2f]' />  {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}  
@@ -460,12 +460,12 @@ console.log(selectedLocation)
 
                         </div> */}
                         <div className=" w-[9.11rem] truncate max-md:w-[8.12rem]" >       
-                        <DateRangeIcon className="!text-icon "/>  Best Use Date
+                        <DateRangeIcon className="!text-icon "/> {props.translatedMenuItems[42]}
 
                         </div>
 
                         <div className=" w-[5.12rem]" >       
-                    Units
+                        {props.translatedMenuItems[26]}
 
                         </div>
                         <div className=" w-[9.3rem] truncate max-md:w-[9.2rem]" >       
@@ -478,11 +478,11 @@ console.log(selectedLocation)
                         </div>
             
                         <div className=" w-[7.12rem]">       
-                    Country
+                        {props.translatedMenuItems[1]}
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                        <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/> Total Value
+                        <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/> {props.translatedMenuItems[43]}
 
                         </div>
                    

@@ -8,6 +8,10 @@ import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import AttractionsIcon from '@mui/icons-material/Attractions';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 function ProductbuilderTable2 (props) {
 
   useEffect(()=> {
@@ -115,14 +119,23 @@ return (
   
   <div className=' flex sticky z-auto'> 
   <div class="rounded m-1 p-1  w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-         <div className=""></div>
-         <div className=" md:w-[9.5rem]">{translatedMenuItems[0]}</div>
-         <div className=" md:w-[8.2rem] ">{translatedMenuItems[1]}</div>
-        <div className=" md:w-[8.2rem] ">{translatedMenuItems[2]}</div>
-        <div className="md:w-[9.8rem]">{translatedMenuItems[3]}</div>
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   items-end ">
+         
+         <div className=" w-[11.5rem] truncate  text-sm text-[#00A2E8]">
+         <ContactsIcon className="!text-icon mr-1 text-[#00A2E8]"/>
+          {translatedMenuItems[0]}</div>
+         <div className=" md:w-[8.2rem] ">{
+         translatedMenuItems[1]}</div>
+        <div className=" md:w-[7.2rem] ">
+          <FormatListNumberedIcon className="!text-icon mr-1 text-[#42858c]" />
+          {translatedMenuItems[2]}</div>
+        <div className="md:w-[9.8rem]">
+        <AttractionsIcon className="  !text-icon text-[#8e71ed]" /> 
+        {translatedMenuItems[3]}</div>
     
-        <div className=" md:w-[4.21rem] ">{translatedMenuItems[4]}</div>
+        <div className=" md:w-[4.21rem] ">
+        <AcUnitIcon className="  !text-icon text-[#8e71ed]" />
+        {translatedMenuItems[4]}</div>
         <div className=" md:w-[3.22rem] ">{translatedMenuItems[5]}</div>
          <div className=" md:w-[10.23rem] ">{translatedMenuItems[6]}</div>
         <div className="w-12"></div>
@@ -130,10 +143,10 @@ return (
             <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky", scrollbarWidth:"thin" }}>
              {data.map((item) => {
           return (
-<div key={item.productionBuilderId}>
+<div key={item.productionBuilderId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  md:flex row-auto    max-sm:border-b-4 max-sm:border-blue-500">
 
-<div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  "    >
-<div className=" flex    w-[9rem]   max-sm:w-full">
+<div className="flex max-sm:justify-between max-sm:w-wk items-center "    >
+<div className="  flex w-[12.5rem] items-center max-sm:w-auto h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
                     <div className="flex max-sm:w-full ">
                       <div>
                        
@@ -156,7 +169,7 @@ return (
                       </div>
                     </div>
                   </div>
-                  <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex    md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto ">
     <div class=" text-xs  font-poppins">
                       
                       {item.hsn}
@@ -164,21 +177,21 @@ return (
                     </div>
     </div>
 
-    <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
     <div class=" text-xs  font-poppins">
                       
                       {item.categoryName} {item.subCategoryName}
                      
                     </div>
     </div>
-    <div className=" flex    md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[12.21rem] max-sm:flex-row w-full max-sm:justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto ">
       
         <div class=" text-xs    font-poppins">
         {item.attributeName} {item.subAttributeName}
        
                     </div>
     </div>
-    <div className=" flex  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
       
       <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -195,7 +208,7 @@ return (
                     )}
                     </div>
   </div>
-  <div className=" flex md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
       
       <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -212,7 +225,7 @@ return (
                     )}
                     </div>
   </div>
-  <div className=" flex    md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex    md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between h-8  ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto ">
       
       <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -230,7 +243,7 @@ return (
                     )}
                     </div>
   </div>
-  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+  <div class="flex max-sm:justify-between h-8  items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto ">
  
                         <div>
                           <Tooltip title={translatedMenuItems[7]}>
@@ -246,7 +259,7 @@ return (
                           </Tooltip>
 
                         </div>
-                        <div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 

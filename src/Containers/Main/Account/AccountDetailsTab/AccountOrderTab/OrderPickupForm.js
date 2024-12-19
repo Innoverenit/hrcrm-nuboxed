@@ -16,7 +16,7 @@ const OrderPickupForm = (props) => {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    '650', // 0 Location650
+    '658', // 0 Location650
     '74', // 1 Date74
     '154', // 2 Submit
    

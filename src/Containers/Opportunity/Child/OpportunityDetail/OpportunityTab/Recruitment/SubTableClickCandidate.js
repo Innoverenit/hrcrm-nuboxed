@@ -2,6 +2,7 @@ import React,{Component,} from "react";
 import { connect } from "react-redux";
 
 import { Suspense } from "react";
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import styled from 'styled-components'
 import {
   getCandidateById,
@@ -203,7 +204,7 @@ class SubTableClickCandidate extends Component {
       }
    },
    {
-     title:"Recruit Owner",
+     title:"Recruiter",
      dataIndex:"recruitOwner",
      width:"16%",
      
@@ -265,97 +266,98 @@ class SubTableClickCandidate extends Component {
       const avilableDate = dayjs(item.avilableDate).format("ll");     
       return (
         <>
+         {`${dayjs(item.avilableDate).format("YYYY/MM/DD")}`}
           {/* {item.candidateBilling} {item.currency}  */}
-          {dayjs(item.avilableDate).format("L")}
+          {/* {dayjs(item.avilableDate).format("L")} */}
          
         </>
       );
     },
   },
-    {
-        title: "Stages",
+    // {
+    //     title: "Stages",
        
-        dataIndex: "callType",
-        width: "7%",
-        render: (name, item, i) => {
-          var findProbability = 0;
-          item.stageList.forEach((element) => {
-            if (element.stageId === item.stageId) {
-              findProbability = element.probability;
-            }
-          });
+    //     dataIndex: "callType",
+    //     width: "7%",
+    //     render: (name, item, i) => {
+    //       var findProbability = 0;
+    //       item.stageList.forEach((element) => {
+    //         if (element.stageId === item.stageId) {
+    //           findProbability = element.probability;
+    //         }
+    //       });
 
-          // const config = {
-          //   height: 100,
-          //   width: 100,
-          //   autoFit: false,
-          //   percent: findProbability,
-          //   color: ['#5B8FF9', '#6'],
-          // };
-          return (
-            <span>
-              <Dropdown
-                overlay={
-                  <div>
-                    <Menu mode="horizontal">
-                      <Menu.Item
-                        style={{
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          backgroundColor: "#F5F5F5",
-                        }}
-                      >
-                        <RecruitmentStages
-                          rec={item}
-                          stageId={item.stageId}
-                          recruitOwner={item.recruitOwner}
-                          candidateName={item.candidateName}
-                          approveInd={item.approveInd}
-                          rejectInd={item.rejectInd}
-                          stageClick={(stageId) => {
-                            this.props.LinkStageRecruit(
-                              {
-                                opportunityId: this.props.opportunityId,
-                                stageId: stageId,
-                                recruitmentProcessId: item.recruitmentProcessId,
-                                recruitmentId: item.recruitmentId,
-                                profileId: item.profileId,
-                              },
-                              // this.props.emailSendStage({
-                              //   opportunityId: item.opportunityId,
-                              //   userId: this.props.userId,
-                              //   profileId: item.profileId,
-                              //   stageId: stageId,
-                              //   candidateId: item.contactId,
-                              // })
-                            );
-                          }}
-                        />{" "}
-                      </Menu.Item>
-                    </Menu>
-                  </div>
-                }
-                trigger={["click"]}
-              >
-                <Tooltip title={item.stageName}>
-                  {" "}
-                   {/* {item.recruitOwner ===this.props.fullName && (  */}
-                  <Progress
-                    type="circle"
-                    style={{ cursor: "pointer",color:"red" }}
-                    percent={findProbability}
-                    //disable={true}
-                    width={30}
-                     strokeColor={"#005075"}
+    //       // const config = {
+    //       //   height: 100,
+    //       //   width: 100,
+    //       //   autoFit: false,
+    //       //   percent: findProbability,
+    //       //   color: ['#5B8FF9', '#6'],
+    //       // };
+    //       return (
+    //         <span>
+    //           <Dropdown
+    //             overlay={
+    //               <div>
+    //                 <Menu mode="horizontal">
+    //                   <Menu.Item
+    //                     style={{
+    //                       paddingLeft: 5,
+    //                       paddingRight: 5,
+    //                       backgroundColor: "#F5F5F5",
+    //                     }}
+    //                   >
+    //                     <RecruitmentStages
+    //                       rec={item}
+    //                       stageId={item.stageId}
+    //                       recruitOwner={item.recruitOwner}
+    //                       candidateName={item.candidateName}
+    //                       approveInd={item.approveInd}
+    //                       rejectInd={item.rejectInd}
+    //                       stageClick={(stageId) => {
+    //                         this.props.LinkStageRecruit(
+    //                           {
+    //                             opportunityId: this.props.opportunityId,
+    //                             stageId: stageId,
+    //                             recruitmentProcessId: item.recruitmentProcessId,
+    //                             recruitmentId: item.recruitmentId,
+    //                             profileId: item.profileId,
+    //                           },
+    //                           // this.props.emailSendStage({
+    //                           //   opportunityId: item.opportunityId,
+    //                           //   userId: this.props.userId,
+    //                           //   profileId: item.profileId,
+    //                           //   stageId: stageId,
+    //                           //   candidateId: item.contactId,
+    //                           // })
+    //                         );
+    //                       }}
+    //                     />{" "}
+    //                   </Menu.Item>
+    //                 </Menu>
+    //               </div>
+    //             }
+    //             trigger={["click"]}
+    //           >
+    //             <Tooltip title={item.stageName}>
+    //               {" "}
+    //                {/* {item.recruitOwner ===this.props.fullName && (  */}
+    //               <Progress
+    //                 type="circle"
+    //                 style={{ cursor: "pointer",color:"red" }}
+    //                 percent={findProbability}
+    //                 //disable={true}
+    //                 width={30}
+    //                  strokeColor={"#005075"}
                    
-                  />
-                   {/* )}  */}
-                </Tooltip>
-              </Dropdown>
-            </span>
-          );
-        },
-       },
+    //               />
+    //                {/* )}  */}
+    //             </Tooltip>
+    //           </Dropdown>
+    //         </span>
+    //       );
+    //     },
+    //    },
     {
         title: "",
         dataIndex: "callType",
@@ -557,38 +559,34 @@ class SubTableClickCandidate extends Component {
     },
   },
 
-  // { 
-  //   title: "Documents Awaited" ,
-  //   dataIndex:"documentSetList",
-  //   width: "15%",
-  // },
 
-  {
-    title:"Documents Awaited" ,
-    // dataIndex: "documentSetList",
-    width: "17%",
-    // ...getColumnSearchProps("documentSetList"),
-    render: (name, item, i) => {
-      const data =
-        item.documentSetList === null
-          ? []
-          : item.documentSetList.filter((document) => {
-              return document !== null && document !== "";
-            });
-  const data1=item.documentSetList;
-      return (
+
+  // {
+  //   title:"Documents Awaited" ,
+  //   // dataIndex: "documentSetList",
+  //   width: "17%",
+  //   // ...getColumnSearchProps("documentSetList"),
+  //   render: (name, item, i) => {
+  //     const data =
+  //       item.documentSetList === null
+  //         ? []
+  //         : item.documentSetList.filter((document) => {
+  //             return document !== null && document !== "";
+  //           });
+  // const data1=item.documentSetList;
+  //     return (
        
-          data1.length === 0 ? (
-            "None"
-          ) : (
-            <span>
-              <DocumentsLoadMore documentSetList={data} />
-            </span>
-          )
-      );
-    },
+  //         data1.length === 0 ? (
+  //           "None"
+  //         ) : (
+  //           <span>
+  //             <DocumentsLoadMore documentSetList={data} />
+  //           </span>
+  //         )
+  //     );
+  //   },
     
-  },
+  // },
 
 
 
@@ -614,7 +612,8 @@ class SubTableClickCandidate extends Component {
         return <>
         {item.onboardDate === null ? "None" :
           <span>
-            {dayjs(item.onboardDate).format("L")}
+             {`${dayjs(item.onboardDate).format("YYYY/MM/DD")}`}
+            {/* {dayjs(item.onboardDate).format("L")} */}
           </span>
         }
       </>
@@ -673,9 +672,10 @@ class SubTableClickCandidate extends Component {
                       this.state.profileId === item.profileId &&
                       "#1890ff",
                   }}
-                >{user.pulseAccessInd ===true && (
-                    <PulseIcon></PulseIcon>
-                    )}          
+                >
+                  {/* {user.pulseAccessInd ===true && ( */}
+                  <MonitorHeartIcon className=" !text-icon text-[#df9697]"/>
+                    {/* )}           */}
                   <Tooltip 
                   title="Access Details"
                 

@@ -3,9 +3,7 @@ import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 
 import ProductionQualityData from "../Child/ProductionQualityData"
-//import QualityProductForm from "../ProductTable/QualityProductForm"
 import { BundleLoader } from "../../../Components/Placeholder";
-//const ProductCellCard = lazy(() => import("./ProductCellCard"));
 
 class AddProductionQualityModal extends Component {
   render() {
@@ -31,6 +29,9 @@ class AddProductionQualityModal extends Component {
         /> */}
         <ProductionQualityData
         particularDiscountData={this.props.particularDiscountData}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
         />
           </Suspense>
 

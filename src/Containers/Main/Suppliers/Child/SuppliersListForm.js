@@ -70,7 +70,7 @@ const SuppliersListForm = (props) => {
         <div className="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[33rem]">
           <Form className="form-background">
             <div className="flex justify-between max-sm:flex-col">
-              <div className="h-full w-w47.5 max-sm:w-full">
+              <div className="h-full w-w47.5.5 max-sm:w-full">
                 <Field
                   name="material"
                   label={props.translatedMenuItems[32]}
@@ -81,7 +81,7 @@ const SuppliersListForm = (props) => {
                   inlineLabel
                 />
                 <div className="flex justify-between mt-2">
-                <div className="w-w47.5">
+                <div className="w-w47.5.5">
                   <Field
                     name="date"
                     label={props.translatedMenuItems[30]}
@@ -93,7 +93,7 @@ const SuppliersListForm = (props) => {
                     inlineLabel
                   />
                 </div>
-                <div className="w-w47.5">
+                <div className="w-w47.5.5">
                
                <div style={{ fontWeight: "bold", fontSize: "0.75rem" }}>
                 {/* Quality */} {props.translatedMenuItems[28]}
@@ -112,9 +112,9 @@ const SuppliersListForm = (props) => {
              </div>
                 </div>               
               </div>
-              <div className="h-full w-w47.5 max-sm:w-full">
+              <div className="h-full w-w47.5.5 max-sm:w-full">
               <div className="flex justify-between">
-                  <div className="w-w47.5 max-sm:w-[40%]">
+                  <div className="w-w47.5.5 max-sm:w-[40%]">
                     <Field
                       isRequired
                       name="price"
@@ -126,7 +126,7 @@ const SuppliersListForm = (props) => {
                       inlineLabel
                     />
                   </div>
-                  <div className="w-w47.5 max-sm:w-[50%]">
+                  <div className="w-w47.5.5 max-sm:w-[50%]">
                     <Field
                       name="currency"
                       label={props.translatedMenuItems[33]}
