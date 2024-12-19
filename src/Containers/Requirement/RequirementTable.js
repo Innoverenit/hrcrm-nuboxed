@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import HelpIcon from "@mui/icons-material/Help";
+import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
+import SkillBarChatModal from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/SkillBarChartModal";
+import RecruitmentFilter from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
 import {getAllRequirementTable,ClearReducerDataOfRequirement} from "../Requirement/RequirementAction"
+import {handleBarChartOrderModal,getSkillsCount} from "../Opportunity/OpportunityAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -206,7 +211,168 @@ console.log(requirementTable)
             </Avatar.Group>
                                     </div>
                                 </div>
-                              </div>                
+                              </div>  
+
+                                         <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Category */}
+                            <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
+                                    {/* {date} */}
+                                    <RecruitmentFilter
+                  // handleSkillsetChoose={this.handleSkillsetChoose}
+                
+                  SkillList={item.skillSetList}
+                  // name={this.state.skillSetData}
+                  skillName={item.skillName}
+                  candidatetList={item.candidatetList}
+                  fullName={item.fullName}
+                />
+               
+                                    </div>
+                                </div> 
+
+
+                                
+                                         <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Category */}
+                            <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
+                                    {/* {date} */}
+                                    <span>
+                <Tooltip
+                  // title={text}
+                  style={{ whiteSpace: "pre-line" }}
+                >
+                  <span
+                    style={{
+                      // color:
+                      //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
+                      cursor: "pointer",
+                      marginLeft: "-4px",
+                      fontSize: "large",
+                    }}
+                    onClick={() => {
+                      props.getSkillsCount(
+                        item.recruitmentId,
+                        props.orgId
+                      );
+                      props.handleBarChartOrderModal(true);
+                    }}
+                  >
+                    <HelpIcon 
+                    // style={{ fontSize: "1rem" }} 
+                    className="cursor-pointer !text-icon text-[blue]"
+                    />
+                  </span>
+                </Tooltip>
+              </span>
+               
+                                    </div>
+                                </div> 
+
+
+
+
+                                           <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Category */}
+                            <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
+                                    {/* {date} */}
+             
+                                
+                  <span
+                    // type="edit"
+                    style={{
+                      cursor: "pointer",
+                      color: "tomato",
+                      fontSize: "15px",
+                    }}
+                    // onClick={() => {
+                    //   this.props.LinkSkillsRecruit({
+                      
+                    //     stageId: item.stageId,
+                    //     recruitmentProcessId: item.recruitmentProcessId,
+                    //     skillName: this.state.skillSetData || item.skillName,
+                    //     recruitmentId: item.recruitmentId,
+                    //     profileId: item.profileId,
+                    //   });
+                    //   this.props.getRecruiter(
+                    //     this.state.skillSetData || item.skillName,
+                    //     item.recruitmentId,
+                        
+                    //   );
+                    //   this.handleCandidateDataSet(item);
+                    //   this.props.handleRecruiterModal(true);
+                    // }}
+                  >
+                    <InterpreterModeIcon 
+                  className="cursor-pointer !text-icon text-[orange]"
+                    />
+                  </span>
+                
+                                    </div>
+                                </div>  
+
+
+
+                                           <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Category */}
+                            <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
+                                    {/* {date} */}
+             
+                                <div
+                                                  style={{
+                                                    margin: "2px",
+                                                    borderRadius: "50%",
+                                                    cursor: "pointer",
+                                                  }}
+                                                  // onClick={() => {
+                                                  //   this.handleClickCandidateName(
+                                                  //     item.recruitmentId,
+                                                  //     item.jobOrder,
+                                                  //   );
+                                                  //   this.handleClick(item.customerId);
+                                                  //   this.props.getCandidateRequirement(item.recruitmentId);
+                                                  //   this.props.getRequirementOwner(item.recruitmentId);
+                                                    
+                                                  // }}
+                                                >
+                                                  <Avatar.Group
+                                                    maxCount={7}
+                                                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                                                  >
+                                                    {item.candidatetList &&
+                                                      item.candidatetList.map((candidate, i) => {
+                                                        const data1 = candidate.fullName
+                                                          .slice(0, 2)
+                                                          .split("")[0]
+                                                          .toUpperCase();
+                                                        console.log("datas", data1);
+                                                        return (
+                                                          <Tooltip title={candidate.fullName}>
+                                                            <Avatar style={{ backgroundColor: "#94b3e4" }}>
+                                                              {data1}
+                                                            </Avatar>
+                                                          </Tooltip>
+                                                        );
+                                                      })}
+                                                    <div
+                                                      style={{ placeSelf: "center" }}
+                                                      // onClick={() => {
+                                                      //   this.handleClickCandidateName(
+                                                      //     item.recruitmentId,
+                                                      //     item.jobOrder,
+                                                      //   );
+                                                      //   // this.handleClick(item.customerId);
+                                                      //   // this.props.getCandidateRequirement(item.recruitmentId);
+                                                        
+                                                      // }}
+                                                    >
+                                                      {item.candidateNo}
+                                                    </div>
+                                                  </Avatar.Group>
+                                                </div>
+                
+                
+                                    </div>
+                                </div>            
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* On */}
@@ -239,17 +405,27 @@ console.log(requirementTable)
                     )
                 }))}
      </InfiniteScroll> 
+     <SkillBarChatModal
+          skillsCount={props.skillsCount}
+         // candidatePostData={this.state.candidatePostData}
+          showBarChartModal={props.showBarChartModal}
+          handleBarChartOrderModal={props.handleBarChartOrderModal}
+          //particularRowData={particularRowData}
+        />
                     </div>
                 </div>
         </div>
     );
 };
 
-const mapStateToProps = ({ auth, requirement }) => ({
+const mapStateToProps = ({ auth, requirement,opportunity }) => ({
   user: auth.userDetails,
   requirementTable:requirement.requirementTable,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
+  skillsCount: opportunity.skillsCount,
+  showBarChartModal:opportunity.showBarChartModal,
+  SkillList: opportunity.SkillList,
   fetchingAllRequirementTable:requirement.fetchingAllRequirementTable,
   fetchingAllRequirementTableError:requirement.fetchingAllRequirementTableError
 });
@@ -258,7 +434,9 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getAllRequirementTable,
-            ClearReducerDataOfRequirement
+            getSkillsCount,
+            ClearReducerDataOfRequirement,
+            handleBarChartOrderModal
         },
         dispatch
     );
