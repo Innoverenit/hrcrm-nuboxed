@@ -39,7 +39,7 @@ class EducationTable extends Component {
     const { getEducationDetails, employeeId } = this.props;
     console.log(employeeId);
     if (employeeId) {
-      getEducationDetails(employeeId);
+      getEducationDetails("employee",employeeId);
     }
   }
   componentDidUpdate(prevProps) {

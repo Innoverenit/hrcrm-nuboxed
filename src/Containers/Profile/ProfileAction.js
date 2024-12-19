@@ -127,20 +127,20 @@ export const setEditEmail = (name) => (dispatch) => {
   });
 };
 //add educational details
-export const addEducationDetails = (employee, employeeId, cb) => (dispatch) => {
+export const addEducationDetails = (employee,userType, employeeId, cb) => (dispatch) => {
   dispatch({
     type: types.ADD_EDUCATIONAL_DETAILS_REQUEST,
   });
   console.log(employee);
 
   axios
-    .post(`${base_url}/employee/education-details`, employee, {
+    .post(`${base_url}/employee/education-details/${userType}`, employee, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      dispatch(getEducationDetails(employeeId));
+      dispatch(getEducationDetails("employee",employeeId));
       dispatch({
         type: types.ADD_EDUCATIONAL_DETAILS_SUCCESS,
         payload: res.data,
@@ -393,20 +393,20 @@ export const updatePersonalDetails = (employee, employeeId, cb) => (
     });
 };
 //Add Bank Details
-export const addBankDetails = (employee, employeeId) => (dispatch) => {
+export const addBankDetails = (employee, userType, employeeId) => (dispatch) => {
   dispatch({
     type: types.ADD_BANK_DETAILS_REQUEST,
   });
   console.log(employee);
 
-  axios
-    .post(`${base_url}/employee/bank-details`, employee, {
+  axios 
+    .post(`${base_url}/employee/bank-details/${userType}`, employee, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      dispatch(getBankDetails(employeeId));
+      dispatch(getBankDetails("employee",employeeId));
       dispatch({
         type: types.ADD_BANK_DETAILS_SUCCESS,
         payload: res.data,
@@ -523,13 +523,13 @@ export const updateDocumentDetails = (employee, employeeId, cb) => (
 /**
 //  * fetch education details of an employee
 //  */
-export const getEducationDetails = (employeeId) => (dispatch) => {
+export const getEducationDetails = (userType,employeeId) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_EDUCATION_DETAILS_REQUEST,
   });
 
   axios
-    .get(`${base_url}/employee/education-details/${employeeId}`, {
+    .get(`${base_url}/employee/education-details/${userType}/${employeeId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -607,13 +607,13 @@ export const getEmploymentDetails = (employeeId) => (dispatch) => {
 };
 
 //fetch Bank details
-export const getBankDetails = (employeeId) => (dispatch) => {
+export const getBankDetails = (userType,employeeId) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_BANK_DETAILS_REQUEST,
   });
 
   axios
-    .get(`${base_url}/employee/bank-details/${employeeId}`, {
+    .get(`${base_url}/employee/bank-details/${userType}/${employeeId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
