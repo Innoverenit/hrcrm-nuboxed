@@ -74,7 +74,7 @@ useEffect(() => {
     if (!tab) return null;
 
     return <TabContentComponent 
-    label={tab.name} 
+    label={tab.navType} 
     activeKey={activeKey}
     processForWorkflowData={props.processForWorkflowData}
 

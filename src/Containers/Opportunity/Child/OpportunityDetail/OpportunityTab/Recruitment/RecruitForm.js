@@ -86,12 +86,18 @@ function RecruitForm(props) {
   //     value: item.currencyName,
   //   };
   // });
-  const roleNameOption = props.talentRoles.map((item) => {
-    return {
+//   const roleNameOption = props.talentRoles.map((item) => {
+//     return {
+//         label: `${item.roleType || ""}`,
+//         value: item.roleTypeId,
+//     };
+// });
+const roleNameOption = Array.isArray(props.talentRoles)
+    ? props.talentRoles.map((item) => ({
         label: `${item.roleType || ""}`,
         value: item.roleTypeId,
-    };
-});
+    }))
+    : []; // Return an empty array if talentRoles is not an array
 
   const Sponsor = props.contactListByOpportunityId.map((item) => {
     return {
