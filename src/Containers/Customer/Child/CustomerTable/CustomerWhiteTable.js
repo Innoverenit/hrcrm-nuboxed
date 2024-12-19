@@ -19,7 +19,7 @@ import {
 } from "../../CustomerAction";
 import styled from "styled-components";
 const CustomerDetailView=lazy(()=>import("./CustomerDetailView"));
-const UpdateCustomerModal=lazy(()=>import("../UpdateCustomer/UpdateCustomerModal"));
+
 
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -164,7 +164,7 @@ function CustomerWhiteTable(props) {
     fetchingCustomers,
     customerByCategory,
     handleUpdateCustomerModal,
-    updateCustomerModal,
+
     fetchingCustomersError,
   } = props;
   // if (fetchingCustomers) {
@@ -372,7 +372,7 @@ function CustomerWhiteTable(props) {
         
       />
 
-      <UpdateCustomerModal
+      {/* <UpdateCustomerModal
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
@@ -380,7 +380,7 @@ function CustomerWhiteTable(props) {
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
-      />
+      /> */}
     </>
   );
 }
@@ -389,7 +389,6 @@ const mapStateToProps = ({customer,opportunity}) => ({
   customerByCategory: customer.customerByCategory,
   fetchingCustomersCategory: customer.fetchingCustomersCategory,
   fetchingCustomersCategoryError: customer.fetchingCustomersCategoryError,
-  updateCustomerModal: customer.updateCustomerModal,
   sales: opportunity.sales,
    recruiterName: opportunity.recruiterName,
 });

@@ -411,7 +411,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.crmInd === true && (
   <>
   <div class=" flex">
-                  <div class=" text-xs w-[2rem] ml-4 ">CRM</div>
+                  <div class="flex items-center text-xs w-[2rem] ml-4 ">CRM</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -436,7 +436,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.imInd === true && (
   <>
     <div class=" flex">
-                    <div class=" text-xs w-[1.5rem] ml-4">IM</div>
+                    <div class="flex items-center text-xs w-[1.5rem] ml-4">IM</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
         title="Do you wish to change Status?"
@@ -459,7 +459,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.recruitProInd === true && (
   <>
    <div class=" flex">
-                    <div class=" text-xs w-[4rem] ml-4">Rcruitpro</div>
+                    <div class="flex items-center text-xs w-[4rem] ml-4">Recruitpro</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -484,7 +484,7 @@ const SingleDepartment = (props) => {
   <>
    <div class=" flex">
 
-                    <div class=" text-xs w-[1.5rem] ml-4">HR</div>
+                    <div class="flex items-center text-xs w-[1.5rem] ml-4">HR</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -509,7 +509,7 @@ const SingleDepartment = (props) => {
   <>
      <div class=" flex">
 
-                    <div class=" text-xs w-[5rem]  ml-4">Elearning</div>
+                    <div class="flex items-center text-xs w-[5rem]  ml-4">Elearning</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -571,7 +571,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.erpInd === true && (
   <>
   <div class=" flex">
-    <div class="text-xs w-[1.5rem] ml-4">ERP</div>
+    <div class="flex items-center text-xs w-[1.5rem] ml-4">ERP</div>
     <div class="w-[7%] ">
       <Popconfirm
         title="Do you wish to change Status?"
@@ -596,7 +596,7 @@ const SingleDepartment = (props) => {
   <>
     <div class=" flex">
 
-                    <div class=" text-xs w-[4rem] ml-4">Production</div>
+                    <div class="flex items-center text-xs w-[4rem] ml-4">Production</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -621,7 +621,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.repairInd === true && erpStatus && (
   <>
    <div class=" flex">
-                    <div class=" text-xs w-[3rem]  ml-4">Repair</div>
+                    <div class="flex items-center text-xs w-[3rem]  ml-4">Repair</div>
                     <div   class=" w-[7%]">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -661,7 +661,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.orderManagementInd === true && erpStatus && (
   <>
    <div class=" flex">
-                    <div class=" text-xs w-[8rem] ml-4">Order Management</div>
+                    <div class="flex items-center text-xs w-[8rem] ml-4">Order Management</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -687,7 +687,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.logisticsInd === true && erpStatus && (
   <>
    <div class=" flex">
-                    <div class=" text-xs w-[3rem]  ml-4">Logistics</div>
+                    <div class="flex items-center text-xs w-[3rem]  ml-4 mr-1">Logistics</div>
                     <div   class=" w-[7%] ">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -711,7 +711,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.procurementInd === true && erpStatus && (
   <>
     <div class=" flex">
-                    <div class=" text-xs w-[6rem] ml-4">Procurement</div>
+                    <div class="flex items-center text-xs w-[6rem] ml-4">Procurement</div>
                     <div   class=" w-[7%]">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -732,11 +732,9 @@ const SingleDepartment = (props) => {
                     </div>
                     </>
 )}
-
 </div>
 </div>
-
-                  <div class="ml-2">
+    <div class="ml-2">
                     {mandetoryInd !== true && editInd === true && (
                       <BorderColorIcon
                         tooltipTitle="Edit"

@@ -19,7 +19,6 @@ import { StyledTable, StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button,Select, Tooltip, Input } from "antd";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../Components/UI/Elements";
 import {getCandidateDollarTable} from "../../CandidateAction"
 import styled from "styled-components";
@@ -289,7 +288,7 @@ function CandidateDollarTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div >
             <MultiAvatar
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -297,7 +296,7 @@ function CandidateDollarTable(props) {
               imgWidth={"2.1em"}
               imgHeight={"2.1em"}
             />
-          </SubTitle>
+          </div >
         );
       },
     },

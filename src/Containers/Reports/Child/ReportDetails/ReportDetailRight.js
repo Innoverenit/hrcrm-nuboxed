@@ -1,21 +1,22 @@
-import React, { Component, lazy } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ReportsAttendenceCard from "../ReportDetails/ReportsAttendenceCard"
-import ReportsTaskList from "../ReportDetails/ReportsTaskList"
-import Requirement from "../MyViewReports/Requirement";
-import Selected from "../OrganizationView/Selected";
-import OrgSelected from "../OrganizationView/Selected";
-import OrgRequirement from "../OrganizationView/Requirement";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
-import ReportsProspectList from "../../ReportsProspectList";
-import OrdeRepairTab from "./OrdeRepairTab";
-import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
-import InvoiceReportUserTab from "./InvoiceReportUserTab";
-import InvoiceReportOrgTab from "./InvoiceReportOrgTab";
-import ProductionReportOrgTab from "./ProductionReportOrgTab";
-import GSTReportUser from "./GSTReportUser";
-import GSTReportOrg from "./GSTReportOrg";
+
+const ReportsAttendenceCard=lazy(()=>import  ("../ReportDetails/ReportsAttendenceCard"));
+const ReportsTaskList = lazy(()=>import("../ReportDetails/ReportsTaskList"));
+const Requirement=lazy(()=>import ("../MyViewReports/Requirement"));
+const Selected=lazy(()=>import ("../OrganizationView/Selected"));
+const OrgSelected = lazy(()=>import("../OrganizationView/Selected"));
+const OrgRequirement = lazy(()=>import("../OrganizationView/Requirement"));
+const ReportsProspectList=lazy(()=>import  ("../../ReportsProspectList"));
+const OrdeRepairTab = lazy(()=>import("./OrdeRepairTab"));
+const OrdeRepairOrgTab=lazy(()=>import ("./OrdeRepairOrgTab"));
+const InvoiceReportUserTab=lazy(()=>import ("./InvoiceReportUserTab"));
+const InvoiceReportOrgTab = lazy(()=>import("./InvoiceReportOrgTab"));
+const ProductionReportOrgTab = lazy(()=>import("./ProductionReportOrgTab"));
+const GSTReportUser=lazy(()=>import  ("./GSTReportUser"));
+const GSTReportOrg = lazy(()=>import("./GSTReportOrg"));
 class ReportDetailRight extends Component {
 
     state = {
@@ -46,23 +47,30 @@ class ReportDetailRight extends Component {
     console.log("lkj",this.props.customer,this.props.reportViewType,this.props.userorgflipClick);
     return (
       <div class=" w-full">
+        <Suspense>
                   {this.props.selectedCategory === "Productivity" && (
     <ReportsAttendenceCard 
     gettingReportProspect={this.props.gettingReportProspect}
     reportProspect={this.props.reportProspect}
-    allReportInvestors={this.props.allReportInvestors} />
+    allReportInvestors={this.props.allReportInvestors}
+    translateText={this.props.translateText}
+    selectedLanguage={this.props.selectedLanguage} />
   )}
               {this.props.selectedCategory === "Prospect" && (
     <ReportsProspectList 
     gettingReportProspect={this.props.gettingReportProspect}
     reportProspect={this.props.reportProspect}
-    allReportInvestors={this.props.allReportInvestors} />
+    allReportInvestors={this.props.allReportInvestors} 
+    translateText={this.props.translateText}
+    selectedLanguage={this.props.selectedLanguage}/>
   )}
             {this.props.selectedCategory === "Task" && (
     <ReportsTaskList 
   
     reportTask={this.props.reportTask}      
-    gettingReportTask={this.props.gettingReportTask} />
+    gettingReportTask={this.props.gettingReportTask}
+    translateText={this.props.translateText}
+    selectedLanguage={this.props.selectedLanguage} />
   )}
    
 
@@ -73,6 +81,8 @@ class ReportDetailRight extends Component {
    <OrdeRepairTab               
    selectedButtonIcon={this.props.selectedButtonIcon}
    selectedCategory={this.props.selectedCategory}
+   translateText={this.props.translateText}
+   selectedLanguage={this.props.selectedLanguage}
    />
   )}
 
@@ -80,16 +90,24 @@ class ReportDetailRight extends Component {
   <InvoiceReportUserTab
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
   />
   )}
     {this.props.selectedCategory === "GST" && (
   <GSTReportUser
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
   />
   )}
-              {selectedReportType === "Requirement" && <Requirement />}
-              {selectedReportType === "Selected" && <Selected />}
+              {selectedReportType === "Requirement" && <Requirement 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}/>}
+              {selectedReportType === "Selected" && <Selected 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}/>}
             </>
           )}
            {this.props.reportViewType === "ALL" && this.props.userorgflipClick && (
@@ -98,31 +116,45 @@ class ReportDetailRight extends Component {
    <OrdeRepairOrgTab               
    selectedButtonIcon={this.props.selectedButtonIcon}
    selectedCategory={this.props.selectedCategory}
+   translateText={this.props.translateText}
+   selectedLanguage={this.props.selectedLanguage}
    />
   )}
   {this.props.selectedCategory === "Invoice" && (
   <InvoiceReportOrgTab
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
   />
   )}
     {this.props.selectedCategory === "Production" && (
   <ProductionReportOrgTab
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
   />
   )}
   {this.props.selectedCategory === "GST" && (
   <GSTReportOrg
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
   />
   )}
               {selectedReportType === "Requirement" &&
-                <OrgRequirement />}
-              {selectedReportType === "Selected" && <OrgSelected />}
+                <OrgRequirement
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage} />}
+              {selectedReportType === "Selected" && <OrgSelected 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}/>}
+               
             </>
           )}
+          </Suspense>
       </div>
     );
   }

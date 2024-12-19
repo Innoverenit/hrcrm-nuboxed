@@ -134,7 +134,6 @@ const InvestorActionLeft = (props) => {
   }, [listening]);
   useEffect(() => {
     if (isRecording && !listening) {
-      // If recording was stopped but less than 5 seconds have passed, restart listening
       const elapsedTime = Date.now() - startTime;
       if (elapsedTime < minRecordingTime) {
         SpeechRecognition.startListening();
@@ -162,10 +161,6 @@ const InvestorActionLeft = (props) => {
       props.getInvestorAll(props.orgId);
     }
 
-    // if (transcript) {
-    //   console.log(">>>>>>>", transcript);
-    //   props.setCurrentData(transcript);
-    // }
   }, [props.viewType, props.userId, props.orgId]);
   const fetchUser = async () => {
     setIsLoadingUser(true);
@@ -263,12 +258,7 @@ const InvestorActionLeft = (props) => {
           </Badge>
         </Tooltip>
       )}
-       <Tooltip title="Delete List">
-                {/* <Badge
-          size="small"
-          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
-          overflowCount={999}
-        > */}
+       <Tooltip title="Delete List">           
                     <span class=" mr-1 !text-icon cursor-pointer"
                         onClick={() => props.setInvestorViewType("delete")}
                         style={{
@@ -282,48 +272,12 @@ const InvestorActionLeft = (props) => {
                     </span>
                     {/* </Badge> */}
                 </Tooltip>
-      {/* <Tooltip>
-        <Badge
-          size="small"
-          count={(props.viewType === "card" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-2 text-sm cursor-pointer"
-            onClick={() => props.setInvestorViewType("card")}
-            style={{
-              color: props.viewType === "card" && "#1890ff",
-            }}
-          >
-            <GridViewIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
 
-
-      {/* <Tooltip
-        
-      >
-        <Badge
-          size="small"
-          count={(props.viewType === "map" && props.recordData.customer) || 0}
-        >
-          <span
-            class=" mr-2 text-sm cursor-pointer"
-            style={{
-              color: props.viewType === "map" && "#1890ff",
-            }}
-            onClick={() => props.setInvestorViewType("map")}
-          >
-            <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
       <div class=" flex items-center justify-between"
       >
         <div class=" w-[26rem] md:ml-4 max-sm:w-16 ml-0">
           <Input
-            placeholder="Search by Name, Company"
+            placeholder="Search by Name or Company"
             class="w-96"
             suffix={suffix}
             onPressEnter={handleSearch}
@@ -331,22 +285,7 @@ const InvestorActionLeft = (props) => {
             value={currentData}
           />
         </div>
-        {/* <Button
-          type={props.currentData ? "primary" : "danger"}
-          onClick={() => {
-             props.searchInvestorName(props.currentData);
-          }}
-        >
-          Submit
-        </Button>
-        <Button
-          type={props.currentData ? "primary" : "danger"}
-          onClick={() => {
-            props.handleClear();
-          }}
-        >
-        
-        </Button> */}
+   
         <div class=" w-[40%]  ml-2" >
           <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
             <Option value="Creation Date">Creation Date</Option>

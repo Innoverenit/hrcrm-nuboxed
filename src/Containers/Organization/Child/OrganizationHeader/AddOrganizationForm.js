@@ -135,7 +135,7 @@ function AddOrganizationForm (props) {
        
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
@@ -346,7 +346,7 @@ function AddOrganizationForm (props) {
 
                 
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >
      
                   <div class=" text-xs font-bold font-poppins text-black">

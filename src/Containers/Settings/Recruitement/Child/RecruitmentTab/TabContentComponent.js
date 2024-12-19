@@ -271,7 +271,8 @@ fetchType = async () => {
     } = this.state;
     let header = {
         workflowName:workflowName,
-      type:this.props.activeKey
+      type:this.props.activeKey,
+      navType:this.props.label
     };
 
     // let exist =

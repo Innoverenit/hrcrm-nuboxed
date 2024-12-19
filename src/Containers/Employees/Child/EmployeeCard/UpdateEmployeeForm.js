@@ -495,8 +495,8 @@ class UpdateEmployeeForm extends Component {
                       </div>
                     </div>
                     <div class="flex justify-between max-sm:flex-col">
-                      <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk " >
-                        <div class=" w-w47.5 max-sm:w-wk ">
+                      <div class=" flex  w-w47.5.5 justify-between max-sm:flex-col max-sm:w-wk " >
+                        <div class=" w-w47.5.5 max-sm:w-wk ">
                         <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
                           <FastField
                             name="countryDialCode"
@@ -508,7 +508,7 @@ class UpdateEmployeeForm extends Component {
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-w47.5 max-sm:w-wk">
+                        <div class=" w-w47.5.5 max-sm:w-wk">
                         <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[6]}</div>
                           <Field
                             type="text"
@@ -524,8 +524,8 @@ class UpdateEmployeeForm extends Component {
                         </div>
 
                       </div>
-                      <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk" >
-                        <div class="w-w47.5 max-sm:w-wk">
+                      <div class=" flex  w-w47.5.5 justify-between max-sm:flex-col max-sm:w-wk" >
+                        <div class="w-w47.5.5 max-sm:w-wk">
                         <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
                           <FastField
                             name="countryDialCode1"
@@ -537,7 +537,7 @@ class UpdateEmployeeForm extends Component {
                             inlineLabel
                           />
                         </div>
-                        <div class="w-w47.5 max-sm:w-wk">
+                        <div class="w-w47.5.5 max-sm:w-wk">
                         <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[7]}</div>
                           <Field
                             type="text"
@@ -570,7 +570,7 @@ class UpdateEmployeeForm extends Component {
                           }}
                         />
                       </div>
-                      <div class=" w-w47.5 max-sm:w-wk">
+                      <div class=" w-w47.5.5 max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[9]}</div>
                         <Field
                           isRequired
@@ -641,7 +641,7 @@ class UpdateEmployeeForm extends Component {
                           inlineLabel
                         />
                       </div>
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[13]}</div>
                         <FastField
                           name="label"
@@ -683,14 +683,13 @@ class UpdateEmployeeForm extends Component {
                         isColumn
                         margintop={"0"}
                         inlineLabel
-                        style={{ flexBasis: "80%" }}
+                        // style={{ flexBasis: "80%" }}
                  
                       />
                     </div>
-                      <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <div class=" w-w48 flex  max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[15]}</div>
                       <Field
-                     
                         name="salary"
                         type="text"
                         isColumn
@@ -740,7 +739,7 @@ class UpdateEmployeeForm extends Component {
                        
                       </div>
 
-                      <div class="w-w47.5 flex flex-col">
+                      <div class="w-w47.5.5 flex flex-col">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[18]}</div>
                         <Field
                           name="location"
@@ -851,7 +850,7 @@ class UpdateEmployeeForm extends Component {
                         </Select>
                       </div>
 
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[30]}</div>
                         <Select
                           className="w-[250px]"
@@ -879,7 +878,7 @@ class UpdateEmployeeForm extends Component {
                         </Select>
                       </div>
 
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[32]}</div>
                         <Select
                           className="w-[250px]"

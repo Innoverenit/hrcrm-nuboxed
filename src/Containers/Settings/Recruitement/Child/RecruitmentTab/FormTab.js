@@ -91,6 +91,8 @@ const Form = (props) => {
   return (
     <TabsWrapper>
       <StyledTabs defaultActiveKey={activeKey} onChange={handleTabChange} >
+       {props.user.moduleMapper.crmInd ?
+       <>
         <TabPane
           tab={
             <>
@@ -103,6 +105,7 @@ const Form = (props) => {
         >
           {/* {renderTabContent("1")} */}
         </TabPane>
+        
         <TabPane
           tab={
             <>
@@ -115,6 +118,9 @@ const Form = (props) => {
         >
           {/* {renderTabContent("2")} */}
         </TabPane>
+        </>
+        :""}
+        {props.user.moduleMapper.logisticsInd && props.user.moduleMapper.erpInd ?
         <TabPane
           tab={
             <>
@@ -126,7 +132,8 @@ const Form = (props) => {
           key="3"
         >
           {/* {renderTabContent("3")} */}
-        </TabPane>
+        </TabPane>:""}
+        {props.user.moduleMapper.erpInd ?
         <TabPane
           tab={
             <>
@@ -138,7 +145,8 @@ const Form = (props) => {
           key="4"
         >
           {/* {renderTabContent("4")} */}
-        </TabPane>
+        </TabPane>:""}
+        {props.user.moduleMapper.imInd ?
         <TabPane
           tab={
             <>
@@ -150,7 +158,7 @@ const Form = (props) => {
           key="5"
         >
           {/* {renderTabContent("5")} */}
-        </TabPane>
+        </TabPane>:""}
 
         <TabPane
           tab={
@@ -165,7 +173,7 @@ const Form = (props) => {
           {/* {renderTabContent("5")} */}
         </TabPane>
 
-
+        {props.user.moduleMapper.erpInd || props.user.moduleMapper.crmInd ?
         <TabPane
           tab={
             <>
@@ -177,7 +185,7 @@ const Form = (props) => {
           key="7"
         >
           {/* {renderTabContent("5")} */}
-        </TabPane>
+        </TabPane>:""}
       </StyledTabs>
       <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
@@ -186,9 +194,10 @@ const Form = (props) => {
   );
 };
 
-const mapStateToProps = ({ rule }) => ({
+const mapStateToProps = ({ auth }) => ({
   // addTemplateModal: rule.addTemplateModal,
   // addTemplateNotificatonModal: rule.addTemplateNotificatonModal
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

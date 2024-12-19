@@ -321,6 +321,9 @@ fetchingCompleteDispatchSearchError: false,
   addingInventoryConsumption: false,
   addingInventoryConsumptionError: false,
 
+  linkDispatchStatus:false,
+  linkDispatchStatusError:false,
+
   updatingReceivedDamagedUnit: false,
   updatingReceivedDamagedUnitError: false,
   //edit
@@ -1449,6 +1452,33 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingItemHistoryDataInStockError: true,
 
       };
+
+        case types.LINK_DISPATCH_STATUS_REQUEST:
+                        return { ...state, linkDispatchStatus: true };
+                      case types.LINK_DISPATCH_STATUS_SUCCESS:
+                        return {
+                          ...state,
+                          linkDispatchStatus: false,
+                          allDispatchList: state.allDispatchList.filter(
+                            (item) => item.orderPhoneId !== action.payload
+                          ),
+
+                          // allDispatchList
+                          //updatePartnerModal: false,
+                          // partnerByUserId: state.partnerByUserId.map((item) => {
+                          //   if (item.partnerId === action.payload.partnerId) {
+                          //     return action.payload;
+                          //   } else {
+                          //     return item;
+                          //   }
+                          // }),
+                        };
+                      case types.LINK_DISPATCH_STATUS_FAILURE:
+                        return {
+                          ...state,
+                          linkDispatchStatus: false,
+                          linkDispatchStatusError: true,
+                        };
 
     //pickupDate
     case types.ADD_PICKUP_DATE_REQUEST:

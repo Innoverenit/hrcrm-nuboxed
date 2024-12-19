@@ -48,7 +48,7 @@ class FunnelTab extends Component {
         <TabsWrapper style={{height:"44vh", width:"-webkit-fill-available"}}>
         
               <div>
-              <ListAltIcon className="!text-icon"/><span class=" ml-1 font-bold font-poppins text-base  ">Funnel</span>
+              <ListAltIcon className="!text-icon"/><span class=" ml-1 font-bold font-poppins text-base ">Funnel</span>
 
                 
               <Suspense fallback={"Loading ..."}>

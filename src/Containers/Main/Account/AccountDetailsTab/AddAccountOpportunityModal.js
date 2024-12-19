@@ -10,7 +10,7 @@ const AddAccountOpportunityModal = (props) => {
     <>
       <StyledDrawer
         title="Quotation" 
-        width="75%"
+        width="60%"
         visible={props.addAccountOpportunityModal}
         onClose={() => props.handleAccountOpportunityModal(false)}
         footer={null}

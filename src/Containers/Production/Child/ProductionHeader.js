@@ -1,7 +1,8 @@
-import React, { Component, lazy } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
-import ProductionActionRight from "./ProductionActionRight";
-import ProductionActionLeft from "./ProductionActionLeft";
+
+const ProductionActionLeft = lazy(() => import("./ProductionActionLeft"));
+const ProductionActionRight = lazy(() => import("./ProductionActionRight"));
 class ProductionHeader extends Component {
   render() {
     const {
@@ -14,18 +15,20 @@ class ProductionHeader extends Component {
       <div>
         <ActionHeader
           leftComponent={
+            <Suspense>
             <ProductionActionLeft
               setProductionViewType={setProductionViewType}
-              viewType={viewType} />
+              viewType={viewType} /></Suspense>
           }
           rightComponent={
+            <Suspense>
             <ProductionActionRight
             fetchingProductionTable={this.props.fetchingProductionTable}
             productionTableData={this.props.productionTableData}
             viewType={viewType} 
               openProductiondrawer={openProductiondrawer}
               handleCreateProduction={handleCreateProduction}
-            />
+            /></Suspense>
           }
         />
       </div>

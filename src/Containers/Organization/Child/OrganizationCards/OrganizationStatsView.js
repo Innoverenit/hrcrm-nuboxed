@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import {
-  SubTitle,
-} from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -66,11 +63,11 @@ const OrganizationItemRow = ({ label, value, isLink }) => {
     <div class=" items-center flex flex-no-wrap"
       style={{ margin: "0.4rem" }}
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600, width: 300 }}>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >
         {label}
-      </SubTitle>
+      </div>
       {isLink ? (
-        <SubTitle
+       <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk"
           overflow="hidden"
           textOverflow="ellipsis"
           style={{ marginLeft: "-4rem" }}
@@ -78,15 +75,13 @@ const OrganizationItemRow = ({ label, value, isLink }) => {
           <a href={`https://${value}`} target="_blank">
             {value}
           </a>
-        </SubTitle>
+        </div>
       ) : (
-          <SubTitle
-            overflow="hidden"
-            textOverflow="ellipsis"
-            style={{ marginLeft: "-4rem" }}
+          <div
+           
           >
             {value}
-          </SubTitle>
+          </div>
         )}
     </div>
   );

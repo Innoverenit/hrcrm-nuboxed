@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { base_url, } from "../../Config/Auth";
 import { message } from "antd";
 import { ActionHeader } from "../../Components/Utils";
-
+import Swal from 'sweetalert2'
 /**
  * candidate modal action
  */
@@ -14,6 +14,15 @@ export const handleCandidateModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+
+export const handlePlacementPulseModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PLACEMENT_PULSE_MODAL,
+    payload: modalProps,
+  });
+};
+
 
 
 export const handleCandidatesTasksDrawerModal = (modalProps) => (dispatch) => {
@@ -458,20 +467,35 @@ export const deleteDocument = (documentId) => (dispatch, getState) => {
 /**
  * add skills of a candidateId
  */
-export const addTopicByCandidateId = (data, candidateId) => (dispatch) => {
-  console.log(candidateId);
+export const addTopicByCandidateId = (data,userType,id) => (dispatch) => {
   dispatch({
     type: types.ADD_TOPIC_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/skillSet`, data, {
+    .post(`${base_url}/employee/employeeCertificationLink/save/skill/${userType}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      dispatch(getTopicsByCandidateId(candidateId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          showConfirmButton: false,
+   timer: 1500,
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Added Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+       dispatch(getTopicsByCandidateId(userType,id));
       dispatch({
         type: types.ADD_TOPIC_BY_CANDIDATE_ID_SUCCESS,
         payload: res.data,
@@ -487,12 +511,12 @@ export const addTopicByCandidateId = (data, candidateId) => (dispatch) => {
 };
 
 //get skills by candidateId
-export const getTopicsByCandidateId = (candidateId) => (dispatch) => {
+export const getTopicsByCandidateId = (userType,id) => (dispatch) => {
   dispatch({
     type: types.GET_TOPICS_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/skill-set/${candidateId}`, {
+    .get(`${base_url}/employee/employeeCertificationLink/get-all/skill/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -540,14 +564,14 @@ export const getCandidateFilter = (candidate) => (dispatch,getState) => {
     });
 };
 //delete candidate skill
-export const deleteTopicByCandidateId = (skillSetDetailsId, candidateId) => (
+export const deleteTopicByCandidateId = (userType,id, candidateId) => (
   dispatch
 ) => {
   dispatch({
     type: types.DELETE_TOPIC_BY_CANDIDATE_ID_REQUEST,
   });
   axios
-    .delete(`${base_url}/candidate/skilsset/${skillSetDetailsId}`, {
+    .delete(`${base_url}/employee/employeeCertificationLink/delete/skill/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -558,7 +582,7 @@ export const deleteTopicByCandidateId = (skillSetDetailsId, candidateId) => (
         type: types.DELETE_TOPIC_BY_CANDIDATE_ID_SUCCESS,
         payload: res.data,
       });
-      dispatch(getTopicsByCandidateId(candidateId));
+     // dispatch(getTopicsByCandidateId(candidateId));
     })
     .catch((err) => {
       console.log(err);
@@ -2172,20 +2196,36 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       });
   };
 
-  export const addCertificationByCandidateId = (data, candidateId) => (dispatch) => {
+  export const addCertificationByCandidateId = (data, userType,id) => (dispatch) => {
     
     dispatch({
       type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .post(`${base_url}/candidate/certification  `, data, {
+      .post(`${base_url}/employee/employeeCertificationLink/save/certification/${userType}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
         console.log(res);
-        dispatch(getCertificationByCandidateId(candidateId));
+          if (res.data.message) {
+                Swal.fire({
+                  icon: 'error',
+                  title: res.data.message,
+                  showConfirmButton: false,
+           timer: 1500,
+                });
+              } else {
+               
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Added Successfully!',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+         dispatch(getCertificationByCandidateId(userType,id));
         dispatch({
           type: types.ADD_CERTIFICATION_BY_CANDIDATE_ID_SUCCESS,
           payload: res.data,
@@ -2200,12 +2240,12 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
       });
   };
   
-  export const getCertificationByCandidateId = (candidateId) => (dispatch) => {
+  export const getCertificationByCandidateId = (userType,id) => (dispatch) => {
     dispatch({
       type: types.GET_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .get(`${base_url}/candidate/certification/${candidateId}`, {
+      .get(`${base_url}/employee/employeeCertificationLink/get-all/certification/${userType}/${id}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -2225,14 +2265,14 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
         });
       });
   };
-  export const deleteCertificationByCandidateId = (candiCertiLinkId,candidateId) => (
+  export const deleteCertificationByCandidateId = (userType,id,candidateId) => (
     dispatch
   ) => {
     dispatch({
       type: types.DELETE_CERTIFICATION_BY_CANDIDATE_ID_REQUEST,
     });
     axios
-      .delete(`${base_url}/candidate/certification/${candiCertiLinkId}`, {
+      .delete(`${base_url}/employee/employeeCertificationLink/delete/certification/${userType}/${id}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -2243,7 +2283,7 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
           type: types.DELETE_CERTIFICATION_BY_CANDIDATE_ID_SUCCESS,
           payload: res.data,
         });
-        dispatch(getCertificationByCandidateId(candidateId));
+       // dispatch(getCertificationByCandidateId(candidateId));
       })
       .catch((err) => {
         console.log(err);
@@ -2428,7 +2468,12 @@ export const getFilteredEmailContact = (userId) => (dispatch) => {
     });
   };
 
- 
+  export const ClearReducerCertification = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_REDUCER_CERTIFICATION,
+    });
+  };
+
 
 
 

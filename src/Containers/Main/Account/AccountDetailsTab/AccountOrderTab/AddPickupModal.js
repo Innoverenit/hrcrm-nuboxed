@@ -8,7 +8,7 @@ const AddPickupModal = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Pickup Location - ${props.particularRowData.newOrderNo}`}
+                title={`Pickup Locations - ${props.particularRowData.newOrderNo}`}
                 width="40vw"
                 visible={props.addpickupLocation}
                 destroyOnClose

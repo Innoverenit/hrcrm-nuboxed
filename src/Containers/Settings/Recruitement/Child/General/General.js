@@ -68,6 +68,7 @@ function General(props) {
     packageInd: props.requirementDuration.packageInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    manfProcInd: props.requirementDuration.manfProcInd,
     nwTypInd: props.requirementDuration.nwTypInd,
     mfaLogInd: props.requirementDuration.mfaLogInd,
     mfaCPInd: props.requirementDuration.mfaCPInd,
@@ -137,6 +138,7 @@ function General(props) {
     enaShipInd: props.requirementDuration.enaShipInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    manfProcInd: props.requirementDuration.manfProcInd,
     nwTypInd: props.requirementDuration.nwTypInd,
     mfaLogInd: props.requirementDuration.mfaLogInd,
     mfaCPInd: props.requirementDuration.mfaCPInd,
@@ -223,6 +225,7 @@ function General(props) {
           bestBfrDayRng: formValues.bestBfrDayRng,
           packageInd: formValues.packageInd,
           disPackInd: formValues.disPackInd,
+          manfProcInd: formValues.manfProcInd,
           nwTypInd: formValues.nwTypInd,
           mfaLogInd: formValues.mfaLogInd,
           mfaCPInd: formValues.mfaCPInd,
@@ -666,30 +669,7 @@ function General(props) {
                       </div>
                     </div>
 }
-                       <div class=" flex  mt-2">
-                      <div class=" text-sm  font-bold">MFA where to use</div>                      
-                      </div>
-                      <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">MFA Login </div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Package")}
-                      okText="yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.mfaLogInd}
-                        checkedChildren={"yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("mfaLogInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
+                     
 
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Change Password </div>
@@ -1182,6 +1162,27 @@ function General(props) {
   
       </div>
     </div> 
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">Manufacturing process</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("Manufacturing process")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.manfProcInd}
+        checkedChildren={"Cell"}
+        unCheckedChildren={"Batch"}
+        onChange={(checked) => handleToggleChange("manfProcInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
     <div class=" text-sm mt-3 font-bold ">Logistics</div>
     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Enable shipment on part payment</div>
@@ -1231,7 +1232,7 @@ function General(props) {
                 </div>
                 <div class="mt-4">
                   Updated on{" "}
-                  {dayjs(props.requirementDuration.creationDate).format("ll")} by{" "}
+                  {dayjs(props.requirementDuration.creationDate).format("DD/MM/YYYY")} by{" "}
                   {props.requirementDuration.ownerName}
                 </div>
 
@@ -1239,6 +1240,30 @@ function General(props) {
              
               </div>
               <div className="flex flex-col">
+              <div class=" flex  mt-2 ml-2">
+                      <div class=" text-sm  font-bold">MFA where to use</div>                      
+                      </div>
+                      <div class=" flex justify-between   mt-2 ml-2">                
+                    <div class=" text-xs  ">MFA Login </div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.mfaLogInd}
+                        checkedChildren={"yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("mfaLogInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
               <Notifications />
               <Identifier/>
               </div>

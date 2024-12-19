@@ -19,7 +19,7 @@ class AddEducationModal extends Component {
         <StyledDrawer
           title="Education"
        
-          width="60%"
+          width="50%"
           visible={addEducationModal}
           onClose={() => handleEducationModal(false)}
         

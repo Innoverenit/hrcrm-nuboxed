@@ -74,13 +74,7 @@ class DashboardDetails extends Component {
                   
                   {activeKey === "1" && (
                     <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle="Add"
-                        handleIconClick={() => handleCandidateBankModal(true)}
-                        size="1em"
-                       
-                      /> */}
+                    
                     </>
                   )}
                 </>
@@ -107,13 +101,7 @@ class DashboardDetails extends Component {
                   
                   {activeKey === "2" && (
                     <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle="Add"
-                        handleIconClick={() => handleCandidateBankModal(true)}
-                        size="1em"
-                     
-                      /> */}
+                    
                     </>
                   )}
                 </>

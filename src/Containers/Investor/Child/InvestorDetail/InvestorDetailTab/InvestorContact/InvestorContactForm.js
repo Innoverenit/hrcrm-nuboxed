@@ -191,7 +191,7 @@ class InvestorContactForm extends Component {
           }) => (
             <Form className="form-background">
               <div class=" flex justify-between">
-                <div class=" h-full w-w47.5"
+                <div class=" h-full w-w47.5.5"
                 >
          
                   <div class=" flex flex-nowrap justify-between mt-4">
@@ -445,7 +445,7 @@ class InvestorContactForm extends Component {
                     />
                   </div>
                 </div>
-                <div class=" h-4/6 w-w47.5">
+                <div class=" h-4/6 w-w47.5.5">
                   <FieldArray
                     name="address"
                     label="Address"

@@ -5428,3 +5428,34 @@ export const getTicket = (orgId) => (dispatch) => {
       });
     });
 };
+export const addPaidRepairOrder = (data,orderId) => (dispatch) => {
+  dispatch({ type: types.ADD_PAID_BY_DISTRIBUTOR_ID_REQUEST });
+  axios
+    .post(`${base_url2}/orderPayment/payment`,
+    // .put(`${base_url2}/invoice/procure/${procureOrderInvoiceId}`,
+       data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getDistributorOrderPayment(orderId))
+      dispatch({
+        type: types.ADD_PAID_BY_DISTRIBUTOR_ID_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Payment Successful!',
+        // showConfirmButton: false,
+        // timer: 1500,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PAID_BY_DISTRIBUTOR_ID_FAILURE,
+      });
+    });
+};

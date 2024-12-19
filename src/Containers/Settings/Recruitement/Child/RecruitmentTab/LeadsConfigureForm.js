@@ -560,7 +560,7 @@ props.emptyClearbit();
                   </div> 
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                     <Switch
@@ -729,7 +729,7 @@ props.emptyClearbit();
                          
                  
                   <div class=" flex  justify-between mt-3">
-                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                   <div class=" w-w47.5.5" style={{display:"flex",flexDirection:"column"}}>
 
 <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</div>
 
@@ -756,7 +756,7 @@ props.emptyClearbit();
           />
                     
                     </div>
-                    <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                    <div class=" w-w47.5.5"  style={{display:"flex",flexDirection:"column"}}>
                           
                           <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</div>
 
@@ -785,7 +785,7 @@ props.emptyClearbit();
                     </div>
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</div>
 
 <Select
@@ -810,7 +810,7 @@ props.emptyClearbit();
             unCheckedChildren="Hidden"
           />
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -872,7 +872,7 @@ props.emptyClearbit();
                
                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="vatNo"
@@ -891,7 +891,7 @@ props.emptyClearbit();
           />
                       </div>
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="businessRegistration"
@@ -916,7 +916,7 @@ props.emptyClearbit();
 
                  
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk " 
                 >
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -1063,7 +1063,7 @@ translatedMenuItems={props.translatedMenuItems}
                   </div>
                  
                   <div class=" flex justify-between mt-3">         
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5.5">
                     <Field
                       name="propertyType"
                       label="Property Type"

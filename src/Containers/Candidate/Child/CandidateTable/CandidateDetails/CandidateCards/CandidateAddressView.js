@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { SubTitle } from "../../../../../../Components/UI/Elements";
 
 class CandidateAddressView extends Component {
   render() {
@@ -28,10 +27,10 @@ export default CandidateAddressView;
 
 const CandidateItemRow = ({ label, value }) => {
   return (
-    <div  class=" flex items-center flex-nowrap m-2"
+    <div  class=" flex items-center justify-between flex-nowrap m-2"
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</SubTitle>
+      <div style={{ color: "#444", fontWeight: 600 }}>{label}</div >
+      <div style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</div >
     </div>
   );
 };

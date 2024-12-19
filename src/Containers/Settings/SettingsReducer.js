@@ -524,6 +524,10 @@ addingShipperCategoryError: false,
   fetchingMonsterError: false,
   monster: {},
 
+
+  deleteSequenceDataList:false,
+  deleteSequenceDataListError:false,
+
   fetchingProcessForSupplier: false,
   fetchingProcessForSupplierError: false,
   supplierProcess:[],
@@ -3626,6 +3630,26 @@ export const settingsReducer = (state = initialState, action) => {
                 //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
                 // clearbit: null,
               };
+
+
+
+
+              case types.DELETE_SEQUENCE_DATA_LIST_REQUEST:
+                return { ...state, deleteSequenceDataList: true };
+              case types.DELETE_SEQUENCE_DATA_LIST_SUCCESS:
+                return {
+                  ...state,
+                  deleteSequenceDataList: false,
+                  // opportunityByUserId: state.opportunityByUserId.filter(
+                  //   (item) => item.opportunityId !== action.payload
+                  // ),
+                };
+              case types.DELETE_SEQUENCE_DATA_LIST_FAILURE:
+                return {
+                  ...state,
+                  deleteSequenceDataList: false,
+                  deleteSequenceDataListError: false,
+                };
             case types.ADD_HIDE_FLOW_FAILURE:
               return {
                 ...state,

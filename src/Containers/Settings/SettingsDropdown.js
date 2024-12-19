@@ -80,7 +80,7 @@ class SettingsDropdown extends Component {
       >
         <a href="#" style={{ marginRight: 4 }}>
           <div class=" flex items-center" >
-            <SettingsIcon className="!text-icon cursor-pointer text-[blue] "
+            <SettingsIcon className="!text-2xl cursor-pointer text-[blue] "
               type="setting"
               style={{
                 color:

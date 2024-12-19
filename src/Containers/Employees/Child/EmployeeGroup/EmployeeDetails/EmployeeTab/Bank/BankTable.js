@@ -34,7 +34,7 @@ class BankTable extends Component {
   }
   componentDidMount() {
     const { getBankDetails, employeeId } = this.props;
-    getBankDetails(this.props.employeeId);
+    getBankDetails("employee",this.props.employeeId);
     this.fetchMenuTranslations();
   }
   componentDidUpdate(prevProps) {

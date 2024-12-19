@@ -79,17 +79,17 @@ class ProfileDetailTab extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "Performance",
-        "Training",
-        "Education",
-        "Employment",
-        "Emergency",
-        "Bank Details",
-        "Personal Details",
-        "Signature",
-        "Email",
-        "Link Account",
-        "Equipment",
+       "1193", // "Performance",
+       "1194",// "Training",
+       "1195", // "Education",
+       "1196", // "Employment",
+       "1197",// "Emergency",
+       "1198",// "Bank Details",
+       "1199", // "Personal Details",
+       "1200", // "Signature",
+       "140", // "Email",
+       "1201",// "Link Account",
+       "1202",// "Equipment",
         
       ];
 

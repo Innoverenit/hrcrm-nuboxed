@@ -2,7 +2,6 @@ import React from "react";
 import {
   MultiAvatar,
   Title,
-  SubTitle,
 } from "../../../Components/UI/Elements";
 import { CurrencySymbol } from "../../../Components/Common";
 import { MainWrapper } from "../../../Components/UI/Layout";
@@ -52,7 +51,7 @@ const BussinessCard = (props) => {
               <div class="text-xs">          
               {contactName || ""} 
               </div>
-            <SubTitle>
+            <div>
               &nbsp;&nbsp;
               {currencyType && <CurrencySymbol currencyType={currencyType} />}
              
@@ -60,15 +59,15 @@ const BussinessCard = (props) => {
              
               &nbsp;    
              
-            </SubTitle>      
+            </div>      
           </div>
           <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
 
           </div>
         </div>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-        </SubTitle>
+        <div style={{ color: "#337df4", fontSize: "0.75em" }}>
+        </div>
       {/* </div> */}
       </MainWrapper>
     </div>

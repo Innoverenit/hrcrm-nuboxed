@@ -42,10 +42,10 @@ class CandidateTopicOfInterest extends React.Component {
     if (inputValue) {
       addTopicByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          candidateId: this.props.uniqueId,
           skillName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.candidate.candidateId
+        this.props.userType,this.props.uniqueId
       );
     }
     this.setState({
@@ -65,10 +65,10 @@ class CandidateTopicOfInterest extends React.Component {
     // if (selectValue) {
       addTopicByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          candidateId: this.props.uniqueId,
           skillName:"",
         },
-        this.props.candidate.candidateId
+        this.props.userType
       );
     
     // this.setState({
@@ -76,14 +76,14 @@ class CandidateTopicOfInterest extends React.Component {
     //   selectValue: "",
     // });
   };
-  handleTopicDelete = ({ skillSetDetailsId, candidateId }) => {
+  handleTopicDelete = ({ skillSetDetailsId }) => {
     const { deleteTopicByCandidateId } = this.props;
-    deleteTopicByCandidateId(skillSetDetailsId, candidateId);
+    deleteTopicByCandidateId(this.props.userType,skillSetDetailsId);
   };
 
   saveInputRef = (input) => (this.input = input);
   componentDidMount = () => {
-     this.props.getTopicsByCandidateId(this.props.candidate.candidateId);
+     this.props.getTopicsByCandidateId(this.props.userType,this.props.uniqueId);
      this.props.getLibrarys(this.props.organizationId);
   };
 
@@ -113,7 +113,7 @@ class CandidateTopicOfInterest extends React.Component {
     //     value: item.name,
     //   };
     // });
-    console.log(this.props.candidate.candidateId)
+    // console.log(this.props.candidate.candidateId)
 
     console.log("select",this.state.selectValue)
 
@@ -137,7 +137,8 @@ class CandidateTopicOfInterest extends React.Component {
              
                       <div>
                       <CandidateSelect
-                      candidateId={this.props.candidate.candidateId}
+                      candidateId={this.props.uniqueId}
+                      userType={this.props.userType}
                       />
                       </div>
                       </div>
