@@ -12,21 +12,12 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
-import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import * as Yup from "yup";
 
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
-  // subCategoryName: Yup.string().required("Please provide First Name"),
-  // attributeName: Yup.string().required("Please provide First Name"),
-  // subAttributeName: Yup.string().required("Please provide First Name"),
   name: Yup.string().required("Please provide Name"),
-  // price: Yup.string().required("Please provide First Name"),
-  // distributorMaxMargin: Yup.string().required("Please provide First Name"),
-  // tax: Yup.string().required("Please provide First Name"),
-
-
 });
 
 class Productform extends Component {

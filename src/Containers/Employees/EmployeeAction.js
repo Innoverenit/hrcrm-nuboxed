@@ -1073,6 +1073,32 @@ export const updateEmployee = (data, employeeId) => (dispatch) => {
     });
 };
 
+
+export const updaterowEmployees = (employeeId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_EMPLOYEE_ROW_REQUEST,
+  });
+  axios
+    .get(`${base_url}/employee//rowEdit/${employeeId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_EMPLOYEE_ROW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_EMPLOYEE_ROW_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const ClearReducerDataOfEmployee = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_REDUCER_DATA_EMPLOYEE,

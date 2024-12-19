@@ -5,8 +5,6 @@ import {
     getMaterialDamagedData,
     addRepairData,
     addDamagedCredit
-    // handleMaterialReceived,
-    // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
 import {  Switch, Input, message } from 'antd';
@@ -23,7 +21,6 @@ const InventoryMaterialDamagedData = (props) => {
     console.log(props.locationDetailsId)
     useEffect(() => {
         props.getMaterialDamagedData(props.locationId);
-        //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
 
 

@@ -1,15 +1,15 @@
 import React, { Suspense, lazy,useState,useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import InventoryCommerceTabO from "./InventoryCommerceTabO"
-import InventoryHeader from "./InventoryHeader";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
-import InventoryMaterialTabO from "./InventoryMaterialTabO";
-import InventoryDetailTabO from "./InventoryDetailTabO";//2
-import InventorySupplierTable from "./InventorySupplierTable";
 import { BundleLoader } from "../../../Components/Placeholder";
 
+const InventoryCommerceTabO = lazy(() => import("./InventoryCommerceTabO"));
+const InventoryHeader = lazy(() => import("./InventoryHeader"));
 const InventoryCard = lazy(() => import("./InventoryCard"));
+const InventorySupplierTable = lazy(() => import("./InventorySupplierTable"));
+const InventoryDetailTabO = lazy(() => import("./InventoryDetailTabO"));
+const InventoryMaterialTabO = lazy(() => import("./InventoryMaterialTabO"));
 
 function Inventory(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);

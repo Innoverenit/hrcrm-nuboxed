@@ -25,12 +25,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   MultiAvatar,
-  
 } from "../../../../Components/UI/Elements";
 import ProductPublishToggle from "./ProductPublishToggle";
 import dayjs from "dayjs";
-
-
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }

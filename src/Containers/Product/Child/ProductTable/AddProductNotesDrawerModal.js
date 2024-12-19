@@ -3,7 +3,8 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import LinkedProductNotes from "./LinkedProductNotes";
+
+const LinkedProductNotes = lazy(() => import("./LinkedProductNotes"));
 
 class AddProductNotesDrawerModal extends Component {
   render() {
@@ -21,6 +22,8 @@ class AddProductNotesDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             <LinkedProductNotes
             rowdata={this.props.rowdata}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             />
           </Suspense>
         </StyledDrawer>

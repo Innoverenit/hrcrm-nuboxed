@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
@@ -20,8 +20,8 @@ import {addProductBrand,getBrandProduct,
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EmptyPage from "../../Main/EmptyPage";
 
+const EmptyPage = lazy(() => import("../../Main/EmptyPage"));
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
