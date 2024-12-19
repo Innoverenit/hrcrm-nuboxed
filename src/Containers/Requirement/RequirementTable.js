@@ -22,6 +22,34 @@ const RequirementTable = (props) => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+          const fetchMenuTranslations = async () => {
+            try {
+              const itemsToTranslate = [
+              "1744",//  "Job",//0
+             "1152" ,//   "Requirement",//1
+              "213",//   " Quotation ID",//2
+             "14" ,//   "Category",//3
+              "248",//   "Customer",//4
+             "73", //   "Contact",//5
+             "679", //   "Created",//6
+              "158",//   "Start",//7
+             "1010", //   "Billing",//8
+              "1153",//   "Talent",//9
+               
+            
+             ];
+      
+              const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+              setTranslatedMenuItems(translations);
+            } catch (error) {
+              console.error('Error translating menu items:', error);
+            }
+          };
+      
+          fetchMenuTranslations();
+        }, [props.selectedLanguage]);
+
   
     useEffect(() => {
       window.addEventListener('error', e => {
@@ -46,28 +74,7 @@ const RequirementTable = (props) => {
         props.ClearReducerDataOfRequirement()
     }, []);
     
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            const itemsToTranslate = [
-           "1744",//Job 0
-           "1152",//Requirement
-           "213",
-            
-            "1010",  // "Billing",//5
-             
-             
-            ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-          } catch (error) {
-            console.error('Error translating menu items:', error);
-          }
-        };
-    
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
 
     const handleLoadMore = () => {
       setPage(page + 1);
@@ -88,21 +95,55 @@ console.log(requirementTable)
         <div className="flex flex-col w-full ">
             <div className="flex sticky z-auto">
                     <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                        <div className="flex justify-between w-[97.5%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
+                        <div className="flex justify-between w-[96%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
                            
-                        <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/>Job ID</div>
-        <div className=" max-md:w-[4.2rem] truncate w-[11.5rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
-        <div className="max-md:w-[3.31rem] truncate  w-[4.9rem]">  Quotation ID</div>
-        <div className="max-md:w-[10.2rem] truncate w-[10.2rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
-        <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
-        <div className="max-md:w-[3.3rem] truncate w-[8rem]"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>  
-        <div className="max-md:w-[3.8rem] truncate w-[6.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/> Created</div> 
-        <div className="max-md:w-[6.2rem] truncate w-[7.2rem]"> <RecentActorsIcon className="!text-icon text-[#84a59d] "/> Recruiter</div>
-        <div className="max-md:w-[8.5rem] truncate w-[2.1rem]"> On</div>
-        <div className="max-md:w-[2.3rem] truncate w-[6.3rem]"> <EventIcon className="!text-icon  "/> Start</div>
-        <div className="max-md:w-[5.3rem] truncate w-[6rem]"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
-        <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
-        <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>    
+                        <div className=" max-md:w-[6.1rem] w-[7.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/>
+                        {translatedMenuItems[0]} ID{/* Job ID */}
+                        </div>
+        <div className=" max-md:w-[8.2rem] truncate w-[8.5rem]"> <RecentActorsIcon className="!text-icon  "/>
+        {translatedMenuItems[1]} {/* Requirement */}
+        </div>
+        <div className="max-md:w-[3.31rem] truncate  w-[6.9rem]"> 
+        {translatedMenuItems[2]} {/* Quotation ID */}
+           </div>
+        <div className="max-md:w-[10.2rem] truncate w-[10.2rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/>
+        {translatedMenuItems[3]} {/* Category */}
+         </div>
+        <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> 
+          <AcUnitIcon className="!text-icon  text-[#c42847]"/> 
+          {translatedMenuItems[4]} {/* Customer */}
+          </div>
+        <div className="max-md:w-[3.3rem] truncate w-[8rem]"> 
+          <ContactsIcon className="!text-icon text-[#d64933] "/>
+          {translatedMenuItems[5]}{/* Contact */}
+           </div>  
+        <div className="max-md:w-[3.8rem] truncate w-[6.8rem]">
+           <EventIcon className="!text-icon text-[#5A189A] "/> 
+           {translatedMenuItems[6]}{/* Created */}
+           </div> 
+        <div className="max-md:w-[6.2rem] truncate w-[7.2rem]">
+           <RecentActorsIcon className="!text-icon text-[#84a59d] "/> 
+           Recruiter
+           </div>
+        {/* <div className="max-md:w-[8.5rem] truncate w-[2.1rem]"> 
+           On 
+          </div> */}
+        <div className="max-md:w-[2.3rem] truncate w-[6.3rem]"> 
+          <EventIcon className="!text-icon  "/> 
+          {translatedMenuItems[7]}{/* Start  */}
+          </div>
+        <div className="max-md:w-[5.3rem] truncate w-[6rem]"> 
+          <EventIcon className="!text-icon text-[#f42c04] "/>
+           Duration 
+           </div>
+        <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]">
+           <AccessAlarmIcon className="!text-icon  text-[#c42847]"/>
+           {translatedMenuItems[8]} {/* Billing  */}
+            </div>
+        <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> 
+          <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> 
+          {translatedMenuItems[9]} {/* Talent  */}
+          </div>    
                                   
                         </div>
                         <InfiniteScroll
@@ -132,7 +173,7 @@ console.log(requirementTable)
                              <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
             
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                     <div className=" flex items-center  border-l-2 border-green-500 bg-[#eef2f9] h-8  w-[7.9rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     <div className=" flex items-center  border-l-2 border-green-500 bg-[#eef2f9] h-8  w-[5.9rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs  font-poppins ml-gap  max-sm:text-sm">
@@ -146,18 +187,18 @@ console.log(requirementTable)
                                               ) : null}
                                     </div>
                                 </div>
-                                <div className=" flex   w-[9.5rem]   items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  ">
+                                <div className=" flex   w-[7.5rem]   items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  ">
                                 <div className="text-xs  font-poppins ml-gap ">
                                                  {item.requirementName}                                         
                                         </div>  
                                         </div>   
-                                        <div className=" flex items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[5.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                        <div className=" flex items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[8.518rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
                                     <div class="text-xs truncate  font-poppins  max-sm:text-sm">
                                {item.opportunityId}
                                     </div>
                                     
                                 </div>                                                                               
-                                        <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto">                                      
+                                        <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9]  w-[6.1rem]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto">                                      
                                             {/* Name */}                        
                                             <div class=" flex items-center   text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">                                                            
                                              {item.category}                                  
@@ -166,15 +207,15 @@ console.log(requirementTable)
                                 
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                 
+                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[6.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                 
                                     <div class="text-xs  font-poppins ml-gap  max-sm:text-sm">   
                                        {item.customerName}
                                     </div>
                                  </div>         
-                                 <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">    
+                                 <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[7.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">    
                                 {item.contactName}
                                   </div>                
-                                          <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                          <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[6.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Category */}
                             <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
                                     {date}
@@ -191,7 +232,7 @@ console.log(requirementTable)
                     {item.recruiterList &&
                   item.recruiterList.map((candidate, i) => {
                     
-                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[11]}`
+                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : ``
                     // "None"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
@@ -208,7 +249,7 @@ console.log(requirementTable)
                                 </div>
                               </div>                
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.117rem] max-xl:w-[6.117rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* On */}
                                   </div>
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.212rem]  max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -226,7 +267,7 @@ console.log(requirementTable)
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
                                     <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                    {item.billing}
                                     </div>
