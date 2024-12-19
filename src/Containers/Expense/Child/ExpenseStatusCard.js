@@ -1,10 +1,7 @@
 import React, {lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-const ExpensePendingStatusCard =lazy(()=>import("./ExpensePendingStatusCard"));
-const ExpenseApprovedStatusCard =lazy(()=>import("./ExpenseApprovedStatusCard"));
-const ExpenseRejectedStatusCard =lazy(()=>import("./ExpenseRejectedStatusCard"));
-
+const ExpenseStatusTypeCard =lazy(()=>import("./ExpenseStatusTypeCard"));
 
 function ExpenseStatusCard(props) {
  
@@ -12,13 +9,13 @@ function ExpenseStatusCard(props) {
       <>
        <div className="flex justify-arround max-sm:flex-col max-sm:overflow-x-auto h-[34rem]">
         <div className="w-[26rem] max-sm:w-wk">
-          <ExpensePendingStatusCard/>
+          <ExpenseStatusTypeCard statusType={"Pending"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <ExpenseApprovedStatusCard/>
+          <ExpenseStatusTypeCard statusType={"Approved"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <ExpenseRejectedStatusCard/>
+          <ExpenseStatusTypeCard statusType={"Rejected"}/>
         </div>
        </div>
 
