@@ -12,28 +12,28 @@ const invoiceData =  [
   
         name: "ABCD.",
         style:"Canadian",
-        address: "21A-81 Northern Heights Drive, Richmond Hill ON L4B 4C9",
-        phone: "+14162780878",
+        address: "21A-81 Sorthern Heights Drive, Dimonk ON L4B 4C9",
+        phone: "+566645",
         email: "sales@1di.ca",
-        gstNo: "71265570",
+        gstNo: "5765565",
         logo: "Logo_new.png", // Replace with the actual logo path
-            name: "Robert Cowman",
-            company: "FG Bradley's Fairview",
-            address: "1800 Sheppard Ave E. Fairview, Mall, Unit 2045, Toronto Ontario M2J 5A7",
-            name: "Robert Cowman",
-            company: "FG Bradley's Fairview",
-            address: "1800 Sheppard Ave E. Fairview, Mall, Unit 2045, Toronto Ontario M2J 5A7",
+            name: "Veham Josh",
+            company: "Jaun Wadr",
+            address: "167 weuyuh Fouxw, Mall, Unit 123478, Tikss Umaj M1J A47",
+            name: "Veham Josh",
+            company: "Jaun Wadr",
+            address: "167 weuyuh Fouxw, Mall, Unit 123478, Tikss Umaj M1J A47",
         id: "1361",
         date: "30/08/2024",
         dueDate: "29/09/2024",
         terms: "Net 30",
         shipDate: "30/08/2024",
-        shipVia: "MIKE DROPOFF",
+        shipVia: "KIJ SUIDU",
         salesRep: "Tracy Sales",
-        purchaseOrder: "BO-TM9456525",
+        purchaseOrder: "SO-TM9995",
     
             sku: "KES477",
-            description: "477 | Jumbo Foam D20",
+            description: "477 | OXKOJ KUNJER",
             qty: 36,
             rate: 12.50,
             amount: 450.00,
@@ -107,7 +107,7 @@ useEffect(() => {
                 }`}
                 onClick={() => setSelectedInvoice({ style: "Kaf" })}
               >
-                <div className="font-bold">Invoice #302218158</div>
+                <div className="font-bold">Invoice #5676677</div>
                 <div>Date: 30-09-2024</div>
                 <div></div>
               </li>
@@ -120,17 +120,17 @@ useEffect(() => {
 
               {/* Header */}
               <div className="mb-8 w-[60%] ml-auto">
-                <h1 className="text-4xl font-bold text-gray-800">KRG ASIAN FOOD</h1>
+                <h1 className="text-4xl font-bold text-blue-700">LXG ASIAN FOOD</h1>
                 <hr className="my-4 border-gray-300" />
                 <div className="flex justify-between">
                   <div>
-                    <p>Sevillaweg 90 <br /> 3047 AL Rotterdam <br /> The Netherlands <br /> 0031 (10) 415679</p>
+                    <p>Asuinch 90 <br /> 3047 Maeghalay <br /> The India <br /> 0031 (10) 415679</p>
                   </div>
                   <div className="text-center">
-                    <p>KVK: 86619853 <br /> BTW: NL864024939B01 <br /> info@krgasianfood.com <br /> www.krgasianfood.com</p>
+                    <p>KNK: 86619853 <br /> MTW: NL5467567 <br /> UKSUH@YM.com <br /> www.krcim.com</p>
                   </div>
                   <div className="text-right">
-                    <p>Bankdetails: <br /> ING Bank: 0878381 <br /> BIC Code nr: INGBNL2A <br /> BTW: NL864024939B01 <br /> IBAN: NL74INGB0000878381</p>
+                    <p>Bankdetails: <br /> KNG Bank: 0878381 <br /> BIC Code nr: INGBNL2A <br /> BTW: NL5467567 <br /> KBAN: NL74INGB0067657</p>
                   </div>
                 </div>
               </div>
@@ -140,11 +140,11 @@ useEffect(() => {
                 <div className="flex justify-between">
                   {/* Left Section */}
                   <div className="w-1/3 text-left">
-                    <strong>Remon Afro Asian Market</strong><br />
+                    <strong>Soauuk Jan's Market</strong><br />
                     West-Kruiskade 87<br />
-                    3014 AN Rotterdam<br />
-                    Nederland<br />
-                    Email: Info@krgasianfood.com<br />
+                    49 Hakkk Oas<br />
+                    Indabds<br />
+                    Email: Infikkk@Ymm.com<br />
                     Order info:
                   </div>
         
@@ -158,7 +158,7 @@ useEffect(() => {
         
                   {/* Right Section */}
                   <div className="w-1/3 text-right">
-                    Factuurnummer: KRG247163<br />
+                    Factuurnummer: LXG247163<br />
                     Klantnummer: 2<br />
                     Factuurdatum: 01-10-2024
                   </div>

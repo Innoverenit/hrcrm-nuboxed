@@ -117,8 +117,9 @@ const Library = ({
         <MainWrapper
           style={{
             flexBasis: "100%",
-            overflow: "auto",
+            overflow: "scroll",
             color: "#FFFAFA",
+            height:"29rem"
           }}
         >
              <div class=" flex flex-row justify-end">
@@ -191,7 +192,11 @@ const Library = ({
               {librarys.length ? (
                 librarys
                   .slice()
-                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .sort((a, b) => {
+                    const nameA = (a.name || '').toString();
+                    const nameB = (b.name || '').toString();
+                    return nameA.localeCompare(nameB);
+                  })
                   .map((library, i) => (
                     <SingleLibrary
                       key={i}
