@@ -389,7 +389,7 @@ console.log(selectedAssign)
         dataLength={allCustomers.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllCustomerList?<div class="flex justify-center"><BundleLoader/></div>:null}
+        loader={fetchingAllCustomerList?<div class="flex justify-center">Loading...</div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >     
@@ -501,7 +501,7 @@ console.log(selectedAssign)
 <div onClick={() => 
 handleEditRowField(item.customerId, 'countryDialCode',item.countryDialCode)}   
 className="cursor-pointer text-xs font-poppins">
-+{item.countryDialCode || "Update..."}&nbsp;
++{item.countryDialCode || <div className="!text-lm">"Update..."</div>}&nbsp;
 
 </div>         
                         )}

@@ -124,10 +124,6 @@ class ContactDetailTab extends Component {
     this.setState({ file: true });
   };
 
-  // componentDidMount() {
-  //   this.props.getContactListByCustomerId(this.props.customer.customerId);
-  // }
-
   componentWillUnmount() {
     this.setState({ breadCumb: false });
   }
@@ -266,11 +262,6 @@ translatedMenuItems={this.props.translatedMenuItems}
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <LinkedOpportunity customer={this.props.customer}
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}
-               translatedMenuItems={this.props.translatedMenuItems}
-                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -317,12 +308,7 @@ translatedMenuItems={this.props.translatedMenuItems}
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
-            customerId={ customerId }
-            translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
-            /> */}
+            
               </Suspense>
             </TabPane>
           
