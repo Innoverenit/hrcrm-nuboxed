@@ -320,7 +320,7 @@ class ContactForm extends Component {
                       <div class=" flex justify-between">                    
                             {/* name="salutation" */}
                        
-                        <div class=" w-full">
+                        <div class=" w-full ml-1">
                         <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[0]}             
                           </div>
@@ -337,7 +337,7 @@ class ContactForm extends Component {
                         </div>
                       </div>
                    
-                      <div class=" flex justify-between mt-3">
+                      <div class=" flex justify-between ml-1 mt-3">
                         <div class=" w-2/5">
                         <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[1]}             
