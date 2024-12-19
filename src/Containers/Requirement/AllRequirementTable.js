@@ -20,8 +20,35 @@ import EmptyPage from "../Main/EmptyPage";
 const AllRequirementTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    useEffect(() => {
+            const fetchMenuTranslations = async () => {
+              try {
+                const itemsToTranslate = [
+                "1744",//  "Job",//0
+               "1152" ,//   "Requirement",//1
+                "213",//   " Quotation ID",//2
+               "14" ,//   "Category",//3
+                "248",//   "Customer",//4
+               "73", //   "Contact",//5
+               "679", //   "Created",//6
+                "158",//   "Start",//7
+               "1010", //   "Billing",//8
+                "1153",//   "Talent",//9
+                 
+              
+               ];
+        
+                const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+                setTranslatedMenuItems(translations);
+              } catch (error) {
+                console.error('Error translating menu items:', error);
+              }
+            };
+        
+            fetchMenuTranslations();
+          }, [props.selectedLanguage]);
 
     useEffect(() => {
         props.getAllRequirementTable("All",page)
@@ -58,18 +85,18 @@ const AllRequirementTable = (props) => {
                 <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex justify-between w-[99.5%] p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
                            
-                           <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
-           <div className=" max-md:w-[4.2rem] truncate w-[9.2rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
-           <div className="max-md:w-[5.8rem] truncate w-[8.3rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
-           <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
-           <div className="max-md:w-[3.3rem] truncate w-[8rem]"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>  
-           <div className="max-md:w-[3.8rem] truncate w-[6.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/> Created</div> 
+                           <div className=" max-md:w-[8.1rem] w-[8.1rem] text-sm truncate text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> {translatedMenuItems[0]} ID{/* Job ID */}</div>
+           <div className=" max-md:w-[4.2rem] truncate w-[9.2rem]"> <RecentActorsIcon className="!text-icon  "/> {translatedMenuItems[1]} {/* Requirement */}</div>
+           <div className="max-md:w-[5.8rem] truncate w-[8.3rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> {translatedMenuItems[3]} {/* Category */}</div>
+           <div className="max-md:w-[8.5rem] truncate w-[8.1rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> {translatedMenuItems[4]} {/* Customer */}</div>
+           <div className="max-md:w-[3.3rem] truncate w-[8rem]"> <ContactsIcon className="!text-icon text-[#d64933] "/> {translatedMenuItems[5]}{/* Contact */}</div>  
+           <div className="max-md:w-[3.8rem] truncate w-[6.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/>  {translatedMenuItems[6]}{/* Created */}</div> 
            <div className="max-md:w-[6.2rem] truncate w-[7.2rem]"> <RecentActorsIcon className="!text-icon text-[#84a59d] "/> Recruiter</div>
            <div className="max-md:w-[8.5rem] truncate w-[2.1rem]"> On</div>
-           <div className="max-md:w-[2.3rem] truncate w-[6.3rem]"> <EventIcon className="!text-icon  "/> Start</div>
+           <div className="max-md:w-[2.3rem] truncate w-[6.3rem]"> <EventIcon className="!text-icon  "/> {translatedMenuItems[7]}{/* Start  */}</div>
            <div className="max-md:w-[5.3rem] truncate w-[6rem]"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
-           <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
-           <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>                           
+           <div className="max-md:w-[3.3rem] truncate  w-[5.5rem]"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> {translatedMenuItems[8]} {/* Billing  */}</div>
+           <div className="max-md:w-[3.3rem] truncate  w-[4.9rem]"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> {translatedMenuItems[9]} {/* Talent  */}</div>                           
                            </div>
                     <InfiniteScroll
     dataLength={requirementTable.length}

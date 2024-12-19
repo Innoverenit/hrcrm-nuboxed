@@ -194,11 +194,11 @@ function ProductionTableView(props) {
                 <div class="rounded m-1   p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%]  font-poppins !text-lm p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" max-md:w-[9rem] w-[9.5rem] text-[#00A2E8] text-sm truncate "> 
+                        <div className=" max-md:w-[9.5rem] w-[9.5rem] text-[#00A2E8] text-sm truncate "> 
                             {/* MFG ID */}
                             <PrecisionManufacturingIcon className="!text-icon  "/> {translatedMenuItems[0]}
                             </div>
-                        <div className=" max-md:w-[6.01rem] w-[6.01rem]">
+                        <div className=" max-md:w-[5.01rem] w-[5.01rem]">
                             {/* Cell */}
                             <TokenIcon className="!text-icon  text-[#1E213D]"/> {translatedMenuItems[1]}
                             </div>
@@ -207,7 +207,7 @@ function ProductionTableView(props) {
                             <DateRangeIcon className="!text-icon  text-[#006600]"/>{translatedMenuItems[2]}
                             </div>
                         <div className="max-md:w-[2rem] w-[2rem]"></div>
-                        <div className=" md:w-[4.3rem]">
+                        <div className=" md:w-[5.3rem]">
                             {/* Item */}
                             <AddShoppingCartIcon className="!text-icon  text-[#D64045]"/>{translatedMenuItems[3]}
                             </div>
@@ -444,24 +444,24 @@ function ProductionTableView(props) {
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky   font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">                       
-                        <div className=" md:w-[6rem] text-[#00A2E8] text-sm">
+                        <div className=" md:w-[6.5rem] text-[#00A2E8] text-sm">
                             {/* Workflow */}
-                            <SchemaIcon className="!text-icon  "/>  {translatedMenuItems[7]}
+                            <SchemaIcon className="!text-icon text-[#00A2E8] "/>  {translatedMenuItems[7]}
                             </div>
-                        <div className=" md:w-[6.06rem]">
+                        <div className=" md:w-[5.06rem] w-[5.06rem]">
                             {/* Stage */}
                             <StairsIcon className="!text-icon  text-[#1E213D]"/> {translatedMenuItems[8]}
                             </div>
-                        <div className="md:w-[5rem]">
+                        <div className="md:w-[5rem] w-[5rem]">
                             {/* Inspected */}
                             <InsertChartIcon className="!text-icon  text-[#006600]"/> {translatedMenuItems[9]}
                             </div>
-                        <div className=" md:w-[6.07rem]">
+                        <div className=" md:w-[6.07rem] w-[6.07rem]">
                             {/* Store */}
                             <StoreIcon className="!text-icon  text-[#4B2206]"/>  {translatedMenuItems[10]}
                             </div>
-                        <div className="md:w-[1.08rem]"></div>
-                        <div className="md:w-[5.07rem]">
+                        <div className="md:w-[2.08rem] w-[2.08rem]"></div>
+                        <div className="md:w-[5.07rem] [5.07rem]">
                             {/* To Quality */}
                            <VerifiedUserIcon className="!text-icon  text-[#D64045]"/> {translatedMenuItems[11]}
                             </div>

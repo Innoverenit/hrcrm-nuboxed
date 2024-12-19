@@ -13,6 +13,8 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import UpdateIcon from '@mui/icons-material/Update';
+import CategoryIcon from '@mui/icons-material/Category';
+import TokenIcon from '@mui/icons-material/Token';
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer,updateBatchData } from "../ProductionAction";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 
@@ -141,7 +143,7 @@ function ProductionAllCardView(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky h-8 z-10">
                         <div className=""></div>
-                        <div className=" w-[13.1rem] text-[#00A2E8] truncate text-sm  max-md:w-[8.1rem]">
+                        <div className=" w-[12.1rem] text-[#00A2E8] truncate text-sm  max-md:w-[12.1rem]">
                             {/* MFG ID */}
                             {translatedMenuItems[0]}
                             </div>
@@ -151,34 +153,35 @@ function ProductionAllCardView(props) {
                             </div>
                         <div className="w-[11.5rem] truncate  max-md:w-[7rem]">
                             {/* Cell */}
+                            < TokenIcon className="!text-icon text-[#4B2206] "/>
                             {translatedMenuItems[2]}
                             </div>
                         <div className="w-[7.2rem] truncate  max-md:w-[7rem]">
                             {/* Created */}
-                            <DateRangeIcon className="!text-icon "/> {translatedMenuItems[3]}
+                            <DateRangeIcon className="!text-icon text-[#1E213D] "/> {translatedMenuItems[3]}
                             </div>
                         <div className="w-[12.1rem] truncate  max-md:w-[9rem]">
                             {/* Item */}
-                            {translatedMenuItems[4]}
+                            <CategoryIcon className="!text-icon text-[#006600] "/>{translatedMenuItems[4]}
                             
                                 </div>
-                        <div className="w-[10.5rem] truncate  max-md:w-[8rem]">
+                        <div className="w-[9.5rem] truncate  max-md:w-[9.5rem]">
                             {/* Category */}
                             <FormatListNumberedIcon className='!text-icon  mr-1   text-[#42858c]' />   {translatedMenuItems[5]}
                             </div>
-                        <div className="w-[15.4rem] truncate  max-md:w-[9rem]">
+                        <div className="w-[12.4rem] truncate  max-md:w-[12.4rem]">
                             {/* Attribute */}
                             <AttractionsIcon className="  !text-icon text-[#8e71ed]" />  {translatedMenuItems[6]}
                             </div>
-                        <div className="w-[10.04rem] truncate  max-md:w-[5rem]">
+                        <div className="w-[9.04rem] truncate  max-md:w-[9.04rem]">
                             {/* Start */}
                             <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[7]}
                             </div>
-                        <div className="w-[9.5rem] truncate  max-md:w-[5rem]">
+                        <div className="w-[11.5rem] truncate  max-md:w-[11.5rem]">
                             {/* End */}
                             <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[8]}
                             </div>
-                        <div className="w-[10.4rem] truncate  max-md:w-[5.2rem]">
+                        <div className="w-[13.4rem] truncate  max-md:w-[13.4rem]">
                             {/* Workflow */}
                             {translatedMenuItems[9]}
                             </div>
@@ -186,7 +189,7 @@ function ProductionAllCardView(props) {
                             {/* Status */}
                             <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[10]}
                             </div>
-                        <div className="w-[9.8rem] truncate  max-md:w-[5rem]">
+                        <div className="w-[6.8rem] truncate  max-md:w-[6.8rem]">
                             {/* Inspected */}
                             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[11]}
                             </div>
