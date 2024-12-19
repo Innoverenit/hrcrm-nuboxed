@@ -15,7 +15,7 @@ const experienceSchema = Yup.object().shape({
 });
 function ExperienceForm(props) {
   useEffect(() => {
-    props.getTopicsByCandidateId(props.candidate.candidateId);
+    props.getTopicsByCandidateId("candidate",props.candidate.candidateId);
   }, []);
 
   const skillNameOption = props.topicsByCandidateId.map((item) => {

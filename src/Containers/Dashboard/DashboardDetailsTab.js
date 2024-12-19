@@ -66,7 +66,7 @@ class DashboardDetailsTab extends Component {
                    style={{fontSize:"1.1rem"}}
                   />
                     <span class=" ml-1">
-                  "Open Requirements"
+                  Open Requirements
                         </span>
                   
                   {activeKey === "1" && (

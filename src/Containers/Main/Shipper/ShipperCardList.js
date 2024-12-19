@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState,lazy } from "react";
+import React, { Suspense, useEffect, useState,lazy} from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
@@ -15,8 +15,6 @@ import {
   handleShipperAddress,
 } from "./ShipperAction";
 import Swal from 'sweetalert2'
-import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-import {getAllDialCodeList} from "../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Input,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -60,8 +58,8 @@ const [editingValue, setEditingValue] = useState("");
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
     fetchApiKeyList();
-    props.getAllDialCodeList();
-    props.getShipByData(props.orgId);
+    // props.getAllDialCodeList();
+    // props.getShipByData(props.orgId);
   }, []);
 
   useEffect(() => {
@@ -308,8 +306,9 @@ const fetchApiKeyList = async () => {
             <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[5]}
               </div>
             <div className=" w-[5.9rem] max-md:w-[5.9rem] truncate  ">
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/>{props.translatedMenuItems[6]}
             {/* Pin Code */}
-              {props.translatedMenuItems[6]}
+              
               </div>
             <div className=" w-[13.24rem] max-md:w-[13.24rem] truncate  ">
             <ApiIcon className='!text-base  text-[#e74139]'/> API</div>
@@ -325,16 +324,12 @@ const fetchApiKeyList = async () => {
               {dataShipper.map((item) => {
                 return (
                   <>
-                    <div  >
-                      <div className="flex rounded max-sm:rounded-lg py-ygap
-                max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                        <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex font-medium w-[9.9rem] max-xl:w-[7.6rem] items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
-                  
-                         
-                              <div class=" text-xs flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
-
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer   max-sm:text-xs"
+                    <div>
+                      <div className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col ">
+                        <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-md:flex-initial">
+                          <div className=" flex font-medium  flex-row  w-[9.9rem] max-md:w-44 items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                              <div class=" text-xs flex w-full    text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
+                                <Link class=" w-[100%]  overflow-ellipsis whitespace-nowrap items-center h-8 text-xs p-1 text-[#042E8A] cursor-pointer truncate   max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
@@ -347,14 +342,15 @@ const fetchApiKeyList = async () => {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 /></div>
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs flex items-center font-poppins opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>   
     </div> 
 )}                 
@@ -362,87 +358,92 @@ const fetchApiKeyList = async () => {
                               </div>
                             </div>
                           </div>
-                          <div className=" flex max-md:w-44 w-[9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
-<div class="  text-xs ml-gap items-center  font-poppins flex">
-{/* {item.dialCode} {item.phoneNo} */}
 
-<div>
-{editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
-  <Select
-  style={{ width: "7rem" }}
-  value={editingValue}
-  onChange={handleChangeRowSelectItem} 
-  autoFocus
->
-{props.dialcodeList.map((country) => (
-   <Option key={country.country_dial_code} value={country.country_dial_code}>
-  {country.country_dial_code}
-   </Option>
- ))}
-</Select>
-) : (
-<div onClick={() => 
-handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
-className="cursor-pointer text-xs font-poppins">
-{item.dialCode2 || "Update..."}
+                          <div className=" flex  max-md:flex-row">
+                          <div className=" flex max-md:w-48 w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row max-md:flex-initial ">
+                              <div class="  text-xs ml-gap items-center truncate  font-poppins flex ">
+                              {/* {item.dialCode} {item.phoneNo} */}
 
-</div>         
-                        )}
-                      </div>
-                      <div>
-                      {editableField?.shipperId === item.shipperId &&
-   editableField?.field === 'phoneNo' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
-) : (
-<div onClick={() => 
-    handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-poppins">
-    {item.phoneNo || "Update..."}
-    
-    </div> 
-)}                 
-                      </div>
-</div>
+                              <div>
+                              {editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
+                                <Select
+                                style={{ width: "7rem" }}
+                                value={editingValue}
+                                onChange={handleChangeRowSelectItem} 
+                                onBlur={() => handleEditRowField(null, null, null)}
+                                autoFocus
+                              >
+                              {props.dialcodeList.map((country) => (
+                                <Option key={country.country_dial_code} value={country.country_dial_code}>
+                                {country.country_dial_code}
+                                </Option>
+                              ))}
+                              </Select>
+                              ) : (
+                              <div onClick={() => 
+                              handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
+                              className="cursor-pointer text-xs font-poppins">
+                              {item.dialCode2 || "Update..."}
 
-</div>
+                              </div>         
+                                                      )}
+                                                    </div>
+                                                    <div>
+                                                    {editableField?.shipperId === item.shipperId &&
+                                editableField?.field === 'phoneNo' ? (
+                              <Input
+                                type="text"
+                                className="h-7 w-[4rem] text-xs ml-[0.25rem] "
+                                value={editingValue}
+                                onChange={handleChangeRowItem}
+                                onMouseDown={handleUpdateSubmit}
+                                onKeyDown={handleKeyDown} 
+                                onBlur={() => handleEditRowField(null, null, null)}
+                                autoFocus
+                              />
+                              ) : (
+                              <div onClick={() => 
+                                  handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
+                                  className="cursor-pointer text-xs font-poppins truncate ml-[0.25rem]">
+                                  {item.phoneNo || "Update..."}
+                                  
+                                  </div> 
+                              )}                 
+                                                    </div>
+                              </div>
+
+                        </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                           <div className=" flex   w-[10.3rem] max-md:w-[10.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs">
+                            <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs truncate">
                             {editableField?.shipperId === item.shipperId &&
-   editableField?.field === 'emailId' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
-) : (
-<div onClick={() => 
-    handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-poppins">
-    {item.emailId || "Update..."}
-    
-    </div> 
-)}   
-                        
+                        editableField?.field === 'emailId' ? (
+                      <Input
+                        type="text"
+                        className="h-7 w-[4rem] text-xs"
+                        value={editingValue}
+                        onChange={handleChangeRowItem}
+                        onMouseDown={handleUpdateSubmit}
+                        onKeyDown={handleKeyDown} 
+                        onBlur={() => handleEditRowField(null, null, null)}
+                        autoFocus
+                    />
+                              ) : (
+                              <div onClick={() => 
+                                  handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
+                                  className="cursor-pointer text-xs font-poppins truncate">
+                                  {item.emailId || "Update..."}
+                                  
+                                  </div> 
+                              )}   
+                                                      
                        
                             </div>
                           </div>
 
                           <div className=" flex  w-[6.12rem] max-md:w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
+                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs truncate">
                               {/* {item.shipByName} */}
                               <div>
                               {editableField?.shipperId === item.shipperId &&
@@ -451,6 +452,7 @@ className="cursor-pointer text-xs font-poppins">
       style={{ width: "6.12rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
+      onBlur={() => handleEditRowField(null, null, null)}
       autoFocus
     >
      {props.ShipByData.map((ship) => (
@@ -472,10 +474,12 @@ className="cursor-pointer text-xs font-poppins">
 
                           </div>
                         </div>
+
+                          </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                           <div className=" flex  w-[18.31rem] max-md:w-[18.31rem]  items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
+                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs truncate">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -484,7 +488,7 @@ className="cursor-pointer text-xs font-poppins">
                           </div>
                           
                           <div className=" flex   w-[12.21rem] max-md:w-[12.21rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
+                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs truncate">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].city) ||
@@ -494,7 +498,7 @@ className="cursor-pointer text-xs font-poppins">
                     
                           <div className=" flex  w-[5.2rem] max-md:w-[5.2rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
+                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs truncate">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].postalCode) ||
@@ -503,7 +507,7 @@ className="cursor-pointer text-xs font-poppins">
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className=" flex items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
+                          <div className=" flex items-center justify-center w-[10rem] max-md:44 h-8 ml-gap  bg-[#eef2f9] truncate">
                           <Popconfirm
           title={`Do you want to change ${tempToggleState[item.shipperId] ? "No" : "Yes"}`}
           onConfirm={() => handleToggleConfirm(item.shipperId)} 
@@ -533,7 +537,7 @@ className="cursor-pointer text-xs font-poppins">
         ) : ""}   
                           </div>
                           <div class="flex justify-end max-sm:w-wk items-center">
-                          <div class="flex max-sm:flex-row w-[8rem]  justify-end md:w-[3rem] max-sm:w-[25%] ">
+                          <div class="flex max-sm:flex-row w-[8rem] max-md:44  ml-gap justify-end md:w-[3rem] max-sm:w-[25%] truncate ">
                            
                           <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <AddLocationAltIcon
@@ -560,7 +564,7 @@ className="cursor-pointer text-xs font-poppins">
                         </div>
                         </div>
                       </div>
-                    </div>
+                    </div> 
                   </>
                 )
               })}
@@ -614,8 +618,8 @@ const mapDispatchToProps = (dispatch) =>
       getShipperByUserId,
       setEditShipper,
       handleShipperAddress,
-      getAllDialCodeList,
-      getShipByData
+      // getAllDialCodeList,
+      // getShipByData
     },
     dispatch
   );

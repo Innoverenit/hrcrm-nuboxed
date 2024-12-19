@@ -92,32 +92,24 @@ class EducationTable extends Component {
     return (
       <>
        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font=poppins !text-lm sticky items-end z-10">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font-poppins !text-lm sticky items-end z-10">
           <div className=" max-md:w-[6.5rem] w-[6.5rem] text-[#00A2E8] text-sm"><MergeTypeIcon className=" !text-icon"/> {this.state.translatedMenuItems[0]} </div>
- 
-        <div className="max-md:w-[10.1rem] w-[10.1rem]"><CalendarMonthIcon className=" !text-icon text-[#699CA2]"/>   {this.state.translatedMenuItems[1]}</div>
+                <div className="max-md:w-[10.1rem] w-[10.1rem]"><CalendarMonthIcon className=" !text-icon text-[#699CA2]"/>   {this.state.translatedMenuItems[1]}</div>
                  <div className="max-md:w-[10.1rem] w-[10.1rem]"> <MenuBookIcon className=" !text-icon text-[#1E213D]"/>  {this.state.translatedMenuItems[2]}</div>
-                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <SchoolIcon className=" !text-icon text-[#006600]"/>{this.state.translatedMenuItems[3]}/ {this.state.translatedMenuItems[4]}</div>
-
-                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <GradingIcon className=" !text-icon text-[#D64045]"/>{this.state.translatedMenuItems[5]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <SchoolIcon className=" !text-icon mr-1 text-[#006600]"/>{this.state.translatedMenuItems[3]}/ {this.state.translatedMenuItems[4]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <GradingIcon className=" !text-icon text-[#D64045]"/>{this.state.translatedMenuItems[5]}</div>   
+                        <div className="max-md:w-[10.2rem] w-[10.2rem]"></div>
+                  </div>
        
-                <div className="max-md:w-[10.2rem] w-[10.2rem]"></div>
-
-      </div>
-   
-        
-      {eduDetails=="" ? <EmptyPage/> :eduDetails.map((item) => { 
-        
-        
+      {eduDetails=="" ? <EmptyPage/> :eduDetails.map((item) => {        
                     return (
                         <div>
-                            <div className="flex rounded justify-between bg-white mt-1  items-center p-1"
-                                >
-                                     
-                                     <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  text-xs md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                            <div className="flex rounded justify-between bg-white mt-1  items-center py-ygap hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                                >                            
+                                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  text-xs md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                  <div className="flex max-sm:w-full items-center"> 
 
-          <div class="max-sm:w-full">
+                                    <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full  flex-row   h-8 ml-gap bg-[#eef2f9] items-center justify-center  w-[8rem]">
                                           

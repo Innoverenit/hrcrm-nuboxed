@@ -129,7 +129,9 @@ function ProspectDashboardJumpStart (props) {
         '1536', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
         '1537', // 2 "Quotation Added"
-        '1553'  // 3 "Quotation Won"
+        '1553' , // 3 "Quotation Won"
+        "1594",// By sector 4 
+        "1595",//5 
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -267,11 +269,11 @@ function ProspectDashboardJumpStart (props) {
       </div>
       <div class=" mt-1 flex flex-row justify-between items-center" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]}</div>
         <ProspectSectorPieChart/>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Sources</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]}</div>
         <ProspectSourcePieChart/>
         </div>
       </div>

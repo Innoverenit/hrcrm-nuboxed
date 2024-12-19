@@ -19,6 +19,7 @@ import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import DesktopAccessDisabledIcon from '@mui/icons-material/DesktopAccessDisabled';
+import HouseboatIcon from '@mui/icons-material/Houseboat';
 import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
@@ -99,7 +100,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <i class="fas fa-luggage-cart mr-2 text-[#e4eb3f] "></i>Holidays & Leaves
+        <HouseboatIcon className=" !text-icon mr-2 text-[#6F1D1B]"/>Holidays & Leaves
       </span>
     ),
       ruleId: "6",

@@ -73,6 +73,7 @@ function InvesterForm(props) {
           "147",//10 Description
           "76",//11 Assigned                
               "104",//Create 12
+              "185"
         
         ];
 
@@ -342,7 +343,7 @@ function InvesterForm(props) {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem] " style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
@@ -446,7 +447,7 @@ function InvesterForm(props) {
                   
                   <div class=" flex justify-between mt-3">
                   {contract ?
-                  <div class=" w-w47.5 flex flex-col">
+                  <div class=" w-w47.5.5 flex flex-col">
                  
                              <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
@@ -468,7 +469,7 @@ function InvesterForm(props) {
                     </div>
                      : ( null)}
                       {contract ?
-                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                    <div class=" w-w47.5.5" style={{display:"flex",flexDirection:"column"}}>
                    
                           <div class="font-bold text-xs font-poppins text-black">Source</div>
 
@@ -491,7 +492,7 @@ function InvesterForm(props) {
                           : ( null)}
                   </div>
                   <div class=" flex justify-between">
-                  <div class="font-bold font-poppins text-xs w-w47.5 ">
+                  <div class="font-bold font-poppins text-xs w-w47.5.5 mt-1 ">
                   {translatedMenuItems[5]}
                   <Field                     
                             name="investorCategoryId"                          
@@ -509,7 +510,7 @@ function InvesterForm(props) {
                           />
                     </div>
                     <div class=" flex flex-col items-center ">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] mt-1 text-xs flex flex-col">
                     {translatedMenuItems[6]} 
                     {/* Category */}
                       </div>
@@ -523,46 +524,10 @@ function InvesterForm(props) {
                   </div>
                     </div> 
                  <div class="flex justify-between mt-2">
-                 <div class=" flex flex-col items-center  mt-2">
-                    {/* <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[7]} 
-                  
-                      </div> */}
-                    {/* <Switch
-                      style={{ width: "6.25em", marginLeft: "0.625em" }}
-                     
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                    /> */}
-                  </div>
-                  {/* <div class=" flex flex-col items-center  mt-2">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[8]} 
-                   
-                      </div>
-                    <Switch
-                      style={{ width: "6.25em", marginLeft: "0.625em" }}
-                    
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                    />
-                  </div> */}
-                  
-                 </div>
-                 
-                  {/* <div class=" flex flex-col   mt-2">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                                        Inofocit
-                      </div>
-                    <Switch
-                      style={{ width: "6.25em", marginLeft: "0.625em" }}
-                      //onChange={handleContract}
-                      //checked={contract}
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                    />
-                  </div> */}
-                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
+                 <div class=" flex flex-col items-center  mt-2">             
+                  </div>                
+                 </div>            
+                  <div class=" w-w47.5.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}  
                   {/* Date */}
                     <Field
@@ -572,12 +537,10 @@ function InvesterForm(props) {
                       isColumn
                       inlineLabel
                     />
-                  </div>
-                 
+                  </div>               
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
-                >
-                 
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "  
+                >               
                  <div class=" flex justify-between">
                     <div class=" h-full w-full ">
                     <Listbox value={selected} onChange={setSelected}>
@@ -622,8 +585,7 @@ function InvesterForm(props) {
                               className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
                                 active ? "text-white" : "text-indigo-600"
                               }`}
-                            >
-                              
+                            >                             
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -650,16 +612,14 @@ function InvesterForm(props) {
         )}
       </Listbox>
                   </div>
-                    </div>
-                    
+                    </div>                 
                     <div class=" flex justify-between max-sm:flex-col mt-3">
                     {contract ?
                      <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="vatNo"
                         type="text"
-                        label="VAT Number"
-                         
+                        label="VAT Number"                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -680,11 +640,7 @@ function InvesterForm(props) {
                       />
                     </div>
                      : ( null)}
-                  </div>
-                 
-                
-                 
-                 
+                  </div>             
               <div class="mt-3">
                     <div>
                  <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
@@ -730,7 +686,7 @@ function InvesterForm(props) {
             
               </div>
               <div class=" mt-3">
-                  <div class="font-bold text-xs"> {translatedMenuItems[10]}  </div>
+                  <div class="font-bold text-xs"> {translatedMenuItems[13]}  </div>
                     <FieldArray
                       name="address"
                       // label="Address"                 

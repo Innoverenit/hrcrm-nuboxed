@@ -7,12 +7,9 @@ import { Button } from "antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import * as Yup from "yup";
-import { Input } from "./styled";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import {
-  ValidationError,
- } from "../../Components/UI/Elements";
 import { setPassword } from "./AuthAction";
+import { Input } from "../../Components/UI/Layout";
 
 const SetPasswordSchema = Yup.object().shape({
   password: Yup.string()
@@ -64,7 +61,7 @@ class SetPassword extends Component {
         <Input {...field} {...props} />
       </div>
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );

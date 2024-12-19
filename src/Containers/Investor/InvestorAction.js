@@ -189,7 +189,7 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
   export const UpdateInvestor = (data, investorId) => (dispatch) => {
     dispatch({ type: types.UPDATE_INVESTOR_BY_ID_REQUEST });
     axios
-      .put(`${base_url}/investor/${investorId}`, data, {
+      .put(`${base_url}/investor/rowEdit/${investorId}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

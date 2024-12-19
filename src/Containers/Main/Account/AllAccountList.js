@@ -18,7 +18,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
 import { Tooltip, Input,Button,Progress,Select  } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from 'dayjs';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -281,43 +280,43 @@ const handleEditRowField = (distributorId, field, currentValue) => {
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
+        <div className=" flex max-sm:hidden  w-[96%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
         <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
-            <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
+            <div className=" w-[14.3rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[10.11rem] max-md:w-[10.11rem] truncate">
+            <div className=" w-[10.1rem] max-md:w-[10.11rem] truncate">
             <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
              {/* Work */}</div>
-            <div className=" w-[12.1rem] max-md:w-[12.1rem] truncate">
+            <div className=" w-[14.6rem] max-md:w-[12.1rem] truncate">
             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[10.01rem] max-md:w-[10.01rem] truncate">
+            <div className="w-[9.2rem] max-md:w-[10.01rem] truncate">
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
             {/* type % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate ">
-            <DynamicFeedIcon
-              className='  text-[#e4eb2f]'
+            <div className="w-[9.3rem] max-md:w-[12.2rem] truncate ">
+            <DynamicFeedIcon className='  text-[#e4eb2f]'
               /> {translatedMenuItems[4]}
             {/* Paymentdays % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate">
+            <div className="w-[8.9rem] max-md:w-[12.2rem] truncate">
             <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
             </div>  
-            <div className="w-[9.2rem] max-md:w-[9.2rem]">
+            <div className="w-[17.2rem] max-md:w-[9.2rem]">
             <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[15]}
             {/* Payment % */}
        
             </div>     
-                <div className="w-[7.8rem] max-md:w-[7.8rem] truncate">
-                <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
+                <div className="w-[21.8rem] max-md:w-[7.8rem] truncate">
+                <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' />  {translatedMenuItems[11]}
            {/* credit */}        
             </div>
-            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
+      
+            <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>  
-            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
+            <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}
             {/* Assigned */}          
             </div>      
@@ -350,8 +349,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                   return (
                     <div>
                     <div className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  w-[14rem] max-md:w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                 
+                        <div className=" flex  w-[9rem] max-md:w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
                             <div>
                               <MultiAvatar
@@ -386,8 +385,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex max-md:w-[9.1rem]  w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
-                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
+                          <div class="flex text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
+                        <div className=" flex max-md:w-[9.1rem]  w-[6.6rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">                     
                           {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
                               <Select
                               style={{ width: "9.1rem" }}
@@ -402,12 +401,12 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               ))}
                             </Select>
                             ) : (
-                              <div className="cursor-pointer !text-xs font-[Poppins]"
-                               onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
+                              <div className="cursor-pointer !text-xs font-poppins"
+                               onClick={() => handleEditRowField(item.distributorId, 'DialCode', item.dialCode)}>
                                 {item.dialCode || "Update..."}
                               </div>
                             )}
-                              <div>
+                              <div className='ml-[0.25rem]' >
 {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'phoneNo' ? (
 <Input
@@ -422,7 +421,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-poppins">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -433,9 +432,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
 
                       </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                   
+                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'dcategoryName' ? (
 <Select
@@ -453,7 +452,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.dcategoryName || "Update..."}
     
     </div> 
@@ -461,7 +460,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[8rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto w-[6rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center ml-gap justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clientName' ? (
@@ -480,7 +480,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.clientName || "Update..."}
     </div> 
 )}
@@ -489,7 +489,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                         </div>
 
-                        <div className=" flex  max-sm:w-auto w-[9rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto w-[5.7rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'payment' ? (
@@ -505,14 +506,15 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.payment || "Update..."} 
     </div> 
 )}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[6rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clubName' ? (
@@ -528,14 +530,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.clubName || "Update..."}
     </div> 
 )}
 
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[10.7rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'payment' ? (
@@ -551,7 +553,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.payment || "Update..."} days
     </div> 
 )}
@@ -611,7 +613,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                      
                       <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
                           <div>
@@ -627,7 +629,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                       />                                                       
                                                 </Tooltip>
                                                 </div>
-                          <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div class=" text-xs flex items-center justify-center font-poppins w-[5.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k */}
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'curName' ? (
@@ -646,7 +648,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.curName || "Update..."} 
     </div> 
 )}
@@ -665,7 +667,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'currencyPrice', item.currencyPrice)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer ml-[0.25rem] text-xs font-Poppins">
     {(item.currencyPrice / 1000).toFixed(0)}k  
     </div> 
 )}
@@ -673,7 +675,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
                        
                     
-                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.assignToUser?
                             <Tooltip title={item.assignToUser}>
@@ -693,7 +695,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>:""}
                           </div>                      
                       </div>    
-                      <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
@@ -775,18 +777,17 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                         </div>
-
+</div>
                       </div>
                     </div>
-                  </div>
+                
                   )
                 })}
-              </> : !customerLists.length
-          && !props.fetchingAllDistributors ?
-                <NodataFoundPage /> : null}
+              </> 
+              : !customerLists.length && !props.fetchingAllDistributors ? <NodataFoundPage /> : ""}
           </InfiniteScroll>
         </div>
-      </div>
+        </div>
           )}
             <Suspense fallback={<BundleLoader />}>
   

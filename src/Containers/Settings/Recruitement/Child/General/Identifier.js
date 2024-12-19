@@ -284,7 +284,7 @@ function Identifier(props) {
               </div>
             </div>
             <div className="mt-4">
-              Updated on {dayjs(props.identifiers.creationDate).format("ll")} by{" "}
+              Updated on {dayjs(props.identifiers.creationDate).format("DD/MM/YYYY")} by{" "}
               {props.identifiers.ownerName}
             </div>
           </div>

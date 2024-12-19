@@ -290,7 +290,7 @@ const handleAddContact = () => {
                                         />
                                         {isAddingContact && (
                         <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">                
+<div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -305,7 +305,7 @@ const handleAddContact = () => {
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -320,7 +320,7 @@ const handleAddContact = () => {
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
   </div>
@@ -340,7 +340,7 @@ const handleAddContact = () => {
       </Select>   
                 </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
   </div>
@@ -359,7 +359,7 @@ const handleAddContact = () => {
 
 
              
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
   </div>
   <Input

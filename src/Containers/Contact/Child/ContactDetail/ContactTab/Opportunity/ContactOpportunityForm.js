@@ -422,7 +422,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 />
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div className="font-semibold font-poppins  text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
@@ -433,7 +433,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div className="font-semibold font-poppins  text-black text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
@@ -459,7 +459,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 </div>
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div className="font-semibold font-poppins text-black  text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
@@ -469,7 +469,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       component={InputComponent}
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div className="font-semibold font-poppins  text-black text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
@@ -628,7 +628,7 @@ const filteredEmployeesData = AllEmplo.filter(
         </Select>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
-<div class=" w-w47.5 max-sm:w-wk">
+<div class=" w-w47.5.5 max-sm:w-wk">
                        
             </div>
          
@@ -636,7 +636,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 <div class=" mt-1" />
 
                 <div class="flex justify-between max-sm:flex-col">
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class=" text-xs font-semibold font-poppins text-black">
                     {translatedMenuItems[8]}
                     {/* Workflow */}
@@ -658,7 +658,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     </div>
                   </div>
                   <div class=" mt-1" />
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class=" text-xs font-semibold font-poppins text-black">
                     {translatedMenuItems[9]}
                       <Field

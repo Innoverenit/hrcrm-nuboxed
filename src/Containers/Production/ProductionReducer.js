@@ -68,6 +68,11 @@ const initialState = {
   workflowProduction: [],
 
 
+
+  updateBatchData:false,
+  updateBatchDataError:false,
+
+
   addSparePartsDrawerModal:false,
 
 
@@ -482,6 +487,29 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
           };
         case types.UPDATE_ROOM_RACK_PRODN_FAILURE:
           return { ...state, updatingroomrackProdn: false,updatingroomrackProdnError:true, };
+
+
+
+
+          case types.UPDATE_BATCH_DATA_REQUEST:
+            return { ...state,updateBatchData: true };
+          case types.UPDATE_BATCH_DATA_SUCCESS:
+            return {
+              ...state,
+              updateBatchData: false,
+              productionAllByOrgId: state.productionAllByOrgId.map((item) => {
+                if (item.productionProductId === action.payload.productionProductId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            
+            };
+            
+          case types.UPDATE_BATCH_DATA_FAILURE:
+            return { ...state,updateBatchData: false, updateBatchDataError:false,};
+    
 
           case types.GET_ALL_STAGE_PRODUCTION_REQUEST:
             return { ...state, fetchingAllStageProduction: true, fetchingAllStageProductionError: false };

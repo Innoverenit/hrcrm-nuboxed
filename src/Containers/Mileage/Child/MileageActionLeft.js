@@ -142,7 +142,7 @@ setSearchOnEnter(true);
       )}
  <div class=" w-72 md:ml-4 max-sm:w-36 ml-0">
         <Input
-         placeholder="Search by Name, Company"
+         placeholder="Search by Voucher ID"
          class="w-96"
               suffix={suffix}
               onPressEnter={handleSearch}  

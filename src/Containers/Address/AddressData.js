@@ -195,7 +195,6 @@ const AddressTable = (props) => {
             <th> {translatedMenuItems[2]}</th> */}
             <th> Address</th>
             <th> Billing Address</th>
-            <th> Action</th>
           </tr>
         </thead>
         <tbody>
@@ -311,7 +310,9 @@ const AddressTable = (props) => {
           ))}
         </tbody>
       </table>
-      <Button onClick={handleAddRow}>{translatedMenuItems[8]}</Button>
+      <div className="flex justify-end mt-3">
+      <Button type="primary" onClick={handleAddRow}>{translatedMenuItems[8]}</Button>
+      </div>
     </div>
   );
 };

@@ -161,7 +161,7 @@ class SupplierContactForm extends Component {
                     }) => (
                         <Form className="form-background h-[70vh]">
               <div class=" flex justify-between">
-                <div class=" h-full w-w47.5" >
+                <div class=" h-full w-w47.5.5" >
                 <div class=" flex flex-nowrap justify-between mt-3">
                                         <FastField name="imageId" component={PostImageUpld} />
                                         <div>
@@ -351,7 +351,7 @@ class SupplierContactForm extends Component {
                         />
 
                        </div>
-                       {/* <div class=" w-w47.5 ">
+                       {/* <div class=" w-w47.5.5 ">
 
 <div class=" text-xs font-bold font-poppins"> Reports To</div>
 
@@ -407,7 +407,7 @@ onChange={this.handleCustomerChange}
                                         </div>
                                         </div>
 
-                                        <div class=" h-4/6 w-w47.5">
+                                        <div class=" h-4/6 w-w47.5.5">
                 <div class=" text-xs font-bold font-poppins mt-3"> 
                          {translatedMenuItems[11]}             
                           </div>

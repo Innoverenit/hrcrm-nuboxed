@@ -364,7 +364,7 @@ class ContactInvestForm extends Component {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col ">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
                   <div class=" flex justify-between  flex-nowrap">
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
@@ -552,7 +552,7 @@ class ContactInvestForm extends Component {
                 </div>
 </div>
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk " >
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk " >
                 <div className="flex justify-between">
         <div className="h-full w-full">
           <Listbox value={selected} onChange={this.setSelected}>
@@ -628,7 +628,7 @@ class ContactInvestForm extends Component {
                  
                  
                  {/* <div class=" flex  justify-between">
-                    <div class="font-bold font-poppins text-xs  w-w47.5">
+                    <div class="font-bold font-poppins text-xs  w-w47.5.5">
                     {translatedMenuItems[10]}
                       <Field
                         name="investorId"
@@ -644,7 +644,7 @@ class ContactInvestForm extends Component {
                       />
                     </div>
 
-                    <div class=" font-bold font-poppins text-xs w-w47.5">
+                    <div class=" font-bold font-poppins text-xs w-w47.5.5">
                     {translatedMenuItems[11]}
                       <FastField
                         name="designationTypeId"
@@ -660,7 +660,7 @@ class ContactInvestForm extends Component {
                   </div> */}
 
 <div class="  flex justify-between max-sm:mt-20">
-        <div class="flex flex-col w-w47.5">
+        <div class="flex flex-col w-w47.5.5">
                   {/* {this.props.customerConfigure.tagCompanyInd===true&& */}
                   <div class=" text-xs font-bold font-poppins"> 
                   {/* {translatedMenuItems[9]} */}
@@ -687,7 +687,7 @@ class ContactInvestForm extends Component {
                     {/* } */}
                     </div>
                     </div>              
-                    {/* <div class=" w-w47.5 ">
+                    {/* <div class=" w-w47.5.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     
@@ -705,7 +705,7 @@ class ContactInvestForm extends Component {
                     }
                         </div> */}
 
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
                     {/* {this.props.customerConfigure.sourceInd===true&& */}
                     <div class=" text-xs font-bold font-poppins"> Reports To</div>
                     
@@ -729,7 +729,7 @@ class ContactInvestForm extends Component {
                      
                   </div>
 
-                  <div class=" w-w47.5 ">
+                  <div class=" w-w47.5.5 ">
                    
                     <div class=" text-xs font-bold font-poppins"> 
                       {/* {translatedMenuItems[10]} */}
@@ -750,7 +750,7 @@ class ContactInvestForm extends Component {
                           </div>
                 
                   <div class=" flex justify-between mt-3">         
-                  <div class="font-bold font-poppins text-xs w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5.5">
                  {translatedMenuItems[12]}
                     <FastField
                       name="departmentId"
@@ -763,7 +763,7 @@ class ContactInvestForm extends Component {
                       inlineLabel
                     />
                   </div>
-                  <div class="font-bold font-poppins text-xs w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5.5">
                  {/* {translatedMenuItems[13]} */}
                  Designation
                   {/* <Field

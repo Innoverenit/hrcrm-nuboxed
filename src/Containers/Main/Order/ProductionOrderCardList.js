@@ -1,14 +1,12 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Tooltip, } from "antd";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import {
     getProductionOrder,
@@ -16,12 +14,13 @@ import {
   handlePaidModal
 } from "../Order/OrderAction";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const NodataFoundPage=lazy(()=>import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
 
 function ProductionOrderCardList(props) {
   const [particularRowData, setParticularRowData] = useState({});
@@ -79,7 +78,7 @@ function ProductionOrderCardList(props) {
 
       const viewAnDownloadPdf= async (item) => {  
         try {
-          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
             responseType: 'blob',
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -298,7 +297,7 @@ console.log(page)
           </InfiniteScroll>
         </div>
       </div>
-
+<Suspense>
       <AddNotesOrderDrawer
         particularRowData={particularRowData}
         addNotesInOrder={props.addNotesInOrder}
@@ -314,7 +313,7 @@ console.log(page)
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal} />
-  
+  </Suspense>
     </>
   );
 }

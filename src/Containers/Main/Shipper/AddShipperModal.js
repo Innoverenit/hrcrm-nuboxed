@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
+import { StyledDrawer} from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddShipperForm = lazy(() => import("./AddShipperForm"));
 
@@ -9,7 +9,7 @@ const AddShipperModal = (props) => {
         <>
             <StyledDrawer
                 title={props.translatedMenuItems[11]}
-                width="60%"
+                width="50%"
                 visible={addShipperModal}
                 closable
                 destroyOnClose

@@ -15,9 +15,7 @@ const Register = lazy(() => import("./Containers/Auth/Register"));
 
 const Login = lazy(() => import("./Containers/Auth/Login"));
 const EmailValidation = lazy(() => import("./Containers/Auth/EmailValidation"));
-const ForgotPasswordVerification = lazy(() =>
-  import("./Containers/Auth/ForgotPasswordVerification")
-);
+
 const SetPassword = lazy(() => import("./Containers/Auth/SetPassword"));
 const ForgotPassword = lazy(() => import("./Containers/Auth/ForgotPassword"));
 const MainApp = lazy(() => import("./Containers/Main/MainApp"));
@@ -40,14 +38,8 @@ class App extends Component {
                 exact
                 path="/activationEmail/:employeeId/:token/:emailId/:organizationId"
                 component={EmailValidation}
-              />
-              <Route
-                exact
-                path="/forgotPasswordVerification/:employeeId/:token/:emailId/:organizationId"
-                component={ForgotPasswordVerification}
-              />
+              />             
               <Route exact path="/setPassword" component={SetPassword} />
-              {/* <Route exact path="/onboardUser" component={OnBoardUserPage}  /> */}
               <Route exact path="/onboard" component={OnBoardOrganizationPage} />
               <Route exact path="/forgotPassword" component={ForgotPassword} />
 

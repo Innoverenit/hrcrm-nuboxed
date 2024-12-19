@@ -30,6 +30,7 @@ import {
 import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CustomerMapTable from "./CustomerMapTable";
 import ActivityListData from "../../../../Activity/ActivityListData";
+import RecruitmentTable from "./Recruitment/RecruitmentTable";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
@@ -220,6 +221,10 @@ translatedMenuItems={this.props.translatedMenuItems}
                               translatedMenuItems={this.props.translatedMenuItems}
                                />    
                           </div>;
+                            case "8":
+                              return  <div>  
+                                  <RecruitmentTable/>
+                                  </div>;
         default:
           return null;
       }
@@ -508,7 +513,23 @@ translatedMenuItems={this.props.translatedMenuItems}
                                />                        */}
                         </Suspense>
                     </TabPane>
-
+                    <TabPane
+                        tab={
+                            <>
+                                <span> 
+                                    <span class="!text-tab ml-1">  
+                                    <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
+                                    RecruitPro
+                                      </span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="8"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                        </Suspense>
+                    </TabPane>
           </StyledTabs>
           <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}

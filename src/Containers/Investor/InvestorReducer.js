@@ -160,6 +160,8 @@ const initialState = {
   fetchingTeamInvestorError: false,
   teamInvestor:[],
 
+
+
   fetchingInvenstoryShare: false,
         fetchingInvenstoryShareError: false,
         inventoryShare:[],
@@ -695,6 +697,9 @@ export const investorReducer = (state = initialState, action) => {
               fetchingOpportunityRecord: false,
               fetchingOpportunityRecordError: true,
             };
+
+           
+            
 
 
             case types.ADD_INVEST_ACTIVITY_CALL_REQUEST:

@@ -183,7 +183,7 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
             <Form className="form-background">
               <div class="flex  pr-2 max-sm:flex-col">
                
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
               
                  
                   <div class="mt-3 flex justify-between">

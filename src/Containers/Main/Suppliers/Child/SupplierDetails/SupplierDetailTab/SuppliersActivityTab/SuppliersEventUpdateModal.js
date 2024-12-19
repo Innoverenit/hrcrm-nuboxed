@@ -1,5 +1,4 @@
-import React, { lazy, Suspense } from "react";
-
+import React, {  Suspense } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
 import SuppliersEventUpdateForm from "./SuppliersEventUpdateForm";

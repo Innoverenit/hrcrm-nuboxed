@@ -7,7 +7,7 @@ import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectCo
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
-import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
+import { addPaidOrder,addPaidRepairOrder, getPaymentMode } from "../../../Account/AccountAction";
 import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 
@@ -95,13 +95,17 @@ function DistributorPaidForm(props) {
           orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
-          orderPaymentType:"Procure",
+          orderPaymentType: props.activeTab === "11" ? "Procure":"Repair",
           remainingTotalValue:props.particularRowData.remainingTotalValue || 0,
       
         }}
         validationSchema={DistributorSchema}
       
         onSubmit={(values, { resetForm }) => {
+          console.log('entryAmount:', values.entryAmount, typeof values.entryAmount);
+console.log('remainingTotalValue:', props.particularRowData.remainingTotalValue, typeof props.particularRowData.remainingTotalValue);
+
+if (props.activeTab === "11") {
 if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotalValue) 
   && Number(values.entryAmount) >= 0 ) {
           props.addPaidOrder(
@@ -109,8 +113,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               ...values,
               // date: `${newEndDate}T00:00:00Z`,
             },
-            props.particularRowData.procureOrderInvoiceId,
-            props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId,
+            props.particularRowData.procureOrderInvoiceId, 
             props.distributorId,
           ); 
         }
@@ -123,8 +126,16 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               showConfirmButton: false,
               timer: 1500,
             });
+          }}
+          else if (props.activeTab === "3") {
+            props.addPaidRepairOrder(
+              {
+                ...values,
+              },
+              props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId,
+              props.distributorId,
+            ); 
           }
-
           resetForm();
         }}
       >
@@ -284,6 +295,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addPaidOrder,
+      addPaidRepairOrder,
       getCurrency,
       getPaymentMode
     },

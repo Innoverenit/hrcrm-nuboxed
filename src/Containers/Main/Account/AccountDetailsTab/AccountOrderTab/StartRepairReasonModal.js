@@ -1,9 +1,8 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { StyledDrawer, StyledModal } from "../../../../../Components/UI/Antd";
-import RepairReasonForm from "./RepairReasonForm";
-// import OrderPaymentTable from "./OrderPaymentTable";
-// const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
+import { StyledDrawer} from "../../../../../Components/UI/Antd";
+
+const RepairReasonForm = lazy(() => import("./RepairReasonForm"));
 class StartRepairReasonModal extends Component {
     render() {
         const {
