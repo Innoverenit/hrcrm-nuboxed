@@ -12,6 +12,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+
 function ProductbuilderTable2 (props) {
 
   useEffect(()=> {
@@ -162,7 +163,7 @@ return (
                       <div class="max-sm:w-full md:flex items-center">
                      
                       <div className=" flex    md:w-[8.1rem] max-sm:w-full  ">
-    <div class="text-xs    font-poppins cursor-pointer">
+    <div class="text-xs  font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
     </div>

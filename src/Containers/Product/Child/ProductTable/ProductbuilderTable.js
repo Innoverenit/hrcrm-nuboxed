@@ -132,7 +132,9 @@ function ProductbuilderTable (props) {
                             
 <Suspense fallback={"Loading"}>
 {showCard &&
-<ProBuildSearchedCard particularDiscountData={props.particularDiscountData}/>
+<ProBuildSearchedCard particularDiscountData={props.particularDiscountData}
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}/>
 }
 {/* <ProductbuilderTable2 particularDiscountData={props.particularDiscountData}/> */}
 </Suspense>

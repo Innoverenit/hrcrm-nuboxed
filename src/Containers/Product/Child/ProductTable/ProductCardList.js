@@ -13,9 +13,6 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AddModeratorIcon from '@mui/icons-material/AddModerator';
 import PixIcon from '@mui/icons-material/Pix';
-
-// import ConstructionIcon from"@mui/icons-material/ConstructionIcon";
-
 import {
   getProducts,
   getProductByGroup,
@@ -33,7 +30,6 @@ import {
   updateDateYearProduct
 } from "../../ProductAction";
 import Token from '@mui/icons-material/Token';
-import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NewspaperIcon from '@mui/icons-material/Newspaper'
@@ -42,11 +38,13 @@ import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import FeatureProductToggle from "./FeatureProductToggle";
-import WarrentyProductToggle from "./WarrentyProductToggle";
-import EmptyPage from "../../../Main/EmptyPage";
-import MaterialBarCodeInput from "../../../Main/Supplies/MaterialBarCodeInput";
-import ProductSearchData from "./ProductSearchData";
+
+const ProductPublishToggle = lazy(() => import("./ProductPublishToggle"));
+const FeatureProductToggle = lazy(() => import("./FeatureProductToggle"));
+const WarrentyProductToggle = lazy(() => import("./WarrentyProductToggle"));
+const ProductSearchData = lazy(() => import("./ProductSearchData"));
+const MaterialBarCodeInput = lazy(() => import("../../../Main/Supplies/MaterialBarCodeInput"));
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));

@@ -5,7 +5,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import AttractionsIcon from '@mui/icons-material/Attractions';
 import ExploreIcon from "@mui/icons-material/Explore";
 import {
     getdeleteProducts,
@@ -20,15 +20,15 @@ import {
   handleProductBuilderDrawer,
   handlePriceDrawer,
 } from "../../ProductAction";
-import ProductPublishToggle from "./ProductPublishToggle";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { Tooltip } from "antd";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import ReInstateProductToggle from "./ReInstateProductToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
+const ProductPublishToggle = lazy(() => import("./ProductPublishToggle"));
+const ReInstateProductToggle = lazy(() => import("./ReInstateProductToggle"));
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
