@@ -48,8 +48,14 @@ class Requirement extends Component  {
         translateText={this.props.translateText}
         />
           <Suspense fallback={"Loading..."}>
-        {viewType === 'card' &&  <RequirementTable/>}
-        {viewType === 'All' &&  <AllRequirementTable/>}
+        {viewType === 'card' &&  <RequirementTable 
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+        />}
+        {viewType === 'All' &&  <AllRequirementTable
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+        />}
         </Suspense>
         </>
     ); 

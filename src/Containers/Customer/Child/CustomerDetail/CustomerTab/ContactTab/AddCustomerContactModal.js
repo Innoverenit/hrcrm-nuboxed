@@ -20,7 +20,7 @@ const AddCustomerContactModal = (props) => {
       <StyledDrawer
       title="Contact"
         // title={`${props.translatedMenuItems[1]}`}
-        width="60%"
+        width="50%"
         visible={addCustomerContactModal}
         onClose={() => handleCustomerContactModal(false)}
         footer={null}

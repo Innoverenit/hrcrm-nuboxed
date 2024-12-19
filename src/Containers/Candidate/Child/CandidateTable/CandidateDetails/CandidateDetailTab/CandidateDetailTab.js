@@ -185,7 +185,7 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span>
-                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                <HourglassFullIcon className="text-blue-600 !text-icon" />
                 <span class="ml-1 !text-tab font-poppins ">
                 {/* Activity */}
                  {translatedMenuItems[0]}
@@ -226,7 +226,7 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <TransferWithinAStationIcon
-                  className=" !text-icon"
+                  className=" !text-icon text-[#E54A38]"
                 />
                 <span class=" ml-1 !text-tab" >   {translatedMenuItems[1]}
                   {/* RecruitPro */}
@@ -247,7 +247,7 @@ function CandidateDetailTab(props) {
             tab={
               <>
 
-                <WorkspacePremiumIcon className=" !text-icon" />
+                <WorkspacePremiumIcon className=" !text-icon text-[#DC7B04]" />
                 <span class=" ml-1 !text-tab" >
                 {translatedMenuItems[2]}
                   {/* Experience */}
@@ -266,7 +266,7 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <FileCopyIcon className=" !text-icon" />
+                <FileCopyIcon className=" !text-icon text-[#962235]" />
                 <span class=" ml-1 !text-tab">   {translatedMenuItems[3]}
                   {/* Documents */}
            
@@ -302,7 +302,7 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span  className="  !text-tab">
-                  <NoteAltIcon className=" !text-icon mr-1" />{translatedMenuItems[4]}
+                  <NoteAltIcon className=" !text-icon mr-1 text-[#066024]" />{translatedMenuItems[4]}
                 {/* Notes */}
             
                   &nbsp;
@@ -333,7 +333,7 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <SchoolIcon className=" !text-icon" />
+                <SchoolIcon className=" !text-icon text-[#416B8B]" />
                 <span class=" ml-1 !text-tab" >{translatedMenuItems[5]}
                   {/* Education */}
   
@@ -369,7 +369,7 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <HeadphonesIcon className=" !text-icon" />
+                <HeadphonesIcon className=" !text-icon text-[#6E4785]" />
                 <span class=" ml-1 !text-tab" > {translatedMenuItems[6]}
                   {/* Training */}
                   {/* {translatedContent[7]} */}
@@ -398,7 +398,7 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon className=" !text-icon" />
+                <AccountBalanceIcon className=" !text-icon text-[#A45151]" />
                 <span class=" ml-1 !text-tab" >{translatedMenuItems[7]}
                   {/* Employment */}
                   {/* {translatedContent[6]} */}
@@ -428,7 +428,7 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon className=" !text-icon" />
+                <AccountBalanceIcon className=" !text-icon text-[#A45151]" />
                 <span class=" ml-1 !text-tab" > {translatedMenuItems[8]}
                   {/* Bank Details */}
                   {/* {translatedContent[8]} */}

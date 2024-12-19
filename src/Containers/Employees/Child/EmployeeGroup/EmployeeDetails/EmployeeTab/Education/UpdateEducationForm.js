@@ -207,46 +207,8 @@ class UpdateEducationForm extends Component {
                       width={"100%"}
                       />
                   </div>
-                </div>
-
-             
-              </div>
-
-              {/* <div
-                  style={{
-                    width: "45%",
-                    // border: "0.125em solid green"
-                  }}
-                >
-                  <Field
-                    name="documentId"
-                    isRequired
-                    component={DragableUpload}
-                  />
-                  <div class=" mt-3" />
-
-                  <Field
-                    name="documentTitle"
-                    label="Name"
-                    width={"100%"}
-                    isColumn
-                    component={InputComponent}
-                    style={{ height: "2.0625em", marginTop: "0.25em" }}
-                  />
-                  <div class=" mt-3" />
-                  <Field
-                    name="documentDescription"
-                    label="Description"
-                    isRequired
-                    isColumn
-                    width={"100%"}
-                    component={TextareaComponent}
-                    style={{ height: "5em", marginTop: "0.25em" }}
-                  />
-                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
-                </div> */}
-              {/* </div> */}
-           
+                </div>            
+              </div>                    
               <div class=" flex justify-end mt-3" >
                 <Button
                   htmlType="submit"
