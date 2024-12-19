@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { Button, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -82,15 +81,26 @@ fetchMenuTranslations = async () => {
           initialValues={{
             employeeId: this.props.employeeId,
             documentTypeId: this.props.documentTypeId,
-            // educationType: "",
+            educationType: "",
             educationTypeId: this.props.educationTypeId,
             courseType: this.state.active,
             courseName: "",
             specialization: "",
             university: "",
-            marksSecured: "",
-            yearOfPassing: "",
             documentId: "",
+            creationDate: "",
+           departmentName: "",
+           documentType: "",
+           documentTypeName: "",
+           id: "",
+           marksSecured: 0,
+           marksType: "",
+           orgId: "",
+           university: "",
+           userId: "",
+           yearOfPassing:0
+         
+
           }}
           onSubmit={(values, { resetForm }) => {
             this.props.addEducationDetails(
@@ -99,7 +109,7 @@ fetchMenuTranslations = async () => {
                 courseType: this.state.active,
 
                 // yearOfPassing: dayjs(values.yearOfPassing).toISOString(),
-              },
+              },"employee",
               this.props.employeeId,
               values.documentId,
               resetForm()
@@ -328,6 +338,7 @@ fetchMenuTranslations = async () => {
 
 const mapStateToProps = ({ employee,auth, profile,education }) => ({
   employeeId: employee.singleEmployee.employeeId,
+  userId: auth.userDetails.userId,
   educations: education.educations,
   orgId: auth.userDetails.organizationId,
   linkedUserDocument:profile.linkedUserDocument,

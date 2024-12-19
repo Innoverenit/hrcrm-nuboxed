@@ -41,9 +41,7 @@ class HolidayForm extends Component {
             console.log(values);
 
             this.props.addBankDetails(
-              {
-                ...values,
-              },
+              {...values,}, "employee",
               this.props.userId,
 
               resetForm()

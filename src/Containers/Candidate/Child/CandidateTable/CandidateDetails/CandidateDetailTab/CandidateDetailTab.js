@@ -145,6 +145,9 @@ function CandidateDetailTab(props) {
   case "8":
     return  <div>
        <BankTable
+        uniqueId={props.candidate.candidateId}
+        candidate={props.candidate.candidateId}
+        type={"talent"}
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}/>
     </div>;
@@ -478,6 +481,11 @@ function CandidateDetailTab(props) {
           selectedLanguage={props.selectedLanguage}
         />
         <AddBankModal
+          defaultValue={[{ label: name, value: candidateId }]}
+          candidateId={{value: candidateId}}
+            uniqueId={props.candidate.candidateId}
+            name={props.candidate.name}
+            candidate={props.candidate}
           addBankModal={addBankModal}
           handleBankModal={handleBankModal}
           translateText={props.translateText}
