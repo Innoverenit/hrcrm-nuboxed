@@ -15,9 +15,9 @@ const QuotationTemplate = (props) => {
       date: "30/08/2024",
       dueDate: "29/09/2024",
       shipDate: "30/08/2024",
-      shipVia: "MIKE DROPOFF",
+      shipVia: "Psv offn",
       salesRep: "Tracy Sales",
-      purchaseOrder: "BO-TM9456525",
+      purchaseOrder: "BOi-TM56456",
       subtotal: "450.00",
       hst: "58.50",
       total: "508.50",
@@ -33,8 +33,8 @@ const QuotationTemplate = (props) => {
       dueDate: "05/10/2024",
       shipDate: "05/09/2024",
       shipVia: "UPS",
-      salesRep: "Alex Martinez",
-      purchaseOrder: "PO-AL7658934",
+      salesRep: "Bron Bkrey",
+      purchaseOrder: "SO-AL5456765",
       subtotal: "720.00",
       hst: "93.60",
       total: "813.60",
@@ -111,7 +111,7 @@ const QuotationTemplate = (props) => {
                 }`}
                 onClick={() => setSelectedInvoice({ style: "Smart" })}
               >
-                <div className="font-bold">Invoice #302218158</div>
+                <div className="font-bold">Invoice #43545465</div>
                 <div>Date: 30-09-2024</div>
                 <div></div>
               </li>
@@ -124,9 +124,9 @@ const QuotationTemplate = (props) => {
             selectedInvoice.style === "Smart" ? (
               <div className="container mx-auto p-5">
               <div className="text-center">
-                <h1 className="text-3xl font-bold text-blue-700">KRG ASIAN FOOD</h1>
+                <h1 className="text-3xl font-bold text-blue-700">NKJ ASIAN FOOD</h1>
                 <h5 className="text-sm">
-                  BTW: NL86402939B01 BANKDETAILS: ING Bank: 0878381 BIC Code: INGBNL2A IBAN: NL74INGB0000878381
+                  LTW: NL86402939B02 BANKDETAILS: KNG Bank: 0878385 BIC Code: INGBNL2A JBAN: NL74INGB0000878381
                 </h5>
               </div>
         
@@ -135,11 +135,11 @@ const QuotationTemplate = (props) => {
                   <tbody>
                     <tr>
                       <td className="p-2">
-                        Remon Afro Asian Market<br />
-                        West-Kruiskade 87<br />
+                        Gauxsit Market<br />
+                        West-Kuancd 87<br />
                         3014 AN Rotterdam<br />
                         Nederland<br />
-                        afro_asianmarket@hotmail.com
+                        guanmarket@hotmail.com
                       </td>
                       <td className="text-center p-2">
                         <h1 className="text-2xl font-bold">Offerte</h1>
@@ -203,8 +203,8 @@ const QuotationTemplate = (props) => {
                         <td className="p-2 border border-gray-300">0.00</td>
                       </tr>
                       <tr>
-                        <td className="p-2 border border-gray-300">9.00</td>
-                        <td className="p-2 border border-gray-300">565.42</td>
+                        <td className="p-2 border border-gray-300">10.00</td>
+                        <td className="p-2 border border-gray-300">457.42</td>
                         <td className="p-2 border border-gray-300">50.89</td>
                       </tr>
                       <tr>
@@ -219,15 +219,15 @@ const QuotationTemplate = (props) => {
                     <tbody>
                       <tr>
                         <td className="p-2 text-right font-bold">Totaal excl. btw</td>
-                        <td className="p-2">€ 565.42</td>
+                        <td className="p-2">€ 584.42</td>
                       </tr>
                       <tr>
                         <td className="p-2 text-right font-bold">Totaal btw</td>
-                        <td className="p-2">€ 50.89</td>
+                        <td className="p-2">€ 62.89</td>
                       </tr>
                       <tr>
                         <td className="p-2 text-right font-bold">Offertebedrag</td>
-                        <td className="p-2">€ 616.31</td>
+                        <td className="p-2">€ 647.31</td>
                       </tr>
                     </tbody>
                   </table>
@@ -240,11 +240,11 @@ const QuotationTemplate = (props) => {
               <div className="flex justify-between">
                 <div className="flex flex-col text-sm">
                   <div className="font-bold">1 Di Inc.</div>
-                  <div>21A-81 Northern Heights Drive</div>
-                  <div>Richmond Hill ON L4B 4C9</div>
-                  <div>+14162780878</div>
+                  <div>21A-81 Sorthern Heightds Drive</div>
+                  <div>Gakmxsb Hill ON L4B 4C9</div>
+                  <div>+14162780855</div>
                   <div>sales@1di.ca</div>
-                  <div>GST/HST Registration No.: 71265570</div>
+                  <div>GST/HST Registration No.: 71265571</div>
                 </div>
                 <div>
                   <img src="Logo_new.png" alt="Logo" className="w-[100px]" />
@@ -258,19 +258,19 @@ const QuotationTemplate = (props) => {
               <div className="flex justify-between text-sm mt-2">
                 <div className="flex flex-col">
                   <div className="font-bold">BILL TO</div>
-                  <div>Robert Cowman</div>
-                  <div>FG Bradley's Fairview</div>
+                  <div>Kna jBdv</div>
+                  <div>Numakxn djnsd</div>
                   <div>1800 Sheppard Ave E. Fairview</div>
                   <div>Mall, Unit 2045</div>
                   <div>Toronto Ontario M2J 5A7</div>
                 </div>
                 <div className="flex flex-col">
                   <div className="font-bold">SHIP TO</div>
-                  <div>Robert Cowman</div>
-                  <div>FG Bradley's Fairview</div>
-                  <div>1800 Sheppard Ave E. Fairview</div>
+                  <div>Kna jBdv</div>
+                  <div>Numakxn djnsd</div>
+                  <div>1801 66 Ksn E. tecds</div>
                   <div>Mall, Unit 2045</div>
-                  <div>Toronto Ontario M2J 5A7</div>
+                  <div>Sartnf Lunk M2J 5A7</div>
                 </div>
                 <div className="flex">
                   <div className="flex flex-col text-right">
@@ -322,8 +322,8 @@ const QuotationTemplate = (props) => {
                 <div className="flex justify-between mt-1">
                   <div className="w-[36px]">KES477</div>
                   <div className="ml-[-12px] w-[138px]">
-                    <div className="font-bold">477 | Jumbo Foam D20</div>
-                    <div>477 | Jumbo Foam D20</div>
+                    <div className="font-bold">477 | Lux sokj</div>
+                    <div>477 | Lux sokj</div>
                   </div>
                   <div className="ml-[-52px] w-[28px]">36</div>
                   <div className="ml-[-2px] w-[42px]">12.50</div>
