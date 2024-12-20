@@ -393,20 +393,20 @@ export const updatePersonalDetails = (employee, employeeId, cb) => (
     });
 };
 //Add Bank Details
-export const addBankDetails = (employee, userType, employeeId) => (dispatch) => {
+export const addBankDetails = (data, userType, id) => (dispatch) => {
   dispatch({
     type: types.ADD_BANK_DETAILS_REQUEST,
   });
-  console.log(employee);
+  // console.log(employee);
 
   axios 
-    .post(`${base_url}/employee/bank-details/${userType}`, employee, {
+    .post(`${base_url}/employee/bank-details/${userType}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      dispatch(getBankDetails("employee",employeeId));
+      dispatch(getBankDetails(userType,id));
       dispatch({
         type: types.ADD_BANK_DETAILS_SUCCESS,
         payload: res.data,
@@ -607,13 +607,13 @@ export const getEmploymentDetails = (employeeId) => (dispatch) => {
 };
 
 //fetch Bank details
-export const getBankDetails = (userType,employeeId) => (dispatch) => {
+export const getBankDetails = (userType,id) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_BANK_DETAILS_REQUEST,
   });
 
   axios
-    .get(`${base_url}/employee/bank-details/${userType}/${employeeId}`, {
+    .get(`${base_url}/employee/bank-details/${userType}/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
