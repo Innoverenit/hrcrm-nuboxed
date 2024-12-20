@@ -1010,26 +1010,23 @@ class RecruitmentTable extends Component {
           };
         },
       },
-      {
-        width: "6%",
-        render: (name, item, i) => {
-          return (
-            <>
-              {this.props.user.sequenceAvailableInd === true && (
-                <Button
-                  style={{ marginLeft: "-30px" }}
-                  // onClick={() => {
-                  //   handleMonsterModal(true);
-                  //   this.handleIconClick(item.recruitmentId);
-                  // }}
-                >
-                  Sequence
-                </Button>
-              )}
-            </>
-          );
-        },
-      },
+      // {
+      //   width: "6%",
+      //   render: (name, item, i) => {
+      //     return (
+      //       <>
+      //         {this.props.user.sequenceAvailableInd === true && (
+      //           <Button
+      //             style={{ marginLeft: "-30px" }}
+              
+      //           >
+      //             Sequence
+      //           </Button>
+      //         )}
+      //       </>
+      //     );
+      //   },
+      // },
 
       {
         width: "4%",
