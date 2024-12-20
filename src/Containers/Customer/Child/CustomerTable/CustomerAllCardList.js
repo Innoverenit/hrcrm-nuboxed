@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy,Suspense } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -50,7 +50,7 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import CustomerSearchedData from "./CustomerSearchedData";
-import { BundleLoader } from "../../../../Components/Placeholder";
+// import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
@@ -270,9 +270,9 @@ const [rowdata, setrowdata] = useState("");
     
   } = props;
 
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
+  // if (loading) {
+  //   return <div><BundleLoader/></div>;
+  // }
 console.log(selectedAssign)
   return (
     <>

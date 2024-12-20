@@ -51,7 +51,6 @@ import {getInvestorsbyId,
   handleInvestorAddressDrawerModal,
   UpdateInvestor
 } from "../../InvestorAction";
-import { BundleLoader } from "../../../../Components/Placeholder";
 
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorSearchedData = lazy(() => import("./InvestorSearchedData"));
@@ -286,12 +285,6 @@ function InvestorCardList(props) {
   } = props;
   console.log("ee");
  
-  // if (fetchingInvestors) {
-  //   return <BundleLoader />;
-  // }
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
   return (
     <>
    {props.investorSerachedData.length > 0 ? (

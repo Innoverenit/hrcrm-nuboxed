@@ -204,13 +204,6 @@ const handleLoadMore2 = () => {
   }
    const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingPitch,leadsAllData  } = props;
 
-  // if (fetchingPitch) {
-  //   return <BundleLoader />;
-  // }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
   return (
     <div>
@@ -1532,7 +1525,7 @@ const countryCode = item.countryAlpha2Code
                 })}
                   </InfiniteScroll>
       </div>
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={"Loading..."}>
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
@@ -1540,12 +1533,7 @@ const countryCode = item.countryAlpha2Code
         handleUpdatePitchModal={props.handleUpdatePitchModal}
         // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
       />
-      {/* <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      /> */}
+   
       <OpenASSimodal 
         rowdata={rowdata}
         openASSImodal={props.openASSImodal}

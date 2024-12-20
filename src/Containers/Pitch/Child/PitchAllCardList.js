@@ -27,7 +27,6 @@ import dayjs from "dayjs";
 import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
 const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
@@ -118,11 +117,7 @@ const PitchAllCardList = (props) => {
    const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllPitch,leadsAllData  } = props;
 
   if (fetchingAllPitch) {
-    return <BundleLoader />;
-  }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
+    return "Loading";
   }
   return (
     <>
@@ -518,7 +513,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </InfiniteScroll>
       </div>
          )}
-         <Suspense fallback={<BundleLoader />}>
+         <Suspense fallback={"Loading"}>
       <UpdateLPitchModal
         item={currentLeadsId}
         translateText={props.translateText}

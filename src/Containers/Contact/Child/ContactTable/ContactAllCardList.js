@@ -47,7 +47,6 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import { Input, Tooltip, Select } from "antd";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
@@ -262,9 +261,6 @@ function ContactAllCardList(props) {
     handleHospitalUploadModal
   } = props;
 
-if (loading) {
-  return <div><BundleLoader/></div>;
-}
   return (
     <>
       <div className=" flex">
