@@ -39,7 +39,6 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -145,10 +144,6 @@ const LeadsTeamColdCard = (props) => {
     teamLeadsCold,
     user,
   } = props;
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
    return (
     <div>

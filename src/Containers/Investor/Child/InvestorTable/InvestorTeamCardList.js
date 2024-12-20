@@ -50,7 +50,6 @@ import {getTeamInvestor,
   UpdateInvestor} 
   from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { BundleLoader } from "../../../../Components/Placeholder";
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
@@ -278,14 +277,6 @@ function InvestorTeamCardList(props) {
     deleteInvestorData
   } = props;
   console.log("ee");
- 
-  // if (fetchingInvestors) {
-  //   return <BundleLoader />;
-  // }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
   return (
     <>

@@ -51,7 +51,7 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
 } from "../../InvestorAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { BundleLoader } from "../../../../Components/Placeholder";
+
 
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
@@ -336,13 +336,6 @@ useEffect(() => {
   } = props;
   console.log("ee");
  
-  // if (fetchingInvestors) {
-  //   return <BundleLoader />;
-  // }
-  
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 console.log(selectedEmployee)
   return (
     <>

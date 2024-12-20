@@ -208,9 +208,7 @@ const LeadsAllCardList = (props) => {
   } = props;
 
 
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
+
   return (
     <>
        {props.serachedData.length > 0 ? (
