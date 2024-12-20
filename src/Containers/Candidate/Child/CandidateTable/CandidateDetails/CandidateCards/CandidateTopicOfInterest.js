@@ -42,7 +42,8 @@ class CandidateTopicOfInterest extends React.Component {
     if (inputValue) {
       addTopicByCandidateId(
         {
-          candidateId: this.props.uniqueId,
+          employeeId: this.props.employeeId,
+          candidateId: this.props.candidateId,
           skillName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
         this.props.userType,this.props.uniqueId
@@ -76,9 +77,9 @@ class CandidateTopicOfInterest extends React.Component {
     //   selectValue: "",
     // });
   };
-  handleTopicDelete = ({ skillSetDetailsId }) => {
+  handleTopicDelete = ({ skillId }) => {
     const { deleteTopicByCandidateId } = this.props;
-    deleteTopicByCandidateId(this.props.userType,skillSetDetailsId);
+    deleteTopicByCandidateId(this.props.userType,skillId);
   };
 
   saveInputRef = (input) => (this.input = input);
@@ -137,8 +138,10 @@ class CandidateTopicOfInterest extends React.Component {
              
                       <div>
                       <CandidateSelect
-                      candidateId={this.props.uniqueId}
+                      candidateId={this.props.candidateId}
                       userType={this.props.userType}
+                      employeeId={this.props.employeeId}
+                      uniqueId={this.props.uniqueId}
                       />
                       </div>
                       </div>
@@ -154,7 +157,7 @@ class CandidateTopicOfInterest extends React.Component {
                   const isLongTopic = topic.skillName===null?[]:topic.skillName.length >= 30;
                   const topicElem = (
                     <Tag
-                      key={topic.skillSetDetailsId}
+                      key={topic.skillId}
                       color="blue"
                       closable
                       onClose={() => this.handleTopicDelete(topic)}
@@ -168,7 +171,7 @@ class CandidateTopicOfInterest extends React.Component {
                   return isLongTopic ? (
                     <Tooltip
                       title={topic.skillName}
-                      key={topic.skillSetDetailsId}
+                      key={topic.skillId}
                     >
                       {topicElem}
                     </Tooltip>

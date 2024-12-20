@@ -6,9 +6,10 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { base_url2 } from "../../../Config/Auth";
+import { base_url2,base_url3 } from "../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { data } from "cheerio/lib/api/attributes";
 
 const { Option } = Select;
 
@@ -18,154 +19,7 @@ function CommerceOpenTrackDrawerCard(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [trackDataList, settrackDataList] = useState([
-      {
-        "statusCode": 200,
-        "statusFlag": true,
-        "status": "SUCCESS",
-        "errorDetails": null,
-        "trackHeader": {
-        "strShipmentNo": "B32242001",
-        "strRefNo": "",
-        "strCNType": "CP",
-        "strCNTypeCode": "BF014",
-        "strCNTypeName": "AVENUE ROAD",
-        "strCNProduct": "LITE",
-        "strModeCode": "",
-        "strMode": "",
-        "strCNProdCODFOD": "",
-        "strOrigin": "BANGALORE",
-        "strOriginRemarks": "Booked By",
-        "strBookedDate": "21062017",
-        "strBookedTime": "15:30:25",
-        "strPieces": "1",
-        "strWeightUnit": "KG",
-        "strWeight": "0.1000",
-        "strDestination": "MUMBAI",
-        "strStatus": "Delivered",
-        "strStatusTransOn": "21062017",
-        "strStatusTransTime": "1614",
-        "strStatusRelCode": "",
-        "strStatusRelName": "",
-        "strRemarks": "SIGN",
-        "strNoOfAttempts": "1",
-        "strRtoNumber": ""
-        },
-        "trackDetails": [
-        {
-        "strCode": "BKD",
-        "strAction": "Booked",
-        "strManifestNo": "",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "",
-        "strActionDate": "21062017",
-        "strActionTime": "1530",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "OBMD",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701202",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1533",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "OPMF",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701203",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1533",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "IBMD",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701202",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1533",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "CDOUT",
-        "strAction": "In Transit",
-        "strManifestNo": "",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1546",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "CDIN",
-        "strAction": "In Transit",
-        "strManifestNo": "",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1555",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "IPMF",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701203",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1603",
-        "sTrRemarks": "0.00"
-        },
-        {
-        "strCode": "IBMD",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701202",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1603",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "OBMD",
-        "strAction": "In Transit",
-        "strManifestNo": "B7701202",
-        "strOrigin": "BANGALORE SURFACE APEX",
-        "strDestination": "MUMBAI APEX",
-        "strActionDate": "21062017",
-        "strActionTime": "1603",
-        "sTrRemarks": ""
-        },
-        {
-        "strCode": "OUTDLV",
-        "strAction": "Out For Delivery",
-        "strManifestNo": "",
-        "strOrigin": "MUMBAI APEX",
-        "strDestination": "",
-        "strActionDate": "21062017",
-        "strActionTime": "1611",
-        "sTrRemarks": ""
-        },
-        
-        {
-        "strCode": "DLV",
-        "strAction": "Delivered",
-        "strManifestNo": "",
-        "strOrigin": "MUMBAI APEX",
-        "strDestination": "",
-        "strActionDate": "21062017",
-        "strActionTime": "1614",
-        "sTrRemarks": "SIGN"
-        }
-        ]
-        }
-    ]);
+    const [trackDataList, settrackDataList] = useState([]);
     const [date, setDate] = useState('');
     const [trackId, settrackId] = useState('');
     const [editedFields, setEditedFields] = useState({});
@@ -194,14 +48,10 @@ function CommerceOpenTrackDrawerCard(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
 
-      const fetchTrackDetailsList = async () => {
+      const fetchTrackDetailsList = async (data) => {
         try {
-          const response = await axios.get(`${base_url2}/dummy/${props.orderPhoneId}`,{
-            headers: {
-              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-            },
-          });
-          settrackDataList(response.data.trackDetails || []);
+          const response = await axios.post(`${base_url3}/create-DTDC?trackingNumber=D8457907723`,data);
+          settrackDataList(response.data|| []);
           setLoading(false);
         } catch (error) {
           setError(error);
@@ -283,7 +133,7 @@ function CommerceOpenTrackDrawerCard(props) {
     const [hasMore, setHasMore] = useState(true);
 
 
-
+console.log(trackDataList)
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -296,6 +146,7 @@ function CommerceOpenTrackDrawerCard(props) {
                         <div className="md:w-[7.1rem]">Origin</div>
                         <div className="md:w-[7.1rem]">Destination</div>
                     </div>
+                      {trackDataList.status === "FAILED" ? "No shipment found in this tracking number." : 
                     <div class="">
                         
                     {trackDataList.length ? (
@@ -367,12 +218,14 @@ function CommerceOpenTrackDrawerCard(props) {
                                          </>
                                  );
                                 });
+                                
                             })}
                         </>
                     ) : !trackDataList.length && !loading ? (
                         <NodataFoundPage />
                     ) : null}
                     </div>
+}
                 </div>
             </div>
           
