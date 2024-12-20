@@ -235,7 +235,7 @@ class ContactForm extends Component {
       customerId,
       tagWithCompany,
     } = this.props;
-    console.log(linkContact);
+    console.log(this.props.name);
 
       
     const {loading,translatedMenuItems } = this.state;
@@ -312,7 +312,7 @@ class ContactForm extends Component {
           }) => (
             <Form className="form-background h-[87vh]">
               <div class=" flex justify-between">
-                <div class=" h-full w-w47.5" >
+                <div class=" h-full w-w47.5.5" >
                  
                   <div class=" flex flex-nowrap justify-between mt-3">
                     <FastField name="imageId" component={PostImageUpld} />
@@ -320,7 +320,7 @@ class ContactForm extends Component {
                       <div class=" flex justify-between">                    
                             {/* name="salutation" */}
                        
-                        <div class=" w-full">
+                        <div class=" w-full ml-1">
                         <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[0]}             
                           </div>
@@ -337,7 +337,7 @@ class ContactForm extends Component {
                         </div>
                       </div>
                    
-                      <div class=" flex justify-between mt-3">
+                      <div class=" flex justify-between ml-1 mt-3">
                         <div class=" w-2/5">
                         <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[1]}             
@@ -512,7 +512,7 @@ class ContactForm extends Component {
                     </div>
 
                     
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
 
                     <div class=" text-xs font-semibold font-poppins"> Reports To</div>
                     
@@ -537,7 +537,7 @@ class ContactForm extends Component {
                   </div> */}
 
 <div class="  flex justify-between max-sm:mt-20">
-        <div class="flex flex-col w-w47.5">
+        <div class="flex flex-col w-w47.5.5">
                  
                   <div class=" text-xs font-semibold font-poppins">
                     {/* Tag Company */}{this.state.translatedMenuItems[14]}
@@ -566,7 +566,7 @@ class ContactForm extends Component {
                     </div>              
                
 
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
                   
                     <div class=" text-xs font-semibold font-poppins"> {this.state.translatedMenuItems[15]}</div>
                     
@@ -621,7 +621,7 @@ class ContactForm extends Component {
                   </div>
                   </div>
                 </div>
-                <div class=" h-4/6 w-w47.5">
+                <div class=" h-4/6 w-w47.5.5">
                 <div class=" text-xs font-semibold font-poppins mt-3"> 
                          {translatedMenuItems[11]}             
                           </div>

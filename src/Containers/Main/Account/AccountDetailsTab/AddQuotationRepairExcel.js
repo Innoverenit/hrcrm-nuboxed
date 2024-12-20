@@ -63,6 +63,7 @@ function AddQuotationRepairExcel(props) {
                     <div className="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form className="form-background h-[89vh]">
                             <div className="">
+                              
                                 <div className="h-full">
                                     {/* <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
                                         <Option value="Repair">Repair</Option>
@@ -113,7 +114,7 @@ function AddQuotationRepairExcel(props) {
                                             </div>
                                             <div className="flex justify-between">
                                                 <div className="w-[70%] mt-2">
-                                                    <div class="font-bold text-xs font-poppins text-black">Send back non repaired units </div>
+                                                    <div class="font-bold text-xs font-poppins text-black">Send back non repaired units</div>
                                                     <Switch
                                                         onChange={handleRepaired}
                                                         checked={nonRepaied}
@@ -131,7 +132,7 @@ function AddQuotationRepairExcel(props) {
                             <div className="justify-end flex mt-3">
                                 <Button
                                     type="primary"
-                                    onClick={()=> props.handleAccountOpportunityModal(false)}
+                                    onClick={()=> props.setIsModalOpen(false)}
                                 >
                                    Finish
                                 </Button>

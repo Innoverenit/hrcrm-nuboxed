@@ -5,7 +5,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import AttractionsIcon from '@mui/icons-material/Attractions';
 import ExploreIcon from "@mui/icons-material/Explore";
 import {
     getdeleteProducts,
@@ -20,15 +20,15 @@ import {
   handleProductBuilderDrawer,
   handlePriceDrawer,
 } from "../../ProductAction";
-import ProductPublishToggle from "./ProductPublishToggle";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { Tooltip } from "antd";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import ReInstateProductToggle from "./ReInstateProductToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
+const ProductPublishToggle = lazy(() => import("./ProductPublishToggle"));
+const ReInstateProductToggle = lazy(() => import("./ReInstateProductToggle"));
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -89,22 +89,6 @@ function ProductDeleteList(props) {
   function handleParticularRowData(item) {
     setParticularDiscountData(item);
   }
-
-//   const handleLoadMore = () => {
-//     const proPag = props.products && props.products.length && props.products[0].pageCount
-//     setTimeout(() => {
-//       if (props.products) {
-//         if (page < proPag) {
-//           setPage(page + 1);
-//           props.getProducts(page);
-//         }
-//         if (page === proPag) {
-//           setHasMore(false)
-//         }
-//       }
-//     }, 100);
-//   };
-
   const {
     fetchingProducts,
     products,
@@ -128,7 +112,7 @@ function ProductDeleteList(props) {
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between max-sm:hidden w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm  max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end sticky  z-10">  
-          <div className="w-[6.51rem]"></div>        
+          <div className="w-[7.3rem]"></div>        
           <div className=" w-[10rem] truncate text-[#00A2E8] text-sm max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
           <NewspaperIcon className='!text-base mr-1  text-[#00A2E8]'/>
             {translatedMenuItems[0]} {/* Article # */}
@@ -158,21 +142,13 @@ function ProductDeleteList(props) {
               </div>
             
           </div>
-          {/* <InfiniteScroll
-            dataLength={products.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"75vh"}
-            endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-          > */}
             {props.deleteproducts.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded justify-between mt-1 bg-white items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div className="flex rounded justify-between mt-1 bg-white items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]    md:flex row-auto    max-sm:border-b-4 max-sm:border-blue-500 ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex w-[4.5rem] items-center max-sm:w-auto  h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
-                        <SubTitle>
+                      <div className=" flex w-[5.5rem] items-center max-sm:w-auto  h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
+                        <div>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
@@ -185,7 +161,7 @@ function ProductDeleteList(props) {
                               No Image
                             </div>
                           )}
-                        </SubTitle>
+                        </div>
                       </div>
                       <div className=" flex w-[8.1rem]  h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs ml-gap  font-semibold max-sm:text-sm  font-poppins cursor-pointer ">
@@ -234,22 +210,11 @@ function ProductDeleteList(props) {
                     </div>
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                      {/* <div className=" flex w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                      
-                        <Button type="primary" >
-                                <div class="max-sm:text-sm"> Print QR Code</div>
-                                </Button>
-                      </div> */}
                       <div className=" flex w-[6.9rem] items-center  justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
                         <ProductPublishToggle item={item} />
-
                       </div>
-                      <div className=" flex w-[5.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
+                      <div className=" flex w-[6.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 <ReInstateProductToggle item={item} />
-
 </div>
 <div className=" flex  w-[3.2rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       <div>
@@ -264,7 +229,6 @@ function ProductDeleteList(props) {
                           />
                         </Tooltip>
                       </div>
-
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
@@ -276,22 +240,6 @@ function ProductDeleteList(props) {
                           />
                         </Tooltip>
                       </div>
-                    {/* </div> */}
-                    {/* <div className=" flexw-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                            className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditProducts(item);
-                              handleUpdateProductModal(true);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-
-                    </div> */}
                     <div className=" flexw-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
@@ -300,12 +248,9 @@ function ProductDeleteList(props) {
                         />
                         </Tooltip>
                       </div>
-
-
                     </div>
                     </div>  
-                    </div>
-                   
+                    </div>                
                   </div>
                 </div>
               );
@@ -333,7 +278,6 @@ function ProductDeleteList(props) {
     </>
   );
 }
-
 
 const mapStateToProps = ({ product, auth, supplies }) => ({
     deleteproducts:product.deleteproducts,

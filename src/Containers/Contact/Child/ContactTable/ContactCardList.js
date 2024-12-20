@@ -6,12 +6,14 @@ import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
-import {  Tooltip, Select } from "antd";
+import { Input, Tooltip, Select } from "antd";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ScoreIcon from '@mui/icons-material/Score';
+import {getCustomerData} from "../../../Customer/CustomerAction";
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import {
   getContactListByUserId,
   handleUpdateContactModal,
@@ -26,7 +28,9 @@ import {
   handleContactNotesDrawerModal,
   emptyContact,
   handleContactPulseDrawerModal,
-  handleContactCETdrawer
+  handleContactCETdrawer,
+  getTeamUserList,
+  updateContact
 } from "../../ContactAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -48,9 +52,7 @@ import EmptyPage from "../../../Main/EmptyPage";
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
-const UpdateContactModal = lazy(() =>
-  import("../UpdateContact/UpdateContactModal")
-);
+
 
 function ContactCardList(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -58,6 +60,11 @@ function ContactCardList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -77,6 +84,7 @@ function ContactCardList(props) {
     })
     props.getContactListByUserId(props.userId, page,"creationdate");
     setPage(page + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(()=>{
@@ -160,7 +168,59 @@ function ContactCardList(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
  
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { contactId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+    } else if (field === 'designation') {
+      mappedField = 'designationTypeId';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.updateContact(updatedData,contactId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
 
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateContact(updatedData,contactId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
   const {
     user,
     fetchingContacts,
@@ -174,7 +234,6 @@ function ContactCardList(props) {
     handleContactPulseDrawerModal,
     handleContactReactSpeechModal,
     addContactSpeechModal,
-    updateContactModal,
     contactCETdrawer
   } = props;
   
@@ -183,32 +242,27 @@ function ContactCardList(props) {
   }
 
   return (
-    <>
-      
-      
+    <> 
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold sticky  z-10">
-      <div class=" flex justify-between w-[99%] font-bold  font-poppins !text-lm items-end ">
-        <div className=" w-[22.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div class=" flex justify-between w-[100%] font-bold  font-poppins !text-lm items-end ">
+        <div className=" w-[27.4rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[29.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[30.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
-        <div className="w-[24.1rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
+        <div className="w-[25.4rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
+   <DesignServicesIcon className="!text-icon mr-1 text-[#b744b8]"/>
         {translatedMenuItems[2]}</div>
         {/* Designation */}
-        <div className="w-[26.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="w-[27.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
-        <div className="w-[15.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className="w-[16.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
          {/* Quotation */}
-        {/* <div className=" md:w-[12.3rem]  max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
-        {/* Pipeline */}
-        <div className=" w-[13.11rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[13.15rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
@@ -258,11 +312,9 @@ function ContactCardList(props) {
                      
           <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                               
-      <div className=" flex   w-[18rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
-<div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
-<div>
-                         
+  <div className="flex max-sm:w-auto">   
+       <div className=" flex   w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
+     <div>                      
       <MultiAvatar2
         primaryTitle={item.firstName}
         imageId={item.imageId}
@@ -271,47 +323,57 @@ function ContactCardList(props) {
         imgHeight={"1.8rem"}
       />
     </div>
-  
-    <div class="max-sm:w-full flex items-center">
                                   <Tooltip>
-                                    <div class=" flex max-sm:w-full justify-between  md:flex-col">
-                                    
-                                      <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                  <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
+                                  <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
-</Link>                                               
-  
-
-  {date === currentdate ? (
- <div class="text-[0.65rem]   text-[tomato] font-bold"
-                            
+</Link>   
+{date === currentdate ? (
+ <div class="text-[0.65rem]   text-[tomato] font-bold"                      
  >
       {/* New */}{translatedMenuItems[8]}
     </div>
-  ) : null}
- 
+  ) : null}                                            
+<div>
+                      {editableField?.contactId === item.contactId &&
+   editableField?.field === 'fullName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                                       </div>
                                       </div>
-                                  </Tooltip>
-                                  </div>
+                                  </Tooltip>                    
                                   </div>
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk">
-
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap  w-[16.01rem] bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
-                             
+                         <div class="flex max-sm:justify-between max-sm:w-wk">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap  w-[16.01rem] bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">                          
                               <div class=" text-xs ml-gap font-poppins max-sm:text-sm  max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
-                             
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">                           
                               <div class="text-xs  ml-gap font-poppins max-sm:text-sm ">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
-                          
+                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">                         
                             <div class="text-xs  ml-gap max-sm:text-sm font-poppins ">
                                  {item.department}
                             </div>
@@ -320,24 +382,18 @@ function ContactCardList(props) {
                         <div class="flex max-sm:justify-evenly max-sm:w-wk">
                         <div className=" flex items-center justify-center   w-[8.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                         <div className="flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
 <div className="text-xs font-poppins text-center max-sm:text-sm ">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
-                              
-
+<div className=" flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">                          
                               <div class=" text-xs  max-sm:text-sm font-poppins text-center ">
                               {item.totalProposalValue}
-
                               </div>
                           </div>
 </div>
-                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                          
+                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                     
                           <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm ">
-
                           {item.thirdPartyAccessInd === true
 ?<Tooltip title={translatedMenuItems[9]}>
   <div className="flex text-green-600 w-wk font-bold bg-green-100 justify-center   py-1 rounded max-h-max">
@@ -351,23 +407,15 @@ No
 </div>
 {/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/> */}
 </Tooltip>}
-
                           </div>
                       </div>
                           {props.user.aiInd && (
            <div className=" flex   items-center justify-center   w-[5.12rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-           {item.noteScoreInd}
-          
+           {item.noteScoreInd}     
             </div>
-            )}
-                         
-                       
-                          </div>
-                       
-          
-             <div class="flex  items-center justify-center max-sm:justify-between max-sm:w-wk">
-          
-           
+            )}                   
+                          </div>     
+             <div class="flex  items-center justify-center max-sm:justify-between max-sm:w-wk">      
               <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
               <Tooltip title={translatedMenuItems[12]}>
  <NoteAltIcon
@@ -375,8 +423,7 @@ No
             onClick={() => {
             handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
-          }}
-          
+          }}         
         />
      </Tooltip>
      </div>
@@ -387,12 +434,10 @@ No
             onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
-          }}
-          
+          }}        
         />
      </Tooltip>
      </div>
- 
 <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
                 <Tooltip
                   title={translatedMenuItems[13]}
@@ -405,9 +450,7 @@ No
                     }}
                   />
                 </Tooltip>
-              </div>
-     
-                        
+              </div>                    
               <div class=" items-center justify-center bg-[#eef2f9] h-8  flex" >
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
@@ -433,8 +476,7 @@ No
     </Tooltip>
                   </div>
                <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
-                  <Tooltip title={item.emailId}>
-     
+                  <Tooltip title={item.emailId}> 
       <MailOutlineIcon
         type="mail"
         className=" !text-icon cursor-pointer text-[red]"
@@ -444,24 +486,7 @@ No
         }}
       />
      </Tooltip>
-             </div>                               
-        {user.contactUpdateInd === true &&  user.crmInd === true && (
-      <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
-     
-      <Tooltip title={translatedMenuItems[14]}>
-        <BorderColorIcon
-          className=" !text-icon cursor-pointer text-[tomato]"
-            onClick={() => {
-            props.setEditContact(item);
-            handleUpdateContactModal(true);
-            handleSetCurrentContactId(item);
-            
-          }}
-        />
-      </Tooltip>
-
-      </div>
-        )}               
+             </div>                                             
                 </div>
                       </div>
                   </div>
@@ -470,17 +495,6 @@ No
                       </InfiniteScroll>
       </div>
 
-
-      <UpdateContactModal
-        contactData={currentContactId}
-        // fullName={currentContactId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-        updateContactModal={updateContactModal}
-        handleUpdateContactModal={handleUpdateContactModal}
-        handleSetCurrentContactId={handleSetCurrentContactId}
-      />
        <AddContactNotesDrawerModal
         contactData={currentContact}
         // fullName={currentContactId}
@@ -566,7 +580,6 @@ const mapStateToProps = ({
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
   fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
-  updateContactModal: contact.updateContactModal,
   addDrawerContactNotesModal:contact.addDrawerContactNotesModal,
   designations: designations.designations,
   departments: departments.departments,
@@ -592,7 +605,10 @@ const mapDispatchToProps = (dispatch) =>
       handleContactEmailDrawerModal,
       emptyContact,
       handleContactCETdrawer,
-      handleContactAddressDrawerModal
+      handleContactAddressDrawerModal,
+      getCustomerData,
+      getTeamUserList,
+      updateContact,
     },
     dispatch
   );

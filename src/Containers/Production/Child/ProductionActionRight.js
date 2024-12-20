@@ -13,16 +13,7 @@ function ProductionActionRight (props) {
     return (
       <>
         <div class=" flex items-center">
-          {/* {(user.productionCreateInd === true || user.role === "ADMIN") &&(
-          <Button
-            type="primary"
         
-            onClick={() => props.createProductionLink()}
-          >
-            Add
-          </Button>
-          )} */}
-
 {(props.viewType === 'table') && (props.productionTableData.length===0)&&(  // Use !(props.viewtype === 'table') to check if viewtype is NOT 'table'
     (user.productionCreateInd === true || user.role === "ADMIN") && (
       <Button

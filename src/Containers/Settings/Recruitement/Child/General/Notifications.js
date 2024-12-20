@@ -229,7 +229,7 @@ function Notifications(props) {
                
                 </div>
               </div>
-              <div class=" text-xs mt-2">Updated on {dayjs(props.notifications.updatedDate).format("ll")} by {props.notifications.ownerName}</div>
+              <div class=" text-xs mt-2">Updated on {" "} {dayjs(props.notifications.updatedDate).format("DD/MM/YYYY")} by {" "} {props.notifications.ownerName}</div>
             </Form>
           </div>
         )}

@@ -9,7 +9,6 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, } from "draft-js";
-
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 
@@ -53,8 +52,7 @@ class AddContactEmailDrawerModal extends Component {
     }
   };
   onEditorBlank = () => {
-    //debugger;
-    // this.setState({ editorState: EditorState.createEmpty() });
+ 
   };
 
   render() {
@@ -64,12 +62,11 @@ class AddContactEmailDrawerModal extends Component {
       <div>
         <StyledDrawer
           title={this.props.contactData.name}
-          width={"40%"}
+          width={"50%"}
           visible={this.props.addDrawerContactEmailModal}
           closable
           placement="right"
           destroyOnClose
-          style={{marginTop:"5rem"}}
           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
           onClose={() => this.props.handleContactEmailDrawerModal(false)}
         >
@@ -92,27 +89,12 @@ class AddContactEmailDrawerModal extends Component {
               const htmlBody = draftToHtml(
                 convertToRaw(editorState.getCurrentContent())
               );
-              // const htmlBody = 'draftToHtml(convertToRaw(editorState.getCurrentContent()))'
+
 
               console.log({ ...values, cc: [values.cc], bcc: [values.bcc] });
-              // const emailFormData = new FormData();
-              // emailFormData.append("to", new Array(values.to));
-              // emailFormData.append("cc", new Array(values.cc));
-              // emailFormData.append("bcc", new Array(values.bcc));
-              // emailFormData.set("subject", values.subject);
-              // emailFormData.set("from", values.from);
-              // emailFormData.set("body", htmlBody);
-              // emailFormData.set("userId", userId);
-              // emailFormData.set("orgId", organizationId);
-              // emailFormData.set("contactId", contactId);
-              // emailFormData.append("attachment", this.state.files);
+            
               console.log(this.state.files);
-              // console.log(emailFormData);
-              // // sendEmail(emailFormData, this.onEditorBlank(), () =>
-              //   this.handleReset(resetForm)
-              // );
-
-              // sendEmail({ ...values, cc: [values.cc], bcc: [values.bcc], attachment: this.state.file }, () => setEmailModalVisible(false))
+            
             }}
           >
             {({

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
-import {
-  SubTitle,
-} from "../../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import { ActionIcon } from "../../../../Components/Utils";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 class ProfileStatsView extends Component {
   render() {
     const {
@@ -27,11 +24,11 @@ class ProfileStatsView extends Component {
     return (
       <>
         <div class=" flex justify-end" >
-          <ActionIcon
+          <BorderColorIcon
             tooltipTitle="Edit"
             iconType="edit"
             handleIconClick={toggleViewType}
-            size="1em"
+            className=" !text-red-600 cursor-pointer !text-icon "
           />
         </div>
         <ProfileItemRow label="Email" value={emailId} />
@@ -61,8 +58,8 @@ const ProfileItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center flex-no-wrap m-2"
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk"
         overflow="hidden"
         textOverflow="ellipsis"
         style={{ marginLeft: "-4rem" }}
@@ -71,7 +68,7 @@ const ProfileItemRow = ({ label, value }) => {
           {/* {elipsize(value, 27)} */}
           {value}
         </Tooltip>
-      </SubTitle>
+      </div>
     </div>
   );
 };

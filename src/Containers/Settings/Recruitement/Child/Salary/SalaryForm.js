@@ -134,7 +134,7 @@ class SalaryForm extends Component {
           }) => (
             <Form className="form-background">
               <div class=" flex justify-between mt-4">
-                <div class=" h-full w-w47.5" >
+                <div class=" h-full w-w47.5.5" >
                  
                   <div class=" flex flex-nowrap  justify-between ">
                  
@@ -176,7 +176,7 @@ class SalaryForm extends Component {
                 
             
                 </div>
-               <div class=" h-4/6 w-w47.5">
+               <div class=" h-4/6 w-w47.5.5">
                <div class=" flex justify-between  ">
                         <div class=" w-2/5">
                         <FastField

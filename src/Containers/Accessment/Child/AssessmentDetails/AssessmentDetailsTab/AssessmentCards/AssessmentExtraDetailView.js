@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { div } from "../../../../../../Components/UI/Layout";
-import { SubTitle } from "../../../../../../Components/UI/Elements";
 
 
 function AssessmentExtraDetailView(props) {
@@ -52,10 +51,10 @@ export default AssessmentExtraDetailView
 const AssessmentItemRow = ({ label, value }) => {
     return (
       <div class=" flex flex-row  m-2 flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-        <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-        <SubTitle style={{
+        <div  style={{ color: "#444", fontWeight: 600 }}>{label}</div >
+        <div  style={{
            //marginLeft: "-1.875em" 
-           }}>{value}</SubTitle>
+           }}>{value}</div >
       </div>
     );
   };

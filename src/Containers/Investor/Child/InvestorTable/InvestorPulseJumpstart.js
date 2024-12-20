@@ -76,13 +76,13 @@ render() {
      <div class="flex  h-[70vh] flex-col">
     <div class="flex justify-between items-center h-[50vh]">
     <div className="w-1/2">
-        <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
+        <div class=" text-base flex  font-bold justify-center text-[blue] mt-1">Current</div>
     <div class=" flex flex-row w-full" >
     
     <div class="flex flex-wrap w-full" >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-1 bg-green-600">
@@ -108,7 +108,7 @@ render() {
                  </div> 
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
                                    <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
@@ -135,7 +135,7 @@ render() {
                     
                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
                                    <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
@@ -163,7 +163,7 @@ render() {
                    
                    <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
                       
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
                                   <div class="rounded-full p-1 bg-blue-600">  <HourglassFullIcon className="text-blue-500  !text-3xl" /> </div>
@@ -192,7 +192,7 @@ render() {
        
                   <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
                       
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
                                   <div class="rounded-full p-1 bg-blue-600"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
@@ -220,7 +220,7 @@ render() {
         <div class="flex w-full flex-wrap" >
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
@@ -244,7 +244,7 @@ render() {
                  </div> 
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
                                    <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
@@ -268,7 +268,7 @@ render() {
                     
                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
                                    <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>

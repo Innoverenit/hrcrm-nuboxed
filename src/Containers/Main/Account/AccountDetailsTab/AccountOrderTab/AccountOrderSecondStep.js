@@ -7,7 +7,7 @@ const AccountOrderSecondStep = (props) => {
         <>
             <div>
                 <Suspense fallback={<BundleLoader />}>
-                <AddPhoneExcel distributorId={props.distributorId} />
+                <AddPhoneExcel distributorId={props.distributorId}  setIsModalOpen={props.setIsModalOpen}/>
                 </Suspense>
             </div>
 

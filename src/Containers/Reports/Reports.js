@@ -8,6 +8,7 @@ const ReportHeader =lazy(()=> import("./Child/ReportHeader"));
 const ReportDetails =lazy(()=> import("./Child/ReportDetails/ReportDetails"));
 
 const buttonData = [
+  // {name: translatedMenuItems[4]},
   { name: 'Task' },
   { name: 'Calls' },
   { name: 'Events'},
@@ -120,8 +121,8 @@ console.log(selectedTask)
       <React.Fragment>
          <Suspense fallback={<BundleLoader />}>
         <ReportHeader 
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage} 
         UserOrgFlipClick={UserOrgFlipClick}
         userorgflipClick={userorgflipClick}
         selectedCategory={selectedCategory}

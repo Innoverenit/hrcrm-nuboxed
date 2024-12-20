@@ -135,12 +135,12 @@ export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
     });
 };
 
-export const getWorkflowList = (orgId) => (dispatch) => {
+export const getWorkflowList = (orgId,type) => (dispatch) => {
   dispatch({
     type: types.GET_WORKFLOW_LIST_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/productionWorkflow/for_dropdown/${orgId}`,
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -609,6 +609,37 @@ dispatch(getProductionTable(userId));
         payload: err,
       });
       cb && cb("failure");
+    });
+};
+
+
+
+
+export const updateBatchData = (data, productionProductId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_BATCH_DATA_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/update/batchNo/${productionProductId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_BATCH_DATA_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_BATCH_DATA_FAILURE,
+        payload: err
+      });
     });
 };
 

@@ -36,16 +36,6 @@ const initialState = {
   fetchingMileageStatusError: false,
   mileageStatus: [],
 
-  fetchingPendingMileage: false,
-  fetchingPendingMileageError: false,
-  pendingMileages: [],
-  fetchingApprovedMileage: false,
-  fetchingApprovedMileageError: false,
-  approvedMileages: [],
-  fetchingRejectedMileage: false,
-  fetchingRejectedMileageError: false,
-  rejectedMileages: [],
-
   noteMileageDrawer: false,
   addingMileageNote: false,
   addingMileageNoteError: false,
@@ -163,49 +153,6 @@ export const mileageReducer = (state = initialState, action) => {
 
     case types.SET_MILEAGE_VIEW_TYPE:
       return { ...state, viewType: action.payload };
-
-    case types.GET_PENDING_MILEAGE_REQUEST:
-      return { ...state, fetchingPendingMileage: true };
-    case types.GET_PENDING_MILEAGE_SUCCESS:
-      return {
-        ...state,
-        fetchingPendingMileage: false,
-        pendingMileages: action.payload,
-      };
-    case types.GET_PENDING_MILEAGE_FAILURE:
-      return {
-        ...state,
-        fetchingPendingMileage: false,
-        fetchingPendingMileageError: true,
-      };
-    case types.GET_APPROVED_MILEAGE_REQUEST:
-      return { ...state, fetchingApprovedMileage: true };
-    case types.GET_APPROVED_MILEAGE_SUCCESS:
-      return {
-        ...state,
-        fetchingApprovedMileage: false,
-        approvedMileages: action.payload,
-      };
-    case types.GET_APPROVED_MILEAGE_FAILURE:
-      return {
-        ...state,
-        fetchingApprovedMileage: false,
-        fetchingApprovedMileageError: true,
-      };
-    case types.GET_REJECTED_MILEAGE_REQUEST:
-      return { ...state, fetchingRejectedMileage: true };
-    case types.GET_REJECTED_MILEAGE_SUCCESS:
-      return {
-        ...state,
-        fetchingRejectedMileage: false,
-        rejectedMileages: action.payload,
-      };
-    case types.GET_REJECTED_MILEAGE_FAILURE:
-      return {
-        ...state,
-        fetchingRejectedMileage: false,
-        fetchingRejectedMileageError: true,
-      };
 
     case types.HANDLE_STATUS_MILEAGE_MODAL:
       return { ...state, updateStatusMileageModal: action.payload };

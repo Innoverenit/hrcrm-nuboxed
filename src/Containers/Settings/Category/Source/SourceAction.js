@@ -60,8 +60,8 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Source added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500
           });
         }
         console.log(res);
@@ -102,6 +102,8 @@ export const removeSource = ( sourceId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Source deleted successfully!',
+          showConfirmButton: false,
+          timer: 1500
         })
         // message.success("source has been deleted successfully!");
         console.log(res);
@@ -147,6 +149,8 @@ export const updateSource = (data, sourceId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Source updated successfully!',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
       .catch((err) => {

@@ -1,4 +1,4 @@
-import React, { lazy, Component, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InveProductsDetails = lazy(() => import("./InveProductsDetails"));

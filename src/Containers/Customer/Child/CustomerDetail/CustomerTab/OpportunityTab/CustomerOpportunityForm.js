@@ -587,7 +587,7 @@ function CustomerOpportunityForm(props) {
 </div>
 <div class="flex justify-between max-sm:flex-col mt-3">
      
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                    
                   <div class="font-bold text-xs font-poppins">     {translatedMenuItems[10]}
                    {/* Workflow */}
@@ -610,7 +610,7 @@ function CustomerOpportunityForm(props) {
 
 
                  
-                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <div class=" w-w47.5.5 max-sm:w-wk ">
                   <div class="font-bold text-xs font-poppins">     {translatedMenuItems[12]}
                     {/* Stage */}
                     </div>

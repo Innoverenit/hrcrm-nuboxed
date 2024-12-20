@@ -66,7 +66,7 @@ class BankDocumentForm extends Component {
           onSubmit={(values, { resetForm }) => {
             console.log(values);
 
-            this.props.addBankDetails(values, this.props.employeeId);
+            this.props.addBankDetails(values,"employee", this.props.employeeId);
 
             resetForm();
           }}

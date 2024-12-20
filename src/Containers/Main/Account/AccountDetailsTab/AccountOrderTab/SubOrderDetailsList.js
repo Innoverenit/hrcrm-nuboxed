@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import QRCodeModal from "../../../../../Components/UI/Elements/QRCodeModal";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 import { getSubOrderPhone } from "../../AccountAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
@@ -80,7 +79,7 @@ function SubOrderDetailsList(props) {
                                                 </div>
                                                 <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
-                                                        <SubTitle>
+                                                        <div>
                                                             {item.qrCodeId ? (
                                                                 <QRCodeModal
                                                                     qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
@@ -93,7 +92,7 @@ function SubOrderDetailsList(props) {
                                                                     No QR
                                                                 </span>
                                                             )}
-                                                        </SubTitle>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

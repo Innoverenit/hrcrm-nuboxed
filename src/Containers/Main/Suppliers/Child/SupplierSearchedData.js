@@ -17,7 +17,6 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
 import SuplierPublishToggle from "./SuplierPublishToggle";
@@ -244,13 +243,7 @@ function SupplierSearchedData(props) {
         </div>
       </div>
 
-      <UpdateSupplierModal
-        rowdata={rowdata}
-        translatedMenuItems={props.translatedMenuItems}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-      />
+    
       <SupplierPriceModal
         rowdata={rowdata}
 

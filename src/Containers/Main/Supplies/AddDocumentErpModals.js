@@ -265,7 +265,7 @@ function AddDocumentErpModals (props){
                   </div>
                   </div>
                   {(props.type === "distributor" || props.type === "supplier" || props.type === "shipper") && (
-                  <div class=" w-w47.5 max-sm:w-wk">                
+                  <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[7]}
   {/* Contact */}

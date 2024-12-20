@@ -191,10 +191,6 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
         <div className="w-[16rem] font-bold font-poppins truncate text-[#00A2E8] text-sm max-md:w-[16rem] ">
         <LightbulbIcon className="!text-icon text-[#84a59d] "/> {translatedMenuItems[0]} ID</div>
-        {/* Quotation ID */}
-        {/* <div className="font-bold font-poppins text-xs md:w-[7.1rem]">
-          {translatedMenuItems[1]}</div> */}
-        {/* Start Date         */}
         <div className="w-[6.21rem] truncate max-md:w-[6.21rem]  ">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
         {/* End Date */}   
@@ -207,10 +203,8 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
         <div className="w-[8.8rem] truncate max-md:w-[8.8rem] ">
         <ContactPageIcon className='!text-icon  '  />
          {translatedMenuItems[5]}</div>
-        {/* Sponsor */}
-       
+        {/* Sponsor */}       
         <div className="w-[7rem]"></div>
-
       </div>
 
       { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<EmptyPage/>:opportunityByCustomerId.map((item,index) =>  {
@@ -254,27 +248,18 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                 <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] w-[16.2rem] max-md:w-[16.2rem] max-sm:flex-row max-sm:justify-between  ">
                         <div className="flex max-sm:items-center">   
 
-                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[8.5rem] w-[8.5rem] max-sm:flex-row max-sm:justify-between ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[8.5rem]  max-sm:flex-row max-sm:justify-between ">
                           <div class="font-bold font-poppins text-xs">
                         {item.newOppId} 
                         </div>
                        </div>
-
-
-                                        <Tooltip>
-                                        <div class="flex max-sm:flex-row justify-between md:flex-col">
-                                          
+                      <Tooltip>
+                                        <div class="flex max-sm:flex-row justify-between md:flex-col">                                       
                                           <div class="flex text-xs ml-gap text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="flex items-center overflow-ellipsis whitespace-nowrap h-8 text-xs text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.newOppId}`} title={item.opportunityName}>
                                             {item.opportunityName} 
                                             {/* {item.newOppId} */}
-
     </Link>                                     
-         {/* <Link
-          toUrl={`/opportunity/${item.opportunityId}`}
-          title={`${item.opportunityName || ""} `}
-        >{item.opportunityName}</Link> */}
-        
         {date === currentdate ? (
           <span class="flex items-center text-[0.65rem] text-[tomato] font-bold ml-1 "     
           >
@@ -284,41 +269,29 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
        
                                             </div>
                                             </div>
-                                        </Tooltip>
-                                  
+                                        </Tooltip>                              
                                         </div>
                                 </div>
                 </div>
                 <div class="flex">
-                  {/* <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.1rem] max-sm:flex-row max-sm:justify-between ">
-         
-                    <div class=" text-xs  font-poppins">
-                    {dayjs(item.startDate).format("DD/MM/YYYY")}
-                 
-                    </div>
-                  </div> */}
                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[10rem]  w-[10rem] max-sm:flex-row max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
-           {/* {item.endDate} */}
-      
+           {/* {item.endDate} */}    
          </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[7.15rem] w-[7.15rem] max-sm:flex-row max-sm:justify-between ">
-         
+                  <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[7.15rem] w-[7.15rem] max-sm:flex-row max-sm:justify-between ">      
                     <div class=" text-xs ml-gap font-poppins">
                     <span>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
-          </span>
-                 
+          </span>             
                     </div>
                   </div>
-                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[8.5rem] w-[8.5rem] max-sm:flex-row max-sm:justify-between ">
-         
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[8.5rem] w-[8.5rem] max-sm:flex-row max-sm:justify-between ">       
          <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
@@ -329,17 +302,13 @@ percent={findProbability}
 //disable={true}
 width={30}
  strokeColor={"#005075"}
-
 />
-  
-</Tooltip>
-      
+</Tooltip>     
          </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.75rem] w-[6.75rem] max-sm:flex-row max-sm:justify-between ">
-         
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.75rem] w-[6.75rem] max-sm:flex-row max-sm:justify-between ">    
                     <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
               <span>
@@ -351,8 +320,7 @@ width={30}
                   imgHeight={"1.8rem"}
                 />
               </span>
-            </Tooltip>
-                 
+            </Tooltip>                
                     </div>
                   </div>
                   <div className=" flex items-center w-[8.30rem]   justify-center h-8 ml-gap bg-[#eef2f9] mr-1 max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
@@ -362,13 +330,11 @@ width={30}
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                </div>
-              
+                </div>             
                 <div class="flex md:items-center ">
                   <div className=" flex items-center justify-center h-8 ml-gap w-[2rem] bg-[#eef2f9] max-md:w-[2rem] max-sm:flex-row max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
-                      <Tooltip title={item.description}>
-           
+                      <Tooltip title={item.description}>        
           <InfoIcon  // type="edit"
              className=" !text-icon cursor-pointer text-blue-600  "
               />
@@ -383,16 +349,12 @@ width={30}
               onClick={() => {
                 props.setEditCustomerOpportunity(item);
                 handleUpdateCustomerOpportunityModal(true);
-                handleSetCurrentOpportunityId(item.opportunityId)
-                
+                handleSetCurrentOpportunityId(item.opportunityId)               
               }}
             />
             )}
           </Tooltip>
-                  </div>
-                
-             
-               
+                  </div>              
                 </div>
               </div>
             </div>

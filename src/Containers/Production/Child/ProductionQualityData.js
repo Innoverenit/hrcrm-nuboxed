@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Switch } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import StairsIcon from '@mui/icons-material/Stairs';
 import {getQualityProducts,} from "../../Product/ProductAction"
 
 const ProductionQualityDta = (props) => {
@@ -23,12 +24,12 @@ useEffect(() => {
   return (
     <>
     
-    <div className='flex justify-end sticky z-auto'>
-            <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className='flex  sticky z-auto'>
+            <div className="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div className="flex w-[95%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]">Step</div>
-                    <div className="md:w-[15.5rem]">Serial No</div>
+                    <div className="md:w-[22.12rem] text-[#00A2E8] text-sm"><StairsIcon className="!text-icon  text-[#1E213D]"/>{props.translatedMenuItems[12]}</div>
+                    <div className="md:w-[15.5rem]"><StairsIcon className="!text-icon  text-[#1E213D]"/>{props.translatedMenuItems[13]}</div>
                     <div className=""></div>
               
                   
@@ -41,25 +42,21 @@ useEffect(() => {
                  
                       <div
                        
-                        className="flex rounded-xl mt-2 bg-white h-12 items-center p-3"
+                        className="flex rounded-xl mt-2 bg-white h-12 items-center p-3 "
                       >
-                        <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
+                        <div className="flex  md:w-[36.1rem] max-sm:w-full h-8 border-l-2 border-green-500 bg-[#eef2f9]   items-center  ">
                           <div className="flex justify-between text-sm font-semibold font-poppins">
                             {item.qualityName}
-
-                
-             
-            
-                          </div>
+                             </div>
                         </div>
 
-                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {item.steps}
                           </div>
                         </div>
 
-                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex h-8 ml-gap bg-[#eef2f9] items-center justify-center    md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                           
 
@@ -73,7 +70,7 @@ useEffect(() => {
 
 
 
-                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex  md:w-26 max-sm:justify-between w-full max-sm:flex-row h-8 ml-gap bg-[#eef2f9] items-center justify-center">
                           <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                           
 

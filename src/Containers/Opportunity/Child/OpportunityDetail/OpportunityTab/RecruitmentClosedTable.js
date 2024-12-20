@@ -6,7 +6,6 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import AddRequirementModal from "../OpportunityTab/Recruitment/AddRequirementModal";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../../Components/UI/Elements";
 import AddRequirementDetailModal from "../OpportunityTab/Recruitment/AddRequirementDetailModal";
 import {
@@ -348,7 +347,7 @@ class RecruitmentClosedTable extends Component {
 
             children: (
               <span>
-                <SubTitle>
+                <div>
                   <Tooltip title={item.recruitOwner}>
                     <MultiAvatar
                       primaryTitle={item.recruitOwner}
@@ -358,7 +357,7 @@ class RecruitmentClosedTable extends Component {
                       imgHeight={"2.1em"}
                     />
                   </Tooltip>
-                </SubTitle>
+                </div>
               </span>
             ),
           };

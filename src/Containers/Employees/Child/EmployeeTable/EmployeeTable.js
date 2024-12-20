@@ -16,7 +16,8 @@ import {
   getEmployeeTreeMap,
   getEmployeeDocument,
   handleNotifyDrawer,
-  deleteEmployeeData
+  deleteEmployeeData,
+  updaterowEmployees
 } from "../../EmployeeAction";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import {
@@ -46,6 +47,10 @@ function EmployeeTable(props) {
   const [rowData, setRowData] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editableField, setEditableField] = useState(null); 
+    const [editingValue, setEditingValue] = useState(""); 
+    const [touchedSector, setTouchedSector] = useState(false);
+    const [touchedSource, setTouchedSource] = useState(false);
   function handleRowData(item) {
     setRowData(item);
 
@@ -233,12 +238,15 @@ function EmployeeTable(props) {
 
   const {
     fetchingEmployee,
+    updatingEmployeerowById,
+    updatingEmployeerowByIdError,
     type,
     user,
     fetchingEmployeeError,
     employees,
     handleEmployeeDrawerForAdmin,
     employeeDrawerVisibleForAdmin,
+    updaterowEmployees
   } = props;
   const { imgRadius } = props;
  
@@ -475,7 +483,9 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
   employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
   openNotifydrwr:employee.openNotifydrwr,
   employeeSerachedData: employee.employeeSerachedData,
-  fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
+  fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData,
+  updatingEmployeerowById:employee.updatingEmployeerowById,
+  updatingEmployeerowByIdError:employee.updatingEmployeerowByIdError,
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -489,7 +499,8 @@ const mapDispatchToProps = (dispatch) =>
       getEmployeeTreeMap,
       getEmployeeDocument,
       handleNotifyDrawer,
-      deleteEmployeeData
+      deleteEmployeeData,
+      updaterowEmployees
     },
     dispatch
   );

@@ -242,7 +242,7 @@ function AddSupplierDocumentModal (props){
     <>
       <StyledDrawer
         title={translatedMenuItems[8]}
-        width="60%"
+        width="50%"
         visible={supplierDocumentUploadModal}
         onClose={handleClose}
       >
@@ -289,12 +289,12 @@ function AddSupplierDocumentModal (props){
                       inlineLabel
                     />
                   </div>
-                  <div class=" flex justify-end w-1/2">
-                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  <div class="  w-1/2">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs ml-2  flex flex-col">
                     {translatedMenuItems[1]}
                       {/* Contract */}
                       </div>
-                    <Switch className="w-[6.25rem] ml-2"          
+                    <Switch className="w-[6.25rem] ml-2 "          
                       onChange={handleContract}
                       checked={contract}
                       checkedChildren="Yes"
@@ -303,13 +303,13 @@ function AddSupplierDocumentModal (props){
                   </div>
                   </div>
                   {(props.type === "distributor" || props.type === "supplier" || props.type === "shipper") && (
-                  <div class=" w-w47.5 max-sm:w-wk">                
+                  <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[7]}
   {/* Contact */}
   </div>
       <Select
-       
+       width={"15.5rem"}
         placeholder="Select Contact"
         loading={isLoadingCustomers}
         onFocus={handleSelectCustomerFocus}

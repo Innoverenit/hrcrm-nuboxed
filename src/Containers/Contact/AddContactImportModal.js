@@ -1,12 +1,11 @@
 import React, { lazy, Suspense } from "react";
-
 import { StyledDrawer } from "../../Components/UI/Antd";
 import { BundleLoader } from "../../Components/Placeholder";
-import ContactImportForm from "./ContactImportForm";
+const ContactImportForm = lazy(() => import("./ContactImportForm"));
 
 const AddContactImportModal = (props) => {
   const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "50%";
   const { addContactImportModal, handleContactImportModal, ...formProps } = props;
   return (
     <>

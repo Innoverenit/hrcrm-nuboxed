@@ -9,19 +9,10 @@ import {
   handleUpdateLeaveModal,
 } from "../../LeavesAction";
 const UpdateLeavesModal = lazy(() => import("../Tab/UpdateLeavesModal"));
-const LeavePendingStatusCard = lazy(() => import("./LeavePendingStatusCard"));
-const LeaveApprovedStatusCard = lazy(() => import("./LeaveApprovedStatusCard"));
-const LeaveRejectedStatusCard = lazy(() => import("./LeaveRejectedStatusCard"));
-
-
+const LeaveStatusTypeCard = lazy(() => import("./LeaveStatusTypeCard"));
 const { Option } = Select;
 
 function LeaveStatusCard(props) {
-  const [page, setPage] = useState(0);
-
-  useEffect(() => {
-    // props.getLeaveListRangeByUserId(props.userId);
-  }, []);
 
   const [currentLeaveId, setCurrentLeaveId] = useState("");
 
@@ -29,22 +20,19 @@ function LeaveStatusCard(props) {
     setCurrentLeaveId(leaveId);
     console.log(leaveId);
   }
-//   if (props.fetchingLeaveListRangeByUserId) {
-//     return <BundleLoader />;
-//   }
-  const { handleUpdateLeaveModal, updateLeaveModal } = props;
 
+  const { handleUpdateLeaveModal, updateLeaveModal } = props;
   return (
     <>
       <div className="flex justify-arround max-sm:flex-col max-sm:overflow-x-auto h-[34rem]">
         <div className="w-[26rem] max-sm:w-wk">
-          <LeavePendingStatusCard />
+          <LeaveStatusTypeCard statusType={"Pending"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <LeaveApprovedStatusCard />
+          <LeaveStatusTypeCard  statusType={"Approved"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <LeaveRejectedStatusCard />
+          <LeaveStatusTypeCard  statusType={"Rejected"}/>
         </div>
       </div>
 
