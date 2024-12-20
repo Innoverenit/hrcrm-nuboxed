@@ -78,10 +78,29 @@ const warrentyCheckedList = ["Access" , "Update"]
 const priceDiscountCheckedList = ["Access" , "Create", "Update","MFA Access","MFA Create","MFA Update"]
 const dataRoomOption = ["Access", "Create", "Update", "Delete", "Full List","MFA Access"];
 
+
 const AccessForm = (props) => {
   const [checkedCustomerList, setCheckedCustomerList] = useState(
     props.departmentAcces.customer || []
-  );
+      );
+      // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+      // useEffect(() => {
+      //   const fetchMenuTranslations = async () => {
+      //     try {
+      //       const itemsToTranslate = [
+      //  "110",  // "Name",//0
+      //       ];
+    
+      //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      //       setTranslatedMenuItems(translations);
+      //     } catch (error) {
+      //       console.error('Error translating menu items:', error);
+      //     }
+      //   };
+    
+      //   fetchMenuTranslations();
+      // }, [props.selectedLanguage, props.translateText]);   
+
   const [indeterminateCustomer, setIndeterminateCustomer] = useState(true);
   const [checkAllCustomer, setCheckAllCustomer] = useState(false);
 
@@ -1974,7 +1993,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                   <div class="flex flex-col ">
                     <div class="flex justify-between  border  mt-2 w-[100%] h-20">
                       <div className=" flex w-2/5 flex-col">
-                        <div className="text-sm font-semibold ml-2 mt-1"> Users</div>
+                        <div className="text-sm font-semibold ml-2 mt-1"> Users </div>
                         <div className=" flex justify-evenly ml-2">Role-Based Access, Customizable Dashboards, Enhanced Collaboration, Multi departments and roles</div>
                       </div>
                       <div  className=" flex w-3/5 flex-col ml-4 mt-2">

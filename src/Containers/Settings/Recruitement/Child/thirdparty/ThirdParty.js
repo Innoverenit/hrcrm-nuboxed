@@ -1,7 +1,3 @@
-
-
-
-
 import React, {  lazy,useEffect,Suspense,useState } from "react";
 import { connect } from "react-redux";
 import { Tabs, Badge } from 'antd';
