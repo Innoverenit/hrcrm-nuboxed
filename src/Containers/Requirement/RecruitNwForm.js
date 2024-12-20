@@ -55,6 +55,52 @@ function RecruitNwForm(props) {
     const [touchedRecruit, setTouchedRecruit] = useState(false);
     const [selectedRecruit, setSelectedRecruit] = useState(null);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+          const fetchMenuTranslations = async () => {
+            try {
+              const itemsToTranslate = [
+              "1752",//  "Job",//0
+              "110",//name 1
+              "658",//Locations 2
+              "71",//Type 3
+              "176",//start date4
+              "126",//5
+              "1192",//6
+              "1771",//7
+              '326',//8
+              '980',//9
+              '14',//10
+              '241',//11
+              '248',//12
+              '73',//13
+              "1367",//14
+              "141",//15
+              "870",//16
+              "185",//17
+              "186",//18
+              "187",//19
+              "188",//20
+              "1261",//21
+              "1109",//22
+              "630",//23
+              
+
+              
+                
+            
+              ];
+      
+              const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+              setTranslatedMenuItems(translations);
+            } catch (error) {
+              console.error('Error translating menu items:', error);
+            }
+          };
+      
+          fetchMenuTranslations();
+        }, [props.selectedLanguage]);  
+
   useEffect(() => {
     props.getProcessForRecruit(props.organizationId);
     props.getRecruiterName();
@@ -396,7 +442,7 @@ function RecruitNwForm(props) {
                     <Field
                       name="jobOrder"
                       //  label="Sponsor"
-                      label="Job ID"
+                      label={translatedMenuItems[0] || "Job ID"} 
                       
                       isColumn
                       width={"100%"}
@@ -408,7 +454,7 @@ function RecruitNwForm(props) {
                   <div style={{ width: "47%" }}>
                     <Field
                       name="requirementName"
-                      label="Name"
+                      label={translatedMenuItems[1] } 
                       width={"100%"}
                       // isRequired
                       isColumn
@@ -430,7 +476,7 @@ function RecruitNwForm(props) {
                     />
                   </div>
                   <div style={{ width: "47%" }}>
-                    <div class=" text-xs font-bold font-poppins text-black">Type </div>
+                    <div class=" text-xs font-bold font-poppins text-black">Type {translatedMenuItems[3]} </div>
                    
                     <Switch
                       checked={typeData}
@@ -447,7 +493,7 @@ function RecruitNwForm(props) {
                     {" "}
                     <Field
                       name="avilableDate"
-                      label="Start Date"
+                      label={translatedMenuItems[4] } 
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -461,7 +507,7 @@ function RecruitNwForm(props) {
                     {" "}
                     <Field
                       name="endDate"
-                      label="End Date"
+                      label={translatedMenuItems[5] } 
                       
                       component={DatePicker}
                       isColumn
@@ -478,7 +524,7 @@ function RecruitNwForm(props) {
                     <Field
                       name="experience"
                      
-                      label="Experience (in Years)"
+                      label={translatedMenuItems[6] } 
                        
                       isColumn
                       width={"100%"}
@@ -494,7 +540,7 @@ function RecruitNwForm(props) {
                       // type="email"
                       name="workPreference"
                     
-                      label="Work Preference"
+                      label={translatedMenuItems[7] } 
                        
                       className="field"
                       isColumn
@@ -519,7 +565,7 @@ function RecruitNwForm(props) {
                       selectType="departmentName"
                       isColumnWithoutNoCreate
                       //label="Mobile #"
-                      label="Department"
+                      label={translatedMenuItems[8] } 
                       isColumn
                       // margintop={"0em"}
 
@@ -545,7 +591,7 @@ function RecruitNwForm(props) {
 
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "25%" }}>
-                  <div class=" text-xs font-bold font-poppins text-black">Category</div>
+                  <div class=" text-xs font-bold font-poppins text-black">{translatedMenuItems[10] } </div>
                  
                   <Switch
                     checked={typeData1}
@@ -574,7 +620,7 @@ function RecruitNwForm(props) {
                         <Field 
                           name="currency"
                           isColumnWithoutNoCreate
-                          label="Currency"
+                          label={translatedMenuItems[11] } 
                            
                           width="100%"
                           isColumn
@@ -596,7 +642,7 @@ function RecruitNwForm(props) {
                 <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
-  Customer
+{translatedMenuItems[12] } 
   </div>
       <Select
        
@@ -635,7 +681,7 @@ Contact
                   {" "}
                   <Field
                     name="closeByDate"
-                    label="Close By"
+                    label={translatedMenuItems[14]  } 
                   
                     isRequired
                     component={DatePicker}
@@ -684,7 +730,7 @@ Contact
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>
-  Workflow
+                  {translatedMenuItems[15]}
   </label>
                      <Select
        
@@ -707,7 +753,7 @@ Contact
                       name="partnerId"
                       // isColumnWithoutNoCreate
                       //label="Mobile #"
-                      label="Vendor"
+                      label={translatedMenuItems[16]}
                         
                       mode
                       placeholder="Select"
@@ -745,13 +791,13 @@ Contact
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                      <div class="font-semibold text-xs flex"> Location</div>
+                      <div class="font-semibold text-xs flex"> {translatedMenuItems[2]}</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>
                     <FieldArray
                       name="address"
-                      label="Address"
+                      label={translatedMenuItems[17]}
                       render={(arrayHelpers) => (
                         <AddressFieldArray
                         {...props}
