@@ -193,20 +193,20 @@ const handleInputChange = (stagesId, field, value) => {
    
   };
   return (
-    <div style={{ padding: "20px" }}>
+    <div className=" p-2 " >
       {/* {showAddButton && ( */}
         <Button type="primary" onClick={addNewStage} style={{ marginBottom: "20px" }}>
           Add Stage
         </Button>
       {/* )} */}
-      <div
-        style={{
-          maxHeight: "300px", // Set a fixed height for the container
-          overflowY: "auto", // Enable vertical scrolling
-          border: "1px solid #ddd",
-          padding: "10px",
-          borderRadius: "5px",
-        }}
+      <div className=" flex flex-wrap max-h-[60vh] overflow-y-auto  border-solid border-[#ddd] rounded  "
+        // style={{
+        //   maxHeight: "300px", // Set a fixed height for the container
+        //   overflowY: "auto", // Enable vertical scrolling
+        //   border: "1px solid #ddd",
+        //   padding: "10px",
+        //   borderRadius: "5px",
+        // }}
       >
 
       {stages.map((stage,index) => (
@@ -263,7 +263,7 @@ const handleInputChange = (stagesId, field, value) => {
               <p><strong>Stage:</strong> {stage.stageName}</p>
               <p><strong>Weightage:</strong> {stage.probability}%</p>
               <p><strong>Days:</strong> {stage.days}</p>
-              <BorderColorIcon
+              <BorderColorIcon className=" cursor-pointer !text-icon"
                onClick={() => handleEdit(stage.stagesId)}
               />
                                  <Popconfirm
@@ -272,7 +272,8 @@ const handleInputChange = (stagesId, field, value) => {
   cancelText="No"
   onConfirm={() => props.deleteDealsStagesData(stage.stagesId)}
 >
-  <DeleteIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
+<DeleteIcon className=" cursor-pointer !text-icon  ml-4 text-red-600"
+                      type="delete"  />
 </Popconfirm>
 
 {stage.probability === 0 || stage.probability === 100 ? null :
