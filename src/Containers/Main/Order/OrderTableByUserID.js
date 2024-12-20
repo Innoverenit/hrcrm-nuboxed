@@ -219,28 +219,28 @@ const viewAnDownloadPdf= async (item) => {
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  items-end  z-10 max-sm:hidden">
-                    <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[4.54rem] items-center max-md:w-[4.54rem]   flex justify-center bg-[red] text-white">
+                    <div class=" flex justify-between  !text-lm font-poppins  font-bold  w-[96%]  ">
+                        <div className="w-[4.54rem] text-sm text-[#00A2E8] truncate max-md:w-[4.54rem]    bg-[red] text-white">
                           {translatedMenuItems[0]}
                            </div>
-                        <div className="flex items-center text-[#00A2E8] text-base w-[6rem] max-md:w-[6rem] ml-2">
+                        <div className="  w-[6rem] truncate max-md:w-[6rem] ml-2">
                         <DynamicFeedIcon className='!text-base mr-1 '/>
                         {translatedMenuItems[1]} ID</div>
-                        <div className="flex items-center w-[10.6rem] max-md:w-[3.6rem] "> 
+                        <div className="  w-[10.6rem] truncate max-md:w-[3.6rem] "> 
                           <ApartmentIcon className='!text-base mr-0  text-[#902089]'/>
                           {translatedMenuItems[2]}</div>
-                        <div className="flex items-center w-[2.051rem] mr-1 max-md:w-[3.051rem] ">
+                        <div className="  w-[2.051rem] truncate mr-1 max-md:w-[3.051rem] ">
                            <ContactsIcon className='!text-base mr-1 text-[#12462c]'/>
                            {translatedMenuItems[3]}</div>
-                        <div className="flex items-center w-[2.018rem] max-md:w-[10.018rem]">
+                        <div className=" w-[2.018rem] truncate max-md:w-[10.018rem]">
                           {translatedMenuItems[4]}</div>      
-                        <div className="flex items-center w-[5.73rem] max-md:w-[2.73rem]">
+                        <div className=" w-[5.73rem] truncate max-md:w-[2.73rem]">
                         <AccountCircleIcon className="!text-icon  text-[#f28482]"/>
                         {translatedMenuItems[5]}</div>
-                        <div className="flex items-center w-[5.8rem] max-md:w-[2.8rem]">
+                        <div className=" w-[5.8rem] truncate max-md:w-[2.8rem]">
                           {translatedMenuItems[6]}</div>
-                        <div className="flex items-center w-[9.8rem] max-md:w-[20.8rem]">
-                        <GroupsIcon className='!text-base mr-1  text-[#f29844]'/>
+                        <div className=" w-[9.8rem] truncate max-md:w-[20.8rem]">
+                        <GroupsIcon className='!text-icon mr-1  text-[#f29844]'/>
                         {translatedMenuItems[7]}</div>               
                         </div>
                     </div>                          
@@ -253,9 +253,7 @@ const viewAnDownloadPdf= async (item) => {
           height={"38vh"}
           endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
-                        {/* {props.repairHighCompleteOrder.length === 0 ? */}
                             <>
-                            {/* <EmptyPage/> */}
                                 {props.repairHighCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
