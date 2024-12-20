@@ -1,25 +1,22 @@
 
-import React, {  useState} from "react";
+import React, {  useState, lazy, useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
-
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Tooltip, Select } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-
 import { Link } from 'react-router-dom';
-
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-
 import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../Components/Placeholder";
-import EmptyPage from "../Main/EmptyPage";
+
+const EmptyPage=lazy(()=>import ("../Main/EmptyPage"));
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -33,7 +30,49 @@ function ReportProspectList(props) {
 
   const [page, setPage] = useState(0);
   const [page1, setPage1] = useState(0);
+   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+   useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+      '271', // 0
+  '110', // 1name
+  '378', // 2  Work
+  '278', // 3 Sector
+  '279', // 4Source
+  '279', // 5source
+  '1109', // 6  Country
+  '213', // 7Quotation
+  '328', // 8 Pipeline
+   '76', // 9Assigned
+  '77', // 10  Owner
+  '248', // 11 Customer
+  '100', //12  New
+  '73', //13 Contact
+  '99',//Opportunity 14
+  '393',//Pulse 15
+  '316',//notes16
+  '170',//17 edit
+
+ 
+   
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
 
 
@@ -48,34 +87,34 @@ const {user}=props
         <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[98%] justify-between p-1 bg-transparent font-bold sticky font-poppins text-xs  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
-            Name
+            {/* Name */}{translatedMenuItems[1]}
             </div>
             <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem] max-lg:w-[3.32rem] ">
-           Work
+           {/* Work */}{translatedMenuItems[2]}
             </div>
             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-           Sector
+           {/* Sector */}{translatedMenuItems[3]}
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-             Source
+             {/* Source */}{translatedMenuItems[4]}
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
-             Country
+             {/* Country */}{translatedMenuItems[6]}
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-             Quotation
+             {/* Quotation */}{translatedMenuItems[7]}
             </div>
             <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[1.8rem]">
-          Pipeline
+          {/* Pipeline */}{translatedMenuItems[8]}
             </div>
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
-             Assigned
+             {/* Assigned */}{translatedMenuItems[9]}
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            Owner
+            {/* Owner */}{translatedMenuItems[10]}
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              Customer
+              {/* Customer */}{translatedMenuItems[11]}
            
             </div>
             {/* <div className="w-[3.8rem]"></div> */}
@@ -101,11 +140,11 @@ const {user}=props
                 } `;
               return (
                 <div>
-                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 "
+                  <div className="flex rounded justify-between max-sm:  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 "
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex font-medium  w-[17rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -122,7 +161,7 @@ const {user}=props
 
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
-                              <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                              <div class="flex max-sm:flex-row justify-between w-full md:">
                                 <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
@@ -133,23 +172,10 @@ const {user}=props
                                   {date === currentdate ? (
                                     <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                                     >
-                                      New
+                                     {translatedMenuItems[12]} {/* New */}
                                     </div>
                                   ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                               
                                 </div>
                               </div>
                             </Tooltip>
@@ -182,7 +208,7 @@ const {user}=props
                         </div>
 
                       </div>
-                      <div className=" flex font-medium max-sm:w-auto flex-col justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium max-sm:w-auto  justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -194,7 +220,7 @@ const {user}=props
                       </div>
 
 
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium  max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -204,21 +230,15 @@ const {user}=props
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
-
-                        {/* {item.totalProposalValue > 0 && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue}`}
-      </div>
-    )} */}
+                      <div className=" flex font-medium  max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
+                       
                             {item.totalProposalValue && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {`${item.userCurrency} ${item.totalProposalValue/1000}K`}
       </div>
     )}
                       </div>
-                      {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      {/* <div className=" flex font-medium  md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -226,7 +246,7 @@ const {user}=props
 
                                     </div>
                                 </div> */}
-                      <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium items-center max-sm:w-auto   w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -252,7 +272,7 @@ const {user}=props
 
                         </div>
                       </div>
-                      <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex font-medium items-center max-sm:w-auto  w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -269,29 +289,9 @@ const {user}=props
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      {/* <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                  
 
-                        <div class=" text-sm  font-poppins"></div>
-                        <Popconfirm
-                          title="Change status to Account?"
-                          onConfirm={() => handleConfirm(item.customerId)}
-                          okText="Yes"
-                          cancelText="No"
-                        >
-                          {user.erpInd === true && (
-                            <Button type="primary"
-                              style={{ width: "8rem" }}>
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                                {item.convertInd === 0 && "Convert"}
-                                {item.convertInd === 1 && "In progress"}
-                                {item.convertInd === 2 && "Converted"}
-                              </div>
-                            </Button>
-                          )}
-                        </Popconfirm>
-                      </div> */}
-
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                         <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
@@ -303,7 +303,7 @@ const {user}=props
                                 {" "}
                                 <a href={`https://${item.url}`} target="_blank">
                                   <ExploreIcon
-                                    className=" !text-xl cursor-pointer text-[green]"
+                                    className=" !text-icon cursor-pointer text-[green]"
 
                                   />
                                 </a>
@@ -317,13 +317,10 @@ const {user}=props
 
                         </div>
                         <div>
-                          <div
-                            style={{ fontSize: "0.8rem" }}
-                            
-                          >
+                          <div  >
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
                           </div>
                         </div>
@@ -333,56 +330,40 @@ const {user}=props
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
-                          <Tooltip title="Contact">
+                          <Tooltip title={translatedMenuItems[13]}>
                             <ContactsIcon
-                              className=" !text-xl cursor-pointer text-[#709ab3]"
-                            //   onClick={() => {
-                            //     handleCustomerContactDrawerModal(true);
-                            //     handleSetCurrentCustomer(item);
-                            //   }}
-
+                              className=" !text-icon cursor-pointer text-[#709ab3]"
+                           
                             />
                           </Tooltip>
                         </div>
                         <div>
-                          <Tooltip title="Opportunity">
+                          <Tooltip title={translatedMenuItems[14]}>
                             <LightbulbIcon
-                              className=" !text-xl cursor-pointer text-[#AF5910]"
-                            //   onClick={() => {
-                            //     handleCustomerOpportunityDrawerModal(true);
-                            //     handleSetCurrentCustomer(item);
-                            //     handleRowData(item);
-                            //   }}
-
+                              className=" !text-icon cursor-pointer text-[#AF5910]"
+                           
                             />
                           </Tooltip>
 
                         </div>
                       </div>
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
-                          <Tooltip title="Pulse">
+                          <Tooltip title= {translatedMenuItems[15]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
-                            //   onClick={() => {
-                            //     handleCustomerPulseDrawerModal(true);
-                            //     handleSetCurrentCustomer(item);
-                            //   }}
+                            
 
                             />
                           </Tooltip>
                         </div>
                         <div>
-                          <Tooltip title="Notes">
+                          <Tooltip title= {translatedMenuItems[16]}>
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#28a355]"
-                            //   onClick={() => {
-                            //     handleCustomerNotesDrawerModal(true);
-                            //     handleSetCurrentCustomer(item);
-                            //     handleRowData(item);
-                            //   }}
+                              className=" !text-icon cursor-pointer text-[#28a355]"
+                           
 
                             />
                           </Tooltip>
@@ -390,12 +371,12 @@ const {user}=props
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                         <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
-                              className=" !text-xl cursor-pointer text-[#960A0A]"
+                              className=" !text-icon cursor-pointer text-[#960A0A]"
 
                             />
 
@@ -403,29 +384,16 @@ const {user}=props
                         </div>
                         <div>
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title="Edit">
+                            <Tooltip title={translatedMenuItems[17]}>
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
 
-                                // onClick={() => {
-                                //   props.setEditCustomer(item);
-                                //   handleUpdateCustomerModal(true);
-                                //   handleSetCurrentCustomerId(item.customerId);
-
-                                // }}
+                              
                               />
                             </Tooltip>
                           )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
+                      
+
                         </div>
                       </div>
 

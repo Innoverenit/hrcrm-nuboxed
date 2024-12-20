@@ -4,11 +4,20 @@ import dayjs from "dayjs";
 const initialState = {
 
     type : null,
-    viewType: "table",
+    viewType: "card",
 
     fetchingRequirementRecord: false,
   fetchingRequirementRecordError: false,
   requirementRecord:{},
+
+  fetchingRequirementOrg: false,
+  fetchingRequirementOrgError: false,
+  requirementOrg:[],
+
+  linkingNwRecruitToOpportunity: false,
+  linkingNwRecruitToOpportunityError: false,
+
+  addNwRecruitModal:false,
 
   fetchingAllRequirementTable:false,
   fetchingAllRequirementTableError:false,
@@ -34,7 +43,17 @@ export const requirementReducer = (state = initialState, action) => {
           fetchingRequirementRecordError: true,
         }; 
 
-
+        case types.GET_REQUIREMENT_ORG_REQUEST:
+          return { ...state, fetchingRequirementOrg: true };
+        case types.GET_REQUIREMENT_ORG_SUCCESS:
+          return { ...state, fetchingRequirementOrg: false,
+             requirementOrg: action.payload };
+        case types.GET_REQUIREMENT_ORG_FAILURE:
+          return {
+            ...state,
+            fetchingRequirementOrg: false,
+            fetchingRequirementOrgError: true,
+          }; 
 
         case types. GET_ALL_REQUIREMENT_TABLE_REQUEST:
           return {
@@ -45,7 +64,8 @@ export const requirementReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingAllRequirementTable: false,
-            requirementTable: action.payload,
+            // requirementTable: action.payload,
+            requirementTable: [...state.requirementTable, ...action.payload],
           };
         case types. GET_ALL_REQUIREMENT_TABLE_FAILURE:
           return {
@@ -59,6 +79,33 @@ export const requirementReducer = (state = initialState, action) => {
               requirementTable: [], 
               // deletedTruck: [] 
             };
+
+            case types.HANDLE_NWRECRUIT_MODAL:
+              return { ...state, addNwRecruitModal: action.payload };
+
+
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_REQUEST:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: true,
+                };
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_SUCCESS:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: false,
+                  addNwRecruitModal: false,
+                  requirementTable: [
+                    action.payload,
+                    ...state.requirementTable,
+                  ],
+                };
+              case types.LINK_NW_RECRUIT_TO_OPPORTUNITY_FAILURE:
+                return {
+                  ...state,
+                  linkingNwRecruitToOpportunity: false,
+                  linkingNwRecruitToOpportunityError: true,
+                };   
+
       default:
         return state;
     }

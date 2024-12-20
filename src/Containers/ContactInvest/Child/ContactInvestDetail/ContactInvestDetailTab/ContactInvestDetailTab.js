@@ -14,6 +14,8 @@ import {
   handleContactReactSpeechModal,
   handleDocumentUploadModal,
 } from "../../../../Contact/ContactAction";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import MainNotes from "../../../../CustomNote/MainNotes";
 
 const LinkedDocuments =lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
 const AddDocumentModals =lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
@@ -104,6 +106,14 @@ class ContactInvestDetailTab extends Component {
                       />
                       </Suspense>
       </div>;
+         case "4":
+          return  <div> 
+        <Suspense fallback={"Loading..."}>
+        <MainNotes
+          uniqueId={this.props.contactInVestDetail.contactId}
+          type={"contact"}
+         /> </Suspense>
+         </div>;
         default:
           return null;
       }
@@ -209,6 +219,25 @@ class ContactInvestDetailTab extends Component {
                 /> */}
               </Suspense>
             </TabPane>
+            <TabPane
+                        tab={
+                            <>
+                                <span> 
+                                    <span class="!text-tab ml-1">  
+                                    <NoteAltIcon
+                className=" !text-icon cursor-pointer text-green-800 "
+              />
+                                   Notes
+                                      </span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="4"
+                    >
+                       <Suspense fallback={"Loading ..."}>
+                       </Suspense>
+                    </TabPane>
           </StyledTabs>
           <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}

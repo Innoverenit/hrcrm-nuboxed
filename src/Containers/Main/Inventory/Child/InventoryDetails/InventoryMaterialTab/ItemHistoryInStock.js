@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-
 import { getItemHistoryInstock } from "../../../InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 

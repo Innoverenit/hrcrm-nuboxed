@@ -11,20 +11,13 @@ import { getWorkflowList } from "../../Production/ProductionAction"
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
+import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import * as Yup from "yup";
 
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
-  // subCategoryName: Yup.string().required("Please provide First Name"),
-  // attributeName: Yup.string().required("Please provide First Name"),
-  // subAttributeName: Yup.string().required("Please provide First Name"),
   name: Yup.string().required("Please provide Name"),
-  // price: Yup.string().required("Please provide First Name"),
-  // distributorMaxMargin: Yup.string().required("Please provide First Name"),
-  // tax: Yup.string().required("Please provide First Name"),
-
-
 });
 
 class Productform extends Component {
@@ -146,7 +139,7 @@ class Productform extends Component {
 
   componentDidMount() {
     this.props.getCurrency()
-    this.props.getWorkflowList(this.props.orgId)
+    this.props.getWorkflowList(this.props.orgId,"Production")
     this.fetchMenuTranslations();
 
 
@@ -156,7 +149,7 @@ class Productform extends Component {
 
     const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
-        value: item.productionWorkflowDetailsId,
+        value: item.workflowDetailsId,
         label: `${item.workflowName || ""}`
       }
     })
@@ -167,6 +160,12 @@ class Productform extends Component {
         <CurrencySymbol currencyType={"INR"} />
       </span>
     );
+    // const uomType = this.props.UOMListData.map((item) => {
+    //   return {
+    //     label: item.unitName || "",
+    //     value: item.unitName,
+    //   };
+    // })
    
     return (
       <>
@@ -216,6 +215,21 @@ brandName:"",
             width: "",
              length:"",
               height: "",
+            //   innerHeight:"",
+            //   innerWeight:"",
+            //   innerLength:"",
+            //   innerWidth:"",
+            //   innerVolume:"",
+            //   masterHeight:"",
+            //   masterWeight:"",
+            //   masterLength:"",
+            //   masterWidth:"",
+            //   masterVolume:"",
+            //   uom:"",
+            // name: "",
+            // wtUom:"",
+            // volUom:"",
+            // hsn: "",
           }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -249,11 +263,11 @@ brandName:"",
             ...rest
           }) => (
             <Form className="form-background h-[64vh]">
-              <div class="flex justify-between">
+              <div class="flex justify-around">
                 <div class="h-full w-[45%]">
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
-                    <div>
+                    <div className=" flex flex-col">
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full ml-2">
                         <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}#</div>
@@ -282,6 +296,29 @@ brandName:"",
                           />
                         </div>
                       </div>
+                       {/* <div class="flex flex-col justify-between items-center">
+                                          <div class="w-w47.5.5 ">
+                                        <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
+                                            <Field
+                                              name="hsn"
+                                              //label="HSN"
+                                              isColumn
+                                              width={"100%"}
+                                              inlineLabel
+                                              component={InputComponent}
+                                            />
+                                          </div>
+                                          <div class="w-w47.5.5">
+                                          <Field
+                                                    // name="fifoInd"
+                                                    component={SwitchComponent}
+                                                    data={values.fifoInd}
+                                                    checkedChildren={"LIFO"}
+                                                    unCheckedChildren={"FIFO"}
+                                                    width={"7em"}
+                                                  />
+                                          </div>  
+                                          </div> */}
                     </div>
                   </div>
 
@@ -438,11 +475,8 @@ brandName:"",
                         }}
                       />
                     </div>
-                  </div>
-              
-                </div>
-                <div class="h-full w-[45%]">
-                <div class="flex justify-between ">
+                   </div>
+                    <div class="flex justify-between ">
                 <div class="w-[48%]">
                 <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[11]}</div>
                 
@@ -475,47 +509,288 @@ brandName:"",
                       />
                     </div>
                     </div>
-                    <div class="flex justify-between">
+                   
                     <div class="mt-3">
                     <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[13]}</div>
                     <div>
-                  {/* <div>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span>
-                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1" />
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </div> */}
-                  {/* <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div> */}
+                 <Field
+                                       name="description"
+                                       //label="Description"
+                                       isColumn
+                                       width={"21.875em"}
+                                       component={TextareaComponent}
+                                       inlineLabel
+                                     />
                 </div>
                   </div>
-                  </div>
+                  
+                  
+              
+                </div>
+                <div class="h-full w-[45%]">
+                {/* <div className="relative  mx-auto mt-4">
+                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#F5F5F5] px-2">
+                       <span className="text-[0.65rem] font-poppins font-bold">Dimensions</span>
+                     </div>
+                     <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
+                     <div class="flex justify-between">
+                                 <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
+                                   <Field
+                                       name="innerHeight"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}
+                                    
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
+                                     <Field
+                                       name="height"
+                                       isColumn
+                                       inlineLabel
+                                       component={InputComponent}                      
+                                       style={{
+                                         width: "100%",
+                                       }}
+                                     />
+                                   </div>
+                                 </div>
+                                 <div class="flex justify-between">
+                                  
+                                  <div class="w-w47.5.5">
+                                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
+                                    <Field
+                                      name="length"     
+                                      isColumn
+                                      inlineLabel
+                                      component={InputComponent}                     
+                                      style={{
+                                        width: "100%",
+                                      }}
+                                    />
+                                  </div>
+                                  <div class="w-w47.5.5">
+                                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
+                                    <Field
+                                      name="width"
+                                      isColumn
+                                      width={"100%"}
+                                      inlineLabel
+                                      component={InputComponent}
+                                    />
+                                  </div>
+                                </div>
+                                 <div class="flex justify-between">
+                                 <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Master Length</div>
+                                   <Field
+                                       name="masterLength"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
+                                   <Field
+                                       name="innerLength"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   </div>
+                                   <div class="flex justify-between">
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Master Height</div>
+                                   <Field
+                                       name="masterHeight"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Master Width</div>
+                                   <Field
+                                       name="masterWidth"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   </div>
+                                   <div class="flex justify-between">
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
+                                   <Field
+                                       name="innerWidth"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
+                                   <Field
+                                       name="uom"
+                                       //label="UOM"
+                                       isColumn
+                                       inlineLabel
+                                       value={values.unitName}
+                                       component={SelectComponent}
+                                      //  options={Array.isArray(uomType) ? uomType : []}
+                                       // options={["g", "kg"]}
+                                       style={{
+                                         width: "100%",
+                                       }}
+                                     />
+                                   </div>
+                                   </div>
+                     <div >       
+                     </div>
+                     </div>
+                   </div> */}
+                   {/* <div className="relative  mx-auto mt-4">
+                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#F5F5F5] px-2">
+                       <span className="text-[0.65rem] font-poppins font-bold">Volume</span>
+                     </div>
+                     <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
+                     <div class="flex justify-between">
+                     <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
+                                   <Field
+                                       name="innerVolume"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
+                                   <Field
+                                       name="masterVolume"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                     </div>
+                     <div class="flex justify-between">
+                     <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Volume</div>
+                                   <Field
+                                       name="volume"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                     <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
+                                   <Field
+                                       name="volUom"
+                                       //label="UOM"
+                                       isColumn
+                                       inlineLabel
+                                       value={values.unitName}
+                                       component={SelectComponent}
+                                      //  options={Array.isArray(uomType) ? uomType : []}
+                                       // options={["g", "kg"]}
+                                       style={{
+                                         width: "100%",
+                                       }}
+                                     />
+                                   </div>
+                       </div>
+                     <div >
+                      
+                     </div>
+                     </div>
+                   </div> */}
+                   {/* <div className="relative  mx-auto mt-4">
+                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#F5F5F5] px-2">
+                       <span className="text-[0.65rem] font-poppins font-bold">Weight</span>
+                     </div>
+                     <div className="border-2 border-grey flex-col rounded-md p-[0.40rem] flex">
+                     <div class="flex justify-between">
+                     <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Weight</div>
+                                   <Field
+                                       name="weight"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
+                                   <Field
+                                       name="masterWeight"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                       </div>
+                       <div class="flex justify-between">
+                       <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
+                                   <Field
+                                       name="innerWeight"
+                                       //label="Name"
+                                       isColumn
+                                       width={"100%"}
+                                       inlineLabel
+                                       component={InputComponent}                     
+                                     />
+                                   </div>
+                                   <div class="w-w47.5.5">
+                                   <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
+                                     <Field
+                                       name="wtUom"
+                                       //label="UOM"
+                                       isColumn
+                                       inlineLabel
+                                       value={values.unitName}
+                                       component={SelectComponent}
+                                       options={Array.isArray(uomType) ? uomType : []}
+                                       style={{
+                                         width: "100%",
+                                       }}
+                                     />
+                                   </div>
+                         </div>
+               
+                     <div >
+                      
+                     </div>
+                     </div>
+                   </div> */}
                 </div>
               </div>
 
@@ -537,7 +812,7 @@ brandName:"",
   }
 }
 
-const mapStateToProps = ({ auth, product, production }) => ({
+const mapStateToProps = ({ auth, product, production,settings  }) => ({
   addingProduct: product.addingProduct,
   workflowProduction: production.workflowProduction,
   addingProductError: product.addingProductError,
@@ -546,6 +821,7 @@ const mapStateToProps = ({ auth, product, production }) => ({
   userId: auth.userDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>

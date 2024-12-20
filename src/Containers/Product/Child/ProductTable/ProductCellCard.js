@@ -21,16 +21,10 @@ const { TabPane } = Tabs;
 const ProductCellCard = (props) => {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
-  const users = [
-    { value: '1', label: 'John Doe' },
-    { value: '2', label: 'Jane Smith' },
-    { value: '3', label: 'David Johnson' },
-    { value: '4', label: 'Emily Brown' },
-  ];
+  
   console.log(activeTab)
     useEffect(()=>{
-        // props.getAlLoCell();
-       // props.getcellCardList(activeTab,props.particularDiscountData.productId);
+     
         props.getCatalogueCell(props.orgId)
     },[]);
 
@@ -56,30 +50,28 @@ const ProductCellCard = (props) => {
       fetchMenuTranslations();
     }, [props.selectedLanguage]);
 
+
+
+
+
     useEffect(() => {
-      const fetchData = async () => {
-        if (activeTab) {
-          setLoading(true);
-          try {
-            await props.getcellCardList(activeTab, props.particularDiscountData.productId);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
-  
-      fetchData();
+      if (activeTab) {
+        props.getcellCardList(activeTab,props.particularDiscountData.productId)
+      }
     }, [activeTab]);
-
-
-    const initialInputs = {};
-    props.cellCardList.forEach(item => {
-      initialInputs[item.cellChamberLinkId] = '0';
-    });
+    // const initialInputs = {};
+    // props.cellCardList.forEach(item => {
+    //   initialInputs[item.cellChamberLinkId] = item.unitPerDay || "0"
+    // });
   
-    const [inputs, setInputs] = useState(initialInputs);
+    const [inputs, setInputs] = useState({});
+    useEffect(() => {
+      const updatedInputs = {};
+      props.cellCardList.forEach((item) => {
+        updatedInputs[item.cellChamberLinkId] = item.unitPerDay || "0"; // Default to "0" if unitPerDay is null/undefined
+      });
+      setInputs(updatedInputs);
+    }, [props.cellCardList]);
   
     const handleInputChange = (cellChamberLinkId, value) => {
       setInputs({ ...inputs, [cellChamberLinkId]: value });
@@ -115,7 +107,8 @@ const ProductCellCard = (props) => {
 
 
     const handleTabClick = (key) => {
-      props.getcellCardList(key,props.particularDiscountData.productId);
+      setActiveTab(key)
+      //props.getcellCardList(key,props.particularDiscountData.productId);
       //props.getMatrixdata(key,props.particularDiscountData.productId);
     };
 
@@ -134,11 +127,14 @@ if(props.fetchingCatalogueCell){
     return (
       <>
        <Tabs type="card" 
-      activeKey={activeTab} 
+      // activeKey={activeTab} 
+      defaultActiveKey={activeTab}
      onChange={handleTabClick}
        >
       {props.catalogueCell.map(item => (
-        <TabPane key={item.locationDetailsId} tab={item.locationName}>
+        <TabPane 
+        key={item.locationDetailsId} 
+        tab={item.locationName}>
          {props.fetchingCellCardList ? (
              <div class=" flex justify-center items-center h-[60vh]" >
              <BundleLoader/>

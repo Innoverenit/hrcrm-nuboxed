@@ -34,7 +34,7 @@ class BankTable extends Component {
   }
   componentDidMount() {
     const { getBankDetails, employeeId } = this.props;
-    getBankDetails(this.props.employeeId);
+    getBankDetails(this.props.userType,this.props.uniqueId);
     this.fetchMenuTranslations();
   }
   componentDidUpdate(prevProps) {
@@ -247,8 +247,12 @@ class BankTable extends Component {
   }
 }
 
-const mapStateToProps = ({ profile, employee }) => ({
+const mapStateToProps = ({ profile, employee, auth }) => ({
+  user: auth.userDetails,
   bank: profile.bankDetails,
+  userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
+  organizationId: auth.userDetails.organizationId,
   fetchingBankDetails: profile.fetchingBankDetails,
   fetchingBankDetailsError: profile.fetchingBankDetailsError,
   employeeId: employee.singleEmployee.employeeId,

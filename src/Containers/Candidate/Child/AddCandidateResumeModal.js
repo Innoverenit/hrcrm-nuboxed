@@ -21,6 +21,8 @@ const AddCandidateResumeModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <ResumeForm
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
             addCandidateResumeModal={props.addCandidateResumeModal}
             handleResponseData={props.handleResponseData}
             responseData={props.responseData}

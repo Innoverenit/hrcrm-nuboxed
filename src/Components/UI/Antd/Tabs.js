@@ -6,7 +6,7 @@ const StyledTabs = styled(Tabs)`
         color: ${props => props.theme.color};
     }
     .ant-tabs-bar {
-        margin: 0.3rem;
+        margin: 0.1rem;
         font-size: 0.75rem;
         font-family: poppins;
     }
@@ -15,7 +15,5 @@ const StyledTabs = styled(Tabs)`
         box-shadow: 0 0.0625em 0.25em 0.0625em ${props => props.theme.boxShadowColor};
         border: 0.0625em solid ${props => props.theme.borderColor}
     }
-   
-    
 `;
 export default StyledTabs;

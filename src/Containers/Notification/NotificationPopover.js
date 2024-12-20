@@ -13,7 +13,7 @@ import Notificationdrawermodal from "./Notificationdrawermodal";
       <>
       <div>
       <Tooltip title="Notifications">
-         <CircleNotificationsIcon type="bell" className="!text-icon cursor-pointer text-[#1890ff]"
+         <CircleNotificationsIcon type="bell" className="!text-2xl cursor-pointer text-[#1890ff]"
          onClick={() => {
           props.handlenotificationdrawer(true);
          

@@ -82,6 +82,10 @@ const initialState = {
   updatingEmployeeById: false,
   updatingEmployeeByIdError: false,
 
+  updatingEmployeerowById: false,
+  updatingEmployeerowByIdError: false,
+
+
   fetchingNotesListByEmployeeId: false,
   fetchingNotesListByEmployeeIdError: false,
   notesListByEmployeeId: [],
@@ -303,6 +307,22 @@ export const EmployeeReducer = (state = initialState, action) => {
         updatingEmployeeByIdError: true,
       };
 
+
+      case types.UPDATE_EMPLOYEE_ROW_REQUEST:
+        return { ...state, updatingEmployeerowById: true };
+      case types.UPDATE_EMPLOYEE_ROW_SUCCESS:
+        return {
+          ...state,
+          updatingEmployeerowById: false,
+          singleEmployee: action.payload,
+        };
+      case types.UPDATE_EMPLOYEE_ROW_FAILURE:
+        return {
+          ...state,
+          updatingEmployeerowById: false,
+          updatingEmployeerowByIdError: true,
+        };
+  
     //get single account by ID
     case types.GET_EMPLOYEE_BY_ID_REQUEST:
       return { ...state, fetchingEmployeeById: true };

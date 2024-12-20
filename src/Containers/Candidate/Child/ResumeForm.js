@@ -24,6 +24,9 @@ const ResumeForm = ({
   handleCandidateModal,
   getLibrarys,
   name,
+  translateText,
+  selectedLanguage
+  
   // handleResponseData, // Include handleResponseData in the props
 }) => {
   const [fileData, setFileData] = useState(null);
@@ -131,6 +134,8 @@ const ResumeForm = ({
           addCandidateModal={addCandidateModal}
           handleCandidateModal={handleCandidateModal}
           responseData={responseData}
+          translateText={translateText}
+          selectedLanguage={selectedLanguage}
         />
     </>
   );

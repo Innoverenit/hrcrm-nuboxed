@@ -14,7 +14,7 @@ class AddSupplierContactModal extends Component {
             <>
                 <StyledDrawer
                     title="Contact" 
-                    width="60%"
+                    width="50%"
                     visible={addSupplierContactModal}
                     destroyOnClose
                     closable

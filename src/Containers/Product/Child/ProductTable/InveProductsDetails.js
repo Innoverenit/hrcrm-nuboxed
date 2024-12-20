@@ -42,7 +42,6 @@ const breakPoints = [
           {props.productsByproductId.productFullName}
           </div>
         <div>
-          {/* {props.productsByproductId.newSuppliesNo} */}
           </div>
 
         <div className='flex items-center justify-center w-[w-wk]'>
@@ -70,12 +69,13 @@ const breakPoints = [
       </div>
  
     </div>
-    {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} /> */}
     
     <div className="p-4">
     <Suspense fallback={<BundleLoader />}>
       <ProductDetailsCardViewId 
       productsByproductId={props.productsByproductId}
+      translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       /></Suspense>
     
       </div>
@@ -89,7 +89,6 @@ const breakPoints = [
 }
 const mapStateToProps = ({ product,auth }) => ({
     productsByproductId: product.productsByproductId,
-  // fetchingProductsByProductId:product.fetchingProductsByProductId,
 });
 
 const mapDispatchToProps = (dispatch) =>

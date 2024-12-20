@@ -202,10 +202,10 @@ function QaCardList(props) {
       </div>
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
-                        <div className='w-[7.2rem]'></div>
+                        <div className='w-[6rem]'></div>
                         <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
                         /> 
-                        <div className=" w-[11.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
+                        <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
                          
                           {/* Order ID */}
                           </div>
@@ -214,7 +214,7 @@ function QaCardList(props) {
                         {translatedMenuItems[1]}
                         {/* Inspection */}
                           </div>
-                        <div className=" w-[26.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[28.121rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[2]} 
                         {/* Due Date */}
                         </div>                                        

@@ -4,17 +4,16 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
-import {  Tooltip, Select,Button } from "antd";
-import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
+import {  Tooltip, Select,Button,Input } from "antd";
+import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import {
   getContactListByCustomerId,
   setEditCustomerContact,
   handleUpdateCustomerContactModal,
-  putCustomerContactToggle
+  putCustomerContactToggle,updateCustomerContact
 } from "../../../../CustomerAction";
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
@@ -25,7 +24,6 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
-const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const ContactReportData = lazy(() => import("./ContactReportData"));
 
 
@@ -77,6 +75,11 @@ function LinkedContact(props) {
   const [currentContactId, setCurrentContactId] = useState("");
   const [currentContact, setCurrentContact] = useState("");
   const [itemHistory, setItemHistory] = useState(false);
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+  const [editableField, setEditableField] = useState(null); 
 
   const handleItemHistory = () => {
       setItemHistory(!itemHistory)
@@ -102,6 +105,79 @@ function LinkedContact(props) {
 
   };
 
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+
+    const handleUpdateSubmit = async () => {
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+      if (field === 'fullName') {
+        mappedField = 'name'; 
+      } else if (field === 'tagWithCompany') {
+        mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = editingValue;
+      props.updateCustomerContact(updatedData,props.uniqueId)
+      setEditableField(null);
+        setEditingValue("");
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleUpdateSubmit(); 
+      }
+    };
+    const handleChangeRowSelectItem = async (value) => {
+      setEditingValue(value);
+  
+        const { contactId, field } = editableField;
+        const updatedData = {};
+        let mappedField = field;
+      
+       // Map the field to the correct key if needed
+       if (field === 'fullName') {
+        mappedField = 'name'; 
+      } else if (field === 'tagWithCompany') {
+        mappedField = 'customerId';
+        } else if (field === 'designation') {
+          mappedField = 'designationTypeId';
+        } else if (field === 'department') {
+          mappedField = 'departmentId';
+        }
+        updatedData[mappedField] = value; // Update the value with selected option
+        props.updateCustomerContact(updatedData,props.uniqueId)
+        setEditableField(null);
+        setEditingValue("");
+      
+    };
+  
+    const handleSelectCustomerFocus = () => {
+      if (!touchedCustomer) {
+        props.getDesignations();
+        setTouchedCustomer(true);
+      }
+    };
+    const handleSelectCustomerDataFocus = () => {
+      if (!touched) {
+        props.getCustomerData(props.userId)
+        setTouched(true);
+      }
+    };
+    const handleSelectDepartmentFocus = () => {
+      if (!dtouched) {
+        props.getDepartments()
+        setDTouched(true);
+      }
+    };
   const {
     //   opportunity: { opportunityId },
     fetchingCustomerContact,
@@ -121,11 +197,12 @@ function LinkedContact(props) {
      
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold font-poppins sticky !text-lm  z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[15.2rem]  max-md:w-[16.5rem]">
+            <div class="w-[2.1rem]"></div>
+        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[13.6rem]  max-md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="  w-[8.5rem] truncate  max-md:w-[9.1rem]">
+        <div className="  w-[8.7rem] truncate  max-md:w-[9.1rem]">
         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
          {translatedMenuItems[1]}
 {/* Email */}
@@ -134,18 +211,16 @@ function LinkedContact(props) {
         <MobileFriendlyIcon className='!text-icon mr-1 text-[#41ead4] '  /> {translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className=" w-[8.2rem]  truncate max-md:w-[8.2rem]">
+        <div className=" w-[8.8rem]  truncate max-md:w-[8.2rem]">
         <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="  w-[7.2rem] truncate max-md:w-[7.2rem]">
+                     <div className="  w-[7.7rem] truncate max-md:w-[7.2rem]">
                      <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
-                
-        
-        <div className="w-[4.21rem]"></div>
-        <div className="truncate w-[7.21rem] max-md:w-[7.21rem]">
+      
+        <div className="truncate w-[11.1rem] max-md:w-[7.21rem]">
         <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[5]}
 {/* Portal */}
         </div>
@@ -193,11 +268,12 @@ function LinkedContact(props) {
                                                       }
                                                 </div>
                                             </div>
-                                        </div>    
-                                <div className=" flex w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
-<div className="flex max-sm: items-center"> 
-<div>
-                                <SubTitle>
+                                        </div> 
+                                        <div className="flex max-sm: items-center">   
+                                <div className=" flex items-center w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+ 
+
+        <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -205,20 +281,15 @@ function LinkedContact(props) {
               imgWidth={"1.8em"}
               imgHeight={"1.8em"}
             />
-          </SubTitle></div>
+          </div>
           &nbsp;
-          <div class="max-sm:">
+
                                         <Tooltip>
-                                          <div class=" flex max-sm: justify-between flex-row">
-                                          
-                                            <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
+                                        <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                                                    
+                                            <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
+                                            <Link class="flex items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                
-         {/* <Link
-          toUrl={`contact/${item.contactId}`}
-          title={`${item.fullName}`}
-        >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
           <span class="text-xs text-[tomato] font-bold"
@@ -226,11 +297,31 @@ function LinkedContact(props) {
            {translatedMenuItems[6]} {/* New */}
           </span>
         ) : null}
+                      {editableField?.contactId === item.contactId &&
+   editableField?.field === 'fullName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}    
        
                                             </div>
                                             </div>
                                         </Tooltip>
-                                        </div>
+                          
                                         </div>
                                 </div>
                                 <div class="flex">
@@ -263,6 +354,34 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
+                                <div className=" flex  w-[11.45rem] max-md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+
+
+{item.accessInd === 0 ? <div class=" text-xs font-bold  font-poppins">
+    <Button
+        type="primary"
+        //loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
+        onClick={() => {
+          //  handleChangeRow(item)
+          //   props.setEditSupplierContact(item);
+            props.putCustomerContactToggle(
+                
+                item.contactId,
+                props.userId,
+                "Prospect Contact To User",
+                // props.supplier.supplierId,
+                // props.distributorId,
+              
+            )
+        }}
+    >
+     {translatedMenuItems[12]} 
+      </Button>
+</div> : item.accessInd === 2 ? <b class=" font-bold font-poppins text-xs">{translatedMenuItems[10]}</b> : <b class="text-[#32CD32] font-bold font-poppins text-xs">{translatedMenuItems[11]}</b>
+
+}
+
+</div>
                                 <div className=" flex w-[2.1rem]  max-md:w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
@@ -295,77 +414,8 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex w-[1.3rem]  max-md:w-[1.3rem] max-sm:flex-row  max-sm:justify-between ">
-                                    
+                           
 
-                                    <div class=" text-xs flex  font-poppins text-center items-center justify-center h-8  bg-[#eef2f9]">
-                                    <Tooltip title={translatedMenuItems[7]}>
-              <span
-                className=" !cursor-pointer "
-            
-                onClick={() => {
-                  props.setEditCustomerContact(item);
-                  props.handleUpdateCustomerContactModal(true);
-                   handleIconClick(item.contactId);
-                }}
-              >
-                <BorderColorIcon 
-               className=" !text-icon cursor-pointer text-[tomato]"
-                />
-              </span>
-              {/* )} */}
-            </Tooltip>
-
-                                    </div>
-                                    <div class=" text-xs flex font-poppins text-center items-center justify-center h-8  bg-[#eef2f9]">
-                                    <StyledPopconfirm
-              placement="bottom"
-              //title="Do you wish to detach?"
-              title={translatedMenuItems[8]}
-             
-            >
-              <ActionIcon
-               className=" !text-icon cursor-pointer text-[#fb8500]"
-                //tooltipTitle="Detach Contact"
-                tooltiptitle={translatedMenuItems[9]}
-               
-                iconType="api"
-                onClick={null}
-                size="1em"
-              />
-            </StyledPopconfirm>
-
-                                    </div>
-                                   
-                                </div>
-                                <div className=" flex  w-[11.45rem] max-md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
-
-
-{item.accessInd === 0 ? <div class=" text-xs font-bold  font-poppins">
-    <Button
-        type="primary"
-        //loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
-        onClick={() => {
-          //  handleChangeRow(item)
-          //   props.setEditSupplierContact(item);
-            props.putCustomerContactToggle(
-                
-                item.contactId,
-                props.userId,
-                "Prospect Contact To User",
-                // props.supplier.supplierId,
-                // props.distributorId,
-              
-            )
-        }}
-    >
-     {translatedMenuItems[12]} 
-      </Button>
-</div> : item.accessInd === 2 ? <b class=" font-bold font-poppins text-xs">{translatedMenuItems[10]}</b> : <b class="text-[#32CD32] font-bold font-poppins text-xs">{translatedMenuItems[11]}</b>
-
-}
-
-</div>
 
                             </div>
                             <div>
@@ -381,25 +431,12 @@ function LinkedContact(props) {
                                             </div>
                         </div>
 
-
                     )
                 })}
                     
       </div>
 
-<Suspense>
-      <AddCustomerUpdateContactModal
-          addUpdateCustomerContactModal={addUpdateCustomerContactModal}
-           contactId={contactId}
-          defaultCustomers={props.defaultCustomers}
-          customerId={props.uniqueId}
-          handleUpdateCustomerContactModal={handleUpdateCustomerContactModal}
-          translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-          translatedMenuItems={translatedMenuItems}
-
-        />
-       
+<Suspense>  
        </Suspense>
      
    
@@ -424,7 +461,8 @@ const mapDispatchToProps = (dispatch) =>
       getContactListByCustomerId,
       setEditCustomerContact,
       handleUpdateCustomerContactModal,
-      putCustomerContactToggle
+      putCustomerContactToggle,
+      updateCustomerContact
     },
     dispatch
   );

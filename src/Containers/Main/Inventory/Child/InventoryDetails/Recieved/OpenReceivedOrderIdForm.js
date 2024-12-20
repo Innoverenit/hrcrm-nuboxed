@@ -40,7 +40,11 @@ import InventoryExpandListModal from "./InventoryExpandListModal";
 import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import MicIcon from '@mui/icons-material/Mic';
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddBoxIcon from '@mui/icons-material/AddBox';  
+import InfoIcon from '@mui/icons-material/Info';
+import UpdateIcon from '@mui/icons-material/Update';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 const { Search } = Input;
 
@@ -331,21 +335,27 @@ console.log(selectedItems)
           </Popconfirm>
           )}
           </div>
-            <div className="w-[4.74rem] text-[#00A2E8] text-sm  truncate max-md:w-[4.74rem]"><BrandingWatermarkIcon className="!text-icon" /> Brand</div>
-            <div className="w-[6.73rem] truncate max-md:w-[6.73rem]"> <ModelTrainingIcon className=" !text-icon" /> Model</div>
-            <div className="w-[8.07rem] truncate max-md:w-[8.07rem] ">IMEI</div>
-            <div className="w-[6.71rem] truncate max-md:w-[6.71rem]">Info</div>
+            <div className="w-[7.20rem] text-[#00A2E8] text-sm  truncate max-md:w-[4.74rem]"><BrandingWatermarkIcon className="!text-icon" /> Brand</div>
+            <div className="w-[5.7rem] truncate max-md:w-[6.73rem]"> <ModelTrainingIcon className=" !text-icon" /> Model</div>
+            <div className="w-[9.07rem] truncate max-md:w-[8.07rem] ">IMEI</div>
+            <div className="w-[8.71rem] truncate max-md:w-[6.71rem]">
+            <InfoIcon className=" !text-icon text-[#FCA311]"  />
+              Info</div>
 
 
-            <div className="w-[6.75rem] truncate max-md:w-[6.75rem]">Condition</div>
-            <div className="w-[20rem] truncate max-md:w-[20rem]">Issue</div>
+            <div className="w-[4.5rem] truncate max-md:w-[6.75rem]">Condition</div>
+            <div className="w-[21rem] truncate max-md:w-[20rem]">
+            <ConfirmationNumberIcon className=" !text-icon text-[#4F772D]"   />
+              Issue</div>
            
-            <div className="w-[9.1rem] truncate max-md:w-[9.1rem]">
+            <div className="w-[7.1rem] truncate max-md:w-[9.1rem]">
+            <FactCheckIcon className=" !text-icon text-[#8338EC]"  />
              Received
             </div>
            
            
             <div className="w-[7.3rem] truncate max-md:w-[7.3rem]">
+             <UpdateIcon className=" !text-icon text-[#EF476F]" />
              Status
             </div>
           </div>
@@ -377,7 +387,7 @@ console.log(selectedItems)
                       onChange={() => handleCheckboxChange(item)}
                     />)}
                       </div>
-                        <div className=" flex   border-l-2 py-ygap border-green-500 bg-[#eef2f9] w-[2rem] max-md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   border-l-2 py-ygap border-green-500 bg-[#eef2f9] w-[2rem] max-md:w-[2rem] max-sm:flex-row  max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                              <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => {
                               handleMismatchItem();
@@ -412,8 +422,8 @@ console.log(selectedItems)
                         </div>
                       </div>
 
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs  font-poppins text-center">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between truncate ">
+                        <div class=" text-xs  font-poppins text-center ">
                           {item.conditions}
                         </div>
                       </div>
@@ -460,7 +470,7 @@ console.log(selectedItems)
                         </div>
                       </div>
 
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.09rem]  max-md:w-[1.09rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.09rem]  max-md:w-[1.09rem] max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <VisibilityIcon
@@ -513,7 +523,7 @@ console.log(selectedItems)
                             </>}
                         </div>
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.04rem]  max-md:w-[1.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.04rem]  max-md:w-[1.04rem] max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.cannotRepairInd && "Can't Repair"}
                         </div>

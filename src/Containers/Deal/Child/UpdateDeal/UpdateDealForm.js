@@ -310,7 +310,7 @@ function UpdateDealForm (props) {
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-black font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                 <div>{translatedMenuItems[0]} </div>
                     <Field
@@ -326,7 +326,7 @@ function UpdateDealForm (props) {
                   </div>
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class="font-bold text-black font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                     <div>{translatedMenuItems[1]} </div>
                         <Field
@@ -340,7 +340,7 @@ function UpdateDealForm (props) {
                         />
                       </div>
                     </div>
-                    <div class="w-w47.5 max-sm:w-wk">
+                    <div class="w-w47.5.5 max-sm:w-wk">
                     <div class="font-bold text-black m-[0.1rem-0-0.02rem-0.2rem] font-poppins text-xs flex flex-col ">
                     <div>{translatedMenuItems[2]} </div>
                         <Field
@@ -370,7 +370,7 @@ function UpdateDealForm (props) {
                   </div>
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" w-w47.5.5 max-sm:w-wk">
                     <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                     <div>{translatedMenuItems[3]} </div>
                         <Field
@@ -383,7 +383,7 @@ function UpdateDealForm (props) {
                         />
                       </div>
                     </div>
-                    <div class="font-bold font-poppins text-black text-xs w-w47.5 max-sm:w-wk">
+                    <div class="font-bold font-poppins text-black text-xs w-w47.5.5 max-sm:w-wk">
                     <div>{translatedMenuItems[4]} </div>
                     <Field
                       name="currency"
@@ -402,7 +402,7 @@ function UpdateDealForm (props) {
                     </div>
                   </div>
                 </div>
-                <div class="font-bold font-poppins text-black text-xs h-full w-w47.5 max-sm:w-wk">
+                <div class="font-bold font-poppins text-black text-xs h-full w-w47.5.5 max-sm:w-wk">
                 <div>{translatedMenuItems[5]} </div>
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -498,7 +498,7 @@ function UpdateDealForm (props) {
   })}
 </Select>
   </div>
-  <div class=" h-full w-w47.5 max-sm:w-wk mt-2">
+  <div class=" h-full w-w47.5.5 max-sm:w-wk mt-2">
   <div class="font-bold font-poppins text-black text-xs">{translatedMenuItems[7]} </div>
   </div>
                   <Field
@@ -543,7 +543,7 @@ function UpdateDealForm (props) {
 </div>
               
                   <div class="flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-w47.5 max-sm:w-wk flex flex-col">
+                    <div class=" w-w47.5.5 max-sm:w-wk flex flex-col">
                     <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs">
                     <div>{translatedMenuItems[9]} </div>
                         <Field
@@ -563,7 +563,7 @@ function UpdateDealForm (props) {
                       </div>
                     </div>
     
-                    <div class="w-w47.5 max-sm:w-wk flex flex-col">
+                    <div class="w-w47.5.5 max-sm:w-wk flex flex-col">
                     <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs  ">
                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[10]}</div>
                         <Field

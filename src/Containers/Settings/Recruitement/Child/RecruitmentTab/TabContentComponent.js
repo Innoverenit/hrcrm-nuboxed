@@ -271,7 +271,8 @@ fetchType = async () => {
     } = this.state;
     let header = {
         workflowName:workflowName,
-      type:this.props.activeKey
+      type:this.props.activeKey,
+      navType:this.props.label
     };
 
     // let exist =
@@ -321,7 +322,6 @@ fetchType = async () => {
       addingStage,
       responsible,
       isTextInputOpen,
-
       currentProcess,
       days,
       currentStage,
@@ -331,7 +331,6 @@ fetchType = async () => {
     let exist =
     dealsProcessStages &&
     dealsProcessStages.some((element) => element.stageName == stageName);
-
     const Id = currentProcess.workflowDetailsId;
     console.log(Id);
     console.log(currentProcess);
@@ -372,12 +371,7 @@ fetchType = async () => {
       <>
         <StageWrapper>
           <div class="mr-5 ml-5">
-            <div>
-          
-              Workflow
-
-            </div>
-
+            <div>Workflow</div>
             <div class=" flex">
                <StyledTabs
                 style={{ width: "80%" }}
@@ -394,9 +388,8 @@ fetchType = async () => {
                         <span onClick={() => this.handleProcessClick(item)}>
                           {elipsize(item.workflowName, 15)}
                           
-                        </span>
-                        {/* Hello */}                    
-                        {item.globalInd && <LanguageIcon style={{ marginLeft: 8 }} />}
+                        </span>              
+                        {item.globalInd && <LanguageIcon className=" ml-2"  />}
                         </>
                       }
                       
@@ -470,13 +463,8 @@ fetchType = async () => {
             )}
            
             </div>
-            <div class=" flex mt-4 flex-col justify-center"  className="stages"
+            <div class=" flex mt-4 flex-col justify-center w-[100%] items-center content-center"  className="stages"
        
-       style={{
-         width: "100%",
-         alignContent: "center",
-         alignItems:"center"
-       }}
      >
               {this.state.isProcessTextInputOpen ? (
                 <div style={{}}>
@@ -519,34 +507,35 @@ fetchType = async () => {
               ) : 
               (
                 <>
-                   <h1 style ={{color:"white",backgroundColor:"blueviolet"}}>
+                   <div className="  bg-[blueviolet] text-white"
+                    // style ={{color:"white",backgroundColor:""}}
+                   >
                     {this.state.currentProcess.workflowName ||
                       `${"Select Workflow"}`}{" "}
                   
                    
                     {this.state.currentProcess.workflowName && (
-                           <span
-                           style={{marginLeft:"1rem"}}
+                           <span className=" ml-4 "
+                           
                                      tooltipTitle="Edit"
                         onClick={this.handleEdit}
                         size="0.875em"
                       >
-  <EditIcon1></EditIcon1>
+  <BorderColorIcon className= " !text-icon hover:text-blue-600"/>
               </span>
                     )}
                  
                     
 {this.state.currentProcess.workflowName && (
-  <span
-  style={{ cursor: "pointer" }}>
+  <span>
                       <Popconfirm
                       title="Do you want to delete?"
                       okText="Yes"
                       cancelText="No"
                         onConfirm={() => this.props.deleteDealsProcessData(this.state.currentProcess.workflowDetailsId )}
                     >
-                      <DeleteIcon
-                      type="delete" style={{ color: "white",marginLeft:"1rem" }} />
+                      <DeleteIcon className=" text-red-600 cursor-pointer !text-icon  ml-4"
+                      type="delete"  />
                     </Popconfirm>
 
                     </span>
@@ -576,7 +565,7 @@ fetchType = async () => {
                       </>
                     )}
                 
-                  </h1> 
+                  </div> 
                 </>
               )}
             </div>
@@ -715,21 +704,18 @@ const StageName = styled.h3`
   // margin-bottom: 0;
   margin: 0;
 `;
-const AppIcon1 = (props) => (
+// const AppIcon1 = (props) => (
   
-  <BorderColorIcon
+//   <BorderColorIcon
 
-  className={`pen-to-square ${props.className}`}
-  />
-);
+//   className={`pen-to-square ${props.className}`}
+//   />
+// );
 
-const EditIcon1 = styled(AppIcon1)`
-  color: white;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-
-
+// const EditIcon1 = styled(AppIcon1)`
+//   color: white;
+//   &:hover {
+//     // background: yellow;
+//     color: blue;
+//   }
+// `;

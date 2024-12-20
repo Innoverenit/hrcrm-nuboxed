@@ -15,7 +15,7 @@ const experienceSchema = Yup.object().shape({
 });
 function ExperienceForm(props) {
   useEffect(() => {
-    props.getTopicsByCandidateId(props.candidate.candidateId);
+    props.getTopicsByCandidateId("candidate",props.candidate.candidateId);
   }, []);
 
   const skillNameOption = props.topicsByCandidateId.map((item) => {
@@ -71,11 +71,7 @@ function ExperienceForm(props) {
                     component={SelectComponent}
                     options={
                       Array.isArray(skillNameOption) ? skillNameOption : []
-                    }  
-                    // onSelect={(e) => {
-                    //   console.log(e);
-                    //   handleSkillInCandidate(e, setFieldValue);
-                    // }}                 
+                    }                  
                     inlineLabel
                   />
                 </div>
@@ -108,7 +104,11 @@ function ExperienceForm(props) {
      
       <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ExperienceTable/>
+                <ExperienceTable
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
+                />
               </Suspense>
     </>   
   

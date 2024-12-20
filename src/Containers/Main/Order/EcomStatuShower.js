@@ -1,11 +1,11 @@
-import React, {useEffect ,useState} from "react";
+import React, {useEffect ,useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Rate, Steps } from 'antd';
-import EcomStatusItemCard from "./EcomStatusItemCard";
+import {  Steps } from 'antd';
 import {getEcomStatusItem} from "./OrderAction";
 import dayjs from 'dayjs';
 
+const EcomStatusItemCard=lazy(()=>import("./EcomStatusItemCard"));
 function EcomStatuShower (props) {
 
 
@@ -71,12 +71,12 @@ function EcomStatuShower (props) {
                     status:  '',
                    // subTitle: <StatusItemCard statusItems={props.statusItems}/>,
                     description: <>
-         
+         <Suspense>
                       <EcomStatusItemCard statusEcomItems={props.statusEcomItems} particularRowData={props.particularRowData} 
                            translateText={props.translateText}
                            selectedLanguage={props.selectedLanguage}
                          translatedMenuItems={props.translatedMenuItems}
-                      />
+                      /></Suspense>
                     </>
                 },
 

@@ -9,7 +9,7 @@ const AddCandidateModal = props => {
   return (
     <>
       <StyledDrawer
-        title="Candidate"
+        title="Talent"
         
         width="60%"
         visible={addCandidateModal}
@@ -18,6 +18,8 @@ const AddCandidateModal = props => {
       >
         <Suspense fallback={<BundleLoader />}>
           <CandidateForm
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           initialValues={props.initialValues}
            responseData={responseData} />
         </Suspense>

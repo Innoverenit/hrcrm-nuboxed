@@ -388,7 +388,7 @@ props.getInvestorCurrency();
                   </div> 
             <div class=" flex justify-around max-sm:flex-col">
                    
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
@@ -508,7 +508,7 @@ props.getInvestorCurrency();
                   </div>
                   <div class=" flex justify-between">
                   {contract ?
-                    <div class=" w-w47.5">
+                    <div class=" w-w47.5.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                    <Field
                         name="vatNo"
@@ -524,7 +524,7 @@ props.getInvestorCurrency();
                     </div>
                     : ( null)}
                      {contract ?
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[27]}  
                                      <Field
@@ -543,7 +543,7 @@ props.getInvestorCurrency();
                   </div>
 
                   <div class=" flex justify-between mt-1">
-                    <div class=" w-w47.5">
+                    <div class=" w-w47.5.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                    {translatedMenuItems[8]}  
                       <Field
@@ -557,7 +557,7 @@ props.getInvestorCurrency();
                       />
                       </div>
                     </div>
-                    <div class="w-w47.5 mt-1">
+                    <div class="w-w47.5.5 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[9]} 
                       <Field
@@ -576,7 +576,7 @@ props.getInvestorCurrency();
 
                   <div class=" flex justify-between">
                   {contract ?
-                  <div class=" w-w47.5 flex flex-col" >           
+                  <div class=" w-w47.5.5 flex flex-col" >           
                      <div class="font-bold text-xs">
                      {translatedMenuItems[26]}   {/* Sector */}
                       </div>
@@ -599,7 +599,7 @@ props.getInvestorCurrency();
                     </div>
                      : ( null)}
                        {contract ?
-                    <div class=" w-w47.5 flex flex-col" >                
+                    <div class=" w-w47.5.5 flex flex-col" >                
 
                      <div class="font-bold text-xs"> 
                       {/* Source */} {translatedMenuItems[23]}  
@@ -689,7 +689,7 @@ props.getInvestorCurrency();
                       </div>
 </div>
 <div class=" flex items-center justify-between mt-1">
-<div class=" text-xs font-bold w-w47.5 max-sm:w-wk">
+<div class=" text-xs font-bold w-w47.5.5 max-sm:w-wk">
 {translatedMenuItems[11]}  
                     <Field
                       name="firstMeetingDate"
@@ -701,7 +701,7 @@ props.getInvestorCurrency();
                     />
                   </div>
 
-                  <div class="text-xs font-bold w-w47.5 max-sm:w-wk"> 
+                  <div class="text-xs font-bold w-w47.5.5 max-sm:w-wk"> 
                 {translatedMenuItems[12]}      
                     <Field
                       name="shareCurrency"
@@ -723,7 +723,7 @@ props.getInvestorCurrency();
                   </div>
   </div>
                 </div>
-                <div class=" text-xs font-bold h-3/4 w-w47.5 max-sm:w-wk "  
+                <div class=" text-xs font-bold h-3/4 w-w47.5.5 max-sm:w-wk "  
                 >           {translatedMenuItems[13]}  
                 {/* Assigned */}
                    <Listbox value={selected} onChange={setSelected}>

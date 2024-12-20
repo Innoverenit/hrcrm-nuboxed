@@ -74,7 +74,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
 
       return (    
   <>
-  <div class="flex flex-wrap w-[56vw]">
+  <div class="flex flex-wrap">
   <div class="rounded m-1 max-sm:m-1 p-1   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-1 bg-transparent font-semibold items-end !text-lm font-poppins sticky  z-10">
         <div className=" w-[6.8rem] text-sm text-[#00A2E8]"><LightbulbIcon className="!text-icon"/>{translatedMenuItems[0]} ID</div>

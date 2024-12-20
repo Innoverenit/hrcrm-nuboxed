@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react'
-import { BundleLoader } from '../../../../Components/Placeholder'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LeadsTeamWarmcard from './LeadsTeamWarmcard';
@@ -12,7 +11,7 @@ import SearchedData from './SearchedData';
 const LeadsTeamCardList = (props) => {
   return (
     <div>
-       <Suspense fallback={ <BundleLoader/>}>
+       <Suspense fallback={"Loading.."}>
        {props.serachedData.length > 0 ? (
     <SearchedData
     serachedData={props.serachedData}

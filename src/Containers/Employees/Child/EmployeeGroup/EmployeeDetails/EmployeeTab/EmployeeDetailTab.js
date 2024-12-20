@@ -302,6 +302,9 @@ console.log(this.props.singleEmployee)
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <BankTable 
+                   employeeId={this.props.singleEmployee.employeeId}
+                   uniqueId={this.props.singleEmployee.employeeId}
+                   type={"employee"}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage} />
               </Suspense>
@@ -658,6 +661,9 @@ console.log(this.props.singleEmployee)
            selectedLanguage={this.props.selectedLanguage}
             addBankModal={addBankModal}
             handleBankModal={handleBankModal}
+            employeeId={this.props.singleEmployee.employeeId}
+            uniqueId={this.props.singleEmployee.employeeId}
+            type={"employee"}
           />
           <AddPersonalDetailsModal
            translateText={this.props.translateText}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button,Select } from "antd";
+import {  Button,Select } from "antd";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
@@ -14,7 +14,6 @@ import {
   setClearbitData,
   emptyClearbit
 } from "../CustomerAction";
-
 import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
 import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
@@ -24,10 +23,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
 import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
@@ -46,6 +41,8 @@ function CustomerForm(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
+
+
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -433,9 +430,6 @@ console.log(selectedSource)
   };
  
  
-
-
-
   console.log(selectedSector)
   if (loading) {
     return <div><BundleLoader/></div>;
@@ -489,7 +483,7 @@ console.log(selectedSource)
               ...values,
               category: checked ? "Both" : whiteblue ? "White" : "Blue",
               currencyId:selectedCurrency,
-              sourceId: selectedSource,
+              source: selectedSource, 
               sectorId: selectedSector,
               notes: text,
               currencyId:selectedCurrency,
@@ -512,8 +506,8 @@ console.log(selectedSource)
         }) => (
           <div class="max-sm:h-[30rem] overflow-y-auto">
             <Form className="form-background h-[87vh]" >
-              <div class="flex justify-between  pr-2 max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class="flex justify-around  max-sm:flex-col">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
@@ -579,28 +573,7 @@ console.log(selectedSource)
  inlineLabel
 />    
 }
-{/* <Select
-        showSearch
-        style={{ width: 120 }}
-        placeholder="Search or select code"
-        optionFilterProp="children"
-        loading={isLoadingCode}
-        defaultValue={selectedCode}
-        onFocus={handleSelectCodeFocus}
-        onChange={handleSelectCode}
-      >
-        {code.map(codes => (
-          <Option key={codes.
-            country_dial_code
-            } value={codes.
-              country_dial_code
-              }>
-            {codes.
-country_dial_code
-}
-          </Option>
-        ))}
-      </Select> */}
+
 
                     </div>
                     <div class="w-[1px] h-full bg-gray-300">
@@ -635,7 +608,7 @@ country_dial_code
                  
 
                   <div class=" flex justify-between mt-3">
-                    <div class= " flex flex-col w-w47.5 max-sm:w-w47.5">                  
+                    <div class= " flex flex-col w-w47.5.5 max-sm:w-w47.5.5">                  
                        {props.customerConfigure.sectorInd===true&&
                    <div className="font-bold text-[0.75rem]">
                         {translatedMenuItems[4]}
@@ -660,7 +633,7 @@ country_dial_code
       </Select>
 }
                     </div>
-                    <div class="w-w47.5 flex flex-col">                
+                    <div class="w-w47.5.5 flex flex-col">                
                 
  {props.customerConfigure.sourceInd===true&&
 <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>
@@ -688,7 +661,7 @@ country_dial_code
                     </div>
                   </div>
                   <div class="flex justify-between mt-2">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   {props.customerConfigure.typeInd===true&&
   <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
                   }
@@ -707,9 +680,9 @@ country_dial_code
     />
 }
   </div>
-  <div class="w-w47.5 flex">
+  <div class="w-w47.5.5 flex">
     
-    <div class="w-24">
+    <div class="w-[4.5rem]">
     {props.customerConfigure.potentialInd===true&&
     <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
 }
@@ -733,7 +706,7 @@ country_dial_code
      {props.customerConfigure.potentialCurrencyInd===true&&
       <Select
         showSearch
-        style={{ width: 100 }}
+        style={{ width: 87 }}
         placeholder="Search or select currency"
         optionFilterProp="children"
         loading={isLoadingCurrency}
@@ -755,46 +728,7 @@ country_dial_code
 
 {/* {props.customerConfigure.noteInd===true&& */}
 <div class="mt-3">
-{/* <div>
-                    <span class="font-bold font-poppins text-xs"> {translatedMenuItems[12]}</span>
-                    
-                  <span>
-                    <span onClick={startListening}>
-                      <Tooltip title= {translatedMenuItems[13]}>
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
 
-                    <span onClick={stopListening}>
-                      <Tooltip title= {translatedMenuItems[14]}>
-                        <span
-                          
-                            >
-                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title= {translatedMenuItems[15]}>
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1" />
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handleTextChange}
-                    ></textarea>
-                  </div>
-                </div> */}
                 <ReactDescription
                 setText={setText}
                 text={text}
@@ -802,7 +736,7 @@ country_dial_code
                   </div>
 {/* } */}
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
                 >
 {props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
@@ -879,7 +813,7 @@ country_dial_code
 }
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   {props.customerConfigure.vatNoInd===true&&
                       <Field
                         name="vatNo"
@@ -894,7 +828,7 @@ country_dial_code
                       />
 }
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                     {props.customerConfigure.businessRegInd===true&&
                       <Field
                         name="businessRegistration"
@@ -928,6 +862,7 @@ country_dial_code
                       // label="Address"                 
                       render={(arrayHelpers) => (
                         <AddressFieldArray
+                         singleAddress
                           arrayHelpers={arrayHelpers}
                           values={values}
                         />

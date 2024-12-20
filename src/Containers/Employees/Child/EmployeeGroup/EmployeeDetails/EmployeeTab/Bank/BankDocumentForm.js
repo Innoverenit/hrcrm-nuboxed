@@ -57,12 +57,21 @@ class BankDocumentForm extends Component {
             branchName: "",
             ifscCode: "",
             accountNo: "",
+            orgId:this.props.orgId,
+            userId:this.props.userId,
+            id: "",
+            defaultInd: true,
+            accountHolderName:""
+
+
+          
           }}
           // validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
 
-            this.props.addBankDetails(values, this.props.employeeId);
+            this.props.addBankDetails(values,"employee",
+               this.props.employeeId);
 
             resetForm();
           }}
@@ -171,10 +180,11 @@ class BankDocumentForm extends Component {
   }
 }
 
-const mapStateToProps = ({ employee, profile }) => ({
-  // userId: auth.userDetails.userId,
+const mapStateToProps = ({ employee, profile, auth }) => ({
+  userId: auth.userDetails.userId,
   employeeId: employee.singleEmployee.employeeId,
   addingBankDetails: profile.addingBankDetails,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

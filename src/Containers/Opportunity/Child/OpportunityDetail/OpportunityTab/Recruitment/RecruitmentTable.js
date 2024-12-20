@@ -6,6 +6,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import SkillBarChatModal from "../../OpportunityTab/Recruitment/Child/SkillBarChartModal";
 import AddRequirementModal from "./AddRequirementModal";
 import DeleteIcon from '@mui/icons-material/Delete';
+import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import AddRequirementDetailModal from "../Recruitment/AddRequirementDetailModal";
 import {
@@ -540,7 +541,7 @@ class RecruitmentTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const creationDate = dayjs(item.creationDate).format("L");
+          const creationDate = dayjs(item.creationDate).format("YYYY/MM/DD");
 
           return {
             props: {
@@ -627,7 +628,7 @@ class RecruitmentTable extends Component {
               },
             },
 
-            children: <span>{dayjs(item.avilableDate).format("L")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("YYYY/MM/DD")}</span>,
           };
         },
         sorter: (a, b) => {
@@ -763,7 +764,10 @@ class RecruitmentTable extends Component {
                       this.props.handleBarChartOrderModal(true);
                     }}
                   >
-                    <HelpIcon style={{ fontSize: "1rem" }} />
+                    <HelpIcon 
+                    // style={{ fontSize: "1rem" }} 
+                    className="cursor-pointer !text-icon text-[blue]"
+                    />
                   </span>
                 </Tooltip>
               </span>
@@ -800,7 +804,7 @@ class RecruitmentTable extends Component {
                     }}
                     onClick={() => {
                       this.props.LinkSkillsRecruit({
-                        opportunityId: item.opportunityId,
+                        // opportunityId: item.opportunityId,
                         stageId: item.stageId,
                         recruitmentProcessId: item.recruitmentProcessId,
                         skillName: this.state.skillSetData || item.skillName,
@@ -810,13 +814,15 @@ class RecruitmentTable extends Component {
                       this.props.getRecruiter(
                         this.state.skillSetData || item.skillName,
                         item.recruitmentId,
-                        item.opportunityId
+                        // item.opportunityId
                       );
                       this.handleCandidateDataSet(item);
                       this.props.handleRecruiterModal(true);
                     }}
                   >
-                    <PsychologyAltIcon style={{ fontSize: "1rem" }} />
+                    <InterpreterModeIcon 
+                  className="cursor-pointer !text-icon text-[orange]"
+                    />
                   </span>
                 )}
               </>
@@ -1004,26 +1010,23 @@ class RecruitmentTable extends Component {
           };
         },
       },
-      {
-        width: "6%",
-        render: (name, item, i) => {
-          return (
-            <>
-              {this.props.user.sequenceAvailableInd === true && (
-                <Button
-                  style={{ marginLeft: "-30px" }}
-                  // onClick={() => {
-                  //   handleMonsterModal(true);
-                  //   this.handleIconClick(item.recruitmentId);
-                  // }}
-                >
-                  Sequence
-                </Button>
-              )}
-            </>
-          );
-        },
-      },
+      // {
+      //   width: "6%",
+      //   render: (name, item, i) => {
+      //     return (
+      //       <>
+      //         {this.props.user.sequenceAvailableInd === true && (
+      //           <Button
+      //             style={{ marginLeft: "-30px" }}
+              
+      //           >
+      //             Sequence
+      //           </Button>
+      //         )}
+      //       </>
+      //     );
+      //   },
+      // },
 
       {
         width: "4%",

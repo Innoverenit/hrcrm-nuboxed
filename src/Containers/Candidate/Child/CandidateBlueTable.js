@@ -11,7 +11,6 @@ import Highlighter from "react-highlight-words";
 import {
   MultiAvatar,
   MultiAvatar2,
-  SubTitle,
 } from "../../../Components/UI/Elements";
 import {
   getCandidateListByCategory,
@@ -186,7 +185,7 @@ function CandidateBlueTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div >
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -194,7 +193,7 @@ function CandidateBlueTable(props) {
               imgWidth={"2.5em"}
               imgHeight={"2.5em"}
             />
-          </SubTitle>
+          </div >
         );
       },
     },

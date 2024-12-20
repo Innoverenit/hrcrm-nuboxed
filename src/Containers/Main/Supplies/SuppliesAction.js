@@ -2061,12 +2061,12 @@ export const getBarcodeViewer = (suppliesId) => (dispatch) => {
     });
 };
 
-export const getPriceUpdated = () => (dispatch) => {
+export const getPriceUpdated = (locationId) => (dispatch) => {
   dispatch({
     type: types.GET_PRICE_UPDATED_REQUEST,
   });
   axios
-  .get(`${base_url2}/urlShouldChange`, {
+  .get(`${base_url2}/po/getPrices/pomaterial/${locationId}`, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -2088,12 +2088,12 @@ export const getPriceUpdated = () => (dispatch) => {
     });
 };
 
-export const getPriceUpdatedCount = () => (dispatch) => {
+export const getPriceUpdatedCount = (locationId) => (dispatch) => {
   dispatch({
     type: types.GET_PRICE_UPDATED_COUNT_REQUEST,
   });
   axios
-  .get(`${base_url2}/urlShouldChange`, {
+  .get(`${base_url2}/po/getprice/count/pomaterial/${locationId}`, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },

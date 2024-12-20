@@ -226,7 +226,7 @@ const timerRef = useRef(null);
     return (
         <>
             <div className=' flex  sticky z-auto flex-col'>
-            <div class=" w-64 max-sm:w-40">
+            <div class=" w-64 max-sm:w-40 mt-2">
         <Input
           placeholder="Search By PO ID"
           width={"100%"}
@@ -237,8 +237,8 @@ const timerRef = useRef(null);
         />
       </div>
                 <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent  font-bold font-poppins text-xs items-end sticky z-10">
-                        <div className=" w-[11.1rem] text-[#00A2E8] text-base truncate  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent  font-bold font-poppins !text-lm items-end sticky z-10">
+                        <div className=" w-[11.1rem] text-[#00A2E8] text-sm truncate  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                         <Shop2Icon className="mr-1 !text-icon"/>PO ID
                             </div>
                         <div className=" w-[4.1rem]  truncate max-md:w-[10.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
@@ -266,7 +266,7 @@ const timerRef = useRef(null);
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingPurchaseSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"67vh"}
+                            height={"77vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
                            

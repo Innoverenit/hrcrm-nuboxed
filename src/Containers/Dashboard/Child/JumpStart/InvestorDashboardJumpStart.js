@@ -117,7 +117,9 @@ function InvestorDashboardJumpStart (props) {
         '1538', // 0 "Investor Added"
         '1297', // 1 "Contacts Added"
         '1539', // 2 "Deals Added"
-        '1554'  // 3 "Deals Won"
+        '1554' , // 3 "Deals Won"
+        "1596",    // By Order Value 4
+        "1597",    // By Order Volume 5
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -254,12 +256,12 @@ function InvestorDashboardJumpStart (props) {
         </div>
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]}</div>
         <DynamicPieChart dtype={"RepairOrderValue"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]}</div>
         <DynamicPieChart dtype={"RepairOrder"}
          userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>

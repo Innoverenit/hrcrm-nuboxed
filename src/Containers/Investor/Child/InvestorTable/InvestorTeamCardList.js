@@ -7,13 +7,14 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select,Checkbox } from "antd";
+import { Tooltip, Select,Checkbox,Input,Switch } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-
+import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
+import { getSectors } from "../../../../Containers/Settings/Sectors/SectorsAction";
 import {
   MultiAvatar,
   MultiAvatar2 } from "../../../../Components/UI/Elements";
@@ -37,10 +38,18 @@ import ScoreIcon from '@mui/icons-material/Score';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
-import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData,handleInvestorPriceDrawer} from "../../InvestorAction";
+import {getTeamInvestor,
+  handleInvestorNotesDrawerModal,
+  emptyInvestor,
+  handleInvestorPulseDrawerModal, 
+   handleInvestorAddressDrawerModal,
+  handleUpdateInvestorModal,
+  handleInvestorContModal,
+  deleteInvestorData,
+  handleInvestorPriceDrawer,
+  UpdateInvestor} 
+  from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { BundleLoader } from "../../../../Components/Placeholder";
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
@@ -48,7 +57,6 @@ const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
 const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
 const  AddInvestorAdressModal = lazy(() =>import("./AddInvestorAdressModal"));
 const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
-const UpdateInvestorModal = lazy(() =>import("../UpdateInvestor/UpdateInvestorModal"));
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -74,6 +82,10 @@ function InvestorTeamCardList(props) {
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState(""); 
+  const [touchedSector, setTouchedSector] = useState(false);
+  const [touchedSource, setTouchedSource] = useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -165,11 +177,93 @@ function InvestorTeamCardList(props) {
             }, 100);
   }
 
+  const handleEditRowField = (investorId, field, currentValue) => {
+    setEditableField({ investorId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { investorId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+    } else if (field === 'source') {
+      mappedField = 'source';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.UpdateInvestor(updatedData,investorId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { investorId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+      } else if (field === 'source') {
+        mappedField = 'source';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.UpdateInvestor(updatedData,investorId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleContract = async (checked, investorId) => {
+    const newCategory = checked ? "Institutional" : "Private";
+  
+    // Map the field to the correct key
+    //  if (field === 'name') {
+    //   mappedField = 'name'; 
+    const mappedField = "pvtAndIntunlInd";
+    const updatedData = { [mappedField]: newCategory }; // Update the value with toggle state
+  
+    // Call the prop function to update the data
+    props.UpdateInvestor(updatedData, investorId);
+  
+    // Optionally reset any temporary state (if required)
+    setEditableField(null);
+  };
+  const handleSelectSectorFocus = () => {
+    if (!touchedSector) {
+      props.getSectors();
+      setTouchedSector(true);
+    }
+  };
+  const handleSelectSourceFocus = () => {
+    if (!touchedSource) {
+      props.getSources(props.orgId);
+      setTouchedSource(true);
+    }
+  };
+
+  
   const {
     fetchingTeamInvestor,
     teamInvestor,
     handleUpdateInvestorModal,
-    updateInvestorModal,
     fetchingInvestorsError,
     fetchingAllCustomers,
     handleInvestorPulseDrawerModal,
@@ -183,14 +277,6 @@ function InvestorTeamCardList(props) {
     deleteInvestorData
   } = props;
   console.log("ee");
- 
-  // if (fetchingInvestors) {
-  //   return <BundleLoader />;
-  // }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
   return (
     <>
@@ -251,7 +337,7 @@ function InvestorTeamCardList(props) {
       </div>
       <div className=' flex sticky  w-[87%] z-auto'>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-  <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+  <div className=" flex justify-between max-sm:hidden  w-[82%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
         <div className=" flex text-[#00A2E8] text-sm truncate w-[9.6rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* "Name" */}              
@@ -260,16 +346,16 @@ function InvestorTeamCardList(props) {
         <FactoryIcon className="!text-icon mr-1  text-[#84a59d]"/> {translatedMenuItems[1]}
         {/* Sector" */}          
                 </div>   
-                <div className=" w-[5.23rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
+                <div className=" w-[5.6rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
           <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-          <div className=" w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" w-[7.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
           <SourceIcon className="!text-icon  mr-1 text-[#4b5043]"/>{translatedMenuItems[6]}
          {/* Source" */}         
           </div> 
-        <div className=" w-[6.12rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
+        <div className=" w-[6.4rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon   text-[#e4eb2f]' /> {translatedMenuItems[2]}
          {/* Deals */}      
                 </div>      
           <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
@@ -282,7 +368,7 @@ function InvestorTeamCardList(props) {
         {/* Club */}
           </div>
           {props.user.aiInd && (
-            <div className=" w-[3.81rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
+            <div className=" w-[4.1rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
           {/* Score */}
             </div>
@@ -357,19 +443,41 @@ function InvestorTeamCardList(props) {
                                    <div>
                                    </div>                                 
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                         
+                                        <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                            
-                                            <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-xs text-blue-500 flex justify-between font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
-  </Link>                                   
-       
-        {date === currentdate ? (
+  </Link>    
+  {date === currentdate ? (
           <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
             New
           </span>
-        ) : null}
+        ) : null}                               
+  <div>
+                      {editableField?.investorId === item.investorId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.investorId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
+    
        
                                             </div>
 </div>
@@ -380,7 +488,32 @@ function InvestorTeamCardList(props) {
                                 <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs ml-gap  font-poppins max-sm:text-sm">   
-                                    {item.sector}
+                                    {/* {item.sector} */}
+                                    <div>
+{editableField?.investorId === item.investorId && editableField?.field === 'sector' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSectorFocus}
+  autoFocus
+>
+{props.sectors.map((item) => (
+   <Option key={item.sectorId} value={item.sectorId}>
+  {item.sectorName}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.investorId, 'sector', item.sector)} 
+className="cursor-pointer text-xs font-poppins">
+{item.sector || "Update..."}
+
+</div>         
+                        )}
+                      </div>
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.30rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
@@ -402,13 +535,61 @@ function InvestorTeamCardList(props) {
                                    {/* Category */}
 
                                     <div class=" text-xs justify-center ml-gap font-poppins max-sm:text-sm">
-                                    {Category}
+                                    {/* {Category} */}
+                                    <div>
+  {editableField?.investorId === item.investorId && editableField?.field === 'Category' ? (
+    <Switch
+      style={{ width: "6.25em", marginLeft: "0.625em" }}
+      onChange={(checked) => handleContract(checked, item.investorId)}
+      checked={Category === "Institutional"} // Assuming `category` has values like "Institutional" or "Private"
+      checkedChildren="Institutional"
+      unCheckedChildren="Private"
+      onBlur={() => handleEditRowField(null, null, null)}
+      autoFocus
+    />
+  ) : (
+    <div
+      onClick={() =>
+        handleEditRowField(item.investorId, 'Category', Category)
+      }
+      className="cursor-pointer text-xs font-poppins"
+    >
+      {Category || "Update..."}
+    </div>
+  )}
+</div>
+
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-sm:text-sm">
-                                    {item.source}
+                                    {/* {item.source} */}
+                                    <div>
+{editableField?.investorId === item.investorId && editableField?.field === 'source' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSourceFocus}
+  autoFocus
+>
+{props.sources.map((item) => (
+   <Option key={item.sourceId} value={item.sourceId}>
+  {item.name}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.investorId, 'source', item.source)} 
+className="cursor-pointer text-xs font-poppins">
+{item.source || "Update..."}
+
+</div>         
+                        )}
+                      </div>
                                     </div>
                                 </div>
                          
@@ -421,13 +602,7 @@ function InvestorTeamCardList(props) {
                                 </div>    
                                 </div>    
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                             
-                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                                
-                                    <div class=" text-xs justify-center  font-poppins max-sm:text-sm">
-                                    {item.signed}
-                                    </div>
-                                </div> */}
-                            
+
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -491,24 +666,7 @@ function InvestorTeamCardList(props) {
             </span>           
                                     </div>
                                 </div>
-                              
-                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]  max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                         Owner
-                       <span>
-                       <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </Tooltip>
-            </div>
-          </Tooltip>
-            </span>
-                   </div> */}
+
                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -590,18 +748,7 @@ function InvestorTeamCardList(props) {
               />
             </Tooltip>
             </div>                                                              
-            <div>
-            {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title={translatedMenuItems[13]}>
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onClick={() => {
-                    handleUpdateInvestorModal(true);
-                    handleCurrentRowData(item);                
-                }}
-              />
-            </Tooltip>
-           )} 
-            </div>
+
             <div >
             <StyledPopconfirm
                         title="Do you want to delete?"
@@ -629,15 +776,7 @@ function InvestorTeamCardList(props) {
 </div>
 </div>
         )}  
-<Suspense fallback={<BundleLoader />}>
-      <UpdateInvestorModal
-        RowData={RowData}
-        updateInvestorModal={updateInvestorModal}
-        handleUpdateInvestorModal={handleUpdateInvestorModal}
-        handleCurrentRowData={handleCurrentRowData}
-        translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-      />
+<Suspense fallback={"Loading"}>
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
@@ -687,17 +826,19 @@ const mapStateToProps = ({
   sector,
   opportunity,
   employee,
-  investor
+  investor,
+  source
 }) => ({
   userId: auth.userDetails.userId,
   teamInvestor:investor.teamInvestor,
+  sources: source.sources,
   addDrawerInvestorNotesModal:investor.addDrawerInvestorNotesModal,
   fetchingAllCustomers: customer.fetchingAllCustomers,
   sectors: sector.sectors,
   fetchingTeamInvestor: investor.fetchingTeamInvestor,
   fetchingInvestorsError: investor.fetchingInvestorsError,
-  updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
+  orgId: auth.userDetails.organizationId,
   priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,
   investorSerachedData:investor.investorSerachedData,
@@ -726,7 +867,10 @@ const mapDispatchToProps = (dispatch) =>
       handleInvestorContModal,
       handleInvestorAddressDrawerModal,
       handleInvestorPriceDrawer,
-      getTeamUserList
+      getTeamUserList,
+      UpdateInvestor,
+      getSectors,
+      getSources
     },
     dispatch
   );

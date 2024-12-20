@@ -14,7 +14,7 @@ class AddTrainingModal extends Component {
       <>
         <StyledDrawer
           title="Training"
-          width="55%"
+          width="50%"
           visible={addTrainingModal}
           onClose={() => handleTrainingModal(false)}
         >

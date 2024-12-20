@@ -225,6 +225,7 @@ return  <BundleLoader />
     if (loading) {
       return <div><BundleLoader/></div>;
     } 
+    console.log(this.props.opportunity.customer)
     return (
       <>
         <TabsWrapper>
@@ -264,7 +265,7 @@ return  <BundleLoader />
                           </Tooltip>                                        
 
                         <Tooltip title="Summary">
-                      <span className=" -ml-1"                   
+                      <span className=" ml-1"                   
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
@@ -279,7 +280,7 @@ return  <BundleLoader />
 
                         <Tooltip title="Close">
                          <span
-                         className=" ml-1 "
+                        //  className=" ml-1 "
                   
                           type="area-chart"
                           // tooltipTitle="Summary"
@@ -297,7 +298,7 @@ return  <BundleLoader />
 
                         <Tooltip title="Delete">
                          <span
-                      className=" ml-1 !text-icon text-[#c42847]"
+                      className="  !text-icon text-[#c42847]"
                       
                           type="area-chart"
                           // tooltipTitle="Summary"
@@ -307,7 +308,7 @@ return  <BundleLoader />
                                           
                           >
                             <DeleteIcon
-                      className=" ml-1 !text-icon "
+                      className=" !text-icon "
                             onClick={() => {
                             this.handledeletedPopoverVisibleChange();
                           }}
@@ -491,12 +492,16 @@ return  <BundleLoader />
             linkContact
           /> */}
           <AddCustomerContactModal
+          name={this.props.opportunity.customer}
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             opportunityId={opportunityId}
+            customerId={this.props.opportunity.customerId}
+            id={this.props.opportunity.customerId}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.state.translatedMenuItems}
+          customer={this.props.opportunity}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}

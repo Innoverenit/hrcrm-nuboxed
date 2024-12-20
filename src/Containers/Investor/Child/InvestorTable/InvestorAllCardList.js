@@ -9,11 +9,13 @@ import dayjs from "dayjs";
 import { useDispatch } from 'react-redux';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Checkbox} from "antd";
+import { Tooltip, Select,Input, Checkbox} from "antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ReactCountryFlag from 'react-country-flag';
+import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
+import { getSectors } from "../../../../Containers/Settings/Sectors/SectorsAction";
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -45,10 +47,11 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
   getAllEmployeelist,
   getInvestorsbyId, 
   handleInvestorPriceDrawer,
+  UpdateInvestor
 } from "../../InvestorAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { BundleLoader } from "../../../../Components/Placeholder";
+
 
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
@@ -57,7 +60,6 @@ const InvestorPulseDrawerModal = lazy(() =>  import("./InvestorPulseDrawerModal"
 const  ContactsInvestorModal = lazy(() =>  import("./ContactsInvestorModal"));
 const InvestorSearchedData = lazy(() =>  import("./InvestorSearchedData"));
 const AddInvestorAdressModal = lazy(() =>  import("./AddInvestorAdressModal"));
-const UpdateInvestorModal = lazy(() =>  import("../UpdateInvestor/UpdateInvestorModal"));
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -86,6 +88,10 @@ function InvestorAllCardList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+    const [editableField, setEditableField] = useState(null); 
+    const [editingValue, setEditingValue] = useState(""); 
+    const [touchedSector, setTouchedSector] = useState(false);
+    const [touchedSource, setTouchedSource] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -177,41 +183,6 @@ function InvestorAllCardList(props) {
   const callPageMapd =
   props.investorsbyId && props.investorsbyId.length && props.investorsbyId[0].pageCount;
 
-//Function to handle loading more data when scrolling
-// const handleLoadMore1 = () => {
-//   if (isFetching) return; // Prevent multiple calls by checking the flag
-
-//   setIsFetching(true); // Set fetching flag to true
-//   setTimeout(() => {
-//     const { getInvestorsbyId } = props;
-//     if (props.investorsbyId) {
-//       setPage1((prevPage1) => {
-//         if (prevPage1 === 0) {
-//           // If current page is 0, start fetching page 1 data
-//           getInvestorsbyId(
-//             props.currentUser ? props.currentUser : selectedEmployee,
-//             1, // Start with page 1 when scrolling begins
-//             props.filter ? props.filter : "creationdate"
-//           );
-//           return 1; // Set page to 1 after first scroll
-//         } else if (prevPage1 < callPageMapd) {
-//           // Continue loading more pages if page < callPageMapd
-//           getInvestorsbyId(
-//             props.currentUser ? props.currentUser : selectedEmployee,
-//             prevPage1 + 1, // Increment page number
-//             props.filter ? props.filter : "creationdate"
-//           );
-//           return prevPage1 + 1; // Update page to the next number
-//         } else {
-//           // If on the last page, stop loading more
-//           setHasMore(false);
-//         }
-//         return prevPage1;
-//       });
-//     }
-//     setIsFetching(false); // Reset fetching flag after the call
-//   }, 100);
-// };
 
 const handleLoadMore1 = () => {
   if (isFetching || !hasMore) return; // Prevent multiple calls and check if there's more data
@@ -264,13 +235,93 @@ useEffect(() => {
   };
 
 
+  const handleEditRowField = (investorId, field, currentValue) => {
+    setEditableField({ investorId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { investorId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+    } else if (field === 'source') {
+      mappedField = 'source';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.UpdateInvestor(updatedData,investorId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { investorId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'name') {
+      mappedField = 'name'; 
+    } else if (field === 'sector') {
+      mappedField = 'sectorId';
+      } else if (field === 'source') {
+        mappedField = 'source';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.UpdateInvestor(updatedData,investorId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleContract = async (checked, investorId) => {
+    const newCategory = checked ? "Institutional" : "Private";
+  
+    // Map the field to the correct key
+    //  if (field === 'name') {
+    //   mappedField = 'name'; 
+    const mappedField = "pvtAndIntunlInd";
+    const updatedData = { [mappedField]: newCategory }; // Update the value with toggle state
+  
+    // Call the prop function to update the data
+    props.UpdateInvestor(updatedData, investorId);
+  
+    // Optionally reset any temporary state (if required)
+    setEditableField(null);
+  };
+  const handleSelectSectorFocus = () => {
+    if (!touchedSector) {
+      props.getSectors();
+      setTouchedSector(true);
+    }
+  };
+  const handleSelectSourceFocus = () => {
+    if (!touchedSource) {
+      props.getSources(props.orgId);
+      setTouchedSource(true);
+    }
+  };
   const {
     fetchingAllInvestors,
     fetchingInvestors,
     allInvestorsbyId,
     investorsbyId,
     handleUpdateInvestorModal,
-    updateInvestorModal,
     fetchingInvestorsError,
     fetchingAllCustomers,
     handleInvestorPulseDrawerModal,
@@ -285,13 +336,6 @@ useEffect(() => {
   } = props;
   console.log("ee");
  
-  // if (fetchingInvestors) {
-  //   return <BundleLoader />;
-  // }
-  
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 console.log(selectedEmployee)
   return (
     <>
@@ -325,39 +369,27 @@ console.log(selectedEmployee)
             />
           </div>
           
-          <div class="flex  overflow-hidden">
-          
+          <div class="flex  overflow-hidden">        
           <div class="font-semibold text-[#337df4] font-poppins  truncate cursor-pointer text-lm "    
              onClick={() => handleButtonClick(item.employeeId)} 
-          >
-        
+          >      
   {item.empName}
-
         </div> 
+        </div>             
         </div>
-          
-       
-        </div>
-        <div className="flex flex-col max-sm:justify-between ">
-          
+        <div className="flex flex-col max-sm:justify-between ">        
         <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm  flex items-center">
         {item.dailCode1} {item.mobileNo} 
-                       </div>
-            
+                       </div>           
           <div>
           <div class="font-medium text-xs ">
        
           <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm  flex items-center">
            {item.email}
-              </div>
-           
-            
+              </div>                    
           </div>
           </div>
-          </div>
-          
-      
-       
+          </div>            
       </div>
            )
 })}
@@ -418,7 +450,6 @@ console.log(selectedEmployee)
                                           </div>
                                       </div>
                                       <div className=" flex   w-[13.5rem] h-8 border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
-      
       <div>
                   <MultiAvatar
                     primaryTitle={item.name}
@@ -432,10 +463,10 @@ console.log(selectedEmployee)
                                    
                                          
                                               <Tooltip>
-                                              <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                          
+                                              <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                          
                                                   {/* Name */}
                                                  
-                                                  <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                                  <div class=" text-xs text-blue-500 flex justify-between  font-poppins font-semibold cursor-pointer">
                                                   <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
             {item.name}
         </Link>                                
@@ -446,6 +477,28 @@ console.log(selectedEmployee)
                   New
                 </span>
               ) : null}
+                <div>
+                      {editableField?.investorId === item.investorId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.investorId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100  ">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
              
                                                   </div>
       </div>
@@ -483,7 +536,7 @@ console.log(selectedEmployee)
                                     {Category}
                                     </div>
                                 </div>    
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
@@ -523,9 +576,7 @@ handleCurrentRowData(item);
    {item.allTotalAmountOfShare}
     </div>
 </div>
-</div>
-                                     
-              
+</div>      
        </div>
        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -565,23 +616,7 @@ handleCurrentRowData(item);
                   </span>          
                                      </div>
                                       </div>
-                                      {/* <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                                {/* Owner 
-                             <span>
-                             <Tooltip title={item.ownerName}>
-                      <div class="max-sm:flex justify-end w-[1.8rem]">
-                      <Tooltip title={item.ownerName}>
-                    <MultiAvatar
-                      primaryTitle={item.ownerName}
-                      imageId={item.ownerImageId}
-                      imgWidth={"1.8rem"}
-                      imgHeight={"1.8rem"}
-                    />
-                  </Tooltip>
-                  </div>
-                </Tooltip>
-                  </span>                                                             
-                    </div> */}
+                                 
                     <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
       <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -621,9 +656,7 @@ handleCurrentRowData(item);
                   handleCurrentRowData(item);
                 }}
                 
-              />                                                                                   
-                              
-                         
+              />                                                                                       
                          <div>
                           <Tooltip title={item.url}>
                     {item.url !== "" ? (
@@ -667,18 +700,7 @@ handleCurrentRowData(item);
        
                   </div>
                  
-                  <div>
-                  {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-                  <Tooltip title="Edit">
-                    <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                        onClick={() => {
-                          handleUpdateInvestorModal(true);
-                          handleCurrentRowData(item);                 
-                      }}
-                    />
-                  </Tooltip>
-                 )} 
-                  </div>
+            
                   <div>
                   <StyledPopconfirm
                               title="Do you want to delete?"
@@ -704,74 +726,50 @@ handleCurrentRowData(item);
                           )
                       })}
            </InfiniteScroll> 
-           </div>
-          
-          
+           </div>            
      </>
      :
      <div className=' flex sticky  w-[87%] z-auto'>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-  <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end max-xl:text-xs max-lg:text-[0.45rem] z-10">
-        <div className="text-[#00A2E8] text-sm w-[10.6rem] truncate max-md:w-[14.6rem] max-xl:w-[14.4rem] ">
-        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}
-     
-        {/* "Name" */}           
+  <div className=" flex justify-between max-sm:hidden  w-[82%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" flex text-[#00A2E8] text-sm truncate w-[10.68rem] max-xl:w-[14.4rem] ">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
+        {/* "Name" */}              
                 </div>
-        <div className=" w-[11.1rem]  max-xl:w-[16.1rem] truncate max-md:w-[8.1rem] max-lg:w-[18.1rem]">
-        <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}  
-        {/* Sector" */}            
-                </div>
-
-                <div className=" w-[5.23rem] truncate max-md:w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[10]}
+        <div className="flex  w-[10.9rem] truncate max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon mr-1  text-[#84a59d]"/> {translatedMenuItems[1]}
+        {/* Sector" */}          
+                </div>   
+                <div className=" w-[5.3rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}
           {/* "Category */}
+          </div>
+          <div className=" w-[7.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <SourceIcon className="!text-icon  mr-1 text-[#4b5043]"/>{translatedMenuItems[6]}
+         {/* Source" */}         
           </div> 
-
-          <div className="  w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-          <SourceIcon className="!text-icon mr-1  text-[#4b5043]"/>{translatedMenuItems[4]}      
-        {/* Source */}               
-        </div>  
-        <div className="  w-[4.2rem] truncate max-md:w-[6.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
-   
-        {/* "Deals" */}          
-                </div>
-        {/* <div className=" w-[6.2rem] font-poppins font-bold text-xs  max-xl:w-[8.2rem]">
-        {translatedMenuItems[3]}
-         "Pipeline Value"
-             
-          </div> */}
-        
-        <div className="  w-[8.212rem]  truncate max-md:w-[7.212rem]  max-xl:w-[8.2rem]">
-        <ShowChartIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[9]}
+        <div className=" w-[4.4rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon   text-[#e4eb2f]' /> {translatedMenuItems[2]}
+         {/* Deals */}      
+                </div>      
+          <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[9]}
        {/* Shares # */}
-          </div> 
-          <div className=" w-[4.21rem] truncate max-md:w-[5.21rem] max-xl:w-[8.2rem]">
-          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[8]}
+          </div>              
+          <div className=" w-[4.21rem] truncate max-md:w-[4.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[18]}
         {/* Club */}
           </div>
-      
-        {props.user.aiInd && (
-            <div className=" w-[4.81rem] truncate max-md:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-        <ScoreIcon className="!text-icon   text-[#f28482]"/> {translatedMenuItems[7]}
-                           
+          {props.user.aiInd && (
+            <div className=" w-[5.1rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
           {/* Score */}
             </div>
             )}
-              
-        <div className="  w-[4.3rem]  truncate max-md:w-[5.3rem] max-xl:w-[10.3rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]}
-         {/* Assigned" */}
-              
-         </div>
-
-        {/* <div className=" w-[8.813rem]  max-xl:w-[8.21rem]">
-        {translatedMenuItems[6]}
-        owner
-           
-                </div> */}
-       
-           
+        <div className=" w-[4.3rem] truncate max-md:w-[6.3rem] max-xl:w-[10.3rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
+        {/* Assigned" */}           
+         </div>      
       </div>
         <InfiniteScroll
         dataLength={allInvestorsbyId.length}
@@ -824,7 +822,6 @@ handleCurrentRowData(item);
                                     </div>
                                 </div>
                                 <div className=" flex   w-[13.5rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
-
 <div>
             <MultiAvatar
               primaryTitle={item.name}
@@ -832,16 +829,13 @@ handleCurrentRowData(item);
               imageURL={item.imageURL}
               imgWidth={"1.8em"}
               imgHeight={"1.8em"}
-            />
-          
-</div>
-                             
-                                   
+            />       
+</div>                                                      
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                          
+                                        <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                          
                                             {/* Name */}
                                            
-                                            <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-xs text-blue-500 flex justify-between  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                
@@ -852,10 +846,30 @@ handleCurrentRowData(item);
             New
           </span>
         ) : null}
-       
+          <div>
+                      {editableField?.investorId === item.investorId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onMouseDown={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.investorId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex opacity-0 hover:opacity-100 items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                                             </div>
 </div>
-
                                         </Tooltip>      
                                         </div>                       
                                 </div>
@@ -890,7 +904,7 @@ handleCurrentRowData(item);
                                     </div>
                                 </div>
 
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
@@ -907,11 +921,9 @@ handleCurrentRowData(item);
                                
                                 </div>
                               
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                             
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">                            
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* sHARES*/}
 
@@ -936,9 +948,7 @@ handleCurrentRowData(item);
                                    {item.club}
                                     </div>
                                 </div>
-                          </div>
-                   
-          
+                          </div>                       
  </div>
  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center ">
@@ -974,25 +984,7 @@ handleCurrentRowData(item);
               )}
             </span>           
                                     </div>
-                                </div>
-                              
-                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]  max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                         Owner
-                       <span>
-                       <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </Tooltip>
-            </div>
-          </Tooltip>
-            </span>
-                   </div> */}
+                                </div>                          
                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -1000,10 +992,7 @@ handleCurrentRowData(item);
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                  </div>
-                                
-                              
-            
+                  </div>   
            </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                 <div class="flex items-center justify-evenly w-wk">            
@@ -1036,10 +1025,8 @@ handleCurrentRowData(item);
             handleCurrentRowData(item);
           }}
           
-        />                                                                                   
-                        
-                   
-                   <div>
+        />                                                                                                  
+                   <div className="w-[1.1rem]">
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -1057,13 +1044,11 @@ handleCurrentRowData(item);
                      
               </div>}
             </Tooltip>
-                        </div>                   
-                    
+                        </div>                                      
                     <div >
                         <span 
-              className=" !text-icon cursor-pointer max-sm:!text-xl "
-        
-            >
+              className=" !text-icon cursor-pointer max-sm:!text-xl "      >
+          
               {" "}
               {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl" />}
             </span> 
@@ -1079,20 +1064,6 @@ handleCurrentRowData(item);
                 }}
               />
             </Tooltip>
- 
-            </div>
-           
-            <div>
-            {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title="Edit">
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onClick={() => {
-                    handleUpdateInvestorModal(true);
-                    handleCurrentRowData(item);                 
-                }}
-              />
-            </Tooltip>
-           )} 
             </div>
             <div>
             <StyledPopconfirm
@@ -1124,16 +1095,8 @@ handleCurrentRowData(item);
 }
     </div> 
        )}     
-<Suspense fallback={<BundleLoader />}>
-      <UpdateInvestorModal
-        RowData={RowData}
-        updateInvestorModal={updateInvestorModal}
-        handleUpdateInvestorModal={handleUpdateInvestorModal}
-        handleCurrentRowData={handleCurrentRowData}
-        translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-      />
-           <AddInvestorNotesDrawerModal
+<Suspense fallback={"Loading"}>
+  <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
@@ -1197,7 +1160,6 @@ const mapStateToProps = ({
   fetchingAllCustomers: customer.fetchingAllCustomers,
   fetchingAllInvestors: investor.fetchingAllInvestors,
   fetchingInvestorsError: investor.fetchingInvestorsError,
-  updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
   investorSerachedData:investor.investorSerachedData,
   fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
@@ -1227,7 +1189,10 @@ const mapDispatchToProps = (dispatch) =>
       handleInvestorAddressDrawerModal,
       getAllEmployeelist,
       handleInvestorPriceDrawer,
-      getInvestorsbyId
+      getInvestorsbyId,
+      UpdateInvestor,
+      getSectors,
+      getSources
     },
     dispatch
   );

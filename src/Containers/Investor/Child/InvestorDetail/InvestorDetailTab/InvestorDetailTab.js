@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
 import CreateInvestorDealModal from "./CreateInvestorDealModal"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
@@ -18,6 +18,7 @@ import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ActivityListData from '../../../../Activity/ActivityListData';
 import LinkedContact from '../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact';
 import LinkedDocuments from '../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments';
+import MainNotes from '../../../../CustomNote/MainNotes';
 const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
 const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
 const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
@@ -144,6 +145,15 @@ selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}       />
           </div>;
+          case "5":
+            return  <div>
+                <MainNotes
+                uniqueId={props.investorDetails.investorId}
+                type={"investor"}
+              investorDetails={props.investorDetails}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}       />
+            </div>;
       default:
         return null;
     }
@@ -355,7 +365,44 @@ investorDetails={props.investorDetails}
             
             </Suspense>
           </TabPane>
-        
+          <TabPane
+            tab={
+              <>
+                   <NoteAltIcon
+                className=" !text-icon cursor-pointer text-green-800 "
+              />
+                <span class="!text-tab font-poppins ml-1">
+                {/* {translatedMenuItems[3]}   */}
+                  Notes
+                </span>
+                {activeKey === "" && (
+                  <>
+                  <Tooltip 
+                      title="Create"
+                       
+                    >
+                    
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
+                      title="Create"
+                        
+                       onClick={() => handleDealModal(true)}
+                     
+                     
+                    />
+                    </Tooltip>
+                  </>
+                )}
+              
+              </>
+            }
+            key="5"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+            
+            </Suspense>
+          </TabPane>
          
         </StyledTabs>
         <Suspense fallback={<div class="flex justify-center">Loading...</div>}>

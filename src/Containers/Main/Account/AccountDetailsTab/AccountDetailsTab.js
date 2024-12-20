@@ -42,7 +42,6 @@ import OrderTableC from "./OrderTableC"; //4
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
 import AddAccountOpportunityModal from "./AccountQuotationDrawer";
 import AccountOrderCreateDrawer from "./AccountOrderCreateDrawer";
-import Invoice from "../../../Invoice/Invoice";
 import AddInvoiceModal from "../../../Invoice/InvoiceHeader/AddInvoiceModal";
 import InvoiceTable from "../../../Invoice/InvoiceHeader/InvoiceTable";
 import SupplierDocumentTable from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
@@ -81,6 +80,7 @@ function AccountDetailsTab(props) {
 
     const [currentOrderType, setCurrentOrderType] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [current, setCurrent] = useState(0);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -134,13 +134,10 @@ function AccountDetailsTab(props) {
         setOpenOrder(false)
     };
 
-    const handleView = (view) => {
-   
-   
+    const handleView = (view) => {     
         setView(view);
         
     };
-
 
     const handleOpenOrder = () => {
         setBreadCumb(false);
@@ -153,6 +150,12 @@ function AccountDetailsTab(props) {
     // const handleTabChange = (key) => setactiveKey(key);
     // console.log(props.productionInd)
     // console.log(props.activeKey)
+
+useEffect(() => {
+    if (isModalOpen) {
+        setCurrent(0);  
+    }
+}, [isModalOpen]);
 
     const handleTabChange = (key) => {
         setactiveKey(key);
@@ -182,12 +185,14 @@ function AccountDetailsTab(props) {
                 return  <div>  {openOrder === true &&
                     <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
                     selectedLanguage={props.selectedLanguage}
-                  translateText={props.translateText} /> }
+                  translateText={props.translateText} 
+                  currentOrderType={currentOrderType}
+                  /> }
                   {openOrder === false &&
                     <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
                     selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText}
-                  
+                  activeTab={activeKey}
                   />
                 }</div>;
                 case "4":
@@ -244,7 +249,9 @@ function AccountDetailsTab(props) {
                                 return  <div>  
                                  <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} /></div>;
+                            translateText={props.translateText} 
+                            activeTab={activeKey}
+                            /></div>;
                             case "12":
                                 return  <div>  
                                  <AccountCreditMemos
@@ -277,7 +284,6 @@ function AccountDetailsTab(props) {
                             <DistributorCompletedTicket/>:<DistributorTicket/>}
                            
                             </div>;
-
 case "16":
     return  <div>  
 
@@ -925,8 +931,10 @@ distributorData={props.distributorData}
             <AccountOrderCreateDrawer
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
+             current={current}  
+             setCurrent={setCurrent} 
              isModalOpen={isModalOpen}
-             setIsModalOpen={() => setIsModalOpen(false)}
+             setIsModalOpen={setIsModalOpen}
              title={currentOrderType}
              currentOrderType={currentOrderType}
              distributorId={props.distributorData.distributorId}

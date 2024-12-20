@@ -1,34 +1,3 @@
-// import React from 'react';
-// import { Timeline } from 'antd';
-
-// const ProductionTimeLine = () => {
-//     // Hardcoded JSON data for the Timeline component
-//     const timelineData = [
-//         { time: '2023-01-01', event: 'Event 1' },
-//         { time: '2023-02-15', event: 'Event 2' },
-//         { time: '2023-03-20', event: 'Event 3' },
-//         { time: '2023-05-10', event: 'Event 4' },
-//     ];
-
-//     return (
-//         <div className=' flex justify-end sticky top-28 z-auto'>
-//              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-//             <h2>Timeline Component</h2>
-//             <Timeline>
-//                 {timelineData.map((item, index) => (
-//                     <Timeline.Item key={index} label={item.time}>
-//                         {item.event}
-//                     </Timeline.Item>
-//                 ))}
-//             </Timeline>
-//         </div>
-//         </div>
-//     );
-// };
-
-// export default ProductionTimeLine;
-
-
 import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -52,7 +21,8 @@ const Component2 = (props) => {
           try {
             const itemsToTranslate = [
            "1156", //  "Steps",//0
-           "1054" //   "Add Parts",//1
+           "1054", //   "Add Parts",//1
+           "147"    //Description
           
           
            
@@ -204,6 +174,7 @@ const Component2 = (props) => {
         />
 
 <AddSpareNotesModal
+  translatedMenuItems={translatedMenuItems}
         step={step}
         // productionTableData={props.productionTableData}
         addSpareNotesModal={props.addSpareNotesModal}

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { base_url } from "../../../Config/Auth";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Popconfirm,Switch, message,Select,Button } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -25,6 +26,7 @@ const optionsData = [
   "Production",
   "Quotation",
   "Repair",
+  "Hiring",
   "Supplier-Onboarding",
   "Task",
   "User-Onboarding",
@@ -262,8 +264,8 @@ return <div><BundleLoader/></div>;
               ) : (
                   <button 
                   loading={props.addingWorkflowCategory}
-                   style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddSector}> Add More</button>
+                  type="Primary"  
+                  onClick={handleAddSector}><DataSaverOnIcon className=" !text-icon"/>Add More</button>
               )}
   {props.primaryOrgType === 'Child' && (
 <Select
@@ -307,7 +309,8 @@ return <div><BundleLoader/></div>;
                                       </span> : null}</div>
             )}
 <div>
-  <VisibilityIcon/>
+  {region.navType}
+  {/* <VisibilityIcon/> */}
 </div>
            
             <div>

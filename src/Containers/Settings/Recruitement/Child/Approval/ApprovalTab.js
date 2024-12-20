@@ -40,37 +40,47 @@ const tabData=[
         tabName:"Prospect to Customer",
         id:"7"
     },
-     {
-        tabName:"Prospect to Customer",
-        id:"8"
-    },
       {
         tabName:"Prospect Contact to User",
-        id:"9"
+        id:"8"
     },
     ]
 
 function ApprovalTab(props) {
     const [activeKey, setActiveKey] = useState(" ")
    
+    const user = props.user;
+
+    const filteredTabs = tabData.filter(tab => {
+      switch (tab.tabName) {
+        case "Customer Contact To User":
+          return user.moduleMapper.erpInd && user.moduleMapper.orderManagementInd; 
+        case "Supplier Contact To User":
+          return user.moduleMapper.erpInd && user.procurementInd; 
+        case "Repair":
+          return user.moduleMapper.erpInd && user.moduleMapper.repairInd; 
+        case "Prospect to Customer":
+          return user.moduleMapper.erpInd && user.moduleMapper.orderManagementInd && user.moduleMapper.crmInd; 
+        case "Prospect Contact to User":
+          return user.moduleMapper.crmInd; 
+        default:
+          return true; 
+      }
+    });
+  
+
       useEffect(() => {
-        
-        renderTabContent(activeKey);
-        
-      }, [activeKey]);
-      useEffect(() => {
-           
-            
-        if (tabData.length > 0) {
-       
-          setActiveKey(tabData[0]?.tabName);
+        if (filteredTabs.length > 0) {
+          setActiveKey(filteredTabs[0].tabName); 
         }
-      }, [tabData]);
+      }, [filteredTabs]);
+
       useEffect(() => {
         if (activeKey) {
             props.getApproveData(activeKey)
         }
       }, [activeKey]);
+
       const handleTabChange = (key) => {
         setActiveKey(key);
        
@@ -78,9 +88,8 @@ function ApprovalTab(props) {
  
 
         const renderTabContent = (key) => {
-            const tab = tabData.find(tab => tab.tabName === key);
-            console.log(tab)
-            if (!tab) return null;
+          const tab = filteredTabs.find(tab => tab.tabName === key);
+          if (!tab) return null;
         
             return<ApproveForm
             label={tab.tabName} 
@@ -144,19 +153,12 @@ function ApprovalTab(props) {
                 </StyledTabs> */}
 
  <Tabs type="card"  defaultActiveKey={activeKey}  onChange={handleTabChange}>
-        {tabData.map(tab => (
-          <TabPane
-            tab={
-              <>
-                <span className="ml-1">{tab.tabName}</span>
-                
-
-
-              </>
-            }
-            key={tab.tabName}
-          />
-        ))}
+ {filteredTabs.map(tab => (
+            <Tabs.TabPane
+              tab={<span className="ml-1">{tab.tabName}</span>}
+              key={tab.tabName}
+            />
+          ))}
       </Tabs>
       <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
         {renderTabContent(activeKey)}
@@ -168,7 +170,7 @@ function ApprovalTab(props) {
 
 const mapStateToProps = ({ settings, auth }) => ({
     user: auth.userDetails,
-    approvalData: settings.approvalData ,
+    approvalData: settings.approvalData,
 });
 
 const mapDispatchToProps = (dispatch) =>
