@@ -25,9 +25,9 @@ class AddRemarksModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <RemarkForm
-              // stageList={this.props.stageList}
-              // profileId={this.props.profileId}
-              // candidateId={this.props.candidateId}
+              stageList={this.props.stageList}
+              profileId={this.props.profileId}
+              candidateId={this.props.candidateId}
             />
           </Suspense>
         </StyledModal>
