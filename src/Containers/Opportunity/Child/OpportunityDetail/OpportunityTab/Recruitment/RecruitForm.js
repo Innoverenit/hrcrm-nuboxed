@@ -143,7 +143,7 @@ const roleNameOption = Array.isArray(props.talentRoles)
   });
   const recruiterNameOption = props.recruiterName.map((item) => {
     return {
-      label: `${item.fullName || ""}`,
+      label: `${item.empName || ""}`,
       value: item.employeeId,
     };
   });
@@ -153,7 +153,7 @@ const roleNameOption = Array.isArray(props.talentRoles)
     props.getContactListByCustomerId(props.opportunity.customerId,"contact");
     //   props.getAllProcessStagesForRecruit();
     props.getContactListByOpportunityId(props.opportunityId);
-    props.getRecruiterName();
+    props.getRecruiterName(props.orgId);
     props.getTalentRoles(props.orgId); 
     props.getAllPartnerListByUserId(props.userId);
   }, []);
