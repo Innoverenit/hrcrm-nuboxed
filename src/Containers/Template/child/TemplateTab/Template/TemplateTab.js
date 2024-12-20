@@ -62,10 +62,6 @@ class TemplateTab extends Component {
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-
-      console.log("Fetched Translations:", translations);
-
-      // Update the state with the fetched translations
       this.setState({ translatedMenuItems: translations });
     } catch (error) {
       console.error("Error translating menu items:", error);
@@ -95,7 +91,7 @@ class TemplateTab extends Component {
                 <>
                   <span onClick={this.handleRecruitClick}>
                   <DraftsIcon  />
-                    <span class=" ml-[0.25em]" >{translatedMenuItems[2] }</span>
+                    <span class=" ml-[0.25em]" >{translatedMenuItems[2] || "Email"}</span>
                   </span>
                   {}
                   {activeKey === "1" && (
