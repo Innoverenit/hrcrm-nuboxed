@@ -1296,12 +1296,12 @@ export const getskillsetList = () => (dispatch) => {
     });
 };
 
-export const getRecruiterName = () => (dispatch) => {
+export const getRecruiterName = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_RECRUITER_NAME_REQUEST,
   });
   axios
-     .get(`${base_url}/employee/all-recruiter`, {
+     .get(`${base_url}/employee/getRequitproUser-dropDown/${orgId}`, {
      headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
