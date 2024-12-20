@@ -1,50 +1,27 @@
-
-
-
-
-
-
 import React,{Suspense,useEffect,useState} from "react";
-import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
-import { Tabs, Badge } from 'antd';
+import { Tabs } from 'antd';
 import { bindActionCreators } from "redux";
 import {
   getWorkFlowCategory,
-  getProcessForWorkFlowData
-  
+  getProcessForWorkFlowData  
 } from "../../../SettingsAction";
 import TabContentComponent from "../RecruitmentTab/TabContentComponent"
 import LanguageIcon from '@mui/icons-material/Language';
-
-
-
 const { TabPane } = Tabs;
-
-const WorkFlow = (props) => {
-  
-
+const WorkFlow = (props) => { 
 
   const [activeKey, setActiveKey] = useState("")
   useEffect(() => {
     props.getWorkFlowCategory(); 
   //  props.getSectorCount(props.orgId) 
 }, [])
-
-
-
-
-
-
 useEffect(() => {
   // Ensure the initial tab content is rendered on component mount
   renderTabContent(activeKey);
   
 }, [activeKey]);
-
-
-
 
 useEffect(() => {
   // Ensure the initial tab content is rendered on component mount
@@ -54,20 +31,16 @@ useEffect(() => {
     setActiveKey(props.workFlowCategory[0]?.workflowCategoryId);
   }
 }, [props.workFlowCategory]);
-
-
 useEffect(() => {
   if (activeKey) {
     props.getProcessForWorkFlowData(props.orgId, activeKey);
   }
-}, [activeKey]);
-  
+}, [activeKey]); 
 
   const handleTabChange = (key) => {
     setActiveKey(key);
     //const selectedTypedata = type.find(type => type.workflowCategoryId === value);
   };
-
   const renderTabContent = (key) => {
     const tab = props.workFlowCategory.find(tab => tab.workflowCategoryId === key);
     console.log(tab)
@@ -116,7 +89,3 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkFlow);
-
-
-// export default Workflow;
-
