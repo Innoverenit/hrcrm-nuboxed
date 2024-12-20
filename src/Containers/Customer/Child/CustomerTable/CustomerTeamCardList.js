@@ -350,13 +350,20 @@ console.log(selectedAssign)
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
-            </div>                
+            </div>   
+            {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :        
             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
+             }
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
@@ -573,7 +580,10 @@ className="cursor-pointer text-xs font-poppins">
               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 
 <div className=" flex  w-[8.3rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
+{props.user.recruitProInd ?  
+<div></div>
+:
+<div>
 <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
@@ -618,6 +628,9 @@ className="cursor-pointer text-xs font-poppins">
 
                   </div>
                         </div>
+                        </div>
+
+      }
                         </div>
 </div>               
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
