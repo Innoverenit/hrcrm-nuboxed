@@ -57,6 +57,7 @@ function General(props) {
     enaShipInd: props.requirementDuration.enaShipInd,
     tskAgCriRng: props.requirementDuration.tskAgCriRng,
     noOfQtion: props.requirementDuration.noOfQtion,
+    contAlrt: props.requirementDuration.contAlrt,
     task: props.requirementDuration.task,
     deal: props.requirementDuration.deal,
     qtionErp: props.requirementDuration.qtionErp,
@@ -125,6 +126,7 @@ function General(props) {
     newArrDay: props.requirementDuration.newArrDay || "",
     tskAgCriRng: props.requirementDuration.tskAgCriRng || "",
     noOfQtion: props.requirementDuration.noOfQtion || "",
+    contAlrt: props.requirementDuration.contAlrt || "",
     task: props.requirementDuration.task || "",
     deal: props.requirementDuration.deal || "",
     qtionErp: props.requirementDuration.qtionErp || "",
@@ -220,6 +222,7 @@ function General(props) {
           newArrDay:formValues.newArrDay,
           processInd: formValues.processInd,
           noOfQtion: formValues.noOfQtion,
+          contAlrt: formValues.contAlrt,
           tskAgCriRng: formValues.tskAgCriRng,
           enaShipInd: formValues.enaShipInd,
           bestBfrDayRng: formValues.bestBfrDayRng,
@@ -375,6 +378,19 @@ function General(props) {
                       type="number"
                       name="noOfQtion"
                       value={formValues.noOfQtion}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">Contact Alert</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="contAlrt"
+                      value={formValues.contAlrt}
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                       className="input-component" // Add styling or class as needed
