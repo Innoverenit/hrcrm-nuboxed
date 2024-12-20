@@ -15,8 +15,9 @@ function CertificationSelect(props) {
       {
         certificationName: selectType,
         candidateId: props.candidateId,
+        employeeId: props.employeeId,
       },
-      props.userType,props.candidateId
+      props.userType,props.uniqueId
     );
   }
 

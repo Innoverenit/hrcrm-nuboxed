@@ -21,7 +21,7 @@ class CandidateDetailLeft extends Component {
         <ProfileTopicOfIntrest 
          userType={"candidate"}
          uniqueId={this.props.candidate.candidateId}
-        candidate={candidate}
+         candidateId={this.props.candidate.candidateId}
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}
       translatedMenuItems={this.props.translatedMenuItems}
@@ -29,7 +29,7 @@ class CandidateDetailLeft extends Component {
         <CertificationLibrary 
          userType={"candidate"}
          uniqueId={this.props.candidate.candidateId}
-        candidate={candidate} 
+         candidateId={this.props.candidate.candidateId}
         translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
