@@ -40,7 +40,8 @@ class certificationLibrary extends React.Component {
     if (inputValue) {
       addCertificationByCandidateId(
         {
-          candidateId: this.props.uniqueId,
+          candidateId: this.props.candidateId,
+          employeeId:this.props.employeeId,
           certificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
         this.props.userType,this.props.uniqueId
@@ -60,15 +61,15 @@ class certificationLibrary extends React.Component {
     } = this.props;
       addCertificationByCandidateId(
         {
-          candidateId: this.props.uniqueId,
+          candidateId: this.props.candidateId,
           certificationName:"",
         },
         this.props.userType
       );
   };
-  handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
+  handleTopicDelete = ({ certificationLinkId, candidateId }) => {
     const { deleteCertificationByCandidateId } = this.props;
-    deleteCertificationByCandidateId(this.props.userType,candiCertiLinkId, candidateId);
+    deleteCertificationByCandidateId(this.props.userType,certificationLinkId, candidateId);
   };
 
   saveInputRef = (input) => (this.input = input);
@@ -100,8 +101,10 @@ class certificationLibrary extends React.Component {
               <div>
                       <CertificationSelect
                       certifications={this.props.certifications}
-                      candidateId={this.props.uniqueId}
+                      uniqueId={this.props.uniqueId}
+                      candidateId={this.props.candidateId}
                       userType={this.props.userType}
+                      employeeId={this.props.employeeId}
                       />
                       </div>
                       </div>
@@ -115,7 +118,7 @@ class certificationLibrary extends React.Component {
                   const isLongTopic = topic.certificationName===null?[]:topic.certificationName.length >= 30;
                   const topicElem = (
                     <Tag
-                      key={topic.candiCertiLinkId}
+                      key={topic.certificationLinkId}
                       color="blue"
                       closable
                       onClose={() => this.handleTopicDelete(topic)}
@@ -129,7 +132,7 @@ class certificationLibrary extends React.Component {
                   return isLongTopic ? (
                     <Tooltip
                       title={topic.certificationName}
-                      key={topic.candiCertiLinkId}
+                      key={topic.certificationLinkId}
                     >
                       {topicElem}
                     </Tooltip>

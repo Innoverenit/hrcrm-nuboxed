@@ -42,7 +42,6 @@ import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import SearchedData from "./SearchedData";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
 import EmptyPage from "../../../Main/EmptyPage";
 
@@ -227,9 +226,6 @@ const LeadsCardList = (props) => {
     user,
   } = props;
 
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
    return (
     <div>

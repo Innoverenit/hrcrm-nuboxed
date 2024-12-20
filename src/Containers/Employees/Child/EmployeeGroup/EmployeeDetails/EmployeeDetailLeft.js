@@ -30,7 +30,7 @@ class EmployeeDetailLeft extends Component {
  <ProfileTopicOfIntrest
          userType={"employee"}
          uniqueId={this.props.singleEmployee.employeeId}
-        // candidate={candidate}
+         employeeId={this.props.singleEmployee.employeeId}
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}
       translatedMenuItems={this.props.translatedMenuItems}
@@ -38,7 +38,7 @@ class EmployeeDetailLeft extends Component {
         <CertificationLibrary
          userType={"employee"}
          uniqueId={this.props.singleEmployee.employeeId}
-        // candidate={candidate} 
+        employeeId={this.props.singleEmployee.employeeId}
         translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}

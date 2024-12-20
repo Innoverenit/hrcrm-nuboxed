@@ -18,18 +18,18 @@ const ProfileSchema = Yup.object().shape({
 function RemarkForm(props) {
   // console.log("stageList", props.stageList);
   console.log("sent",props.sentiment.score)
-  // const stageList = props.stageList
-  //   .filter((item) => {
-  //     if (item.probability !== 0 && item.probability !== 100) {
-  //       return item;
-  //     }
-  //   })
-  //   .map((item) => {
-  //     return {
-  //       label: item.stageName || "",
-  //       value: item.stageId,
-  //     };
-  //   });
+  const stageList = props.stageList
+    .filter((item) => {
+      if (item.probability !== 0 && item.probability !== 100) {
+        return item;
+      }
+    })
+    .map((item) => {
+      return {
+        label: item.stageName || "",
+        value: item.stagesId,
+      };
+    });
 
     const [text, setText] = useState("");
     function handletext(e){
@@ -54,16 +54,16 @@ function RemarkForm(props) {
           score:props.sentiment.score,
           userId:props.userId,
           note: props.sentiment.feedback,
-          // candidateId:props.candidateId,
-           //note:transcript?transcript:text,
-          // profileId: props.profileId,
+          candidateId:props.candidateId,
+           note:transcript?transcript:text,
+          profileId: props.profileId,
         }}
         validationSchema={ProfileSchema}
         onSubmit={(values, { resetForm }) => {
           props.addRemark({...values,
             //note:transcript?transcript:text
           }, 
-            // props.profileId,
+             props.profileId,
             );
         }}
       >
@@ -85,7 +85,7 @@ function RemarkForm(props) {
                   }}
                 >
                   {" "}
-                  {/* <Field
+                  <Field
                     name="stageId"
                     label="Stage"
                     isRequired
@@ -97,7 +97,7 @@ function RemarkForm(props) {
                     }}
                     component={SelectComponent}
                     options={Array.isArray(stageList) ? stageList : []}
-                  />{" "} */}
+                  />{" "}
                   <div class=" mt-3" />
                   <Field
                     name="reviewer"
