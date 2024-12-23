@@ -152,9 +152,9 @@ function StartStop(props) {
         <span className="text-[0.65rem] font-poppins font-bold"> Attendance</span>
       </div>
       <div className="border-2 border-grey rounded-md p-[0.40rem] flex">
-      <div className="mr-6">
+      <div className="mr-4 w-[6rem]">
         <Select
-        className=" w-36  max-sm:w-24"
+        className=" w-[9rem]  max-sm:w-24"
           value={drop1}
           onChange={handleDrop1}
           disabled={startInd === true}

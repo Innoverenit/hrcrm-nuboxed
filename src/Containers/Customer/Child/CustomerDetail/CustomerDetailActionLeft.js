@@ -12,7 +12,7 @@ class CustomerDetailActionLeft extends React.Component {
         <KeyboardReturnIcon
           iconType="rollback"
          tooltipTitle="Back"
-        
+        className=" cursor-pointer"
         onClick={() => this.props.history.goBack()}
         />
       </div>

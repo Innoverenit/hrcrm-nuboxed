@@ -11,6 +11,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleDocumentUploadModal,
@@ -31,6 +32,7 @@ import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CustomerMapTable from "./CustomerMapTable";
 import ActivityListData from "../../../../Activity/ActivityListData";
 import RecruitmentTable from "./Recruitment/RecruitmentTable";
+import MainNotes from "../../../../CustomNote/MainNotes";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
@@ -221,6 +223,12 @@ translatedMenuItems={this.props.translatedMenuItems}
                               return  <div>  
                                   <RecruitmentTable/>
                                   </div>;
+                                  case "9":
+                                    return  <div>  
+                                        <MainNotes
+                                        uniqueId={this.props.customer.customerId}
+                                        type={"prospect"}/>
+                                        </div>;
         default:
           return null;
       }
@@ -513,8 +521,28 @@ translatedMenuItems={this.props.translatedMenuItems}
                         }
                         key="8"
                     >
+                      
                         <Suspense fallback={"Loading ..."}>
                         </Suspense>
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <>
+                                <span> 
+                                    <span class="!text-tab ml-1">  
+                                    <NoteAltIcon
+                className=" !text-icon cursor-pointer text-green-800 "
+              />
+                                   Notes
+                                      </span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="9"
+                    >
+                       <Suspense fallback={"Loading ..."}>
+                       </Suspense>
                     </TabPane>
           </StyledTabs>
           <Suspense fallback={<div class="flex justify-center">Loading...</div>}>

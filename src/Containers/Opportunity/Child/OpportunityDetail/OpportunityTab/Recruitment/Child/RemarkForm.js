@@ -18,6 +18,7 @@ const ProfileSchema = Yup.object().shape({
 function RemarkForm(props) {
   // console.log("stageList", props.stageList);
   console.log("sent",props.sentiment.score)
+  console.log("sent",props.sentiment)
   const stageList = props.stageList
     .filter((item) => {
       if (item.probability !== 0 && item.probability !== 100) {
@@ -55,7 +56,7 @@ function RemarkForm(props) {
           userId:props.userId,
           note: props.sentiment.feedback,
           candidateId:props.candidateId,
-           note:transcript?transcript:text,
+          //  note:transcript?transcript:text,
           profileId: props.profileId,
         }}
         validationSchema={ProfileSchema}

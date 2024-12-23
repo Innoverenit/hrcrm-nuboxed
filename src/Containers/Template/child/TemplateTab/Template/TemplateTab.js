@@ -1,5 +1,4 @@
-
-import React, { Component,lazy, Suspense } from "react";
+import React, { Component,lazy, Suspense ,useState,useEffect,} from "react";
 import { connect } from "react-redux";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -27,6 +26,7 @@ class TemplateTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [], 
       // contactPopover: false,
       // partnerPopover: false,
       // quotProPopover: false,
@@ -41,15 +41,42 @@ class TemplateTab extends Component {
       // costId: "",
     };
   }
+
+  componentDidMount() {
+    this.fetchTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Fetch translations if the selected language changes
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchTranslations();
+    }
+  }
+
+  fetchTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "110",  // "Name",//0
+        "102",   // "Phone",//1
+        "140",   // "Email",//2
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error("Error translating menu items:", error);
+    }
+  };
   handleTabChange = (key) => {
     this.setState({ activeKey: key });
     // if (key === "1") {
     //   this.props.getQuotation(this.props.opportunity.opportunityId);
     // }
   };
+  
 
   render() {
-    const { activeKey } = this.state;
+    const { activeKey, translatedMenuItems } = this.state;
 
     return(
       <>
@@ -64,7 +91,7 @@ class TemplateTab extends Component {
                 <>
                   <span onClick={this.handleRecruitClick}>
                   <DraftsIcon  />
-                    <span class=" ml-[0.25em]" >Email</span>
+                    <span class=" ml-[0.25em]" >{translatedMenuItems[2] || "Email"}</span>
                   </span>
                   {}
                   {activeKey === "1" && (
@@ -77,6 +104,7 @@ class TemplateTab extends Component {
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
+                              
                             }
                         
                           />
@@ -390,6 +418,7 @@ const mapStateToProps = ({ rule,auth }) => ({
   addTemplateModal: rule.addTemplateModal,
   addTemplateNotificatonModal:rule.addTemplateNotificatonModal,
   user: auth.userDetails,
+  selectedLanguage: auth.selectedLanguage,
 });
 
 const mapDispatchToProps = (dispatch) =>

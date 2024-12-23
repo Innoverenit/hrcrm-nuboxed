@@ -98,10 +98,25 @@ function Recruitment(props) {
     {
       rulesName: (
         <span>
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />
+          General
+        </span>
+      ),
+      ruleId: "6",
+      component: (
+        <General
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+      ),
+    },
+    {
+      rulesName: (
+        <span>
         <HouseboatIcon className=" !text-icon mr-2 text-[#6F1D1B]"/>Holidays & Leaves
       </span>
     ),
-      ruleId: "6",
+      ruleId: "7",
       component: <SettingsHolidayTab />,
     },
     {
@@ -112,7 +127,7 @@ function Recruitment(props) {
         </span>
       ),
 
-      ruleId: "7",
+      ruleId: "8",
       component: <ReportScheduler />,
     },
     {

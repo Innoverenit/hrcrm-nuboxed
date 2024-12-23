@@ -2,17 +2,25 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import {
+  StyledTable,
+  StyledPopconfirm,
+  StyledModal,
+  StyledDrawer,
+} from "../../Components/UI/Antd";
 import HelpIcon from "@mui/icons-material/Help";
 import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
 import SkillBarChatModal from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/SkillBarChartModal";
 import RecruitmentFilter from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
-import {getAllRequirementTable,ClearReducerDataOfRequirement} from "../Requirement/RequirementAction"
-import {handleBarChartOrderModal,getSkillsCount} from "../Opportunity/OpportunityAction"
+
+import {getAllRequirementTable,ClearReducerDataOfRequirement,handleRecruiterModal,updateRecruiterData} from "../Requirement/RequirementAction"
+import {handleBarChartOrderModal,getSkillsCount,getCandidateRequirement,getRecruiter,LinkSkillsRecruit,getRecruiterName} from "../Opportunity/OpportunityAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import CategoryIcon from '@mui/icons-material/Category';
 import EventIcon from '@mui/icons-material/Event';
-import { Tooltip, Avatar,Button } from "antd";
+import AddRecruiterModal from "./AddRecruiterModal"
+import { Tooltip, Avatar,Button,Select } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
@@ -21,10 +29,17 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import { BundleLoader } from "../../Components/Placeholder";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import EmptyPage from "../Main/EmptyPage";
-
+import SubTableClickCandidate from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SubTableClickCandidate";
+const Option = Select;
 const RequirementTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
+  const [candidatePostData, setCandidatePostData] = useState(null);
+  const [skillSetData, setSkillSetData] = useState(null);
+  const [subTableVisible, setSubTableVisible] = useState(false);
   const [page, setPage] = useState(0);
+    const [selectedRecruiter, setSelectedRecruiter] = useState({});
+   const [isAssignDropdownRecruiter, setIsAssignRecruiter] = useState(null);
+   const [currentCandidate, setCurrentCandidate] = useState("");
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(() => {
@@ -75,11 +90,70 @@ const RequirementTable = (props) => {
       })
        
         props.getAllRequirementTable(props.userId,page)
+        props.getRecruiterName(props.orgId)
         setPage(page + 1);
         props.ClearReducerDataOfRequirement()
     }, []);
+
+
+      const handleAssignRecruit = (values,item, index) => {
+        setSelectedRecruiter((prev) => ({ ...prev, [index]: values }));
+
+      //   const selectedIds = props.requirementTable[index].recruiterList
+      //   .filter((user) => selectedRecruiter[index]?.includes(user.empName))
+      //   .map((user) => user.employeeId);
+
+      // console.log({ recruiterId: selectedIds });
+
+      const selectedIds =  props.requirementTable[index].recruiterList
+      .filter((user) => values.includes(user.empName))
+      .map((user) => user.employeeId);
+
+      let result={
+        recruitmentId:item.recruitmentId,
+recruiterId:selectedIds
+      }
+
+      props.updateRecruiterData(result)
+
+    console.log({ recruiterId: selectedIds }); // Log recruiterId
+
+    setIsAssignRecruiter(null)
     
+        //props.updateProspectUser(customerId,value);
+       
+      };
+
+
+    function handleClickCandidateName(item) {
+      setCurrentCandidate(item);
+      setSubTableVisible(!subTableVisible);
+      // console.log("opp",item);
+    }
     
+    const handleSkillsetChoose = (data) => {
+      setSkillSetData(data);
+    };
+
+    const handleCandidateDataSet = (data) => {
+      setCandidatePostData(data);
+    };
+
+    const handleAvatarClick = (index) => {
+      setIsAssignRecruiter(index); // Set the dropdown visibility for the clicked row
+    };
+
+
+    // const handleKeyPress = (event, index) => {
+    //   if (event.key === "Enter") {
+    //     const selectedIds = props.requirementTable[index].recruiterList
+    //       .filter((user) => selectedRecruiter[index]?.includes(user.empName))
+    //       .map((user) => user.employeeId);
+  
+    //     console.log({ recruiterId: selectedIds }); // Log recruiterId
+    //   }
+    // };
+  
 
     const handleLoadMore = () => {
       setPage(page + 1);
@@ -230,7 +304,39 @@ console.log(requirementTable)
                                     {/* >Source */}
 
                                     <div class="text-xs ml-gap font-poppins  max-sm:text-sm">
-                                    <Avatar.Group
+                                    {isAssignDropdownRecruiter === index ? (
+          <Select
+            style={{ width: "8rem" }}
+           
+            mode="multiple"
+            value={
+              selectedRecruiter[index] ||
+              (item.recruiterList ? item.recruiterList.map((user) => user.empName) : [])
+            }     
+          
+            onChange={(values) => handleAssignRecruit(values, item,index)}
+            // onKeyDown={(event) => handleKeyPress(event, index)} // Log on Enter key
+            onBlur={() => setIsAssignRecruiter(null)} // Hide dropdown on blur
+           
+           
+          >
+            {props.recruiterName.map(recruit => (
+                 <Option key={recruit.employeeId} value={recruit.employeeId}>
+            <div className="flex">
+             
+            <span>{recruit.empName}</span> 
+            </div>
+            </Option>
+              ))}
+            </Select>
+          ):(
+          <div 
+          onClick={() => {
+            handleAvatarClick(index)
+            }}  
+          className="cursor-pointer"
+        >
+                                  <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
                 >
@@ -249,7 +355,9 @@ console.log(requirementTable)
                     );
                   })}
                  
-            </Avatar.Group>
+            </Avatar.Group> 
+        </div>  
+                              )}  
                                     </div>
                                 </div>
                               </div>  
@@ -259,10 +367,10 @@ console.log(requirementTable)
                             <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
                                     {/* {date} */}
                                     <RecruitmentFilter
-                  // handleSkillsetChoose={this.handleSkillsetChoose}
+                 handleSkillsetChoose={handleSkillsetChoose}
                 
                   SkillList={item.skillSetList}
-                  // name={this.state.skillSetData}
+                  name={skillSetData}
                   skillName={item.skillName}
                   candidatetList={item.candidatetList}
                   fullName={item.fullName}
@@ -325,23 +433,23 @@ console.log(requirementTable)
                       color: "tomato",
                       fontSize: "15px",
                     }}
-                    // onClick={() => {
-                    //   this.props.LinkSkillsRecruit({
+                    onClick={() => {
+                      props.LinkSkillsRecruit({
                       
-                    //     stageId: item.stageId,
-                    //     recruitmentProcessId: item.recruitmentProcessId,
-                    //     skillName: this.state.skillSetData || item.skillName,
-                    //     recruitmentId: item.recruitmentId,
-                    //     profileId: item.profileId,
-                    //   });
-                    //   this.props.getRecruiter(
-                    //     this.state.skillSetData || item.skillName,
-                    //     item.recruitmentId,
+                        stageId: item.stageId,
+                        recruitmentProcessId: item.recruitmentProcessId,
+                        skillName: skillSetData || item.skillName,
+                        recruitmentId: item.recruitmentId,
+                        profileId: item.profileId,
+                      });
+                      props.getRecruiter(
+                        skillSetData || item.skillName,
+                        item.recruitmentId,
                         
-                    //   );
-                    //   this.handleCandidateDataSet(item);
-                    //   this.props.handleRecruiterModal(true);
-                    // }}
+                      );
+                      handleCandidateDataSet(item);
+                    props.handleRecruiterModal(true);
+                    }}
                   >
                     <InterpreterModeIcon 
                   className="cursor-pointer !text-icon text-[orange]"
@@ -364,16 +472,15 @@ console.log(requirementTable)
                                                     borderRadius: "50%",
                                                     cursor: "pointer",
                                                   }}
-                                                  // onClick={() => {
-                                                  //   this.handleClickCandidateName(
-                                                  //     item.recruitmentId,
-                                                  //     item.jobOrder,
-                                                  //   );
-                                                  //   this.handleClick(item.customerId);
-                                                  //   this.props.getCandidateRequirement(item.recruitmentId);
-                                                  //   this.props.getRequirementOwner(item.recruitmentId);
+                                                  onClick={() => {
+                                                  handleClickCandidateName(
+                                                     item
+                                                    );
+                                                    // this.handleClick(item.customerId);
+                                                    props.getCandidateRequirement(item.recruitmentId);
+                                                    props.getRequirementOwner(item.recruitmentId);
                                                     
-                                                  // }}
+                                                  }}
                                                 >
                                                   <Avatar.Group
                                                     maxCount={7}
@@ -396,15 +503,14 @@ console.log(requirementTable)
                                                       })}
                                                     <div
                                                       style={{ placeSelf: "center" }}
-                                                      // onClick={() => {
-                                                      //   this.handleClickCandidateName(
-                                                      //     item.recruitmentId,
-                                                      //     item.jobOrder,
-                                                      //   );
-                                                      //   // this.handleClick(item.customerId);
-                                                      //   // this.props.getCandidateRequirement(item.recruitmentId);
+                                                      onClick={() => {
+                                                      handleClickCandidateName(
+                                                         item
+                                                        );
+                                                        // this.handleClick(item.customerId);
+                                                         this.props.getCandidateRequirement(item.recruitmentId);
                                                         
-                                                      // }}
+                                                      }}
                                                     >
                                                       {item.candidateNo}
                                                     </div>
@@ -453,6 +559,35 @@ console.log(requirementTable)
           handleBarChartOrderModal={props.handleBarChartOrderModal}
           //particularRowData={particularRowData}
         />
+          <AddRecruiterModal
+                    addRecruiterModal={props.addRecruiterModal}
+                    handleRecruiterModal={props.handleRecruiterModal}
+                    recruiter={props.recruiter}
+                    //recruitmentId={this.state.recruitmentId}
+                    candidatePostData={candidatePostData}
+                    // opportunityId={this.props.opportunityId}
+                  />
+         <StyledDrawer
+          title={currentCandidate.jobOrder}
+          width="58rem"
+          visible={subTableVisible}
+          closable
+          placement="right"
+          destroyOnClose
+          maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+          onClose={() =>
+            handleClickCandidateName(currentCandidate.recruitmentId)
+          }
+        >
+          <SubTableClickCandidate
+                    //customerId={this.state.customerId}
+                      requirementOwner={props.requirementOwner}
+                      fetchingCandidateRequirement={
+                        props.fetchingCandidateRequirement
+                      }
+                      candidateRequirement={props.candidateRequirement}
+                    />
+                    </StyledDrawer>
                     </div>
                 </div>
         </div>
@@ -462,11 +597,17 @@ console.log(requirementTable)
 const mapStateToProps = ({ auth, requirement,opportunity }) => ({
   user: auth.userDetails,
   requirementTable:requirement.requirementTable,
+  addRecruiterModal:requirement.addRecruiterModal,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
   skillsCount: opportunity.skillsCount,
   showBarChartModal:opportunity.showBarChartModal,
   SkillList: opportunity.SkillList,
+  fetchingCandidateRequirement: opportunity.fetchingCandidateRequirement,
+  requirementOwner: opportunity.requirementOwner,
+  recruiter: opportunity.recruiter,
+  recruiterName: opportunity.recruiterName,
+  candidateRequirement: opportunity.candidateRequirement,
   fetchingAllRequirementTable:requirement.fetchingAllRequirementTable,
   fetchingAllRequirementTableError:requirement.fetchingAllRequirementTableError
 });
@@ -475,9 +616,15 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getAllRequirementTable,
+            getRecruiterName,
+            handleRecruiterModal,
             getSkillsCount,
+            getRecruiter,
+            LinkSkillsRecruit,
+            updateRecruiterData,
             ClearReducerDataOfRequirement,
-            handleBarChartOrderModal
+            handleBarChartOrderModal,
+            getCandidateRequirement
         },
         dispatch
     );
