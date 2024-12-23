@@ -33,6 +33,7 @@ import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
 const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
@@ -203,7 +204,6 @@ const viewAnDownloadPdf= async (item) => {
   } catch (error) {
     console.error('Error fetching PDF:', error);
   }  
-
 }; 
   return (
     <div>
@@ -219,25 +219,25 @@ const viewAnDownloadPdf= async (item) => {
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  items-end  z-10 max-sm:hidden">
-                    <div class=" flex justify-between  !text-lm font-poppins  font-bold  w-[96%]  ">
+                    <div class=" flex justify-between  !text-lm font-poppins  font-bold  w-[90%]  ">
                         <div className="w-[4.54rem] text-sm text-[#00A2E8] truncate max-md:w-[4.54rem]    bg-[red] text-white">
                           {translatedMenuItems[0]}
                            </div>
-                        <div className="  w-[6rem] truncate max-md:w-[6rem] ml-2">
-                        <DynamicFeedIcon className='!text-base mr-1 '/>
+                        <div className="  w-[9.7rem] text-[#00A2E8] text-sm truncate max-md:w-[6rem] ml-2">
+                        <DynamicFeedIcon className='!text-icon mr-1 '/>
                         {translatedMenuItems[1]} ID</div>
-                        <div className="  w-[10.6rem] truncate max-md:w-[3.6rem] "> 
-                          <ApartmentIcon className='!text-base mr-0  text-[#902089]'/>
+                        <div className="  w-[17.6rem] truncate max-md:w-[3.6rem] "> 
+                          <ApartmentIcon className='!text-icon mr-0  text-[#902089]'/>
                           {translatedMenuItems[2]}</div>
-                        <div className="  w-[2.051rem] truncate mr-1 max-md:w-[3.051rem] ">
-                           <ContactsIcon className='!text-base mr-1 text-[#12462c]'/>
+                        <div className="  w-[8.051rem] truncate mr-1 max-md:w-[3.051rem] ">
+                           <ContactsIcon className='!text-icon mr-1 text-[#12462c]'/>
                            {translatedMenuItems[3]}</div>
-                        <div className=" w-[2.018rem] truncate max-md:w-[10.018rem]">
+                        <div className=" w-[9.018rem] truncate max-md:w-[10.018rem]">
                           {translatedMenuItems[4]}</div>      
-                        <div className=" w-[5.73rem] truncate max-md:w-[2.73rem]">
+                        <div className=" w-[9.73rem] truncate max-md:w-[2.73rem]">
                         <AccountCircleIcon className="!text-icon  text-[#f28482]"/>
                         {translatedMenuItems[5]}</div>
-                        <div className=" w-[5.8rem] truncate max-md:w-[2.8rem]">
+                        <div className=" w-[8.8rem] truncate max-md:w-[2.8rem]">
                           {translatedMenuItems[6]}</div>
                         <div className=" w-[9.8rem] truncate max-md:w-[20.8rem]">
                         <GroupsIcon className='!text-icon mr-1  text-[#f29844]'/>
@@ -248,17 +248,16 @@ const viewAnDownloadPdf= async (item) => {
           dataLength={props.repairHighCompleteOrder.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={props.fetchingRepairHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+          loader={props.fetchingRepairHighOrderList ? <div><BundleLoader/></div> : null}
           style={{ scrollbarWidth:"thin"}}
-          height={"38vh"}
+          height={"40vh"}
           endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                             <>
                                 {props.repairHighCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
-                                      
+                                    return (                                     
               <div>                                   
                 <div className="flex rounded justify-between max-sm:rounded-lg
                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
@@ -291,9 +290,7 @@ const viewAnDownloadPdf= async (item) => {
                                 props.handleOrderDetailsModal(true);
                               }}
 
-                            >{`${item.newOrderNo} `}
-
-                             
+                            >{`${item.newOrderNo} `}                            
                             </span>
                           </Badge>
                               {date === currentdate ? (
@@ -325,9 +322,8 @@ const viewAnDownloadPdf= async (item) => {
 
                       </div>
                     </div>
-                       :null}
-                  
-                    <div className=" flex items-center  text-xs max-md:w-[5.31rem] w-[5.31rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                       :null}                
+                    <div className=" flex items-center  text-xs max-md:w-[5.31rem] w-[7.31rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" font-poppins items-center text-xs">
                         {item.noOfPhones}
                       </div>
@@ -341,7 +337,7 @@ const viewAnDownloadPdf= async (item) => {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                  <div class="flex    items-center justify-center h-8 ml-gap w-[6.03rem]  bg-[#eef2f9] max-md:w-[6.03rem] max-sm:flex-row max-sm:justify-between">
+                  <div class="flex    items-center justify-center h-8 ml-gap w-[8.03rem]  bg-[#eef2f9] max-md:w-[6.03rem] max-sm:flex-row max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -352,7 +348,7 @@ const viewAnDownloadPdf= async (item) => {
                     </div>
                   </div>
                   <div class=" flex">
-                    <div class="flex    items-center justify-center h-8 ml-gap w-[6.02rem] bg-[#eef2f9] max-md:w-[6.02rem] max-sm:flex-row max-sm:justify-between">
+                    <div class="flex    items-center justify-center h-8 ml-gap w-[9.02rem] bg-[#eef2f9] max-md:w-[6.02rem] max-sm:flex-row max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -360,10 +356,9 @@ const viewAnDownloadPdf= async (item) => {
                           imgWidth={"1.8rem"}
                           imgHeight={"1.8rem"}
                         />
-
                       </div>
                     </div>
-                    <div class="flex   items-center justify-center h-8 ml-gap w-[6.04rem] bg-[#eef2f9] max-md:w-[6.04rem] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex   items-center justify-center h-8 ml-gap w-[10.04rem] bg-[#eef2f9] max-md:w-[6.04rem] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
@@ -372,19 +367,17 @@ const viewAnDownloadPdf= async (item) => {
                         />}
                       </div>
                     </div>
-                  </div>
-                 
-                  <div className=" flex   max-md:w-[5.05rem] w-[5.05rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
-
+                  </div>              
+                  <div className=" flex   max-md:w-[5.05rem] w-[8.05rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                   <div class=" text-xs  font-semibold items-center font-poppins">
                     {item.noOfownerPhones}
                   </div>
                   </div>
-                  <div class="  max-md:w-[6.06rem]  w-[6.06rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  text-xs  cursor-pointer  flex ">
+                  <div class="  max-md:w-[6.06rem]  w-[10.06rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  text-xs  cursor-pointer  flex ">
                   {item.status}
                   </div>
                   </div>
-                  <div class="flex  items-center bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                  <div class="flex  items-center bg-[#eef2f9] ml-gap max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    
                   <div class="  items-center ml-gap flex">
                   <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
@@ -400,10 +393,8 @@ const viewAnDownloadPdf= async (item) => {
                               props.handleLeadModal(true)
                               handleSetParticularOrderData(item)
                             }} />
-                        </Tooltip>}
-                    
-                    </div>
-                   
+                        </Tooltip>}                
+                    </div>                
                       <div class=" text-xs  font-poppins  items-center justify-center h-8   bg-[#eef2f9] flex">
                         <Tooltip title={translatedMenuItems[12]}>
                           <NoteAltIcon
@@ -416,7 +407,6 @@ const viewAnDownloadPdf= async (item) => {
                           />
                         </Tooltip>
                       </div>
-
                       <div class=" text-xs  font-poppins  items-center justify-center h-8  bg-[#eef2f9] flex">
                         <Tooltip title={translatedMenuItems[13]}>
                           <EventRepeatIcon
@@ -427,10 +417,7 @@ const viewAnDownloadPdf= async (item) => {
                             }}
                           />
                         </Tooltip>
-                      
-
-                    </div>
-                    
+                    </div>                 
                       <div class=" text-xs  font-poppins  items-center justify-center h-8   bg-[#eef2f9] flex">
                         <Tooltip title={translatedMenuItems[14]}>
                           <PaidIcon
@@ -442,10 +429,7 @@ const viewAnDownloadPdf= async (item) => {
                           // style={{ color: "blue" }}
                           />
                         </Tooltip>
-
-                      </div>
-             
-                   
+                      </div>                  
                       <div class=" text-xs  font-poppins  items-center justify-center h-8   bg-[#eef2f9] flex">
                         <Tooltip title= {translatedMenuItems[16]}>
                         <Popconfirm
@@ -453,58 +437,45 @@ const viewAnDownloadPdf= async (item) => {
                               // "Do you want to delete?"
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
-                             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                             <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                             </Popconfirm>
                         </Tooltip>
-
                       </div>
-                   
-
-
                   </div>
-
-                </div>
-                                
+                </div>                               
               </div>
-
-
                                     )
                                 })}
                             </> 
                             {/* : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null} */}
                     </InfiniteScroll>
-
-            
-
                 </div>
             </div >
             
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  items-end  z-10 max-sm:hidden">
-                    <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[4.54rem] items-center max-md:w-[4.54rem]  text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-                        <div className="flex items-center text-[#00A2E8] text-base w-[6rem] max-md:w-[6rem] ml-2">
+                    <div class=" flex justify-between  !text-lm font-poppins  font-bold  w-[90%]  ">
+                        <div className="w-[4.54rem]  max-md:w-[4.54rem]  text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+                        <div className=" text-[#00A2E8] text-sm w-[9.7rem] max-md:w-[6rem] ml-2">
                         <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
-          <div className="flex items-center w-[10.6rem] max-md:w-[3.6rem]"> <ApartmentIcon className='!text-base   text-[#902089]'/>{translatedMenuItems[2]}</div>
-          <div className="flex items-center w-[2.051rem] mr-1 max-md:w-[3.051rem] "> <ContactsIcon className='!text-base mr-1 text-[#12462c]'/>{translatedMenuItems[3]}</div>
-          <div className="flex items-center w-[2.018rem] max-md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
-          <div className="flex items-center w-[5.73rem] max-md:w-[2.73rem]">
+          <div className=" w-[17.6rem] max-md:w-[3.6rem]"> <ApartmentIcon className='!text-base   text-[#902089]'/>{translatedMenuItems[2]}</div>
+          <div className=" w-[8.051rem] mr-1 max-md:w-[3.051rem] "> <ContactsIcon className='!text-base mr-1 text-[#12462c]'/>{translatedMenuItems[3]}</div>
+          <div className=" w-[9.018rem] max-md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
+          <div className=" w-[9.73rem] max-md:w-[2.73rem]">
           <AccountCircleIcon className="!text-icon text-[#f28482]"/>{translatedMenuItems[5]}</div>
-          <div className="flex items-center w-[5.8rem] max-md:w-[2.8rem]">{translatedMenuItems[6]}</div>
-          <div className="flex items-center w-[9.8rem] max-md:w-[20.8rem]">
-          <GroupsIcon className='!text-base mr-1  text-[#f29844]'/>{translatedMenuItems[7]}</div>               
+          <div className=" w-[8.8rem] max-md:w-[2.8rem]">{translatedMenuItems[6]}</div>
+          <div className=" w-[9.8rem] max-md:w-[20.8rem]">
+          <GroupsIcon className='!text-icon mr-1  text-[#f29844]'/>{translatedMenuItems[7]}</div>               
           </div>
                     </div> 
-
-                    {/* <div class="overflow-x-auto h-[64vh]"> */}
-                   
+                    {/* <div class="overflow-x-auto h-[64vh]"> */}                
                     <InfiniteScroll
           dataLength={props.repairLowCompleteOrder.length}
           next={handleLoadMoreLow}
           hasMore={hasMore}
-          loader={props.fetchingRepairLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"38vh"}
+          loader={props.fetchingRepairLowOrderList ? <div ><BundleLoader/></div> : null}
+          height={"40vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
@@ -582,7 +553,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     </div>
                      :null}
-                     <div className=" flex  max-md:w-[5.31rem] w-[5.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                     <div className=" flex  max-md:w-[5.31rem] w-[7.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -597,7 +568,7 @@ const viewAnDownloadPdf= async (item) => {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                  <div class="flex  items-center max-md:w-[6.03rem] w-[6.03rem]   justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                  <div class="flex  items-center max-md:w-[6.03rem] w-[8.03rem]   justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -608,18 +579,17 @@ const viewAnDownloadPdf= async (item) => {
                     </div>
                   </div>
                   <div class=" flex">
-                    <div class="flex   max-md:w-[6.02rem] w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex   max-md:w-[6.02rem] w-[9.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
                           imageURL={item.imageURL}
                           imgWidth={"1.8rem"}
                           imgHeight={"1.8rem"}
-                        />
-
+                       />
                       </div>
                     </div>
-                    <div class="flex  items-center max-md:w-[6.04rem] w-[6.04rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[6.04rem] w-[10.04rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
@@ -628,19 +598,18 @@ const viewAnDownloadPdf= async (item) => {
                         />}
                       </div>
                     </div>
-                    </div>
-                  
-                  <div className=" flex   max-md:w-[5.05rem] w-[5.05rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between ">
+                    </div>               
+                  <div className=" flex   max-md:w-[5.05rem] w-[8.05rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="flex w-[6.06rem]  max-md:w-[6.06rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] text-xs  cursor-pointer justify-cente">
+                    <div class="flex w-[10.06rem]  max-md:w-[10.06rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] text-xs  cursor-pointer justify-cente">
                     {item.status}
                     </div>
                     </div>
-                    <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div class="flex justify-end ml-gap max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">
                     <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
@@ -660,7 +629,6 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     </div>
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
-
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                       <div class=" text-xs  font-poppins  items-center justify-center h-8   bg-[#eef2f9] flex">
                         <Tooltip title= {translatedMenuItems[12]}>
@@ -674,11 +642,7 @@ const viewAnDownloadPdf= async (item) => {
                           />
                         </Tooltip>
                       </div>
-
-
-                    </div>
-
-                  
+                    </div>          
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins  items-center justify-center h-8  bg-[#eef2f9] flex">
                         <Tooltip title= {translatedMenuItems[13]}>
@@ -717,22 +681,14 @@ const viewAnDownloadPdf= async (item) => {
                             >
                              <DeleteOutlineIcon 
                                 className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
-
                               />
                             </Popconfirm>
                         </Tooltip>
-
                       </div>
                     </div>
-
-
                   </div>
-
-                </div>
-                             
+                </div>                           
               </div>
-
-
                                     )
                                 })}
                             </>

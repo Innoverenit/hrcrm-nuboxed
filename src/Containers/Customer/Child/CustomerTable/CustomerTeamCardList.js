@@ -394,7 +394,7 @@ console.log(selectedAssign)
         dataLength={teamCustomer.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}><BundleLoader/></div>:null}
+        loader={fetchingTeamCustomer?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >      

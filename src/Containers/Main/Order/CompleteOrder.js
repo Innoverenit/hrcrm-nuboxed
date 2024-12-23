@@ -18,6 +18,7 @@ import {
 } from "./OrderAction";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
 const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
@@ -67,7 +68,7 @@ function CompleteOrder(props) {
                     dataLength={props.comepletOrder.length}
                     next={handleLoadMore}
                     hasMore={hasMore}
-                    loader={props.fetchingCompleteOrders ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+                    loader={props.fetchingCompleteOrders ? <div ><BundleLoader/></div> : null}
                     height={"80vh"}
                     style={{scrollbarWidth:"thin"}}
                     endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}

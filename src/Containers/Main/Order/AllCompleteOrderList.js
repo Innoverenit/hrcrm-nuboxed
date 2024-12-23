@@ -32,6 +32,7 @@ import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
 const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
@@ -219,7 +220,7 @@ const viewAnDownloadPdf= async (item) => {
                         dataLength={props.completedHighOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingCompletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingCompletedHighOrderList ? <div><BundleLoader/></div> : null}
                         height={"38vh"}
                         style={{scrollbarWidth:"thin"}}
                         endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
