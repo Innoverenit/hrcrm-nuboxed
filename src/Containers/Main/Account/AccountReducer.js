@@ -803,6 +803,7 @@ export const distributorReducer = (state = initialState, action) => {
         distributorOrder: [],
         productionOrder: [],
         contactDistributor: [],
+        distributorDetailsByDistributorId: [],
       };
 
     /**
