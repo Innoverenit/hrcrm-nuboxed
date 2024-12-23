@@ -157,10 +157,8 @@ function CustomerAllCardList(props) {
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
       props.getCrm();
       props.getSectors();
-      props.getSources(props.orgId);
-      props.getAllDialCodeList()
-    // props.getCountries();
-    // props.getAllCustomerEmployeelist();
+      // props.getSources(props.orgId);
+      // props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -937,6 +935,7 @@ const mapStateToProps = ({
   customerSearch: customer.customerSearch,
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

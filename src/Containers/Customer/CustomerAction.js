@@ -39,13 +39,6 @@ export const emptyCustomer = () => (dispatch) => {
 };
 
 
-// export const handleUpdateUserModal = (modalProps) => (dispatch) => {
-//   dispatch({
-//     type: types.HANDLE_UPDATE_USER_MODAL,
-//     payload: modalProps,
-//   });
-// };
-
 export const handleCustomerReactSpeechModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_REACT_SPEECH_MODAL,

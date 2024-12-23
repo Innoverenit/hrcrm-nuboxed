@@ -117,7 +117,7 @@ function CustomerTeamCardList(props) {
     props.getTeamUserList(props.userId)
     props.getCrm()
        props.getSectors();
-       props.getSources(props.orgId);
+      //  props.getSources(props.orgId);
        props.getAllDialCodeList()
   }, []);
 
@@ -956,7 +956,8 @@ const mapStateToProps = ({
   teamUserList:customer.teamUserList,
   crmAllData:leads.crmAllData,
   dialcodeList: auth.dialcodeList,
-  sources: source.sources,
+  // sources: source.sources,
+  orgId: auth.userDetails.organizationId,
   sectors: sector.sectors,
 });
 const mapDispatchToProps = (dispatch) =>
