@@ -25,9 +25,7 @@ function DashProcureQuotaJumpstartUser(props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
-
   const [error, setError] = useState(null);
-
   const [data1, setData1] = useState([]);
   const [loading1, setLoading1] = useState(false);
 
@@ -83,12 +81,32 @@ function DashProcureQuotaJumpstartUser(props) {
             setLoading3(false);
           }
         };
+
     useEffect(() => {
         fetchData1();
         fetchData2();
         fetchData3();
+        fetchjumpstartCount();
     }, [props.userId,props.endDate,props.startDate]);
 
+    const [jumpstartCount, setjumpstartCount] = useState([]);
+    const [jumpstartCountloading, setjumpstartCountLoading] = useState(false);
+    const [jumpstartCountError,setjumpstartCountError]= useState(null);
+
+      const fetchjumpstartCount = async () => {
+        try {
+          const response = await axios.get(`${base_url2}/dashboard/quotationCount/${props.userId}/${props.timeRangeType}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setjumpstartCount(response.data);
+          setjumpstartCountLoading(false);
+        } catch (error) {
+          setError(error);
+          setjumpstartCountLoading(false);
+        }
+      };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -112,11 +130,6 @@ function DashProcureQuotaJumpstartUser(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   
-  useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
-  }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
-
   useEffect(() => {
     if (props.orderAddedList) {
       setModalData(props.orderAddedList);
@@ -183,8 +196,8 @@ function DashProcureQuotaJumpstartUser(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Quotation Created")}
               cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
+              value={jumpstartCount.quotationCount}
+            isLoading={jumpstartCountloading}
             />
                          </div>
                      </div>
@@ -203,8 +216,8 @@ function DashProcureQuotaJumpstartUser(props) {
               title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
+              value={jumpstartCount.quotationConvert}
+              isLoading={jumpstartCountloading}
             />
                            </div>
                        </div>
@@ -224,8 +237,8 @@ function DashProcureQuotaJumpstartUser(props) {
                             
                               jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
+                              value={jumpstartCount.quotationCancel}
+                              isLoading={jumpstartCountloading}
                             />
                           </div>
                       </div>      

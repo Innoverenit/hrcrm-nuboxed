@@ -115,6 +115,18 @@ const QuotationTemplate = (props) => {
                 <div>Date: 30-09-2024</div>
                 <div></div>
               </li>
+
+              <div className="font-semibold text-sm">Special</div>
+              <li
+                className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
+                  selectedInvoice?.style === "Special" ? "bg-green-100" : "bg-gray-100"
+                }`}
+                onClick={() => setSelectedInvoice({ style: "Special" })}
+              >
+                <div className="font-bold">Invoice #s546643</div>
+                <div>Date: 14-08-2024</div>
+                <div></div>
+              </li>
           </ul>
         </div>
 
@@ -234,7 +246,136 @@ const QuotationTemplate = (props) => {
                 </div>
               </div>
             </div>
-            ) :  (
+            ) :   selectedInvoice.style === "Special" ? (
+              <div className="container mx-auto p-6 shadow-lg bg-white rounded-lg my-4">
+              {/* Header Section */}
+              <div className="flex justify-between items-center border-b pb-4 mb-4">
+                <h1 className="text-3xl font-bold text-blue-600">DPAKNS</h1>
+                <div className="text-right">
+                  <p><strong>Company Name:</strong> DPAKNS Ventures PVT. LTD.</p>
+                  <p><strong>Address:</strong> Plot No. D/168, Sector-7, CDA, Cuttack, Odisha - 753014</p>
+                  <p><strong>Telephone:</strong> 1800 532 8776 / +91-9556344705</p>
+                  <p><strong>Website:</strong> <a href="http://www.dpakssn.com" className="text-blue-500" target="_blank" rel="noopener noreferrer">www.dpakssn.com</a></p>
+                </div>
+              </div>
+        
+              {/* Image Section */}
+              <div className="flex mt-8">
+                <div className="w-full h-60">
+                  <img src="image1.jpg" alt="Image 1" className="w-full h-full object-cover" />
+                </div>
+              </div>
+        
+              <div className="text-center text-sm text-gray-600 mt-8">An initiative of DPAKNS VENTURES PRIVATE LIMITED</div>
+        
+              {/* First Quotation Section */}
+              <div className="mx-auto p-6 bg-white shadow-lg rounded-md">
+                <p className="text-lg leading-relaxed mb-6">Dear Sir/Ma’am,</p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  I appreciate this opportunity to write to you. We, at KAPSSN, applaud the outstanding success made by Prayas Higher Secondary College under your leadership. And we believe the college will see exponential growth along with our added help.
+                </p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  KAPSSN is an educational aggregator with competence in bridging the gap between traditional and smart education. We fulfill the needs of schools/colleges throughout the country and assist in their transformation.
+                </p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  We are a B2B EdTech company situated in Bhubaneswar with nationwide operations. Our mission is to provide innovative educational facilities to schools/colleges at an affordable price to meet the newest academic standards.
+                </p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  KAPSSN is the country's sole educational aggregator. We take pride in contributing cutting-edge technology, pedagogical goods, and services. We help in revolutionizing schools/colleges and enhancing the quality of education in classrooms.
+                </p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  With the reform of educational policies, we believe traditional schooling methods should also evolve to incorporate modern technologies and goods. We, at KAPSSN, primarily aim to assist in undergoing such a transition and would love to be associated with your college.
+                </p>
+        
+                <p className="text-base leading-relaxed mb-4">
+                  We appreciate you trusting us with your important time and guarantee that your patience will not be in vain. For your convenience, I've attached the complete quotation as per your requirement.
+                </p>
+        
+                <div className="mt-8">
+                  <p className="text-base leading-relaxed mb-2">Thank you,</p>
+                  <p className="font-semibold text-base">Daynand Pal</p>
+                  <p className="text-base">Founder & CEO</p>
+                </div>
+              </div>
+        
+              {/* Product Table (Without table, using grid) */}
+              <div className="mx-auto">
+                <h2 className="text-2xl font-semibold text-center mb-6">Special Quotation for Subramanyam HS College</h2>
+                <h4 className="text-2xl font-semibold text-center mb-6">School Digital Bell (For 60 Capacity)</h4>
+        
+                <div className="space-y-4">
+                  {/* Row 1: Header Titles */}
+                  <div className="flex bg-gray-100 p-4 rounded-md">
+                    <div className="w-1/12 font-semibold text-left">SL No.</div>
+                    <div className="w-2/12 font-semibold text-left">Model No.</div>
+                    <div className="w-4/12 font-semibold text-left">Specification</div>
+                    <div className="w-1/12 font-semibold text-left">Qty.</div>
+                    <div className="w-2/12 font-semibold text-left">Rate</div>
+                    <div className="w-2/12 font-semibold text-left">Total Amount (GST Included)</div>
+                  </div>
+        
+                  {/* Row 2 */}
+                  <div className="flex bg-white p-4 rounded-md">
+                    <div className="w-1/12">1</div>
+                    <div className="w-2/12">Master wI-2</div>
+                    <div className="w-4/12">60 Rooms Master Unit for School Bell & PA System</div>
+                    <div className="w-1/12">1</div>
+                    <div className="w-2/12">39,150</div>
+                    <div className="w-2/12">39,150</div>
+                  </div>
+        
+                  {/* Row 3 */}
+                  <div className="flex bg-gray-50 p-4 rounded-md">
+                    <div className="w-1/12">2</div>
+                    <div className="w-2/12">Slave BS-51S-N</div>
+                    <div className="w-4/12">Speaker with Talk Back Facility</div>
+                    <div className="w-1/12">50</div>
+                    <div className="w-2/12">2,899</div>
+                    <div className="w-2/12">1,44,950</div>
+                  </div>
+        
+                  {/* Additional rows can be added similarly... */}
+        
+                  <div className="mt-6 text-right">
+                    <p className="text-lg font-semibold">Total Amount: 3,47,674</p>
+                  </div>
+        
+                  <div className="mt-4 text-sm text-gray-700">
+                    <p>*Price will vary as per the requirement. (Logistics & Installation Charges are Included)</p>
+                    <p>*Note: Wire Charges will be extra if required*</p>
+                    <p>*WARRANTY: 1 YEAR</p>
+                  </div>
+                </div>
+        
+                <div className="mt-8 text-center text-sm text-gray-600">An initiative of DPAKNS VENTURES PRIVATE LIMITED</div>
+        
+                {/* Clients Section */}
+                <h4 className="text-xl font-semibold text-center mt-8">OUR CLIENTS</h4>
+        
+                <div className="flex mt-8">
+                  <div className="w-full h-60">
+                    <img src="image1.jpg" alt="Image 1" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-full h-60">
+                    <img src="image2.jpg" alt="Image 2" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-full h-60">
+                    <img src="image3.jpg" alt="Image 3" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-full h-60">
+                    <img src="image4.jpg" alt="Image 4" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+        
+                {/* Footer Section */}
+                <div className="text-center text-sm text-gray-600 mt-8">An initiative of DPAKNS VENTURES PRIVATE LIMITED</div>
+              </div>
+            </div> ) :(
             <>
               {/* Header */}
               <div className="flex justify-between">
