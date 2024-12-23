@@ -22,8 +22,6 @@ const OrdersOpenDrawer=lazy(()=>import("./OrdersOpenDrawer"));
 const  OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
 const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
 
-
-
 function DashboardOrderJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
