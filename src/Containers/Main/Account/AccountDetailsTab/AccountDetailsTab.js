@@ -45,8 +45,6 @@ import AccountOrderCreateDrawer from "./AccountOrderCreateDrawer";
 import AddInvoiceModal from "../../../Invoice/InvoiceHeader/AddInvoiceModal";
 import InvoiceTable from "../../../Invoice/InvoiceHeader/InvoiceTable";
 import SupplierDocumentTable from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
-
-
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
 const SalesMapTable  = lazy(() => import("./AccountDocumentTab/SalesMapTable"));
@@ -64,11 +62,9 @@ const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrder
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))//8
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
 const AccountCreditMemos =lazy(()=>import("./AccountCreditMemo/AccountCreditMemos"));//6
-
 const TabPane = StyledTabs.TabPane;
 
 function AccountDetailsTab(props) {
- 
     const [activeKey, setactiveKey] = useState("1")
     const[view,setView]=useState(" ")
     const [breadCumb, setBreadCumb] = useState(false)
@@ -77,7 +73,6 @@ function AccountDetailsTab(props) {
     const [loading, setLoading] = useState(true);
     const [selectedHistory, setSelectedHistory] = useState("completed");
     const [clickSideIcon,setclickSideIcon]=useState(false);
-
     const [currentOrderType, setCurrentOrderType] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [current, setCurrent] = useState(0);
@@ -103,10 +98,52 @@ function AccountDetailsTab(props) {
    "1213", // 'Add Commerce',//13
    '1357',// Memo 14
      "202",       //    Order 15
-     "667",      //    Completed Orders
-     "1475",       //    Add Order
- "1474",       //    Add Contact
- "660"
+     "667",      //    Completed Orders 16
+     "1475",       //    Add Order 17 
+ "1474",       //    Add Contact 18
+ "660", // Order 19 
+ "772", //   "Delivery",20
+ "658",  //   "Location",21
+  "218", //  "Value",22
+  "1171",   //  "Payment",23
+  "142", //   "Status",24
+ "1172", //   "To Order",25
+ "679", //   "Created Date" 26
+ "100",  //  New 27
+        "1300",  //  Change status to Customer? 28
+          "387", //  Convert 29
+         "1341",   // "Change status to Order? 30
+         "14", //Category 31
+         "71",// 'Type',//32
+         "106",// Urgent // 33
+          "253",//Items   34    
+          "1264", // Packing 35
+          "1486",// Track 36
+          "108",// normal 37
+          "1552",//Shipped 38
+          "280", // "LOB",39
+          "77",    // "Owner",40
+          "770",  // "Quoted",41
+          "771",   // "Final",42
+          "1332",   // "Revised",43
+          "1085",  // "Received",44
+          "676",   // "Supervisor",45
+          "677",  // "Lead",46
+          "1377",  // Ship 47
+                "1078",      // "Save" 48
+                "1079",      // "Cancel"49
+                "1339",      //  Update Revised Price 50
+                "1381",     // Tag Supervisor 51
+                "1383",     // "Select Inventory Location" 52
+               "1378",       // "Pickup" 53
+               "1384",      // "PI List" 54
+               "920",      // "Collections" 55
+               "1382",       // "Rating"  56
+               "1389",      // "Feedback" 57
+               "170",      // Edit 58
+               "84",      // Delete 59
+              "1380", // "Add Supervisor" 60
+
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -147,9 +184,6 @@ function AccountDetailsTab(props) {
         setclickSideIcon(true);
         setSelectedHistory(type);
     };
-    // const handleTabChange = (key) => setactiveKey(key);
-    // console.log(props.productionInd)
-    // console.log(props.activeKey)
 
 useEffect(() => {
     if (isModalOpen) {
@@ -175,7 +209,9 @@ useEffect(() => {
             return     <div> 
                    <LinkedOpportunityTable distributorData={props.distributorData} 
                 selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText}/>
+                translateText={props.translateText}
+                translatedMenuItems={translatedMenuItems}
+                />
                 </div>;
           case "2":
             return  <div> <AccountOrder1Table distributorId={props.distributorData.distributorId} 
@@ -187,12 +223,14 @@ useEffect(() => {
                     selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText} 
                   currentOrderType={currentOrderType}
+                  translatedMenuItems={translatedMenuItems}
                   /> }
                   {openOrder === false &&
                     <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
                     selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText}
                   activeTab={activeKey}
+                  translatedMenuItems={translatedMenuItems}
                   />
                 }</div>;
                 case "4":
@@ -202,6 +240,7 @@ useEffect(() => {
                     distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
+                    translatedMenuItems={translatedMenuItems}
                 />
             ) : (
                 <CustomerProcurementTable 
@@ -209,6 +248,7 @@ useEffect(() => {
                     distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
+                    translatedMenuItems={translatedMenuItems}
                 />
             )}</div>;
                      case "5":
@@ -263,7 +303,9 @@ useEffect(() => {
                                  <OrderTableC
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} /></div>;
+                            translateText={props.translateText} 
+                            translatedMenuItems={translatedMenuItems}
+                            /></div>;
 
                             case "14":
                                 return  <div>  

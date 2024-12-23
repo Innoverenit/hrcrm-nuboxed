@@ -74,43 +74,43 @@ function ProcureCommerceShippedOrder(props) {
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-                "106",//0
-                "660", 
-                "772",
-                "658",//3
-               "1170",
-                "73",//5 contact
-               "1171",
-                "142",//7
-                "108",
-                "679", //9created date
-                "1169",//10 invoice
-               "100", // New11
-               "142", // "Status"12
-               "14", //Category-13
-               "253",//14-items
-               "1552",//15-Shipped
+    // useEffect(() => {
+    //     const fetchMenuTranslations = async () => {
+    //       try {
+    //         setLoading(true); 
+    //         const itemsToTranslate = [
+    //             "106",//0
+    //             "660", 
+    //             "772",
+    //             "658",//3
+    //            "1170",
+    //             "73",//5 contact
+    //            "1171",
+    //             "142",//7
+    //             "108",
+    //             "679", //9created date
+    //             "1169",//10 invoice
+    //            "100", // New11
+    //            "142", // "Status"12
+    //            "14", //Category-13
+    //            "253",//14-items
+    //            "1552",//15-Shipped
 
-          ];
+    //       ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+    //         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+    //         setTranslatedMenuItems(translations);
+    //         setLoading(false);
+    //       } catch (error) {
+    //         setLoading(false);
+    //         console.error('Error translating menu items:', error);
+    //       }
+    //     };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+    //     fetchMenuTranslations();
+    //   }, [props.selectedLanguage]);
 
   // useEffect(() => {
   //   return () => props.emptyOrders();
@@ -289,31 +289,31 @@ const handleInfiniteScroll = () => {
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[92%%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[#e100ff]">
-        {translatedMenuItems[15]} {/* Shipped */}
+        {props.translatedMenuItems[38]} {/* Shipped */}
            </div>
                         <div className=" md:w-[5.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/* Order ID"/> */}
+                        {props.translatedMenuItems[19]} ID{/* Order ID"/> */}
                           </div>
                           <div className=" md:w-[2rem]">  
-                          {translatedMenuItems[9]}
+                          {props.translatedMenuItems[26]}
                           </div>
                         <div className=" md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* Delivery"/> */}
+                        {props.translatedMenuItems[20]} {/* Delivery"/> */}
                           </div>
                         <div className=" md:w-[11.8rem] ">
-                        {translatedMenuItems[3]} {/*Location"/> */}
+                        {props.translatedMenuItems[21]} {/*Location"/> */}
                           </div>
                           <div className=" md:w-[4.1rem]">
-                          {translatedMenuItems[14]} {/*  Items */}
+                          {props.translatedMenuItems[34]} {/*  Items */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[5]} {/* Contact"/> */}
+                        {props.translatedMenuItems[9]} {/* Contact"/> */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[6]}{/* Payment"/> */}
+                        {props.translatedMenuItems[23]}{/* Payment"/> */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[7]} {/* Status"/> */}
+                        {props.translatedMenuItems[24]} {/* Status"/> */}
                           </div>
                       
                         
@@ -454,11 +454,11 @@ const handleInfiniteScroll = () => {
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
-                    {translatedMenuItems[10]}
+                    {props.translatedMenuItems[10]}
                     </Button>
                   </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
-                                            <Tooltip title= {translatedMenuItems[12]}>
+                                            <Tooltip title= {props.translatedMenuItems[24]}>
                                           
                                                                 <EventRepeatIcon
 

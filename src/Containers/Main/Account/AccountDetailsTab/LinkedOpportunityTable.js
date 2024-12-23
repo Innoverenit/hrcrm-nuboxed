@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy ,Suspense } from "react";
+import React, { useEffect, useState,lazy ,useRef,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip} from "antd";
@@ -32,11 +32,8 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import axios from "axios";
-const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
-
 
 dayjs.extend(relativeTime);
-
 const getRelativeTime = (creationDate) => {
   const now = dayjs();
   const creationDay = dayjs(creationDate);
@@ -47,72 +44,62 @@ const getRelativeTime = (creationDate) => {
       return creationDay.from(now); 
   }
 };
-function LinkedOpportunityTable(props) {
 
+function LinkedOpportunityTable(props) {
   const [page, setPage] = useState(0);
+  const hasFetchedData = useRef(false);
+
   useEffect(() => {
+    if (props.distributorData && props.distributorData.distributorId && !hasFetchedData.current) {
     props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair",);
     props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",);
-    setPage(page + 1);
-  }, []);
+    hasFetchedData.current = true;
+  }
+  }, [props.distributorData.distributorId, page,"Repair","Procure"]);
+ 
+  useEffect(() => {
+    hasFetchedData.current = false;
+  }, [props.distributorData.distributorId]);
 
   const [openConvertModal,setopenConvertModal]=useState(false);
   const [particularRowItem, setParticularRowItem] = useState({});
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-      const fetchMenuTranslations = async () => {
-        try {
-          setLoading(true); 
-          const itemsToTranslate = [
-           "661", //   "Repair",0
-          "213",  //   "Quotation",1
-           "772", //   "Delivery",2
-          "658",  //   "Location",3
-           "218", //  "Value",4
-          "73",  //   "Contact",5
-         "1171",   //  "Payment",6
-           "142", //   "Status",7
-          "1172", //   "To Order",8
-           "1212", //   "Commerce",9
-           "679", //   "Created Date"10
-        "100",  //  New11
-        "1300",  //  Change status to Customer?12
-          "387", //  Convert13
-         "1341",   // "Change status to Order?
-         "14", //Category
-        ];
-  
-          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-          setTranslatedMenuItems(translations);
-          setLoading(false);
-        } catch (error) {
-          setLoading(false);
-          console.error('Error translating menu items:', error);
-        }
-      };
-  
-      fetchMenuTranslations();
-    }, [props.selectedLanguage]);
- 
-    
   const [hasMore, setHasMore] = useState(true);
 
   function handleRowItem(item) {
     setParticularRowItem(item);
-
-
 }
 const handleLoadMore = () => {
-  setPage(page + 1);
-  
-  props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair")
+  const PageMap = props.quotationRepairOrder && props.quotationRepairOrder.length && props.quotationRepairOrder[0].pageCount
+  setTimeout(() => {
+   
+    if  (props.quotationRepairOrder)
+    {
+      if (page < PageMap) {
+        setPage(page + 1);
+        props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair");
+    }
+    if (page === PageMap){
+      setHasMore(false)
+    }
+  }
+  }, 100);
 };
 
 const handleLoadMoreMedium = () => {
-  setPage(page + 1);
-  
-  props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",)
+    const PageMap = props.quotationProcureOrder && props.quotationProcureOrder.length && props.quotationProcureOrder[0].pageCount
+    setTimeout(() => {
+     
+      if  (props.quotationProcureOrder)
+      {
+        if (page < PageMap) {
+          setPage(page + 1);
+          props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure");
+      }
+      if (page === PageMap){
+        setHasMore(false)
+      }
+    }
+    }, 100);  
 };
 
 const handleConfirm = (quotationId) => {
@@ -151,21 +138,21 @@ const viewAnDownloadPdf= async (item) => {
           <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
         <div class="text-[#00A2E8] text-sm w-[4.55rem] max-md:w-[4.55rem] truncate">
-        <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[0]}</div>
+        <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{props.translatedMenuItems[1]}</div>
 <div className="w-[7.9rem] truncate max-md:w-[6.4rem]" > 
-<LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
+<LightbulbIcon className="!text-icon text-[#bfa89e]" /> {props.translatedMenuItems[3]} ID</div>
            <div className="w-[6.3rem] truncate max-md:w-[5.1rem]">
-                      <DateRangeIcon className='!text-icon'/>  {translatedMenuItems[10]}  </div>
+                      <DateRangeIcon className='!text-icon'/>  {props.translatedMenuItems[26]}  </div>
                         <div className=" w-[10.3rem] max-md:w-[9.6rem] truncate"> 
-                        <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
+                        <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {props.translatedMenuItems[20]}</div>
                         <div className="w-[17.9rem] max-md:w-[16.8rem] truncate ">
-                        <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {translatedMenuItems[3]}</div>
+                        <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {props.translatedMenuItems[21]}</div>
                         <div className="w-[7.3rem] max-md:w-[6.8rem] truncate">
-                          <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
+                          <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {props.translatedMenuItems[22]}</div>
                         <div className="w-[7.7rem] max-md:w-[6.1rem] truncate"> 
-                          <ContactPageIcon className='!text-icon'/>  {translatedMenuItems[5]}</div>           
+                          <ContactPageIcon className='!text-icon'/>  {props.translatedMenuItems[9]}</div>           
                         <div className="w-[8.1rem] max-md:w-[9.1rem] truncate">
-                           <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {translatedMenuItems[8]}</div>                   
+                           <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {props.translatedMenuItems[25]}</div>                   
                    </div>                   
                     </div>
     
@@ -173,7 +160,7 @@ const viewAnDownloadPdf= async (item) => {
                         dataLength={props.quotationRepairOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
                         height={"34vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
@@ -217,7 +204,7 @@ const viewAnDownloadPdf= async (item) => {
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-[0.65rem] text-[tomato] font-bold ml-1">
-                                           {translatedMenuItems[11]} {/* New */}
+                                           {props.translatedMenuItems[27]} {/* New */}
                                           
                                           </span>
                                         ) : null} </span>
@@ -285,7 +272,7 @@ const viewAnDownloadPdf= async (item) => {
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
                               <NextPlanIcon  className="mr-1 !text-icon"/>
-                              {translatedMenuItems[13]} {/* Convert */}
+                              {props.translatedMenuItems[29]} {/* Convert */}
                           
                               </div>
                             </Button>
@@ -322,22 +309,22 @@ const viewAnDownloadPdf= async (item) => {
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
 <div class="text-[#00A2E8] text-sm w-[4.25rem] max-md:w-[6.25rem] truncate"> 
 <ShopIcon className="text-[#00A2E8] !text-icon" />
-  {translatedMenuItems[9]}
+  {props.translatedMenuItems[12]}
 </div>
 <div className="w-[7.9rem] max-md:w-[6.4rem]" truncate> 
-<LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
+<LightbulbIcon className="!text-icon text-[#bfa89e]" /> {props.translatedMenuItems[1]} ID</div>
            <div className="w-[6.3rem] max-md:w-[5.1rem]">
-                      <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
+                      <DateRangeIcon className='!text-icon  '  />  {props.translatedMenuItems[26]}  </div>
                         <div className=" w-[10.3rem] max-md:w-[9.6rem] truncate"> 
-                        <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
+                        <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {props.translatedMenuItems[20]}</div>
                         <div className="w-[17.9rem] max-md:w-[16.8rem] truncate ">
-                        <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {translatedMenuItems[3]}</div>
+                        <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {props.translatedMenuItems[21]}</div>
                         <div className="w-[7.3rem] max-md:w-[6.8rem] truncate">
-                          <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
+                          <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {props.translatedMenuItems[22]}</div>
                         <div className="w-[7.7rem] max-md:w-[6.1rem] truncate"> 
-                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
+                          <ContactPageIcon className='!text-icon  '  />  {props.translatedMenuItems[9]}</div>           
                         <div className="w-[8.1rem] max-md:w-[9.1rem] truncate">
-                           <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {translatedMenuItems[8]}</div>                   
+                           <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {props.translatedMenuItems[25]}</div>                   
                    </div>                   
                     </div>
                      
@@ -345,7 +332,7 @@ const viewAnDownloadPdf= async (item) => {
                         dataLength={props.quotationProcureOrder.length}
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
-                        loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
                         height={"34vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
@@ -390,7 +377,7 @@ const viewAnDownloadPdf= async (item) => {
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-[0.65rem] text-[tomato] font-bold ml-1">
-                                           {translatedMenuItems[11]} {/* New */}
+                                           {props.translatedMenuItems[27]} {/* New */}
                                           </span>
                                         ) : null} </span>
                                                    
@@ -453,7 +440,7 @@ const viewAnDownloadPdf= async (item) => {
                   >
                   <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
                   <NextPlanIcon  className=" mr-1 !text-icon"/>
-                  {translatedMenuItems[13]}  {/* Convert */}
+                  {props.translatedMenuItems[29]}  {/* Convert */}
                        
                               </div>
                      </Button>
