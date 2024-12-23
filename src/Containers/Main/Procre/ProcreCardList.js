@@ -20,6 +20,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 
 const ProcureOrderModal = lazy(() => import("./Child/ProcureOrderModal"));
@@ -161,12 +162,6 @@ useEffect(() => {
     console.log(key)
   
       const result = [{
-        // hsn: key.hsn,
-        // suppliesName:key.suppliesName,
-        // attributeName:key.attributeName,
-        // subAttributeName:key.subAttributeName,
-        //       categoryName:key.categoryName,
-        //       subCategoryName:key.subCategoryName,
         iteamId:key.iteamId,
               tradeId:key.tradeId,
               suppliesId:key.suppliesId,
@@ -195,27 +190,27 @@ console.log(props.fetchingAllProcure)
     <>
    {/* <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div> */}
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]" >
-        <div className=" flex justify-between w-[90%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex justify-between w-[90%]  p-1 bg-transparent font-bold font-poppins  !text-lm sticky  z-10 max-sm:hidden">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[11rem]">{translatedMenuItems[0]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[12.4rem]">{translatedMenuItems[3]}ID</div>
-                        <div className="font-bold font-poppins text-xs md:w-[6rem]">{translatedMenuItems[4]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5rem]">{translatedMenuItems[5]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[6.01rem]">{translatedMenuItems[6]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[3.8rem] ">{translatedMenuItems[7]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5rem]">{translatedMenuItems[8]}ID</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className=" font-bold font-poppins text-xs md:w-[5.8rem]">{translatedMenuItems[9]}</div>
-                        <div className="md:w-[1rem]"></div>
+                        <div className=" text-[#00A2E8] text-sm w-[11rem] truncate max-md:w-[11rem]">{translatedMenuItems[0]}</div>
+                        <div className=" w-[5.4rem] truncate max-md:w-[5.4rem]">{translatedMenuItems[1]}</div>
+                        <div className=" w-[5.4rem] truncate max-md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className=" w-[12.4rem] truncate max-md:w-[12.4rem]">{translatedMenuItems[3]}ID</div>
+                        <div className=" w-[6rem] truncate max-md:w-[6rem]">{translatedMenuItems[4]}</div>
+                        <div className=" w-[5rem] truncate max-md:w-[5rem]">{translatedMenuItems[5]}</div>
+                        <div className=" w-[6.01rem] truncate max-md:w-[6.01rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[3.8rem] truncate max-md:w-[3.8rem] ">{translatedMenuItems[7]}</div>
+                        <div className=" w-[5rem] truncate max-md:w-[5rem]">{translatedMenuItems[8]}ID</div>
+                        <div className=" w-[5.4rem] truncate max-md:w-[5.4rem]">{translatedMenuItems[1]}</div>
+                        <div className=" w-[5.4rem] truncate max-md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className="  w-[5.8rem] truncate max-md:w-[5.8rem]">{translatedMenuItems[9]}</div>
+                        <div className="w-[1rem] truncate max-md:w-[1rem]"></div>
         </div>
         <InfiniteScroll
             hasMore={hasMore}
           dataLength={props.allProcure.length}
           next={handleLoadMore}
-          loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
+          loader={props.fetchingAllProcure?<div><BundleLoader/></div>:null}
           height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}

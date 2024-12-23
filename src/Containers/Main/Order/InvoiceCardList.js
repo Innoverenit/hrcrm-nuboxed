@@ -60,9 +60,6 @@ useEffect(() => {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
-
-
- 
   const handleLoadMore = () => {
     const callPageMapd = props.ecomInvoiceList && props.ecomInvoiceList.length &&props.ecomInvoiceList[0].pageCount
     setTimeout(() => {
@@ -82,21 +79,13 @@ useEffect(() => {
     }
     }, 100);
   };
-
-
-
   dayjs.extend(relativeTime);
-
-
-
-
 
 const {handleProcureNotesDrawerModal,
   addDrawerProcureNotesModal
 } = props;
   return (
     <div>
-
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
@@ -105,17 +94,12 @@ const {handleProcureNotesDrawerModal,
                         <div className="w-[5.4rem] md:w-[5.04rem]">Total Value</div>
                         <div className="w-[13.4rem] md:w-[8.04rem] flex">Total Unit</div>
                         {/* Customer */}
-                        <div className="w-[8.4rem] md:w-[12.14rem]">Remaining value</div>
-                       
-                    
-                       
-                      
+                        <div className="w-[8.4rem] md:w-[12.14rem]">Remaining value</div>                                                                                
         </div>
           {props.ecomInvoiceList.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-           
-           
+                   
             return (
                 <div>
                 <div
@@ -153,25 +137,16 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                             {item.remainingTotalValue}
                             </div>
 
-                        </div>
-                       
-
-                     
-
+                        </div>            
                 </div>
             </div>
             );
           })}
         {/* </InfiniteScroll> */}
-      </div>
-     
+      </div>   
     </>
-
   </div>
   );
-
-
-
 }
 
 const mapStateToProps = ({ order,procre,inventory,auth }) => ({

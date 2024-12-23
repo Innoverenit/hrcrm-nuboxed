@@ -374,7 +374,7 @@ if (loading) {
             dataLength={customerByUserId.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center"><BundleLoader/></div> : null}
+            loader={fetchingCustomers || fetchingCustomerPagination ? <div><BundleLoader/></div> : null}
             height={"83vh"}
             style={{ scrollbarWidth:"thin"}}
           >
@@ -461,8 +461,7 @@ if (loading) {
     
     </div> 
 )}                 
-                      </div>
-                                                            
+                      </div>                                                          
                                 </div>
                               </div>
                             </Tooltip>
@@ -804,7 +803,7 @@ const mapStateToProps = ({
   updateUserModal:customer.updateUserModal,
   dialcodeList: auth.dialcodeList,
   // sources: source.sources,
-  sectors: sector.sectors,
+  // sectors: sector.sectors,
   addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
   addDrawerCustomerNotesModal: customer.addDrawerCustomerNotesModal,
@@ -819,7 +818,7 @@ const mapStateToProps = ({
   // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
-  countries: auth.countries,
+  // countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   customerSearch: customer.customerSearch,

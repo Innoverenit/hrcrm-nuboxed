@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-
-
+import React, { useState } from "react";
 function CustomerDeletecard(props) {
-
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  
 
   // useEffect(() => {
   //   const fetchMenuTranslations = async () => {
@@ -47,13 +42,8 @@ function CustomerDeletecard(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
-
- 
-
-
   return (
     <>
-    
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
@@ -97,13 +87,9 @@ function CustomerDeletecard(props) {
             </div>          
             <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* {translatedMenuItems[7]} */}
-              Customer
-          
+              Customer        
+            </div>       
             </div>
-         
-            </div>
-           
-
           </div>
           return (
             <div>  {/* Data Row */}
@@ -116,17 +102,11 @@ function CustomerDeletecard(props) {
                        </div>
                         </div>
                       </div>
-                      </div>
-                      
+                      </div>                
           )
-        </div>
-       
+        </div>     
  </div>
- 
     </>
   );
   }
-
-
-
 export default CustomerDeletecard;
