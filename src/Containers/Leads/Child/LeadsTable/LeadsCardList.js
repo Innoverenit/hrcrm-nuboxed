@@ -44,6 +44,7 @@ import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import SearchedData from "./SearchedData";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
 import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const OpenCETmodal = lazy(() => import("./OpenCETmodal")); //ActivityModal
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
@@ -288,7 +289,7 @@ const LeadsCardList = (props) => {
         dataLength={props.leadsAllDataHot.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={props.fetchingLeadsHot?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingLeadsHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -731,7 +732,7 @@ const LeadsCardList = (props) => {
         dataLength={props.leadsAllDataWarm.length}
         next={handleLoadMore1}
       hasMore={hasMore}
-        loader={props.fetchingLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingLeadsWarm?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -1175,7 +1176,7 @@ const LeadsCardList = (props) => {
         dataLength={props.leadsAllDataCold.length}
         next={handleLoadMore2}
       hasMore={hasMore}
-        loader={props.fetchingLeadsCold?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingLeadsCold?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

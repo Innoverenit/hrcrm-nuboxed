@@ -308,7 +308,7 @@ function OpportunityTeamsCard(props) {
         dataLength={teamOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
+        loader={fetchingTeamOpportunity?<div><BundleLoader/></div> :null}
         style={{scrollbarWidth:"thin"}}
         height={"83vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

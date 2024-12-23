@@ -39,6 +39,7 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -153,7 +154,7 @@ const LeadsTeamColdCard = (props) => {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex  w-[92%]  max-sm:hidden p-1 bg-transparent font-bold font-poppins !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-        <div className="flex items-center w-[6.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  text-white bg-blue-600 truncate justify-center "> {translatedMenuItems[13]}</div>
+        <div className="flex items-center w-[6.1rem]  max-xl:w-[12.1rem] max-lg:w-[7.1rem]  text-white bg-blue-600 truncate justify-center "> {translatedMenuItems[13]}</div>
         <div className=" w-[2.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem]"></div>
         <div className="  w-[21.1rem] text-[#00A2E8]  text-sm max-xl:w-[12.1rem] max-lg:w-[7.1rem]  truncate ">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
        
@@ -180,7 +181,7 @@ const LeadsTeamColdCard = (props) => {
         dataLength={teamLeadsCold.length}
         next={handleLoadMore2}
         hasMore={hasMore}
-        loader={fetchingTeamLeadsCold?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingTeamLeadsCold?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{ scrollbarWidth:" thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}

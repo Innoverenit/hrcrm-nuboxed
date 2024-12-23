@@ -27,6 +27,7 @@ import dayjs from "dayjs";
 import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
 const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
@@ -116,9 +117,9 @@ const PitchAllCardList = (props) => {
   }
    const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllPitch,leadsAllData  } = props;
 
-  if (fetchingAllPitch) {
-    return "Loading";
-  }
+  // if (fetchingAllPitch) {
+  //   return "Loading";
+  // }
   return (
     <>
      {props.serachedPitchData.length > 0 ? (
@@ -189,7 +190,7 @@ serachedPitchData={props.serachedPitchData}
         dataLength={props.allPitchData.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingAllPitch?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
     

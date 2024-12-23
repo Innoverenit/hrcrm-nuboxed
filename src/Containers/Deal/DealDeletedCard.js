@@ -147,7 +147,7 @@ const DealDeletedCard = (props) => {
           dataLength={props.deletedDeal.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={fetchingDeletedDeal ? <div class="flex justify-center">Loading...</div> : null}
+          loader={fetchingDeletedDeal ? <div><BundleLoader/></div> : null}
           height={"83vh"}
           style={{scrollbarWidth:"thin"}}
         >

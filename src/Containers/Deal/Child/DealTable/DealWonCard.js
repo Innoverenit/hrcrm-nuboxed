@@ -257,7 +257,7 @@ function DealWonCard(props) {
          dataLength={wonDeals.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingWonDeals ?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >

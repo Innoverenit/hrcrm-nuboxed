@@ -307,7 +307,7 @@ const DealsTeamCardList = (props) => {
           dataLength={props.teamsDealsData.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
+          loader={fetchingTeamsDealsData ? <div><BundleLoader/></div> : null}
           height={"83vh"}
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
@@ -499,7 +499,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8  ml-gap bg-[#eef2f9] w-[5rem]  max-md:w-20 max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8  ml-gap bg-[#eef2f9] w-[5rem]  max-md:w-20 max-sm:flex-row mt-1 max-sm:justify-between ">
 
                       <span>
                         <MultiAvatar2

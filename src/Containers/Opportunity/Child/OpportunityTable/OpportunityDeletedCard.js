@@ -14,6 +14,7 @@ import {
 } from "../../OpportunityAction";
 import ReinstateToggle from "../../Child/ReinstateToggle"
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 function OpportunityDeletedCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -44,7 +45,7 @@ function OpportunityDeletedCard(props) {
         dataLength={deletedOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingDeletedOpportunity?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingDeletedOpportunity?<div><BundleLoader/></div>:null}
         style={{ scrollbarWidth:"thin"}}
         height={"83vh"}
       >
