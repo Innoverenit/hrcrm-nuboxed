@@ -75,9 +75,7 @@ const CustomerContactDrawerModal = lazy(() =>
 const CustomerOpportunityDrawerModal = lazy(() =>
   import("./CustomerOpportunityDrawerModal")
 );
-// const UpdateCustomerModal = lazy(() =>
-//   import("../UpdateCustomer/UpdateCustomerModal")
-// );
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -88,8 +86,6 @@ function CustomerCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  // const [page1, setPage1] = useState(0);
-  // const [page2, setPage2] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -143,7 +139,7 @@ function CustomerCardList(props) {
       props.emptyCustomer()
       props.getCustomerListByUserId(props.userId, page, "creationdate");
    props.getCountries();
-   props.getSources(props.orgId);
+  //  props.getSources(props.orgId);
    props.getSectors();
    props.getAllDialCodeList()
   }, []);
@@ -807,7 +803,7 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   updateUserModal:customer.updateUserModal,
   dialcodeList: auth.dialcodeList,
-  sources: source.sources,
+  // sources: source.sources,
   sectors: sector.sectors,
   addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
@@ -829,6 +825,7 @@ const mapStateToProps = ({
   customerSearch: customer.customerSearch,
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
