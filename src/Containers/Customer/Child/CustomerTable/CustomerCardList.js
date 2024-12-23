@@ -461,7 +461,8 @@ if (loading) {
     
     </div> 
 )}                 
-                      </div>                                                          
+                      </div>
+                                                            
                                 </div>
                               </div>
                             </Tooltip>
@@ -802,8 +803,8 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   updateUserModal:customer.updateUserModal,
   dialcodeList: auth.dialcodeList,
-  // sources: source.sources,
-  // sectors: sector.sectors,
+  sources: source.sources,
+  sectors: sector.sectors,
   addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
   addDrawerCustomerNotesModal: customer.addDrawerCustomerNotesModal,

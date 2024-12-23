@@ -115,7 +115,8 @@ const {handleProcureNotesDrawerModal,
                         {/* item */}                    
                         <div className="w-[9.7rem] truncate max-md:w-[4.3rem]">  <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[6]}</div>              
                         <div className="w-[4.3rem] truncate max-md:w-[5.4rem]"> 
-                        < MergeTypeIcon className='!text-icon text-[#c42847] '  />   {translatedMenuItems[10]}                        
+                        < MergeTypeIcon className='!text-icon text-[#c42847] '  />   {translatedMenuItems[10]}
+                          
                           </div>              
         </div>
         <InfiniteScroll
@@ -198,16 +199,22 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                             <div class=" text-xs   font-poppins">
                                 {item.orderSource}
                             </div>
+
                         </div>
                 </div>
             </div>
             );
           })}
         </InfiniteScroll>
-      </div>    
+      </div>
+     
     </>
+
   </div>
   );
+
+
+
 }
 
 const mapStateToProps = ({ order,procre,inventory,auth }) => ({
