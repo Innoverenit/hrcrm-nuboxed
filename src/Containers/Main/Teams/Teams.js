@@ -7,10 +7,6 @@ const TeamsList =lazy(()=> import('./TeamsList'));
 const PerformanceManagement =lazy(()=> import('./PerformanceManagement'));
 const TeamsHeader =lazy(()=> import('./TeamsHeader'));
 const TeamsModal =lazy(()=> import('./TeamsModal'));
-const TeamsTable =lazy(()=> import('./TeamsTable'));
-const TeamsAllocationTable =lazy(()=> import('./TeamsAllocationTable'));
-const TeamsClientTable =lazy(()=> import('./TeamsClientTable'));
-const TeamsInventoryTable =lazy(()=> import('./TeamsInventoryTable'));
 const TeamsCardList =lazy(()=> import('./TeamsCard.js/TeamsCardList'));
 
 

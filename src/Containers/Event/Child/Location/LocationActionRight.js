@@ -11,52 +11,54 @@ const Option = StyledSelect.Option;
 
 class LocationActionRight extends React.Component {
  
-  constructor(props) {
-    super(props);
-    this.state = {
-      translatedMenuItems: [],
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     translatedMenuItems: [],
+  //   };
+  // }
 
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        "85",//0Add
-        "104",//1"Create"
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //       "85",//0Add
+  //       "104",//1"Create"
        
         
-      ];
+  //     ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
   
   render() {
     console.log(this.props.handleLocationModal)
     return (
       <div class=" flex items-center" >
 
-        <Tooltip placement="left" title=  {this.state.translatedMenuItems[1]}>
+        <Tooltip placement="left" 
+        // title=  {this.state.translatedMenuItems[1]}
+        >
           <Button
             type="primary"
             onClick={() => this.props.handleLocationModal(true)}
           >
            
 
-           <DataSaverOnIcon className="!text-icon"/>  {this.state.translatedMenuItems[0]}
+           <DataSaverOnIcon className="!text-icon"/>  {this.props.translatedMenuItems[3]}
           </Button>
         </Tooltip>
       </div>

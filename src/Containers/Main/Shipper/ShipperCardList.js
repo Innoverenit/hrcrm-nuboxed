@@ -57,7 +57,7 @@ const [editingValue, setEditingValue] = useState("");
   useEffect(() => {
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
-    fetchApiKeyList();
+    // fetchApiKeyList();
     // props.getAllDialCodeList();
     // props.getShipByData(props.orgId);
   }, []);
@@ -103,20 +103,20 @@ const handleToggleConfirm = (shipperId) => {
   setEditsuppliesId(shipperId); 
 };
 
-const fetchApiKeyList = async () => {
-  try {
-    const response = await axios.get(`${base_url2}/DUMMY`,{
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    });
-    setstoredApiKey(response.data);
-    // setLoading(false);
-  } catch (error) {
-    setErrorFetchApiKey(error);
-    // setLoading(false);
-  }
-};
+// const fetchApiKeyList = async () => {
+//   try {
+//     const response = await axios.get(`${base_url2}/DUMMY`,{
+//       headers: {
+//         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//       },
+//     });
+//     setstoredApiKey(response.data);
+//     // setLoading(false);
+//   } catch (error) {
+//     setErrorFetchApiKey(error);
+//     // setLoading(false);
+//   }
+// };
   const handleSelectedApiDropDown =  async (value,item) => {
     setSelectedApi(value);
     let payload={

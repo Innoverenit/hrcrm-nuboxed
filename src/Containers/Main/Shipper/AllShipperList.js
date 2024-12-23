@@ -42,11 +42,12 @@ function AllShipperList(props) {
   const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState("");
 const [dataShipper, setdataShipper] = useState([]);
+const [datadialcode, setdatadialcode] = useState(false);
 
   useEffect(() => {
     setPage(page + 1);
     props.getAllShipperList(props.orgId,page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
     props.getShipByData(props.orgId);
   }, []);
 
@@ -57,6 +58,12 @@ const [dataShipper, setdataShipper] = useState([]);
     setdataShipper(props.allShipper);
 }, [props.allShipper]);
 
+ const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
@@ -271,6 +278,7 @@ const [dataShipper, setdataShipper] = useState([]);
   style={{ width: "8rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (

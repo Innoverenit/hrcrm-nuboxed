@@ -18,6 +18,7 @@ class LocationHeader extends Component {
                 <LocationActionLeft
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
                     viewType={viewType}
                     setLocationViewType={setLocationViewType}
                 />
@@ -25,6 +26,7 @@ class LocationHeader extends Component {
             }
           rightComponent={
             <LocationActionRight
+            translatedMenuItems={this.props.translatedMenuItems}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
             handleLocationModal={this.props.handleLocationModal}
