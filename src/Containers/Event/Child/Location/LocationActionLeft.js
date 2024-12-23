@@ -11,7 +11,7 @@ import {getLocationRecords,getLocationDeletedCount,searchLocationName,clearReduc
 
 const LocationActionLeft = (props) => {
 
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [currentData, setCurrentData] = useState("");
   const [userData, setUserData] = useState([]);
   const [isLoadingUser, setIsLoadingUser] = useState(false);
@@ -23,27 +23,27 @@ const LocationActionLeft = (props) => {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        const itemsToTranslate = [
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       const itemsToTranslate = [
        
-        "228",  // All
-          "1003",  // Map View
-          "1004", // "Inactive
+  //       "228",  // All
+  //         "1003",  // Map View
+  //         "1004", // "Inactive
          
        
-        ];
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-      } catch (error) {
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //     } catch (error) {
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -139,7 +139,7 @@ const LocationActionLeft = (props) => {
     return (
         <div class=" flex  items-center" >
           <Tooltip
-        title={translatedMenuItems[0]}
+        // title={props.translatedMenuItems[0]}
       >
          <Badge
           size="small"
@@ -155,14 +155,14 @@ const LocationActionLeft = (props) => {
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
   
-            <div className="text-white ">{translatedMenuItems[0]}</div>
+            <div className="text-white ">{props.translatedMenuItems[0]}</div>
             </Avatar>
           </span>
           </Badge>
       </Tooltip>
 
       <Tooltip
-        title={translatedMenuItems[1]}
+        title={props.translatedMenuItems[1]}
       
       >
            <Badge
@@ -185,7 +185,7 @@ const LocationActionLeft = (props) => {
           </Badge>
       </Tooltip>
 
-      <Tooltip title={translatedMenuItems[2]}>
+      <Tooltip title={props.translatedMenuItems[2]}>
       {/* "Inactive"> */}
                 <Badge size="small"
                         count={(props.viewType === "delete" && props.locationDeletedCount.locCount) || 0}
