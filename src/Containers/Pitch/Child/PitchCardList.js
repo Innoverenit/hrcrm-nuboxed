@@ -61,7 +61,7 @@ const PitchCardList = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    props.getPitch(props.userId,page,"creationdate");
+    // props.getPitch(props.userId,page,"creationdate");
     props.getPitchHot(props.userId, page,"creationdate","hot");
     props.getPitchCold(props.userId, page,"creationdate","cold");
     props.getPitchWarm(props.userId, page,"creationdate","warm");
@@ -282,7 +282,7 @@ const handleLoadMore2 = () => {
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -714,7 +714,7 @@ const countryCode = item.countryAlpha2Code
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -1149,7 +1149,7 @@ const countryCode = item.countryAlpha2Code
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -1525,7 +1525,7 @@ const countryCode = item.countryAlpha2Code
                 })}
                   </InfiniteScroll>
       </div>
-      <Suspense fallback={"Loading..."}>
+      <Suspense fallback={<BundleLoader/>}>
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}

@@ -50,6 +50,7 @@ import {getTeamInvestor,
   UpdateInvestor} 
   from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { BundleLoader } from "../../../../Components/Placeholder";
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
@@ -144,7 +145,7 @@ function InvestorTeamCardList(props) {
     })
 
     props.getTeamInvestor(props.userId, page);
-    setPage(page + 1);
+    setPage(page + 1); 
     props.getTeamUserList(props.userId)
   }, []);
 
@@ -385,7 +386,7 @@ function InvestorTeamCardList(props) {
         dataLength={teamInvestor.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
+        loader={fetchingTeamInvestor?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}

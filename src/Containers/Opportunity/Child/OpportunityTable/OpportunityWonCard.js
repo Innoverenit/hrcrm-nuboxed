@@ -181,7 +181,7 @@ function OpportunityWonCard(props) {
          dataLength={wonOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingWonOpportunity ?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >

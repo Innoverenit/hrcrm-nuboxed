@@ -61,9 +61,9 @@ function DocumentUpload (props){
     }
   };
 
-  useEffect(() => {
-    props.getselectdrop(props.orgId);
-  }, [ props.orgId]);
+  // useEffect(() => {
+  //   props.getselectdrop(props.orgId);
+  // }, [ props.orgId]);
 
   const handleSelectChangeInclude = (values) => {
     setSelectedIncludeValues(values); // Update selected values
@@ -356,7 +356,8 @@ const mapStateToProps = ({ customer, settings, auth }) => ({
   addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
   organization: auth.userDetails?.metaData?.organization,
   orgId: auth.userDetails.organizationId,
-  selectDrop:customer.selectDrop
+  selectDrop:customer.selectDrop,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -183,22 +183,12 @@ const filterData = filteredData.filter(item =>
              selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
             />}
-            {viewType === 'teams' ?( <ContactTeamCardList
+            {viewType === 'teams' && <ContactTeamCardList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
-            />
-            ):(
-<ContactCardList
-           
-           currentUser={currentUser} 
-           filter={filter}
-            filterData={filterData}
-            translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}
-          translatedMenuItems={props.translatedMenuItems}
-            />
-            )}
+            />}
+          
           </>
         )}
       

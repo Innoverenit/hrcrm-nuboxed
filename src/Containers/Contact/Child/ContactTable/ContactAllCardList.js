@@ -52,6 +52,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
 import ContactCETdrawer from "./ContactCETdrawer";
 import {getCustomerData} from "../../../Customer/CustomerAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const Option = Select;
 
@@ -334,7 +335,7 @@ function ContactAllCardList(props) {
         dataLength={allContacts.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingAllContacts?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >      

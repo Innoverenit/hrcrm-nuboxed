@@ -51,6 +51,7 @@ import {getInvestorsbyId,
   handleInvestorAddressDrawerModal,
   UpdateInvestor
 } from "../../InvestorAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorSearchedData = lazy(() => import("./InvestorSearchedData"));
@@ -137,7 +138,7 @@ function InvestorCardList(props) {
     })
     props.getInvestorsbyId(props.userId, page,"creationdate");
     setPage(page + 1);
-     props.getTeamUserList(props.userId)
+    //  props.getTeamUserList(props.userId)
   }, []);
   useEffect(() => {
     const handleResize = () => {
@@ -348,7 +349,7 @@ function InvestorCardList(props) {
         dataLength={investorsbyId.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
+        loader={fetchingInvestors?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}

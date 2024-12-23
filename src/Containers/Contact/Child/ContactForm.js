@@ -51,17 +51,13 @@ class ContactForm extends Component {
       isLoadingContacts:false,
       loading: true,
       touchedCustomer: false,
+      touchedDepartment: false,
     };
     this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.fetchCustomers = this.fetchCustomers.bind(this);
   }
 
-  componentDidMount() {
-   
-    this.props.getDepartments();
-    
-  }
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
   
@@ -137,6 +133,14 @@ class ContactForm extends Component {
     }
   }
 
+
+  handleSelectDepartmentFocus() {
+    const { touchedDepartment } = this.state;
+    if (!touchedDepartment) {
+      this.props.getDepartments();
+      this.setState({ touchedDepartment: true });
+    }
+  }
 
   handleCustomerChange(customerId) {
     this.setState({ selectedCustomer: customerId });

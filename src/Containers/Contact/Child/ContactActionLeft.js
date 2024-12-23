@@ -33,12 +33,7 @@ const ContactActionLeft = (props) => {
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [touched, setTouched] = useState(false);
   const [dtouched, setDTouched] = useState(false);
-  const handleSelectDepartmentFocus = () => {
-    if (!dtouched) {
-      props.getDepartments()
-      setDTouched(true);
-    }
-  };
+
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
@@ -47,7 +42,7 @@ const ContactActionLeft = (props) => {
       if (props.viewType === "table") {
       props.getContactListByUserId(props.userId, pageNo,"Creation Date");
       }
-      else if (props.viewType === "teams") {
+      else if (props.teamsAccessInd) {
       props.getAllContact("0","Customer");
       }
       else if (props.viewType === "all") {
@@ -100,7 +95,6 @@ const ContactActionLeft = (props) => {
   console.log(transcript);
   console.log(transcript);
   useEffect(() => {
-    props.getDepartments();
     if (props.teamsAccessInd) {
       props.getContactTeamRecord(props.userId);
     }
@@ -145,6 +139,12 @@ const ContactActionLeft = (props) => {
       value: item.departmentId,
     };});
     const teamCount = props.teamsAccessInd && props.contactTeamRecord ? props.contactTeamRecord.contactTeam : 0;
+    const handleSelectDepartmentFocus = () => {
+      if (!dtouched) {
+        props.getDepartments()
+        setDTouched(true);
+      }
+    };
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -268,10 +268,13 @@ const ContactActionLeft = (props) => {
       </div>
     
 <div class="w-32 md:ml-4 max-sm:hidden">
-      <select className="h-[4vh]"
+      <select className="h-8"
          style={{ boxShadow: "0 0.15em 0.3em #aaa"
         }}
-       value={props.selectedCountry} onChange={props.handleCountryChange} >
+       value={props.selectedCountry} 
+       onChange={props.handleCountryChange} 
+       onFocus={handleSelectDepartmentFocus}
+       >
         <option value="" disabled>Department</option>
         <option value="">All</option>
         {countryNameOption.map((countryOption, index) => (

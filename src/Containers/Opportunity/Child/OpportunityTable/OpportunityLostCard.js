@@ -187,7 +187,7 @@ function OpportunityLostCard(props) {
         dataLength={lostOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchinglostOpportunity?<div class="flex justify-center">Loading...</div> :null}
+        loader={fetchinglostOpportunity?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{overflowX:"hidden",scroll:"thin"}}
       >

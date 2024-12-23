@@ -289,7 +289,7 @@ const DealsAllCardList = (props) => {
           dataLength={props.allDealsData.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
+          loader={fetchingAllDealsData ? <div><BundleLoader/></div> : null}
           height={"83vh"}
           style={{ scrollbarWidth: "thin"}}
         >

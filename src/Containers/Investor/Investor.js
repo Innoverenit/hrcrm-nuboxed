@@ -9,6 +9,7 @@ import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
+import { BundleLoader } from '../../Components/Placeholder';
 
 const InvestorDeleteList = lazy(() => import("./InvestorDeleteList"));
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
@@ -93,7 +94,7 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
-              <Suspense fallback={"Loading..."}>
+              <Suspense fallback={<BundleLoader/>}>
           <InvestorHeader
           handleUserSelect={handleUserSelect}
           showCheckboxes={showCheckboxes}
@@ -150,25 +151,15 @@ const handleChange = (e) => {
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
             /> }
-            {viewType === 'teams' ?(  <InvestorTeamCardList
+            {viewType === 'teams' &&  <InvestorTeamCardList
              translateText={props.translateText}
              showCheckboxes={showCheckboxes}
              selectedDeals={selectedDeals}
              selectedUser={selectedUser}
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
-            />
-            ):(
-         <InvestorCardList
-             translateText={props.translateText}
-             showCheckboxes={showCheckboxes}
-             selectedDeals={selectedDeals}
-             selectedUser={selectedUser}
-             handleCheckboxChange={handleCheckboxChange}
-             selectedLanguage={props.selectedLanguage}
-            />
-            )}
-             {viewType === 'delete' &&  <InvestorDeleteList
+            />}
+           {viewType === 'delete' &&  <InvestorDeleteList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
             />}
