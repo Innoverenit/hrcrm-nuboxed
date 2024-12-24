@@ -176,7 +176,10 @@ function AddQuotationProduct(props) {
     <div class="flex justify-between">
       <div class="w-[20rem] box-content p-2 border-blue border-4">
       <div className="mt-4 w-[22rem]">
-                      <div className="font-semibold text-xs font-poppins text-gray-800">Search</div>
+                      <div className="font-semibold text-xs font-poppins text-gray-800">
+                        {/* Search */}
+                        {props.translatedMenuItems[140]}
+                        </div>
                     {props.qtionInclItem === "material" && (
                         <> 
                       <Input
@@ -250,7 +253,7 @@ function AddQuotationProduct(props) {
                     </div>
                     <div class="flex w-wk justify-between mt-4">
                     <div className="font-bold font-poppins text-xs">
-                    <WidgetsIcon className='!text-icon    text-[#42858c]' /> Category
+                    <WidgetsIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[31]}
                       <Field
                       disabled
                         name="category"
@@ -263,7 +266,7 @@ function AddQuotationProduct(props) {
                     </div>
               
                     <div className="font-bold font-poppins text-xs">
-                    <AttractionsIcon className="  !text-icon" />    Attribute
+                    <AttractionsIcon className="  !text-icon" />    {props.translatedMenuItems[123]}
                 <Field
                 disabled
                         name="attribute"
@@ -279,7 +282,7 @@ function AddQuotationProduct(props) {
                 
                     <div class="flex w-wk justify-between mt-4">
                     <div className="font-bold font-poppins text-xs">
-                    <BrandingWatermarkIcon className="!text-icon" /> Brand
+                    <BrandingWatermarkIcon className="!text-icon" /> {props.translatedMenuItems[69]}
                 <Field
                 disabled
                         name="brandId"
@@ -291,7 +294,7 @@ function AddQuotationProduct(props) {
                       />
                 </div>
                 <div className="font-bold font-poppins text-xs">
-                <ModelTrainingIcon className=" !text-icon" /> Model
+                <ModelTrainingIcon className=" !text-icon" /> {props.translatedMenuItems[70]}
                 <Field
                 disabled
                         name="modelId"
@@ -306,12 +309,12 @@ function AddQuotationProduct(props) {
               
               <div class="flex w-wk justify-between mt-4">
               <div className="font-bold font-poppins text-xs">
-              <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' />Price / Unit
+              <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' />{`${props.translatedMenuItems[124]} / ${props.translatedMenuItems[125]}`}
                 <Field
                 disabled
                 name="price"
                 // label="Price / Unit"
-                placeholder="Price"
+                placeholder={props.translatedMenuItems[124]}
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -335,7 +338,7 @@ function AddQuotationProduct(props) {
                 </div>
               </div>
               <div class="flex  justify-between mt-4">
-              <div className="font-bold font-poppins text-xs">Units
+              <div className="font-bold font-poppins text-xs">{props.translatedMenuItems[125]}
                 <Field
                 name="unit"
                 // label="Units"
@@ -346,10 +349,10 @@ function AddQuotationProduct(props) {
                 inlineLabel
                /></div>
                <div className="font-bold font-poppins text-xs">
-               <SellIcon className="!text-icon"/>Discount
+               <SellIcon className="!text-icon"/>{props.translatedMenuItems[144]}
                 <Field
                 name="discount"           
-                placeholder="Discount"
+                placeholder={props.translatedMenuItems[144]}
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -358,13 +361,14 @@ function AddQuotationProduct(props) {
                />
                 </div>
               </div><div className="flex justify-end w-[22rem] mt-2">
-        <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button></div>
+        <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>{props.translatedMenuItems[84]}</Button></div>
       </div>
       <div class="w-[55rem]">
       <OpportunitytProcureDetails  
                particularRowItem={props.particularRowItem}
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
+               translatedMenuItems={props.translatedMenuItems}
                />  
       </div>
       </div>

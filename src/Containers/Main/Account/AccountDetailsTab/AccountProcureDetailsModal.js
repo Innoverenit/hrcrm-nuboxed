@@ -13,7 +13,7 @@ const AccountProcureDetailsModal = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`Order : ${props.particularRowData.newOrderNo}`}
+                title={`${props.translatedMenuItems[15]} : ${props.particularRowData.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.addProcureDetailsModal}
                 closable
@@ -28,7 +28,9 @@ const AccountProcureDetailsModal = (props) => {
                particularRowData={props.particularRowData}
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
+               translatedMenuItems={props.translatedMenuItems}
                handleProcureDetailsModal={props.handleProcureDetailsModal}
+
                />                  
                 </Suspense>
             </StyledDrawer>

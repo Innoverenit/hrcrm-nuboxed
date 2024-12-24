@@ -13,7 +13,7 @@ const MultipleOrderDrawer = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`Invoice`}
+                title={props.translatedMenuItems[10]}
                 width={drawerWidth}
                 visible={props.modalMultiple}
                 closable
@@ -27,6 +27,7 @@ const MultipleOrderDrawer = (props) => {
                <MultipleOrderDrawerCard  
                particularRowItem={props.particularRowItem}
                selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
                translateText={props.translateText}
                distributorId={props.distributorId}
                modalMultiple={props.modalMultiple}

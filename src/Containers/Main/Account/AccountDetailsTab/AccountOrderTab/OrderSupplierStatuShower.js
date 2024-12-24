@@ -5,15 +5,11 @@ import { Button, Rate, Steps,Tooltip,Progress } from 'antd';
 import {getProcureStatusItem} from "../../AccountAction";
 import dayjs from 'dayjs';
 import OrdrSuplrStatusItemCard from "./OrdrSuplrStatusItemCard";
-import OrderPieChart from "./OrderPieChart";
 
 function OrderSupplierStatuShower (props) {
-
   useEffect(()=>{
     props.getProcureStatusItem(props.particularRowData.orderId);
       },[]);
-
-
 
   return (
    <React.Fragment>
@@ -30,7 +26,7 @@ function OrderSupplierStatuShower (props) {
                             1
                         </div>
                         
-         <p className="mt-2 text-sm font-medium text-center">Order Created</p>
+         <p className="mt-2 text-sm font-medium text-center">{props.translatedMenuItems[85]}</p>
          <b> {dayjs(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
                     </div>
                     <div className="relative z-10 flex flex-col items-center">
@@ -38,7 +34,7 @@ function OrderSupplierStatuShower (props) {
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
                             2
                         </div>
-         <p className="mt-2 text-sm font-medium text-center">Invoice</p>
+         <p className="mt-2 text-sm font-medium text-center">{props.translatedMenuItems[10]}</p>
          {/*  */} <Tooltip title="">
 {" "}
 <Progress
@@ -55,7 +51,7 @@ strokeColor={"#005075"}
                         <div className={`${props.statusItems.paymentType ? "w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center":"w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center"}`}>
                             3
                         </div>
-         <p className="mt-2 text-sm font-medium text-center">Payment</p>
+         <p className="mt-2 text-sm font-medium text-center">{props.translatedMenuItems[23]}</p>
          <b> {`${props.statusItems.paymentType ? `${props.statusItems.paymentType} |` :""} ${props.statusItems && props.statusItems.paymentDate ? 
   dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY") : 
   ""
@@ -84,8 +80,7 @@ strokeColor={"#005075"}
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
                             5
                         </div>
-         <p className="mt-2 text-sm font-medium text-center">Order Pick Up</p>
-         {/* <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/> */}
+         <p className="mt-2 text-sm font-medium text-center">{props.translatedMenuItems[95]}</p>
          <Tooltip title="">
 {" "}
 <Progress
@@ -102,7 +97,7 @@ strokeColor={"#005075"}
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
                             6
                         </div>
-         <p className="mt-2 text-sm font-medium text-center">Ship</p>
+         <p className="mt-2 text-sm font-medium text-center">{props.translatedMenuItems[47]}</p>
          {/*  */}   <Tooltip title="">
 {" "}
 <Progress
@@ -120,8 +115,8 @@ strokeColor={"#005075"}
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
                             7
                         </div>
-         <p className="mt-2 text-sm font-medium text-center">Delevered</p>
-         {/*  */}  <Tooltip title="">
+         <p className="mt-2 text-sm font-medium text-center">Delivered</p>
+  <Tooltip title="">
 {" "}
 <Progress
 type="circle"
@@ -134,8 +129,7 @@ strokeColor={"#005075"}
                     </div>  
             </div>
         </div>
-
-        <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/>
+        <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData} translatedMenuItems={props.translatedMenuItems}/>
     </React.Fragment>
   );
 }

@@ -919,6 +919,7 @@ function CustomerProcurementTable(props) {
         distributorId={props.distributorId}
         handleUpdateProcureDetailModal={props.handleUpdateProcureDetailModal}
         updateProcureDetailModal={props.updateProcureDetailModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
       <AccountProcureDetailsModal
@@ -927,6 +928,7 @@ function CustomerProcurementTable(props) {
         translateText={props.translateText}
         handleProcureDetailsModal={props.handleProcureDetailsModal}
         addProcureDetailsModal={props.addProcureDetailsModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
       <ProcureStatusShowDrawer
@@ -935,6 +937,7 @@ function CustomerProcurementTable(props) {
         particularRowData={particularRowData}
         showStatusDrwr={props.showStatusDrwr}
         handleStatuShowDrawer={props.handleStatuShowDrawer}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
       <ProcureInvoiceListDrawer
@@ -944,6 +947,7 @@ function CustomerProcurementTable(props) {
         translatedMenuItems={props.translatedMenuItems}
         distributorId={props.distributorId}
       />
+      
       <ItemListListDrawer
         particularRowData={particularRowData}
         openDrawer={openDrawer}
@@ -952,6 +956,7 @@ function CustomerProcurementTable(props) {
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}
         distributorId={props.distributorId}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

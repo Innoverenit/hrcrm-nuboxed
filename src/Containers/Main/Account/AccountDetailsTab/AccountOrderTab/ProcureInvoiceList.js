@@ -78,11 +78,9 @@ function ProcureInvoiceList (props) {
     invoiceDataCount();
  },[]);
 
-
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
-
     const handleInputChange = (value, key, dataIndex) => {
         const updatedData = data.map((item) =>
             item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
@@ -91,15 +89,12 @@ function ProcureInvoiceList (props) {
         const updatedTrackId = updatedData.find(item => item.procureOrderInvoiceId === key)?.trackId;
     settrackId(updatedTrackId);
     };
-    
       const handleDateChange = (e, item) => {
         const selectedDate = new Date(e.target.value);
         const deliveryDate = new Date(item.deliveryDate);
     setDate(e.target.value);
 
     };
-    
-    
       const handleEditClick = (procureOrderInvoiceId) => {
         setEditsuppliesId(procureOrderInvoiceId);
       };
@@ -107,15 +102,11 @@ function ProcureInvoiceList (props) {
         setEditedFields((prevFields) => ({ ...prevFields, [procureOrderInvoiceId]: undefined }));
         setEditsuppliesId(null);
       };
-    
-   
-    
-
       const handlePostChange =  async (item) => {
         const currentDate = new Date().toISOString();
         let updatedItem={
             dispatchReceivedDate: currentDate,
-          // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
+  
           orderId:props.orderId,
         }
         let data = {
@@ -145,11 +136,9 @@ function ProcureInvoiceList (props) {
             setEditsuppliesId(null);
           }
       };
-
-
     return (
         <>
-<div class="text-xs">Total Invoice: {invoicDataCount.orderProcureInvoice || 0}
+<div class="text-xs">{props.translatedMenuItems[133]}: {invoicDataCount.orderProcureInvoice || 0}
 
                                 </div>
             <div className=' flex sticky  z-auto'>
@@ -179,7 +168,7 @@ function ProcureInvoiceList (props) {
                     <div class="h-[89vh]">
                           
                     {data.length === 0 ? (
-    <div className="text-center text-gray-500">Data not available</div>
+    <div className="text-center text-gray-500">{props.translatedMenuItems[132]} </div>
   ) : data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -202,7 +191,7 @@ function ProcureInvoiceList (props) {
                                                         </div>
                                                         {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    {/* New */}
+                                                                    {props.translatedMenuItems[27]} {/* New */}
                                                                 </div>
                                                             ) : null}
                                                     </div>
@@ -247,31 +236,7 @@ function ProcureInvoiceList (props) {
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20 items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6rem] max-sm:flex-row  max-sm:justify-between ">
-    {/* {editsuppliesId === props.orderId ? (
-                        <>
-                      <Button 
-                      type="primary"
-                      loading={props.updatingOrdrSuplrItems}
-                      onClick={() => handlePostChange(item)}>
-                        Save
-                      </Button>
-                        <Button 
-                         type="primary"
-                        onClick={() => handleCancelClick(props.orderId)} className="ml-[0.5rem]">
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : ( */}
-                      <>
-                        {/* {props.user.enaShipInd && ( */}
-                      {/* <Button className="w-[5rem]"
-                      type="primary"
-                      onClick={() => handlePostChange(item)}
-                      > <InputIcon className="!text-icon text-white"/>Pack</Button> */}
-    {/* ) }   */}
-                    </>
-                    {/* // )} */}
+    
     </div>
     </div>
                                             </div>
