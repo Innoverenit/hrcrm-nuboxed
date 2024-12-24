@@ -51,7 +51,7 @@ function AccountInvoiceTable(props) {
     const [isRecording, setIsRecording] = useState(false); //Code for Search
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -60,41 +60,41 @@ function AccountInvoiceTable(props) {
 const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
 
 
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-    '1169', // 0
-    '660', // 1
-    '218', // 2
-    '71', // 3
-    '142', // 4
-    "1485",//5 Search by Invoice ID"
-   "1484", //6 Outstanding
- "1357",  //7 Credit Memo
-  "100",  // New
-  "1089",  // Generate
-   "1483", // Payment link
-  "142",// Status
+//     useEffect(() => {
+//         const fetchMenuTranslations = async () => {
+//           try {
+//             setLoading(true); 
+//             const itemsToTranslate = [
+//     '1169', // 0
+//     '660', // 1
+//     '218', // 2
+//     '71', // 3
+//     '142', // 4
+//     "1485",//5 Search by Invoice ID"
+//    "1484", //6 Outstanding
+//  "1357",  //7 Credit Memo
+//   "100",  // New
+//   "1089",  // Generate
+//    "1483", // Payment link
+//   "142",// Status
 
 
-          ];
+//           ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+//             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+//             setTranslatedMenuItems(translations);
+//             setLoading(false);
+//           } catch (error) {
+//             setLoading(false);
+//             console.error('Error translating menu items:', error);
+//           }
+//         };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
-    useEffect(() => {
+//         fetchMenuTranslations();
+//       }, [props.selectedLanguage]);
+   
+useEffect(() => {
       props.getInvoiceCount(props.distributorId)
-        // props.getAccountInvoiveList(props.distributorId)
         props.getGeneratedInvoiveList(props.distributorId);
     }, []);
 
@@ -330,7 +330,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
         }
       };
 
-      if (loading) {
+      if (props.fetchingGeneratedInvoice) {
         return <div><BundleLoader/></div>;
       }
     return (
@@ -338,7 +338,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
          <div class=" w-[35vw] flex justify-end max-sm:w-24 ml-2">
      
         <Input 
-          placeholder={translatedMenuItems[5]}
+          placeholder={props.translatedMenuItems[68]}
        
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -370,20 +370,20 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                     <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold !text-lm font-poppins text-xs sticky z-10">
                   
                     <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[7.1rem]">
-                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[0]} ID</div>
+                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {props.translatedMenuItems[10]} ID</div>
                         <div className=" w-[14.4rem] max-md:w-[7.4rem]">
-                        <DynamicFeedIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
+                        <DynamicFeedIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{props.translatedMenuItems[19]} ID</div>
            
                         <div className="w-[5.4rem] max-md:w-[7.1rem]">
-                        <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
+                        <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{props.translatedMenuItems[22]}</div>
                
-                        <div className="w-[11.09rem] max-md:w-[8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[11.09rem] max-md:w-[8rem]">{props.translatedMenuItems[32]}</div>
                         <div className="w-[11.3rem] max-md:w-[8rem]">
-                        <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{translatedMenuItems[7]}</div>
+                        <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{props.translatedMenuItems[14]}</div>
                         {/* Credit Memo */}
                         <div className="w-[10.23rem] max-md:w-[8rem]"></div>
                         <div className="w-[11.1rem] max-md:w-[8rem]">
-                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {props.translatedMenuItems[24]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
                       
@@ -414,7 +414,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                         <div class="ml-1">
                                                         {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                 {translatedMenuItems[8]}   {/* New */}
+                                                                 {props.translatedMenuItems[27]}   {/* New */}
                                                                 </div>
                                                             ) : null}</div>
                                                     </div>
@@ -454,7 +454,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                                         sendCreditMemo(item);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
-                                                                >{translatedMenuItems[9]}</Button>
+                                                                >{props.translatedMenuItems[61]}</Button>
                                                             </Tooltip>)}
 
                           </div>                  
@@ -468,7 +468,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                                         // executePayementLink();
                                                                         handleSetParticularOrderData(item);
                                                                     }}
-                                                                > {translatedMenuItems[10]}</Button>
+                                                                > {props.translatedMenuItems[62]}</Button>
                                                             </Tooltip>
                                                           </div>   
                                                           <div className=" flex   w-[15.03rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
@@ -490,7 +490,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                             </Tooltip>      
                        </div>
                        <div class="items-center justify-center  ">
-                          <Tooltip title={translatedMenuItems[11]}>
+                          <Tooltip title={props.translatedMenuItems[24]}>
                              <EventRepeatIcon
                              className="!text-icon cursor-pointer text-[green]"
                               onClick={()=>{
@@ -540,6 +540,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                 distributorId={props.distributorId}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
+                translatedMenuItems={props.translatedMenuItems}
                     type={props.type}
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal} 

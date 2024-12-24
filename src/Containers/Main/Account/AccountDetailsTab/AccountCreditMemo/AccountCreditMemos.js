@@ -20,39 +20,6 @@ function AccountCreditMemos(props) {
     const [loading1, setLoading1] = useState(false);
     const [error, setError] = useState(null);
 
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-
-            "248",  // Customer 0
-             "660" ,// Order # 1
-             "1169" ,// Invoice 2
-             "926" ,  // Transaction 3
-             "71" ,  // Type 4
-             "74" ,   // Date 5
-             "929" ,  // Amount
-             "86" ,  // "Mode
-             "1085" , // Received
-             "679" , // Created
-
-          ];
-    
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
-    
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
-
       const fetchData1 = async () => {
         try {
           const response = await axios.get(`${base_url2}/creditMemo/creditMemoList/${props.distributorId}`,{
@@ -96,21 +63,24 @@ function AccountCreditMemos(props) {
   }; 
 
 // Creditmemo
+if (loading1) {
+  return <div><BundleLoader/></div>;
+}
   return (
     <>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[95%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end  z-10">
             <div className="text-[#00A2E8] text-sm  w-[14.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/>{translatedMenuItems[1]} </div>
+            <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/>{props.translatedMenuItems[63]} </div>
             <div className=" w-[16.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <ReceiptIcon className="!text-icon text-[#b91372]"/>{translatedMenuItems[2]}</div>         
+            <ReceiptIcon className="!text-icon text-[#b91372]"/>{props.translatedMenuItems[64]}</div>         
             <div className="w-[18.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {/* Date */}
-            <DateRangeIcon className='!text-icon'  /> {translatedMenuItems[5]}</div>
+            <DateRangeIcon className='!text-icon'  /> {props.translatedMenuItems[65]}</div>
             <div className="w-[19.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {/* Amount */}
-            <CurrencyExchangeIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[6]}</div>         
+            <CurrencyExchangeIcon className="!text-icon text-[#b91372]"/> {props.translatedMenuItems[66]}</div>         
             <div className="w-[9.01rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <DateRangeIcon className='!text-icon '  />  {translatedMenuItems[9]}</div>   {/* Created */}
+            <DateRangeIcon className='!text-icon '  />  {props.translatedMenuItems[26]}</div>   {/* Created */}
           </div>
           <div className=" overflow-scroll h-[73vh]">
             {data1.map((item) => {

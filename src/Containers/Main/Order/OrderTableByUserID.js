@@ -728,6 +728,7 @@ const viewAnDownloadPdf= async (item) => {
         addPaidButtonModal={props.addPaidButtonModal}
         handlePaidModal={props.handlePaidModal}
         particularRowData={particularRowData}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AccountOrderDetailsModal
        selectedLanguage={props.selectedLanguage}

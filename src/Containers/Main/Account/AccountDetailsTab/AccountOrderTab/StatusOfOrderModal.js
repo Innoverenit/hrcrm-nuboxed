@@ -30,6 +30,7 @@ class StatusOfOrderModal extends Component {
                         <StatusOfOrder particularRowData={particularRowData}
                         selectedLanguage={this.props.selectedLanguage}
                         translateText={this.props.translateText}
+                        translatedMenuItems={this.props.translatedMenuItems}
                          />
                     </Suspense>
                 </StyledDrawer>
