@@ -43,7 +43,7 @@ class SupplierDetailsTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
-      translatedMenuItems: [],
+     
     };
   }
 
@@ -52,32 +52,10 @@ class SupplierDetailsTab extends Component {
   componentDidMount() {
     this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
     this.props.getContactCount(this.props.supplier.supplierId,"supplier")
-    this.fetchMenuTranslations();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
+
   }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-       
-       "831", // "Purchase Order",
-       "880",// "Inventory",
-       "1235",// "Materials",
-       "73",  // "Contact",
-       "138",  // "Document",
-       "1165", // "Activity" 
-            ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  }; 
   render() {
     const { activeKey } = this.state
     const renderTabContent = (key) => {
@@ -135,7 +113,7 @@ class SupplierDetailsTab extends Component {
                 <div className="flex items-center">
                 <Shop2Icon className="!text-icon text-[#96bdc6] mr-1 "/>
                    <div className="max-xl:text-[0.65rem] !text-tab font-poppins text-sm">
-                   {this.state.translatedMenuItems[0]}
+                   {this.props.translatedMenuItems[7]}
                    {/* Purchase Order */}
                    </div>
                   
@@ -166,7 +144,7 @@ class SupplierDetailsTab extends Component {
                 <>
                 <div className="flex items-center">
                   <InventoryIcon className="!text-icon mr-1 text-[#ef8354]"/>
-                   <div className="max-xl:text-[0.65rem] !text-tab  mr-1 font-poppins text-sm">{this.state.translatedMenuItems[1]}</div>
+                   <div className="max-xl:text-[0.65rem] !text-tab  mr-1 font-poppins text-sm">{this.props.translatedMenuItems[8]}</div>
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
@@ -197,7 +175,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <CategoryIcon className="!text-icon text-[#42bfdd]"/>
-                  <span className="max-xl:text-[0.65rem] !text-tab font-poppins text-sm ml-1" >{this.state.translatedMenuItems[2]}</span>
+                  <span className="max-xl:text-[0.65rem] !text-tab font-poppins text-sm ml-1" >{this.props.translatedMenuItems[9]}</span>
                 </>
               }
               key="3"
@@ -215,7 +193,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <ContactsIcon className="!text-icon text-[#96bdc6] "/>
-                  <span className="max-xl:text-[0.65rem] ml-1 font-poppins !text-tab text-sm">{this.state.translatedMenuItems[3]}</span>
+                  <span className="max-xl:text-[0.65rem] ml-1 font-poppins !text-tab text-sm">{this.props.translatedMenuItems[10]}</span>
 
                   {activeKey === "4" && (
                     <>
@@ -247,7 +225,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file text-[#96bdc6]"></i>
-                    <span className="max-xl:text-[0.65rem] ml-1 !text-tab font-poppins text-sm ">{this.state.translatedMenuItems[4]}</span>
+                    <span className="max-xl:text-[0.65rem] ml-1 !text-tab font-poppins text-sm ">{this.props.translatedMenuItems[11]}</span>
                   </span>
                   <Badge
                                     size="small"
@@ -283,7 +261,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                   <HourglassFullIcon className="text-blue-500  !text-icon" />
-                    <span className="max-xl:text-[0.65rem] !text-tab ml-1 font-poppins text-sm ">{this.state.translatedMenuItems[5]}</span>
+                    <span className="max-xl:text-[0.65rem] !text-tab ml-1 font-poppins text-sm ">{this.props.translatedMenuItems[12]}</span>
                   </span>
                   {activeKey === "6" && (
                     <>
@@ -353,8 +331,7 @@ class SupplierDetailsTab extends Component {
 <AddSupplierExcleModal
           // supplier={this.props.supplier}
           supplierExcleUploadModal={this.props.supplierExcleUploadModal}
-          handleSupplierExcleUploadModal={this.props.handleSupplierExcleUploadModal
-          }
+          handleSupplierExcleUploadModal={this.props.handleSupplierExcleUploadModal}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         />

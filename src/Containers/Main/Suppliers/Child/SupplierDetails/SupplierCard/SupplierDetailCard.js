@@ -15,7 +15,8 @@ class SupplierDetailCard extends Component {
                             <SupplierDetailView supplier={supplier}
                                 toggleViewType={toggleViewType}
                                 translateText={this.props.translateText}
-                                selectedLanguage={this.props.selectedLanguage}/></Suspense>
+                                selectedLanguage={this.props.selectedLanguage}
+                                translatedMenuItems={this.props.translatedMenuItems}/></Suspense>
                         ) : (
                             <Suspense fallback={<BundleLoader />}>
                                 <SupplierViewDataEdit

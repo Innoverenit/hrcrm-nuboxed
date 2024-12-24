@@ -52,7 +52,14 @@ const[storedApiKey,setstoredApiKey]=useState([{apikeyId:"api1",apikeyName:"apiOn
 const[ErrorFetchApiKey,setErrorFetchApiKey]=useState(null);
 const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState(""); 
+const [datadialcode, setdatadialcode] = useState(false);
 
+ const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
 
   useEffect(() => {
     setPage(page + 1);
@@ -371,6 +378,7 @@ const handleToggleConfirm = (shipperId) => {
                                 value={editingValue}
                                 onChange={handleChangeRowSelectItem} 
                                 onBlur={() => handleEditRowField(null, null, null)}
+                                onFocus={handleSelectDialcode}
                                 autoFocus
                               >
                               {props.dialcodeList.map((country) => (

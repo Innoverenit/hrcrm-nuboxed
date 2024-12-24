@@ -26,7 +26,6 @@ import { handleSupplierContactModal } from "../../../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
-import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 import ErpNote from "../../../ErpNote/ErpNote";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
@@ -56,37 +55,38 @@ class ShipperDetailsTab extends Component {
       value: 1,
       dailyCustomInd: 1,
       showDel: false,
-      translatedMenuItems: [],
+      // translatedMenuItems: [],
     };
   }
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
        
-       "1165",//Activity 0
-       "1377",// "ship id" 1
-       "316",// "Notes" 2
-       "138",  // Document 3
-       "73",  // Contact 4
-       "1219",// Cost 5
-       "104",//Create 6
-            ];
+  //      "1165",//Activity 0
+  //      "1377",// "ship id" 1
+  //      "316",// "Notes" 2
+  //      "138",  // Document 3
+  //      "73",  // Contact 4
+  //      "1219",// Cost 5
+  //      "104",//Create 6
+  //           ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  }; 
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // }; 
+  
   handleGenerateOrderInShipper = (data) => {
     console.log({
       shipperId: this.props.shipperShipperId,
@@ -155,6 +155,7 @@ class ShipperDetailsTab extends Component {
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
+                  translatedMenuItems={this.props.translatedMenuItems}
                 />
               </div>;
         case "2":
@@ -162,6 +163,7 @@ class ShipperDetailsTab extends Component {
           shipperId={this.props.shipper.shipperId}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         /></div>;
           case "3":
               return  <div>  <ErpNote
@@ -169,6 +171,7 @@ class ShipperDetailsTab extends Component {
               id={this.props.shipper.shipperId}
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
              /> </div>;
               case "4":
                   return  <div> 
@@ -176,20 +179,23 @@ class ShipperDetailsTab extends Component {
                       uniqueId={this.props.shipper.shipperId}
                       type={"shipper"}
                       translateText={this.props.translateText}
-                      selectedLanguage={this.props.selectedLanguage}/>
+                      selectedLanguage={this.props.selectedLanguage}
+                      translatedMenuItems={this.props.translatedMenuItems}/>
                       </div>;
                    case "5":
                       return  <div> <AccountContactTable
                       uniqueId={this.props.shipper.shipperId} 
                        type={"shipper"}
                        selectedLanguage={this.props.selectedLanguage}
-                       translateText={this.props.translateText}/></div>;
+                       translateText={this.props.translateText}
+                       translatedMenuItems={this.props.translatedMenuItems}/></div>;
                       case "6":
                       return  <div> 
                         <ShipperCostTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
+                  translatedMenuItems={this.props.translatedMenuItems}
                 /> 
                           </div>;
                   
@@ -212,16 +218,16 @@ class ShipperDetailsTab extends Component {
                   <span className="!text-tab">
                   <HourglassFullIcon className="text-blue-500   !text-tab" />&nbsp;
                   {/* Activity */}
-                    {this.state.translatedMenuItems[0]}
+                    {this.props.translatedMenuItems[0]}
 
                   </span>
                   {activeKey === "1" && (
                     <>
-                <Tooltip title= {this.state.translatedMenuItems[6]}                                        >
+                <Tooltip title= {this.props.translatedMenuItems[6]}                                        >
                                             <AddBoxIcon className=" !text-icon  ml-1 items-center
  text-[#6f0080ad]"
                                                
-                                                tooltipTitle= {this.state.translatedMenuItems[6]}
+                                                tooltipTitle= {this.props.translatedMenuItems[6]}
                                                 onClick={() => {
                                                     this.props.handleShipperActivityModal(true);
                                                 }}
@@ -250,7 +256,7 @@ class ShipperDetailsTab extends Component {
                     <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-1">          
                     {/* ship id */}
 </RocketLaunchIcon>
-{this.state.translatedMenuItems[1]} 
+{this.props.translatedMenuItems[1]} 
                   </span>
                   {activeKey === "2" && (
                     <>
@@ -275,7 +281,7 @@ class ShipperDetailsTab extends Component {
                 <>
               <span className="!text-tab">
                     <i  className=" fa fa-sticky-note mr-1 !text-tab text-[#b6465f] " aria-hidden="true"></i>
-                  {this.state.translatedMenuItems[2]}
+                  {this.props.translatedMenuItems[2]}
                     {/* notes */}
                   </span>
                 </>
@@ -284,37 +290,17 @@ class ShipperDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <ErpNote
-                         type="shipper"
-                         id={this.props.shipper.shipperId}
-                         translateText={this.props.translateText}
-                         selectedLanguage={this.props.selectedLanguage}
-                        /> */}
+              
               </Suspense>
             </TabPane>
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <i class="fas fa-history"></i>
-                    &nbsp; History
-                  </span>
-                </>
-              }
-              key="4"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <ShipperHistoryTable />
-              </Suspense>
-            </TabPane> */}
+           
             <TabPane
               tab={
                 <>
                   <span className="!text-tab">
                     <i class="far fa-file text-[#41ead4]"></i>
                     &nbsp;
-                    {this.state.translatedMenuItems[3]}
+                    {this.props.translatedMenuItems[3]}
                     {/* Document */}
                   </span>
                   <Badge
@@ -355,7 +341,7 @@ class ShipperDetailsTab extends Component {
                   <span className="!text-tab">
                   <ContactsIcon className="!text-icon text-[#96bdc6] " />
                     &nbsp;
-                    {this.state.translatedMenuItems[4]}
+                    {this.props.translatedMenuItems[4]}
                     {/* Contact */}
 
                   </span>
@@ -393,7 +379,7 @@ class ShipperDetailsTab extends Component {
                   <span className="!text-tab">
                   <RequestQuoteIcon className=" !text-icon "/>
                     &nbsp;
-                    {this.state.translatedMenuItems[5]}
+                    {this.props.translatedMenuItems[5]}
                     {/* Cost */}
                   </span>
                   {activeKey === "6" && (
@@ -431,34 +417,7 @@ class ShipperDetailsTab extends Component {
               </Suspense>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
-          {/* <LinkShipperOrderConfigureModal
-            addLinkShipperOrderConfigureModal={
-              this.props.addLinkShipperOrderConfigureModal
-            }
-            handleLinkShipperOrderConfigureModal={
-              this.props.handleLinkShipperOrderConfigureModal
-            }
-          />
-          <ShipperSubscriptionConfigureModal
-            onChange={this.onChange}
-            value={this.state.value}
-            onChangeCustom={this.onChangeCustom}
-            dailyCustomInd={this.state.dailyCustomInd}
-            addShipperSubscriptionConfigureModal={
-              this.props.addShipperSubscriptionConfigureModal
-            }
-            handleShipperSubscriptionConfigureModal={
-              this.props.handleShipperSubscriptionConfigureModal
-            }
-            handleGenerateOrderInShipper={this.handleGenerateOrderInShipper}
-          />
-        */}
-          {/* <AddShipperDocumentModal
-            shipperDocumentUploadModal={this.props.shipperDocumentUploadModal}
-            handleShipperDocumentUploadModal={
-              this.props.handleShipperDocumentUploadModal
-            }
-          />  */}
+        
           <AddSupplierDocumentModal
             translateText={this.props.translateText}
             uniqueId={this.props.shipper.shipperId}

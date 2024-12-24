@@ -34,11 +34,20 @@ function AllSuppliersCardList(props) {
   const [page, setPage] = useState(0);
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
+  const [datadialcode, setdatadialcode] = useState(false);
+  
+  const handleSelectDialcode = () => {
+      if (!datadialcode) {
+        props.getAllDialCodeList();
+        setdatadialcode(true);
+      }
+    };
+  
 
   useEffect(() => {
     setPage(page + 1);
     props.getAllSuppliersList(props.orgId,page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
   }, []);
 
   const handleRowData = (data) => {
@@ -248,6 +257,7 @@ return(
   style={{ width: "8.2rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (

@@ -12,9 +12,48 @@ const  SupplierDetailsHeader =lazy(()=>import("../SupplierDetails/SupplierDetail
 const SupplierDetailsLeft =lazy(()=>import("./SupplierDetailsLeft"));
 const SupplierDetailsRight =lazy(()=>import("./SupplierDetailTab/SupplierDetailsRight"));
 class SupplierDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
    this.props.getSupplierBySupplierId(this.props.match.params.supplierId);
+   this.fetchMenuTranslations();
+   }
+   componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
   }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "875",
+        "140",
+        "188",  // "City",
+        "1261",   // "State",
+       "1236",   // "Pincode",
+       "1109",  // "Country",
+       "186",   // "Street" 
+       "831", // "Purchase Order",
+       "880",// "Inventory",
+       "1235",// "Materials",
+       "73",  // "Contact",
+       "138",  // "Document",
+       "1165", // "Activity" 
+      
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
+
   render() {
     const { supplier, fetchingSupplierDetailsBySupplierId } = this.props;
     return (
@@ -29,22 +68,26 @@ class SupplierDetails extends Component {
         <div className="flex flex-col h-[4rem] w-[27%] box-border border-2 border-[#bfbdbd]  ">
           <SupplierOverViewCard  supplier={supplier}
             translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}/>
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.state.translatedMenuItems}/>
             </div>
              <div className="flex flex-col h-[4rem] w-[20%] box-border border-2 border-[#bfbdbd] ml-gap">
           <SupplierDetailCard supplier={supplier}
             translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage} />
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.state.translatedMenuItems} />
             </div>
             <div className="flex h-[4rem] w-[30%] box-border border-2 border-[#bfbdbd] overflow-x-auto ml-gap">
           <SupplierOverViewDetailCard supplier={supplier}
             translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage} />
+            selectedLanguage={this.props.selectedLanguage} 
+            translatedMenuItems={this.state.translatedMenuItems}/>
             </div>
             <div className="flex h-[4rem] w-[30%] box-border border-2 border-[#bfbdbd] overflow-x-auto ml-gap">
             <SupplierOverViewDetailCard2 supplier={supplier}
             translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage} />
+            selectedLanguage={this.props.selectedLanguage} 
+            translatedMenuItems={this.state.translatedMenuItems}/>
               </div>
         </Suspense>
         </div>
@@ -61,7 +104,8 @@ class SupplierDetails extends Component {
                   <div class="w-[100%] max-sm:w-wk">
                     <SupplierDetailsRight supplier={supplier} 
                       translateText={this.props.translateText}
-                      selectedLanguage={this.props.selectedLanguage}/>
+                      selectedLanguage={this.props.selectedLanguage}
+                      translatedMenuItems={this.state.translatedMenuItems}/>
                   </div>
                 </div>
               </Suspense>
