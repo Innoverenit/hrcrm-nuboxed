@@ -367,6 +367,7 @@ const StatusOfOrder = (props) => {
                     particularRowData={props.orderStatus}
                     handlePaymentHistory={props.handlePaymentHistory}
                     showPaymentHistoryModal={props.showPaymentHistoryModal}
+                    translatedMenuItems={ props.translatedMenuItems}
                 />
                 <PaidButtonModal
                     addPaidButtonModal={props.addPaidButtonModal}

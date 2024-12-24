@@ -25,38 +25,38 @@ const DistributorSchema = Yup.object().shape({
 });
 function DistributorPaidForm(props) {
 
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-        "929",  // Amount 0
-        "241",   // "currency" 1
-        "74",  // Date 2
-        "1422",  // Reason 3
-        "926",   // Transaction ID 4
-        "1169",   // Invoice Id 5
-        "86",   // "Mode" 6
-        "138",   // "Document Id" 7 
-        "154",   // "Submit" 8
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
+  //       "929",  // Amount 0
+  //       "241",   // "currency" 1
+  //       "74",  // Date 2
+  //       "1422",  // Reason 3
+  //       "926",   // Transaction ID 4
+  //       "1169",   // Invoice Id 5
+  //       "86",   // "Mode" 6
+  //       "138",   // "Document Id" 7 
+  //       "154",   // "Submit" 8
       
-        ];
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
 
 
   const currencyOption = props.currencies.map((item) => {
@@ -153,7 +153,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               <div class=" h-full w-wk max-sm:w-wk">
                 <div class="flex justify-between">
                   <div class="w-[40%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[0]}</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[66]}</div>
                     <Field
                       name="entryAmount"
                       isRequired
@@ -166,7 +166,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   </div>
                 
                   <div class="w-[40%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[1]}</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[116]}</div>
                     <Field
                       name="orderCurrencyId"
                       isRequired
@@ -179,7 +179,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 </div>
                 <div class="flex justify-between">
                 <div class="w-[40%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[2]}</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[65]}</div>
                     <Field
                       isRequired
                       name="date"
@@ -194,7 +194,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
 
                   </div>
                   <div class="w-[40%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[64]} ID</div>
                     <Field
                       name="transactionNumber"
                       isColumn
@@ -209,7 +209,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="flex justify-between">
                   
                   <div class="w-[42%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[5]} ID</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[10]} ID</div>
                     <Field
                       name="invoiceId"
                       // label="Invoice Id"
@@ -222,7 +222,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
                   </div>
                   <div class="w-[42%]">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[6]}</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[67]}</div>
                     <Field
                       isRequired
                       name="paymentMode"
@@ -238,7 +238,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 </div>
                 <div class="flex justify-between ">
                 <div class="w-[47.5%]">
-                <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
+                <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[117]}</div>
                   <Field
                     name="remarks"
                     component={TextareaComponent}
@@ -251,7 +251,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 </div>
                 <div class=" ">
                   <div class="mt-1 justify-end">
-                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
+                  <div class="text-xs font-poppins font-bold">{props.translatedMenuItems[6]}</div>
                   <Field
                     name="docId"
                     isRequired
@@ -272,7 +272,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 htmlType="submit"
                 loading={props.addingPaidByDistributorId}
               >
-              {translatedMenuItems[8]} 
+              {props.translatedMenuItems[84]} 
               </Button>
             </div>
           </Form>

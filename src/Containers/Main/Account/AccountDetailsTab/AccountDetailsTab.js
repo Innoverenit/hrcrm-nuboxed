@@ -198,6 +198,12 @@ function AccountDetailsTab(props) {
                           "1413", //  Order Dispatch 113
                           "1097",//  Dispatched By 114
                           "1414", //  'Customer Feedback' 115
+                          "241",   // "currency" 116
+                          "1422",  // Reason 117
+                          "1424", // Entry   118
+                          "116", //  Approved 119
+                          "1259", //  Do you want to delete? 120
+                          "1423", //  Refund 121
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
