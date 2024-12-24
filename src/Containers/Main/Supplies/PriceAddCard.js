@@ -47,13 +47,13 @@ const [inputValue7, setInputValue7] = useState(props.priceFactorData?.p7 || "");
 const [inputValue8, setInputValue8] = useState(props.priceFactorData?.p8 || "");
 const [sMarkUp, setsMarkUp] = useState(props.priceFactorData?.markUp || "");
 const [isEditingMarkUp, setIsEditingMarkUp] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+  const [ctouched, setcTouched] = useState(false);
 useEffect(() => {
   setreduceData(props.priceFactorData);
 }, [props.priceFactorData]);
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
-    props.getSaleCurrency()
-    props.getCategory(props.orgId); 
     props.getPriceFactor(props.particularDiscountData.suppliesId)
     props.clearPriceFactor()
   }, []);
@@ -351,6 +351,18 @@ suppliesId:props.particularDiscountData.suppliesId
    sendPutRequest(updatedName);
    setIsEditingMarkUp(false); // Close the input box after updating
   };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getSaleCurrency()
+      setDTouched(true);
+    }
+  };
+  const handleSelectCaregoryFocus = () => {
+    if (!ctouched) {
+      props.getCategory(props.orgId); 
+      setcTouched(true);
+    }
+  };
   console.log(inputValue)
   if (props.fetchingPriceFactor) {
     return <div><BundleLoader/></div>;
@@ -374,6 +386,7 @@ suppliesId:props.particularDiscountData.suppliesId
                 <Select                   
                         value={row.currency_id}
                         onChange={(value) => handleChange(index, 'currency_id',value)}
+                        onFocus={handleSelectDepartmentFocus}
                       >
                         {props.saleCurrencies.map((s) => (
                           <Option key={s.currency_id} value={s.currency_id}>
@@ -410,6 +423,7 @@ suppliesId:props.particularDiscountData.suppliesId
                       
                       value={row.catagoryId}
                       onChange={(value) => handleChange(index, 'catagoryId',value)}
+                      onFocus={handleSelectCaregoryFocus}
                       >
                         {props.categoryListData.map((s) => (
                           <Option key={s.categoryId} value={s.categoryId}>

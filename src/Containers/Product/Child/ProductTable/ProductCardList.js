@@ -38,6 +38,7 @@ import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ProductPublishToggle = lazy(() => import("./ProductPublishToggle"));
 const FeatureProductToggle = lazy(() => import("./FeatureProductToggle"));
@@ -270,7 +271,7 @@ useEffect(() => {
             dataLength={data.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+            loader={fetchingProducts ? <div><BundleLoader/></div> : null}
             height={"85vh"}
             style={{scrollbarWidth:"thin"}}
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -369,12 +370,12 @@ useEffect(() => {
 <WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
 
 </div>
-<QrCodeIcon className="!text-icon cursor-pointer"
+{/* <QrCodeIcon className="!text-icon cursor-pointer"
                           onClick={() => {
                             setbarCodeOpen(true);
                             handleParticularRowData(item);
                           }}
-                          />
+                          /> */}
 <div className=" flex  w-[3.9rem] items-center max-xl:w-[6.9rem] h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 {item.warrantyInd ? 
 <> 

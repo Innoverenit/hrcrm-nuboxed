@@ -26,11 +26,12 @@ function PriceDiscountCard(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+    const [dtouched, setDTouched] = useState(false);
 
   useEffect(() => {
     props.getMaterialDiscount(props.particularDiscountData.suppliesId,"B2B");
    // props.getInvestorCurrency()
-   props.getCategory(props.orgId); 
+ 
   }, []);
 
   useEffect(() => {
@@ -176,6 +177,13 @@ function PriceDiscountCard(props) {
     setEditsuppliesId(null);
   };
 
+    const handleSelectDepartmentFocus = () => {
+      if (!dtouched) {
+        props.getCategory(props.orgId); 
+        setDTouched(true);
+      }
+    };
+
   return (
     <div>
             <div class="flex mb-8 flex-start ">
@@ -250,6 +258,7 @@ function PriceDiscountCard(props) {
                       
                       value={row.catagoryId}
                       onChange={(value) => handleChange(index, 'catagoryId',value)}
+                      onFocus={handleSelectDepartmentFocus}
                       >
                         {props.categoryListData.map((s) => (
                           <Option key={s.categoryId} value={s.categoryId}>

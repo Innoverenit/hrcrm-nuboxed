@@ -6,25 +6,27 @@ const ProductActionRight=lazy(()=>import("./ProductActionRight"));
 class ProductHeader extends Component {
   render() {
     const { viewType, setProductViewType, handleConfigureModal } = this.props;
+    console.log(this.props.translatedMenuItems)
     return (
       <div>
         <ActionHeader
           leftComponent={
-            <Suspense fallback={<BundleLoader />}>
+            <Suspense fallback={"Loading..."}>
             <ProductActionLeft
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
               viewType={viewType}
               setProductViewType={setProductViewType}
-
+              translatedMenuItems={this.props.translatedMenuItems}
             /></Suspense>
           }
           rightComponent={
-            <Suspense fallback={<BundleLoader />}>
+            <Suspense fallback={"Loading..."}>
           <ProductActionRight 
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
           handleConfigureModal={handleConfigureModal}
+          translatedMenuItems={this.props.translatedMenuItems}
           /></Suspense>
         }
         />

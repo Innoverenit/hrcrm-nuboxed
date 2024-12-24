@@ -12,10 +12,11 @@ class SuppliesHeader extends Component {
             <div>
                 <ActionHeader
                     leftComponent={
-                        <Suspense fallback={<BundleLoader />}>
+                        <Suspense fallback={"Loading..."}>
                         <SuppliesActionLeft
                         translateText={this.props.translateText}
                         selectedLanguage={this.props.selectedLanguage}
+                        translatedMenuItems={this.props.translatedMenuItems}
                             viewType={viewType}
                             setSuppliesViewType={setSuppliesViewType} 
                         /></Suspense>
@@ -24,6 +25,7 @@ class SuppliesHeader extends Component {
                         <Suspense >
                             <SuppliesActionRight 
                         viewType={viewType}
+                        translatedMenuItems={this.props.translatedMenuItems}
                         translateText={this.props.translateText}
                      selectedLanguage={this.props.selectedLanguage}
                     
