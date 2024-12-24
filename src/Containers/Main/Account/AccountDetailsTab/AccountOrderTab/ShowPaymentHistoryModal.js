@@ -24,7 +24,10 @@ class ShowPaymentHistoryModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                        <OrderPaymentTable 
+                        particularRowData={this.props.particularRowData} 
+                        translatedMenuItems={this.props.translatedMenuItems}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </>
