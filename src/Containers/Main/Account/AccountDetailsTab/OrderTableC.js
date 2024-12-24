@@ -207,6 +207,7 @@ function OrderTableC(props) {
         particularRowData={particularRowData}
         showStatusDrwr={props.showStatusDrwr}
         handleStatuShowDrawer={props.handleStatuShowDrawer}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </div>
   );

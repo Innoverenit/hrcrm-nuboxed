@@ -29,8 +29,6 @@ class AccountOpportunityStepper extends Component {
         this.handleComplete();
     };
     next = () => {
-        // const current = this.state.current + 1;
-        // this.setState({ current });
         const { current } = this.state;
         const stepsLength = this.getSteps().length;
         if (current < stepsLength - 1) {
@@ -39,8 +37,6 @@ class AccountOpportunityStepper extends Component {
     };
 
     prev = () => {
-        // const current = this.state.current - 1;
-        // this.setState({ current });
         const { current } = this.state;
         if (current > 0) {
             this.setState({ current: current - 1 });  
@@ -62,6 +58,7 @@ class AccountOpportunityStepper extends Component {
                         currentOrderType={currentOrderType}
                         type={type}
                         inspectionRequiredInd={inspectionRequiredInd}
+                        translatedMenuItems={this.props.translatedMenuItems}
                     />
                 ),
             },
@@ -75,6 +72,7 @@ class AccountOpportunityStepper extends Component {
                         inspectionRequiredInd={this.props.inspectionRequiredInd} 
                 handleAccountOpportunityModal={this.props.handleAccountOpportunityModal}
                 setIsModalOpen={this.props.setIsModalOpen}
+                translatedMenuItems={this.props.translatedMenuItems}
                         />
                     ) : currentOrderType === "Commerce" ? (
                         <AccountProcureSecondStep 
@@ -83,12 +81,14 @@ class AccountOpportunityStepper extends Component {
                         selectedLanguage={this.props.selectedLanguage}
                         translateText={this.props.translateText}
                         setIsModalOpen={this.props.setIsModalOpen}
+                        translatedMenuItems={this.props.translatedMenuItems}
                         />
                     ) : (
                         <AccountOrderSecondStep 
                         distributorId={distributorId} 
                         inspectionRequiredInd={this.props.inspectionRequiredInd} 
                 setIsModalOpen={this.props.setIsModalOpen}
+                translatedMenuItems={this.props.translatedMenuItems}
                         />
                     ),
             },
@@ -99,48 +99,6 @@ class AccountOpportunityStepper extends Component {
     render() {
         const { current } = this.state; 
         const steps = this.getSteps();
-
-        // const steps = [
-        //     {
-        //         title: "Order",
-        //         icon: <GroupsIcon />,
-        //         content: <AccountOpportunityForm 
-        //         distributorId={this.props.distributorId} 
-        //         inspectionRequiredInd={this.props.inspectionRequiredInd}
-        //         currentOrderType={this.props.currentOrderType}
-        //         type={this.props.type}
-        //            current={props.current} 
-        //  setCurrent={props.setCurrent} 
-        //         />,
-        //     },
-        //     {
-        //         title: "Phone details",
-        //         icon: <CallIcon
-        //             style={{ color: "blue" }}
-        //         />,
-        //         content:this.props.currentOrderType==="Quotation" ? 
-        //         <AccountQuotationSecondStep 
-        //         distributorId={this.props.distributorId} 
-        //         inspectionRequiredInd={this.props.inspectionRequiredInd} 
-        //         handleAccountOpportunityModal={this.props.handleAccountOpportunityModal}
-        //         setIsModalOpen={this.props.setIsModalOpen}
-        //         /> : 
-        //         this.props.currentOrderType==="Commerce" ? 
-        //         <AccountProcureSecondStep 
-        //         distributorId={this.props.distributorId} 
-        //         inspectionRequiredInd={this.props.inspectionRequiredInd}
-        //         selectedLanguage={this.props.selectedLanguage}
-        //         translateText={this.props.translateText}
-        //         setIsModalOpen={this.props.setIsModalOpen}
-        //         />:<AccountOrderSecondStep 
-        //         distributorId={this.props.distributorId} 
-        //         inspectionRequiredInd={this.props.inspectionRequiredInd} 
-        //         setIsModalOpen={this.props.setIsModalOpen}
-        //         />,
-        //     },
-        // ];
-        // const { current } = this.state;
-       
         return (
             <>
                 <StyledSteps className="w-[100%]"current={current}>
@@ -163,10 +121,9 @@ class AccountOpportunityStepper extends Component {
                                 {current > 1 ? null : (
                                     <>
                                  
-                                    {this.props.currentOrderType==="Quotation" && this.props.quotationId  && 
+                                    {/* {this.props.currentOrderType==="Quotation" && this.props.quotationId  && 
                                         <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
-                                            // type="primary"
                                             onClick={() => this.next()}
                                         >
                                            Proceed
@@ -187,9 +144,14 @@ class AccountOpportunityStepper extends Component {
                                             onClick={() => this.next()}
                                         >
                                            Proceed
-                                        </Button>} 
+                                        </Button>}  */}
 
-
+<Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                            className=" w-16 absolute top-3/4 right-0"
+                                            onClick={() => this.next()}
+                                        >
+                                           {/* Proceed */} {this.props.translatedMenuItems[142]}
+                                        </Button>
                                     </>
                                 )}
                             </>
@@ -201,7 +163,7 @@ class AccountOpportunityStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}
                             >
-                              Previous
+                              {/* Previous */} {this.props.translatedMenuItems[143]}
                             </Button>
                             
  {this.props.currentOrderType==="Commerce" &&
