@@ -53,64 +53,61 @@ const { Option } = Select;
 
 const CompleteOrderTable = (props) => {
     const [page, setPage] = useState(0);
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true); 
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-             "106",   // "Urgent",0
-             "660",    // "Order",1
-             "280",     // "LOB",2
-                "77",    // "Owner",3
-                "73",   // "Contact",4
-                "770",  // "Quoted",5
-                "771",   // "Final",6
-                "1332",   // "Revised",7
-                "1085",  // "Received",8
-                "676",   // "Supervisor",9
-                "677",  // "Lead",10
-                "661",  // "Repair",11           
-                "108",   // "Normal",12
-                "679",   // "Created "13
-                "100",   //     "New"14
-                "1377",  // Ship15
-                "1078",      // "Save"16
-                "1079",      // "Cancel"17
-                "1339",      // "Update Revised Price"18
-                "1381",     // Tag Supervisor19
-                "1383",     // "Select Inventory Location"20
-               "1378",       // "Pickup"21
-               "1384",      // "PI List"22
-               "316",      // "Notes"23
-               "142",      // "Status"24
-               "920",      // "Collections"25
-               "1382",       // "Rating"26
-               "1389",      // "Feedback"27
+    // useEffect(() => {
+    //     const fetchMenuTranslations = async () => {
+    //       try {
+    //         setLoading(true); 
+    //         const itemsToTranslate = [
+    //          "106",   // "Urgent",0
+    //          "660",    // "Order",1
+    //          "280",     // "LOB",2
+    //             "77",    // "Owner",3
+    //             "73",   // "Contact",4
+    //             "770",  // "Quoted",5
+    //             "771",   // "Final",6
+    //             "1332",   // "Revised",7
+    //             "1085",  // "Received",8
+    //             "676",   // "Supervisor",9
+    //             "677",  // "Lead",10
+    //             "661",  // "Repair",11           
+    //             "108",   // "Normal",12
+    //             "679",   // "Created "13
+    //             "100",   //     "New"14
+    //             "1377",  // Ship15
+    //             "1078",      // "Save"16
+    //             "1079",      // "Cancel"17
+    //             "1339",      // "Update Revised Price"18
+    //             "1381",     // Tag Supervisor19
+    //             "1383",     // "Select Inventory Location"20
+    //            "1378",       // "Pickup"21
+    //            "1384",      // "PI List"22
+    //            "316",      // "Notes"23
+    //            "142",      // "Status"24
+    //            "920",      // "Collections"25
+    //            "1382",       // "Rating"26
+    //            "1389",      // "Feedback"27
              
-          ];
+    //       ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+    //         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+    //         setTranslatedMenuItems(translations);
+    //         setLoading(false);
+    //       } catch (error) {
+    //         setLoading(false);
+    //         console.error('Error translating menu items:', error);
+    //       }
+    //     };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+    //     fetchMenuTranslations();
+    //   }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
-        // props.getLocationList(props.orgId);
         props.getHighCompleteOrders(props.distributorId,"repair", page, "High");
         props.getMediumCompleteOrders(props.distributorId,"repair", page, "Medium");
         props.getLowCompleteOrders(props.distributorId,"repair", page, "Low")
-        
-        // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
     }, [])
 
     const [print, setprint] = useState(false);
@@ -197,43 +194,43 @@ const CompleteOrderTable = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins  z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]}</div>
+                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{props.translatedMenuItems[33]}</div>
                         <div className=" md:w-[11.41rem] ml-2">
-                        {translatedMenuItems[1]} 
+                        {props.translatedMenuItems[19]} 
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[2]}  {/* LOB */}
+                        {props.translatedMenuItems[39]} {/* LOB */}
                         </div>
                        
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}  
+                        {props.translatedMenuItems[9]} 
                         </div>
                         <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]} 
+                        {props.translatedMenuItems[41]} 
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}  
+                        {props.translatedMenuItems[42]}
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]} 
+                        {props.translatedMenuItems[43]}    
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]}  
+                        {props.translatedMenuItems[44]} 
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]} 
+                        {props.translatedMenuItems[45]}  
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  
+                        {props.translatedMenuItems[46]}
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]} 
+                        {props.translatedMenuItems[24]}
                         </div>
                     </div>
 
@@ -295,7 +292,7 @@ const CompleteOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] font-bold">
-                                                                   {translatedMenuItems[14]} 
+                                                                   {props.translatedMenuItems[27]}
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -385,14 +382,14 @@ const CompleteOrderTable = (props) => {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                        {translatedMenuItems[16]}
+                                                                        {props.translatedMenuItems[48]}
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[17]}
+                                                                    {props.translatedMenuItems[49]} 
                                                                     </Button>
                                                                 </div>
                                                             </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={translatedMenuItems[18]}>
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={props.translatedMenuItems[50]}>
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
                                                                     handleUpdateRevisePrice()
@@ -426,7 +423,7 @@ const CompleteOrderTable = (props) => {
                                                 <div class="flex justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[23]}>
+                                                            <Tooltip title={props.translatedMenuItems[5]}>
                                                                 <NoteAltIcon
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -439,7 +436,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[24]}>
+                                                            <Tooltip title={props.translatedMenuItems[24]}>
                                                                 <EventRepeatIcon
 
                                                                     className="!text-icon cursor-pointer"
@@ -455,7 +452,7 @@ const CompleteOrderTable = (props) => {
                                                  
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[25]}>
+                                                            <Tooltip title={props.translatedMenuItems[55]}>
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer"
                                                                     onClick={() => {
@@ -472,7 +469,7 @@ const CompleteOrderTable = (props) => {
                                                     
                                                   
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[26]}>
+                                                            <Tooltip title={props.translatedMenuItems[56]}>
                                                                 <StarBorderIcon
 
                                                                     className="!text-icon cursor-pointer" />
@@ -480,7 +477,7 @@ const CompleteOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[27]}>
+                                                            <Tooltip title={props.translatedMenuItems[57]}>
                                                                 <FeedbackIcon
                                                                     className="!text-icon cursor-pointer"
                                                                 />
@@ -519,43 +516,43 @@ const CompleteOrderTable = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins z-10">
-                    <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] " >{translatedMenuItems[12]}</div>
+                    <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] " >{props.translatedMenuItems[37]}</div>
                         <div className=" md:w-[11.41rem] ml-2">
-                        {translatedMenuItems[1]}  
+                        {props.translatedMenuItems[19]} 
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[2]}  {/* LOB */}
+                        {props.translatedMenuItems[39]} {/* LOB */}
                         </div>
                        
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}  
+                          {props.translatedMenuItems[9]} 
                         </div>
                         <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]}   
+                        {props.translatedMenuItems[41]} 
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}
+                        {props.translatedMenuItems[42]}
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]}  
+                        {props.translatedMenuItems[43]}  
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]} 
+                        {props.translatedMenuItems[44]} 
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]} 
+                        {props.translatedMenuItems[45]} 
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}
+                        {props.translatedMenuItems[46]}
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                         {translatedMenuItems[11]} 
+                         {props.translatedMenuItems[1]} 
                         </div>
                     </div>
 
@@ -565,7 +562,7 @@ const CompleteOrderTable = (props) => {
                         dataLength={props.lowCompleteOrder.length}
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
-                        loader={props.fetchingLowCompleteOrders ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingLowCompleteOrders ? <div style={{ textAlign: 'center' }}></div> : null}
                         height={"37vh"}
                     >
                         {props.lowCompleteOrder.length ?
@@ -617,7 +614,7 @@ const CompleteOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] font-bold">
-                                                                  {translatedMenuItems[14]}  
+                                                                  {props.translatedMenuItems[27]}  
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -707,14 +704,14 @@ const CompleteOrderTable = (props) => {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                      {translatedMenuItems[16]}
+                                                                    {props.translatedMenuItems[48]}
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[17]}
+                                                                    {props.translatedMenuItems[49]} 
                                                                     </Button>
                                                                 </div>
                                                             </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={translatedMenuItems[18]}>
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={props.translatedMenuItems[50]}>
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
                                                                     handleUpdateRevisePrice()
@@ -748,7 +745,7 @@ const CompleteOrderTable = (props) => {
                                                 <div class="flex justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[23]}>
+                                                            <Tooltip title={props.translatedMenuItems[5]}>
                                                                 <NoteAltIcon
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -761,7 +758,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[24]}>
+                                                            <Tooltip title={props.translatedMenuItems[24]}>
                                                                 <EventRepeatIcon
 
                                                                     className="!text-icon cursor-pointer"
@@ -781,7 +778,7 @@ const CompleteOrderTable = (props) => {
                                                   
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[25]}>
+                                                            <Tooltip title={props.translatedMenuItems[55]}>
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer"
                                                                     onClick={() => {
@@ -795,7 +792,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
                                                       
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[26]}>
+                                                            <Tooltip title={props.translatedMenuItems[56]}>
                                                                 <StarBorderIcon
 
                                                                     className="!text-icon cursor-pointer" />
@@ -803,7 +800,7 @@ const CompleteOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[27]}>
+                                                            <Tooltip title={props.translatedMenuItems[57]}>
                                                                 <FeedbackIcon
                                                                     className="!text-icon cursor-pointer"
                                                                 />
