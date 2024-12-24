@@ -62,7 +62,11 @@ const { Option } = Select;
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(true); 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 08e91bdf6ccb5827bbbcbe688e3c8e816bbc9b0a
     //     const fetchMenuTranslations = async () => {
     //       try {
     //         setLoading(true); 
