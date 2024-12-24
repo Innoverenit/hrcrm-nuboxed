@@ -7,7 +7,7 @@ class ShipperDetailsHeader extends Component {
             <div>
                 <ActionHeader
                     leftComponent={  <Suspense fallback={"Loading..."}><ShipperDetailsHeaderLeft
-                        translatedMenuItems={this.translatedMenuItems}
+                        translatedMenuItems={this.props.translatedMenuItems}
                         selectedLanguage={this.props.selectedLanguage} 
                         /></Suspense>}
                     rightComponent={<></>}

@@ -2,53 +2,53 @@ import React, { Component } from "react";
 
 
 class SupplierDetailView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      translatedMenuItems: [],
-      loading: true
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     this.props.translatedMenuItems: [],
+  //     loading: true
+  //   };
+  // }
 
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
 
   // componentDidUpdate(prevProps) {
   //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
   //     this.fetchMenuTranslations();
   //   }
   // }
-  async fetchMenuTranslations() {
-    try {
-      this.setState({ loading: true });
-      const itemsToTranslate = [
-        "875",
-        "140"
-      ];
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations ,loading: false});
+  // async fetchMenuTranslations() {
+  //   try {
+  //     this.setState({ loading: true });
+  //     const itemsToTranslate = [
+  //       "875",
+  //       "140"
+  //     ];
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ this.props.translatedMenuItems: translations ,loading: false});
      
-    } catch (error) {
-      this.setState({ loading: false });
-      console.error('Error translating menu items:', error);
-    }
-  }
+  //   } catch (error) {
+  //     this.setState({ loading: false });
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // }
 
   render() {
     const {
       supplier: { phoneNo, emailId, shipByName },
       toggleViewType,
     } = this.props;
-    const {loading,translatedMenuItems } = this.state;
+
     return (
       <>
         <ShipperItemRow
-          label={translatedMenuItems[0]}
+          label={this.props.translatedMenuItems[0]}
           
           value={phoneNo} />
         <ShipperItemRow
-          label={translatedMenuItems[1]}
+          label={this.props.translatedMenuItems[1]}
           
           value={emailId} />
 

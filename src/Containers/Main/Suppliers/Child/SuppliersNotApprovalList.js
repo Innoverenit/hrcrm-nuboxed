@@ -35,12 +35,19 @@ function SuppliersNotApprovalList(props) {
   const [page, setPage] = useState(0);
   const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState("");
+const [datadialcode, setdatadialcode] = useState(false);
 
+const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
   useEffect(() => {
     setPage(page + 1);
     props.emptynotApprovedSuppliers();
     props.getSuppliersNotApprovalList(props.userId, page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
   }, []);
 
   const handleRowData = (item) => {
@@ -205,6 +212,7 @@ const [editingValue, setEditingValue] = useState("");
   style={{ width: "8rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (

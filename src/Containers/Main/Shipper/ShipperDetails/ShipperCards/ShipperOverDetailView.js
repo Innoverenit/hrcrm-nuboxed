@@ -12,21 +12,21 @@ class ShipperOverDetailView extends Component {
     return (
       <>
         <ShipperItemRow
-         label="street"
+         label={this.props.translatedMenuItems[7]}
           value={addresses && addresses[0].street}
         />
         <ShipperItemRow 
-        label="City"
+        label={this.props.translatedMenuItems[8]}
         value={addresses && addresses[0].city} />
         <ShipperItemRow 
-        label="State"
+        label={this.props.translatedMenuItems[9]}
         value={addresses && addresses[0].state} />
         <ShipperItemRow
-        label="Pincode"
+        label={this.props.translatedMenuItems[10]}
           value={addresses && addresses[0].pinCode}
         />
         <ShipperItemRow
-        label="Country"
+        label={this.props.translatedMenuItems[11]}
           value={addresses && addresses[0].country}
         />
       </>

@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const ShipperDetailsTab =lazy(()=>import("../ShipperDetailsTab/ShipperDetailsTab"));
 
-
-
 class ShipperDetailsRight extends Component {
   render() {
     console.log(this.props.shipper);
@@ -15,6 +13,7 @@ class ShipperDetailsRight extends Component {
           <ShipperDetailsTab shipper={this.props.shipper}
            translateText={this.props.translateText}
            selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
           />
         </Suspense>
       </div>

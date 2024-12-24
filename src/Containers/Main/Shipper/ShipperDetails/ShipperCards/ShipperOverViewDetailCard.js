@@ -13,7 +13,7 @@ class ShipperOverViewDetailCard extends Component {
               <ShipperOverDetailView
                 shipper={shipper}
                 toggleViewType={toggleViewType}
-                translatedMenuItems={this.translatedMenuItems}
+                translatedMenuItems={this.props.translatedMenuItems}
                 selectedLanguage={this.props.selectedLanguage}
               />
             ) : null
