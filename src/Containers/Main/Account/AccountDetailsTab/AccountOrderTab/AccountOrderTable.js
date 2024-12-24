@@ -61,9 +61,8 @@ const { Option } = Select;
 
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
-    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true); 
-    // useEffect(() => {
+    
     //     const fetchMenuTranslations = async () => {
     //       try {
     //         setLoading(true); 
@@ -114,12 +113,12 @@ const AccountOrderTable = (props) => {
     
     //     fetchMenuTranslations();
     //   }, [props.selectedLanguage]);
+    
     useEffect(() => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
         props.getLocationList(props.orgId);
-        props.getDistributorOrderOfHigh(props.distributorId, page, "repair","High");
-        
+        props.getDistributorOrderOfHigh(props.distributorId, page, "repair","High"); 
         props.getDistributorOrderOfLow(props.distributorId, page, "repair","Low")
         
        

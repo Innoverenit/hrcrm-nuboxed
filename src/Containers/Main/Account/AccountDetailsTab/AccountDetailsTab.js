@@ -143,6 +143,15 @@ function AccountDetailsTab(props) {
                "170",      // Edit 58
                "84",      // Delete 59
               "1380", // "Add Supervisor" 60
+              "1089",  // Generate 61
+              "1483", // Payment link 62
+              "248",  // Customer 63
+              "926" ,  // Transaction 64
+              "74" ,   // Date 65
+              "929" ,  // Amount 66
+             "86" ,  // "Mode 67
+             "1485",// Search by Invoice ID 68
+
 
           ];
     
@@ -284,20 +293,25 @@ useEffect(() => {
                                      type={"distributor"}
                                    distributorId={props.distributorData.distributorId} 
                               selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}/></div>;
+                              translateText={props.translateText}
+                              translatedMenuItems={translatedMenuItems}
+                              /></div>;
                               case "11":
                                 return  <div>  
                                  <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} 
                             activeTab={activeKey}
+                            translatedMenuItems={translatedMenuItems}
                             /></div>;
                             case "12":
                                 return  <div>  
                                  <AccountCreditMemos
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} /></div>;
+                            translateText={props.translateText} 
+                            translatedMenuItems={translatedMenuItems}
+                            /></div>;
                             case "13":
                                 return  <div>  
                                  <OrderTableC
