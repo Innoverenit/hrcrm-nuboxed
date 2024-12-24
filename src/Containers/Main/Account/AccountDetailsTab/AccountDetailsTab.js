@@ -151,8 +151,53 @@ function AccountDetailsTab(props) {
               "929" ,  // Amount 66
              "86" ,  // "Mode 67
              "1485",// Search by Invoice ID 68
-
-
+             "264",   // 'Brand', 69
+             "265",  // ' Model', 70
+             "1216",  // 'Unique ID', 71
+             "113",  // 'Info', 72
+             "1217",  // 'Condition', 73
+             "1218",  // 'Total Hours', 74
+             "1219",  // "Total Cost",75
+             "1220",  // "Final Price",76
+             "1222",  // "Issue",77
+             "1251",//You have reached the end of page 78
+             "1308",// Spare 79
+             "199",//Task 80
+             "1252",// Print 81
+             "946", //  Team Member 82
+             "326", //  Department 83
+            "154", //  Submit 84
+            "1421" , // "Order Created" 85
+            "1419" , // Do you wish to Approve 86
+             "1395", // On  87
+             "1335", //  by 88
+             "1420", //  Receive Payment 89
+                          "80",  //  "Yes"90
+                          "81",  //  "No" 91
+                          "1418",  //  Approve QC 92
+                          "1417",  //  QC approved on 93
+                          "1396", //  Advance as per Order 94
+                          "1397", //  Order Pick Up',95
+                          "347", //  'Warehouse'96
+                          "1398",  //  Picked Up on 97
+                          "1415",//  Arrived at 98
+                          "1416",//  Received by 99
+                          "1399",  //  Inspection started by 100
+                          "1400",  //  Inspection completed by 101
+                          "1113",  //  Assigned by 102
+                          "1401",  //  Started on 103
+                          "1404", //  Completed on 104 
+                          "1407", //  'Order Commercial Confirmation 105
+                          "1405", //  Confirmed on 106
+                          "1410", //  Show Payment 107
+                          "1409", //  Do you wish to start ? 108
+                          "1315",//  Start Repair 109
+                          "1311", //  Start Repair Without Approve 110
+                          "1408", //  Packed By 111
+                          "1412", //  Schedule PickUp 112
+                          "1413", //  Order Dispatch 113
+                          "1097",//  Dispatched By 114
+                          "1414", //  'Customer Feedback' 115
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -893,7 +938,7 @@ case "16":
                        
                     </TabPane>
                 </StyledTabs>
-                <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                <Suspense fallback={<div class="flex justify-center"><BundleLoader/></div>}>
                 {renderTabContent(activeKey)}
               </Suspense>
             </TabsWrapper>

@@ -62,7 +62,11 @@ const { Option } = Select;
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(true); 
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 08e91bdf6ccb5827bbbcbe688e3c8e816bbc9b0a
     //     const fetchMenuTranslations = async () => {
     //       try {
     //         setLoading(true); 
@@ -1112,6 +1116,7 @@ const AccountOrderTable = (props) => {
                 <AddLocationInOrder
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
+                translatedMenuItems={props.translatedMenuItems}
                     particularRowData={particularRowData}
                     addInventoryInOrder={props.addInventoryInOrder}
                     handleInventoryLocationInOrder={props.handleInventoryLocationInOrder}
@@ -1122,6 +1127,7 @@ const AccountOrderTable = (props) => {
                     handleOrderPickupModal={props.handleOrderPickupModal}
                     addpickupLocation={props.addpickupLocation}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AddNotesOrderModal
                 selectedLanguage={props.selectedLanguage}
@@ -1129,19 +1135,23 @@ const AccountOrderTable = (props) => {
                     particularRowData={particularRowData}
                     addNotesInOrder={props.addNotesInOrder}
                     handleNotesModalInOrder={props.handleNotesModalInOrder}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AccountOrderDetailsModal
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
                     particularRowData={particularRowData}
                     handleOrderDetailsModal={props.handleOrderDetailsModal}
-                    addOrderDetailsModal={props.addOrderDetailsModal} />
+                    addOrderDetailsModal={props.addOrderDetailsModal} 
+                    translatedMenuItems={props.translatedMenuItems}
+                    />
                 <StatusOfOrderModal
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
                     handleStatusOfOrder={props.handleStatusOfOrder}
                     addStatusOfOrder={props.addStatusOfOrder}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <PaidButtonModal
                 distributorId={props.distributorId}
@@ -1152,7 +1162,7 @@ const AccountOrderTable = (props) => {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                     activeTab={props.activeTab}
-  
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AccountproductionModal
                 selectedLanguage={props.selectedLanguage}
@@ -1160,6 +1170,7 @@ const AccountOrderTable = (props) => {
                     particularRowData={particularRowData}
                     accountOrderProduction={props.accountOrderProduction}
                     handleAccountProduction={props.handleAccountProduction}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <UpdateOrderModal
                 selectedLanguage={props.selectedLanguage}
@@ -1168,6 +1179,7 @@ const AccountOrderTable = (props) => {
                     distributorId={props.distributorId}
                     handleUpdateOrder={props.handleUpdateOrder}
                     updateOrderModal={props.updateOrderModal}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                  <PIOPenModal
                 selectedLanguage={props.selectedLanguage}
@@ -1176,6 +1188,7 @@ const AccountOrderTable = (props) => {
                     distributorId={props.distributorId}
                     handlePIModal={props.handlePIModal}
                     piButtonModal={props.piButtonModal}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
 
            

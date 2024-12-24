@@ -9,7 +9,7 @@ const PiTable = (props) => {
     const [editMode, setEditMode] = useState(false);
     const [mode, setMode] = useState('order'); 
     const [selectedItems, setSelectedItems] = useState([]); 
-    const [inputValues, setInputValues] = useState({}); // Track input values for manual mode and selected items in order mode
+    const [inputValues, setInputValues] = useState({}); 
 
     useEffect(() => {
         props.getPibyItem(props.particularRowData.orderPhoneId)
@@ -21,7 +21,7 @@ const PiTable = (props) => {
     const toggleMode = (checked) => {
         setMode(checked ? 'order' : 'manual');
         setEditMode(false);
-        setSelectedItems([]); // Reset selected items when mode changes
+        setSelectedItems([]); 
         setInputValues({});
 
     };
@@ -43,7 +43,7 @@ const PiTable = (props) => {
     if (mode === 'manual') {
         setInputValues(prevInputValues => ({
             ...prevInputValues,
-            [key]: value // Directly update the value for manual mode
+            [key]: value
         }));
     } else {
         setInputValues(prevInputValues => ({
@@ -94,11 +94,7 @@ const PiTable = (props) => {
         } else {
             payload = {
                 gst: "included",
-                // itemList: Object.keys(inputValues).map(itemId => ({
-                //     itemId: inputValues[itemId].itemId,
-                //     itemValue: inputValues[itemId].itemValue
-                // })),
-                itemId: inputValues.itemId || "",  // Get the item ID from the input
+                itemId: inputValues.itemId || "",  
                 itemValue: inputValues.itemValue || "", 
                 itemType: "Repair",
                 phoneOrderId: props.particularRowData.orderPhoneId,
@@ -118,7 +114,10 @@ const PiTable = (props) => {
         <div className="flex flex-col w-full p-4">
             <div className="flex">
                 <div className="flex items-center mb-4">
-                    <div className="mr-4 font-bold">Type</div>
+                    <div className="mr-4 font-bold">
+                        {/* Type */} {props.translatedMenuItems[32]}
+
+                    </div>
                     <Switch
                         checked={mode === 'order'}
                         onChange={toggleMode}
@@ -145,8 +144,8 @@ const PiTable = (props) => {
                                     checked={selectedItems.length === props.piByItem.length && props.piByItem.length > 0}
                                 />
                             </div>
-                            <div className="md:w-[7.1rem]">Item</div>
-                            <div className="md:w-[3.8rem]">Value</div>
+                            <div className="md:w-[7.1rem]">{props.translatedMenuItems[34]}</div>
+                            <div className="md:w-[3.8rem]">{props.translatedMenuItems[22]}</div>
                         </div>
                         <div className="h-[33vh]">
                             {props.piByItem.map((item) => {
@@ -212,7 +211,7 @@ const PiTable = (props) => {
                     type="primary" 
                     onClick={handleSubmitPrice} 
                     disabled={mode === 'order' ? selectedItems.length === 0 : Object.keys(inputValues).length === 0}>
-                    Save
+                    {props.translatedMenuItems[48]}
                 </Button>
             </div>
             <div className="flex sticky z-auto">

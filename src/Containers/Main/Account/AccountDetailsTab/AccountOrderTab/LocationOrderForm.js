@@ -8,30 +8,30 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
 
 function LocationOrderForm(props) {
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-    '946', // 0Team Member
-    '326', // 1 326Department
-    '154', // 154Submit
+    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    // const [loading, setLoading] = useState(true);
+    // useEffect(() => {
+    //     const fetchMenuTranslations = async () => {
+    //       try {
+    //         setLoading(true); 
+    //         const itemsToTranslate = [
+    // '946', // 0 Team Member
+    // '326', // 1  Department
+    // '154', //  Submit
      
-          ];
+    //       ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+    //         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+    //         setTranslatedMenuItems(translations);
+    //         setLoading(false);
+    //       } catch (error) {
+    //         setLoading(false);
+    //         console.error('Error translating menu items:', error);
+    //       }
+    //     };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+    //     fetchMenuTranslations();
+    //   }, [props.selectedLanguage]);
     useEffect(() => {
         props.getDepartments()
     }, []);
@@ -59,7 +59,7 @@ function LocationOrderForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-2/5">
-                            <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[0]}</div>
+                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[82]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -73,7 +73,7 @@ function LocationOrderForm(props) {
                         </div>
 
                         <div className=" w-2/5">
-                            <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[1]}</div>
+                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[83]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -90,7 +90,7 @@ function LocationOrderForm(props) {
                             disabled={!technician.length}
                             type="primary"
                             loading={props.addingSupervisor}
-                            onClick={handleSubmit}>{translatedMenuItems[2]}</Button>
+                            onClick={handleSubmit}>{props.translatedMenuItems[84]}</Button>
                     </div>
                     </div>
 

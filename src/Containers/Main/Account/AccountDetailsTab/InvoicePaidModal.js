@@ -17,7 +17,7 @@ class InvoicePaidModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Invoice - ${this.props.particularRowData.invoiceId}`}
+                    title={`${this.props.translatedMenuItems[10]} - ${this.props.particularRowData.invoiceId}`}
                     width="65%"
                     visible={addPaidButtonModal}
                     destroyOnClose
@@ -34,6 +34,7 @@ class InvoicePaidModal extends Component {
                                 selectedLanguage={this.props.selectedLanguage}
                                 translateText={this.props.translateText}  
                                 activeTab={this.props.activeTab}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 />
 </div>
 <div class="w-[75%] flex ml-2">
@@ -42,6 +43,7 @@ class InvoicePaidModal extends Component {
                                    selectedLanguage={this.props.selectedLanguage}
                                    translateText={this.props.translateText}  
                                    activeTab={this.props.activeTab}
+                                   translatedMenuItems={this.props.translatedMenuItems}
                                    />
 </div>
                     </div>

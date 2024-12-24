@@ -269,7 +269,8 @@ console.log(page)
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
-                />
+                    translatedMenuItems={props.translatedMenuItems}
+               />
                       <AccountOrderDetailsModal
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}

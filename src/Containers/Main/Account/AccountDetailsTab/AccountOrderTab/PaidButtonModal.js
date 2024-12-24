@@ -18,7 +18,7 @@ class PaidButtonModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Collection - ${this.props.particularRowData.newOrderNo}`}
+                    title={`${this.props.translatedMenuItems[55]} - ${this.props.particularRowData.newOrderNo}`}
                     width="70%"
                     visible={addPaidButtonModal}
                     destroyOnClose
@@ -37,6 +37,7 @@ class PaidButtonModal extends Component {
                                 selectedLanguage={this.props.selectedLanguage}
                                 translateText={this.props.translateText} 
                                 activeTab={this.props.activeTab}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 />
                                 <OrderPaymentTable
                                  particularRowData={this.props.particularRowData} 
@@ -44,6 +45,7 @@ class PaidButtonModal extends Component {
                                   selectedLanguage={this.props.selectedLanguage}
                                   translateText={this.props.translateText} 
                                   activeTab={this.props.activeTab}
+                                  translatedMenuItems={this.props.translatedMenuItems}
                                 />
                             </> :
                             <OrderPaymentTable 
@@ -51,6 +53,7 @@ class PaidButtonModal extends Component {
                             selectedLanguage={this.props.selectedLanguage}
                             translateText={this.props.translateText}
                             activeTab={this.props.activeTab}
+                            translatedMenuItems={this.props.translatedMenuItems}
                             />}
                     </Suspense>
                 </StyledDrawer>

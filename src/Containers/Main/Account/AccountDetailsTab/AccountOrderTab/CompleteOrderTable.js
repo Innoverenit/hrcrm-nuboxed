@@ -240,7 +240,7 @@ const CompleteOrderTable = (props) => {
                         dataLength={props.highCompleteOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingHighCompleteOrders ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingHighCompleteOrders ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
                         height={"37vh"}
                     >
                         {props.highCompleteOrder.length ?
@@ -833,42 +833,51 @@ const CompleteOrderTable = (props) => {
                     particularRowData={particularRowData}
                     addInventoryInOrder={props.addInventoryInOrder}
                     handleInventoryLocationInOrder={props.handleInventoryLocationInOrder}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AddPickupModal
                     handleOrderPickupModal={props.handleOrderPickupModal}
                     addpickupLocation={props.addpickupLocation}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AddNotesOrderModal
                     particularRowData={particularRowData}
                     addNotesInOrder={props.addNotesInOrder}
                     handleNotesModalInOrder={props.handleNotesModalInOrder}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AccountOrderDetailsModal
                     particularRowData={particularRowData}
                     handleOrderDetailsModal={props.handleOrderDetailsModal}
-                    addOrderDetailsModal={props.addOrderDetailsModal} />
+                    addOrderDetailsModal={props.addOrderDetailsModal} 
+                    translatedMenuItems={props.translatedMenuItems}
+                    />
                 <StatusOfOrderModal
                     handleStatusOfOrder={props.handleStatusOfOrder}
                     addStatusOfOrder={props.addStatusOfOrder}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <PaidButtonModal
                     type={props.type}
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <AccountproductionModal
                     particularRowData={particularRowData}
                     accountOrderProduction={props.accountOrderProduction}
                     handleAccountProduction={props.handleAccountProduction}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
                 <UpdateOrderModal
                     particularRowData={particularRowData}
                     distributorId={props.distributorId}
                     handleUpdateOrder={props.handleUpdateOrder}
                     updateOrderModal={props.updateOrderModal}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
 
             </Suspense>

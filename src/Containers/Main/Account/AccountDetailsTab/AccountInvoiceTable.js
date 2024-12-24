@@ -540,6 +540,7 @@ useEffect(() => {
                 distributorId={props.distributorId}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
+                translatedMenuItems={props.translatedMenuItems}
                     type={props.type}
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal} 
