@@ -365,7 +365,7 @@ console.log(selectedItems)
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"70vh"}
+              height={"77vh"}
               endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
               {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => {
@@ -374,7 +374,7 @@ console.log(selectedItems)
                 return (
                   <div>
                    <div
-      className={`flex rounded mt-1  h-8 items-center p-1 ${
+      className={`flex rounded mt-1  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ${
         isSelected ? "bg-[#3bf6eb]" : "bg-white"
       }`}
     >
