@@ -23,10 +23,11 @@ function ProductbuilderTable(props) {
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [dtouched, setDTouched] = useState(false);
 
   useEffect(() => {
     props.getProductCurrency(props.particularDiscountData.productId);
-    props.getSaleCurrency()
+   
   }, []);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -178,7 +179,12 @@ function ProductbuilderTable(props) {
     props.createProductCurrency(updatedData);
     setEditsuppliesId(null);
   };
-
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getSaleCurrency()
+      setDTouched(true);
+    }
+  };
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
@@ -194,6 +200,7 @@ function ProductbuilderTable(props) {
                         classNames="w-32"
                         value={row.currency_id}
                         onChange={(value) => handleChange(index, 'currency_id',value)}
+                        onFocus={handleSelectDepartmentFocus}
                       >
                         {props.saleCurrencies.map((s) => (
                           <Option key={s.currency_id} value={s.currency_id}>
