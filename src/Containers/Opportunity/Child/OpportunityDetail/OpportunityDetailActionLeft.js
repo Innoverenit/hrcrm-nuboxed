@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import OpportunityStatsCard from "./OpportunityCards/OpportunityStatsCard";
 import { Spin, Tooltip, Icon } from "antd";
+import { useNavigate } from "react-router-dom";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 const OpportunityDetailActionLeft = (props) => {
   const { opportunity, fetchingOpportunityById } = props;
+   const navigate = useNavigate();
   console.log(opportunity);
   const {
     opportunity: { stageMapper },
@@ -30,7 +32,7 @@ const OpportunityDetailActionLeft = (props) => {
             tooltipTitle="Back"
          
             onClick={() => {
-              props.history.goBack();
+              navigate(-1)
               
             }}
           />

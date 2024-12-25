@@ -792,17 +792,21 @@ function MainApp(props) {
                       // )}
                     />
                      
-                      {/* <Route
+                     <Route
                       exact
                       path="/profile"
-                      render={(props) => (
-                        <Profile
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />  */}
+                      // render={(props) => (
+                      //   <Profile
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Profile
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                    />  
                     <Route
                       exact
                       path="Invoice"
@@ -1900,14 +1904,8 @@ function MainApp(props) {
                     />
                       <Route
                       exact
-                      path="/opportunity/:opportunityId"
-                      // render={(props) => (
-                      //   <OpportunityDetail
-                      //     {...props}
-                      //     translateText={translateText}
-                      //      selectedLanguage={selectedLanguage}
-                      //   />
-                      // )}
+                     path="/opportunity/:opportunityId"
+                    
 
                       element={< OpportunityDetail
                         translateText={translateText}

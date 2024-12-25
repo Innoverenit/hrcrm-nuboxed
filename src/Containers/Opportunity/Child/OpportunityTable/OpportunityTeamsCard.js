@@ -344,7 +344,7 @@ function OpportunityTeamsCard(props) {
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">    
                                           <div class=" text-xs text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">                                       
-                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
                                           </div>
