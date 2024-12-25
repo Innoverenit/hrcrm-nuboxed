@@ -84,7 +84,7 @@ export const register = (user) => (dispatch) => {
  * this method verify the email and if user is verified it send them to set Password page
  */
 export const validateEmail =
-  (employeeId, token, emailId, organizationId, history) => (dispatch) => {
+  (employeeId, token, emailId, organizationId, navigate) => (dispatch) => {
     console.log(employeeId, token, emailId, organizationId);
     dispatch({
       type: types.VALIDATE_EMAIL_REQUEST,
@@ -103,8 +103,17 @@ export const validateEmail =
         if (res.data === true) {
           console.log("email is valid");
           message.success("Your email has been validated successfully.");
-          history.push({
-            pathname: "/setPassword",
+          // history.push({
+          //   pathname: "/setPassword",
+          //   state: {
+          //     employeeId: employeeId,
+          //     emailId: emailId,
+          //     organizationId: organizationId,
+          //     token: token,
+          //   },
+          // });
+          
+          navigate("/setPassword", {
             state: {
               employeeId: employeeId,
               emailId: emailId,
@@ -112,8 +121,6 @@ export const validateEmail =
               token: token,
             },
           });
-          
-          
 
 
           dispatch({
