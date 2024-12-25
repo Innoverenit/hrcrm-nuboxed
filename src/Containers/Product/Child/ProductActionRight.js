@@ -3,7 +3,7 @@ import Button from "antd/lib/button";
 import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import { Tooltip } from "antd";
 import {
   handleUploadProductModal,
@@ -143,6 +143,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductActionRight)
+

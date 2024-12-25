@@ -20,7 +20,7 @@ import { getAllDeals,updateDeal } from "../../../DealAction";
 import { CurrencySymbol } from "../../../../../Components/Common";
 import { Button, Tooltip, Dropdown, Menu, Progress,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { getSources } from "../../../../Settings/Category/Source/SourceAction";
 import { getSectors } from "../../../../Settings/Sectors/SectorsAction";
@@ -384,9 +384,9 @@ const DealsAllCardList = (props) => {
                  <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
-                     <Link to="/investor">
+                     {/* <Link to="/investor"> */}
                        {item.investor}
-                     </Link>
+                     {/* </Link> */}
                    </div>
                  </div>
 

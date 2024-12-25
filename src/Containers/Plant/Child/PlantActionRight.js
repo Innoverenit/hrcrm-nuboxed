@@ -2,7 +2,7 @@ import React from "react";
 import Button from "antd/lib/button";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import { Tooltip } from "antd";
 import { handlePlantModal } from "../PlantAction";
 import AddPlantModal from "./AddPlantModal";
@@ -35,6 +35,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PlantActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PlantActionRight)
+

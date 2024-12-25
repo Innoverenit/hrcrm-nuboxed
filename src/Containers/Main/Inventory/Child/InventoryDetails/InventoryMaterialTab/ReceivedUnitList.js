@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 
 import { getReceivedUnitOfAnItem, updatePartIdOfAnItem } from "../../../InventoryAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -151,6 +151,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ReceivedUnitList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ReceivedUnitList)
+

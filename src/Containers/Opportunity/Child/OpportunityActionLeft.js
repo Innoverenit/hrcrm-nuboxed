@@ -3,7 +3,7 @@ import React, { useEffect,useRef,useState } from "react";
 import { Tooltip, Badge ,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -464,6 +464,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OpportunityActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunityActionLeft)
+

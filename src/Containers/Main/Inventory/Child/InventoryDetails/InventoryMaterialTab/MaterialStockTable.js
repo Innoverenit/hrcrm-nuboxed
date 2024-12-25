@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 
 import { Tooltip, Select } from "antd";
 import ItemHistoryInStockData from "./ItemHistoryInStockData"
@@ -271,6 +271,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(GrnListOfPO)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(GrnListOfPO)
+

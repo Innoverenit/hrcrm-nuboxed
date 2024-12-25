@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Input, Tooltip, Avatar } from "antd";
 
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -110,6 +110,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LeavesActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LeavesActionLeft)
+

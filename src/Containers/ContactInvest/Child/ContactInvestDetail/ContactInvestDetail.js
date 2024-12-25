@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getContactInvestByContactId } from "../../ContactInvestAction";
 import {  MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 const ContactInvestDetailsRight = lazy(()=>import("./ContactInvestDetailsRight"));
 const ContactInvestDetailsLeft = lazy(()=>import("./ContactInvestDetailsLeft"));
@@ -58,6 +58,5 @@ const mapDispatchToProps = (dispatch) =>
     getContactInvestByContactId 
 }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ContactInvestDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactInvestDetails)
+

@@ -8,7 +8,7 @@ import {
     getRoomRackByLocId, getRackList
 } from "./InventoryAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
@@ -138,6 +138,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialIntransitList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialIntransitList)
+

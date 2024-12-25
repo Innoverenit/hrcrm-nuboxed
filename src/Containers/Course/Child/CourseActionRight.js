@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -54,6 +54,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CourseActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseActionRight)
+

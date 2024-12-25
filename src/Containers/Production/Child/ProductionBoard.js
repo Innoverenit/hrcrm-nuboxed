@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import StageProductionColumnsBoard from "./StageProductionColumnsBoard"
 import styled from "styled-components"; 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -271,6 +271,5 @@ const mapDispatchToProps = (dispatch) =>
           },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductionBoard)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionBoard)
+

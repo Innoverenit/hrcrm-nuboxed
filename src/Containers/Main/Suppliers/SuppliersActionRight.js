@@ -3,7 +3,7 @@ import Button from "antd/lib/button";
 import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import { Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import HistoryIcon from '@mui/icons-material/History';
@@ -92,6 +92,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SuppliersActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SuppliersActionRight)
+

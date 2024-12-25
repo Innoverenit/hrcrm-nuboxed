@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { getWasteMaterialLocation,
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import { Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -206,6 +206,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InvenoryGlobaltab)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InvenoryGlobaltab)
+

@@ -6,7 +6,7 @@ import { setSelectedTimeIntervalReport } from "../../ProjectsAction";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { StyledRangePicker, StyledSelect } from "../../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../../Config/Auth";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -145,6 +145,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CandidateProjectsActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateProjectsActionRight)
+

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
  import { getProgramDetailsById } from "../../ProgramAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ProgramDetailsHeader from "./ProgramDetailsHeader";
 const ProgramDetailsLeft =lazy(()=>import("./ProgramDetailsLeft"));
@@ -53,6 +53,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProgramDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramDetails)
+

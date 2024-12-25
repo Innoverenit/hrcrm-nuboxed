@@ -1,5 +1,5 @@
 import React, { } from "react";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -62,6 +62,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OpportunityDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunityDetailActionLeft)
+

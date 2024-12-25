@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerDetailsById } from "../../CustomerAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 const CustomerDetailRight=lazy(()=> import("./CustomerDetailRight"));
 const CustomerDetailLeft=lazy(()=> import("./CustomerDetailLeft"));
@@ -67,6 +67,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CustomerDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerDetail)
+

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -188,7 +188,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ setPassword }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SetPassword)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SetPassword)
+
 

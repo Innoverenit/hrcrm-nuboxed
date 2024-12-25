@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { base_url2 } from '../../../Config/Auth';
 import { Button, DatePicker } from "antd";
-import { withRouter } from "react-router-dom";
+
 import { Switch, Popconfirm, Input, message,Select } from "antd";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
@@ -244,6 +244,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(AddPackFormID)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPackFormID)

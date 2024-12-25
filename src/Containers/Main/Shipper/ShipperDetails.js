@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getShipperByShipperId } from "./ShipperAction";
 import {  MainWrapper } from "../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 
 
@@ -67,6 +67,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ShipperDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ShipperDetails)
+

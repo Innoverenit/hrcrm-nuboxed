@@ -4,7 +4,7 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import { Button, Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Input } from "antd";
 
 const Option = StyledSelect.Option;
@@ -80,6 +80,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BillingActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BillingActionLeft)

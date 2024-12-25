@@ -8,7 +8,7 @@ import {
   getCompleteDispatchList,
   clearCompleteDispatch
 } from "./InventoryAction"
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
@@ -262,6 +262,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DispatchTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DispatchTableOut)
+

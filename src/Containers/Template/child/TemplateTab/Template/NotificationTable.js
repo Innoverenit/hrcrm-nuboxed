@@ -8,7 +8,7 @@ import {
 } from "../../../../../Components/UI/Antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { withRouter } from "react-router-dom";
+
 import NotificationView from "./NotificationView";
 import { getNotificationTemplate,setCurrentNotification } from "../../../../Rules/RulesAction";
 import dayjs from "dayjs";
@@ -141,6 +141,5 @@ const mapStateToProps = ({ rule }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getNotificationTemplate,setCurrentNotification }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(NotificationTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationTable)
+
