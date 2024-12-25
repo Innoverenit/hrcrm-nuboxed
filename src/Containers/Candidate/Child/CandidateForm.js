@@ -7,7 +7,6 @@ import { getLibrarys } from "../../../Containers/Settings/Library/LibraryAction"
 import { Button, Select,  Switch, Checkbox } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-
 import { getVendorContactData } from "../../Contact/ContactAction";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
@@ -15,7 +14,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { addCandidate } from "../CandidateAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
-
 import VideoUpload from "./VideoUpload"
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
@@ -55,7 +53,8 @@ class CandidateForm extends Component {
       empInd: true,
       value: "",
       share: false,
-      videoId:""
+      videoId:"",
+      translatedMenuItems: [],
       // onChange4: this.onChange4.bind(this)
     };
     // this.onNumber = this.onNumber.bind(this)
@@ -179,8 +178,58 @@ class CandidateForm extends Component {
     this.props.getVendorContactData();
     this.props.getSectors();
     this.props.getDepartments();
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1693",//0Salutation"
+        "295",//1First Name"  
+        "353",//2Middle Name"
+        "354",//3"Last Name"
+        "",// Communication
+        "140",// "Email"
+        "299",// Mobile #
+       "546", // "Mobile No"
+        "1157",// WhatsApp #"
+       "147", // Linkedin "
+       "", // Identity
+       "", // "ID Proof"
+       "", // ID Number"
+       "968", // Date of Birth
+       "", // Gender
+       "", // Correspondence
+       "1109", // Country"
+       "", // Employer
+       "1083", // Vendor
+       "73", //  Contact"
+       "980", // "Role
+        "1697",// "Experience"
+       "278", //   Sector"
+       "495", //   "Skills"
+       "593", //   Both
+       "", //   Available from
+       "", //   Home
+      "",  //   Work Preference
+       "1741", //   Expectation
+      "241",  //   Currency
+        "",//   Current Salary
+       "", //   Benefits
+        "",//   Notice Period Info
+       "104", //   Create
+      ];
 
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     // if (this.props.fetchingDepartments) {
     //   return <BundleLoader/>;
@@ -422,8 +471,7 @@ class CandidateForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            label="First Name"
-                           
+                            label="First Name"                           
                             type="text"
                             width={"100%"}
                             isColumn

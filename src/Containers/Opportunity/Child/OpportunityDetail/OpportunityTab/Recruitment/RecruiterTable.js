@@ -8,7 +8,7 @@ import { LinkCandidateRecruit,LinkRecruitCandidate,getSkillsCount,getRecruiter }
 import { StyledTable } from "../../../../../../Components/UI/Antd";
 import { Tooltip, Button, Input, } from "antd";
 import Highlighter from 'react-highlight-words';
-import { MultiAvatar, SubTitle } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar,  } from "../../../../../../Components/UI/Elements";
 import RecruiterSkillLoadMore from "./RecruiterSkillLoadMore";
 import SearchIcon from '@mui/icons-material/Search';
 import { CurrencySymbol } from "../../../../../../Components/Common";
@@ -277,7 +277,7 @@ function RecruiterTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div>
               <Tooltip title={item.fullName}>
             <MultiAvatar
               primaryTitle={item.fullName}
@@ -287,7 +287,7 @@ function RecruiterTable(props) {
               imgHeight={"2.5em"}
             />
           </Tooltip>
-          </SubTitle>
+          </div>
         );
       },
     },
@@ -636,7 +636,7 @@ type="primary"
         if (props.role === "USER" && props.user.department === "Recruiter") {
         props.LinkRecruitCandidate(
           {
-            opportunityId: props.candidatePostData.opportunityId,
+            //opportunityId: props.candidatePostData.opportunityId,
             stageId: props.candidatePostData.stageId,
             recruitOwner :props.userId,
             recruitmentProcessId: props.candidatePostData.recruitmentProcessId,
@@ -650,7 +650,7 @@ type="primary"
       } else {
         props.LinkCandidateRecruit(
           {
-            opportunityId: props.candidatePostData.opportunityId,
+           // opportunityId: props.candidatePostData.opportunityId,
             stageId: props.candidatePostData.stageId,
             recruitOwner :props.userId,
             recruitmentProcessId: props.candidatePostData.recruitmentProcessId,

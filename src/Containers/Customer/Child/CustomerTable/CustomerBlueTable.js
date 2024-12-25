@@ -18,9 +18,7 @@ import {
 } from "../../CustomerAction";
 import styled from "styled-components";
 const CustomerDetailView = lazy(() => import("./CustomerDetailView"));
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
+
 
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -163,7 +161,7 @@ function CustomerBlueTable(props) {
     );
   }, [props.sectors]);
 
-  const { customerByCategory, handleUpdateCustomerModal, updateCustomerModal } =
+  const { customerByCategory, handleUpdateCustomerModal } =
     props;
 
   const columns = [
@@ -359,7 +357,7 @@ function CustomerBlueTable(props) {
         pagination={false}
       />
 
-      <UpdateCustomerModal
+      {/* <UpdateCustomerModal
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
@@ -367,7 +365,7 @@ function CustomerBlueTable(props) {
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-      />
+      /> */}
     </>
   );
 }
@@ -376,7 +374,6 @@ const mapStateToProps = ({ customer, opportunity }) => ({
   customerByCategory: customer.customerByCategory,
   fetchingCustomersCategory: customer.fetchingCustomersCategory,
   fetchingCustomersCategoryError: customer.fetchingCustomersCategoryError,
-  updateCustomerModal: customer.updateCustomerModal,
   sales: opportunity.sales,
   recruiterName: opportunity.recruiterName,
 });

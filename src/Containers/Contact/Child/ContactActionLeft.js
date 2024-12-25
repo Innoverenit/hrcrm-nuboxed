@@ -31,6 +31,14 @@ const ContactActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
   const [searchOnEnter, setSearchOnEnter] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
@@ -50,14 +58,14 @@ const ContactActionLeft = (props) => {
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      if (props.viewType === "table") {
-      props.inputContactDataSearch(currentData,"table","customer");
+      if (props.teamsAccessInd) {
+      props.inputContactDataSearch(currentData,"team","customer");
       }
-      else if (props.viewType === "teams") {
-        props.inputContactDataSearch(currentData,"teams","customer");
+      else if (props.viewType === "table") {
+        props.inputContactDataSearch(currentData,"user","customer");
         }
         else if (props.viewType === "all") {
-          props.inputContactDataSearch(currentData,"all","customer");
+          props.inputContactDataSearch(currentData,"All","customer");
           }
       setSearchOnEnter(true);  
     } 
@@ -281,6 +289,20 @@ const ContactActionLeft = (props) => {
             <Option value="descending">Z To A</Option>
           </StyledSelect>
         </div>
+         {/* <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDepartmentFocus}
+  autoFocus
+>
+{props.departments.map((country) => (
+   <Option key={country.departmentId} value={country.departmentId}>
+  {country.departmentName}
+   </Option>
+ ))}
+</Select> */}
     </div>
   );
 };

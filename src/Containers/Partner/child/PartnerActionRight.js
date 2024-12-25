@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -69,6 +69,5 @@ const mapStateToProps = ({ auth}) => ({
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PartnerActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PartnerActionRight)
+

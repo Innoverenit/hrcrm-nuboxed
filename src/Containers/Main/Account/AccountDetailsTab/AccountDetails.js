@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { getDistributorByDistributorId } from "../AccountAction"
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -62,6 +62,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(AccountDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountDetails)
+

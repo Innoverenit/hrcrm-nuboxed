@@ -24,8 +24,8 @@ function ProductionIDCard(props) {
 
           {props.ProdNbldr.map((item, index) => (
             <div key={item.suppliesId}>
-              <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                <div className="flex font-medium flex-col w-[10rem] max-sm:w-full">
+              <div className="flex font-poppins rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                <div className="flex  w-[10rem] max-sm:w-full">
                   <div className="flex max-sm:w-full ">
                     <div>
                       <MultiAvatar
@@ -36,26 +36,26 @@ function ProductionIDCard(props) {
                     </div>
                     <div className="w-[4%]"></div>
                     <div className="max-sm:w-full md:flex items-center">
-                      <div className="flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                        <div className="text-sm  font-semibold  font-poppins cursor-pointer">
+                      <div className="flex  md:w-[6.1rem] max-sm:w-full  ">
+                        <div className="text-sm    cursor-pointer">
                           {item.partNumber}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                <div className="flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <div className="text-xs  font-poppins">
                     {item.categoryName}
                   </div>
                 </div>
-                <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div className="text-xs  font-semibold  font-poppins">
+                <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className="text-xs    font-poppins">
                     {item.subCategoryName}
                   </div>
                 </div>
-                <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div className="flex text-xs  font-semibold  font-poppins">
+                <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className="flex text-xs    font-poppins">
                       {item.quantity}
                   </div>
                 </div>

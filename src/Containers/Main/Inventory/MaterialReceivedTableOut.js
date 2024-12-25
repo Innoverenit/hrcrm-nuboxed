@@ -9,7 +9,7 @@ import {
 } from "./InventoryAction";
 import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import { TerminalSharp } from "@mui/icons-material";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -80,7 +80,7 @@ const MaterialReceivedTableOut = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                    <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10">
+                    <div className=" flex  w-[100%]  text-xs  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10">
                        
                         <div className="text-[#00A2E8] truncate text-sm w-[18.1rem] max-md:w-[19.5rem]">PO ID</div>
                         <div className=" w-[15.8rem] max-md:w-[15.52rem] truncate">
@@ -250,6 +250,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTableOut)
+

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy,Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import PinIcon from '@mui/icons-material/Pin';
 import { Tooltip, Select } from "antd";
 import { getRoomRackByLocId, getRackList } from "./InventoryAction";
@@ -10,10 +10,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import AttractionsIcon from '@mui/icons-material/Attractions';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import RepartitionIcon from '@mui/icons-material/Repartition'; 
+import RepartitionIcon from '@mui/icons-material/Repartition';
 import { BundleLoader } from "../../../Components/Placeholder";
 import MaterialStockToggle from "./MaterialStockToggle";
 const ItemHistoryInStockData = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStockData") );
@@ -284,6 +284,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialStockTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialStockTableOut)
+

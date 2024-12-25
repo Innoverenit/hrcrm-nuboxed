@@ -14,7 +14,7 @@ const TextInput = styled.input.attrs({
      font-size:0.75rem;
     outline: none;
     width:${props => (props ? props.width : "100%")};
-    height:${props => (false ? props.height : "1.75rem")};
+    height:${props => (false ? props.height : "1.88rem")};
     Left:${props => props.Left || "auto"}
     padding: 0 0 0 0.7em;
     border-right: ${props => (props.isRequired ? "0.1875em solid #ed260b" : "")};

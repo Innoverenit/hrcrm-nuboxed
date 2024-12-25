@@ -10,7 +10,7 @@ import { Tooltip,Input, Button, Avatar } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   getDeletedTask,
@@ -26,7 +26,6 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-const UpdateTaskModal=lazy(()=>import("./UpdateTaskModal"));
 const ButtonGroup = Button.Group;
 class TaskDeletedTable extends React.Component {
   constructor(props){
@@ -164,7 +163,6 @@ class TaskDeletedTable extends React.Component {
       rejectTaskByTaskId,
       handleUpdateTaskModal,
       handleTaskProjectDrawerModal,
-      updateTaskModal,
       setEditTask,
       userDetails: { employeeId },
     } = this.props;
@@ -671,13 +669,7 @@ class TaskDeletedTable extends React.Component {
               );
             }} 
           /> */}
-           <UpdateTaskModal
-          updateTaskModal={updateTaskModal}
-          handleUpdateTaskModal={handleUpdateTaskModal}
-          translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
-        />
-
+         
 
 <AddTaskProjectDrawerModal
 handleTaskProjectDrawerModal={this.props.handleTaskProjectDrawerModal}
@@ -697,7 +689,6 @@ const mapStateToProps = ({ auth, task, opportunity }) => ({
  
   userId: auth.userDetails.userId,
   addDrawerTaskProjectModal:task.addDrawerTaskProjectModal,
-  updateTaskModal: task.updateTaskModal,
   fetchingTaskListRangeByUserId: task.fetchingTaskListRangeByUserId,
   taskDeleteList: task.taskDeleteList,
 });
@@ -715,9 +706,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TaskDeletedTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskDeletedTable)
+
 
 function StatusIcon({ type, iconType, tooltip, status, size, onClick, role }) {
   const start = type;

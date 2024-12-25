@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  withRouter } from "react-router-dom";
-import RandomImageScreen from "./RandomImageScreen";
+
+import "./autoplaycarousel.scss";
+import { cardDetails } from "./carousel-config";
+import CarouselItem from "./CarouselItem";
 class AppLoginMessage extends Component {
 
     render() {
@@ -33,7 +35,26 @@ class AppLoginMessage extends Component {
               reserved.
             </div>
                     </div>
-                    <RandomImageScreen />
+                    <div className=" flex flex-col mt-8">
+            <div class=" text-2xl text-white"> Simplify Your Workflow: Let Automation Drive Your Success 🚀</div>
+            <div class="flex mt-2  text-white justify-center text-base">Transform Your Lead Management with CRM Automation</div>
+            <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
+        </div>
+
+        
+            <div className="carousel-container">
+      <div className="carousel-track ">
+
+        {Object.keys(cardDetails).map((detailKey) => {
+          return (
+            <CarouselItem 
+              imgUrl={cardDetails[detailKey].imgUrl}
+              imgTitle={cardDetails[detailKey].title}
+            ></CarouselItem>
+          );
+        })}
+      </div>
+    </div>
                 </div>
             </>
         );
@@ -44,4 +65,4 @@ const mapStateToProps = ({ auth }) => ({
 
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppLoginMessage));
+export default connect(mapStateToProps, mapDispatchToProps)(AppLoginMessage);

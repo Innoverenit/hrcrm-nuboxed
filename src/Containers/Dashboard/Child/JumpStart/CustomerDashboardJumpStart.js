@@ -104,7 +104,7 @@ function CustomerDashboardJumpStart (props) {
       }
     };
   useEffect(() => {
-    props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+    props.getFinaceOrderDetails(props.userId,props.timeRangeType,"customer")
     fetchDashCutomerCount();
     fetchDashContactCount();  
   }, [props.timeRangeType]);
@@ -119,7 +119,9 @@ function CustomerDashboardJumpStart (props) {
         '1296', // 0 "Customer Added" 
         '1297', // 1 "Contacts Added"
         '1229', // 2 "Orders Added"
-        '1298'  // 3 "Orders Completed"
+        '1298',  // 3 "Orders Completed"
+        "1594",// By sector 4 
+        "1595",// By Source 5
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -260,14 +262,14 @@ function CustomerDashboardJumpStart (props) {
       </div>
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]}</div>
         <Suspense fallback={<BundleLoader />}>
         <DynamicPieChart dtype={"Sector"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <div class=" font-poppins font-bold text-base "> {translatedMenuItems[5]}</div>
         <Suspense fallback={<BundleLoader />}>
         <DynamicPieChart dtype={"Source"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>

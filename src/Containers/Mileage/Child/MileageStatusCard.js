@@ -3,9 +3,7 @@ import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getMileageByUserId,deleteMileageVoucher,handleMileageVoucherIdDrwer } from "../MileageAction";
-const MileagePendingStatusCard = lazy(() => import("./MileagePendingStatusCard"))
-const MileageApprovedStatusCard = lazy(() => import("./MileageApprovedStatusCard"))
-const MileageRejectedStatusCard = lazy(() => import("./MileageRejectedStatusCard"))
+const MileageStatusTypeCard =lazy(()=>import("./MileageStatusTypeCard"));
 
 function MileageStatusCard(props) {
  
@@ -13,13 +11,13 @@ function MileageStatusCard(props) {
       <>
       <div className="flex justify-arround max-sm:flex-col max-sm:overflow-x-auto h-[34rem]">
         <div className="w-[26rem] max-sm:w-wk">
-          <MileagePendingStatusCard/>
+          <MileageStatusTypeCard statusType={"Pending"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <MileageApprovedStatusCard/>
+          <MileageStatusTypeCard statusType={"Approved"}/>
         </div>
         <div className="w-[26rem] max-sm:w-wk">
-          <MileageRejectedStatusCard/>
+          <MileageStatusTypeCard statusType={"Rejected"}/>
         </div>
        </div>    
       </>

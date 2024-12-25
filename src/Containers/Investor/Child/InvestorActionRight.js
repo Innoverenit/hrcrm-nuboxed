@@ -1,7 +1,7 @@
 import React, {useEffect,useState, lazy, Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import {handleUploadInvestorModal} from "../InvestorAction";
@@ -122,6 +122,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InvestorActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorActionRight)
+

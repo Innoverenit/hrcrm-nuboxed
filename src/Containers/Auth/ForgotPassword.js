@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Link, withRouter } from "react-router-dom";
+// import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Input } from "./styled";
-import { ValidationError} from "../../Components/UI/Elements";
+import "./autoplaycarousel.scss";
+import { cardDetails } from "./carousel-config";
+import CarouselItem from "./CarouselItem";
 import Button from "antd/lib/button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import DevelopTk from "../../Assets/Images/logo_22.webp";// testhr
 import FWLogo from "../../Assets/Images/name.webp";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
+import { Input } from "../../Components/UI/Layout";
 
 class ForgotPassword extends Component {
   state = {
@@ -34,7 +37,7 @@ class ForgotPassword extends Component {
     <div>
       <Input {...field} {...props} />
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );
@@ -52,22 +55,23 @@ class ForgotPassword extends Component {
   render() {
     return (
       <>
-        <div className="main flex justify-evenly" >
+        <div className="flex justify-between p-4 " >
 
-          <div className="forgot_password">
+          {/* <div className="forgot_password"> */}
 
-          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
-          <div class="  w-full  min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-white  ">
-           
+          <div class=" flex flex-col bg-[#fffafa] relative justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] ">
+          <div className=" flex justify-start w-[9rem] h-[6rem] ">
                 <img
                   className="w-18 h-18"
-                  src={FWLogo}           
+                  src={DevelopTk}           
                   alt="Tekorero logo"
                 />
-           <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
+                </div>
+       < br/>
                   <div class=" text-lg font-poppins font-bold text-black ">Forgot Password</div>
                   <div class=" text-sm font-poppins text-black">Link will be sent to your registered email id</div>
                   <div class="mt-3" />
+                  <div class="w-[25rem] p-4 max-sm:w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
                   <Formik
                     initialValues={{
                       emailId: "",
@@ -87,7 +91,7 @@ class ForgotPassword extends Component {
                     }}
                   >
                     {({ errors, touched, values, isSubmitting }) => (
-                      <Form className=" w-[25vw]">
+                      <Form className="form-background w-[25vw]">
                         <div >
                           <div className="flex w-full">
                             <div className="w-[75%]" >
@@ -213,12 +217,12 @@ class ForgotPassword extends Component {
 
                             <span className=" font-bold flex justify-start">
                               {" "}
-                              <Link
+                              {/* <Link
                                 to="/login"
                                 style={{ textAlign: "center", fontSize: 14 }}
-                              >
+                              > */}
                                 Back to login
-                              </Link>
+                              {/* </Link> */}
                             </span>
 
                             <Button 
@@ -235,17 +239,37 @@ class ForgotPassword extends Component {
                       </Form>
                     )}
                   </Formik>
-                 
-                </div>
-                <div className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0"
-                 >
-                  © {new Date().getFullYear()},  {` `} CloudHub, All rights reserved.
-                </div>
+                  </div>
+                
+                  <div class="mt-3" />
               </div>
-
+            <div class="w-1/2 flex justify-center flex-col items-center max-sm:hidden  overflow-x-auto bg-blue-400">
+                      <div className=" flex flex-col mt-8">
+                        <div class=" text-2xl text-white"> Simplify Your Workflow: Let Automation Drive Your Success 🚀</div>
+                        <div class="flex mt-2  text-white justify-center text-base">Transform Your Lead Management with CRM Automation</div>
+                        <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
+                    </div>
+            
+                    
+                        <div className="carousel-container">
+                  <div className="carousel-track ">
+            
+                    {Object.keys(cardDetails).map((detailKey) => {
+                      return (
+                        <CarouselItem 
+                          imgUrl={cardDetails[detailKey].imgUrl}
+                          imgTitle={cardDetails[detailKey].title}
+                        ></CarouselItem>
+                      );
+                    })}
+                  </div>
+                </div>
+                      </div>
             </div>
-          </div>
-        </div>
+            <div     className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0 w-wk items-center">
+                  © {new Date().getFullYear()},  {` `} Korero, All rights reserved.
+                </div>
+
       </>
     );
   }
@@ -265,7 +289,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
+
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
@@ -9,11 +9,11 @@ import { getRoomRackByLocId, getRackList } from "./InventoryAction";
 import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "./InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer";
-import ItemHistoryInStock from "./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStock";
-import StockItemClickModal from "./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal";
-import EmptyPage from "../EmptyPage";
 
+const ItemHistoryInStock = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStock") );
+const StockItemClickModal = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal") );
+const TheStockUsedDrawer = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer") );
+const EmptyPage = lazy(() =>import("../EmptyPage") );
 const { Option } = Select;
 
 const MaterialUnitsDataOut = (props) => {
@@ -302,6 +302,7 @@ const MaterialUnitsDataOut = (props) => {
                     </InfiniteScroll>
                 </div>
             </div>
+            <Suspense>
             <StockItemClickModal
                 row={row}
                 handleSTockItemModal={props.handleSTockItemModal}
@@ -313,6 +314,7 @@ const MaterialUnitsDataOut = (props) => {
                 stockUseDrwr={props.stockUseDrwr}
                 handleStockUsedDrawer={props.handleStockUsedDrawer}
             />
+            </Suspense>
 
         </>
     );
@@ -345,6 +347,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialUnitsDataOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialUnitsDataOut)
+

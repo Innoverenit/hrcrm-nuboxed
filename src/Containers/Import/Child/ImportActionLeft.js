@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Tooltip } from "antd";
 
@@ -17,4 +17,4 @@ const ImportActionLeft = props => {
   );
 };
 
-export default withRouter(ImportActionLeft);
+export default (ImportActionLeft);

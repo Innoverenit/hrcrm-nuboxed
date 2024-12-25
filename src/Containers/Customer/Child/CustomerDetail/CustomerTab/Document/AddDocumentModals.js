@@ -200,7 +200,7 @@ console.log(props.contactId)
     <>
       <StyledDrawer
         title={translatedMenuItems[8]}
-        width="60%"
+        width="50%"
         visible={documentUploadModal}
         onClose={handleClose}
       >
@@ -251,27 +251,28 @@ console.log(props.contactId)
                       inlineLabel
                     />
                   </div>
-                  <div class=" flex justify-end w-1/2">
-                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  <div class=" flex  ">
+                    <div class="font-bold font-poppins w-1/2  m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[1]}
                       {/* Contract */}
-                      </div>
-                    <Switch className="w-[6.25rem] ml-2"          
+                     
+                    <Switch className="w-[6.25rem] "          
                       onChange={handleContract}
                       checked={contract}
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                     />
+                     </div>
                   </div>
                   </div>
                   {(props.type === "customer" || props.type === "investor" ) && (
-                  <div class=" w-w47.5 max-sm:w-wk">                
+                  <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[7]}
   {/* Contact */}
   </div>
       <Select
-       
+      className="w-[14vw]"
         placeholder="Select Contact"
         loading={isLoadingCustomers}
         onFocus={handleSelectCustomerFocus}
@@ -290,7 +291,7 @@ console.log(props.contactId)
                 <div class=" h-full w-[47.5%]">
                 <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}</div>
                 {/* name */}
-                  <Field
+                  <Field 
                     name="documentTitle"
                     width={"100%"}
                     isColumn

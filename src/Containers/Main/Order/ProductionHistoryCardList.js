@@ -1,8 +1,7 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, } from "antd";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -16,11 +15,13 @@ import {
 } from "../Order/OrderAction";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
 import dayjs from "dayjs";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { base_url2 } from "../../../Config/Auth";
 
+
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const NodataFoundPage=lazy(()=>import("../../../Helpers/ErrorBoundary/NodataFoundPage"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
 function ProductionHistoryCardList(props) {
   const [particularRowData, setParticularRowData] = useState({});
     const [page, setPage] = useState(0);
@@ -78,17 +79,6 @@ function ProductionHistoryCardList(props) {
 
       const exportPDFAnnexure = async () => {
         var doc = new jsPDF();
-        // const {
-        //   userDetails:
-        //   {address},
-        //     imageId
-        // }=props
-       
-        // let cityd=`${address.city}`
-        // let countryd=`${address.country}`
-        // let addressde=`${address.state}`
-        // let cityde=`${address.street}`
-        // var imageUrl = `${base_url}/image/${imageId || ""}`;
         var name1 = `East Repair Inc `
         var name2 =`1912 Harvest Lane New York ,NY 12210`
         var name3 =`BILL TO`
@@ -116,11 +106,6 @@ function ProductionHistoryCardList(props) {
         doc.text(name1, 8, 25);
         doc.setFontSize(10);
         let yPosition = 32;
-      //   address.forEach(item => {
-      //     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
-      //     yPosition += 4
-      // });
-        // doc.text(name2, 8, 32);
         doc.setFontSize(12);
         doc.text(name3, 8, 50);
         doc.text(name4, 60, 50);
@@ -156,38 +141,31 @@ function ProductionHistoryCardList(props) {
   } = props;
   console.log("ee");
 
-//   if (fetchingProductionHistoryOrder) {
-//     return <BundleLoader />;
-//   }
 console.log(page)
   return (
     <>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex max-sm:hidden  w-[100%] text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-between p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[4.7rem] max-md:w-[4.7rem]   max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+          <div className=" flex max-sm:hidden  w-[100%] !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-between p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" w-[24.1rem]  text-sm text-[#00A2E8] truncate max-md:w-[4.7rem]   max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
              {/* Order */}
              {translatedMenuItems[0]}
             </div>
-            <div className=" w-[9.5rem] max-md:w-[9.5rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="  w-[27.5rem] max-md:w-[9.5rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                   {/* Created(Name & Date) */}
                   {translatedMenuItems[1]}
-
             </div>
-            <div className=" w-[23.1rem] max-md:w-[23.1rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[33.1rem] max-md:w-[23.1rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
              {/* Status */}
-           {translatedMenuItems[2]}
-
+               {translatedMenuItems[2]}
             </div>
-            <div className="w-[3.8rem] max-md:w-[3.8rem]"></div>
-
           </div>
           <InfiniteScroll
             dataLength={productionHistoryOrder.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingProductionHistoryOrder || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"80vh"}
+            height={"83vh"}
           >
 
             {!fetchingProductionHistoryOrder && productionHistoryOrder.length === 0 ? <NodataFoundPage /> : productionHistoryOrder.map((item, index) => {
@@ -208,11 +186,11 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem]  max-sm:h-[9rem] items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex w-[16rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex w-[24rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex  items-center max-sm:w-auto">
                     
                           <div class="w-[4%]"></div>
@@ -220,10 +198,10 @@ console.log(page)
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins  cursor-pointer">
+                                <div class="flex items-center justify-center text-xs text-blue-500  font-poppins  cursor-pointer">
 
                                 <span
-                              class="underline cursor-pointer text-[#1890ff] font-bold"
+                              class="flex underline cursor-pointer text-[#1890ff] font-bold"
                               onClick={() => {
                                 handleOrder(item.orderId);
                                 handleSetParticularOrderData(item);
@@ -258,17 +236,13 @@ console.log(page)
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[18.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
-                        <div class=" text-xs   font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto  w-[27.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs  ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {` ${item.userName} ${dayjs(item.creationDate).format('DD/MM/YYYY')}`}
                         </div>
 
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto  w-[29.6rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">              
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.status}
                         </div>
@@ -299,10 +273,7 @@ console.log(page)
 
                             </Tooltip>
                           </div>
-
-
-                        </div>
-                                                       
+                        </div>                                                   
                         <div className=" flex w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
@@ -312,26 +283,19 @@ console.log(page)
                                   props.handlePaidModal(true);
                                   handleSetParticularOrderData(item);
                                 }}
-                              // style={{ color: "blue" }}
                               />
-                            </Tooltip>
-
-                          </div>
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
-
-
+                           </Tooltip>
+                          </div>                     
                         </div>
                         </div>
                   </div>
                 </div>
-
-
               )
             })}
           </InfiniteScroll>
         </div>
       </div>
-
+      <suspense>
       <AddNotesOrderDrawer
         particularRowData={particularRowData}
         addNotesInOrder={props.addNotesInOrder}
@@ -347,7 +311,7 @@ console.log(page)
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal} />
-  
+  </suspense>
     </>
   );
 }

@@ -403,8 +403,8 @@ const handleFinanceClick = (checked) => {
               <div class="flex" >
                 <div class="w-full flex-row">
               <div class=" flex " >
-             <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <div className=" flex h-28 justify-center "> 
+             <div class=" h-[12rem] w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+             <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo}
@@ -435,8 +435,8 @@ const handleFinanceClick = (checked) => {
                     </div>
                     
                     </div>
-                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-           <div className=" flex h-28 justify-center"> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+           <div className=" flex h-28 w-[10rem] justify-center"> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo5}
@@ -466,8 +466,8 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
                     </div>
                     </div>
-                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                     <div className=" flex h-28 justify-center"> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                     <div className=" flex h-28 w-[10rem] justify-center"> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo1}
@@ -497,8 +497,8 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                   
- <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
- <div className=" flex h-28 justify-center"> 
+ <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+ <div className=" flex h-28 w-[10rem] justify-center"> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo2}
@@ -528,8 +528,8 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                 
-                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                    <div className=" flex h-28 justify-center"> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div className=" flex h-28 w-[10rem] justify-center"> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo3}
@@ -559,8 +559,8 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center"> Hire @ Scale.</div>
                     </div>
                     </div>
-                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                    <div className=" flex h-28 justify-center"> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div className=" flex h-28 w-[10rem] justify-center"> 
               <img
               className="w-18 h-18 m-2"
               src={FWLogo4}

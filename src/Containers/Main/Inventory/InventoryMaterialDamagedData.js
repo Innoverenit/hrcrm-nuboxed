@@ -5,12 +5,10 @@ import {
     getMaterialDamagedData,
     addRepairData,
     addDamagedCredit
-    // handleMaterialReceived,
-    // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
 import {  Switch, Input, message } from 'antd';
-import { withRouter } from "react-router";
+
 import {  Select, Button } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -23,7 +21,6 @@ const InventoryMaterialDamagedData = (props) => {
     console.log(props.locationDetailsId)
     useEffect(() => {
         props.getMaterialDamagedData(props.locationId);
-        //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
 
 
@@ -123,7 +120,7 @@ const InventoryMaterialDamagedData = (props) => {
                     > */}
                      {materialDamage.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
-                            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                            // const date= dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
@@ -275,6 +272,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialDamagedData)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialDamagedData)
+

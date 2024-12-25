@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import './App.css';
 import BundleLoader from './Components/Placeholder/BundleLoader';
 import OnBoardOrganizationPage from './Containers/Auth/OnBoardOrganizationPage';
-import OnBoardUserPage from './Containers/Auth/OnBoardUserPage';
 import PrivateRoute from './Helpers/Auth/PrivateRoute';
 
 /**
@@ -25,7 +24,7 @@ class App extends Component {
 
             <Route exact path="/login" component={() => <Login />} />
             <Route exact path="/onboard" component={() => <OnBoardOrganizationPage />} />
-            {/* <Route exact path="/onboardUser" component={() => <OnBoardUserPage />} /> */}
+           
             <Route exact path="/salesXL/activationEmail/:userId/:token/:emailId/:organizationId" component={() => <EmailValidation />} />
             <Route exact path="/setPassword" component={() => <SetPassword />} />
             <PrivateRoute path="/" component={() => <MainApp />} />

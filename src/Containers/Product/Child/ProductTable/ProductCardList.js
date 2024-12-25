@@ -8,14 +8,11 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import AttractionsIcon from '@mui/icons-material/Attractions';
 import ExploreIcon from "@mui/icons-material/Explore";
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AddModeratorIcon from '@mui/icons-material/AddModerator';
 import PixIcon from '@mui/icons-material/Pix';
-
-// import ConstructionIcon from"@mui/icons-material/ConstructionIcon";
-
 import {
   getProducts,
   getProductByGroup,
@@ -33,20 +30,21 @@ import {
   updateDateYearProduct
 } from "../../ProductAction";
 import Token from '@mui/icons-material/Token';
-import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NewspaperIcon from '@mui/icons-material/Newspaper'
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import FeatureProductToggle from "./FeatureProductToggle";
-import WarrentyProductToggle from "./WarrentyProductToggle";
-import EmptyPage from "../../../Main/EmptyPage";
-import MaterialBarCodeInput from "../../../Main/Supplies/MaterialBarCodeInput";
-import ProductSearchData from "./ProductSearchData";
+
+const ProductPublishToggle = lazy(() => import("./ProductPublishToggle"));
+const FeatureProductToggle = lazy(() => import("./FeatureProductToggle"));
+const WarrentyProductToggle = lazy(() => import("./WarrentyProductToggle"));
+const ProductSearchData = lazy(() => import("./ProductSearchData"));
+const MaterialBarCodeInput = lazy(() => import("../../../Main/Supplies/MaterialBarCodeInput"));
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -223,13 +221,13 @@ useEffect(() => {
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex font-poppins text-xs justify-between w-[91%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">  
-          <div className="w-[5.01rem]"></div>        
+          <div className="w-[4.9rem]"></div>        
             <div className=" w-[4.5rem] truncate max-md:w-[4.5rem] text-sm text-[#00A2E8]   max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             <NewspaperIcon className='!text-base mr-1  text-[#00A2E8]'/>
              {translatedMenuItems[0]} {/* Article # */}
               </div>
               
-            <div className=" w-[13.9rem]  truncate max-md:w-[14.71rem]   max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            <div className=" w-[14.3rem]  truncate max-md:w-[14.71rem]   max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
             <ContactsIcon className="!text-icon mr-1 text-[#3af64a]"/>
             {translatedMenuItems[1]}  {/* Name */}
               </div>
@@ -241,16 +239,16 @@ useEffect(() => {
             <div className=" w-[8.5rem] truncate max-md:w-[8.5rem]   max-xl:w-[11.51rem]">           
             <AttractionsIcon className="  !text-icon text-[#8e71ed]" />   {translatedMenuItems[3]} {/* Attribute */}
               </div>
-            <div className=" w-[9rem] truncate max-md:w-[10rem]   max-xl:w-[5.51rem]">
+            <div className=" w-[9.6rem] truncate max-md:w-[10rem]   max-xl:w-[5.51rem]">
             <BrandingWatermarkIcon className="!text-icon text-[#0f3337]  mr-1" />
             {translatedMenuItems[4]}{/* Brand */}
               </div>
-            <div className=" w-[6.51rem] truncate max-md:w-[6.51rem]   max-xl:w-[4.51rem]">
+            <div className=" w-[6.7rem] truncate max-md:w-[6.51rem]   max-xl:w-[4.51rem]">
             <ModelTrainingIcon className=" !text-icon text-[#e862cf]" />
             {translatedMenuItems[5]} {/* Model */}
             
             </div>
-            <div className=" w-[6.24rem] truncate max-md:w-[6.24rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <div className=" w-[6rem] truncate max-md:w-[6.24rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             <ExploreIcon className=" !text-icon cursor-pointer text-[green]"/>
             {translatedMenuItems[6]}  {/* Website */}
               </div>
@@ -258,7 +256,7 @@ useEffect(() => {
               {/* Feature */}
                <  PixIcon  className=" !text-icon text-[#124348]" />   {translatedMenuItems[7]}  
               </div>
-              <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className=" w-[6.1rem] truncate max-md:w-[4.8rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
               < AddModeratorIcon className=" !text-icon text-[#e53838]" />   {translatedMenuItems[8]}  
             {/* Warranty */}
               </div>
@@ -282,10 +280,10 @@ useEffect(() => {
                 {data.map((item,index) => {
                return (
                 <div>
-                  <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  md:flex row-auto    max-sm:border-b-4 max-sm:border-blue-500 ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                       <div className=" flex w-[4.5rem] items-center max-sm:w-auto h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
-                        <SubTitle>
+                        <div>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
@@ -298,7 +296,7 @@ useEffect(() => {
                               No Image
                             </div>
                           )}
-                        </SubTitle>
+                        </div>
                       </div>
                       <div className=" flex w-[4.5rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs  text-blue-600  ml-gap  max-sm:text-sm  font-poppins cursor-pointer  "
@@ -313,7 +311,7 @@ useEffect(() => {
 
                       <div className=" flex  w-[14.5rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs  ml-gap text-blue-600 cursor-pointer max-sm:text-sm font-poppins  "
+                        <div class=" text-xs truncate ml-gap text-blue-600 cursor-pointer max-sm:text-sm font-poppins  "
                         onClick={() => {
                           openModal();
                           handleParticularRowData(item);
@@ -366,7 +364,7 @@ useEffect(() => {
                      <FeatureProductToggle item={item}    featureInd={item.featureInd}  productId={item.productId}/>
 
                     </div>
-                    <div className=" flex  w-[4.8rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex  w-[4.9rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
 

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  withRouter } from "react-router-dom";
+
 import { Formik, Form, Field } from "formik";
-import { Input } from "../../../../Auth/styled";
-import { ValidationError } from "../../../../../Components/UI/Elements";
 import Button from "antd/lib/button";
 
  import { verifyUserEmailurL ,
   validateEmailOtpurL,
   addEmailLinkSave
 } from "../../../ProfileAction";
+import { Input } from "../../../../../Components/UI/Layout";
 
 class LinkAccountForm extends Component {
   
@@ -70,7 +69,8 @@ class LinkAccountForm extends Component {
     <div>
       <Input {...field} {...props} />
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+       
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );
@@ -332,6 +332,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LinkAccountForm)
-);   
+export default connect(mapStateToProps, mapDispatchToProps)(LinkAccountForm)
+ 

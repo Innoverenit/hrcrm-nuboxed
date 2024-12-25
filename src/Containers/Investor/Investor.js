@@ -1,7 +1,6 @@
 import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader, } from "../../Components/Placeholder";
 import {
   // setInvestorViewType
   handleInvestorModal,updateOwnerinvestorById} from "./InvestorAction";
@@ -94,7 +93,7 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
-              <Suspense fallback={<BundleLoader />}>
+              <Suspense fallback={"Loading..."}>
           <InvestorHeader
           handleUserSelect={handleUserSelect}
           showCheckboxes={showCheckboxes}
@@ -160,7 +159,7 @@ const handleChange = (e) => {
              selectedLanguage={props.selectedLanguage}
             />
             ):(
-<InvestorCardList
+         <InvestorCardList
              translateText={props.translateText}
              showCheckboxes={showCheckboxes}
              selectedDeals={selectedDeals}

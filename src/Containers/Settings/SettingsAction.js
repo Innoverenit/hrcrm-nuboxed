@@ -910,13 +910,13 @@ export const addProcessForRecruiter = (data, organizationId, cb) => (
 
 
 
-export const getProcessForRecruit = (organizationId) => (dispatch) => {
+export const getProcessForRecruit = (organizationId,type) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_RECRUIT_REQUEST,
   });
   axios
-    .get(`${base_url}/admin/setting/process/${organizationId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${organizationId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3521,7 +3521,7 @@ export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) =>
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'created Successfully!',
+        title: 'Updated Successfully!',
         showConfirmButton: false,
         timer: 1500
       })
@@ -5016,13 +5016,13 @@ export const addProcessForProductionOnboarding = (data, orgId, cb) => (
     });
 };
 
-export const getProcessForProduction = (orgId) => (dispatch) => {
+export const getProcessForProduction = (orgId,type) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_PRODUCTION_REQUEST,
   });
   axios
-    .get(`${base_url}/productionWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5126,14 +5126,14 @@ export const addProcessStageForProduction = (stage, cb) => (dispatch) => {
     });
 };
 
-export const getProcessStagesForProduction = (productionWorkflowDetailsId) => (
+export const getProcessStagesForProduction = (orgId,workflowId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_PRODUCTION_REQUEST,
   });
   axios
-    .get(`${base_url}/productionWorkflow/Stages/${productionWorkflowDetailsId}`, {
+    .get(`${base_url}/workflow/stages/for_dropdown/${orgId}/${workflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -6340,11 +6340,11 @@ export const addProcessTaskStage = (customer) => (dispatch, getState) => {
     .then((res) => {
       // Swal.fire({
       //   icon: 'success',
-      //   title: 'Prospect created Successfully!',
+      //   title: 'Prospect Updated Successfully!',
       // })
       // Swal.fire({
       //   icon: 'success',
-      //   title: 'Prospect created Successfully!',
+      //   title: 'Prospect Updated Successfully!',
       //   showConfirmButton: false,
       //   // timer: 1500
       // })
@@ -6543,7 +6543,7 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
     .then((res) => {
      // dispatch(getSectorCount(orgId));
      
-     if (res.data.message === "WorkflowCategory can not be created as same name already exists!!!") {
+     if (res.data.message === "WorkflowCategory can not be Updated as same name already exists!!!") {
       Swal.fire({
         icon: 'error',
         title: res.data.message,
@@ -7278,6 +7278,56 @@ export const addApi = (opportunity, cb) => (dispatch, getState) => {
       console.log(err);
       dispatch({
         type: types.ADD_API_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const deleteSequencedatalist = (stageId,type) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SEQUENCE_DATA_LIST_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/stage/sequence/delete/${stageId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Sequence Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.DELETE_SEQUENCE_DATA_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SEQUENCE_DATA_LIST_FAILURE,
         payload: err,
       });
     });

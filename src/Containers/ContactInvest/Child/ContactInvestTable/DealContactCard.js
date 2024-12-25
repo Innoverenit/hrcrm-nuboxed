@@ -3,13 +3,13 @@ import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
 import {getContactDeal} from "../../ContactInvestAction";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+//import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -198,7 +198,7 @@ const DealContactCard = (props) => {
                     <div className=" flex font-medium  w-[16rem] border-l-2 border-green-500 bg-[#eef2f9]  max-md:w-[15rem]  max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
-                          <SubTitle>
+                          <div>
                             <MultiAvatar
                               primaryTitle={item.opportunityName}
                               imageId={item.imageId}
@@ -206,7 +206,7 @@ const DealContactCard = (props) => {
                               imgWidth={"1.8em"}
                               imgHeight={"1.8em"}
                             />
-                          </SubTitle>
+                          </div>
                         </div>
                         <div>
 
@@ -239,27 +239,11 @@ const DealContactCard = (props) => {
                     <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[14.1rem] max-md:w-[14.1rem] max-sm:flex-row  max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
-                        <Link to="/investor">
-                          {item.investor}
-                        </Link>
+                       
+                        {item.investor}
                       </div>
                     </div>
-                    {/* <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.01rem] max-md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  font-poppins">
-                        <SubTitle>
-                          {item.contactName === null ? "None" :
-                            <MultiAvatar2
-                              primaryTitle={item.contactName}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
-                            />
-                          }
-                        </SubTitle>
-                      </div>
-                    </div> */}
-               
+                  
                   
                     <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.01rem] max-md:w-[7.01rem] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs justify-center  font-poppins">

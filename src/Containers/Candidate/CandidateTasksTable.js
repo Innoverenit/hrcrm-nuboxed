@@ -7,7 +7,7 @@ import { Tooltip,Input, Button,
 import dayjs from "dayjs";
 import { MultiAvatar, Select } from "../../Components/UI/Elements";
 import { StyledTable } from "../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import Highlighter from "react-highlight-words";
 import SearchIcon from '@mui/icons-material/Search';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
@@ -382,7 +382,7 @@ const mapDispatchToProps =(dispatch)=>
 
     },dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CandidateTasksTable));
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateTasksTable);
 
 function StatusIcon({ type, iconType, tooltip, status, size, onClick, role }) {
   const start = type;

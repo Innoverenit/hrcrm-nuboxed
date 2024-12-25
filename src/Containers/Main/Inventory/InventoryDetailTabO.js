@@ -2,7 +2,7 @@ import React, {  PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router";
+
 import {
   handleAddDispatchModal,
   handleAddOutputReasonModal,
@@ -135,7 +135,8 @@ class InventoryDetailTabO extends PureComponent {
                 <>
                    <span class="!text-tab">
                     <i class="far fa-share-square text-[#9B2226]"></i>&nbsp;
-                   Complete Dispatch  
+                   {/* Complete Dispatch  */}
+                    {this.props.translatedMenuItems[45]} {this.props.translatedMenuItems[18]}
 
                   </span>
                 
@@ -184,9 +185,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTabO)
 
-);
+
 
 

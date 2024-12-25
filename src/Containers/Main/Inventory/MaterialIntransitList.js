@@ -8,7 +8,7 @@ import {
     getRoomRackByLocId, getRackList
 } from "./InventoryAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
@@ -19,7 +19,6 @@ const { Option } = Select;
 const MaterialIntransitList = (props) => {
     useEffect(() => {
         props.getMaterialReceiveData(props.locationDetailsId);
-        //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
     const [clickStore, setclickStore] = useState(false)
     const [selectedChamberId, setSelectedChamberId] = useState("");
@@ -47,11 +46,7 @@ const MaterialIntransitList = (props) => {
                             Po ID
                             </div>
                         <div className="truncate w-[23.52rem] max-md:w-[23.52rem]">
-                        <CategoryIcon
-              className='!text-base  text-[#e4eb2f]'
-              /> {props.translatedMenuItems[39]} 
-                          
-                        </div>
+                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[39]} </div>
                        
 
                         <div className=" w-[11.322rem]"></div>
@@ -122,7 +117,6 @@ const mapStateToProps = ({ inventory, auth,suppliers }) => ({
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
     addTermsnCondition: suppliers.addTermsnCondition,
-    // locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialReceiveData: inventory.materialReceiveData,
     addMaterialReceived: inventory.addMaterialReceived,
     showGrnListOfPo: inventory.showGrnListOfPo,
@@ -144,6 +138,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialIntransitList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialIntransitList)
+

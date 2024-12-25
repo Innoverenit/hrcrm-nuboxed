@@ -347,7 +347,7 @@ function InvestorDealForm(props) {
           <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
             <div class=" flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk">
+              <div class=" h-full w-w47.5.5 max-sm:w-wk">
               <div class="mt-3">
                 <Field
                   isRequired
@@ -364,7 +364,7 @@ function InvestorDealForm(props) {
                 />
                </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                     <Field
                       name="startDate"
                       label="Start "
@@ -374,7 +374,7 @@ function InvestorDealForm(props) {
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                     <Field
                       // isRequired
                       name="endDate"
@@ -400,7 +400,7 @@ function InvestorDealForm(props) {
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class="  w-w47.5 max-sm:w-wk">
+                <div class="  w-w47.5.5 max-sm:w-wk">
                     <Field
                       name="proposalAmount"
                       label=" Fund Value"
@@ -411,7 +411,7 @@ function InvestorDealForm(props) {
                       component={InputComponent}
                     />
                   </div>
-                  <div class="  w-w47.5 max-sm:w-wk">
+                  <div class="  w-w47.5.5 max-sm:w-wk">
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
@@ -480,7 +480,7 @@ function InvestorDealForm(props) {
                 </div>
               </div>
             <div
-               class=" h-full w-w47.5 max-sm:w-wk">
+               class=" h-full w-w47.5.5 max-sm:w-wk">
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -567,7 +567,7 @@ function InvestorDealForm(props) {
   </div>
                 
 <div class="mt-2 flex justify-between max-sm:flex-col">
-<div class=" w-w47.5 max-sm:w-wk">
+<div class=" w-w47.5.5 max-sm:w-wk">
 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                   <Field
                     name="investorId"
@@ -589,7 +589,7 @@ function InvestorDealForm(props) {
                   />
                 </div>
             </div>
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <Field
                     name="contactId"
                     // selectType="contactListFilter"
@@ -618,7 +618,7 @@ function InvestorDealForm(props) {
                         </div>
                         </div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <div class=" w-w47.5 max-sm:w-wk">
+                        <div class=" w-w47.5.5 max-sm:w-wk">
                         <Field
                             name="source"
                              label="source"
@@ -663,7 +663,7 @@ function InvestorDealForm(props) {
                
 
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
                         name="oppWorkflow"
@@ -686,7 +686,7 @@ function InvestorDealForm(props) {
                     </div>
                   </div>
                   
-                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <div class=" w-w47.5.5 max-sm:w-wk ">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
                         name="oppStage"

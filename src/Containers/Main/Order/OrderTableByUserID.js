@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Select ,Popconfirm} from "antd";
@@ -11,14 +11,12 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
-import EmptyPage from "../../Main/EmptyPage";
 import { handleOrderDetailsModal, handleLeadModal,} from "../Account/AccountAction";
 import {
 
@@ -31,17 +29,17 @@ import {
   getRepairMediumOrderList,
   getRepairLowOrderList
 } from "./OrderAction";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
-import AddLeadModal from "./AddLeadModal";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import OrderSearchedData from "./OrderSearchedData";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
+
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
+const AddLeadModal = lazy(() => import("./AddLeadModal")); //2
+const OrderSearchedData = lazy(() => import("./OrderSearchedData"));
 const { Option } = Select;
 
 dayjs.extend(relativeTime);
@@ -186,7 +184,7 @@ const handleLoadMoreLow = () => {
 };
 const viewAnDownloadPdf= async (item) => {  
   try {
-    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
       responseType: 'blob',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -221,28 +219,28 @@ const viewAnDownloadPdf= async (item) => {
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  items-end  z-10 max-sm:hidden">
-                    <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[4.54rem] items-center max-md:w-[4.54rem]   flex justify-center bg-[red] text-white">
+                    <div class=" flex justify-between  !text-lm font-poppins  font-bold  w-[96%]  ">
+                        <div className="w-[4.54rem] text-sm text-[#00A2E8] truncate max-md:w-[4.54rem]    bg-[red] text-white">
                           {translatedMenuItems[0]}
                            </div>
-                        <div className="flex items-center text-[#00A2E8] text-base w-[6rem] max-md:w-[6rem] ml-2">
+                        <div className="  w-[6rem] truncate max-md:w-[6rem] ml-2">
                         <DynamicFeedIcon className='!text-base mr-1 '/>
                         {translatedMenuItems[1]} ID</div>
-                        <div className="flex items-center w-[10.6rem] max-md:w-[3.6rem] "> 
+                        <div className="  w-[10.6rem] truncate max-md:w-[3.6rem] "> 
                           <ApartmentIcon className='!text-base mr-0  text-[#902089]'/>
                           {translatedMenuItems[2]}</div>
-                        <div className="flex items-center w-[2.051rem] mr-1 max-md:w-[3.051rem] ">
+                        <div className="  w-[2.051rem] truncate mr-1 max-md:w-[3.051rem] ">
                            <ContactsIcon className='!text-base mr-1 text-[#12462c]'/>
                            {translatedMenuItems[3]}</div>
-                        <div className="flex items-center w-[2.018rem] max-md:w-[10.018rem]">
+                        <div className=" w-[2.018rem] truncate max-md:w-[10.018rem]">
                           {translatedMenuItems[4]}</div>      
-                        <div className="flex items-center w-[5.73rem] max-md:w-[2.73rem]">
+                        <div className=" w-[5.73rem] truncate max-md:w-[2.73rem]">
                         <AccountCircleIcon className="!text-icon  text-[#f28482]"/>
                         {translatedMenuItems[5]}</div>
-                        <div className="flex items-center w-[5.8rem] max-md:w-[2.8rem]">
+                        <div className=" w-[5.8rem] truncate max-md:w-[2.8rem]">
                           {translatedMenuItems[6]}</div>
-                        <div className="flex items-center w-[9.8rem] max-md:w-[20.8rem]">
-                        <GroupsIcon className='!text-base mr-1  text-[#f29844]'/>
+                        <div className=" w-[9.8rem] truncate max-md:w-[20.8rem]">
+                        <GroupsIcon className='!text-icon mr-1  text-[#f29844]'/>
                         {translatedMenuItems[7]}</div>               
                         </div>
                     </div>                          
@@ -255,8 +253,7 @@ const viewAnDownloadPdf= async (item) => {
           height={"38vh"}
           endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
-                        {props.repairHighCompleteOrder.length === 0 ?
-                            <><EmptyPage/>
+                            <>
                                 {props.repairHighCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -473,7 +470,8 @@ const viewAnDownloadPdf= async (item) => {
 
                                     )
                                 })}
-                            </> : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null}
+                            </> 
+                            {/* : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null} */}
                     </InfiniteScroll>
 
             
@@ -510,8 +508,9 @@ const viewAnDownloadPdf= async (item) => {
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-                        {props.repairLowCompleteOrder.length === 0 ?
-                            <><EmptyPage/>
+                        {/* {props.repairLowCompleteOrder.length === 0 ? */}
+                            <>
+                            {/* <EmptyPage/> */}
                                 {props.repairLowCompleteOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -736,13 +735,15 @@ const viewAnDownloadPdf= async (item) => {
 
                                     )
                                 })}
-                            </> : !props.repairLowCompleteOrder.length && !props.fetchingRepairLowOrderList ? <NodataFoundPage /> : null}
+                            </>
+                            {/* : !props.repairLowCompleteOrder.length && !props.fetchingRepairLowOrderList ? <NodataFoundPage /> : null} */}
                     </InfiniteScroll>
 
                     {/* </div> */}
 
                 </div>
             </div >
+            <Suspense>
       <AddNotesOrderDrawer
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -778,6 +779,7 @@ const viewAnDownloadPdf= async (item) => {
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal} />
+        </Suspense>
     </>
   )}
   </div>

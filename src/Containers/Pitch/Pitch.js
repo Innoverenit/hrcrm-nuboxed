@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handlePitchModal,getPitch,updateOwnerPitchById
  } from "../Pitch/PitchAction";
-import { BundleLoader, } from "../../Components/Placeholder";
 const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
 const PitchCardList =lazy(()=>import("./Child/PitchCardList"));
 const AddPitchModal =lazy(()=>import("../Pitch/Child/AddPitchModal"));
@@ -91,7 +90,7 @@ function Pitch (props) {
   } = props;
         return (
             <React.Fragment>
-           <Suspense fallback={<BundleLoader />}>
+           <Suspense fallback={"Loading...."}>
             <PitchHeader
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}

@@ -21,12 +21,9 @@ import {
   addeventLocation,
 } from "../../EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
-const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
-
 
 dayjs.extend(relativeTime);
 
@@ -144,7 +141,6 @@ const getLocation = (item) => {
       eventListRangeByUserId,
       deleteEvent,
       setEditNoteEvent,
-      updateEventModal,
       handleUpdateEventModal,
       userDetails: { employeeId },
     } = props;
@@ -160,36 +156,36 @@ const getLocation = (item) => {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
    
-         <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
+         <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[90%]">
-        <div className="flex truncate w-[12.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        <div className="flex truncate text-sm text-[#00A2E8] w-[12.7rem]  max-xl:w-[9.2rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]}
          {/* type" */}
                 </div>
-        <div className="flex truncate w-[15.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+        <div className="flex truncate w-[15.7rem]  max-xl:w-[13.23rem]">
         <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[1]} 
         {/* subject"*/}
                 </div>
-        <div className="flex truncate w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+        <div className="flex truncate w-[8.5rem]  max-xl:w-[9.25rem] ">
         <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]} 
         {/* start */}
                 </div>
-        <div className="flex truncate  w-[7.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+        <div className="flex truncate  w-[7.13rem]  max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
         <DateRangeIcon className="!text-icon mr-1"/> {translatedMenuItems[3]}
          {/*end"/> */}
                 </div>
                 <div className="flex truncate  w-[8.33rem] ">
                   </div>
-        <div className="flex truncate w-[9.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+        <div className="flex truncate w-[9.6rem]  max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
         <GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/> {translatedMenuItems[4]}
  {/* subject"*/}
                 </div>
      
-        <div className=" flex truncate w-[5.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+        <div className=" flex truncate w-[5.15rem]  max-xl:w-[6.15rem]">
         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/>  {translatedMenuItems[5]}
          {/* subject"*/}
                 </div>
-        <div className=" flex truncate w-[14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+        <div className=" flex truncate w-[14rem]  max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
   
                 </div>
                 
@@ -214,7 +210,7 @@ const getLocation = (item) => {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:h-24"
+                            <div className="flex rounded   mt-1 bg-white items-center py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:h-24"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
@@ -223,37 +219,32 @@ const getLocation = (item) => {
                                     <div className="flex max-sm:w-full"> 
                                         <div class="max-sm:w-full flex items-center">
                                         <Tooltip>
-                                        <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-                                            {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
-                                            Type
-                                            </div> */}
-                                            <div class="flex text-xs items-center ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
-                                            {item.eventType}
-       
+                                        <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">                                    
+                                            <div class="flex text-xs items-center ml-gap font-poppins cursor-pointer  max-sm:text-xs ">                                       
+                                            {item.eventType}    
                                             </div>
                                                </div>
                                         </Tooltip>
                                         </div>
                                         </div>
                                 </div>
-
                                 <div className=" flex  w-[14.30rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
+                                    <div class=" text-xs ml-gap font-poppins  max-sm:text-xs ">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[7.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
-                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
-                                    <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    {/*Start */}
+                                    <div class="text-xs  font-poppins  max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex w-[6.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
-                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
-                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    {/* End*/}
+                                    <div class="text-xs   font-poppins  max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
@@ -263,9 +254,9 @@ const getLocation = (item) => {
                                    
                                 </div>
                                 <div className=" flex  w-[9.31rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
+                                    {/* Include*/}
 
-                                    <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    <div class=" text-xs   font-poppins  max-sm:text-xs ">
                                     <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -283,28 +274,24 @@ const getLocation = (item) => {
                       {data1}
                     
                     </Avatar>
-                    </Tooltip>
-                     
-
-                   
+                    </Tooltip>                                 
                     );
                   })}
             </Avatar.Group>
                                     </div>
                                 </div>
                                 <div className="flex  w-[5.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* Assigned*/}
 
-                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
-                                    {/* <Tooltip title={item.assignedToName}> */}
-              <SubTitle>
+                                    <div class="text-xs   font-poppins  max-sm:text-xs ">
+                     
+              <div>
               <span>
               {item.assignedToName === null ? (
                 "Not available"
               ) : (
                 <>
-                {item.assignedToName === item.woner ? (
-                  
+                {item.assignedToName === item.woner ? (               
                   null
                 ) : (
                 <MultiAvatar
@@ -316,7 +303,7 @@ const getLocation = (item) => {
                 </>
               )}
             </span>
-              </SubTitle>
+              </div>
              {/* </Tooltip> */}
                                     </div>
                                 </div>
@@ -335,13 +322,10 @@ const getLocation = (item) => {
    style={{color:"green"}}
    />
        
-                )}
-       
-        
+                )}         
           </div>
                    </div>
                                </div>
-
                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -349,10 +333,6 @@ const getLocation = (item) => {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-
-
-
-
                                <div class="flex  w-wk justify-end max-sm:w-wk items-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly"> 
                     
                       <div class="flex max-sm:flex-row items-center justify-end max-sm:w-auto">
@@ -367,22 +347,8 @@ const getLocation = (item) => {
                   </span>)}
                         </div>
                         {item.complitionInd===true&&(
-                        <div>
-                        {/* {item.completionInd === false ? (
-                <CheckCircleIcon 
-                className="!text-icon cursor-pointer text-[#eeeedd]"
-                  />
-              ) : (
-                <span><CheckCircleIcon 
-                className="!text-icon cursor-pointer text-[#67d239]"
-                 />
-                </span>
-              )} */}
-              
-
-{Math.round(item.compDistance)}km
-           
-        
+                        <div>                           
+{Math.round(item.compDistance)}km           
                         </div>
                         )}
                     
@@ -394,23 +360,10 @@ const getLocation = (item) => {
           className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
           onClick={handleCopyClick}
         />
-        {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
       </div>
     }>
       <EventNoteIcon className="!text-icon cursor-pointer" />
-    </Tooltip>
-                                                                          
-          <Tooltip title={translatedMenuItems[7]}>
-              <BorderColorIcon
-                type="edit"
-                className="!text-icon cursor-pointer text-[tomato]"
-                onClick={() => {
-                  props.setEditEvents(item);
-                  handleUpdateEventModal(true);
-                }}
-              />
-            </Tooltip>
-          
+    </Tooltip>        
             <div>
            
             <StyledPopconfirm
@@ -419,7 +372,7 @@ const getLocation = (item) => {
               onConfirm={() => deleteEvent(item.eventId, employeeId)}
             >
                <Tooltip title={translatedMenuItems[8]}>
-               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+               <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
               </Tooltip>
             </StyledPopconfirm>
       
@@ -428,32 +381,24 @@ const getLocation = (item) => {
                               </div>
                             </div>
                         </div>
-
-
                     )
                 })}
                    </InfiniteScroll>
       </div>
       </div>
       <Suspense fallback={<BundleLoader />}>
-        <UpdateEventModal
-          updateEventModal={updateEventModal}
-          handleUpdateEventModal={handleUpdateEventModal}
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
-        />
+      
          </Suspense>
       </>
     );
   }
-
 const mapStateToProps = ({ auth, event, employee,opportunity}) => ({
   userDetails: auth.userDetails,
   fetchingEventListRangeByUserId: event.fetchingEventListRangeByUserId,
   fetchingEventListRangeByUserIdError:
     event.fetchingEventListRangeByUserIdError,
   eventListRangeByUserId: event.eventListRangeByUserId,
-  updateEventModal: event.updateEventModal,
+
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -468,7 +413,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-
 export default connect(mapStateToProps, mapDispatchToProps)(EventCardList);
 function NoDataComponent(props) {
   const { description, onClick, buttonText } = props;

@@ -14,13 +14,13 @@ const AddCustomerContactModal = (props) => {
     handleCustomerContactModal,
     ...formProps
   } = props;
-  console.log(props.opportunityId)
+  console.log(props.customerId)
   return (
     <>
       <StyledDrawer
       title="Contact"
         // title={`${props.translatedMenuItems[1]}`}
-        width="60%"
+        width="50%"
         visible={addCustomerContactModal}
         onClose={() => handleCustomerContactModal(false)}
         footer={null}

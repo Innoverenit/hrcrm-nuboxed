@@ -75,7 +75,7 @@ props.getTeamMemberlist();
         }) => (
           <Form class="form-background h-[86vh]">
             <div class="flex justify-between" >
-              <div class="h-full w-w47.5" >
+              <div class="h-full w-w47.5.5" >
                 
                <div class="mt-4">
                   <FastField name="imageId" component={Upload} />
@@ -115,7 +115,7 @@ props.getTeamMemberlist();
                   </div>
                 </div>          
               </div>
-              <div class="h-full w-w47.5" >
+              <div class="h-full w-w47.5.5" >
                
               </div>
             </div>

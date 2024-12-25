@@ -38,8 +38,8 @@ class ModuleTrading extends Component {
                 <div class="w-full flex-row">
               <div class=" flex " >
              
-              <div class=" h-[12rem]         w-[10.5rem]  bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-              <div className=" flex h-28 justify-center "> 
+              <div class=" h-[12rem]   w-[12rem]  bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+              <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={Trading}
@@ -68,8 +68,8 @@ class ModuleTrading extends Component {
                     </div>
                     </div>      
             <> 
-            <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+            <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={Ecomimg}
@@ -99,8 +99,8 @@ class ModuleTrading extends Component {
                     <div class="text-xs text-center"> D2C / B2B / Customer portal / Supplier Portal.</div>
                     </div> 
                     </div>
-                    <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={Cataloimg}
@@ -129,8 +129,8 @@ class ModuleTrading extends Component {
                     <div class="text-xs text-center">Publish on Portal.</div>
                     </div> 
                     </div>       
-                    <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={Materialimg}
@@ -159,8 +159,8 @@ class ModuleTrading extends Component {
                     </div> 
                     </div>
 
-                    <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={Timetrack}
@@ -188,8 +188,8 @@ class ModuleTrading extends Component {
                     <div class="text-xs text-center"> Time Track.</div>
                     </div> 
                     </div>
-                    <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-            <div className=" flex h-28 justify-center "> 
+                    <div class=" h-[12rem]  w-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 w-[10rem] justify-center "> 
               <img
               className="w-18 h-18 m-2"
               src={cbmcal}

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleHolidayModal } from "../HolidayAction"
@@ -45,6 +45,5 @@ const mapStateToProps = ({ holiday }) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     handleHolidayModal
 }, dispatch);
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(HolidayActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(HolidayActionRight)
+

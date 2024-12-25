@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { TextInput,ValidationError } from "../../UI/Elements";
+import { TextInput } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import TextInput2 from "../../UI/Elements/TextInput2";
 export const InputComponent1 = ({
@@ -40,7 +40,7 @@ export const InputComponent1 = ({
         />
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -71,7 +71,7 @@ export const InputComponent1 = ({
         </FlexContainer>
       </FlexContainer>
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError >{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </>
   );

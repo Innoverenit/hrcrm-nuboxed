@@ -8,7 +8,7 @@ import {getUserListLocation} from "../../Child/Location/LocationAction"
 import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell,handleUserCellModal} from "../../../Event/Child/Location/LocationAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader } from "../../../../Components/Placeholder";
-const AddUserCellModal = lazy(() => ("/AddUserCellModal"));
+import AddUserCellModal from "../../Child/Location/AddUserCellModal"
 
 
 const { Option } = Select;
@@ -284,7 +284,7 @@ const UsersCellCard = (props) => {
         </div>
       </div> 
 
-      <Suspense fallback={<BundleLoader />}>
+      {/* <Suspense fallback={<BundleLoader />}> */}
       <AddUserCellModal
       addUserCellModal={props.addUserCellModal}
       handleUserCellModal={props.handleUserCellModal}
@@ -294,7 +294,7 @@ const UsersCellCard = (props) => {
       // handleLocationMachineModal={props.handleLocationMachineModal}
       
       />
-      </Suspense>
+      {/* </Suspense> */}
       </>
       
     );

@@ -2,7 +2,8 @@ import React, { Component,lazy } from "react";
 import { Menu, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { base_url } from "../../Config/Auth";
 import {
   StyledDropdown,
@@ -12,27 +13,37 @@ import {
 import {MainWrapper } from "../../Components/UI/Layout";
 import { logout } from "../Auth/AuthAction";
 
+import GroupsIcon from '@mui/icons-material/Groups';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LockResetIcon from '@mui/icons-material/LockReset';
 const Theme = lazy(() => import("../Settings/Theme/Theme"));
 
 
-const ProfileMenu = ({ logout, history }) => (
+const ProfileMenu = ({ logout, history,navigate }) => (
+  
   <div class=" p-1 bg-light-gray ">
     <MainWrapper>
       <StyledMenu>
         <StyledMenuItem  key="0" >
-          <a href="#" onClick={() => history.push("/profile")}>
+          <a href="#" onClick={() => 
+            // history.push("/profile")}
+            navigate("/profile")}
+            >
           
-            Profile
+           <GroupsIcon className=" !text-icon"/> Profile
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="3">
-          <a href="#" onClick={() => history.push("/change-password")}>
+          <a href="#" onClick={() => 
+            // history.push("/change-password")}
+            navigate("/change-password")}
+            >
        
-            Change Password
+          <LockResetIcon className=" !text-icon"/> Change Password
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="4">
-          <a onClick={() => logout(history)}>Logout</a>
+          <a onClick={() => logout(navigate)}><LogoutIcon className=" !text-icon"/>Logout</a>
         </StyledMenuItem>
         <Menu.Divider />
       </StyledMenu>
@@ -44,7 +55,8 @@ const ProfileMenu = ({ logout, history }) => (
 class ProfileDropdown extends Component {
   render() {
     const {
-      userDetails: { fullName, imageId }
+      userDetails: { fullName, imageId },
+      navigate
     } = this.props;
     return (
       <StyledDropdown
@@ -52,6 +64,7 @@ class ProfileDropdown extends Component {
           <ProfileMenu
             logout={this.props.logout}
             history={this.props.history}
+            navigate={navigate}
           />
         }
       >
@@ -77,6 +90,5 @@ const mapStateToProps = ({ auth }) => ({
 });
 const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProfileDropdown)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdown)
+

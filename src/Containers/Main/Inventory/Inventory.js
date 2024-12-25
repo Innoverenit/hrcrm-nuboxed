@@ -1,19 +1,21 @@
 import React, { Suspense, lazy,useState,useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import InventoryCommerceTabO from "./InventoryCommerceTabO"
-import InventoryHeader from "./InventoryHeader";
+import { useParams } from "react-router-dom";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
-import InventoryMaterialTabO from "./InventoryMaterialTabO";
-import InventoryDetailTabO from "./InventoryDetailTabO";//2
-import InventorySupplierTable from "./InventorySupplierTable";
 import { BundleLoader } from "../../../Components/Placeholder";
 
+const InventoryCommerceTabO = lazy(() => import("./InventoryCommerceTabO"));
+const InventoryHeader = lazy(() => import("./InventoryHeader"));
 const InventoryCard = lazy(() => import("./InventoryCard"));
+const InventorySupplierTable = lazy(() => import("./InventorySupplierTable"));
+const InventoryDetailTabO = lazy(() => import("./InventoryDetailTabO"));
+const InventoryMaterialTabO = lazy(() => import("./InventoryMaterialTabO"));
 
 function Inventory(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [tabData, setTabData] = useState("1");
+  const { locationDetailsId, data } = useParams();
   const [isInitialLoad, setIsInitialLoad] = useState(true); 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -58,8 +60,15 @@ function Inventory(props) {
        "1083",//Supplier36
        "771", //  Final37
        "1044",
-       "800"
-      //  ""//  Waste
+       "800",
+     "1715",//  Waste
+     "1721",
+     "1719",
+     "1492",
+     "1720",
+     "268"
+    
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -109,12 +118,12 @@ function Inventory(props) {
    // props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
 
     // Set tabData based on URL params
-    if (props.match.params.data === "Receive") {
+    if (data === "Receive") {
       setTabData("4");
-    } else if (props.match.params.data === "Dispatch") {
+    } else if (data === "Dispatch") {
       setTabData("3");
     }
-  }, [props.match.params.locationDetailsId, props.inventory]);
+  }, [locationDetailsId, props.inventory]);
 
   const {
     inventory = { inventory },

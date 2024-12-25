@@ -151,7 +151,7 @@ const CbmCalculator = (props) => {
         <div className="flex w-wk items-center">
         <label className="block text-sm font-medium text-gray-700 w-[30%]">Gross Weight</label>
         <div className="flex justify-between w-wk">
-            <div className="flex flex-col w-w47.5">
+            <div className="flex flex-col w-w47.5.5">
          
           <input
             type="number"
@@ -162,7 +162,7 @@ const CbmCalculator = (props) => {
             placeholder="Enter Gross Weight"
           />
           </div>
-          <div className="flex flex-col w-w47.5">
+          <div className="flex flex-col w-w47.5.5">
           <select
             value={weightUnit}
             onChange={(e) => setWeightUnit(e.target.value)}
@@ -235,8 +235,8 @@ const CbmCalculator = (props) => {
         <div className="flex w-wk items-center">
           <h4 className="text-lg font-semibold  w-[30%]">Volumetric Weight Sea</h4>
           <div className="flex justify-between w-wk">
-          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5">{results.volumeWeightSea} kg</div>
-          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5">{results.volumeWeightSealb} lb</div>
+          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5.5">{results.volumeWeightSea} kg</div>
+          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5.5">{results.volumeWeightSealb} lb</div>
           </div>
         </div>
 
@@ -244,8 +244,8 @@ const CbmCalculator = (props) => {
         <div className="flex w-wk items-center">
           <h4 className="text-lg font-semibold  w-[30%]">Volumetric Weight Air</h4>
           <div className="flex justify-between w-wk">
-          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5">{results.volumeWeightAir} kg</div>
-          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5">{results.volumeWeightAirlb} lb</div>
+          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5.5">{results.volumeWeightAir} kg</div>
+          <div className="text-2xl font-bold text-center py-2 bg-white rounded-md w-w47.5.5">{results.volumeWeightAirlb} lb</div>
           </div>
         </div>
         <div className="flex w-wk items-center">

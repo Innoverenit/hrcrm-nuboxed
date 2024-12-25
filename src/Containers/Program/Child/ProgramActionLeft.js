@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import TableViewIcon from '@mui/icons-material/TableView';
 import { Tooltip } from "antd";
 
@@ -31,5 +31,4 @@ const mapStateToProps = ({leads}) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProgramActionLeft));
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramActionLeft);

@@ -7,7 +7,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import MicIcon from '@mui/icons-material/Mic';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, {
@@ -281,6 +281,7 @@ const CustomerActionLeft = (props) => {
   };
 
   const { user } = props;
+  console.log(props.viewType)
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"
@@ -466,6 +467,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CustomerActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerActionLeft)
+

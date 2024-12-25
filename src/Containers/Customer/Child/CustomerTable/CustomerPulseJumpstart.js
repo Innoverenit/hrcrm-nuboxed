@@ -138,7 +138,7 @@ render() {
     <div class="flex flex-wrap w-full" >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center text-xs">
                                 <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
@@ -170,7 +170,7 @@ render() {
                     </div>  
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center text-xs">
                                 <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
@@ -195,7 +195,7 @@ render() {
   
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
-                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center text-xs">
                                 <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
@@ -230,7 +230,7 @@ render() {
 
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
-                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center text-xs">
                                 <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-blue-600">
@@ -259,48 +259,11 @@ render() {
       
       />
                             </div>
-                        </div>
-                       
+                        </div>                     
                     </div>
-
-                    {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                    
-                       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                            <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-3">
-                                    <div class="rounded-full p-3 bg-red-500"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
-                                </div>
-                                <JumpStartBox
-            noProgress
-            title="#Contacts "
-             
-            jumpstartClick={() => this.handleCardClick("contacts")}
-          
-            cursorData={
-              this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
-            }
-
-            // value={
-            //   this.props.contactValue.CustomerContactDetails
-
-            // }
-            value={
-              this.props.fetchingContactValue ? "Loading..." :
-              this.props.contactValue.CustomerContactDetails === 0 ? "None" :
-              this.props.contactValue.CustomerContactDetails
-            }
-            bgColor="linear-gradient(270deg,black,grey)"
-            isLoading={this.props.fetchingContactValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"               
-          /> 
-                            </div>
-                        </div>
-                       
-                    </div> */}
-
 <div className="w-full md:w-1/2 xl:w-1/3 p-2" style={{ perspective: '1000px' }}>
         <div
-          className={`relative  h-[5rem] w-full transition-transform duration-700 ${isFlipped ? 'flip' : ''}`}
+          className={`relative  h-[3.5rem] w-full transition-transform duration-700 ${isFlipped ? 'flip' : ''}`}
           style={{ transformStyle: 'preserve-3d' }}
           onClick={this.handleClick}
         >
@@ -371,7 +334,7 @@ render() {
     />
   </div>
 </div>
-<div class=" flex  w-[50%] mt-1" >
+<div class=" flex " >
 <Suspense fallback={<BundleLoader />}>
           {activeCard === "quotations" && <CustrOpenOpportunityJumpstartCardList customer={this.props.customer}
           translateText={this.props.translateText}

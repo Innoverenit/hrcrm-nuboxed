@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { message, Button, Upload } from "antd";
 import { Formik, Form, Field } from "formik";
 import { StyledSteps } from "../../../Components/UI/Antd";
@@ -283,6 +283,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(AccountImport)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountImport)
+

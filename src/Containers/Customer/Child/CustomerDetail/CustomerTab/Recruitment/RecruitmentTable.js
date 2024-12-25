@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -15,8 +15,10 @@ import { Link } from "../../../../../../Components/Common";
 import Highlighter from 'react-highlight-words';
 import dayjs from "dayjs";
 import { getCustomerRecruit } from "../../../../CustomerAction";
-import SearchIcon from '@mui/icons-material/Search';;
-import { MultiAvatar,SubTitle } from "../../../../../../Components/UI/Elements";
+import SearchIcon from '@mui/icons-material/Search';
+import { MultiAvatar } from "../../../../../../Components/UI/Elements";
+
+
 class RecruitmentTable extends Component {
   constructor(props) {
     super(props);
@@ -203,9 +205,9 @@ class RecruitmentTable extends Component {
         ...this.getColumnSearchProps('requirementName'),
       },
       {
-        title: "Opportunity",
+        title: "Quotation",
         dataIndex: "opprtunityName",
-            width:"10%",
+            width:"8%",
             ...this.getColumnSearchProps('opprtunityName'),
               render: (name, item, i) => {
           const opprtunityName = `${item.salutation || ""} ${item.firstName ||
@@ -308,20 +310,20 @@ class RecruitmentTable extends Component {
   },
 {
   //title: "Sponsor",
-  title: "Recruit Owner"
+  title: "Owner"
   ,
    dataIndex: "recruitOwner",
-  width: "10%",
+  width: "5%",
   render: (name, item, i) => {
     return (
       <Tooltip title={item.recruitOwner}>
-        <SubTitle>
+       
           <MultiAvatar
             primaryTitle={item.recruitOwner}
             imgWidth={"1.8em"}
             imgHeight={"1.8em"}
           />
-        </SubTitle>
+      
       </Tooltip>
     );
   },
@@ -330,18 +332,30 @@ class RecruitmentTable extends Component {
         title: "Sponsor",
        
         dataIndex: "sponserName",
-        width: "7%",
+        width: "5%",
         render: (name, item, i) => {
           return (
             <Tooltip title={item.sponserName}>
-              <SubTitle>
+             
                 <MultiAvatar
                   primaryTitle={item.sponserName}
                   imgWidth={"1.8em"}
                   imgHeight={"1.8em"}
                 />
-              </SubTitle>
+            
             </Tooltip>
+          );
+        },
+      },
+      {
+        width: "2%",
+        render: (name, item, i) => {
+          return (
+           <>
+          <MonitorHeartIcon
+          className=" !text-icon cursor-pointer text-[#df9697]"
+          />
+           </>
           );
         },
       },

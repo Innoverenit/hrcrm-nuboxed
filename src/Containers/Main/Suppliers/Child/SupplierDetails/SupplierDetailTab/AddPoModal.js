@@ -11,7 +11,7 @@ const AddPoModal = (props) => {
                 title="Purchase Order"
                
 
-                width="65%"
+                width="50%"
                 visible={addLinkSuppliersOrderConfigureModal}
                 closable
                 destroyOnClose

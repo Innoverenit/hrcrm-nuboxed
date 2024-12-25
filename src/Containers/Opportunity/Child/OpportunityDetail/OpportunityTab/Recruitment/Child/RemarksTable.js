@@ -114,7 +114,7 @@ class RemarksTable extends Component {
           return <>
           {/* {item.availableDate === null ? "None" : */}
             <span>
-              {dayjs(item.creationDate).format("l")}
+              {dayjs(item.creationDate).format("YYYY/MM/DD")}
             </span>
           {/* } */}
           

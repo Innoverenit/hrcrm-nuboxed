@@ -4,15 +4,11 @@
 import React, { useEffect, useState,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    
-    getWasteMaterialLocation,
+import { getWasteMaterialLocation,
 } from "../Inventory/InventoryAction";
-//import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
 
-import { Tooltip, Select, Button,Input } from "antd";
+import { Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -28,28 +24,11 @@ const InvenoryGlobaltab = (props) => {
     const [row, setRow] = useState({})
     useEffect(() => {
       props.getWasteMaterialLocation(props.locationId); 
-        // props.getWasteMaterial(props.orgId);
-        // props.getInventory(props.orgId)
     }, [])
-
-
-
-
-
-  
-    
- 
-
-   
 console.log(selectedLocation)
-
-   
     return (
         <>
-    
- 
  <>
- 
   <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
@@ -70,10 +49,6 @@ console.log(selectedLocation)
                         <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
 
                         </div>     
-                        {/* <div className=" w-[5.12rem]" >       
-                   Country
-
-                        </div> */}
                         <div className=" w-[9.11rem] truncate max-md:w-[8.12rem]" >       
                         <DateRangeIcon className="!text-icon "/>  Best Use Date
 
@@ -100,9 +75,6 @@ console.log(selectedLocation)
                         <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> Total Value
 
                         </div>
-                   
-
-                     
                     </div>
                   
                          {props.westMaterialLocation.map((item,index) => {
@@ -193,21 +165,12 @@ console.log(selectedLocation)
                                             </div>
                                           
                                         </div>
-
-
-
-
-
-
                                         <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs ml-gap font-poppins">
                                         {item.totWstVal}
                                             </div>
                                           
-                                        </div>
-                                       
-
-                                                              
+                                        </div>              
                                     </div>
 
                                 </div>
@@ -217,15 +180,6 @@ console.log(selectedLocation)
                 </div>
             </div>
  </>
-
-
-            {/* <TermsnConditionModal
-                rowData={row}
-                addTermsnCondition={props.addTermsnCondition}
-                handleTermsnConditionModal={props.handleTermsnConditionModal}
-                translateText={props.translateText}
-                selectedLanguage={props.selectedLanguage}
-            /> */}
         </>
     );
 }
@@ -246,13 +200,11 @@ const mapStateToProps = ({ inventory,suppliers, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // getWasteMaterial,
+          
             getWasteMaterialLocation,
-            // getInventory
         },
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InvenoryGlobaltab)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InvenoryGlobaltab)
+

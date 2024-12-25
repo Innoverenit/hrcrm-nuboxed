@@ -250,7 +250,7 @@ console.log(isLastNameVisible)
             <div class="max-sm:h-[30rem] overflow-y-auto">
             <Form className="form-background">
               <div class="flex justify-around  pr-2 max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"   >
                   <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
@@ -359,7 +359,7 @@ console.log(isLastNameVisible)
 
               
                   <div class=" flex justify-between mt-4">
-                  <div class="w-w47.5 max-sm:w-w47.5">
+                  <div class="w-w47.5.5 max-sm:w-w47.5.5">
                     {/* {!isMobileNumberVisible&&( */}
                   <Field             
                   placeholder="Sector"        
@@ -382,7 +382,7 @@ console.log(isLastNameVisible)
             unCheckedChildren="Hidden"
           />
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                         {/* {!isSourceVisible&&( */}
                     <FastField
                             name="source"
@@ -408,7 +408,7 @@ console.log(isLastNameVisible)
                         </div>
                   </div>
                   <div class="flex justify-between mt-2">
-  <div class="w-w47.5 flex">
+  <div class="w-w47.5.5 flex">
     <div class="w-24">
       <Field
         name="potentialValue"
@@ -454,7 +454,7 @@ console.log(isLastNameVisible)
   </div>
 
 
-  <div class="w-w47.5 ">
+  <div class="w-w47.5.5 ">
     <Field
       name="type"
       label="Type"
@@ -503,7 +503,7 @@ console.log(isLastNameVisible)
             unCheckedChildren="Hidden"
           />
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "  
                 >
        
                  <div class=" flex justify-between mb-[0.35rem] mt-4">

@@ -15,7 +15,7 @@ import {
   handleInventoryDispatchModal
 } from "../../../InventoryAction"
 import {handleProductionNotesModal} from "../../../../Refurbish/RefurbishAction"
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SubOrderList from "../../../../Account/AccountDetailsTab/AccountOrderTab/SubOrderList";
@@ -730,6 +730,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DispatchTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DispatchTable)
+

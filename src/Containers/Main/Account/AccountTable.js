@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Popconfirm, Tooltip,Input,Button,Progress,Select, Avatar } from "antd";
 import { Link } from 'react-router-dom';
@@ -45,9 +44,7 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
-import Opportunity from "../../Opportunity/Opportunity";
 import Swal from 'sweetalert2'
-import CustomerOpportunityDrawerModal from "../../Customer/Child/CustomerTable/CustomerOpportunityDrawerModal";
 import { base_url2 } from "../../../Config/Auth";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import axios from "axios";
@@ -305,22 +302,21 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
-          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparent sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+          <div className=" flex max-sm:hidden   w-[94%]  justify-between p-1 bg-transparent sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
            <div class=" flex justify-between items-end !text-lm font-poppins  font-bold  w-[100%]  ">
-            <div className="w-1"></div>
-            <div className=" w-[12.1rem] text-[#00A2E8] text-sm max-md:w-[12.1rem]"> 
+            <div className=" w-[11.7rem] text-[#00A2E8] text-sm max-md:w-[12.1rem]"> 
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[8.11rem] max-md:w-[8.11rem]">
+            <div className=" w-[7.6rem] max-md:w-[8.11rem]">
             <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[1]}
            {/* Work */}
             </div>
-            <div className=" w-[8.1rem] max-md:w-[8.1rem] ">
+            <div className=" w-[7.1rem] max-md:w-[8.1rem] ">
             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
               {/* Category */}
               </div>
-            <div className="w-[6.02rem] max-md:w-[6.02rem]">
+            <div className="w-[6.4rem] max-md:w-[6.02rem]">
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
           {/* Type */}
              </div>
@@ -339,17 +335,17 @@ function AccountTable(props) {
          
             </div> 
 
-            <div className="w-[9.2rem] max-md:w-[9.2rem]">
+            <div className="w-[10.2rem] max-md:w-[9.2rem]">
             <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>
            {/* "billingaddress" */}
-           <div className="w-[5.2rem] max-md:w-[5.2rem]">
-           <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[8]}
+           <div className="w-[13.1rem] max-md:w-[5.2rem]">
+           <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' />  {translatedMenuItems[8]}
             {/* Credit */}          
             </div>
-  <div className="w-[5.3rem] max-md:w-[5.3rem]">
+  <div className="w-[6.9rem] max-md:w-[5.3rem]">
   <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[7]}
             {/* Assigned */}          
             </div>         
@@ -440,11 +436,12 @@ function AccountTable(props) {
                                    ))}
                                  </Select>
                             ) : (
-                              <div className="cursor-pointer !text-xs font-[Poppins]"
+                              <div className="cursor-pointer !text-xs font-Poppins"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
-                                {item.dialCode || " dialcode"}
+                                {item.dialCode || "Dialcode"}
                               </div>
                             )}
+                            &nbsp;
                               <div>
 {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'phoneNo' ? (
@@ -460,8 +457,8 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
-    {item.phoneNo || "MobileNo"}
+    className="cursor-pointer !text-xs font-Poppins">
+    {item.phoneNo || " Mobile"}
     
     </div> 
 )}
@@ -499,7 +496,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.dcategoryName || "Update..."}
     
     </div> 
@@ -529,12 +526,11 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.clientName || "Update..."}
     </div> 
 )}
-                            
-
+                  
                             </div>
                           </div>
                           <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
@@ -575,13 +571,13 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xs font-Poppins">
     {item.clubName }
     </div> 
 )}
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[10.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.payment} days */}
                               {editableField?.distributorId === item.distributorId &&
@@ -598,7 +594,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.payment || "Update..."} days
     </div> 
 )}
@@ -656,7 +652,7 @@ function AccountTable(props) {
                                                 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
-                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[13.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
@@ -692,7 +688,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer  !text-xxs font-Poppins">
     {item.curName || "Update..."} 
     </div> 
 )}        
@@ -701,7 +697,7 @@ function AccountTable(props) {
    editableField?.field === 'currencyPrice' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem]  text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -711,14 +707,14 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'currencyPrice', item.currencyPrice)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xs ml-[0.25rem] font-poppins">
     {(item.currencyPrice / 1000).toFixed(0)}k  
     </div> 
 )}
                             </div>                  
                         </div>
 
-                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[3.5rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[5.1rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
                                   <span onClick={()=>{handleCurrentRowData(item);
@@ -795,28 +791,7 @@ function AccountTable(props) {
                                   }
                                 </Tooltip>
 
-                              </div>
-                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
-                                <Tooltip title="Quotation">
-                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
-                                   
-                                
-                                      <LightbulbIcon className="!text-icon text-[#bfa89e]"
-                                     
-                                      onClick={() => {
-                                        props.setEditDistributor(item)
-                                        props.handleAccountOpportunityModal(true);
-                                        handleCurrentRowData(item);
-                                      }}
-                                    />
-                                     <Opportunity/>
-                                     </Link>
-                                </Tooltip>
-
-                              </div> */}
-                              
-
-                     
+                              </div>                                                              
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                               <Tooltip title={translatedMenuItems[19]}>

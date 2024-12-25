@@ -9,7 +9,7 @@ import { Tooltip,Button,Input } from "antd";
 import Highlighter from 'react-highlight-words';
 import EditIcon from '@mui/icons-material/Edit';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import {
     getCandidateListByCategory,
     handleUpdateCandidateModal,
@@ -194,7 +194,7 @@ function CandidateWhiteTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -202,7 +202,7 @@ function CandidateWhiteTable(props) {
               imgWidth={"2.5em"}
               imgHeight={"2.5em"}
             />
-          </SubTitle>
+          </div>
         );
       },
     },

@@ -329,7 +329,6 @@ function EmployeeForm(props) {
   // if (bundleLoading) {
   //   return <div><BundleLoader/></div>;
   // }
- 
   const { addEmployee, addingEmployee } = props;
   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
  
@@ -499,8 +498,8 @@ function EmployeeForm(props) {
                     </div>
                   </div>
                   <div class="flex justify-between max-sm:flex-col">
-                    <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk " >
-                      <div class=" w-w47.5 max-sm:w-wk ">
+                    <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk " >
+                      <div class=" w-w47.5.5 max-sm:w-wk ">
                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode"
@@ -512,7 +511,7 @@ function EmployeeForm(props) {
                           inlineLabel
                         />
                       </div>
-                      <div class=" w-w47.5 max-sm:w-wk">
+                      <div class=" w-w47.5.5 max-sm:w-wk">
                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[7]}</div>
                         <Field
                           type="text"
@@ -527,8 +526,8 @@ function EmployeeForm(props) {
                       </div>
 
                     </div>
-                    <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
-                      <div class="w-w47.5 max-sm:w-wk">
+                    <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
+                      <div class="w-w47.5.5 max-sm:w-wk">
                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode1"
@@ -541,7 +540,7 @@ function EmployeeForm(props) {
                           inlineLabel
                         />
                       </div>
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[9]}</div>
                         <Field
                           type="text"
@@ -573,7 +572,7 @@ function EmployeeForm(props) {
                         }}
                       />
                     </div>
-                    <div class="mt-2 w-w47.5 max-sm:w-wk">
+                    <div class="mt-2 w-w47.5.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[11]}</div>
                   
                       <Field
@@ -622,6 +621,7 @@ function EmployeeForm(props) {
                    
                     render={(arrayHelpers) => (
                       <AddressFieldArray
+                      {...props}
                         arrayHelpers={arrayHelpers}
                         values={values}
                       />
@@ -678,7 +678,7 @@ function EmployeeForm(props) {
                       />
 
                     </div>
-                    <div class="w-w47.5 max-sm:w-wk">
+                    <div class="w-w47.5.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[21]}</div>
                       <FastField
                         name="label"
@@ -791,7 +791,7 @@ function EmployeeForm(props) {
                       />
                     </div>
 
-                    <div class="mt-3 w-w47.5 flex flex-col max-sm:w-wk">
+                    <div class="mt-3 w-w47.5.5 flex flex-col max-sm:w-wk">
                      {/* locationName */}
                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[26]}</div>
                       <Field

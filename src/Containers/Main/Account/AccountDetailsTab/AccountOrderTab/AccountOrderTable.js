@@ -179,7 +179,7 @@ const AccountOrderTable = (props) => {
 
     const viewAnDownloadPdf= async (item) => {  
         try {
-          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
             responseType: 'blob',
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -211,10 +211,10 @@ const AccountOrderTable = (props) => {
                     <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
-                        <div className=" max-md:w-[10.41rem] truncate w-[5.9rem]">     {/* Order ID"*/}                  
+                        <div className=" max-md:w-[10.41rem] truncate w-[6.7rem]">     {/* Order ID"*/}                  
                         <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
                         </div>
-                      <div className=" w-[5.09rem] truncate max-md:w-[9.012rem]">    {/*Created */}
+                      <div className=" w-[5.5rem] truncate max-md:w-[9.012rem]">    {/*Created */}
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
                         <div className="w-[5.3rem] max-md:w-[9.012rem]">
@@ -284,7 +284,7 @@ const AccountOrderTable = (props) => {
   `}
 >
                                                 <div class="flex w-[42rem] ">
-                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[2.56rem] max-md:w-[2.56rem] max-sm:  ">
+                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[3.56rem] max-md:w-[2.56rem] max-sm:  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between  max-md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -490,7 +490,7 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex items-center  justify-end w-[9rem]  ml-gap bg-[#eef2f9] h-8">
+                                                <div class="flex items-center  justify-end w-[9.6rem]  ml-gap bg-[#eef2f9] h-8">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
                                                             <Tooltip title={translatedMenuItems[22]}
@@ -665,10 +665,10 @@ const AccountOrderTable = (props) => {
                     <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[teal]">
                     {translatedMenuItems[12]}   {/* normal */}
                          </div>
-                        <div className=" max-md:w-[10.41rem] truncate w-[5.9rem]">     {/* Order ID"*/}                  
+                        <div className=" max-md:w-[10.41rem] truncate w-[6.7rem]">     {/* Order ID"*/}                  
                         <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
                         </div>
-                      <div className=" w-[5.09rem] truncate max-md:w-[9.012rem]">    {/*Created */}
+                      <div className=" w-[5.5rem] truncate max-md:w-[9.012rem]">    {/*Created */}
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
                         <div className="w-[5.3rem] max-md:w-[9.012rem]">
@@ -738,7 +738,7 @@ const AccountOrderTable = (props) => {
   `}
 >
                                                 <div class="flex w-[42rem] ">
-                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[2.56rem] max-md:w-[2.56rem] max-sm:  ">
+                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[3.56rem] max-md:w-[2.56rem] max-sm:  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between  max-md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -944,7 +944,7 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex items-center  justify-end w-[9rem]  ml-gap bg-[#eef2f9] h-8">
+                                                <div class="flex items-center  justify-end w-[9.6rem]  ml-gap bg-[#eef2f9] h-8">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
                                                             <Tooltip title={translatedMenuItems[22]}
@@ -1155,6 +1155,8 @@ const AccountOrderTable = (props) => {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    activeTab={props.activeTab}
+  
                 />
                 <AccountproductionModal
                 selectedLanguage={props.selectedLanguage}

@@ -105,7 +105,7 @@
 //                   <div class=" flex  flex-nowrap">
 
                    
-//                     <div class="w-w47.5">
+//                     <div class="w-w47.5.5">
 //                       <div class=" flex justify-between max-sm:flex-col">
                        
 //                         <div class=" w-wk max-sm:w-full ">
@@ -392,7 +392,7 @@ function CustomerForm(props) {
                   <div class=" flex  flex-nowrap">
 
                    
-                    <div class="w-w47.5">
+                    <div class="w-w47.5.5">
                       <div class=" flex justify-between max-sm:flex-col">
                        
                         <div class="font-bold text-xs w-wk max-sm:w-full ">

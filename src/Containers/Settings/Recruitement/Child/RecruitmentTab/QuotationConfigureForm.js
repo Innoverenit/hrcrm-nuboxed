@@ -931,7 +931,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           />
                 
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
@@ -949,7 +949,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
             style={{ marginTop:" 4px "}}
           />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
@@ -982,7 +982,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
@@ -999,7 +999,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
             style={{ marginTop:" 4px "}}
           />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
@@ -1033,8 +1033,8 @@ potentialCurrencyInd:potentilaCurrencyVisible,
 
                    
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" flex  w-w47.5 justify-between mt-4 max-sm:w-wk">
-                  <div className=" w-w47.5 max-sm:w-wk">
+                <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:w-wk">
+                  <div className=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                 Custom 1
                     </div>
@@ -1053,7 +1053,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
             style={{ marginTop:" 4px "}}
           />
           </div>
-          <div className=" w-w47.5 max-sm:w-wk">
+          <div className=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                UOM
                     </div>
@@ -1087,8 +1087,8 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           /> */}
           </div>
                   </div>
-                  <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
                     Custom 2
                     {/* {translatedMenuItems[4]} */}
@@ -1129,7 +1129,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           </div>
           
                       </div>
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
           <div class="font-bold text-xs">
                UOM
                     </div>
@@ -1278,7 +1278,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           </div>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">                
+<div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[8]}
   {/* Customer */}
@@ -1305,7 +1305,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           />
           
             </div>
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
 {translatedMenuItems[9]}  
@@ -1345,7 +1345,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
 
                         {isAddingContact && (
                         <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">                
+<div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1360,7 +1360,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1375,7 +1375,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
  
@@ -1395,7 +1395,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                 </div>
 
 
-                <div class=" w-w47.5 max-sm:w-wk">                         
+                <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
  
@@ -1423,7 +1423,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
 
 
 
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1455,7 +1455,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                 
                                           
       <div class="flex justify-between max-sm:flex-col mt-3">
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                    
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
       <Select
@@ -1481,7 +1481,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           />
                   </div>
                  
-                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <div class=" w-w47.5.5 max-sm:w-wk ">
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
       <Select
        
@@ -1553,7 +1553,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                 htmlType="submit"
                 loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button>
             </div>

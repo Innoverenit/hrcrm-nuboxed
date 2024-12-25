@@ -10,6 +10,8 @@ class PlacementDetailsLeft extends React.Component {
         //   candidate={this.props.candidate}
           stageList={this.props.stageList}
           profileId={this.props.profileId}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
       </div>
     );

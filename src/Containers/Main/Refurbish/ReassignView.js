@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getProductionUsersById, getRemainingPhones, reassignPhonesToTechnician } from "./RefurbishAction"
 import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
-import { SubTitle } from '../../../Components/UI/Elements';
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -111,7 +110,7 @@ const ReassignView = (props) => {
             width: "8%",
             render: (name, item, i) => {
                 return (
-                    <SubTitle>
+                    <div>
                         {item.qrCodeId ? (
                             <QRCodeModal
                                 qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
@@ -124,7 +123,7 @@ const ReassignView = (props) => {
                                 No QR
                             </span>
                         )}
-                    </SubTitle>
+                    </div>
                 );
             },
         },

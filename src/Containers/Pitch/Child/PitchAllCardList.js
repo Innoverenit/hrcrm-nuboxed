@@ -27,7 +27,6 @@ import dayjs from "dayjs";
 import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../../Components/Placeholder";
 
 const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
 const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
@@ -118,11 +117,7 @@ const PitchAllCardList = (props) => {
    const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllPitch,leadsAllData  } = props;
 
   if (fetchingAllPitch) {
-    return <BundleLoader />;
-  }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
+    return "Loading";
   }
   return (
     <>
@@ -132,43 +127,64 @@ serachedPitchData={props.serachedPitchData}
 />
 ) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
- <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-poppins font-bold sticky items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-        <div className=" text-sm  w-[19.1rem] text-[#2cbdaa] max-xl:w-[9.6rem]">
-        <CategoryIcon className=' text-[#2cbdaa]'/>{translatedMenuItems[0]}
-        {/* name */}
-                </div>      
-        <div className=" text-xs  w-[11.3rem]  max-xl:w-[5.1rem] ">
-        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]} 
-        {/* Mobile */}
-                </div>   
-        <div className="  text-xs w-[11.12rem]  max-xl:w-[5.122rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[2]} 
-        {/* company */}
+ <div className=" flex justify-between max-sm:hidden w-[89%]  p-1 bg-transparent font-bold sticky  font-poppins  items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" w-[13.5rem] truncate max-md:w-[13.1rem] text-sm text-[#00A2E8] max-xl:w-[9.6rem]">
+          <CategoryIcon className='!text-icon  text-[#2693ac]'/>
+          {translatedMenuItems[0]}
+          {/* Name */}
                 </div>
-                    <div className=" text-xs w-[7.12rem] ">
-                    <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]}  
-                    {/* source */}
+        <div className="truncate w-[2.8rem] max-md:w-[11.1rem] max-xl:w-[3rem]">
+
+        </div>
+        <div className="  truncate w-[9.1rem] max-md:w-[10.3rem]  max-xl:w-[5.1rem] ">
+          <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+          {translatedMenuItems[1]} 
+          {/* Mobile */}
                 </div>
-                     <div className=" text-xs w-[9.121rem] ">
-                     <FactoryIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[4]} 
-                     {/* sector */}
+        <div className="w-[2.2rem] ">
+
+        </div>
+        <div className="truncate w-[15.3rem] max-md:w-[19.12rem]  max-xl:w-[5.122rem]">
+          <ApartmentIcon className="!text-icon mr-1 "/> 
+          {translatedMenuItems[2]}
+          {/* Company */}
+          </div>
+         <div className="truncate w-[8.9rem] max-md:w-[11.12rem] ">
+          <SourceIcon className="!text-icon mr-1  text-[#4b5043]"/>
+          {translatedMenuItems[3]}
+                {/* Source */}
+           </div>
+          <div className="truncate w-[8.3rem] max-md:w-[12.121rem] ">
+            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            {translatedMenuItems[4]} 
+                      {/* Sector */}
                 </div>
+
                 {props.user.aiInd && (
-            <div className="  text-xs w-[5.81rem]  max-xl:w-[3.81rem]">
-            {/* Score */}
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[18]}
+            <div className="truncate w-[5.4rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+                {translatedMenuItems[18]} 
+              {/* Score */}
+          
             </div>
             )}
-        <div className=" text-xs w-[7.122rem] ">
-          {/* Assigned */}
-          <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[5]}
-        </div>
-      
-        <div className=" text-xs w-[9.6rem]  max-xl:w-[7.4rem]">
-        <ExploreIcon  className="!text-icon cursor-pointer text-[green]" />  {translatedMenuItems[6]}
-        {/* qualify */}
+        <div className="truncate w-[5.5rem] max-md:w-[7.522rem] ">
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  
+          {translatedMenuItems[5]}
+            {/* Assigned */}
+          </div>
+          {/* <div className="truncate w-[3.521rem]  max-md:w-[5.521rem] ">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+            {translatedMenuItems[6]}
+            Owner
+          </div> */}
+         
+        <div className="truncate w-[3.6rem] max-md:w-[5.6rem]  max-xl:w-[7.4rem]">
+          <ConnectWithoutContactIcon  className="!text-icon cursor-pointer text-[green]" />
+          {translatedMenuItems[11]}
+          {/* Qualify */}
+                  </div>
                 </div>
-      </div>
       <InfiniteScroll
         dataLength={props.allPitchData.length}
         next={handleLoadMore}
@@ -204,10 +220,10 @@ serachedPitchData={props.serachedPitchData}
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+          className="flex rounded justify-between  bg-white mt-1 py-ygap  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[13.5rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                           <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {props.showCheckboxes && (
@@ -259,7 +275,7 @@ serachedPitchData={props.serachedPitchData}
                                   </div>
                                   </div>
                           </div>
-                          <div class="flex flex-row items-center  h-8 ml-gap  bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                          <div class="flex flex-row items-center  h-8 ml-gap  bg-[#eef2f9]  w-[2.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 <div>
 <ButtonGroup>
 <RoleButton
@@ -314,8 +330,10 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 : 'None'}
 </div>
 
-                 </div>            
-                        <div className=" flex  w-[15.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                 </div>   
+                 <div className=" flex  items-center  h-8 ml-gap  bg-[#eef2f9] w-[2.1rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
+                 </div>         
+                        <div className=" flex  w-[15.50rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* country */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -324,7 +342,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex   w-[7.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[9.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
@@ -338,7 +356,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  </div>
                  {/* Score */}
                  {props.user.aiInd && (
-           <div className=" flex  justify-center items-center  h-8 ml-gap  bg-[#eef2f9]  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center items-center  h-8 ml-gap  bg-[#eef2f9]  w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
             </div>
             )}    
@@ -370,7 +388,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>   
                                                                          
 <div class="flex max-sm:justify-evenly max-sm:w-wk  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
-             <div className=" flex  w-[2rem]  items-center    max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+             <div className=" flex  w-[4.4rem]  items-center    max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                             {/* Qualify */}                 
                              
                               <div>
@@ -479,7 +497,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
                           > <Tooltip title={translatedMenuItems[17]}>
                             {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
-                            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                            <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                             )} 
                             </Tooltip>
                           </StyledPopconfirm>
@@ -495,7 +513,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </InfiniteScroll>
       </div>
          )}
-         <Suspense fallback={<BundleLoader />}>
+         <Suspense fallback={"Loading"}>
       <UpdateLPitchModal
         item={currentLeadsId}
         translateText={props.translateText}

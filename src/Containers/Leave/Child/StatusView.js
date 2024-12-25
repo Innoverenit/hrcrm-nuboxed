@@ -7,7 +7,7 @@ import {
     MultiAvatar    
 } from "../../../Components/UI/Elements";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { ActionIcon } from "../../../Components/Utils";
+
 class StatsView extends Component {
     render() {
         const {

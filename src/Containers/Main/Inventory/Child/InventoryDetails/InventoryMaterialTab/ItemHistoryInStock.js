@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
 
 import { getItemHistoryInstock } from "../../../InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -100,6 +99,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ItemHistoryInStock)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemHistoryInStock)
+

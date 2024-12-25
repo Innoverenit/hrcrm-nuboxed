@@ -11,11 +11,8 @@ const CurrencyCoversionForm = lazy(() => import("./CurrencyCoversionForm"));
 const CurrencyCoversionForm2 = lazy(() => import("./CurrencyCoversionForm2"));
 const OneTimeTable = lazy(() => import("./OneTimeTable"));
 
-
 const TabPane = StyledTabs.TabPane;
-
 function DistributionTab(props) {
-
     return (
         <>
             <TabsWrapper>
@@ -41,13 +38,13 @@ function DistributionTab(props) {
                         <Vat /> 
                         </div>
                     </TabPane>
+                    {props.user.moduleMapper.erpInd || props.user.moduleMapper.orderManagementInd ?
                     <TabPane tab={`Discount`} key="4">
                         <div class=" mt-3">
                        <DiscountCategory/>
-                      
-                  
                         </div>
-                    </TabPane>
+                    </TabPane>:""}
+
                     {/* <TabPane tab={`Fiscal`} key="2">
                        fiscla
                     </TabPane> */}
@@ -58,7 +55,7 @@ function DistributionTab(props) {
 }
 
 const mapStateToProps = ({ settings, auth }) => ({
-
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

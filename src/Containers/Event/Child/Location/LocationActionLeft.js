@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import LanguageIcon from '@mui/icons-material/Language';
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Badge, Tooltip,Avatar, Input } from "antd";
@@ -233,8 +233,7 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LocationActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationActionLeft)
+
 
 

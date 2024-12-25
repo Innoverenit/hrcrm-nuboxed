@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import DispatchCommerceAndRepairTableOut from "./DispatchCommerceAndRepairTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
 import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
@@ -84,11 +84,10 @@ class InventoryCommerceDetailTabO extends PureComponent {
                     <span class="!text-tab">
                      <SendAndArchiveIcon className=" !text-icon text-[#480CA8]"/>
 
-                  {/* Receive */}  Dispatch
+                     {this.props.translatedMenuItems[18]} 
+                      {/* Dispatch */}
                   </span>
-                  {/* {activeKey === "1" && (
-                 
-                  )} */}
+                  
                 </>
               }
               key="1"
@@ -112,7 +111,7 @@ class InventoryCommerceDetailTabO extends PureComponent {
                 <>
                    <span class="!text-tab">
                     <i class="far fa-share-square text-[#9B2226]"></i>&nbsp;
-                   Complete Dispatch  
+                    {this.props.translatedMenuItems[45]} {this.props.translatedMenuItems[18]}
 
                   </span>
                 
@@ -153,9 +152,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryCommerceDetailTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryCommerceDetailTabO)
 
-);
+
 
 

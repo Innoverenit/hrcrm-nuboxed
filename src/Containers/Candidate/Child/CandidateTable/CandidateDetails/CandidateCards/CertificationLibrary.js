@@ -40,10 +40,11 @@ class certificationLibrary extends React.Component {
     if (inputValue) {
       addCertificationByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
-          candidateCertificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
+          candidateId: this.props.candidateId,
+          employeeId:this.props.employeeId,
+          certificationName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.candidate.candidateId
+        this.props.userType,this.props.uniqueId
       );
     }
     this.setState({
@@ -60,20 +61,20 @@ class certificationLibrary extends React.Component {
     } = this.props;
       addCertificationByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
-          candidateCertificationName:"",
+          candidateId: this.props.candidateId,
+          certificationName:"",
         },
-        this.props.candidate.candidateId
+        this.props.userType
       );
   };
-  handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
+  handleTopicDelete = ({ certificationLinkId, candidateId }) => {
     const { deleteCertificationByCandidateId } = this.props;
-    deleteCertificationByCandidateId(candiCertiLinkId, candidateId);
+    deleteCertificationByCandidateId(this.props.userType,certificationLinkId, candidateId);
   };
 
   saveInputRef = (input) => (this.input = input);
   componentDidMount = () => {
-     this.props.getCertificationByCandidateId(this.props.candidate.candidateId);
+     this.props.getCertificationByCandidateId(this.props.userType,this.props.uniqueId);
      this.props.getCertification(this.props.orgId)
   };
 
@@ -100,7 +101,10 @@ class certificationLibrary extends React.Component {
               <div>
                       <CertificationSelect
                       certifications={this.props.certifications}
-                      candidateId={this.props.candidate.candidateId}
+                      uniqueId={this.props.uniqueId}
+                      candidateId={this.props.candidateId}
+                      userType={this.props.userType}
+                      employeeId={this.props.employeeId}
                       />
                       </div>
                       </div>
@@ -111,24 +115,24 @@ class certificationLibrary extends React.Component {
                 certificationByCandidateId.map((topic, index) => {
                   console.log(topic);
                   
-                  const isLongTopic = topic.candidateCertificationName===null?[]:topic.candidateCertificationName.length >= 30;
+                  const isLongTopic = topic.certificationName===null?[]:topic.certificationName.length >= 30;
                   const topicElem = (
                     <Tag
-                      key={topic.candiCertiLinkId}
+                      key={topic.certificationLinkId}
                       color="blue"
                       closable
                       onClose={() => this.handleTopicDelete(topic)}
                       style={{ marginBottom: "0.4rem" }}
                     >
                       {isLongTopic
-                        ? `${topic.candidateCertificationName===null?[]:topic.candidateCertificationName.slice(0, 30)}...`
-                        : topic.candidateCertificationName}
+                        ? `${topic.certificationName===null?[]:topic.certificationName.slice(0, 30)}...`
+                        : topic.certificationName}
                     </Tag>
                   );
                   return isLongTopic ? (
                     <Tooltip
-                      title={topic.candidateCertificationName}
-                      key={topic.candiCertiLinkId}
+                      title={topic.certificationName}
+                      key={topic.certificationLinkId}
                     >
                       {topicElem}
                     </Tooltip>

@@ -99,7 +99,7 @@ function CategoryTab (props) {
         
             rulesName:(
               <span>
-                <SettingsAccessibilityIcon className="text-blue-500 !text-icon text-[#8E44AD]" />Role
+                <SettingsAccessibilityIcon className=" !text-icon text-[#8E44AD]" />Role
               </span>
             ),
             ruleId: "2",
@@ -110,7 +110,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                  <HourglassFullIcon className="text-blue-500 !text-icon text-[#D35400]" />Activity
+                  <HourglassFullIcon className="!text-icon text-[#D35400]" />Activity
                 </span>
               ),
               ruleId: "3",

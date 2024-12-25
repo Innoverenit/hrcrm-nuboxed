@@ -1,30 +1,15 @@
-import React ,{useEffect} from 'react';
+import React ,{ lazy, Suspense} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getProductionTable} from "./ProductionAction"
-import ProductionTableView from "./Child/ProductionTableView"
-import ProductionTimeLine from "./Child/ProductionTimeLine"
-import NodataFoundPage from '../../Helpers/ErrorBoundary/NodataFoundPage';
+
+const ProductionTableView=lazy(()=>import("./Child/ProductionTableView"));
+const ProductionTimeLine=lazy(()=>import("./Child/ProductionTimeLine"));
+const NodataFoundPage=lazy(()=>import("../../Helpers/ErrorBoundary/NodataFoundPage"));
 
 const ProductionDashCard = (props) => {
    
     return (
-        // <div className="parentContainer">
-            
-        //     <div className="leftContainer">
-             
-        //         <ProductionTableView
-        //         fetchingProductionTable={props.fetchingProductionTable}
-        //         productionTableData={props.productionTableData}
-        //         />
-        //     </div>
-        //     <div className="rightContainer">
-               
-        //         <ProductionTimeLine 
-        //         productionTableData={props.productionTableData}
-        //         />
-        //     </div>
-        // </div>
         <div className="parentContainer">
 
     {!props.fetchingProductionTable && props.productionTableData.length === 0 ? (
@@ -34,6 +19,7 @@ const ProductionDashCard = (props) => {
     ) : (
         
         <>
+        <Suspense>
             <div className="leftContainer">
                 {/* Render ProductionTableView */}
                 <ProductionTableView
@@ -52,6 +38,7 @@ const ProductionDashCard = (props) => {
                     // productionTableData={props.productionTableData}
                 />
             </div>
+            </Suspense>
         </>
     )}
 </div>

@@ -20,7 +20,7 @@ import {
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { getLocationList } from "../Account/AccountAction"
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LabelOffIcon from '@mui/icons-material/LabelOff';
@@ -461,6 +461,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ReceivedTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ReceivedTableOut)
+

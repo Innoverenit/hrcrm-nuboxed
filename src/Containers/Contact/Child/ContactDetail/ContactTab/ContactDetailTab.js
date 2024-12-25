@@ -14,6 +14,10 @@ import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/Custome
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
+import RecruitProContact from "./RecruitProContact";
+import MainNotes from "../../../../CustomNote/MainNotes";
+
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
 const AddContactOpportunityModal =lazy(()=>import("../../../Child/ContactDetail/ContactTab/Opportunity/AddContactOpportunityModal"));
@@ -76,7 +80,19 @@ class ContactDetailTab extends Component {
           selectedLanguage={this.props.selectedLanguage}
         translatedMenuItems={this.props.translatedMenuItems}
          /></div>;
-         
+         case "3":
+          return  <div> 
+            <RecruitProContact
+             contactId={contactId}
+            />
+          </div>;
+           case "4":
+            return  <div> 
+              <MainNotes
+                uniqueId={contactId}
+               type="contact"
+              />
+            </div>;
         default:
           return null;
       }
@@ -169,6 +185,44 @@ class ContactDetailTab extends Component {
                translatedMenuItems={this.props.translatedMenuItems}
                 /> */}
               
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+            <LightbulbIcon className="!text-icon text-[#84a59d]"/>
+                    <span class=" ml-1">
+                    RecruitPro
+                  </span>
+                    <>
+                     
+                    </>
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+               <NoteAltIcon
+                className=" !text-icon cursor-pointer text-green-800 "
+              />
+                    <span class=" ml-1">
+                 Notes
+                  </span>
+                    <>
+                     
+                    </>
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
               </Suspense>
             </TabPane>
           </StyledTabs>

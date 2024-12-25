@@ -215,7 +215,7 @@ class MainNoteForm extends Component {
               <Button
                 type="default"
                 onClick={recognizing ? this.stopRecognition : this.startRecognition}
-                style={{ marginLeft: "1.3125em", marginTop: "1.3125em" }}
+                style={{ marginLeft: "1.3125em", marginTop: "1.3125em", marginRight:"4.3125em" }}
                 // class=" !text-icon items-center  "
               >
                 {recognizing ? <VoiceOverOffIcon className="!text-icon text-red-600 " /> : <RadioButtonCheckedIcon className="!text-icon text-red-600"/>}

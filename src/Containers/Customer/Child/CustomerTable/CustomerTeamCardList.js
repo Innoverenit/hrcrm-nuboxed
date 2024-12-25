@@ -61,9 +61,6 @@ const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
 const CustomerPulseDrawerModal =lazy(()=> import("./CustomerPulseDrawerModal"));
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -122,8 +119,6 @@ function CustomerTeamCardList(props) {
        props.getSectors();
        props.getSources(props.orgId);
        props.getAllDialCodeList()
-    // props.getCountries();
-    // props.getAllCustomerEmployeelist();
   }, []);
 
   useEffect(() => {
@@ -186,7 +181,6 @@ function CustomerTeamCardList(props) {
     setIsAssignDropdownVisible(null); // Hide the dropdown after the request
   };
 
-
 const [rowdata, setrowdata] = useState("");
   const [currentCustomerId, setCurrentCustomerId] = useState("");
   const [currentCustomer, setCurrentCustomer] = useState("");
@@ -224,13 +218,6 @@ const [rowdata, setrowdata] = useState("");
     const { customerId, field } = editableField;
     const updatedData = {};
     let mappedField = field;
-    // if (field === 'shipByName') {
-    //   mappedField = 'shipById'; 
-    // } else if (field === 'dialCode2') {
-    //   mappedField = 'dialCode';
-    // } else if (field === 'shipperName') {
-    //   mappedField = 'name';
-    // }
     updatedData[mappedField] = editingValue;
     props.updateCustomer(updatedData,customerId)
     setEditableField(null);
@@ -268,7 +255,7 @@ const [rowdata, setrowdata] = useState("");
     handleUpdateCustomerModal,
     addDrawerCustomerPulseModal,
     handleCustomerPulseDrawerModal,
-    updateCustomerModal,
+   
     fetchingCustomersError,
     fetchingAllCustomers,
     user,
@@ -281,11 +268,7 @@ const [rowdata, setrowdata] = useState("");
     addDrawerCustomerOpportunityModal
   } = props;
   console.log("ee");
- 
-  // if (fetchingTeamCustomer) {
-  //   return <BundleLoader />;
-  // }
- 
+
   if (loading) {
     return <div><BundleLoader/></div>;
   }
@@ -312,7 +295,7 @@ console.log(selectedAssign)
         {props.teamUserList.map((item,index) =>{
            return (
          <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] mt-1  max-sm:w-wk flex  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  text-[#444444] mt-1  max-sm:w-wk  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center  h-16">
           <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
@@ -321,12 +304,9 @@ console.log(selectedAssign)
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
-          </div>
-          
-          <div class="flex  overflow-hidden">
-          
-          <div class="font-semibold text-[#337df4] font-poppins  truncate cursor-pointer text-lm " >
-        
+          </div>         
+          <div class="flex  overflow-hidden">       
+          <div class="font-semibold text-[#337df4] font-poppins  truncate cursor-pointer text-lm " >       
  {item.fullName}
         </div> 
         </div>    
@@ -335,20 +315,15 @@ console.log(selectedAssign)
           
         <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm  flex items-center">
                 {item.mobileNo}             
-                 </div>
-            
+                 </div>            
           <div>
           <div class="font-medium text-xs ">      
-              <div class="overflow-hidden  font-poppins text-ellipsis cursor-pointer text-lm truncate  flex items-center">
-          
+              <div class="overflow-hidden  font-poppins text-ellipsis cursor-pointer text-lm truncate  flex items-center">         
               {item.emailId}
               </div>                    
           </div>
           </div>
-          </div>
-          
-      
-        
+          </div>     
       </div>
      )
     })}
@@ -358,30 +333,37 @@ console.log(selectedAssign)
          <div className=' flex sticky  w-[87%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
-         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
-            <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[83%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
+            <div className=" text-[#00A2E8] truncate text-sm  w-[12.7rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[9.9rem]  truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[10.9rem]  truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
              <div className=" w-[2.1rem]  truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            </div>
             </div>
-            <div className=" w-[7.2rem]  truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[7.7rem]  truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
-            </div>                
-            <div className=" w-[6.9rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            </div>   
+            {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :        
+            <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
+             }
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
@@ -404,12 +386,9 @@ console.log(selectedAssign)
             <div className=" w-[6.8rem] truncate  max-md:w-[6.8rem]   max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon mr-1 text-[#667761]"/> 
             {translatedMenuItems[8]}
-             {/* Customer" */}
-          
-            </div>
-         
+             {/* Customer" */}         
+            </div>        
           </div>
-
           </div>
         <InfiniteScroll
         dataLength={teamCustomer.length}
@@ -418,8 +397,7 @@ console.log(selectedAssign)
         loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
-      >
-      
+      >      
       { !fetchingTeamCustomer && teamCustomer.length === 0 ?<EmptyPage/>:teamCustomer.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -442,17 +420,11 @@ console.log(selectedAssign)
            } `;
                     return (
                       <div>
-                        {/* <FixedSizeList
-    height={500}
-    width={500}
-    itemSize={120}
-    itemCount={item.length}
-  > */}
                       <div
         className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-lg:text-[0.45rem] w-[100%] max-xl:text-[0.65rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
       >
-                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                           <div className=" flex  w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                          
+                          <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">    
                            <div class=" text-xs  font-poppins max-sm:text-sm  ">
                 {props.showCheckboxes && (
                 <Checkbox
@@ -461,24 +433,22 @@ console.log(selectedAssign)
       />
                 )}
                 </div>
-                           <div className="flex max-sm:w-full">
-              <div class="flex items-center">
-                
-                  <MultiAvatar
+                </div>
+              
+                <div className="flex max-sm:w-auto">
+              <div className=" flex  w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                 <div><MultiAvatar
                     primaryTitle={item.name}
                     imageId={item.imageId}
                     imageURL={item.imageURL}
                     imgWidth={"1.8rem"}
                     imgHeight={"1.8rem"} 
                   />
-               
-              </div>
-              <div class="w-[4%]"></div>
-
-              <div class="max-sm:w-full md:flex items-center">
+            </div> 
+        
               <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                    <div class=" text-xs flex text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
+              <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
+              <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                     <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
 {item.name}
 </Link>  
@@ -497,14 +467,15 @@ console.log(selectedAssign)
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
 <div onClick={() => 
     handleEditRowField(item.customerId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
@@ -514,10 +485,10 @@ console.log(selectedAssign)
                                     </div>
                                     </div>
                                 </Tooltip>
-              </div>
+            
             </div>
                             </div> 
-                            <div className=" flex  max-sm:w-auto    w-[7.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
+                            <div className=" flex  max-sm:w-auto  truncate  w-[8.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
                             <div class="flex text-xs  max-sm:text-sm font-poppins   ml-gap">   
                             <div>
 {editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
@@ -538,7 +509,7 @@ console.log(selectedAssign)
 <div onClick={() => 
 handleEditRowField(item.customerId, 'countryDialCode', item.countryDialCode)} 
 className="cursor-pointer text-xs font-poppins">
-{item.countryDialCode || "Update..."}
++{item.countryDialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -551,8 +522,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -567,14 +539,14 @@ className="cursor-pointer text-xs font-poppins">
                             </div>                              
                         </div> 
 
-                        <div className=" flex  w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  w-[2.1rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  font-poppins max-sm:text-sm  ">
 <CountryFlag1 countryCode={item.countryAlpha2Code} />
 &nbsp;
 {item.countryAlpha2Code}
 </div>
 </div>
-                        <div className=" flex  max-sm:w-auto   w-[7.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  max-sm:w-auto truncate  w-[7.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
     {/* sector */}
                 <div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
                 
@@ -605,11 +577,13 @@ className="cursor-pointer text-xs font-poppins">
                 </div>
 
               </div>
-              </div>
               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 
-<div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
+<div className=" flex  w-[8.3rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+{props.user.recruitProInd ?  
+<div></div>
+:
+<div>
 <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
@@ -638,8 +612,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -654,6 +629,9 @@ className="cursor-pointer text-xs font-poppins">
                   </div>
                         </div>
                         </div>
+
+      }
+                        </div>
 </div>               
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         {props.user.aiInd && (
@@ -667,8 +645,9 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
@@ -690,12 +669,12 @@ className="cursor-pointer text-xs font-poppins">
          {isAssignDropdownVisible === item.customerId ? (
           <Select
             style={{ width: "8rem" }}
-            value={selectedAssign}
+            value={selectedAssign}          
             onChange={(value) => {
               setSelectedAssign(value); 
               handleAssignChange(item.customerId,value); 
             }}
-            // onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
             autoFocus
           >
              {props.crmAllData.map(customer => (
@@ -731,12 +710,9 @@ className="cursor-pointer text-xs font-poppins">
     </div>
        )}
                             </div>
-                        </div>
-                  
+                        </div>              
                         <div className=" flex  w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
-                          
-
-                          <div class=" text-xs  font-poppins">
+                        <div class=" text-xs  font-poppins">
                           <MultiAvatar2
           primaryTitle={item.ownerName}
           imgWidth={"1.8rem"}
@@ -762,8 +738,7 @@ className="cursor-pointer text-xs font-poppins">
                       <NextPlanIcon className="!text-icon mr-1" />
                       {item.convertInd === 0 && translatedMenuItems[17]}
                         {item.convertInd === 1 && translatedMenuItems[16]}
-                        {item.convertInd === 2 && translatedMenuItems[18]}
-                    
+                        {item.convertInd === 2 && translatedMenuItems[18]}                   
                       </div>
                     </Button>
                   )}
@@ -787,13 +762,10 @@ className="cursor-pointer text-xs font-poppins">
          handleCustomerPulseDrawerModal(true);
          handleSetCurrentCustomer(item);
        }}
-
      />
    </Tooltip>
    </div>
-
  </div>
-
 <div class="">
    <Tooltip title= {translatedMenuItems[13]}>
      <NoteAltIcon
@@ -815,12 +787,10 @@ onClick={() => {
 props.handleAddressCutomerModal(true);
 handleRowData(item);
 }}
-
 /> 
 </Tooltip>
 </div>
-
-              <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
+              <div class="flex  max-xl:w-[1.2rem] w-[1.1rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
               <div>
                   <Tooltip title={item.url}>
                     {item.url !== "" ? (
@@ -898,16 +868,6 @@ handleRowData(item);
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-
-      <UpdateCustomerModal
-        customerId={currentCustomerId}
-        updateCustomerModal={updateCustomerModal}
-        handleUpdateCustomerModal={handleUpdateCustomerModal}
-        handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-        translatedMenuItems={props.translatedMenuItems}
-       />
          <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
@@ -984,7 +944,7 @@ const mapStateToProps = ({
   sectors: sector.sectors,
   fetchingTeamCustomer: customer.fetchingTeamCustomer,
   fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
+  // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
   countries: auth.countries,

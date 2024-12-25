@@ -1,7 +1,7 @@
 import React, {  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { JumpStartBox } from "../../../Components/UI/Elements";
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
@@ -121,6 +121,5 @@ const mapStateToProps = ({ billings, auth }) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BillingJumpStartBox)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BillingJumpStartBox)
+

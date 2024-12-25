@@ -799,7 +799,7 @@ const handleStageChange=(value)=>{
                 
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 {props.customerConfigure.startDateInd===true&&
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
@@ -812,7 +812,7 @@ const handleStageChange=(value)=>{
                   </div>
 }
 {props.customerConfigure.endDateInd===true&&
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
@@ -840,7 +840,7 @@ const handleStageChange=(value)=>{
                
               <div class="flex justify-between max-sm:flex-col mt-3">
                 {props.customerConfigure.oppValueInd===true&&
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"       
@@ -851,7 +851,7 @@ const handleStageChange=(value)=>{
                   </div>
 }
 {props.customerConfigure.potentialCurrencyInd===true&&
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
@@ -874,7 +874,7 @@ const handleStageChange=(value)=>{
                 </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 {/* {props.customerConfigure.customValue1Ind===true&&
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                 Custom Value1
                     </div>
@@ -888,7 +888,7 @@ const handleStageChange=(value)=>{
                   </div>
 } */}
                   {/* {props.customerConfigure.customValue2Ind===true&&
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
                     Custom Value2
                     </div>
@@ -914,8 +914,8 @@ const handleStageChange=(value)=>{
                 </div> 
                  <div class="flex justify-between max-sm:flex-col mt-3">
                  {props.customerConfigure.customValue2Ind===true&&
-                <div class=" flex  w-w47.5 justify-between mt-4 max-sm:w-wk">
-                  <div className=" w-w47.5 max-sm:w-wk">
+                <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:w-wk">
+                  <div className=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[13]}1
                 {/* Custom 1 */}
                     </div>
@@ -933,7 +933,7 @@ const handleStageChange=(value)=>{
             unCheckedChildren="Hidden"
           /> */}
           </div>
-          <div className=" w-w47.5 max-sm:w-wk">
+          <div className=" w-w47.5.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                UOM
                     </div>
@@ -969,8 +969,8 @@ const handleStageChange=(value)=>{
                   </div>
 }
                   {props.customerConfigure.customValue1Ind===true&&
-                  <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" flex  w-w47.5.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[0]} 2
                     {/* Custom 2 */}
                     {/* {translatedMenuItems[4]} */}
@@ -1010,7 +1010,7 @@ const handleStageChange=(value)=>{
           </div>
           
                       </div>
-                      <div class="w-w47.5 max-sm:w-wk">
+                      <div class="w-w47.5.5 max-sm:w-wk">
           <div class="font-bold text-xs">
                UOM
                     </div>
@@ -1182,7 +1182,7 @@ const handleStageChange=(value)=>{
 }      
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
 {props.customerConfigure.customerInd===true&&
-<div class=" w-w47.5 max-sm:w-wk">                
+<div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[8]}
   {/* Customer */}
@@ -1204,7 +1204,7 @@ const handleStageChange=(value)=>{
             </div>
 }
 {props.customerConfigure.contactInd===true&&
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
 {translatedMenuItems[9]}  
@@ -1238,7 +1238,7 @@ const handleStageChange=(value)=>{
 
                         {isAddingContact && (
                         <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">                
+<div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1253,7 +1253,7 @@ const handleStageChange=(value)=>{
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1268,7 +1268,7 @@ const handleStageChange=(value)=>{
           
             </div>
 
-            <div class=" w-w47.5 max-sm:w-wk">                         
+            <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
  
@@ -1288,7 +1288,7 @@ const handleStageChange=(value)=>{
                 </div>
 
 
-                <div class=" w-w47.5 max-sm:w-wk">                         
+                <div class=" w-w47.5.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
  
@@ -1316,7 +1316,7 @@ const handleStageChange=(value)=>{
 
 
 
-            <div class=" w-w47.5 max-sm:w-wk">                
+            <div class=" w-w47.5.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 
   {/* Customer */}
@@ -1349,7 +1349,7 @@ const handleStageChange=(value)=>{
                                           
       <div class="flex justify-between max-sm:flex-col mt-3">
       {props.customerConfigure.workFlowInd===true&&
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5.5 max-sm:w-wk">
                    
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}
   {/* Workflow */}
@@ -1372,7 +1372,7 @@ const handleStageChange=(value)=>{
 }
 {props.customerConfigure.stageInd===true&&
                  
-                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <div class=" w-w47.5.5 max-sm:w-wk ">
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[11]}
                   {/* Stage */}
                   </label>

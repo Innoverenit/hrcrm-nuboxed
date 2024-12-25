@@ -176,14 +176,20 @@ style={{
       <OrderRepairCard               
       selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
       />
 ) : props.selectedCategory === "Orders" && selectedButtonIcon === "repair" && clickedTab === "complete" ?
 <OrderRepairCompletedCard selectedButtonIcon={props.selectedButtonIcon}
-      selectedCategory={props.selectedCategory}/>
+      selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}/>
 : props.selectedCategory === "Orders" && selectedButtonIcon === "repair" && clickedTab === "bylocation" ?
 <OrderRepairLocationCard 
 selectedButtonIcon={props.selectedButtonIcon}
 selectedCategory={props.selectedCategory}
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
 />
 :null
 }
@@ -192,6 +198,8 @@ selectedCategory={props.selectedCategory}
         <OrderProcureCard
         selectedButtonIcon={props.selectedButtonIcon}
         selectedCategory={props.selectedCategory}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
         />
 ) : selectedButtonIcon === "Procure" && clickedTab === "complete" ?
 <h2>Procure complete</h2>
@@ -203,6 +211,8 @@ selectedCategory={props.selectedCategory}
          <OrderProductionCard
          selectedButtonIcon={props.selectedButtonIcon}
          selectedCategory={props.selectedCategory}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
          />
 ) : selectedButtonIcon === "production" && clickedTab === "complete" ?
 <h2>Production complete</h2>

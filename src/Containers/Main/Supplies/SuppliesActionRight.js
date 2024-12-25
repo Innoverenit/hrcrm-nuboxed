@@ -3,7 +3,7 @@ import Button from "antd/lib/button";
 import { connect } from "react-redux";
 import { base_url2 } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import UploadMaterialModal from "./UploadMaterialModal"
 import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
@@ -68,10 +68,13 @@ class SuppliesActionRight extends React.Component {
             />     
           </Tooltip>
           : null}
+          
           <Tooltip title= {this.state.translatedMenuItems[4]}>
             <Button
+            style={{background: "green", color:"white"}}
               className="export"
               onClick={() => this.props.handleImageSuppliesModal(true)}
+              type=" primary"
               //default
              // href={`${base_url}/export/product?orgId=${organizationId}`}
             >
@@ -81,6 +84,7 @@ class SuppliesActionRight extends React.Component {
          <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
             <Button
               type="primary"
+              style={{background: "green", color:"white"}}
               ghost
               onClick={() => this.props.handleUploadMaterialModal(true)}
             >
@@ -182,6 +186,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SuppliesActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SuppliesActionRight)
+

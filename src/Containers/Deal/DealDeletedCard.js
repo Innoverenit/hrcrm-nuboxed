@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
 import "jspdf-autotable";
 import {
     getDeletedDeal
@@ -12,7 +12,7 @@ import {
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import EmptyPage from "../Main/EmptyPage";
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -185,7 +185,7 @@ const DealDeletedCard = (props) => {
                     <div className=" flex  w-[12rem] max-md:w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
-                          <SubTitle>
+                          <div>
                             <MultiAvatar
                               primaryTitle={item.opportunityName}
                               imageId={item.imageId}
@@ -193,7 +193,7 @@ const DealDeletedCard = (props) => {
                               imgWidth={"1.8rem"}
                               imgHeight={"1.8rem"}
                             />
-                          </SubTitle>
+                          </div>
                         </div>
                         <div>
                         </div>
@@ -224,15 +224,15 @@ const DealDeletedCard = (props) => {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div className=" flex  w-[11rem]  max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
-                        <Link to="/investor">
+                        {/* <Link to="/investor"> */}
                           {item.investor}
-                        </Link>
+                        {/* </Link> */}
                       </div>
                     
 </div>
                     <div className=" flex w-[11rem] max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
-                        <SubTitle>
+                        <div>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
                               primaryTitle={item.contactName}
@@ -242,7 +242,7 @@ const DealDeletedCard = (props) => {
                               imgHeight={"1.8rem"}
                             />
                           }
-                        </SubTitle>
+                        </div>
                       </div>
                     </div>             
                              

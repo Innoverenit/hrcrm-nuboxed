@@ -19,7 +19,7 @@ const {
 
   const columns = [
     {
-      title: "Report",
+      title: "Report Scheduler",
       dataIndex: "type",
      width: "30%",
     },

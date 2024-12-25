@@ -16,8 +16,9 @@ const ProfileSchema = Yup.object().shape({
   stageId: Yup.string().required("Input needed!"),
 });
 function RemarkForm(props) {
-  console.log("stageList", props.stageList);
+  // console.log("stageList", props.stageList);
   console.log("sent",props.sentiment.score)
+  console.log("sent",props.sentiment)
   const stageList = props.stageList
     .filter((item) => {
       if (item.probability !== 0 && item.probability !== 100) {
@@ -27,7 +28,7 @@ function RemarkForm(props) {
     .map((item) => {
       return {
         label: item.stageName || "",
-        value: item.stageId,
+        value: item.stagesId,
       };
     });
 
@@ -55,7 +56,7 @@ function RemarkForm(props) {
           userId:props.userId,
           note: props.sentiment.feedback,
           candidateId:props.candidateId,
-           //note:transcript?transcript:text,
+          //  note:transcript?transcript:text,
           profileId: props.profileId,
         }}
         validationSchema={ProfileSchema}
@@ -63,7 +64,7 @@ function RemarkForm(props) {
           props.addRemark({...values,
             //note:transcript?transcript:text
           }, 
-            props.profileId,
+             props.profileId,
             );
         }}
       >

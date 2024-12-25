@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
@@ -43,9 +42,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import EmptyPage from "../../../Main/EmptyPage";
@@ -53,9 +50,7 @@ const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
 const CustomerPulseDrawerModal =lazy(()=> import("./CustomerPulseDrawerModal"));
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -181,7 +176,7 @@ const [rowdata, setrowdata] = useState("");
     handleUpdateCustomerModal,
     addDrawerCustomerPulseModal,
     handleCustomerPulseDrawerModal,
-    updateCustomerModal,
+
     fetchingCustomersError,
     fetchingAllCustomers,
     user,
@@ -207,12 +202,12 @@ const [rowdata, setrowdata] = useState("");
 
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-         <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-            <div className=" w-[14.2rem] truncate max-md:w-[17.9rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div className=" flex max-sm:hidden  w-[90%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+            <div className=" w-[14.4rem] truncate max-md:w-[17.9rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>        {translatedMenuItems[0]}   {/* Name */}
           
             </div>
-            <div className=" w-[7.5rem] truncate max-md:w-[7.5rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[9.6rem] truncate max-md:w-[7.5rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>      {translatedMenuItems[1]}   {/* Work */}
           
 
@@ -251,7 +246,7 @@ const [rowdata, setrowdata] = useState("");
             <AcUnitIcon className="!text-icon  text-[#667761]"/>   {translatedMenuItems[7]}   {/* Customer */}
          
             </div>
-            <div className="w-[9.12rem]"></div>
+            <div className="w-[9.13rem]"></div>
 
           </div>
         {/* <InfiniteScroll
@@ -306,7 +301,7 @@ const [rowdata, setrowdata] = useState("");
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-bold ml-gap  cursor-pointer">
+                                <div class="flex text-xs items-center text-blue-500  font-poppins font-bold ml-gap  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap  text-sm  text-[#042E8A] max-sm:text-sm cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
@@ -314,59 +309,33 @@ const [rowdata, setrowdata] = useState("");
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-xs  text-[tomato] font-bold"
                                     >
                                        {translatedMenuItems[8]} {/* New */}
                                     </div>
                                   ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                           
                                 </div>
                               </div>
                             </Tooltip>
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
+                      <div className=" flex  items-center max-sm:w-auto  w-[9.54rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm">
                         {
-  
   (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
   (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
 
- 
   `${item.countryDialCode} ${item.phoneNumber}` :
 
-  
   (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
   `${item.phoneNumber}` : 
   '' 
 }
-
-                          {/* {
-                          `${item.countryDialCode} ${item.phoneNumber}`
-                          } */}
                         </div>
-
                       </div>
                       <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.5rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-{/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
 <div class=" text-xs  font-poppins max-sm:text-sm">
   <CountryFlag1 countryCode={countryCode} />
   {/* &nbsp;
@@ -374,36 +343,24 @@ const [rowdata, setrowdata] = useState("");
 </div>
 </div>
                       <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto  w-[10.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm">
                           {item.sector}
                         </div>
-
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[9.6rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
                         <div class=" text-xs  font-poppins max-sm:text-sm">
                           {item.source}
                         </div>
-
-                      </div>
-                     
-
-                      </div>
-                     
-                   
+                      </div>                   
+                      </div>                                      
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto w-[10.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                     <div className=" flex items-center justify-center max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
-
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm text-center">
                           {item.oppNo}
-
                         </div>
                       </div>
                       <div className=" flex  items-center justify-center max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
@@ -417,18 +374,14 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                   
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto   w-[5.1rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto   w-[5.2rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins max-sm:text-sm">
-
                           <div>
                             {item.assignedTo === null ? (
                               <div class="text-xs  font-poppins">None</div>
                             ) : (
                               <>
                                 {item.assignedTo === item.ownerName ? (
-
                                   null
                                 ) : (
                                   <MultiAvatar2
@@ -440,7 +393,6 @@ const [rowdata, setrowdata] = useState("");
                               </>
                             )}
                           </div>
-
                         </div>
                       </div>
                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto w-[5rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
@@ -459,9 +411,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
                       <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-
                         <div class=" text-sm  font-poppins"></div>
                         <Popconfirm
                           title="Change status to Customer?"
@@ -471,8 +421,7 @@ const [rowdata, setrowdata] = useState("");
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
-                             
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}                         
                               >
                               <div class="text-xs flex justify-between items-center " >
                                 {item.convertInd === 0 && "Convert"}
@@ -483,9 +432,7 @@ const [rowdata, setrowdata] = useState("");
                             </Button>
                           )}
                         </Popconfirm>
-                      </div>
-
-                     
+                      </div>                  
                         <div class="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                           <div>
                           <Tooltip title={item.url}>
@@ -499,17 +446,14 @@ const [rowdata, setrowdata] = useState("");
                                 <a href={`https://${item.url}`} target="_blank">
                                   <ExploreIcon
                                     className=" !text-icon cursor-pointer text-[green]"
-
                                   />
                                 </a>
                               </div>
                             )
                               : <div class=" w-3">
-
                               </div>
                             }
                           </Tooltip>
-
                         </div>
                         <div>
                           <div
@@ -529,12 +473,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                         <div>
-
-
-                        </div>
-                     
-
-                     
+                        </div>                                   
                         <div class="w-5">
                         <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
@@ -543,7 +482,6 @@ const [rowdata, setrowdata] = useState("");
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
-
                             />
                           </Tooltip>
                         </div>
@@ -556,13 +494,9 @@ const [rowdata, setrowdata] = useState("");
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
                               }}
-
                             />
                           </Tooltip>
-
-                        </div>
-                     
-                     
+                        </div>                                     
                         <div class="w-5">
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
@@ -587,54 +521,20 @@ const [rowdata, setrowdata] = useState("");
 
                             />
                           </Tooltip>
-
-                        </div>
-                     
-
-                      
+                        </div>                                        
                         <div class="w-5">
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-
                             <LocationOnIcon
                               className=" !text-icon cursor-pointer text-[#960A0A]"
-
                             />
-
                           </Tooltip>
                         </div>
-                        <div class="w-5">
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title="Edit">
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditCustomer(item);
-                                  handleUpdateCustomerModal(true);
-                                  handleSetCurrentCustomerId(item.customerId);
-
-                                }}
-                              />
-                            </Tooltip>
-                          )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
-                        </div>
+                 
                       </div>
 
                     </div>
                   </div>
                 </div>
-
-
                     )
                 })}
                 {/* </InfiniteScroll> */}
@@ -645,16 +545,6 @@ const [rowdata, setrowdata] = useState("");
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
-
-      <UpdateCustomerModal
-        customerId={currentCustomerId}
-        updateCustomerModal={updateCustomerModal}
-        handleUpdateCustomerModal={handleUpdateCustomerModal}
-        handleSetCurrentCustomerId={handleSetCurrentCustomerId}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
@@ -729,7 +619,6 @@ const mapStateToProps = ({
   sectors: sector.sectors,
   fetchingTeamCustomer: customer.fetchingTeamCustomer,
   fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
   countries: auth.countries,

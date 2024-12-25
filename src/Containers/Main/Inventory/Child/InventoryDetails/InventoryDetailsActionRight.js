@@ -1,13 +1,10 @@
 
 
 import React from "react";
-import { withRouter } from "react-router";
+
 import { Title, } from "../../../../../Components/UI/Elements";
-import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { SubTitle } from "../../../../../Components/UI/Elements";
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { emptyInventory } from "../../InventoryAction"
 
 class InventoryDetailActionRight extends React.Component {
@@ -62,18 +59,17 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     emptyInventory
 }, dispatch);
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)
+
 
 const InventoryItemRow = ({ label, value }) => {
     return (
         <div class=" flex items-center flex-no-wrap m-[0.4rem]"
         >
-            <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-            <SubTitle style={{ marginLeft: "-30px", textOverflow: "ellipsis" }}>
+           <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+           <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >
                 {value}
-            </SubTitle>
+            </div>
         </div>
     );
 };

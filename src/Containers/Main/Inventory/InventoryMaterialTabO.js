@@ -1,28 +1,28 @@
-import React, { PureComponent, Suspense } from "react";
+import React, { PureComponent, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InventoryGlobaltab from "./InventoryGlobaltab"
-import MaterialIntransitList from "../Inventory/MaterialIntransitList"//2
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"//5
-import { withRouter } from "react-router";
+
 import {handleStockUpload} from "../Inventory/InventoryAction"
 import UploadIcon from '@mui/icons-material/Upload';
 import TokenIcon from '@mui/icons-material/Token';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
-import MaterialReceivedTableOut from "./MaterialReceivedTableOut";//1
-import InventoryWastetab from "../Inventory/InventoryWastetab"//waste
-import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"//4
-import MaterialStockTableOut from "./MaterialStockTableOut";//3
-import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
-import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
 import CookieIcon from '@mui/icons-material/Cookie';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import FolderDeleteIcon from '@mui/icons-material/FolderDelete';
-import StockUploadModal from "./StockUploadModal";
 import WaterDamageIcon from '@mui/icons-material/WaterDamage';
- import CategoryIcon from '@mui/icons-material/Category';
+import CategoryIcon from '@mui/icons-material/Category';
+ const StockUploadModal = lazy(() => import("./StockUploadModal"));
+ const InventoryGlobaltab = lazy(() => import("./InventoryGlobaltab"));
+ const MaterialIntransitList = lazy(() => import("../Inventory/MaterialIntransitList"));//2
+ const InventoryMaterialBestBefore = lazy(() => import("../Inventory/InventoryMaterialBestBefore"));//5
+ const MaterialReceivedTableOut = lazy(() => import("./MaterialReceivedTableOut"));//1
+ const InventoryWastetab = lazy(() => import("../Inventory/InventoryWastetab"));//waste
+ const InventoryMaterialDamagedData = lazy(() => import("../Inventory/InventoryMaterialDamagedData"));//4
+ const MaterialStockTableOut = lazy(() => import("./MaterialStockTableOut"));//3
+ const MaterialUnitsDataOut = lazy(() => import("./MaterialUnitsDataOut"));
+ const MaterialCellCardViewOut = lazy(() => import("./MaterialCellCardViewOut"));
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTabO extends PureComponent {
     constructor(props) {
@@ -160,12 +160,7 @@ class InventoryMaterialTabO extends PureComponent {
                         >
                             {" "}
                             <Suspense fallback={"Loading..."}>
-                                {/* <MaterialReceivedTableOut  
-                                translateText={this.props.translateText}
-                                selectedLanguage={this.props.selectedLanguage}
-                    translatedMenuItems={this.props.translatedMenuItems}
-                    locationDetailsId={this.props.user.locationId}
-             /> */}
+                             
                             </Suspense>
                         </TabPane>
 
@@ -205,14 +200,7 @@ class InventoryMaterialTabO extends PureComponent {
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                                 
-                                  {/* <MaterialIntransitList
-                                   locationDetailsId={this.props.user.locationId}
-                                selectedLanguage={this.props.selectedLanguage}
-                                  translateText={this.props.translateText}
-                                inventory={this.props.inventory}
-                                 translatedMenuItems={this.props.translatedMenuItems}
-                                /> */}
+                                
                                 </Suspense>
                                 
                              
@@ -255,29 +243,8 @@ class InventoryMaterialTabO extends PureComponent {
                             }
                             key="3"
                         >
-                             {/* {this.state.shipperPopover ? (
-                            <Suspense fallback={"Loading..."}>
-                                  <MaterialUnitsDataOut
-                                   inventory={this.props.inventory}
-                                   locationDetailsId={this.props.user.locationId}
-                                //    storedLoc={this.props.storedLoc} 
-                                translatedMenuItems={this.props.translatedMenuItems}
-                                   />
+                             
                                
-                            </Suspense>
-                             ) :(
-                                <Suspense fallback={"Loading ..."}>
-                                  {" "}
-                                  <MaterialStockTableOut
-                                   locationDetailsId={this.props.user.locationId}
-                                   selectedLanguage={this.props.selectedLanguage}
-                                   translateText={this.props.translateText}
-                                inventory={this.props.inventory}
-                                translatedMenuItems={this.props.translatedMenuItems}
-                                />
-                                </Suspense>
-                                
-                              )} */}
                         </TabPane>
 {this.props.user.moduleMapper.productionInd===true && (
                         <TabPane
@@ -294,12 +261,6 @@ class InventoryMaterialTabO extends PureComponent {
                             key="4"
                         >
                             <Suspense fallback={"Loading..."}>
-                                {/* <MaterialCellStock /> */}
-                                {/* <MaterialCellCardViewOut 
-                                 locationDetailsId={this.props.user.locationId}
-                                 inventory={this.props.inventory}
-                                 translatedMenuItems={this.props.translatedMenuItems}
-                                /> */}
                             </Suspense> 
                         </TabPane>
     )}
@@ -309,9 +270,9 @@ class InventoryMaterialTabO extends PureComponent {
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <WaterDamageIcon className="!text-icon text-[#9B2226]"/>&nbsp;
-                                        {/* Stock */} 
-                                      Damaged
-                                        {/* {this.props.translatedMenuItems[19]} */}
+                                     
+                                      {/* Damaged */}
+                                        {this.props.translatedMenuItems[27]}
 
                                     </span>
                                     {activeKey === "5" && (
@@ -337,23 +298,10 @@ class InventoryMaterialTabO extends PureComponent {
                         >
                             
                                 <Suspense fallback={"Loading ..."}>
-                                  {" "}
-                               {/* <InventoryMaterialDamagedData
-                               locationDetailsId={this.props.user.locationId}
-                               /> */}
-                                  {/* <MaterialIntransitList
-                                   locationDetailsId={this.props.user.locationId}
-                                selectedLanguage={this.props.selectedLanguage}
-                                  translateText={this.props.translateText}
-                                inventory={this.props.inventory}
-                                 translatedMenuItems={this.props.translatedMenuItems}
-                                /> */}
-                                </Suspense>
+                                  {" "} </Suspense>
                                 
                              
                         </TabPane>
-
-
                         <TabPane
                             tab={
                                 <>
@@ -376,34 +324,13 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon className=" text-red-500 !text-icon"
-                      
-                          
-                          />
+                          <WarehouseIcon className=" text-red-500 !text-icon"/>
                           </span>
                         </>
-                      )}
-
-                                </>
+                      )}  </>
                             }
                             key="6"
-                        >
-                            
-                                <Suspense fallback={"Loading ..."}>
-                                  {" "}
-                                  {/* <InventoryMaterialBestBefore
-                                   locationDetailsId={this.props.user.locationId}
-                                  /> */}
-                                  {/* <MaterialIntransitList
-                                   locationDetailsId={this.props.user.locationId}
-                                selectedLanguage={this.props.selectedLanguage}
-                                  translateText={this.props.translateText}
-                                inventory={this.props.inventory}
-                                 translatedMenuItems={this.props.translatedMenuItems}
-                                /> */}
-                                </Suspense>
-                                
-                             
+                        >       
                         </TabPane>
                         <TabPane
                             tab={
@@ -411,8 +338,8 @@ class InventoryMaterialTabO extends PureComponent {
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <FolderDeleteIcon className="!text-icon text-[#386641]"/>&nbsp;
                                      
-                                      Waste
-                                        {/* {this.props.translatedMenuItems[36]} */}
+                                      {/* Wast */}
+                                        {this.props.translatedMenuItems[40]}
 
                                     </span>
                                     {activeKey === "7" && (
@@ -439,16 +366,6 @@ class InventoryMaterialTabO extends PureComponent {
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                               {/* <InventoryMaterialDamagedData
-                               locationDetailsId={this.props.user.locationId}
-                               /> */}
-                                  {/* <MaterialIntransitList
-                                   locationDetailsId={this.props.user.locationId}
-                                selectedLanguage={this.props.selectedLanguage}
-                                  translateText={this.props.translateText}
-                                inventory={this.props.inventory}
-                                 translatedMenuItems={this.props.translatedMenuItems}
-                                /> */}
                                 </Suspense>
                                 
                              
@@ -485,10 +402,9 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTabO)
 
-);
+
 
 
 

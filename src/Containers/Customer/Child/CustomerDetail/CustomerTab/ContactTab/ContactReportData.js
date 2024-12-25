@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
@@ -145,8 +145,7 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ContactReportData)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactReportData)
+
 
 

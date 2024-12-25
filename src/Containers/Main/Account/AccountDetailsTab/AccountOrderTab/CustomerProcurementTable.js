@@ -333,7 +333,7 @@ const handleSelectedOrderDropDown =  async (value,item) => {
   
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderPhoneId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderPhoneId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -567,7 +567,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.shipping}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7.6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
@@ -595,55 +595,15 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                        
 
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            {/* <div className=" flex w-20  md:w-[6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
-    {editsuppliesId === item.orderId ? (
-                        <>
-                      <Button 
-                      type="primary"
-                      // loading={props.updatingOrdrSuplrItems}
-                      onClick={() => handlePostChange(item)}>
-                        Save
-                      </Button>
-                        <Button 
-                         type="primary"
-                        onClick={() => handleCancelClick(item.orderId)} className="ml-[0.5rem]">
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <>
-                     {canPack && (
-                      <div>
-                      <Button
-                      type="primary"
-                        onClick={() => handleEditClick(item.orderId)}
-                      >
-                  <LogoutIcon className=" !text-icon" /> 
-                        Pack</Button>
-                        </div>)}
-                        </>
-            
-                    )}
-    </div> */}
+                                                     
     {!props.user.disPackInd && canPack && newpack &&
      <Button className="w-[5rem]"
                       type="primary"
                       onClick={() => handlePostChange(item)}
                       > <InputIcon className="!text-icon text-white"/>Pack</Button>
     }
-       <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
-                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
-                                            <Tooltip title={translatedMenuItems[12]}>
-                                      
-                                                                <EventRepeatIcon className="!text-base cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                            </div>  */}
+       <div class="flex w-7 ml-gap max-sm:flex-row max-sm:w-[10%]">                                                                                              
+                                                    
                                                  <div class=" flex items-center justify-center h-8   bg-[#eef2f9]">         
                                                <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
@@ -839,7 +799,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.shipping}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7.6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
@@ -855,27 +815,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.status}
                                             </div>
                                         </div>
-                                        {/* <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {editsuppliesId === item.orderId ? (
-                                                         
-                                                                <input
-          type="date"
-          // value={date}
-          value={dayjs(item.dispatchReceivedDate).format("YYYY-MM-DD")}
-          onChange={(e) => handleDateChange(e,item)}
-        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
-          class="border border-black rounded"
-        /> ) : (
-            <div className="font-normal text-xs  font-poppins">
-               {item.dispatchReceivedDate === null ? "" :
-              <div> 
-              {dayjs(item.dispatchReceivedDate).format("YYYY/MM/DD")} 
-              </div>}
-            </div>
-          )}
-                                                        </div>
-                                                    </div> */}
+                                   
                   <div class="flex flex-row items-center md:w-[11.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
@@ -886,7 +826,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                     </Button>
                     </div>
                  
-                  <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">   
+                  <div class="flex w-7 ml-gap max-sm:flex-row max-sm:w-[10%]">   
                   <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">                                                       
                                                     
                                                             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { validateEmail } from "./AuthAction";
@@ -35,6 +35,5 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ validateEmail }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(EmailValidation)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(EmailValidation)
+

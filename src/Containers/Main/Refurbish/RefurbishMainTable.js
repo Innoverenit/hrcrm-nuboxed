@@ -33,7 +33,7 @@ import {
     inputAllDataSearch,
     ClearSearchedDataOfAll
 } from "./RefurbishAction";
-import { withRouter } from "react-router";
+
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -839,6 +839,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ProductionOrderList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionOrderList)
+

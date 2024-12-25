@@ -15,8 +15,9 @@ function CandidateSelect(props) {
       {
         skillName: selectType,
         candidateId: props.candidateId,
+        employeeId: props.employeeId
       },
-      props.candidateId
+      props.userType,props.uniqueId
     );
   }
 

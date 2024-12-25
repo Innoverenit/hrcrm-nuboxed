@@ -16,9 +16,9 @@ const InvoiceTemplate = (props) => {
       date: "30/08/2024",
       dueDate: "29/09/2024",
       shipDate: "30/08/2024",
-      shipVia: "MIKE DROPOFF",
+      shipVia: "Dsd fdgfg",
       salesRep: "Tracy Sales",
-      purchaseOrder: "BO-TM9456525",
+      purchaseOrder: "SO-HU546465",
       subtotal: "450.00",
       hst: "58.50",
       total: "508.50",
@@ -35,8 +35,8 @@ const InvoiceTemplate = (props) => {
       dueDate: "05/10/2024",
       shipDate: "05/09/2024",
       shipVia: "UPS",
-      salesRep: "Alex Martinez",
-      purchaseOrder: "PO-AL7658934",
+      salesRep: "Akj Vert",
+      purchaseOrder: "SO-AL859j5",
       subtotal: "720.00",
       hst: "93.60",
       total: "813.60",
@@ -120,11 +120,11 @@ const handleTemplateSelection = () => {
               <div className="flex justify-between">
                 <div className="flex flex-col text-sm">
                   <div className="font-bold">{selectedInvoice.type}</div>
-                  <div>21A-81 Northern Heights Drive</div>
-                  <div>Richmond Hill ON L4B 4C9</div>
-                  <div>+14162780878</div>
+                  <div>FLorandc</div>
+                  <div>Gablinf </div>
+                  <div>+5676785645</div>
                   <div>sales@1di.ca</div>
-                  <div>GST/HST Registration No.: 71265570</div>
+                  <div>GST/HST Registration No.: 867543</div>
                 </div>
                 <div>
                   <img src="Logo_new.png" alt="Logo" className="w-[100px]" />
@@ -138,19 +138,19 @@ const handleTemplateSelection = () => {
               <div className="flex justify-between text-sm mt-2">
                 <div className="flex flex-col">
                   <div className="font-bold">BILL TO</div>
-                  <div>Robert Cowman</div>
-                  <div>FG Bradley's Fairview</div>
-                  <div>1800 Sheppard Ave E. Fairview</div>
+                  <div>Soud Eroty</div>
+                  <div>KL humn sdfs </div>
+                  <div>89 Umajon</div>
                   <div>Mall, Unit 2045</div>
-                  <div>Toronto Ontario M2J 5A7</div>
+                  <div>Okain</div>
                 </div>
                 <div className="flex flex-col">
                   <div className="font-bold">SHIP TO</div>
-                  <div>Robert Cowman</div>
-                  <div>FG Bradley's Fairview</div>
-                  <div>1800 Sheppard Ave E. Fairview</div>
+                  <div>Soud Eroty</div>
+                  <div>KL humn sdfs </div>
+                  <div>89 Umajon</div>
                   <div>Mall, Unit 2045</div>
-                  <div>Toronto Ontario M2J 5A7</div>
+                  <div>Okain</div>
                 </div>
                 <div className="flex">
                   <div className="flex flex-col text-right">
@@ -202,8 +202,8 @@ const handleTemplateSelection = () => {
                 <div className="flex justify-between mt-1">
                   <div className="w-[36px]">KES477</div>
                   <div className="ml-[-12px] w-[138px]">
-                    <div className="font-bold">477 | Jumbo Foam D20</div>
-                    <div>477 | Jumbo Foam D20</div>
+                    <div className="font-bold">477 | Tuinsk Kumar</div>
+                    <div>477 | Tuinsk Kumar</div>
                   </div>
                   <div className="ml-[-52px] w-[28px]">36</div>
                   <div className="ml-[-2px] w-[42px]">12.50</div>

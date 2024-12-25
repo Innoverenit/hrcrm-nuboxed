@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getRemainingPhonesList } from "../RefurbishAction"
 import QRCodeModal from '../../../../Components/UI/Elements/QRCodeModal'
-import { SubTitle } from '../../../../Components/UI/Elements';
 
 const RemainingPhoneList = (props) => {
 
@@ -61,7 +60,7 @@ const RemainingPhoneList = (props) => {
             width: "8%",
             render: (name, item, i) => {
                 return (
-                    <SubTitle>
+                    <div>
                         {item.qrCodeId ? (
                             <QRCodeModal
                                 qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
@@ -74,7 +73,7 @@ const RemainingPhoneList = (props) => {
                                 No QR
                             </span>
                         )}
-                    </SubTitle>
+                    </div>
                 );
             },
         },

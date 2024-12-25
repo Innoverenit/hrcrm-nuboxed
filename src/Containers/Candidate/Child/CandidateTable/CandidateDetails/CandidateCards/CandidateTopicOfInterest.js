@@ -42,10 +42,11 @@ class CandidateTopicOfInterest extends React.Component {
     if (inputValue) {
       addTopicByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          employeeId: this.props.employeeId,
+          candidateId: this.props.candidateId,
           skillName:inputValue.charAt(0).toUpperCase() +inputValue.substr(1),
         },
-        this.props.candidate.candidateId
+        this.props.userType,this.props.uniqueId
       );
     }
     this.setState({
@@ -65,10 +66,10 @@ class CandidateTopicOfInterest extends React.Component {
     // if (selectValue) {
       addTopicByCandidateId(
         {
-          candidateId: this.props.candidate.candidateId,
+          candidateId: this.props.uniqueId,
           skillName:"",
         },
-        this.props.candidate.candidateId
+        this.props.userType
       );
     
     // this.setState({
@@ -76,14 +77,14 @@ class CandidateTopicOfInterest extends React.Component {
     //   selectValue: "",
     // });
   };
-  handleTopicDelete = ({ skillSetDetailsId, candidateId }) => {
+  handleTopicDelete = ({ skillId }) => {
     const { deleteTopicByCandidateId } = this.props;
-    deleteTopicByCandidateId(skillSetDetailsId, candidateId);
+    deleteTopicByCandidateId(this.props.userType,skillId);
   };
 
   saveInputRef = (input) => (this.input = input);
   componentDidMount = () => {
-     this.props.getTopicsByCandidateId(this.props.candidate.candidateId);
+     this.props.getTopicsByCandidateId(this.props.userType,this.props.uniqueId);
      this.props.getLibrarys(this.props.organizationId);
   };
 
@@ -113,7 +114,7 @@ class CandidateTopicOfInterest extends React.Component {
     //     value: item.name,
     //   };
     // });
-    console.log(this.props.candidate.candidateId)
+    // console.log(this.props.candidate.candidateId)
 
     console.log("select",this.state.selectValue)
 
@@ -137,7 +138,10 @@ class CandidateTopicOfInterest extends React.Component {
              
                       <div>
                       <CandidateSelect
-                      candidateId={this.props.candidate.candidateId}
+                      candidateId={this.props.candidateId}
+                      userType={this.props.userType}
+                      employeeId={this.props.employeeId}
+                      uniqueId={this.props.uniqueId}
                       />
                       </div>
                       </div>
@@ -153,7 +157,7 @@ class CandidateTopicOfInterest extends React.Component {
                   const isLongTopic = topic.skillName===null?[]:topic.skillName.length >= 30;
                   const topicElem = (
                     <Tag
-                      key={topic.skillSetDetailsId}
+                      key={topic.skillId}
                       color="blue"
                       closable
                       onClose={() => this.handleTopicDelete(topic)}
@@ -167,7 +171,7 @@ class CandidateTopicOfInterest extends React.Component {
                   return isLongTopic ? (
                     <Tooltip
                       title={topic.skillName}
-                      key={topic.skillSetDetailsId}
+                      key={topic.skillId}
                     >
                       {topicElem}
                     </Tooltip>

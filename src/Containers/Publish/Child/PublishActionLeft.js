@@ -5,7 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Input } from "antd";
 
 const Option = StyledSelect.Option;
@@ -54,6 +54,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PublishActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PublishActionLeft)

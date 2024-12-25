@@ -13,7 +13,7 @@ const AddOpportunityModal = (props) => {
        title="quotation"
       //  {`${props.translatedMenuItems[0]}`}
    
-        width="60%"
+        width="50%"
         visible={props.addCustomerOpportunityModal}
         onClose={() => props.handleCustomerOpportunityModal(false)}
         footer={null}

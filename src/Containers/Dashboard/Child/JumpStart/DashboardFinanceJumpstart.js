@@ -29,10 +29,10 @@ function DashboardFinanceJumpstart(props) {
         const itemsToTranslate = [
     "1229",  //  ""Orders Added" // 0
      "1230", // "Orders Open" // 1
-        "1231",    // "Orders Closed"
-        "1232",    // "Orders  Cancelled"
-        // "",    // By Order Value
-        // "",    // By Order Volume
+        "1231",    // "Orders Closed"2
+        "1232",    // "Orders  Cancelled"3
+         "1596",    // By Order Value 4
+        "1597",    // By Order Volume 5
 
         ];
 
@@ -49,17 +49,17 @@ function DashboardFinanceJumpstart(props) {
   }, [props.selectedLanguage]);
 
   useEffect(() => {
-     props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+     props.getFinaceOrderDetails(props.userId,props.timeRangeType,"repair")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
 
   useEffect(() => {
     if(props.buttonName==="My View"){
-      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+      props.getFinaceOrderDetails(props.userId,props.timeRangeType,"repair")
 
     } else if(props.buttonName==="Enterprise"){
-    props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
+    props.getFinaceOrderDetails(props.orgId,props.timeRangeType,"repair")
     }
  }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
 
@@ -240,12 +240,12 @@ function DashboardFinanceJumpstart(props) {
 
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]}</div>
         <DynamicPieChart dtype={"RepairOrderValue"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]}</div>
         <DynamicPieChart dtype={"RepairOrder"}
          userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>

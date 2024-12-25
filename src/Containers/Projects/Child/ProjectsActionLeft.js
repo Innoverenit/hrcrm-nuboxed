@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
-import { Tooltip } from "antd";
+import { Avatar, Tooltip, Badge  } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import GridViewIcon from '@mui/icons-material/GridView';
 
@@ -28,27 +28,38 @@ class ProjectsActionLeft extends Component {
       <>
         <div class="flex items-center" >      
           <Tooltip title="Card View">
+          <Badge size="small">
             <span
+            
               style={{
                 marginRight: "0.5rem",
                 color: viewType === "list" && "#1890ff",
                 cursor:"pointer"
               }}
-              
-              onClick={() => setProjectsViewType("list")}
-            ><GridViewIcon style={{fontSize:"1.4rem"}}  /></span>
+              onClick={() => setProjectsViewType("list")}>
+
+              <Avatar style={{ background: this.props.viewType === "list" ? "#f279ab" : "#28a355" }}>
+            <div className="text-white !text-icon"> <GridViewIcon className="!text-2xl cursor-pointer "/></div>
+            </Avatar>
+              </span>
+            </Badge>
           </Tooltip>
          
           <Tooltip title="All ">
-            <TocIcon
+          <Badge size="small">
+            <span
               style={{
                 marginRight: "1.4rem",
                 color: viewType === "all" && "#1890ff",
                 cursor:"pointer"
               }}
              
-              onClick={() => setProjectsViewType("all")}
-            />
+              onClick={() => setProjectsViewType("all")}>
+                 <Avatar style={{ background: this.props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+            <div className="text-white !text-icon"> <TocIcon className="!text-2xl cursor-pointer "/></div>
+            </Avatar>
+            </span>
+            </Badge>
           </Tooltip>
           
 

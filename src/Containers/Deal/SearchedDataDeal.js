@@ -11,7 +11,7 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 
 const ButtonGroup = Button.Group;
@@ -177,9 +177,9 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-sm  font-poppins">
-                        <Link to="/investor">
+                        {/* <Link to="/investor"> */}
                           {item.investor}
-                        </Link>
+                        {/* </Link> */}
                       </div>
                     </div>
 

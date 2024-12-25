@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,7 +12,7 @@ class CustomerDetailActionLeft extends React.Component {
         <KeyboardReturnIcon
           iconType="rollback"
          tooltipTitle="Back"
-        
+        className=" cursor-pointer"
         onClick={() => this.props.history.goBack()}
         />
       </div>
@@ -23,6 +23,5 @@ const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CustomerDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerDetailActionLeft)
+

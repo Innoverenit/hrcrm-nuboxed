@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
+import StageProductionColumnsBoard from "./StageProductionColumnsBoard"
 import styled from "styled-components"; 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs} from "../../../Components/UI/Antd";
@@ -80,14 +81,14 @@ function ProductionBoard(props) {
   }, [props.productionProcess]);
 
   useEffect(() => {
-    props.getProcessForProduction(props.orgId);
+    props.getProcessForProduction(props.orgId,"Production");
      props.getAllstageProductions(props.userId)
-     props.getProductionsbyLocId(props.userId, 0);
+     props.getProductionsbyLocId(props.locationId, 0);
   }, []);
 
   useEffect(() => {
     if (!processData) return;
-    props.getProcessStagesForProduction(processData.productionWorkflowDetailsId);
+    props.getProcessStagesForProduction(props.orgId,processData.workflowDetailsId);
   }, [processData]);
 
 
@@ -140,7 +141,7 @@ function ProductionBoard(props) {
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForProduction(item.productionWorkflowDetailsId);
+    props.getProcessStagesForProduction(props.orgId,item.workflowDetailsId);
   }
 
 
@@ -187,7 +188,7 @@ function ProductionBoard(props) {
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.productionStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
@@ -210,21 +211,21 @@ function ProductionBoard(props) {
                                       droppableProps={{ hello: "world" }}
                                       style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
-                                      {/* {props.productionByLocsId
+                                      {props.productionByLocsId
                                         .filter(
                                           (opp, index) =>
-                                            opp.productionStagesId === stage.investorOppStagesId
+                                            opp.stageId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (
-                                            <DealStageColumn
+                                            <StageProductionColumnsBoard
                                               key={index}
-                                              dealDetailsbyID={opp}
+                                              employee={opp}
                                               index={index}
                                               history={props.history}
                                             />
                                           );
-                                        })} */}
+                                        })}
                                     </StageColumn>
                                   </Spin>
                                 </div>
@@ -253,6 +254,7 @@ const mapStateToProps = ({
     orgId: auth.userDetails && auth.userDetails.organizationId,
    userId: auth.userDetails.userId,
    dealsByuserId:deal.dealsByuserId,
+   locationId: auth.userDetails.locationId,
    productionStageAll:production.productionStageAll,
 productionProcessStages: settings.productionProcessStages,
 productionByLocsId: production.productionByLocsId,
@@ -269,6 +271,5 @@ const mapDispatchToProps = (dispatch) =>
           },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductionBoard)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionBoard)
+

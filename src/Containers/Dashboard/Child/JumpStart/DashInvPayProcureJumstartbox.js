@@ -16,8 +16,9 @@ getOrderCancelList
 import { BundleLoader } from "../../../../Components/Placeholder";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
+import DynamicPieChart from "./DynamicPieChart";
+
 const DashProcurePayDrawer= lazy(()=>import("./DashProcurePayDrawer"));
-const  CustomerPieChart= lazy(()=>import("./CustomerPieChart"));
 
 function DashInvPayProcureJumstartbox(props) {
 
@@ -33,7 +34,7 @@ function DashInvPayProcureJumstartbox(props) {
 
   const fetchProInvoiceCount = async () => {
     try {
-      const response = await axios.get(`${base_url2}/invoice/invoiceCount/${props.userId}/${props.timeRangeType}`,{
+      const response = await axios.get(`${base_url2}/dashboard/procureAmount/${props.userId}/${props.timeRangeType}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -61,24 +62,6 @@ function DashInvPayProcureJumstartbox(props) {
       setLoading1(false);
     }
   };
-
-  const [procPaymentCount, setprocPaymentCount] = useState({});
-  const [loading2, setLoading2] = useState(false);
-
-  const fetchProPaymentCount= async () => {
-    try {
-      const response = await axios.get(`${base_url2}/orderPayment/invoiceOutstanding/payment/${props.userId}/${props.timeRangeType}`,{
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      });
-      setprocPaymentCount(response.data);
-        setLoading2(false);
-      } catch (error) {
-        setError(error);
-        setLoading2(false);
-      }
-    };
 
     const [proPaymentReceivedList, setproPaymentReceivedList] = useState([]);
       const [loading3, setLoading3] = useState(false);
@@ -141,13 +124,9 @@ function DashInvPayProcureJumstartbox(props) {
   }, [props.selectedLanguage]);
   
   useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
     fetchProInvoiceCount();
-    fetchProPaymentCount();
-
-  }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
-
+  }, [props.userId,props.timeRangeType]);
+ 
   useEffect(() => {
     if (proInvoiceSentList) {
       setModalData(proInvoiceSentList);
@@ -207,7 +186,7 @@ function DashInvPayProcureJumstartbox(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
-              value={proInvoiceSent.totalInvoice}
+              value={proInvoiceSent.invoiceAmount}
             isLoading={loading}
             />
                          </div>
@@ -228,8 +207,8 @@ function DashInvPayProcureJumstartbox(props) {
              
             jumpstartClick={()=> handleClick("Payment Received")}
               cursorData={"pointer"}
-            value={procPaymentCount.paymentReceived}
-            isLoading={loading2}
+            value={proInvoiceSent.paymentReceived}
+            isLoading={loading}
             />
                            </div>
                        </div>
@@ -248,8 +227,8 @@ function DashInvPayProcureJumstartbox(props) {
                               title= {translatedMenuItems[2]} 
                               jumpstartClick={()=> handleClick("Payment Reconciled")}
                               cursorData={"pointer"}
-                              value={procPaymentCount.paymentReconciled}
-                              isLoading={loading2}
+                              value={proInvoiceSent.paymentReconcile}
+                              isLoading={loading}
                             />
                           </div>
                       </div>      
@@ -260,7 +239,7 @@ function DashInvPayProcureJumstartbox(props) {
         <div>
         <div class=" font-poppins font-bold text-base mt-1">By Process</div>
         <Suspense fallback={<BundleLoader />}> 
-        <ProcureProcessPieChart/>
+        <DynamicPieChart userId={props.userId} dtype={"ProcureAmount"} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
         </div>

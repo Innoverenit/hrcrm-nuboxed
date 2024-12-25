@@ -10,7 +10,7 @@ import {
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { getContactDistributorList, applyForLoginInContact } from "../../../Suppliers/SuppliersAction";
 import { Tooltip, Button, Input, Select } from "antd";
-import { getSaleCurrency } from "../../../../Auth/AuthAction";
+// import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -36,7 +36,7 @@ const AccountContactTable = (props) => {
     useEffect(() => {
         props.getContactDistributorList(props.uniqueId,props.type);
         props.getLobList(props.orgId);
-        props.getSaleCurrency();
+        // props.getSaleCurrency();
         fetchMenuTranslations();
     }, [props.selectedLanguage]);
 
@@ -124,46 +124,46 @@ const AccountContactTable = (props) => {
             <div className='flex sticky h-[79vh] z-auto'>
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
-                        <div className="w-[5.1rem] text-[#00A2E8] text-sm max-md:w-[4.1rem]">
-                        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
-                        <div className="w-[10rem]  max-md:w-[10rem]">
+                        <div className="w-[8.1rem] text-[#00A2E8] truncate text-sm max-md:w-[4.1rem]">
+                        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
+                        <div className="w-[11rem] truncate max-md:w-[10rem]">
                         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '/>{translatedMenuItems[1]}</div>
-                        <div className="w-[5.5rem]  max-md:w-[5.5rem]">
+                        <div className="w-[8.9rem] truncate  max-md:w-[5.5rem]">
                               <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[2]}</div>
-                        <div className="w-[5.9rem]  max-md:w-[5.9rem]">
+                        <div className="w-[8.9rem] truncate max-md:w-[5.9rem]">
                         
                         <WorkHistoryIcon className="!text-icon text-[#b744b8] "/>
                         {translatedMenuItems[3]}</div>
-                        <div className="w-[21.6rem]  max-md:w-[21.6rem]">
+                        <div className="w-[14.6rem] truncate max-md:w-[21.6rem]">
                         <ApartmentIcon className="!text-icon text-[#f0386b] "/>{translatedMenuItems[4]}</div>
-                        <div className="w-[4.7rem]  max-md:w-[4.7rem]">{translatedMenuItems[5]}</div>
-                        <div className=" w-[18.8rem]  max-md:w-[18.8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[15.7rem] truncate max-md:w-[4.7rem]">{translatedMenuItems[5]}</div>
+                        <div className=" w-[17.8rem] truncate max-md:w-[18.8rem]">{translatedMenuItems[6]}</div>
                     </div>
 
                     {props.contactDistributor.map((item) => (
                         <div key={item.contactPersonId}>
                             <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
                                 <div className="flex">
-                                    <div className="flex font-bold items-center justify-start max-md:w-[6.8rem] w-[6.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                    <div className="flex font-bold items-center justify-start max-md:w-[6.8rem] w-[7.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                         <div className="flex text-xs ml-gap items-center  font-poppins">
                                             {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                                         </div>
                                     </div>
 
-                                    <div className="flex max-md:w-[11.23rem] w-[11.23rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                    <div className="flex max-md:w-[11.23rem] w-[10.23rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                         <div className="flex items-center ml-gap text-xs font-poppins">{item.emailId}</div>
                                     </div>
                                 </div>
 
-                                <div className="flex max-md:w-[19.023rem] w-[19.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
-                                    <div className="text-xs font-poppins text-center">{`${item.dialCode1 || ""} ${item.mobileNo || ""}`}</div>
+                                <div className="flex max-md:w-[19.023rem] w-[19.023rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                    <div className="text-xs font-poppins ml-gap text-center">{`${item.dialCode1 || ""} ${item.mobileNo || ""}`}</div>
                                 </div>
-                                <div className="flex max-md:w-[19.21rem] w-[19.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
-                                    <div className="text-xs font-poppins text-center">{item.designationName}</div>
+                                <div className="flex max-md:w-[19.21rem] w-[19.21rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                    <div className="text-xs font-poppins ml-gap text-center">{item.designationName}</div>
                                 </div>
 
-                                <div className="flex max-md:w-[19.01rem] w-[19.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
-                                    <div className="text-xs font-poppins text-center">{item.departmentName}</div>
+                                <div className="flex max-md:w-[19.01rem] w-[16.01rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                    <div className="text-xs font-poppins  ml-gap text-center">{item.departmentName}</div>
                                 </div>
                                                     
                                 <div className="flex justify-end items-center max-sm:flex-row  max-sm:justify-between">
@@ -218,7 +218,7 @@ const AccountContactTable = (props) => {
                                 </div>
 
                                 <div className="flex max-md:w-[6.2rem] w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row 
-                                 max-sm:justify-between  mr-2">
+                                 max-sm:justify-between ">
                                     <div className="text-xs font-poppins text-center">
                                         <Input
                                             onPressEnter={(e) => handleKeyPress(item.contactPersonId, e)}
@@ -231,7 +231,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex max-md:w-[10.01rem] w-[10.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                <div className="flex max-md:w-[10.01rem] w-[6.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "5rem" }}
@@ -246,8 +246,8 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
             {item.accessInd === 0 ? (
-                <div className="text-xs font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
-                    <Button
+                <div className="text-xs w-[9rem]  font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                    <Button className="w-[8rem]"
                         type="primary"
                         loading={rowData.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
                         onClick={() => {
@@ -266,11 +266,11 @@ const AccountContactTable = (props) => {
                     </Button>
                 </div>
             ) : item.accessInd === 2 ? (
-                <b className="flex items-center text-[#32CD32] font-poppins text-xs w-[7rem]">
+                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs w-[9rem]">
                    {translatedMenuItems[9]} {/* Login Applied */}
                     </b>
             ) : (
-                <b className="flex items-center text-[#32CD32] font-poppins text-xs w-[7rem]">
+                <b className="flex items-center justify-center text-[#32CD32] font-poppins text-xs  w-[9rem]">
                   {translatedMenuItems[10]}  {/* Login Approved */}
                     </b>
             )}
@@ -367,7 +367,7 @@ const mapDispatchToProps = (dispatch) =>
             applyForLoginInContact,
             handleUpdateDistributorContactModal,
             getLobList,
-            getSaleCurrency,
+            // getSaleCurrency,
             setContactRoleForAccount
         },
         dispatch

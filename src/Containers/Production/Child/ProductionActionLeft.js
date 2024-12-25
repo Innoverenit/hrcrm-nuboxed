@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
-import { Tooltip, Badge, Avatar } from "antd";
 
+import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
+import { Tooltip, Badge, Avatar } from "antd";
 import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
@@ -122,6 +122,28 @@ const ProductionActionLeft = (props) => {
                 </Tooltip>
 
 
+                <Tooltip title="Batch">
+                    {/* <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        overflowCount={999}
+                    > */}
+                        <span class=" mr-1  "
+                            onClick={() => setProductionViewType("batch")}
+                            style={{
+
+                                color: viewType === "batch" && "#1890ff",
+                            }}
+                        >
+                           
+                            <Avatar style={{ background: viewType === "batch" ? "#f279ab" : "#28a355" }}>
+                       <BatchPredictionIcon className="text-white !text-icon cursor-pointer" /></Avatar>
+
+
+                        </span>
+                    {/* </Badge> */}
+                </Tooltip>
+
+
 
              <div style={{fontWeight:"bold"}}> Items Reassigned:{props.reassignProduct.rejectProduct}</div>  
                
@@ -144,6 +166,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductionActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionActionLeft)
+

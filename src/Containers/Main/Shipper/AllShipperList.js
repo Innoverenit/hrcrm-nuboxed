@@ -202,12 +202,13 @@ const [dataShipper, setdataShipper] = useState([]);
             <div className="  w-[9.8rem] max-md:w-[9.8rem] truncate ">
             <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{props.translatedMenuItems[2]}</div>
             <div className="  w-[6.1rem] max-md:w-[6.1rem] truncate ">
-            <LocalShippingIcon className='!text-base  text-[#7dcfb6]'/> {props.translatedMenuItems[3]}</div>
+            <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}</div>
             <div className="  w-[18.7rem] max-md:w-[18.7rem] truncate "> 
-            <LocationOnIcon className='!text-base  text-[#42e23a]'/> {props.translatedMenuItems[4]}</div>
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[4]}</div>
             <div className="  w-[12.4rem] max-md:w-[12.4rem] truncate ">
-            <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>{props.translatedMenuItems[5]}</div>
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/>{props.translatedMenuItems[5]}</div>
             <div className="  w-[5.9rem] max-md:w-[5.9rem] truncate ">
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/>
               {props.translatedMenuItems[6]}</div>
             <div className="  w-[13.24rem] max-md:w-[13.24rem] truncate ">
                 <ApiIcon className='!text-base  text-[#f45236]'/>  API</div>
@@ -223,15 +224,14 @@ const [dataShipper, setdataShipper] = useState([]);
             return (
               <>
                 <div  >
-                      <div className="flex rounded  mt-1 bg-white py-ygap items-center max-sm:rounded-lg
-               max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col  ">
                       <div class="flex  border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex  w-[9.9rem] max-md:w-[9.9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                        <div className=" flex  flex-row  w-[9.9rem] max-md:w-[9.9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                  
-                          <div class="flex text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
+                          <div class="flex w-[100%] text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
 
-<Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+<Link class="w-[100%] overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 items-center text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
   to={`shipper/${item.shipperId}`} title={item.shipperName}>
   {item.shipperName}
 </Link>
@@ -250,7 +250,7 @@ const [dataShipper, setdataShipper] = useState([]);
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs font-poppins opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -262,7 +262,8 @@ const [dataShipper, setdataShipper] = useState([]);
                         </div>
                   
                         </div>
-                        <div className=" flex w-[7rem] max-md:w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
+                      <div  className=" flex  max-md:flex-row">
+                      <div className=" flex w-[7rem] max-md:w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
 <div class="flex  text-xs ml-gap items-center  font-poppins">
 <div>
 {editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
@@ -292,7 +293,7 @@ className="cursor-pointer text-xs font-poppins">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xs ml-[0.25rem]"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -302,7 +303,7 @@ className="cursor-pointer text-xs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs font-poppins ml-[0.25rem]">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -369,6 +370,8 @@ className="cursor-pointer text-xs font-poppins">
 
                         </div>
                         </div>
+                      </div>
+                        
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                         <div className=" flex   w-[18.31rem] max-md:w-[18.31rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 

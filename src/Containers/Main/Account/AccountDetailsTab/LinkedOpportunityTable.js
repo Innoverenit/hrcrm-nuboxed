@@ -120,8 +120,9 @@ const handleConfirm = (quotationId) => {
 };
 
 const viewAnDownloadPdf= async (item) => {  
+  const type="quotation";
   try {
-    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.quotationId}`, {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${type}/${item.quotationId}`, {
       responseType: 'blob',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -151,19 +152,19 @@ const viewAnDownloadPdf= async (item) => {
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
         <div class="text-[#00A2E8] text-sm w-[4.55rem] max-md:w-[4.55rem] truncate">
         <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[0]}</div>
-<div className="w-[7.2rem] max-md:w-[6.4rem]" truncate> 
+<div className="w-[7.9rem] truncate max-md:w-[6.4rem]" > 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
-           <div className="w-[5.4rem] max-md:w-[5.1rem]">
-                      <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
-                        <div className=" w-[9.8rem] max-md:w-[9.6rem] truncate"> 
+           <div className="w-[6.3rem] truncate max-md:w-[5.1rem]">
+                      <DateRangeIcon className='!text-icon'/>  {translatedMenuItems[10]}  </div>
+                        <div className=" w-[10.3rem] max-md:w-[9.6rem] truncate"> 
                         <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
-                        <div className="w-[16.8rem] max-md:w-[16.8rem] truncate ">
+                        <div className="w-[17.9rem] max-md:w-[16.8rem] truncate ">
                         <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {translatedMenuItems[3]}</div>
-                        <div className="w-[6.8rem] max-md:w-[6.8rem] truncate">
+                        <div className="w-[7.3rem] max-md:w-[6.8rem] truncate">
                           <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
-                        <div className="w-[6.1rem] max-md:w-[6.1rem] truncate"> 
-                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
-                        <div className="w-[9.1rem] max-md:w-[9.1rem] truncate">
+                        <div className="w-[7.7rem] max-md:w-[6.1rem] truncate"> 
+                          <ContactPageIcon className='!text-icon'/>  {translatedMenuItems[5]}</div>           
+                        <div className="w-[8.1rem] max-md:w-[9.1rem] truncate">
                            <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {translatedMenuItems[8]}</div>                   
                    </div>                   
                     </div>
@@ -273,7 +274,7 @@ const viewAnDownloadPdf= async (item) => {
                                         </div>
                                    
                                       
-                  <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[12.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                
                           
@@ -323,19 +324,19 @@ const viewAnDownloadPdf= async (item) => {
 <ShopIcon className="text-[#00A2E8] !text-icon" />
   {translatedMenuItems[9]}
 </div>
-<div className="w-[7.4rem] max-md:w-[6.4rem]" truncate> 
+<div className="w-[7.9rem] max-md:w-[6.4rem]" truncate> 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
-           <div className="w-[5.4rem] max-md:w-[5.1rem]">
+           <div className="w-[6.3rem] max-md:w-[5.1rem]">
                       <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
-                        <div className=" w-[9.6rem] max-md:w-[9.6rem] truncate"> 
+                        <div className=" w-[10.3rem] max-md:w-[9.6rem] truncate"> 
                         <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
-                        <div className="w-[16.8rem] max-md:w-[16.8rem] truncate ">
+                        <div className="w-[17.9rem] max-md:w-[16.8rem] truncate ">
                         <LocationOnIcon className='!text-icon  text-[#42bfdd] '/>  {translatedMenuItems[3]}</div>
-                        <div className="w-[6.8rem] max-md:w-[6.8rem] truncate">
+                        <div className="w-[7.3rem] max-md:w-[6.8rem] truncate">
                           <CurrencyExchangeIcon className='!text-icon  text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
-                        <div className="w-[6.1rem] max-md:w-[6.1rem] truncate"> 
+                        <div className="w-[7.7rem] max-md:w-[6.1rem] truncate"> 
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
-                        <div className="w-[9.1rem] max-md:w-[9.1rem] truncate">
+                        <div className="w-[8.1rem] max-md:w-[9.1rem] truncate">
                            <DynamicFeedIcon className='!text-icon  text-[#fe5f55]'/>  {translatedMenuItems[8]}</div>                   
                    </div>                   
                     </div>
@@ -444,7 +445,7 @@ const viewAnDownloadPdf= async (item) => {
                                             </div>
                                         </div>
                                     
-                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[12.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
              
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
