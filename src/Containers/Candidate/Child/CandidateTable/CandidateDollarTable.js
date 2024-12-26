@@ -315,7 +315,7 @@ width:"1%"
         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         return (
           <>
-          <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.candidateName}>
+          <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/candidate/${item.candidateId}`} title={item.candidateName}>
       {item.fullName}
     </Link>
             {/* <CandidateDetailsView

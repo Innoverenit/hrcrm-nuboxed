@@ -238,8 +238,8 @@ const [datadialcode, setdatadialcode] = useState(false);
                  
                           <div class="flex w-[100%] text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
 
-<Link class="w-[100%] overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 items-center text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
-  to={`shipper/${item.shipperId}`} title={item.shipperName}>
+<Link class="flex w-[100%] overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 items-center text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+  to={`/shipper/${item.shipperId}`} title={item.shipperName}>
   {item.shipperName}
 </Link>
 <div>
