@@ -1,65 +1,75 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
+
 const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
 const OrderPaymentTable = lazy(() => import("./OrderPaymentTable"));
 
-class PaidButtonModal extends Component {
-    render() {
-        const {
-            addPaidButtonModal,
-            handlePaidModal,
-            ...formProps
-        } = this.props;
-        console.log("modll",this.props.particularRowData);
+const PaidButtonModal = ({
+    addPaidButtonModal,
+    handlePaidModal,
+    particularRowData,
+    distributorId,
+    type,
+    selectedLanguage,
+    translateText,
+    activeTab,
+    translatedMenuItems,
+    modalTitleKey,
+}) => {
 
-        console.log("TbS", this.props.activeTab);
+    const getTranslation = (keyIndex, fallback = "Default Modal Title") => {
+        return translatedMenuItems && translatedMenuItems[keyIndex] 
+             ? translatedMenuItems[keyIndex] : fallback;};
 
-        return (
-            <>
-                <StyledDrawer
-                    title={`${this.props.translatedMenuItems[55]} - ${this.props.particularRowData.newOrderNo}`}
-                    width="70%"
-                    visible={addPaidButtonModal}
-                    destroyOnClose
-                    maskClosable={false}
-                    onClose={() => handlePaidModal(false)}
-                    footer={null}
-                >
-                    <Suspense fallback={<BundleLoader />}>
-
-                        {this.props.type === "incomplete" ?
-                            <>
-                                <DistributorPaidForm
-                                 particularRowData={this.props.particularRowData} 
-                                  distributorId={this.props.distributorId} 
-                                type={this.props.type}
-                                selectedLanguage={this.props.selectedLanguage}
-                                translateText={this.props.translateText} 
-                                activeTab={this.props.activeTab}
-                                translatedMenuItems={this.props.translatedMenuItems}
-                                />
-                                <OrderPaymentTable
-                                 particularRowData={this.props.particularRowData} 
-                                  type={this.props.type}
-                                  selectedLanguage={this.props.selectedLanguage}
-                                  translateText={this.props.translateText} 
-                                  activeTab={this.props.activeTab}
-                                  translatedMenuItems={this.props.translatedMenuItems}
-                                />
-                            </> :
-                            <OrderPaymentTable 
-                            particularRowData={this.props.particularRowData} 
-                            selectedLanguage={this.props.selectedLanguage}
-                            translateText={this.props.translateText}
-                            activeTab={this.props.activeTab}
-                            translatedMenuItems={this.props.translatedMenuItems}
-                            />}
-                    </Suspense>
-                </StyledDrawer>
-            </>
-        );
-    }
-}
+      const modalTitle = getTranslation(modalTitleKey, "Default Modal Title");  
+    
+   
+    
+    return (
+        <StyledDrawer
+            title={`${modalTitle} - ${particularRowData.newOrderNo}`}
+            width="70%"
+            visible={addPaidButtonModal}
+            destroyOnClose
+            maskClosable={false}
+            onClose={() => handlePaidModal(false)}
+            footer={null}
+        >
+            <Suspense fallback={<BundleLoader />}>
+                {type === "incomplete" ? (
+                    <>
+                        <DistributorPaidForm
+                            particularRowData={particularRowData}
+                            distributorId={distributorId}
+                            type={type}
+                            selectedLanguage={selectedLanguage}
+                            translateText={translateText}
+                            activeTab={activeTab}
+                            translatedMenuItems={translatedMenuItems}
+                        />
+                        <OrderPaymentTable
+                            particularRowData={particularRowData}
+                            type={type}
+                            selectedLanguage={selectedLanguage}
+                            translateText={translateText}
+                            activeTab={activeTab}
+                            translatedMenuItems={translatedMenuItems}
+                        />
+                    </>
+                ) : (
+                    <OrderPaymentTable
+                        particularRowData={particularRowData}
+                        selectedLanguage={selectedLanguage}
+                        translateText={translateText}
+                        activeTab={activeTab}
+                        translatedMenuItems={translatedMenuItems}
+                    />
+                )}
+            </Suspense>
+        </StyledDrawer>
+    );
+};
 
 export default PaidButtonModal;
+

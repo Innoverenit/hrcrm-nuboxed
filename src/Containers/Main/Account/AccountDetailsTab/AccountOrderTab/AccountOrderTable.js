@@ -1206,6 +1206,7 @@ const AccountOrderTable = (props) => {
         particularRowData={particularRowData}
         activeTab={props.activeTab}
         translatedMenuItems={props.translatedMenuItems}
+        modalTitleKey={55}
       />
       <AccountproductionModal
         selectedLanguage={props.selectedLanguage}
