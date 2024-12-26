@@ -10,29 +10,24 @@ class CandidateExtraDetailView extends Component {
    
     return (
       <>
-      <CandidateItemRow //label="Mobile Number" 
-          label="Email ID"
-          
-          
+      <CandidateItemRow     // label="Email ID"  
+          label={this.props.translatedMenuItems[0]}        
           value={emailId} 
           />
-
-<CandidateItemRow //label="Mobile Number" 
-          label="Mobile #"
-        
+          <CandidateItemRow   // label="Mobile #"    
+          label={this.props.translatedMenuItems[1]}
           value={mobileNumber} />
 
-        <CandidateItemRow 
-          label="Linkedin"
-       
+          <CandidateItemRow    // label="Linkedin"    
+          label={this.props.translatedMenuItems[2]}
            value={linkedin} />
-             <CandidateItemRow //label="Mobile Number" 
-          label="Nationality"
-         
+            
+          <CandidateItemRow       
+           label="Nationality" 
            value={nationality} />
-             <CandidateItemRow //label="Mobile Number" 
-          label="Role"
-         
+
+          <CandidateItemRow  // label="Role"    
+          label={this.props.translatedMenuItems[3]}
            value={roleType} />
        
       </>
@@ -45,8 +40,8 @@ const CandidateItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center justify-between flex-nowrap m-2"
     >
-      <div  style={{ color: "#444", fontWeight: 600 }}>{label}</div >
-      <div  style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</div >
+       <div className="text-[#444] font-semibold text-sm"  >{label}</div >
+       <div className="-ml-6 hidden ellipsis">{value}</div >
     </div>
   );
 };

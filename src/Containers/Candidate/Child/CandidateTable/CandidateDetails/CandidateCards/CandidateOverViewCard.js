@@ -10,7 +10,11 @@ class CandidateOverViewCard extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <CandidateOverView candidate={candidate} />
+              <CandidateOverView candidate={candidate}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+              />
             ) : null
           }
         </ViewEditCard>

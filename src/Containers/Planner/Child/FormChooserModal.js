@@ -1,7 +1,6 @@
 import React, {lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { handleChooserModal } from "../PlannerAction";
 
@@ -16,13 +15,11 @@ class FormChooserModal extends React.Component {
     return (
       <>
         <StyledDrawer
-          title="Schedule"
-         
+          title="Schedule"         
           visible={chooserModal}
-          width={"60%"}
+          width={"50%"}
           style={{ overflow: "visible"}}
-          maskClosable={false}
-          
+          maskClosable={false}         
           destroyOnClose
           onClose={() => handleChooserModal(false)}
           footer={null}
