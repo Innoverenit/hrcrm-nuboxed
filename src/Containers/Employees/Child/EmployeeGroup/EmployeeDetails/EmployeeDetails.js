@@ -1,4 +1,5 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, {useEffect, lazy, Suspense } from "react";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -6,24 +7,29 @@ import {
 } from "../../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { getEmployeeById } from "../../../EmployeeAction";
+
 const EmployeeDetailHeader = lazy(() => import("./EmployeeDetailHeader"));
 const EmployeeDetailLeft = lazy(() => import("./EmployeeDetailLeft"));
 const EmployeeDetailRight = lazy(() => import("./EmployeeDetailRight"));
 
-class EmployeeDetails extends Component {
-  componentDidMount() {
-    this.props.getEmployeeById(this.props.match.params.id);
-    console.log(this.props.location);
-  }
+function EmployeeDetails(props) {
+  const { employeeId, data } = useParams();
+    useEffect(() => {
+      props.getEmployeeById(employeeId);
+      }, [employeeId]);
+  // componentDidMount() {
+  //   props.getEmployeeById(props.match.params.id);
+  //   console.log(props.location);
+  // }
 
-  render() {
-    const { singleEmployee, fetchingEmployeeById } = this.props;
+  // render() {
+    const { singleEmployee, fetchingEmployeeById } = props;
 
-    console.log(this.props.employeeId);
+    console.log(props.employeeId);
     return (
       <>
         <EmployeeDetailHeader />
-        {this.props.fetchingEmployeeById ? (
+        {props.fetchingEmployeeById ? (
           <MainWrapper>
             <BundleLoader />
           </MainWrapper>
@@ -34,15 +40,15 @@ class EmployeeDetails extends Component {
                 <div class=" w-[25%] overflow-scroll h-[98vh]" >
                 <Suspense>
                   <EmployeeDetailLeft  singleEmployee= {singleEmployee}
-                   translateText={this.props.translateText}
-                   selectedLanguage={this.props.selectedLanguage}/>
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}/>
                    </Suspense>
                 </div>
                 <div class=" w-[75%]" >
                   <Suspense>
                   <EmployeeDetailRight singleEmployee= {singleEmployee}
-                   translateText={this.props.translateText}
-                   selectedLanguage={this.props.selectedLanguage}/>
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}/>
                    </Suspense>
                 </div>
               </div>
@@ -52,7 +58,7 @@ class EmployeeDetails extends Component {
       </>
     );
   }
-}
+
 
 const mapStateToProps = ({ employee }) => ({
   fetchingEmployeeById: employee.fetchingEmployeeById,

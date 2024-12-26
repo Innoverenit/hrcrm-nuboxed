@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect,useMemo, useState, lazy } from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -293,10 +294,14 @@ function EmployeeTable(props) {
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                               <div class="flex  max-sm:w-wk  items-center max-sm:items-center">
                                     <div className="border-l-2 h-8 text-xs border-green-500 bg-[#eef2f9] items-center w-[12.6rem] flex max-md:w-[12.6rem] max-sm: ">
-                                    <EmployeeDetailsView
+                                    {/* <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
-        />
+        /> */}  <Link class="overflow-ellipsis  font-bold whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
+        to={`/employee/${item.employeeId}`} title={item.fullName}>
+        {item.fullName}
+      </Link>
+  
                                         &nbsp;&nbsp;
                                         {date === currentdate ? (
                                             <span

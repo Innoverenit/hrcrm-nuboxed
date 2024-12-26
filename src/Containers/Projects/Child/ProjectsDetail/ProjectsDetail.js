@@ -1,21 +1,26 @@
-import React, { Component,Suspense,lazy } from "react";
+import React, { useEffect,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-  import { getProjectDetailById } from "../../ProjectsAction";
+import { getProjectDetailById } from "../../ProjectsAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-
+import { useParams } from "react-router-dom";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ProjectsDetailHeader from "./ProjectsDetailHeader";
 import ProjectsDetailLeft from "./ProjectsDetailLeft";
 import ProjectDetailsRight from "./ProjectDetailsRight";
 
-class ProjectsDetail extends Component {
-  componentDidMount() {
-      this.props.getProjectDetailById(this.props.match.params.ProjectId);
-  }
-  render() {
-    console.log(projectsById)
-    const { projectsById, fetchingProjectsDetailById } = this.props;
+function ProjectsDetail  (props){
+  const { ProjectId, data } = useParams();
+  // componentDidMount() {
+  
+  //     this.props.getProjectDetailById(this.props.match.params.ProjectId);
+  // }
+  // render() {
+     useEffect(() => {
+        props.getProjectDetailById(ProjectId);
+      }, [ProjectId]);
+    // console.log(projectsById)
+    const { projectsById, fetchingProjectsDetailById } = props;
     return (
       <>
         <>
@@ -44,7 +49,7 @@ class ProjectsDetail extends Component {
       </>
     );
   }
-}
+
 const mapStateToProps = ({ projects }) => ({
      fetchingProjectsDetailById: projects.fetchingProjectsDetailById,
      projectsById: projects.projectsById,
