@@ -509,7 +509,7 @@ const [priority,setpriority]=useState(props.selectedTask
             <Form className="form-background">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
               
                   <div class=" flex justify-between ">
                     {values.taskTypeId === "TSK52434477391272022" && (
@@ -964,7 +964,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     )} */}
                   </div>
                 </div>
-                <div class=" h-full w-w47.5 max-sm:w-wk mt-4">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk mt-4">
                  
 
                   /> */}

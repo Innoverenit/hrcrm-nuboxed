@@ -245,17 +245,6 @@ const CustomerActionLeft = (props) => {
       props.setCurrentData(transcript);
     }
   }, [props.viewType, props.userId, transcript]);
-  // useEffect(() => {
-  //   if (props.viewType === "table") {
-  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
-  //   } else if (props.viewType === "teams") {
-  //     props.getCustomerListByUserId("teams", page, "creationdate");
-  //   } 
-  //   else if (props.viewType === "all") {
-  //     props.getCustomerListByUserId("all", page, "creationdate");
-  //   } 
-
-  // }, [])
 
   const fetchUser = async () => {
     setIsLoadingUser(true);
@@ -281,6 +270,7 @@ const CustomerActionLeft = (props) => {
   };
 
   const { user } = props;
+  console.log(props.viewType)
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"

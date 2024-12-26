@@ -18,7 +18,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
 import { Tooltip, Input,Button,Progress,Select  } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from 'dayjs';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -60,59 +59,80 @@ const AllAccountList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [RowData, setRowData] = useState("");
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [particularRowData, setParticularRowData] = useState({});
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState(""); 
   const [customerLists,setcustomerLists]=useState([]);
+ const [isCategoryDropdownClicked, setIsCategoryDropdownClicked] = useState(false); 
+ const [categoryOptions, setCategoryOptions] = useState([]); 
+ const [customerListOpt, setcustomerListOpt] = useState([]); 
+ const [isCustomerDropDownClick, setIsCustomerDropDownClick] = useState(false);
+ const [isDialCodeDropDownClicked, setIsDialCodeDropDownClicked] = useState(false);
+ const [dialCodeOpts, setDialCodeOpts] = useState([]);
+ const [currencyOpts,setcurrencyOpts]=useState([]);
+ const [isCurrencyDropdownClick,setIsCurrencyDropdownClick]=useState(false);
+
 
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
     setPage(page + 1);
   }, []);
+
+  const fetchCategoryData = () => {
+          if (!isCategoryDropdownClicked) {
+              props.getCategory(props.orgId);
+              setIsCategoryDropdownClicked(true); 
+          }
+      };
+  
+      useEffect(() => {
+          if (props.category && props.category.length > 0) {
+              setCategoryOptions(props.category); 
+          }
+      }, [props.category]);
+  
+      const fetchCustomerList = () => {
+        if (!isCustomerDropDownClick) {
+          props.getCustomer(props.orgId);
+          setIsCustomerDropDownClick(true); 
+        }
+    };
+    useEffect(() => {
+      if (props.customerListData && props.customerListData.length > 0) {
+        setcustomerListOpt(props.customerListData); 
+      }
+  }, [props.customerListData]);
+  
+  const fetchDialCode = () => {
+    if (!isDialCodeDropDownClicked) {
+      props.getCountry();
+      setIsDialCodeDropDownClicked(true); 
+    }
+  };
+  useEffect(() => {
+  if (props.countries && props.countries.length > 0) {
+    setcustomerListOpt(props.countries); 
+  }
+  }, [props.countries]);
+  
+  const fetchCurrency = () => {
+    if (!isCurrencyDropdownClick) {
+      props.getSaleCurrency();
+      setIsCurrencyDropdownClick(true); 
+    }
+  };
+  useEffect(() => {
+  if (props.saleCurrencies && props.saleCurrencies.length > 0) {
+    setcurrencyOpts(props.saleCurrencies); 
+  }
+  }, [props.saleCurrencies]);
+  
+
   useEffect(() => {
     setcustomerLists(props.allDistributors);
-    props.getCustomer(props.orgId);
-    props.getCategory(props.orgId);
-    props.getSaleCurrency();
-    props.getCountry();
 }, [props.allDistributors]);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-          "110",    // 'Name', // 0
-          "378",     // 'Work', // 1
-          "14",    // 'Category', // 2
-          "71",   // 'Type', // 3
-          "1295",   // Open Order', // 4
-          "1215",  // 'Tax', // 5
-          "77",    // 'Owner' 6
-          "100", // New 7
-          "392",// "Pulse"  8
-          "170",// "Edit" 9
-          "76",// 'Assigned', // 10  
-          "1338",// "Credit",//11
-          "592",          // club    12
-          "185",//Address13
-          "679",//Created14
-          "1171"
-      ];
-
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
-
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
@@ -281,45 +301,45 @@ const handleEditRowField = (distributorId, field, currentValue) => {
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
+        <div className=" flex max-sm:hidden  w-[96%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
         <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
-            <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
-            <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
+            <div className=" w-[14.3rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
+            <ContactsIcon className="!text-icon  "/> {props.translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[10.11rem] max-md:w-[10.11rem] truncate">
-            <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
+            <div className=" w-[10.1rem] max-md:w-[10.11rem] truncate">
+            <ApartmentIcon className="!text-icon mr-1 "/>  {props.translatedMenuItems[1]}
              {/* Work */}</div>
-            <div className=" w-[12.1rem] max-md:w-[12.1rem] truncate">
-            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
+            <div className=" w-[14.6rem] max-md:w-[12.1rem] truncate">
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[10.01rem] max-md:w-[10.01rem] truncate">
-            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
+            <div className="w-[9.2rem] max-md:w-[10.01rem] truncate">
+            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {props.translatedMenuItems[3]}
             {/* type % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate ">
-            <DynamicFeedIcon
-              className='  text-[#e4eb2f]'
-              /> {translatedMenuItems[4]}
+            <div className="w-[9.3rem] max-md:w-[12.2rem] truncate ">
+            <DynamicFeedIcon className='  text-[#e4eb2f]'
+              /> {props.translatedMenuItems[24]}
             {/* Paymentdays % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate">
-            <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
+            <div className="w-[8.9rem] max-md:w-[12.2rem] truncate">
+            <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{props.translatedMenuItems[17]}
             </div>  
-            <div className="w-[9.2rem] max-md:w-[9.2rem]">
-            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[15]}
+            <div className="w-[17.2rem] max-md:w-[9.2rem]">
+            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {props.translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>     
-                <div className="w-[7.8rem] max-md:w-[7.8rem] truncate">
-                <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
+                <div className="w-[21.8rem] max-md:w-[7.8rem] truncate">
+                <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' />  {props.translatedMenuItems[8]}
            {/* credit */}        
             </div>
-            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
+      
+            <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {props.translatedMenuItems[7]}
             {/* Assigned */}          
             </div>  
-            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}
-            {/* Assigned */}          
+            <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {props.translatedMenuItems[26]}
+            {/* Owner */}          
             </div>      
             </div>
           </div>
@@ -327,7 +347,7 @@ const handleEditRowField = (distributorId, field, currentValue) => {
             dataLength={customerLists.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            loader={props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
             height={"83vh"}
             style={{scrollbarWidth:"thin"}}
             endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
@@ -350,8 +370,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                   return (
                     <div>
                     <div className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  w-[14rem] max-md:w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                 
+                        <div className=" flex  w-[9rem] max-md:w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
                             <div>
                               <MultiAvatar
@@ -376,7 +396,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                     </Link>  &nbsp;&nbsp;
                                     {date === currentdate ? (
                                       <div class="text-[0.65rem] text-[tomato] font-bold" >
-                                        {translatedMenuItems[7]}  {/* New */}
+                                        {props.translatedMenuItems[7]}  {/* New */}
                                       </div>
                                     ) : null}
 
@@ -386,28 +406,29 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex max-md:w-[9.1rem]  w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
-                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
+                          <div class="flex text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
+                        <div className=" flex max-md:w-[9.1rem]  w-[6.6rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">                     
                           {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
                               <Select
                               style={{ width: "9.1rem" }}
                               value={editingValue}
                               onChange={handleChangeRowSelectItem} 
                               autoFocus
+                              onClick={fetchDialCode} 
                             >
-                              {props.countries.map((cntr) => (
+                               {dialCodeOpts.map((cntr) => (
                                 <Option key={cntr.country_dial_code} value={cntr.country_dial_code}>
                                   {cntr.country_dial_code}
                                 </Option>
                               ))}
                             </Select>
                             ) : (
-                              <div className="cursor-pointer !text-xs font-[Poppins]"
-                               onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
+                              <div className="cursor-pointer !text-xs font-poppins"
+                               onClick={() => handleEditRowField(item.distributorId, 'DialCode', item.dialCode)}>
                                 {item.dialCode || "Update..."}
                               </div>
                             )}
-                              <div>
+                              <div className='ml-[0.25rem]' >
 {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'phoneNo' ? (
 <Input
@@ -422,7 +443,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-poppins">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -433,9 +454,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
 
                       </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                   
+                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'dcategoryName' ? (
 <Select
@@ -443,8 +464,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCategoryData} 
     >
-      {props.category.map((ctg) => (
+      {categoryOptions.map((ctg) => (
         <Option key={ctg.categoryId} value={ctg.categoryId}>
           {ctg.name}
         </Option>
@@ -453,7 +475,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.dcategoryName || "Update..."}
     
     </div> 
@@ -461,7 +483,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[8rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto w-[6rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center ml-gap justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clientName' ? (
@@ -470,8 +493,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCustomerList} 
     >
-      {props.customerListData.map((clnt) => (
+      {customerListOpt.map((clnt) => (
         <Option key={clnt.customerTypeId} value={clnt.customerTypeId}>
           {clnt.name}
         </Option>
@@ -480,7 +504,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.clientName || "Update..."}
     </div> 
 )}
@@ -489,7 +513,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                         </div>
 
-                        <div className=" flex  max-sm:w-auto w-[9rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto w-[5.7rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'payment' ? (
@@ -505,14 +530,15 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.payment || "Update..."} 
     </div> 
 )}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                        <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[6rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clubName' ? (
@@ -528,14 +554,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.clubName || "Update..."}
     </div> 
 )}
 
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[10.7rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'payment' ? (
@@ -551,7 +577,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.payment || "Update..."} days
     </div> 
 )}
@@ -578,19 +604,19 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                                 <div className=" flex justify-between ">
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
-                                                                    }} >{translatedMenuItems[10]}
+                                                                    }} >{props.translatedMenuItems[10]}
                                                                       
                                                                             {/* defaultMessage="Save" */}
                                                                         
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[15]} 
+                                                                    {props.translatedMenuItems[15]} 
                                                                         {/* defaultMessage="Cancel" */}
                                                                    
                                                                     </Button>
                                                                 </div>
                                                             </>
-                                                        ) : <Tooltip title={translatedMenuItems[16]}
+                                                        ) : <Tooltip title={props.translatedMenuItems[16]}
                                                       
                                                         //     defaultMessage="Update Revised Price"
                                                          
@@ -611,7 +637,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                      
                       <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
                           <div>
@@ -627,7 +653,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                       />                                                       
                                                 </Tooltip>
                                                 </div>
-                          <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div class=" text-xs flex items-center justify-center font-poppins w-[5.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k */}
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'curName' ? (
@@ -636,8 +662,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCurrency} 
     >
-      {props.saleCurrencies.map((crr) => (
+      {currencyOpts.map((crr) => (
         <Option key={crr.currency_id} value={crr.currency_id}>
           {crr.currency_name}
         </Option>
@@ -646,7 +673,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
-    className="cursor-pointer !text-xs font-[Poppins]">
+    className="cursor-pointer !text-xs font-Poppins">
     {item.curName || "Update..."} 
     </div> 
 )}
@@ -665,7 +692,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'currencyPrice', item.currencyPrice)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer ml-[0.25rem] text-xs font-Poppins">
     {(item.currencyPrice / 1000).toFixed(0)}k  
     </div> 
 )}
@@ -673,7 +700,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
                        
                     
-                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.assignToUser?
                             <Tooltip title={item.assignToUser}>
@@ -693,7 +720,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>:""}
                           </div>                      
                       </div>    
-                      <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
@@ -726,7 +753,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       <div className=" flex max-md:w-[1.2rem]  max-xl:w-[1.2rem] max-sm:flex-row items-center justify-center h-8 bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
-                            <Tooltip title=  {translatedMenuItems[8]}>
+                            <Tooltip title=  {props.translatedMenuItems[8]}>
                             {/* "Pulse"> */}
                               <MonitorHeartIcon
                                 onClick={() => {
@@ -739,18 +766,15 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                         </div>
                         <div class=" flex items-center justify-center h-8  bg-[#eef2f9]">
-                        <Tooltip title=  {translatedMenuItems[13]}>
+                        <Tooltip title=  {props.translatedMenuItems[13]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
             props.handleAccountAddress(true);
             handleCurrentRowData(item);
-          }}
-          
-        /> 
+          }}/> 
         </Tooltip>  
         </div>
-
                       <div className=" flex    max-xl:w-[1.2rem] items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                       <div>
                         <Tooltip title={item.url}>
@@ -775,21 +799,18 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                         </div>
-
+</div>
                       </div>
                     </div>
-                  </div>
                   )
                 })}
-              </> : !customerLists.length
-          && !props.fetchingAllDistributors ?
-                <NodataFoundPage /> : null}
+              </> 
+              : !customerLists.length && !props.fetchingAllDistributors ? <NodataFoundPage /> : ""}
           </InfiniteScroll>
         </div>
-      </div>
+        </div>
           )}
             <Suspense fallback={<BundleLoader />}>
-  
       <AccountPulseModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -842,7 +863,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-
 export default connect(mapStateToProps, mapDispatchToProps)(AllAccountList);
 
 

@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import InvouiceSTable from "./InvouiceSTable";
-
-
-
-
 class InvoiceModal extends Component {
     render() {
         const { invoiceO, handleInvoiceModal } = this.props;
@@ -25,7 +21,9 @@ class InvoiceModal extends Component {
                     <InvouiceSTable
                           particularRowData={this.props.particularRowData}
                           selectedLanguage={this.props.selectedLanguage}
-                            translateText={this.props.translateText} />
+                            translateText={this.props.translateText}
+                            translatedMenuItems={this.props.translatedMenuItems}
+                             />
 
                 </StyledDrawer>
             </div>

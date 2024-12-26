@@ -2735,6 +2735,33 @@ export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState
 
 
 
+export const linkDispatchStatus = (orderPhoneId,moveToHistoryInd) => (dispatch) => {
+  dispatch({ type: types.LINK_DISPATCH_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/phoneOrder/moveToHistory/${orderPhoneId}/${moveToHistoryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_DISPATCH_STATUS_SUCCESS,
+        payload: orderPhoneId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_DISPATCH_STATUS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
 export const addRepairData = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
   console.log(documents);
   dispatch({

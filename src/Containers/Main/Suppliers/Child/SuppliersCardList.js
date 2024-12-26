@@ -32,7 +32,6 @@ const SupplierAddListModal =lazy(()=>import("./SupplierAddListModal"));
 const SuplierPublishToggle =lazy(()=>import("./SuplierPublishToggle"));
 const SuplierNotApprovalPublish =lazy(()=>import("./SuplierNotApprovalPublish"));
 const EmptyPage =lazy(()=>import("../../EmptyPage"));
-const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
  
@@ -45,12 +44,20 @@ function SuppliersCardList(props) {
   const [page, setPage] = useState(0);
   const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState("");
+const [datadialcode, setdatadialcode] = useState(false);
+
+const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
 
   useEffect(() => {
     setPage(page + 1);
     props.emptysUPPLIERS();
     props.getSuppliersList(props.userId, page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
   }, []);
 
 
@@ -149,7 +156,7 @@ const [editingValue, setEditingValue] = useState("");
                {/* Supplier ID */}
               <CategoryIcon className=" !text-icon"/> {props.translatedMenuItems[40]} ID 
                </div>
-            <div className=" w-[10.4rem] truncate   max-md:w-[11.8rem]">  
+            <div className=" w-[10.4rem] truncate  text-sm text-[#00A2E8] max-md:w-[11.8rem]">  
             {/* "Name" */}
             <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
             </div>
@@ -193,18 +200,17 @@ const [editingValue, setEditingValue] = useState("");
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white   items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col">
                           <div class=" flex flex-row justify-between font-poppins w-wk max-sm:flex-col max-md:text-[0.65rem] max-lg:text-[0.45rem]">
                             <div class="flex max-sm:justify-start items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem] ">
                             <div class=" text-xs ml-gap  max-sm:text-sm ">
                             {item.newSuppNo}
-                            
-</div>
+                            </div>
                               </div>
-                              <div className="  flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[11.2rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem] ">
+                              <div className="  flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[12.2rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem] ">
                             
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 ml-gap underline font-bold font-poppins text-[#042E8A] cursor-pointer max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                  <Link class="w-[100%] flex  overflow-ellipsis items-center  whitespace-nowrap h-8 text-xs p-1 ml-gap underline font-bold font-poppins text-[#042E8A] cursor-pointer max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.name}`}
                                   >{item.name}</Link>
@@ -224,16 +230,11 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
-   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
-    
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>    
     </div> 
 )}                 
                       </div>
-
-
-                             
-
                                 {date === currentdate ? (
                                   <div class="text-[0.65rem]  text-[tomato] font-bold"
                                   >
@@ -244,9 +245,9 @@ const [editingValue, setEditingValue] = useState("");
                               </div>
                               </div>
                               <div class="flex max-sm:justify-evenly items-center">
-                              <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[10.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[5.01rem] max-lg:w-[5.9rem] ">
+                              <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[10.1rem] max-sm:justify-between  max-sm:flex-row max-md:w-[17.01rem] max-lg:w-[5.9rem] ">
 
-                                <div class=" text-xs  font-poppins ml-gap max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="flex text-xs  font-poppins ml-gap max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
@@ -254,6 +255,7 @@ const [editingValue, setEditingValue] = useState("");
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -266,7 +268,7 @@ const [editingValue, setEditingValue] = useState("");
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
 className="cursor-pointer text-xs font-poppins">
-{item.dialCode || "Update..."}
++{item.dialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -297,9 +299,9 @@ className="cursor-pointer text-xs font-poppins">
                               </div>
                         
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
-                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[12.03rem] max-lg:w-[9.84rem] ">
+                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[13.2rem] max-sm:justify-between  max-sm:flex-row max-md:w-[12.03rem] max-lg:w-[9.84rem] ">
 
-                                <div class="  text-xs ml-gap  font-poppins max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" flex text-xs ml-gap  font-poppins max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'emailId' ? (
 <Input
@@ -324,13 +326,11 @@ className="cursor-pointer text-xs font-poppins">
                               </div>
                     
                             </div>
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[19.2rem] max-md:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
-
-
-                              
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[19.2rem] max-md:w-[5rem] max-lg:w-[10rem]  max-sm:justify-evenly  max-sm:flex-row ">                             
 </div>
                             </div>
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-md:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+                            <div  className="flex  max-md:flex-row">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-md:w-[5rem] max-lg:w-[3rem]  max-sm:justify-evenly  max-sm:flex-row ">
                             <div class=" text-xs max-sm:text-xs  font-poppins max-md:text-[0.65rem] max-lg:text-text-xs">
                            
                            <SuplierNotApprovalPublish
@@ -342,7 +342,7 @@ className="cursor-pointer text-xs font-poppins">
                          </div>
                           
                                    {/* {countryCode}                        */}
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-md:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-md:w-[5rem] max-lg:w-[3rem]  max-sm:justify-evenly  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-md:text-[0.65rem] max-lg:text-[0.45rem]">
                                
                                 <SuplierPublishToggle
@@ -351,7 +351,9 @@ className="cursor-pointer text-xs font-poppins">
                                 />
                               </div>
                              
-                            </div>                          
+                            </div>
+                              
+                              </div>                          
                             <div class="flex max-sm:w-wk items-center justify-end  h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly">
                               <div>
                                 <Tooltip title={props.translatedMenuItems[18]}>
@@ -377,19 +379,7 @@ className="cursor-pointer text-xs font-poppins">
                                     }}
                                   />
                                 </Tooltip>
-                              </div>
-                              {/* <div>
-                                <Tooltip title={props.translatedMenuItems[39]}>
-                                  <InventoryIcon
-                                    className="!text-icon cursor-pointer text-[green] max-sm:!text-2xl"
-                                    onClick={() => {
-                                      props.setEditSuppliers(item);
-                                      handleRowData(item);
-                                      props.handleSuppliersListDrawer(true);
-                                    }}
-                                  />
-                                </Tooltip>
-                              </div> */}
+                              </div>                   
                               <Tooltip title={props.translatedMenuItems[34]}>
                               <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"
@@ -400,23 +390,13 @@ className="cursor-pointer text-xs font-poppins">
           
         />      
                </Tooltip> 
-               {/* <div>   <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]" */}
-
-                               {/* onClick={() => { */}
-                                {/* //   props.setEditCustomer(item);
-                                //   handleUpdateCustomerModal(true);
-                                //   handleSetCurrentCustomerId(item.customerId);
-
-                                // }}
-                              // />   </div>                */}
                               <div>
                                 <Tooltip title={props.translatedMenuItems[21]}>
                                   <Popconfirm
                                     title={`${props.translatedMenuItems[22]} ?`}
                                     onConfirm={() => props.deleteSupplierData(item.supplierId, props.userId)}
                                   >
-                                  <DeleteOutlineIcon ClassName="!text-icon text-[#ff6347] cursor-pointer"  />
+                                  <DeleteOutlineIcon className="!text-icon text-[#ff6347] cursor-pointer"  />
                                   </Popconfirm>
                                 </Tooltip>
                               </div>
@@ -436,13 +416,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
  )}
  <Suspense>
-      <UpdateSupplierModal
-        rowdata={rowdata}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+    
       <SupplierPriceModal
         rowdata={rowdata}
         suppliersPriceOpenDrawer={props.suppliersPriceOpenDrawer}

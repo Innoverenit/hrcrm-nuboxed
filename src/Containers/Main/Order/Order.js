@@ -2,18 +2,17 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setOrderViewType } from "./OrderAction";
-import OrderHeader from "./OrderHeader";
-import CompleteOrder from "./CompleteOrder";
-import AllCompleteOrderList from "./AllCompleteOrderList";//2
-import ProductionOrderCardList from "./ProductionOrderCardList";
-import ProductionHistoryCardList from "./ProductionHistoryCardList";
-import ProductionAllCardList from "./ProductionAllCardList";
-import DeletedOrderList from "./DeletedOrderList";
-import ProcreCardList from "../Procre/ProcreCardList";
-import CommerceTab from "./CommerceTab";
-import { BundleLoader } from "../../../Components/Placeholder";
 
-const EcomCardList=lazy(()=>import("./EcomCardList"));
+
+const ProductionOrderCardList=lazy(()=>import("./ProductionOrderCardList"));
+const ProductionHistoryCardList = lazy(() => import("./ProductionHistoryCardList"));
+const ProductionAllCardList = lazy(() => import("./ProductionAllCardList")); //2
+const DeletedOrderList=lazy(()=>import("./DeletedOrderList"));
+const ProcreCardList = lazy(() => import("../Procre/ProcreCardList"));
+const CommerceTab = lazy(() => import("./CommerceTab")); //2
+const OrderHeader=lazy(()=>import("./OrderHeader"));
+const CompleteOrder = lazy(() => import("./CompleteOrder"));
+const AllCompleteOrderList = lazy(() => import("./AllCompleteOrderList")); //2
 const AllOrderList = lazy(() => import("./AllOrderList"));//4
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID")); //1
 
@@ -59,7 +58,7 @@ class Order extends Component {
     const { viewType } = this.state;
     return (
       <React.Fragment>
-        <Suspense fallback={<BundleLoader/>}>
+        <Suspense fallback={"Loading..."}>
         <OrderHeader
          selectedLanguage={this.props.selectedLanguage}
          translateText={this.props.translateText}

@@ -3,8 +3,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import StockImportForm from "./StockImportForm";
 
+const StockImportForm = lazy(() => import("./StockImportForm"));
 class StockUploadModal extends Component {
   render() {
   

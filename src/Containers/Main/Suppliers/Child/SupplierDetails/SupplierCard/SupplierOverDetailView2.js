@@ -1,40 +1,7 @@
 import React, { Component } from "react";
 
 class SupplierOverDetailView2 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      translatedMenuItems: [],
-    };
-  }
-
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
-
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-       
-      "188",  // "City",
-       "1261",   // "State",
-      "1236",   // "Pincode",
-      "1109",  // "Country",
-      "186",   // "Street" 
-            ];
-
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+ 
   render() {
     console.log(this.props.supplier);
     const {
@@ -47,12 +14,12 @@ class SupplierOverDetailView2 extends Component {
      
         <ShipperItemRow
             label=
-            {this.state.translatedMenuItems[2]}
+            {this.props.translatedMenuItems[5]}
            
             value={addresses && addresses[0].pinCode}
         />
         <ShipperItemRow
-             label={this.state.translatedMenuItems[3]}
+             label={this.props.translatedMenuItems[6]}
            
      
           value={addresses && addresses[0].country}

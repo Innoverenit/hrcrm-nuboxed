@@ -39,13 +39,6 @@ export const emptyCustomer = () => (dispatch) => {
 };
 
 
-// export const handleUpdateUserModal = (modalProps) => (dispatch) => {
-//   dispatch({
-//     type: types.HANDLE_UPDATE_USER_MODAL,
-//     payload: modalProps,
-//   });
-// };
-
 export const handleCustomerReactSpeechModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_REACT_SPEECH_MODAL,
@@ -1539,10 +1532,10 @@ export const setEditCustomerContact = (name) => (dispatch) => {
     payload: name,
   });
 };
-export const updateCustomerContact = (data, contactId) => (dispatch) => {
+export const updateCustomerContact = (data, customerId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CUSTOMER_CONTACT_BY_ID_REQUEST });
   axios
-    .put(`${base_url}/contact/${contactId}`, data, {
+    .put(`${base_url}/customer/{customerId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2407,6 +2400,7 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     axios
       .get(`${base_url}/customer/teams/${userId}/${pageNo}`, {
         headers: {
+          Connection: 'keep-alive', 
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
@@ -3216,6 +3210,34 @@ export const updateActivityCallForm = (data, callId, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_ACTIVITY_CALL_FORM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getHeader = (type) => (dispatch) => {
+  console.log("inside add candidate");
+  dispatch({
+    type: types.GET_HEADER_REQUEST,
+  });
+  axios
+    .get(`${base_url}/getEntityFields/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_HEADER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_HEADER_FAILURE,
         payload: err,
       });
     });

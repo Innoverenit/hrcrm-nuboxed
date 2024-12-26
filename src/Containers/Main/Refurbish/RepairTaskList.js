@@ -13,7 +13,6 @@ const { Option } = Select;
 
 function RepairTaskList(props) {
     useEffect(() => {
-        props.getPhoneTasklist(props.orgId);
         props.getTaskListByPhone(props.phoneId)
     }, []);
 
@@ -21,6 +20,7 @@ function RepairTaskList(props) {
     const [selectedLevel, setSelectedLevel] = useState(null);
     const [customName, setCustomeName] = useState("")
     const [type, setType] = useState(false)
+          const [dtouched, setDTouched] = useState(false);
     const handleTask = (value) => {
         console.log(value)
         setTask(value)
@@ -46,13 +46,21 @@ function RepairTaskList(props) {
         console.log("Selected Level:", value);
         setSelectedLevel(value); // Update selected value in state
       };
+      const handleSelectDepartmentFocus = () => {
+                if (!dtouched) {
+                  props.getPhoneTasklist(props.orgId);
+                  setDTouched(true);
+                }
+              };
     return (
         <>
             <div class="flex justify-around max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
-                            <Select onChange={handleTask}>
+                            <Select onChange={handleTask}
+                            onFocus={handleSelectDepartmentFocus}
+                            >
                                 <Option value={"custom"}>{"Custom"} </Option>
                                 {props.phoTasklist.map((a) => {
                                     return <Option value={a.itemTaskId}>{a.name}</Option>;
@@ -83,7 +91,7 @@ function RepairTaskList(props) {
                     </div>
 
                 </div>
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[48%]">
                             <Button type="primary"

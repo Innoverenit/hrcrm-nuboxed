@@ -20,7 +20,7 @@ import {
 import {getEvents} from "../../../Settings/Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar,  } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -28,7 +28,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import InfoIcon from '@mui/icons-material/Info';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 const { Option } = Select;
 dayjs.extend(relativeTime);
 
@@ -122,7 +121,6 @@ function EventAllcardList (props) {
     const handleLocationChange = (locationDetailsId) => {
       setSelectedLocation(locationDetailsId); 
   
-      // props.getWasteMaterialLocation(locationDetailsId); 
     };
     const handleLoadMore = () => {
     
@@ -130,7 +128,6 @@ function EventAllcardList (props) {
            props.getEventAllListRangeByUserId(props.orgId,page);
           setPage(page + 1);
   }
-
   const getLocation = (item) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -141,8 +138,7 @@ function EventAllcardList (props) {
           let data={
             complitionInd:item.complitionInd===false?true:false,
             latitude:latitude,
-            longitude:longitude,
-  
+            longitude:longitude, 
           }
           props.addeventLocation(data,item.eventId)
           message.success('Location fetched successfully!');
@@ -161,16 +157,15 @@ function EventAllcardList (props) {
         <>
         <div className=' flex  sticky  z-auto'>
         <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-   
-         <div className=" flex  w-[93%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
+         <div className=" flex  w-[93%]  max-sm:hidden p-1 bg-transparent font-bold font-poppins !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem]   z-10">
           <div className=" flex justify-between text-xs font-poppins w-[93%]">
-        <div className="flex truncate w-[15.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        <div className="flex truncate w-[15.3rem]  max-xl:w-[9.2rem]">
         {/* Type */}     < MergeTypeIcon className='!text-icon text-[#c42847] '/>
        
        {translatedMenuItems[0]}
-       <div className="flex flex-col">
+       <div className="flex">
           <div>
-        <FilterAltIcon onClick={toggleSelect} // Open/close Select on click
+        <FilterAltIcon className="!text-sm text-[tomato]" onClick={toggleSelect} // Open/close Select on click
          onMouseEnter={handleHover} // Open Select on hover
          onMouseLeave={handleLeave} // Optionally close on hover leave
          />
@@ -178,7 +173,7 @@ function EventAllcardList (props) {
          <div>
          {isOpen && (
           <Select
-          style={{ width: "12rem" }}
+          style={{ width: "8rem",borderColor:"gray" }}
            onChange={handleLocationChange}
           placeholder="Select EventType"
           showSearch
@@ -196,24 +191,24 @@ function EventAllcardList (props) {
          </div>
          </div>
                 </div>
-        <div className="flex truncate w-[14.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+        <div className="flex truncate w-[14.23rem]  max-xl:w-[13.23rem]">
       {/* Subject */}  <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[1]}
                 </div>
-        <div className="flex truncate w-[10.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+        <div className="flex truncate w-[10.25rem]  max-xl:w-[9.25rem] ">
       {/* Start */}  <DateRangeIcon className="!text-icon mr-1"/> {translatedMenuItems[2]}
                 </div>
-        <div className="flex  w-[10.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+        <div className="flex  w-[10.13rem]  max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
        {/* End */} <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[3]}
                 </div>
                 <div className="flex truncate  w-[8.33rem] "></div>
-        <div className="flex truncate w-[11.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+        <div className="flex truncate w-[11.32rem]  max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
        {/* Include */}   <GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/> {translatedMenuItems[4]}
                 </div>
      
-        <div className=" flex truncate w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+        <div className=" flex truncate w-[6.15rem]  max-xl:w-[6.15rem]">
        {/* Assigned */}         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/>{translatedMenuItems[5]}
                 </div>
-        <div className=" flex truncate w-[15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+        <div className=" flex truncate w-[15rem]  max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
   {/* Owner */}        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
                 </div>
                 
@@ -241,7 +236,7 @@ function EventAllcardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:h-24"
+                            <div className="flex rounded   mt-1 bg-white  items-center py-ygap max-sm:flex-col  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:h-24"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
@@ -254,9 +249,8 @@ function EventAllcardList (props) {
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs items-center ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
-                                            {item.eventType}
-       
+                                            <div class="text-xs items-center ml-gap font-poppins cursor-pointer  max-sm:text-xs ">                                       
+                                            {item.eventType}  
                                             </div>
                                                </div>
                                         </Tooltip>
@@ -266,7 +260,7 @@ function EventAllcardList (props) {
 
                                 <div className=" flex  w-[11.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
+                                    <div class=" text-xs ml-gap font-poppins  max-sm:text-xs ">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
@@ -274,13 +268,13 @@ function EventAllcardList (props) {
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[7.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
-                                    <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    <div class="text-xs  font-poppins  max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex w-[7.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
-                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    <div class="text-xs   font-poppins  max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
@@ -292,7 +286,7 @@ function EventAllcardList (props) {
                                 <div className=" flex  w-[9.31rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
-                                    <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    <div class=" text-xs   font-poppins  max-sm:text-xs ">
                                     <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -310,10 +304,7 @@ function EventAllcardList (props) {
                       {data1}
                     
                     </Avatar>
-                    </Tooltip>
-                     
-
-                   
+                    </Tooltip>  
                     );
                   })}
             </Avatar.Group>
@@ -322,9 +313,9 @@ function EventAllcardList (props) {
                                 <div className="flex  w-[5.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    <div class="text-xs   font-poppins  max-sm:text-xs ">
                                     {/* <Tooltip title={item.assignedToName}> */}
-              <SubTitle>
+              <div>
               <span>
               {item.assignedToName === null ? (
                 "Not available"
@@ -343,8 +334,7 @@ function EventAllcardList (props) {
                 </>
               )}
             </span>
-              </SubTitle>
-             {/* </Tooltip> */}
+              </div>
                                     </div>
                                 </div>
 
@@ -360,15 +350,11 @@ function EventAllcardList (props) {
    <CheckCircleIcon 
    onClick={() => getLocation(item)}
    style={{color:"green"}}
-   />
-       
-                )}
-       
-        
+   />     
+                )}       
           </div>
-                   </div>
-                               </div>
-
+               </div>
+                         </div>
                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -376,12 +362,7 @@ function EventAllcardList (props) {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-
-
-
-
-                               <div class="flex  w-wk justify-end max-sm:w-wk items-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly"> 
-                    
+                               <div class="flex  w-wk justify-end max-sm:w-wk items-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly">               
                       <div class="flex max-sm:flex-row items-center justify-end max-sm:w-auto">
                     <div class="">
                     {item.rating === 0 ? (<StarBorderIcon
@@ -394,22 +375,10 @@ function EventAllcardList (props) {
                   </span>)}
                         </div>
                         <div>
-                        {/* {item.completionInd === false ? (
-                <CheckCircleIcon 
-                className="!text-icon cursor-pointer text-[#eeeedd]"
-                  />
-              ) : (
-                <span><CheckCircleIcon 
-                className="!text-icon cursor-pointer text-[#67d239]"
-                 />
-                </span>
-              )} */}
-
+                     
 {Math.round(item.compDistance)}km
-           
-        
-                        </div>
-                    
+          
+                        </div>        
                          <Tooltip title={
       <div>
         {item.eventDescription}
@@ -418,59 +387,36 @@ function EventAllcardList (props) {
           className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
           onClick={handleCopyClick}
         />
-        {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
       </div>
     }>
       <EventNoteIcon className="!text-icon cursor-pointer" />
-    </Tooltip>
-                                                                          
-          <Tooltip title={translatedMenuItems[7]}>
-              <BorderColorIcon
-                type="edit"
-                className="!text-icon cursor-pointer text-[tomato]"
-                onClick={() => {
-                  props.setEditEvents(item);
-                  handleUpdateEventModal(true);
-                }}
-              />
-            </Tooltip>
-          
-            <div>
-           
+    </Tooltip>                                                                                  
+            <div>          
             <StyledPopconfirm
               // title="Do you want to delete?"
               title={translatedMenuItems[9]}
               onConfirm={() => deleteEvent(item.eventId, props.userId)}
             >
                <Tooltip title={translatedMenuItems[8]}>
-               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+               <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
               </Tooltip>
-            </StyledPopconfirm>
-      
+            </StyledPopconfirm>      
             </div>
                       </div>   
                               </div>
                             </div>
                         </div>
-
-
                     )
                 })}
                    </InfiniteScroll>
                    </div>
       </div>
       <Suspense fallback={<BundleLoader />}>
-        <UpdateEventModal
-          updateEventModal={props.updateEventModal}
-          handleUpdateEventModal={props.handleUpdateEventModal}
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
-        />
+    
          </Suspense>
         </>
     );
 }
-
 
 const mapStateToProps = ({ auth, event,events, employee,opportunity}) => ({
   userDetails: auth.userDetails,
@@ -480,7 +426,6 @@ const mapStateToProps = ({ auth, event,events, employee,opportunity}) => ({
   fetchingEventListRangeByUserIdError:
     event.fetchingEventListRangeByUserIdError,
     eventallListRangeByUserId: event.eventallListRangeByUserId,
-  updateEventModal: event.updateEventModal,
   events:events.events
 
 });

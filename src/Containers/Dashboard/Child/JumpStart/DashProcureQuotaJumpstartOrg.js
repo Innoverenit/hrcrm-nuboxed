@@ -87,8 +87,27 @@ function DashProcureQuotaJumpstartOrg(props) {
         fetchData1();
         fetchData2();
         fetchData3();
+        fetchjumpstartCount();
     }, [props.orgId,props.endDate,props.startDate]);
 
+    const [jumpstartCount, setjumpstartCount] = useState([]);
+    const [jumpstartCountloading, setjumpstartCountLoading] = useState(false);
+    const [jumpstartCountError,setjumpstartCountError]= useState(null);
+
+      const fetchjumpstartCount = async () => {
+        try {
+          const response = await axios.get(`${base_url2}/dashboard/quotationCount/${props.orgId}/${props.timeRangeType}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setjumpstartCount(response.data);
+          setjumpstartCountLoading(false);
+        } catch (error) {
+          setError(error);
+          setjumpstartCountLoading(false);
+        }
+      };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -183,8 +202,8 @@ function DashProcureQuotaJumpstartOrg(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Quotation Created")}
               cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
+              value={jumpstartCount.quotationCount}
+              isLoading={jumpstartCountloading}
             />
                          </div>
                      </div>
@@ -203,8 +222,8 @@ function DashProcureQuotaJumpstartOrg(props) {
               title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
+              value={jumpstartCount.quotationConvert}
+              isLoading={jumpstartCountloading}
             />
                            </div>
                        </div>
@@ -224,8 +243,8 @@ function DashProcureQuotaJumpstartOrg(props) {
                             
                               jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
+                              value={jumpstartCount.quotationCancel}
+                              isLoading={jumpstartCountloading}
                             />
                           </div>
                       </div>      

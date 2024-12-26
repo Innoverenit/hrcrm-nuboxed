@@ -123,22 +123,6 @@ const Prmotion = lazy(() =>
   import("./Promotion/Prmotion")
 );
 
-const AddCustomerModal = lazy(() =>
-  import("../Customer/Child/AddCustomerModal")
-);
-
-const AddOpportunityModal = lazy(() =>
-  import("../Opportunity/Child/AddOpportunityModal")
-);
-
-const AddContactModal = lazy(() =>
-  import("../Contact/Child/AddContactModal")
-);
-
-const AddAccountModal = lazy(() =>
-  import("./Account/AddAccountModal")
-);
-
 const AddAccountOpportunityModal = lazy(() =>
   import("./Account/AccountDetailsTab/AccountQuotationDrawer")
 );
@@ -556,7 +540,7 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper class="w-[89%]  max-sm:w-wk" >
+          <LayoutWrapper class="w-[90%]  max-sm:w-wk" >
             <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
               <div className="md:hidden" >
@@ -621,7 +605,7 @@ function MainApp(props) {
         shape="square"
       type="primary"
       style={{
-        insetInlineEnd: 100,   
+        insetInlineEnd: 12,   
       }}
       icon={
       <SubscriptionsIcon className="!text-icon" />
@@ -1806,20 +1790,6 @@ function MainApp(props) {
         addMessageModal={props.addMessageModal}
         handleMessageModal={props.handleMessageModal}
       /> */}
-       <AddOpportunityModal
-          translateText={translateText}
-          selectedLanguage={selectedLanguage}
-        
-          addOpportunityModal={props.addOpportunityModal}
-          handleOpportunityModal={props.handleOpportunityModal}
-        />
-        <AddAccountModal
-       selectedLanguage={selectedLanguage}
-       translateText={translateText}
-       // addPitchModal={addPitchModal}
-        handleDistributorModal={props.handleDistributorModal}
-        addDistributorModal={props.addDistributorModal}
-      />
       <AddPartnerModal
         addPartnerModal={props.addPartnerModal}
         handlePartnerModal={props.handlePartnerModal}
@@ -1832,20 +1802,6 @@ function MainApp(props) {
         rowData={rowData}
         createSubscriptiondrawer={props.createSubscriptiondrawer}
         handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
-      />
-        <AddCustomerModal
-          addCustomerModal={props.addCustomerModal}
-          handleCustomerModal={props.handleCustomerModal}
-          translateText={translateText}
-          selectedLanguage={selectedLanguage}
-          
-        />
-          <AddContactModal
-        addContactModal={props.addContactModal}
-        handleContactModal={props.handleContactModal}
-        translateText={translateText}
-            selectedLanguage={selectedLanguage}
-        
       />
        {props.addAccountOpportunityModal && props.distributorData?.distributorId && (
   <AddAccountOpportunityModal

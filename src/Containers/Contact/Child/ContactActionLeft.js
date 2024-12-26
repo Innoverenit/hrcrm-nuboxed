@@ -31,6 +31,9 @@ const ContactActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
   const [searchOnEnter, setSearchOnEnter] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
+
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
@@ -39,7 +42,7 @@ const ContactActionLeft = (props) => {
       if (props.viewType === "table") {
       props.getContactListByUserId(props.userId, pageNo,"Creation Date");
       }
-      else if (props.viewType === "teams") {
+      else if (props.teamsAccessInd) {
       props.getAllContact("0","Customer");
       }
       else if (props.viewType === "all") {
@@ -50,14 +53,14 @@ const ContactActionLeft = (props) => {
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      if (props.viewType === "table") {
-      props.inputContactDataSearch(currentData,"table","customer");
+      if (props.teamsAccessInd) {
+      props.inputContactDataSearch(currentData,"team","customer");
       }
-      else if (props.viewType === "teams") {
-        props.inputContactDataSearch(currentData,"teams","customer");
+      else if (props.viewType === "table") {
+        props.inputContactDataSearch(currentData,"user","customer");
         }
         else if (props.viewType === "all") {
-          props.inputContactDataSearch(currentData,"all","customer");
+          props.inputContactDataSearch(currentData,"All","customer");
           }
       setSearchOnEnter(true);  
     } 
@@ -92,7 +95,6 @@ const ContactActionLeft = (props) => {
   console.log(transcript);
   console.log(transcript);
   useEffect(() => {
-    props.getDepartments();
     if (props.teamsAccessInd) {
       props.getContactTeamRecord(props.userId);
     }
@@ -137,6 +139,12 @@ const ContactActionLeft = (props) => {
       value: item.departmentId,
     };});
     const teamCount = props.teamsAccessInd && props.contactTeamRecord ? props.contactTeamRecord.contactTeam : 0;
+    const handleSelectDepartmentFocus = () => {
+      if (!dtouched) {
+        props.getDepartments()
+        setDTouched(true);
+      }
+    };
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -260,10 +268,13 @@ const ContactActionLeft = (props) => {
       </div>
     
 <div class="w-32 md:ml-4 max-sm:hidden">
-      <select className="h-[4vh]"
+      <select className="h-8"
          style={{ boxShadow: "0 0.15em 0.3em #aaa"
         }}
-       value={props.selectedCountry} onChange={props.handleCountryChange} >
+       value={props.selectedCountry} 
+       onChange={props.handleCountryChange} 
+       onFocus={handleSelectDepartmentFocus}
+       >
         <option value="" disabled>Department</option>
         <option value="">All</option>
         {countryNameOption.map((countryOption, index) => (
@@ -281,6 +292,20 @@ const ContactActionLeft = (props) => {
             <Option value="descending">Z To A</Option>
           </StyledSelect>
         </div>
+         {/* <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDepartmentFocus}
+  autoFocus
+>
+{props.departments.map((country) => (
+   <Option key={country.departmentId} value={country.departmentId}>
+  {country.departmentName}
+   </Option>
+ ))}
+</Select> */}
     </div>
   );
 };

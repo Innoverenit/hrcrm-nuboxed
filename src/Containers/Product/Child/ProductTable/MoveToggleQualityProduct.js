@@ -2,8 +2,6 @@ import React from "react";
 import { Popconfirm, Switch } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//import { moveProductionQuality } from "../Main/Inventory/InventoryAction";
-import dayjs from "dayjs";
 import {moveProductQuality} from "../../ProductAction"
 
 function MoveToggleQualityProduct(props) {

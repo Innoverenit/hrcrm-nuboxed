@@ -134,60 +134,60 @@ serachedPitchData={props.serachedPitchData}
     
     <div class="">
       
- <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  font-poppins  items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-        <div className=" text-sm w-[13.1rem] max-md:w-[13.1rem]  text-[#2693ac] max-xl:w-[9.6rem]">
-          <CategoryIcon className='!text-base  text-[#2693ac]'/>
+ <div className=" flex justify-between max-sm:hidden w-[91%]  p-1 bg-transparent font-bold sticky  font-poppins  items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" w-[13.4rem] truncate max-md:w-[13.1rem] text-sm text-[#00A2E8] max-xl:w-[9.6rem]">
+          <CategoryIcon className='!text-icon  text-[#2693ac]'/>
           {translatedMenuItems[0]}
           {/* Name */}
                 </div>
-        <div className=" w-[11.1rem] max-md:w-[11.1rem] max-xl:w-[3rem]">
+        <div className="truncate w-[3.1rem] max-md:w-[11.1rem] max-xl:w-[3rem]">
 
         </div>
-        <div className="  text-xs w-[10.3rem] max-md:w-[10.3rem]  max-xl:w-[5.1rem] ">
+        <div className="  truncate w-[9.3rem] max-md:w-[10.3rem]  max-xl:w-[5.1rem] ">
           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
           {translatedMenuItems[1]} 
           {/* Mobile */}
                 </div>
-        <div className="w-[7.2rem] ">
+        <div className="w-[2.1rem] ">
 
         </div>
-        <div className="text-xs w-[19.12rem] max-md:w-[19.12rem]  max-xl:w-[5.122rem]">
+        <div className="truncate w-[14.3rem] max-md:w-[19.12rem]  max-xl:w-[5.122rem]">
           <ApartmentIcon className="!text-icon mr-1 "/> 
           {translatedMenuItems[2]}
           {/* Company */}
           </div>
-         <div className="text-xs w-[11.12rem] max-md:w-[11.12rem] ">
-          <SourceIcon className="!text-icon  text-[#4b5043]"/>
+         <div className="truncate w-[8.12rem] max-md:w-[11.12rem] ">
+          <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/>
           {translatedMenuItems[3]}
                 {/* Source */}
            </div>
-          <div className="text-xs w-[12.121rem] max-md:w-[12.121rem] ">
-            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
+          <div className="truncate w-[8.1rem] max-md:w-[12.121rem] ">
+            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
                       {/* Sector */}
                 </div>
 
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+            <div className="truncate w-[5.2rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
               <ScoreIcon className="!text-icon  text-[#f28482]"/> 
                 {translatedMenuItems[19]} 
               {/* Score */}
           
             </div>
             )}
-        <div className="text-xs w-[7.522rem] max-md:w-[7.522rem] ">
+        <div className="truncate w-[5.522rem] max-md:w-[7.522rem] ">
           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  
           {translatedMenuItems[5]}
             {/* Assigned */}
           </div>
-          <div className="text-xs w-[5.521rem]  max-md:w-[5.521rem] ">
+          <div className="truncate w-[3.521rem]  max-md:w-[5.521rem] ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
             {translatedMenuItems[6]}
             {/* Owner */}
           </div>
          
-        <div className="text-xs w-[5.6rem] max-md:w-[5.6rem]  max-xl:w-[7.4rem]">
-          <ExploreIcon  className="!text-icon cursor-pointer text-[green]" />
+        <div className="truncate w-[3.6rem] max-md:w-[5.6rem]  max-xl:w-[7.4rem]">
+          <ConnectWithoutContactIcon  className="!text-icon cursor-pointer text-[green]" />
           {translatedMenuItems[7]}
           {/* Qualify */}
                   </div>
@@ -197,7 +197,7 @@ serachedPitchData={props.serachedPitchData}
         dataLength={props.teamPitch.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamPitch?<div class="flex justify-center" >Loading...</div>:null}
+        loader={fetchingTeamPitch?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
       >
@@ -227,15 +227,15 @@ serachedPitchData={props.serachedPitchData}
                     return (
                       <div>
                             <div
-                className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between py-ygap bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex w-[13.5rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {props.showCheckboxes && (
                         <Checkbox
                 onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
-              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)} 
               />
                         )}
                         </div>  
@@ -276,7 +276,7 @@ serachedPitchData={props.serachedPitchData}
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex flex-row   h-8 ml-gap  bg-[#eef2f9] items-center w-[4.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row   h-8 ml-gap  bg-[#eef2f9] items-center w-[2.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                                   <div>
                                                   <ButtonGroup>
                                               <RoleButton
@@ -412,7 +412,7 @@ serachedPitchData={props.serachedPitchData}
                                                               </div>     
                 
                                           <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-end h-8 ml-gap  bg-[#eef2f9] ">
-                                          <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                                          <div className=" flex  flex-col w-[3rem] max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                                           
                                                                           <div>
                                                                           {item.companyName ? (
@@ -522,7 +522,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                     onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
                                                                                   > <Tooltip title= {translatedMenuItems[18]}>
                                                                                     {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
-                                                                                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                                                                                   <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                                                                                     )} 
                                                                                     </Tooltip>
                                                                                   </StyledPopconfirm>

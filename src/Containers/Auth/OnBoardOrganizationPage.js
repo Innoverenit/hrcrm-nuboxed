@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field, FastField } from "formik";
-import { Input } from "./styled";
-import { ValidationError} from "../../Components/UI/Elements";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
    import FWLogo from "../../Assets/Images/logo_22.webp";
+import Input from "./styled/Input";
 
 
 
@@ -56,7 +55,7 @@ class OnBoardOrganizationPage extends Component {
         <Input {...field} {...props} />
       </div>
       {touched[field.name] && errors[field.name] && (
-        <ValidationError>{errors[field.name]}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{errors[field.name]}</div>
       )}
     </div>
   );

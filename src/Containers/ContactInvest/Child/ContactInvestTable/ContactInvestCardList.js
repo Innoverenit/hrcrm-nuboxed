@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
-import {  Tooltip } from "antd";
+import {Input,  Tooltip } from "antd";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
@@ -18,6 +18,8 @@ import {
   handleDonotCallModal,
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
+  getTeamUserList,
+  updateContact
 } from "../../../Contact/ContactAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -35,13 +37,14 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ScoreIcon from '@mui/icons-material/Score';
 import SourceIcon from '@mui/icons-material/Source';
+import {getCustomerData} from "../../../Customer/CustomerAction";
+import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 
 const AddContactInvestPulseModal= lazy(() =>  import("./AddContactInvestPulseModal"));
 const AddContactInvestAdressModal = lazy(() =>  import("./AddContactInvestAdressModal"));
 const AddContactInvestDealModal = lazy(() =>  import("./AddContactInvestDealModal"));
 const EmptyPage = lazy(() =>  import("../../../Main/EmptyPage"));
 const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
-const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
 
 
 function ContactInvestCardList(props) {
@@ -51,6 +54,11 @@ function ContactInvestCardList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [dtouched, setDTouched] = useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -144,13 +152,85 @@ function ContactInvestCardList(props) {
     fetchingContactsInvest,
     contactiNVESTbyId,
     filterData,
-    updateContactInvestModal,
     addDrawerContactInvestNotesModal,
     handleUpdateContactInvestModal,
     addDrawerContactInvestPulseModal,
     handleContactInvestPulseDrawerModal,
     handleContactInvestNotesDrawerModal
   } = props;
+
+  const handleEditRowField = (contactId, field, currentValue) => {
+    setEditableField({ contactId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { contactId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+    } else if (field === 'designation') {
+      mappedField = 'designationTypeId';
+    } else if (field === 'department') {
+      mappedField = 'departmentId';
+    }
+    updatedData[mappedField] = editingValue;
+    props.updateContact(updatedData,contactId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { contactId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+     // Map the field to the correct key if needed
+     if (field === 'fullName') {
+      mappedField = 'name'; 
+    } else if (field === 'tagWithCompany') {
+      mappedField = 'customerId';
+      } else if (field === 'designation') {
+        mappedField = 'designationTypeId';
+      } else if (field === 'department') {
+        mappedField = 'departmentId';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateContact(updatedData,contactId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      props.getDesignations();
+      setTouchedCustomer(true);
+    }
+  };
+  const handleSelectCustomerDataFocus = () => {
+    if (!touched) {
+      props.getCustomerData(props.userId)
+      setTouched(true);
+    }
+  };
+  const handleSelectDepartmentFocus = () => {
+    if (!dtouched) {
+      props.getDepartments()
+      setDTouched(true);
+    }
+  };
 
   if (loading) {
     return <div><BundleLoader/></div>;
@@ -173,10 +253,7 @@ function ContactInvestCardList(props) {
         <i className="fab fa-artstation  text-[#b744b8]"></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
-        {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
-        department               
-                </div> */}
+
                     <div className=" w-[13.2rem] truncate max-md:w-[11.2rem]">
         <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
@@ -200,7 +277,7 @@ function ContactInvestCardList(props) {
         dataLength={contactiNVESTbyId.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
+        loader={fetchingContactsInvest?<div><BundleLoader/></div>:null}
         height={"83vh"}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         style={{scrollbarWidth:"thin"}}
@@ -247,9 +324,9 @@ function ContactInvestCardList(props) {
           &nbsp;
           <div class="max-sm:w-full md:w-[12.1rem]">
                                         <Tooltip>
-                                          <div class=" flex  max-sm:w-full justify-between  md:flex-col">
+                                          <div class=" flex  max-sm:w-full w-[100%] justify-between  md:flex-col">
                                             
-                                            <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-xs flex text-blue-500 justify-between font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
@@ -261,6 +338,27 @@ function ContactInvestCardList(props) {
             New
           </span>
         ) : null}    
+         <div>
+  {editableField?.contactId === item.contactId &&
+editableField?.field === 'fullName' ? (
+<Input
+type="text"
+className="h-7 w-[4rem] text-xs"
+value={editingValue}
+onChange={handleChangeRowItem}
+onBlur={handleUpdateSubmit}
+onKeyDown={handleKeyDown} 
+autoFocus
+/>
+) : (
+<div onClick={() => 
+handleEditRowField(item.contactId, 'fullName', item.fullName)} 
+className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
+<BorderColorIcon  className=" !text-icon cursor-pointer"/>
+
+</div> 
+)}                 
+  </div>
                                             </div>
                                             </div>
                                         </Tooltip>
@@ -275,7 +373,7 @@ function ContactInvestCardList(props) {
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[11.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[12.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  ml-gap font-poppins">
                                          {item.designation}
@@ -384,18 +482,7 @@ function ContactInvestCardList(props) {
               }}
             />
            </Tooltip>
-                      
-            {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-            <Tooltip title=    {translatedMenuItems[10]}>
-              <BorderColorIcon
-                className="flex !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onClick={() => {
-                  handleUpdateContactInvestModal(true);
-                  handleCurrentContactIdata(item);                
-                }}
-              />
-            </Tooltip>
-            )}                    
+                                      
                       </div>                                         
             
             </div>
@@ -405,15 +492,6 @@ function ContactInvestCardList(props) {
        </InfiniteScroll>
       </div>
       <Suspense fallback={<BundleLoader />}>
-      <UpdateContactInvestModal
-        translateText={props.translateText}
-         selectedLanguage={props.selectedLanguage}
-         translatedMenuItems={props.translatedMenuItems}
-        contactiData={contactiData}
-        updateContactInvestModal={updateContactInvestModal}
-        handleUpdateContactInvestModal={handleUpdateContactInvestModal}
-        handleCurrentContactIdata={handleCurrentContactIdata}
-      />
 <AddContactInvestPulseModal
          translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
@@ -466,7 +544,6 @@ const mapStateToProps = ({
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,
   fetchingContactsInvest: contactinvest.fetchingContactsInvest,
   fetchingContactsInvestError: contactinvest.fetchingContactsInvestError,
-  updateContactInvestModal: contactinvest.updateContactInvestModal,
   designations: designations.designations,
   departments: departments.departments,
   addDrawerContactEmailModal: contact.addDrawerContactEmailModal,
@@ -494,7 +571,11 @@ const mapDispatchToProps = (dispatch) =>
       handleContactInvestPulseDrawerModal,
       handleContactInvestNotesDrawerModal,
       handleContactAddressDrawerModal,
-      handleDealModal
+      handleDealModal,
+      getTeamUserList,
+      updateContact,
+      getCustomerData,
+      getDepartments
     },
     dispatch
   );

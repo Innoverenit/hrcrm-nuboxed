@@ -216,7 +216,7 @@ function ProductionOrderListById(props) {
                             dataLength={props.orderByUser.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingOrderByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingOrderByUser ? <div><BundleLoader/></div> : null}
                             height={"75vh"}
                             style={{ scrollbarWidth:"thin"}}
                             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

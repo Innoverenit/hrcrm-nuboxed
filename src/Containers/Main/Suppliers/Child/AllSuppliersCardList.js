@@ -22,7 +22,6 @@ import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
 
 const EmptyPage =lazy(()=>import("../../EmptyPage"));
-const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
 
@@ -35,11 +34,20 @@ function AllSuppliersCardList(props) {
   const [page, setPage] = useState(0);
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
+  const [datadialcode, setdatadialcode] = useState(false);
+  
+  const handleSelectDialcode = () => {
+      if (!datadialcode) {
+        props.getAllDialCodeList();
+        setdatadialcode(true);
+      }
+    };
+  
 
   useEffect(() => {
     setPage(page + 1);
     props.getAllSuppliersList(props.orgId,page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
   }, []);
 
   const handleRowData = (data) => {
@@ -112,7 +120,7 @@ return(
     />
   ) : (
     <div className=" flex">
-    <div className=' flex rounded w-[13vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+    <div className=' flex rounded w-[13vw] max-sm:w-[39vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
     <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
      <div> Search team Member</div>
       </div>
@@ -137,8 +145,6 @@ return(
 
       </div> 
       </div>
-        
-     
       </div>
       <div className="flex flex-col max-sm:justify-between ">
         
@@ -150,15 +156,10 @@ return(
      
             <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
              itisrichudhuryiti@gmail.com
-            </div>
-         
-          
+            </div>         
         </div>
         </div>
         </div>
-        
-    
-     
     </div>
 
       </div>
@@ -204,20 +205,17 @@ return(
   return (
     <>
         <div
-                  className="flex  rounded justify-between bg-white  items-center py-ygap   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col ">
                           <div class=" flex flex-row justify-between  max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[7.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                           <div class=" text-xs ml-gap  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {item.newSuppNo}
-                            
+                            {item.newSuppNo}                  
 </div>
-
-
 </div>
                             <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                              <div >
-                              <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
+                              <div className="flex w-[100%]"  >
+                              <a class="flex items-center w-[100%] overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
                             <div className="flex">
                       {editableField?.supplierId === item.supplierId &&
@@ -234,7 +232,7 @@ return(
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs ">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -252,13 +250,14 @@ return(
                             </div>      
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">             
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-                              <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" flex text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                               <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
   style={{ width: "8.2rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -271,7 +270,7 @@ return(
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
 className="cursor-pointer text-xs ">
-{item.dialCode || "Update..."}
++{item.dialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -298,11 +297,9 @@ className="cursor-pointer text-xs ">
 )}                 
                       </div>
                               </div>
-
-                            </div>
-                                                    
+                            </div>                                                 
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
-                                <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="flex  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'emailId' ? (
 <Input
@@ -324,12 +321,9 @@ className="cursor-pointer text-xs ">
 )}   
                               </div>
                             </div>
-                                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[17.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
-
-{/* URL */}
-                              
-</div>
-                     
+                                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[19.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+{/* URL */}                           
+</div>        
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                    
                      <Tooltip title={item.userName}>
                  <span>
@@ -366,24 +360,13 @@ className="cursor-pointer text-xs ">
           }}
           
         />            
- {/* <div>
-<Tooltip title={props.translatedMenuItems[19]}>
-            <BorderColorIcon
-             className="!text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
-              onClick={() => {
-                 props.setEditSuppliers(item);
-                handleRowData(item);
-                props.handleUpdateSupplierModal(true);            
-              }}
-            />
-          </Tooltip>
-          </div> */}
+ 
           <div>
           <Popconfirm
               title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
-            <DeleteOutlineIcon ClassName="!text-icon text-[#ff6347] cursor-pointer"  />
+            <DeleteOutlineIcon className="!text-icon text-[#ff6347] cursor-pointer"  />
             </Popconfirm>
             </div>
             </div> 
@@ -398,13 +381,7 @@ className="cursor-pointer text-xs ">
   </div>
  )}
  <Suspense>
-  <UpdateSupplierModal
-        rowdata={rowdata}
-        updateSupplierModal={props.updateSupplierModal}
-        handleRowData={handleRowData}
-        handleUpdateSupplierModal={props.handleUpdateSupplierModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+  
        <AddSuppliersAdressModal    
         item={rowdata}
          type="supplier"

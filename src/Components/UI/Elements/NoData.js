@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-import { Title, SubTitle } from "./";
+import { Title } from "./";
 
 class NoData extends Component {
   render() {
@@ -17,7 +17,7 @@ class NoData extends Component {
               <Title style={{ textAlign: "center" }}>
                 Welcome to the {this.props.content || "Data"} tab.
               </Title>
-              <SubTitle
+              <div 
                 style={{
                   textAlign: "center",
                   color: "#1890ff",
@@ -27,7 +27,7 @@ class NoData extends Component {
               >
                 Let us help you get started, click <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Create{" "}
                 {this.props.content || "Data"}
-              </SubTitle>
+              </div >
             </div>
         </div>
       </>

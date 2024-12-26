@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Select ,Popconfirm} from "antd";
@@ -25,13 +25,14 @@ import {
   getRepairMediumOrderList,
   getRepairLowOrderList
 } from "./OrderAction";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
-import AddLeadModal from "./AddLeadModal";
+
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
+const AddLeadModal = lazy(() => import("./AddLeadModal")); //2
 const { Option } = Select;
 
 function OrderSearchedData(props) {
@@ -445,6 +446,7 @@ const handleLoadMoreLow = () => {
         addPaidButtonModal={props.addPaidButtonModal}
         handlePaidModal={props.handlePaidModal}
         particularRowData={particularRowData}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AccountOrderDetailsModal
        selectedLanguage={props.selectedLanguage}

@@ -39,11 +39,11 @@ const data = [
 const MaterialCellCardViewOut = (props) => {
 
     useEffect(() => {
-        props.getCellData(props.inventory.locationDetailsId, props.orgId)
+        props.getCellData(props.locationId, props.orgId)
     }, [])
     console.log(props.cellData)
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, marginLeft: "1rem" }}>
+        <div  className="flex flex-wrap ml-4 !text-lm" style={{  gap: 20 }}>
             {props.cellData.map((item, index) => (
                 <Card key={index} title={`${item.cellChamber}`}>
                     {item.suppliesData.map((itemlist, ind) => {
@@ -69,6 +69,7 @@ const MaterialCellCardViewOut = (props) => {
 const mapStateToProps = ({ inventory, auth }) => ({
     cellData: inventory.cellData,
     orgId: auth.userDetails.organizationId,
+    locationId:auth.userDetails.locationId
     // locationId: inventory.inventoryDetailById.locationDetailsId,
 });
 

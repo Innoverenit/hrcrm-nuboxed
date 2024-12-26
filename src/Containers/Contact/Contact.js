@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../Components/Placeholder";
 import AddContactImportModal from "./AddContactImportModal";
 import {
   handleContactModal,
@@ -160,7 +159,7 @@ const filterData = filteredData.filter(item =>
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={"Loading..."}>
 
       {teamsAccessInd ? (
         <ContactTeamCardList
@@ -184,22 +183,12 @@ const filterData = filteredData.filter(item =>
              selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
             />}
-            {viewType === 'teams' ?( <ContactTeamCardList
+            {viewType === 'teams' && <ContactTeamCardList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
-            />
-            ):(
-<ContactCardList
-           
-           currentUser={currentUser} 
-           filter={filter}
-            filterData={filterData}
-            translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}
-          translatedMenuItems={props.translatedMenuItems}
-            />
-            )}
+            />}
+          
           </>
         )}
       

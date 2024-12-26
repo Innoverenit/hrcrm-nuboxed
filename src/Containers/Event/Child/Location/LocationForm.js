@@ -198,16 +198,17 @@ class LocationForm extends Component {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[30rem] overflow-x-hidden">
+            <div >
+              <div class="overflow-y-auto h-[30rem] overflow-x-hidden ">
             <Form class="form-background">
-              <div class="flex justify-between max-sm:flex-col">
-                <div class="h-full w-[45%] max-sm:w-wk">
+              <div class="flex justify-around max-sm:flex-col">
+                <div class="h-full w-[50%] max-sm:w-wk">
               
                   <div>
                   <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="locationName"
-                      // label="Name"
+                      // label="Location Name"
                       // label={this.state.translatedMenuItems[0]}
                       type="text"
                       width={"100%"}
@@ -217,7 +218,7 @@ class LocationForm extends Component {
                       isRequired
                     />
                   </div>
-                  <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                  <div class=" w-[50%] mt-3 max-sm:w-[30%]">
                   <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[1]}</div>
                       <Field
                         name="regionsId"
@@ -407,6 +408,7 @@ class LocationForm extends Component {
                 </Button>
               </div>
             </Form>
+            </div>
             </div>
           )}
         </Formik>

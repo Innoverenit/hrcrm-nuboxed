@@ -27,7 +27,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
 const AddConfirmProspectStatusModal = lazy(() => import("./AddConfirmProspectStatusModal"));
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
-const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
 const ButtonGroup = Button.Group;
 
 const TaskApproveTable = (props) => {
@@ -129,7 +128,6 @@ const TaskApproveTable = (props) => {
     rejectTaskByTaskId,
     handleUpdateTaskModal,
     handleTaskProjectDrawerModal,
-    updateTaskModal,
     addDrawerTaskNotesModal,
     handleTaskNotesDrawerModal,
     setEditTask,
@@ -393,12 +391,7 @@ const TaskApproveTable = (props) => {
                     </InfiniteScroll>
       </div>
       <Suspense fallback={<BundleLoader />}>
-      <UpdateTaskModal
-          updateTaskModal={updateTaskModal}
-          handleUpdateTaskModal={handleUpdateTaskModal}
-          translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-        />
+  
          <AddTaskProjectDrawerModal
           handleTaskProjectDrawerModal={props.handleTaskProjectDrawerModal}
           addDrawerTaskProjectModal={props.addDrawerTaskProjectModal}
@@ -435,7 +428,6 @@ rowdata={rowdata}
     approvalTaskTable:task.approvalTaskTable,
     employeeId: auth.userDetails.employeeId,
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
-    updateTaskModal: task.updateTaskModal,
     pageCount: task.approvalTaskTable.length && task.approvalTaskTable[0].pageCount || "",
     fetchingApproveTaskTable: task.fetchingApproveTaskTable,
     fetchingApproveTaskTableError: task.fetchingApproveTaskTableError,

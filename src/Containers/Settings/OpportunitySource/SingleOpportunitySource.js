@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button } from "antd";
 import { TextInput } from "../../../Components/UI/Elements";
-import { ActionIcon } from "../../../Components/Utils";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 class SingleOpportunitySource extends Component {
     constructor(props) {
@@ -26,19 +25,19 @@ class SingleOpportunitySource extends Component {
                             <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                 <SourceName style={{ flexBasis: '70%' }}>{sourceName}</SourceName>
                                 <div>
-                                    <ActionIcon
+                                    <BorderColorIcon
                                         tooltipTitle='Edit'
                                         iconType='edit'
                                         handleIconClick={(toggleViewType)}
-                                        size='0.75em'
+                                         className=" !text-red-600 cursor-pointer !text-icon "
                                     />&nbsp;
-                                   {!disableDelete && <ActionIcon
+                                   {!disableDelete && <BorderColorIcon
                                         tooltipTitle='Delete'
                                         iconType='delete'
                                         handleIconClick={() => handleDeleteSource(leadSourceId)}
-                                        size='0.75em'
+                                        
                                         theme='filled'
-                                        style={{ color: '#666' }}
+                                         className=" !text-red-600 cursor-pointer !text-icon "
                                     />}
                                 </div>
                             </div>

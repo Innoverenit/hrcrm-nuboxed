@@ -14,14 +14,17 @@ class ShipperDetailLeft extends Component {
           <ShipperOverViewCard  shipper={shipper}
  translateText={this.props.translateText}
  selectedLanguage={this.props.selectedLanguage}
+ translatedMenuItems={this.props.translatedMenuItems}
           />
           <ShipperDetailCard shipper={shipper} 
   translateText={this.props.translateText}
   selectedLanguage={this.props.selectedLanguage}
+  translatedMenuItems={this.props.translatedMenuItems}
           />
           <ShipperOverViewDetailCard shipper={shipper}
   translateText={this.props.translateText}
   selectedLanguage={this.props.selectedLanguage}
+  translatedMenuItems={this.props.translatedMenuItems}
            /></Suspense>
         </FlexContainer>
       </>

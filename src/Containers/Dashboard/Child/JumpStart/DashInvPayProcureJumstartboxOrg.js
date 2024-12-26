@@ -15,9 +15,8 @@ getOrderCancelList
 import { BundleLoader } from "../../../../Components/Placeholder";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
-
+import DynamicPieChart from "./DynamicPieChart";
 const DashProcurePayDrawer= lazy(()=>import("./DashProcurePayDrawer"));
-const  CustomerPieChart= lazy(()=>import("./CustomerPieChart"));
 function DashInvPayProcureJumstartboxOrg(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -61,23 +60,6 @@ function DashInvPayProcureJumstartboxOrg(props) {
     }
   };
 
-  const [procPaymentCount, setprocPaymentCount] = useState({});
-  const [loading2, setLoading2] = useState(false);
-
-  const fetchProPaymentCount= async () => {
-    try {
-      const response = await axios.get(`${base_url2}/orderPayment/invoiceOutstanding/payment/${props.orgId}/${props.timeRangeType}`,{
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      });
-      setprocPaymentCount(response.data);
-        setLoading2(false);
-      } catch (error) {
-        setError(error);
-        setLoading2(false);
-      }
-    };
 
     const [proPaymentReceivedList, setproPaymentReceivedList] = useState([]);
       const [loading3, setLoading3] = useState(false);
@@ -140,12 +122,8 @@ function DashInvPayProcureJumstartboxOrg(props) {
   }, [props.selectedLanguage]);
   
   useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
     fetchProInvoiceCount();
-    fetchProPaymentCount();
-
-  }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
+  }, [props.orgId,props.timeRangeType]);
 
   useEffect(() => {
     if (proInvoiceSentList) {
@@ -206,7 +184,7 @@ function DashInvPayProcureJumstartboxOrg(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
-              value={proInvoiceSent.totalInvoice}
+              value={proInvoiceSent.invoiceAmount}
             isLoading={loading}
             />
                          </div>
@@ -227,8 +205,8 @@ function DashInvPayProcureJumstartboxOrg(props) {
              
             jumpstartClick={()=> handleClick("Payment Received")}
               cursorData={"pointer"}
-            value={procPaymentCount.paymentReceived}
-            isLoading={loading2}
+              value={proInvoiceSent.paymentReceived}
+            isLoading={loading}
             />
                            </div>
                        </div>
@@ -247,8 +225,8 @@ function DashInvPayProcureJumstartboxOrg(props) {
                               title= {translatedMenuItems[2]} 
                               jumpstartClick={()=> handleClick("Payment Reconciled")}
                               cursorData={"pointer"}
-                              value={procPaymentCount.paymentReconciled}
-                              isLoading={loading2}
+                              value={proInvoiceSent.paymentReconcile}
+                              isLoading={loading}
                             />
                           </div>
                       </div>      
@@ -259,7 +237,7 @@ function DashInvPayProcureJumstartboxOrg(props) {
         <div>
         <div class=" font-poppins font-bold text-base mt-1">By Process</div>
         <Suspense fallback={<BundleLoader />}> 
-        <CustomerPieChart/>
+        <DynamicPieChart userId={props.orgId} dtype={"ProcureAmount"} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
         </div>

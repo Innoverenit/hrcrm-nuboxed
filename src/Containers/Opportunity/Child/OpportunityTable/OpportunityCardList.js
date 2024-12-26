@@ -52,6 +52,7 @@ import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import EmptyPage from "../../../Main/EmptyPage";
 import axios from "axios";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -106,7 +107,7 @@ const handleLoadMore = () => {
 
   const viewAnDownloadPdf= async (item) => {  
     try {
-      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`opportunity`}/${item.opportunityId}`, {
         responseType: 'blob',
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -190,7 +191,7 @@ console.log(props.userDetails.imageId)
         dataLength={opportunityByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingOpportunity?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingOpportunity?<div><BundleLoader/></div>:null}
         height={"80vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >

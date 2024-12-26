@@ -33,6 +33,9 @@ class Opportunity extends Component {
     this.setState({ currentData: value });
   };
   componentDidMount() {
+    if (this.props.teamsAccessInd === false) {
+      this.setState({ viewType: "table" });
+    }
     // Check if isMobile is stored in localStorage
     const storedIsMobile = localStorage.getItem('isMobile');
     this.setState({ isMobile: storedIsMobile ? JSON.parse(storedIsMobile) : window.innerWidth <= 768 });

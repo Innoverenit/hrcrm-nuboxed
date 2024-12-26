@@ -45,16 +45,6 @@ const initialState = {
   expenseVoucherIdDrawer:false,
   viewType:"card",
 
-  fetchingPendingExpense: false,
-  fetchingPendingExpenseError:false,
-  pendingExpenses:[],
-  fetchingApprovedExpense: false,
-  fetchingApprovedExpenseError:false,
-  approvedExpenses:[],
-  fetchingRejectedExpense: false,
-  fetchingRejectedExpenseError:false,
-  rejectedExpenses:[],
-
   pexpenseVoucherIdDrawer:false,
 
   fetchingExpenseSearchedList: false,
@@ -227,37 +217,6 @@ export const expenseReducer = (state = initialState, action) => {
 
       case types.SET_EXPENSE_VIEW_TYPE:
         return { ...state, viewType: action.payload };
-
-        case types.GET_PENDING_EXPENSE_REQUEST:
-          return { ...state, fetchingPendingExpense: true };
-        case types.GET_PENDING_EXPENSE_SUCCESS:
-          return { ...state, fetchingPendingExpense: false, pendingExpenses: action.payload };
-        case types.GET_PENDING_EXPENSE_FAILURE:
-          return {
-            ...state,
-            fetchingPendingExpense: false,
-            fetchingPendingExpenseError: true,
-          };
-          case types.GET_APPROVED_EXPENSE_REQUEST:
-            return { ...state, fetchingApprovedExpense: true };
-          case types.GET_APPROVED_EXPENSE_SUCCESS:
-            return { ...state, fetchingApprovedExpense: false, approvedExpenses: action.payload };
-          case types.GET_APPROVED_EXPENSE_FAILURE:
-            return {
-              ...state,
-              fetchingApprovedExpense: false,
-              fetchingApprovedExpenseError: true,
-            };
-            case types.GET_REJECTED_EXPENSE_REQUEST:
-              return { ...state, fetchingRejectedExpense: true };
-            case types.GET_REJECTED_EXPENSE_SUCCESS:
-              return { ...state, fetchingRejectedExpense: false, rejectedExpenses: action.payload };
-            case types.GET_REJECTED_EXPENSE_FAILURE:
-              return {
-                ...state,
-                fetchingRejectedExpense: false,
-                fetchingRejectedExpenseError: true,
-              };
 
               case types.HANDLE_STATUS_EXPENSE_MODAL:
                 return { ...state, updateStatusExpenseModal: action.payload };

@@ -118,7 +118,7 @@ function OpportunityWonCard(props) {
     }
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`opportunity`}/${item.opportunityId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -181,7 +181,7 @@ function OpportunityWonCard(props) {
          dataLength={wonOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingWonOpportunity ?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >

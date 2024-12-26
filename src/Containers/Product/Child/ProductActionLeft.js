@@ -21,35 +21,6 @@ const ProductActionLeft = (props) => {
   const timerRef = useRef(null);
 
   const [currentCatData, setCurrentCatData] = useState("");
-
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-        "726" , // Active Products
-        "14" ,   // Category
-        "1607" ,   // "BrandModel
-        "728" ,  // Suspended Products
-        "264" , // Brand"
-        "1069" ,  // Reinstate
-        "1239" ,   // Search by Category Name 
-
-        ];
-
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
-
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.getRecords();
@@ -144,7 +115,7 @@ const ProductActionLeft = (props) => {
       }, [listening, isRecording, startTime]);
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-      <Tooltip title={translatedMenuItems[0]}>
+      <Tooltip title={props.translatedMenuItems[5]}>
       <Badge
           size="small"
            count={( props.recordData.product) || 0}
@@ -169,7 +140,7 @@ const ProductActionLeft = (props) => {
         </Badge>
       </Tooltip>
     
-      <Tooltip title={translatedMenuItems[1]}>
+      <Tooltip title={props.translatedMenuItems[6]}>
         <div
           class=" mr-2 text-xs cursor-pointer"
           style={{
@@ -187,7 +158,7 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-      <Tooltip title={translatedMenuItems[2]}>
+      <Tooltip title={props.translatedMenuItems[7]}>
         <div
           class=" mr-2 text-xs cursor-pointer"
           style={{
@@ -205,7 +176,7 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-      <Tooltip title={translatedMenuItems[3]}>
+      <Tooltip title={props.translatedMenuItems[8]}>
 <Badge
     size="small"
      count={( props.deletedProductCount.deletedProduct) || 0}
@@ -225,7 +196,7 @@ const ProductActionLeft = (props) => {
   </Badge>
 </Tooltip>
 
-<Tooltip title={translatedMenuItems[4]}>
+<Tooltip title={props.translatedMenuItems[9]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -261,7 +232,7 @@ const ProductActionLeft = (props) => {
       </Tooltip> */}
 
 
-      <Tooltip title={translatedMenuItems[5]}>
+      <Tooltip title={props.translatedMenuItems[10]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -284,7 +255,7 @@ const ProductActionLeft = (props) => {
                 
 {/* {props.viewType === "category" && */}
 <Input
-          placeholder={translatedMenuItems[6]}
+          placeholder={props.translatedMenuItems[11]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleCatSearch}

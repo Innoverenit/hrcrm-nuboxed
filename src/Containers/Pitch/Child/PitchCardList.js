@@ -61,7 +61,7 @@ const PitchCardList = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    props.getPitch(props.userId,page,"creationdate");
+    // props.getPitch(props.userId,page,"creationdate");
     props.getPitchHot(props.userId, page,"creationdate","hot");
     props.getPitchCold(props.userId, page,"creationdate","cold");
     props.getPitchWarm(props.userId, page,"creationdate","warm");
@@ -204,13 +204,6 @@ const handleLoadMore2 = () => {
   }
    const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingPitch,leadsAllData  } = props;
 
-  // if (fetchingPitch) {
-  //   return <BundleLoader />;
-  // }
-
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
 
   return (
     <div>
@@ -222,8 +215,8 @@ const handleLoadMore2 = () => {
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white text-sm bg-red-600  justify-center ">Hot</div>
-        <div className=" w-[10.1rem] truncate max-md:w-[10.1rem] max-xl:w-[9.6rem] ">
+    <div className="flex items-center w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white text-sm bg-red-600  justify-center ">Hot</div>
+        <div className=" w-[10.1rem] truncate text-[#00A2E8] text-sm max-md:w-[10.1rem] max-xl:w-[9.6rem] ">
         <CategoryIcon className='!text-icon   text-[#e4eb2f]'/>
          {translatedMenuItems[0]}   
                 {/* name */}           
@@ -289,7 +282,7 @@ const handleLoadMore2 = () => {
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -664,8 +657,8 @@ const countryCode = item.countryAlpha2Code
 
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-orange-600  justify-center ">Warm</div>
-        <div className=" w-[10.1rem] truncate max-md:w-[10.1rem]  max-xl:w-[9.6rem]  text-sm">
+    <div className="flex items-center w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-orange-600  justify-center ">Warm</div>
+        <div className=" w-[10.1rem] truncate text-[#00A2E8] max-md:w-[10.1rem]  max-xl:w-[9.6rem]  text-sm">
         <CategoryIcon className='!text-icon text-[#e4eb2f]'/> {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
@@ -721,7 +714,7 @@ const countryCode = item.countryAlpha2Code
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -1099,8 +1092,8 @@ const countryCode = item.countryAlpha2Code
       </div>
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold font-poppins  !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-blue-600  justify-center ">Cold</div>
-        <div className=" w-[10.1rem] truncate max-xl:w-[9.6rem]  text-sm">
+    <div className="flex items-center w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-blue-600  justify-center ">Cold</div>
+        <div className=" w-[10.1rem] truncate  max-xl:w-[9.6rem] text-[#00A2E8] text-sm">
         <CategoryIcon className='!text-icon  text-[#e4eb2f]'/>{translatedMenuItems[0]}  
                 {/* name */}           
                </div>
@@ -1156,7 +1149,7 @@ const countryCode = item.countryAlpha2Code
         dataLength={props.pitchDataHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -1532,7 +1525,7 @@ const countryCode = item.countryAlpha2Code
                 })}
                   </InfiniteScroll>
       </div>
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={<BundleLoader/>}>
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
@@ -1540,12 +1533,7 @@ const countryCode = item.countryAlpha2Code
         handleUpdatePitchModal={props.handleUpdatePitchModal}
         // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
       />
-      {/* <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      /> */}
+   
       <OpenASSimodal 
         rowdata={rowdata}
         openASSImodal={props.openASSImodal}

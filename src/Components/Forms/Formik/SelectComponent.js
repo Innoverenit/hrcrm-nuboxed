@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { SelectInput, ValidationError } from "../../UI/Elements";
+import { SelectInput } from "../../UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
   field,
@@ -33,12 +33,7 @@ export const SelectComponent = ({
   function handleFocus() {
     console.log("focus");
   }
-  // if (
-  //   setFieldValue === "Jan" ||
-  //   setFieldValue === "April" ||
-  //   setFieldValue === "July" ||
-  //   (setFieldValue === "Oct" && setFieldValue === "1")
-  // )
+
   if (isColumn) {
     return (
       <>
@@ -46,13 +41,11 @@ export const SelectComponent = ({
           <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <SelectInput
-          style={{ height: "1.8125em" }}
           {...field}
           {...props}
           width={width}
           isShadow={isShadow}
           onChange={handleChange}
-          // onBlur={handleBlur}
           placeholder={placeholder || "Select"}
           defaultValue={defaultValue}
           isRequired={isRequired}
@@ -75,7 +68,7 @@ export const SelectComponent = ({
         </SelectInput>
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -87,13 +80,11 @@ export const SelectComponent = ({
           <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <SelectInput
-          style={{ height: "1.8125em" }}
           {...field}
           {...props}
           width={width}
           isShadow={isShadow}
           onChange={handleChange}
-          // onBlur={handleBlur}
           mode="multiple"
           placeholder={placeholder || "Select"}
           defaultValue={defaultValue}
@@ -117,7 +108,7 @@ export const SelectComponent = ({
         </SelectInput>
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError>{get(errors, field.name)}</ValidationError>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
         )}
       </>
     );
@@ -130,13 +121,11 @@ export const SelectComponent = ({
             <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <SelectInput
-            style={{ height: "1.8125em" }}
             {...field}
             {...props}
             width={width}
             isShadow={isShadow}
             onChange={handleChange}
-            // onBlur={handleBlur}
             placeholder={placeholder || "Select"}
             defaultValue={defaultValue}
             isRequired={isRequired}
@@ -160,7 +149,7 @@ export const SelectComponent = ({
         </FlexContainer>
       </FlexContainer>
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </>
   );

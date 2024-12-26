@@ -46,10 +46,9 @@ function AllCustomerForm(props) {
               <div class=" flex justify-evenly h-full w-full items-end"             
               >               
                 <div class=" w-[20%]"  >           
-                 
                   <Field
                     name="type"                   
-                    label="Report"
+                    label="Report Scheduler"
                     type="text"
                     isColumn
                     width={"100%"}

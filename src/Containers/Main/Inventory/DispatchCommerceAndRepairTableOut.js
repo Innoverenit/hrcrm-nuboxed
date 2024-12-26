@@ -20,6 +20,7 @@ import {
   clearDispatch,
   getCompleteDispatchSearch
 } from "./InventoryAction"
+import DispatchToggle from "./DispatchToggle"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { withRouter } from "react-router";
@@ -43,6 +44,8 @@ import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import CommerceOpenTrackDrawer from "./CommerceOpenTrackDrawer";
+import CommerceOpenTrackDrawerCard from "./CommerceOpenTrackDrawerCard";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 // Repair -Dis-2
 
@@ -122,10 +125,7 @@ const timerRef = useRef(null);
     }, 100);
   };
   const [rowData, setRowData] = useState({})
-  const [particularRowData, setParticularRowData] = useState({});
-  function handleSetParticularOrderData(item) {
-    setParticularRowData(item);
-}
+
   const handleRowData = (item) => {
     setRowData(item)
   }
@@ -135,6 +135,9 @@ const timerRef = useRef(null);
       setCheckAwb(!checkAwb)
   }
 
+ const handleOpenTrack = ()=>{
+    setOpenTrack(!OpenTrack);
+  }
 const AWBtst=[
   {
       "userId": "EMP16818052295222021",
@@ -979,10 +982,11 @@ useEffect(() => {
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[86%]  p-1 bg-transparent font-bold !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] sticky items-end z-10">
-              <div className=" w-[15.51rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
-              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  {translatedMenuItems[0]}
+              <div className=" w-[14.9rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
+              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  
+              {translatedMenuItems[0]}
                 </div>
-              <div className="w-[6.9rem] truncate max-md:w-[3.5rem]  max-xl:w-[3.5rem]">
+              <div className="w-[6.7rem] truncate max-md:w-[3.5rem]  max-xl:w-[3.5rem]">
                 {/* Units" /> */}
                 {translatedMenuItems[1]}
                 </div>
@@ -991,11 +995,11 @@ useEffect(() => {
                 <BookmarkAddedIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[2]}
                 </div>
 
-              <div className="w-[6.3rem] truncate max-md:w-[5.03rem] max-xl:w-[5.03rem]">
+              <div className="w-[6rem] truncate max-md:w-[5.03rem] max-xl:w-[5.03rem]">
                 {/* Packed ?" /> */}
                 <AccountCircleIcon className="!text-icon  text-[#832161]"/>{translatedMenuItems[3]}
                 </div>
-              <div className="w-[7.4rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
+              <div className="w-[7.2rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
                 {/* "Delivery" /> */}
                 <LocalShippingIcon className='!text-icon  text-[#832161]'/>  {translatedMenuItems[4]}
                 </div>
@@ -1007,27 +1011,21 @@ useEffect(() => {
               {/* pickup" /> */}
               <   RvHookupIcon className='!text-icon mr-1 text-[#6ba368]'/> {translatedMenuItems[6]}
               </div>
-              <div className="w-[3.9rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
+              <div className="w-[4.1rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
                
                {/*   Track */} <GpsFixedIcon className='!text-icon    text-[#42bfdd]' /> {translatedMenuItems[7]}
                </div>
               <div className=" w-[8.2rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
                 {/* Status" /> */}
                 <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
-                </div>
-               
-              {/* <div className="w-[3.1rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
-                Pick Up" />
-                {translatedMenuItems[9]}
-                </div> */}
-             
+                </div> 
             </div>
             <InfiniteScroll
               dataLength={props.allDispatchList.length}
               // dataLength={AWBtst.length}
                next={handleLoadMore}
                hasMore={hasMore}
-               loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+               loader={props.fetchingDispatchList ? <div><BundleLoader/></div> : null}
               height={"75vh"}
               style={{ overflowX: "hidden", scrollbarWidth:"thin" }}
               endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -1148,7 +1146,7 @@ useEffect(() => {
                                                    
                                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins  max-sm:text-sm cursor-pointer text-blue-600"  onClick={() => {
-                                                                  setOpenTrack(true);
+                                                                  handleOpenTrack();
                                                                   handleRowData(item);              
                                                               }}>
                               "HHHHH"
@@ -1173,12 +1171,6 @@ useEffect(() => {
                        
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins  max-sm:text-sm">
-                              {/* {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
-                                onClick={() => {
-                                  handleRowData(item);
-                                  props.handleCreateAWB(true)
-                                  
-                                }}disabled={item.dispatchReceivedInd} >Create AWB</Button> : item.newAwbNo=== "null" ? "" :item.newAwbNo} */}
                             </div>
                           </div>
                     
@@ -1212,14 +1204,34 @@ useEffect(() => {
                                                     </Tooltip>
                             </div>
                           </div>
+
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                              {/* {item.dispatchInspectionInd === 4 && item.newAwbNo && */}
+                                <DispatchToggle
+                                  //locationDetailsId={props.locationDetailsId}
+                                  item={item}
+                                />
+                                {/* } */}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      {checkAwb && (item.orderId === particularRowData.orderId) &&
+                      {checkAwb && (item.orderId === rowData.orderId) &&
                    
-                                                <SubOrderList orderId={particularRowData.orderId}
+                                                <SubOrderList orderId={rowData.orderId}
                                                 translateText={props.translateText}
                                                 selectedLanguage={props.selectedLanguage} />
                                             }
+                                             {OpenTrack && (item.orderPhoneId === rowData.orderPhoneId) &&
+                   
+                  <CommerceOpenTrackDrawerCard  
+                                         newOrderNo={rowData.newOrderNo}
+                                          orderPhoneId={rowData.orderPhoneId}
+                                          translateText={props.translateText}
+                                          selectedLanguage={props.selectedLanguage}
+                                          />
+               }
                     </div>
                   );
                 })}
@@ -1267,13 +1279,13 @@ useEffect(() => {
         handlepackId={props.handlepackId}
         addPackDataID={props.addPackDataID}
       />
-      <CommerceOpenTrackDrawer
+      {/* <CommerceOpenTrackDrawer
              rowData={rowData}
       OpenTrack={OpenTrack}
       setOpenTrack={setOpenTrack}
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
-      />
+      /> */}
     </>
   );
 }

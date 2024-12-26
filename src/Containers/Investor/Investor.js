@@ -1,7 +1,6 @@
 import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader, } from "../../Components/Placeholder";
 import {
   // setInvestorViewType
   handleInvestorModal,updateOwnerinvestorById} from "./InvestorAction";
@@ -10,6 +9,7 @@ import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
+import { BundleLoader } from '../../Components/Placeholder';
 
 const InvestorDeleteList = lazy(() => import("./InvestorDeleteList"));
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
@@ -94,7 +94,7 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
-              <Suspense fallback={<BundleLoader />}>
+              <Suspense fallback={<BundleLoader/>}>
           <InvestorHeader
           handleUserSelect={handleUserSelect}
           showCheckboxes={showCheckboxes}
@@ -151,25 +151,15 @@ const handleChange = (e) => {
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
             /> }
-            {viewType === 'teams' ?(  <InvestorTeamCardList
+            {viewType === 'teams' &&  <InvestorTeamCardList
              translateText={props.translateText}
              showCheckboxes={showCheckboxes}
              selectedDeals={selectedDeals}
              selectedUser={selectedUser}
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
-            />
-            ):(
-<InvestorCardList
-             translateText={props.translateText}
-             showCheckboxes={showCheckboxes}
-             selectedDeals={selectedDeals}
-             selectedUser={selectedUser}
-             handleCheckboxChange={handleCheckboxChange}
-             selectedLanguage={props.selectedLanguage}
-            />
-            )}
-             {viewType === 'delete' &&  <InvestorDeleteList
+            />}
+           {viewType === 'delete' &&  <InvestorDeleteList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
             />}

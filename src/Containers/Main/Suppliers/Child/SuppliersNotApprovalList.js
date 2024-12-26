@@ -35,12 +35,19 @@ function SuppliersNotApprovalList(props) {
   const [page, setPage] = useState(0);
   const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState("");
+const [datadialcode, setdatadialcode] = useState(false);
 
+const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
   useEffect(() => {
     setPage(page + 1);
     props.emptynotApprovedSuppliers();
     props.getSuppliersNotApprovalList(props.userId, page);
-    props.getAllDialCodeList();
+    // props.getAllDialCodeList();
   }, []);
 
   const handleRowData = (item) => {
@@ -113,14 +120,14 @@ const [editingValue, setEditingValue] = useState("");
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm text-xs sticky max-lg:text-[0.45rem] max-xl:w-[14.9rem]  max-xl:text-[0.65rem] max-lg:text-text-xs    items-end z-10">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8] text-sm "> 
+          <div className=" w-[9.6rem] truncate text-[#00A2E8] text-sm "> 
                {/* Supplier ID */}
                <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[13.4rem] max-md:w-[13.4rem] truncate "> 
+            <div className=" w-[13.9rem] max-md:w-[13.4rem] truncate "> 
               <ApartmentIcon className="!text-icon text-[#4f5d75] "/> {props.translatedMenuItems[0]} 
               </div>
-            <div className=" w-[16.4rem] max-md:w-[16.4rem]  truncate ">
+            <div className=" w-[16.2rem] max-md:w-[16.4rem]  truncate ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>     {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[17.4rem] max-md:w-[17.4rem]  truncate  "> 
@@ -129,7 +136,7 @@ const [editingValue, setEditingValue] = useState("");
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
-            <div className="w-[6.9rem] max-md:w-[13.4rem]  truncate ">
+            <div className="w-[8.3rem] max-md:w-[13.4rem]  truncate ">
             <CheckCircleIcon className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[17]}
             {/* Approve */}
             </div>
@@ -153,7 +160,7 @@ const [editingValue, setEditingValue] = useState("");
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white   items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col  max-sm:h-[6rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          className="flex rounded md:flex row-auto py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-38  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:flex-col ">
                           <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem]">
@@ -162,8 +169,8 @@ const [editingValue, setEditingValue] = useState("");
                             </div>
                             </div>
                               <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div class=" font-semibold text-[0.85rem] font-poppins">
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
+                                <div class="w-[100%] font-semibold text-[0.85rem] font-poppins">
+                                  <Link class=" overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
@@ -183,7 +190,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -198,13 +205,14 @@ const [editingValue, setEditingValue] = useState("");
                               </div>
                               <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
-                                <div class="text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
+                                <div class="flex text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                 <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
   style={{ width: "8rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onFocus={handleSelectDialcode}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -217,7 +225,7 @@ const [editingValue, setEditingValue] = useState("");
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
 className="cursor-pointer text-xs font-poppins">
-{item.dialCode || "Update..."}
++{item.dialCode || "Update..."}&nbsp;
 
 </div>         
                         )}
@@ -273,12 +281,8 @@ className="cursor-pointer text-xs font-poppins">
                                 </div>
                               </div>      
                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem]  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
-
-
-
 </div>                    
-                            </div>                        
-                   
+                            </div>                                       
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
                                <Suspense> <SuplierNotApprovalPublishToggle
@@ -296,19 +300,7 @@ className="cursor-pointer text-xs font-poppins">
           }}
           
         />     
-         <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                // onClick={() => {
-                                //   props.setEditCustomer(item);
-                                //   handleUpdateCustomerModal(true);
-                                //   handleSetCurrentCustomerId(item.customerId);
-
-                                // }}
-                              />              </div>
-
-                          
-                           
+                    </div>                    
                           </div>
                         </div>
                       </>

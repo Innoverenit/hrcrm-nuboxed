@@ -31,7 +31,7 @@ function SuppliesActionLeft (props) {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const dummy = ["cloud", "azure", "fgfdg"];
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [currentCatData, setCurrentCatData] = useState("");
 
     const {
@@ -159,29 +159,29 @@ function SuppliesActionLeft (props) {
         }, [listening, isRecording, startTime]);
 
 
-          useEffect(() => {
-            const fetchMenuTranslations = async () => {
-              try {
-                const itemsToTranslate = [
-                 "1237",//0
-                  "228",//1
-                  "14",//2
-                  "798",//3
-                  "264",// Brand
-                 "1607", // Brand Model
+          // useEffect(() => {
+          //   const fetchMenuTranslations = async () => {
+          //     try {
+          //       const itemsToTranslate = [
+          //        "1237",//0
+          //         "228",//1
+          //         "14",//2
+          //         "798",//3
+          //         "264",// Brand
+          //        "1607", // Brand Model
                  
         
-                ];
+          //       ];
         
-                const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-                setTranslatedMenuItems(translations);
-              } catch (error) {
-                console.error('Error translating menu items:', error);
-              }
-            };
+          //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          //       setTranslatedMenuItems(translations);
+          //     } catch (error) {
+          //       console.error('Error translating menu items:', error);
+          //     }
+          //   };
         
-            fetchMenuTranslations();
-          }, [props.selectedLanguage]);
+          //   fetchMenuTranslations();
+          // }, [props.selectedLanguage]);
 
         return (
             <>
@@ -189,7 +189,7 @@ function SuppliesActionLeft (props) {
             <div class="flex items-center">
 
                          {/* All Materials  */}
-                <Tooltip title={translatedMenuItems[0]}>
+                <Tooltip title={props.translatedMenuItems[0]}>
                
                         <div class="  text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("all")}
@@ -203,7 +203,7 @@ function SuppliesActionLeft (props) {
                   transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
 
                              }}>
-                                <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
+                                <div className="text-white cursor-pointer">{props.translatedMenuItems[1]}</div></Avatar>
                                 <Badge size="small"
                         count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
@@ -215,7 +215,7 @@ function SuppliesActionLeft (props) {
                         
                       
                 </Tooltip>
-                <Tooltip title={translatedMenuItems[2]}>
+                <Tooltip title={props.translatedMenuItems[2]}>
         <div
           class="  text-sm cursor-pointer"
           style={{
@@ -238,7 +238,7 @@ function SuppliesActionLeft (props) {
                 
 
 
-        {/* Brand */}       <Tooltip title={translatedMenuItems[4]}> 
+        {/* Brand */}       <Tooltip title={props.translatedMenuItems[4]}> 
         <div
           class="  text-xs cursor-pointer"
           style={{
@@ -247,9 +247,9 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brand")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355",
-             boxShadow: props.viewType === "brandModel" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
-                  transform: props.viewType === "brandModel" ? "scale(1.05)" : "scale(1)"
+          <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#28a355",
+             boxShadow: props.viewType === "brand" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "brand" ? "scale(1.05)" : "scale(1)"
            }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
@@ -258,7 +258,7 @@ function SuppliesActionLeft (props) {
       </Tooltip>
 
 
-      <Tooltip title={translatedMenuItems[5]}>
+      <Tooltip title={props.translatedMenuItems[5]}>
         <div
           class="  text-xs cursor-pointer"
           style={{
@@ -278,7 +278,7 @@ function SuppliesActionLeft (props) {
       </Tooltip>
 
      
-      <Tooltip title={translatedMenuItems[3]}>
+      <Tooltip title={props.translatedMenuItems[3]}>
                 <Badge size="small"
                         count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}

@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux"; 
 import { Formik, Form, Field } from "formik";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { addQuotationPhoneDetails, getBrand, getModel,getAllProductList,getLocationList } from "../AccountAction";
 import QuotationDetailsCardList from "./QuotationDetailsCardList";
-import LazySelect from "../../../../Components/Forms/Formik/LazySelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import {inputSuppliesDataSearch} from "../../../Main/Supplies/SuppliesAction";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
-
 const { Option } = Select;
-
 function AddQuotationExcel(props) {
-
   useEffect(() => {
-    // props.getCategorylist();
     props.getLocationList(props.orgId);
-    // props.getSupplierSuppliesQuality();
   }, []);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [SuppliesId, setSuppliesId] = useState("")
@@ -177,7 +167,10 @@ function AddQuotationExcel(props) {
     <div class="flex justify-between">
       <div class="w-[22rem] box-content p-2 border-blue border-4">
       <div className="mt-4 w-[22rem]">
-                      <div className="font-semibold text-xs font-poppins text-gray-800">Search</div>
+                      <div className="font-semibold text-xs font-poppins text-gray-800">
+                        {/* Search */}
+                        {props.translatedMenuItems[140]}
+                      </div>
                     {props.qtionInclItem === "material" && (
                         <> 
                       <Input
@@ -254,7 +247,7 @@ function AddQuotationExcel(props) {
                       <Field
                       disabled
                         name="category"
-                        label="Category"
+                        label={props.translatedMenuItems[31]}
                         component={InputComponent}
                         isColumn
                         inlineLabel 
@@ -266,7 +259,7 @@ function AddQuotationExcel(props) {
                 <Field
                 disabled
                         name="attribute"
-                        label="Attribute"
+                        label={props.translatedMenuItems[123]}
                         component={InputComponent}
                         isColumn
                         inlineLabel 
@@ -281,7 +274,7 @@ function AddQuotationExcel(props) {
                 <Field
                 disabled
                         name="brandId"
-                        label="Brand"
+                        label={props.translatedMenuItems[69]}
                         component={InputComponent}
                         isColumn
                         inlineLabel
@@ -292,7 +285,7 @@ function AddQuotationExcel(props) {
                 <Field
                 disabled
                         name="modelId"
-                        label="Model"
+                        label={props.translatedMenuItems[70]}
                         component={InputComponent}
                         isColumn
                         inlineLabel 
@@ -306,8 +299,8 @@ function AddQuotationExcel(props) {
                 <Field
                 disabled
                 name="price"
-                label="Price / Unit"
-                placeholder="Price"
+                label={`${props.translatedMenuItems[124]} / ${props.translatedMenuItems[125]}`}
+                placeholder={props.translatedMenuItems[124]}
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -333,8 +326,8 @@ function AddQuotationExcel(props) {
               <div className="w-wk">
                 <Field
                 name="unit"
-                label="Units"
-                placeholder="Unit"
+                label={props.translatedMenuItems[125]}
+                placeholder={props.translatedMenuItems[125]}
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -343,8 +336,8 @@ function AddQuotationExcel(props) {
                <div className="w-wk">
                 <Field
                 name="discount"
-                label="Discount"
-                placeholder="Discount"
+                label={props.translatedMenuItems[144]}
+                placeholder={props.translatedMenuItems[144]}
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -356,7 +349,7 @@ function AddQuotationExcel(props) {
               <Field
                 disabled
                 name="description"
-                label="Description"
+                label={props.translatedMenuItems[145]}
                 isColumn
                 width={"100%"}
                 component={TextareaComponent}
@@ -364,10 +357,10 @@ function AddQuotationExcel(props) {
                 style={{cursor:"not-allowed"}}
                />
               </div>
-        <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
+        <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>{props.translatedMenuItems[84]}</Button>
       </div>
       <div class="w-[55rem]">
-      <QuotationDetailsCardList />
+      <QuotationDetailsCardList translatedMenuItems={props.translatedMenuItems}/>
       </div>
       </div>
       </Form>

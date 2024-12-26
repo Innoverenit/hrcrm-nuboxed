@@ -1,9 +1,6 @@
-import React, { lazy, Suspense, useState, } from "react";
-import {
-   getProcessForRecruit,
-    dataClear,
-} from "../SettingsAction";
-import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import React, { lazy, Suspense, useState } from "react";
+import { getProcessForRecruit, dataClear } from "../SettingsAction";
+import HourglassFullIcon from "@mui/icons-material/HourglassFull";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
@@ -19,301 +16,280 @@ import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import DesktopAccessDisabledIcon from '@mui/icons-material/DesktopAccessDisabled';
+import HouseboatIcon from '@mui/icons-material/Houseboat';
 import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
 const RecruitmentActionRight = lazy(() => import("./RecruitmentActionRight"));
-const Matrix = lazy(() => import("../Recruitement/Child/RecruitmentTab/Matrix"));
+const Matrix = lazy(() =>
+  import("../Recruitement/Child/RecruitmentTab/Matrix")
+);
 const Template = lazy(() => import("../../Template/Template"));
 const Access = lazy(() => import("./Child/Access/Access"));
 const General = lazy(() => import("./Child/General/General"));
 const Form = lazy(() => import("./Child/RecruitmentTab/FormTab"));
- const WorkFlow = lazy(() => import("./Child/RecruitmentTab/WorkFlowTab"));
+const WorkFlow = lazy(() => import("./Child/RecruitmentTab/WorkFlowTab"));
 const SkillsTab = lazy(() => import("../Library/SkillsTab"));
 const ApprovalTab = lazy(() => import("./Child/Approval/ApprovalTab"));
-const SettingsHolidayTab = lazy(() => import("./Child/Holiday/SettingsHolidayTab"));
+const SettingsHolidayTab = lazy(() =>
+  import("./Child/Holiday/SettingsHolidayTab")
+);
 const LeadsTab = lazy(() => import("../../Rules/Child/RulesTab/LeadsTab"));
-const DistributionTab = lazy(() => import("./Child/DistributionTab/DistributionTab"));
-const ThirdParty= lazy(() => import("./Child//thirdparty/ThirdParty"));
+const DistributionTab = lazy(() =>
+  import("./Child/DistributionTab/DistributionTab")
+);
+const ThirdParty = lazy(() => import("./Child//thirdparty/ThirdParty"));
 const FinanceTab = lazy(() => import("./Child/FinanceTab/FinanceTab"));
 const ReportScheduler = lazy(() =>
   import("../Recruitement/Child/ReportScheduler/ReportScheduler")
 );
-const NotificationToggleForm =lazy(()=>import("./Child/RecruitmentTab/ToggleNotify/NotificationToggleForm"));
+const NotificationToggleForm = lazy(() =>
+  import("./Child/RecruitmentTab/ToggleNotify/NotificationToggleForm")
+);
 
 function Recruitment(props) {
   const name = [
-
     {
-       rulesName:(
+      rulesName: (
         <span>
-          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000] mr-2" />Access
+          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000] mr-2" />
+          Access
         </span>
       ),
       ruleId: "1",
       component: <Access />,
     },
     {
-       rulesName:(
+      rulesName: (
         <span>
-          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957] mr-2" />Approval
+          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957] mr-2" />
+          Approval
         </span>
       ),
       ruleId: "2",
       component: <ApprovalTab />,
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA] mr-2" />Automation
+          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA] mr-2" />
+          Automation
         </span>
       ),
-     
+
       ruleId: "3",
       component: <DistributionTab />,
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />Form
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />
+          Form
         </span>
       ),
-   
       ruleId: "4",
-      component: <Form
-      translateText={props.translateText}
-                           selectedLanguage={props.selectedLanguage}
-      />,
-    },
-    
-    {
-      rulesName:(
-      <span>
-      <AspectRatioIcon className=" !text-icon text-[#432818] mr-2" />General
-    </span>
-  ),
-     
-      ruleId: "5",
-      component: <General/>,
+      component: (
+        <Form
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+      ),
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <i class="fas fa-luggage-cart mr-2 text-[#e4eb3f] "></i>Holidays & Leaves
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />
+          General
+        </span>
+      ),
+      ruleId: "6",
+      component: (
+        <General
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+      ),
+    },
+    {
+      rulesName: (
+        <span>
+        <HouseboatIcon className=" !text-icon mr-2 text-[#6F1D1B]"/>Holidays & Leaves
       </span>
     ),
-      ruleId: "6",
+      ruleId: "7",
       component: <SettingsHolidayTab />,
     },
-    // {
-    //   rulesName: "Notification",
-    //   ruleId: "15",
-    //   component: <NotificationsTab />,
-    // },
-    
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" /> Reports
-      </span>
-    ),
-     
-      ruleId: "7",
+          <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" />
+          Report Scheduler
+        </span>
+      ),
+
+      ruleId: "8",
       component: <ReportScheduler />,
     },
-    // {
-    //   rulesName: "Rules",
-    //   ruleId: "8",
-    //   component: <LeadsTab />,
-    // },
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7] mr-2" />Skills & Certification
-      </span>
-    ),
-    
+          <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7] mr-2" />
+          Skills & Certification
+        </span>
+      ),
+
       ruleId: "9",
-      component: <SkillsTab/>,
+      component: <SkillsTab />,
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <SpaceDashboardIcon className=" !text-icon text-[#22223B] mr-2" />Template
-      </span>
-    ), 
+          <SpaceDashboardIcon className=" !text-icon text-[#22223B] mr-2" />
+          Template
+        </span>
+      ),
       ruleId: "10",
       component: <Template />,
     },
     {
-   rulesName:(
+      rulesName: (
         <span>
-        <ShareIcon className=" !text-icon text-[#390099] mr-2" />Workflow
-      </span>
-    ), 
+          <ShareIcon className=" !text-icon text-[#390099] mr-2" />
+          Workflow
+        </span>
+      ),
       ruleId: "11",
-       component: <WorkFlow/>,
+      component: <WorkFlow />,
     },
     {
-    rulesName:(
+      rulesName: (
         <span>
-        <HourglassFullIcon className=" !text-icon text-[#DC2F02] mr-2" />Finance
-      </span>
-    ),
+          <HourglassFullIcon className=" !text-icon text-[#DC2F02] mr-2" />
+          Finance
+        </span>
+      ),
       ruleId: "12",
-      component: <FinanceTab/>,
+      component: <FinanceTab />,
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <EngineeringIcon className=" !text-icon text-[#6A994E] mr-2" />Labour Cost
-      </span>
-    ),
-     
+          <EngineeringIcon className=" !text-icon text-[#6A994E] mr-2" />
+          Labour Cost
+        </span>
+      ),
+
       ruleId: "13",
-      component: <Matrix/>,
+      component: <Matrix />,
     },
-   {
-    rulesName:(
-      <span>
-      <CircleNotificationsIcon className=" !text-icon text-[#FFD60A] mr-2" />Notification
-    </span>
-  ),
-     
+    {
+      rulesName: (
+        <span>
+          <CircleNotificationsIcon className=" !text-icon text-[#FFD60A] mr-2" />
+          Notification
+        </span>
+      ),
+
       ruleId: "14",
       component: <NotificationToggleForm />,
     },
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <PaymentsIcon className=" !text-icon text-[#003566] mr-2" />Pay Roll(Only for GCC)
-      </span>
-    ),
+          <PaymentsIcon className=" !text-icon text-[#003566] mr-2" />
+          Pay Roll(Only for GCC)
+        </span>
+      ),
       ruleId: "15",
       component: <SalaryTab />,
     },
-     {
-      rulesName:(
-        <span>
-        <HourglassFullIcon className=" !text-icon text-[#D8E2DC] mr-2" />Automation1
-      </span>
-    ),
-      ruleId: "21",
-      component: <RecruitTab/>,
-    },
-    
     {
-      rulesName:(
+      rulesName: (
         <span>
-        <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] mr-2" />3rd Party Integration
-      </span>
-    ),
-   
+          <HourglassFullIcon className=" !text-icon text-[#D8E2DC] mr-2" />
+          Automation1
+        </span>
+      ),
+      ruleId: "21",
+      component: <RecruitTab />,
+    },
+
+    {
+      rulesName: (
+        <span>
+          <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] mr-2" />
+          3rd Party Integration
+        </span>
+      ),
       ruleId: "22",
       component: <ThirdParty />,
     },
-    // {
-    //   rulesName: "Sourcing",
-    //   ruleId: "5",
-    //   component: <IndeedForm />,
-    // },
-    
-    
+  ];
 
-    // {
-    //   rulesName: "Monetize",
-    //   ruleId: "9",
-    //   component: <ThirdPartyAccess />,
-    // },
-   
-    
-
-    // {
-    //   rulesName: "Compliance",
-    //   ruleId: "13",
-    //   component: <ComplianceForm />,
-    // },
-    // {
-    //   rulesName: "Commission",
-    //   ruleId: "7",
-    //   component: <Commission/>,
-    // },
-    
-    
-    // {
-    //   rulesName: "Assessment",
-    //   ruleId: "16",
-    //   component: <AssessmentTab />,
-    // },
-    
-
-    
-   
-    
- 
-     ];
   const [rules, setRules] = useState(name);
-  const [currentRulesOpen, setCurrentRulesOpen] = useState(name[0]);
-  const [recruitProAdvance, setRecruitProAdvance] = useState(
-  props.advanceRecruitmentInd
-  );
+  // const [currentRulesOpen, setCurrentRulesOpen] = useState(name[0]);
+  const [recruitProAdvance, setRecruitProAdvance] = useState( props.advanceRecruitmentInd);
+  
+  const { user } = props;
+
+  const filteredTabs = name.filter((tab) => {
+    switch (tab.rulesName.props.children[1]) {
+     
+      case "Labour Cost":
+        return user.moduleMapper.erpInd && user.moduleMapper.productionInd || user.moduleMapper.repairInd;
+    
+      case "Pay Roll(Only for GCC)":
+        return user.moduleMapper.hrInd;
+     
+      default:
+        return true;
+    }
+  });
+
+  const [currentRulesOpen, setCurrentRulesOpen] = useState(filteredTabs[0]);
+
   const handleRuleClick = (item) => {
     setCurrentRulesOpen(item);
     props.dataClear();
   };
-  // function handleRecruitProAdvance(checked) {
-  //   props.enableRecruitmentAdvance(props.recruitmentDetailsId);
-  // }
-  // useEffect(() => {
-  //   setRecruitProAdvance(props.advanceRecruitInd);
-  // }, [props.advanceRecruitInd]);
-  //gfgfghvfghvf
 
   return (
     <div>
       <div class=" flex ">
-        {/* <Suspense fallback={"Loading..."}> */}
         <div class=" flex flex-no-wrap w-full ">
-            <div class=" w-[24%]">
-              <RecruitmentActionLeft
-                handleRuleClick={handleRuleClick}
-                rules={rules}
-                currentRulesOpen={currentRulesOpen}
-                // recruitProAdvance={recruitProAdvance}
-                // handleRecruitProAdvance={handleRecruitProAdvance}
-              />
-            </div>
-            <Suspense 
-            // fallback={"Loading..."}
-            >
-            <div class=" w-[76%]" >
-            
+          <div class=" w-[24%]">
+            <RecruitmentActionLeft
+              handleRuleClick={handleRuleClick}
+              rules={filteredTabs}
+              currentRulesOpen={currentRulesOpen}
+            />
+          </div>
+          <Suspense>
+            <div class=" w-[76%]">
               <RecruitmentActionRight current={currentRulesOpen} />
             </div>
-            </Suspense>
-          </div>
-        {/* </Suspense> */}
+          </Suspense>
+        </div>
       </div>
-      {/* )} */}
     </div>
   );
 }
 const mapStateToProps = ({ settings, auth }) => ({
   recruitmentDetailsId:
     auth.userDetails && auth.userDetails.recruitmentDetailsId,
-    organizationId: auth.userDetails && auth.userDetails.organizationId,
+  organizationId: auth.userDetails && auth.userDetails.organizationId,
   advanceRecruitInd:
     auth.userDetails &&
     auth.userDetails.metaData &&
     auth.userDetails.metaData.advanceRecruitInd,
+    user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-       getProcessForRecruit,
-         dataClear,
-        //  enableRecruitmentAdvance
+      getProcessForRecruit,
+      dataClear,
     },
     dispatch
   );

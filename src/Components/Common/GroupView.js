@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SubTitle, Title, HeaderText } from "../UI/Elements";
+import { Title, HeaderText } from "../UI/Elements";
 import { BundleLoader } from "../Placeholder";
 import { Empty, Spin } from "antd";
 class GroupView extends Component {
@@ -55,7 +55,7 @@ class GroupView extends Component {
               {groupTitle}
             </HeaderText>
             {length >= 5 && (
-              <SubTitle
+              <div 
                 style={{
                   cursor: "pointer",
                   color: "#02488e",
@@ -70,7 +70,7 @@ class GroupView extends Component {
                   "View all"
                  
                 }
-              </SubTitle>
+              </div >
             )}
              
             {isFetching ? (

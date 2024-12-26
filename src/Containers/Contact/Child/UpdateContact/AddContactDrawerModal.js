@@ -9,7 +9,7 @@ class AddContactDrawerModal extends Component {
       <div>
         <StyledDrawer
           title={this.props.item.fullName}
-         className="w-[65%]"
+         className="w-[60%]"
           visible={this.props.addDrawerContactModal}
           closable
           placement="right"

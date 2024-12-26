@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { Tooltip,  Button, Input, Select } from "antd";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   getPartnerListByUserId,
   getPartnerDetailsById,
@@ -292,7 +292,7 @@ function PartnerTable(props) {
       render: (name, item, i) => {
         return (
           <Tooltip title={item.partnerName}>
-            <SubTitle>
+           <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">
               <MultiAvatar2
                 primaryTitle={item.partnerName}
                 imageId={item.imageId}
@@ -300,7 +300,7 @@ function PartnerTable(props) {
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            </SubTitle>
+            </div>
           </Tooltip>
         );
       },

@@ -14,6 +14,7 @@ import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import "jspdf-autotable";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 
 const { Option } = Select;
@@ -34,9 +35,6 @@ const getRelativeTime = (creationDate) => {
 function AccountInvoiceTable(props) {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
- 
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [cardData, setcardData] = useState([]);
@@ -46,6 +44,20 @@ function AccountInvoiceTable(props) {
     const [creditmemoData,setcreditmemoData]=useState([]);
     const [CreditMemo, setCreditMemo] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
+    const [IsCreditMemoDropdwnClick,setIsCreditMemoDropdwnClick] =useState(false);
+    const [CreditMemoOpts, setCreditMemoOpts] = useState([]);
+
+    const fetchCreditMemoDropdownList = () => {
+        if (!IsCreditMemoDropdwnClick) {
+          fetchCreditMemoData();
+          setIsCreditMemoDropdwnClick(true);
+        }
+      };
+      useEffect(() => {
+        if (creditmemoData && creditmemoData.length  > 0) {
+          setCreditMemoOpts(creditmemoData);
+        }
+      }, [creditmemoData]);
 
     const fetchMultipleOrdersData = async () => {
         const type="Procure"
@@ -92,50 +104,50 @@ function AccountInvoiceTable(props) {
     }
   };
 
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-    '1169', // 0
-    '660', // 1
-    '218', // 2
-    '71', // 3
-    '142', // 4
-    "1485",// Search by Invoice ID"5
-   "1484", // Outstanding6
- "1357",  // Credit Memo7
-  "100",  // New8
-  "1089",  // Generate9
-   "1483", // Payment link10
-  "142",// Status11
-  "679", //created 12
-"658",//location13
-"73",//contact14
-"253",//Items15
+//     useEffect(() => {
+//         const fetchMenuTranslations = async () => {
+//           try {
+//             setLoading(true); 
+//             const itemsToTranslate = [
+//     '1169', // 0
+//     '660', // 1
+//     '218', // 2
+//     '71', // 3
+//     '142', // 4
+//     "1485",// Search by Invoice ID"5
+//    "1484", // Outstanding6
+//  "1357",  // Credit Memo7
+//   "100",  // New8
+//   "1089",  // Generate9
+//    "1483", // Payment link10
+//   "142",// Status11
+//   "679", //created 12
+// "658",//location13
+// "73",//contact14
+// "253",//Items15
 
-          ];
+//           ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+//             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+//             setTranslatedMenuItems(translations);
+//             setLoading(false);
+//           } catch (error) {
+//             setLoading(false);
+//             console.error('Error translating menu items:', error);
+//           }
+//         };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
-    useEffect(() => {
+//         fetchMenuTranslations();
+//       }, [props.selectedLanguage]);
+    
+useEffect(() => {
         fetchMultipleOrdersData();
-        fetchCreditMemoData();
     }, []);
 
     const handleGenerate = async () => {
         setLoading(true);
         setError(null);
-        const selectedData = creditmemoData.filter(item => CreditMemo.includes(item.creditMemo));
+        const selectedData = CreditMemoOpts.filter(item => CreditMemo.includes(item.creditMemo));
     
         if (invoices.trim() === '') {
           Swal.fire({
@@ -188,10 +200,6 @@ function AccountInvoiceTable(props) {
           });
           props.setmodalMultiple(false);
           props.getGeneratedInvoiveList(props.distributorId);
-          // window.location.reload();
-          // setTimeout(() => {
-          //   props.setactiveKey("11")
-          // }, 1000);
      
         } catch (err) {
           setError(err);
@@ -225,7 +233,6 @@ function AccountInvoiceTable(props) {
         <div className="flex max-sm:flex-row mt-2 justify-end">
                 <div className="text-xs  font-poppins shadow-sm">
                    <input
-                  //  className=" border-red-600 h-6 shadow-sm "
                    placeholder="invoice"
                    style={{border:"1px solid red",height:"2rem", }}
                    type="text"
@@ -240,8 +247,9 @@ function AccountInvoiceTable(props) {
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}
                       mode="multiple" 
+                      onClick={fetchCreditMemoDropdownList}
                     >
-   {creditmemoData.map((critem, crindex) => (
+   {CreditMemoOpts.map((critem, crindex) => (
       <option  key={critem.creditMemoId} value={critem.creditMemo}>
        {critem.creditMemo} - {critem.creditMemoId}
       </option>
@@ -250,11 +258,10 @@ function AccountInvoiceTable(props) {
                     </Select>
                     </div>
                     <div className="ml-2 ">
-                    
        <Button type="primary" 
        onClick={handleGenerate}
        >
-        Generate
+         {props.translatedMenuItems[61]}
        </Button>
        </div>
        </div>
@@ -266,20 +273,17 @@ function AccountInvoiceTable(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[86%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                   <div class="w-3"></div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
-                        {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
-                        <div className=" md:w-[7.1rem]">{translatedMenuItems[12]}</div>
-                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
-                        <div className=" md:w-[8rem]">{translatedMenuItems[13]}</div>
-                        <div className=" md:w-[8rem]">{translatedMenuItems[14]}</div>
-                       
-                        <div className=" md:w-[8rem]">{translatedMenuItems[15]}</div>
+                        <div className=" md:w-[7.4rem]">{props.translatedMenuItems[10]} ID</div>
+                        <div className=" md:w-[7.1rem]">{props.translatedMenuItems[26]}</div>
+                        <div className=" md:w-[8rem]">{props.translatedMenuItems[21]}</div>
+                        <div className=" md:w-[8rem]">{props.translatedMenuItems[9]}</div>
+                        <div className=" md:w-[8rem]">{props.translatedMenuItems[34]}</div>
                        
                     </div>
                     <div class="h-[83vh]" style={{scrollbarWidth:"thin"}}>
            
                     {loading ? (
-                <div className="text-center font-semibold text-xs">Loading...</div>
+                <div className="text-center font-semibold text-xs"><BundleLoader/></div>
             ) : message ? (
                 <NodataFoundPage/>
             ) : Array.isArray(cardData) && cardData.length > 0 ? (
@@ -307,7 +311,7 @@ function AccountInvoiceTable(props) {
                                 <div className="ml-1">
                                     {date === currentdate && (
                                         <div className="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                            {translatedMenuItems[8]} {/* New */}
+                                            {props.translatedMenuItems[27]} {/* New */}
                                         </div>
                                     )}
                                 </div>
@@ -336,17 +340,7 @@ function AccountInvoiceTable(props) {
                                 </div>
                             </div>
                             <div className="flex w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between max-sm:flex-row">
-                                {/* <Tooltip title="">
-                                    <Button
-                                        className="cursor-pointer"
-                                        onClick={() => {
-                                            // executePayementLink();
-                                            // handleSetParticularOrderData(item);
-                                        }}
-                                    >
-                                        {translatedMenuItems[10]}
-                                    </Button>
-                                </Tooltip> */}
+                       
                             </div>
                         </div>
                     </div>

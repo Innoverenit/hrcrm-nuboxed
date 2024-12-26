@@ -80,7 +80,7 @@ function OpenQcTable(props) {
                             dataLength={props.openQc.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingOpenQc ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingOpenQc ? <div><BundleLoader/></div> : null}
                             height={"75vh"}
                         >
                             {props.openQc.map((item) => {

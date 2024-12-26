@@ -1,7 +1,10 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import Barcode from 'react-barcode';
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
@@ -239,7 +242,8 @@ function PhoneListForRepair(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"orange" }}></i>
+                     {iconType}
+                    {/* <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"orange" }}></i> */}
                 </Button>
             </Tooltip>
         );
@@ -267,7 +271,8 @@ function PhoneListForRepair(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"green" }}></i>
+                    {iconType}
+                    {/* <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"green" }}></i> */}
                 </Button>
             </Tooltip>
         );
@@ -374,7 +379,7 @@ function PhoneListForRepair(props) {
                     <InfiniteScroll
                         dataLength={props.repairPhone.length}
 
-                        loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingRepairPhoneByUser ? <div><BundleLoader/></div> : null}
                         height={"82vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
@@ -472,9 +477,10 @@ function PhoneListForRepair(props) {
                                                         </Tooltip>
                                                     }
                                                     {props.updatingRepairStatus && <span>Loading...</span>}
-                                                    {item.repairStatus === "To Start" && <StatusIcon 
+                                                    {item.repairStatus === "To Start" &&
+                                                     <StatusIcon 
                                                         type="In Progress"
-                                                        iconType="fa-hourglass-half"
+                                                        iconType={<HourglassEmptyIcon className="!text-icon" />}
                                                         tooltip={translatedMenuItems[13]}
                                                         id={item.phoneId}
                                                         indStatus={item.repairStatus}
@@ -504,7 +510,7 @@ function PhoneListForRepair(props) {
 
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false && item.totalTaskCount === item.totalCompleteAndNoNeedTaskCount && <StatusIcon1
                                                         type="Complete"
-                                                        iconType="fa-hourglass"
+                                                        iconType={<HourglassTopIcon className="!text-icon" />}
                                                         tooltip={translatedMenuItems[14]}
                                                         indStatus={item.repairStatus}
                                                         status={active}
@@ -516,7 +522,8 @@ function PhoneListForRepair(props) {
                                                         }}
                                                     />}
                                                     {item.repairStatus === "Complete" &&
-                                                        <KeyboardReturnIcon />}
+                                                       <HourglassBottomIcon className="!text-icon" />
+                                                        }
                                                     {/* </ButtonGroup> */}
 
                                                 </div>

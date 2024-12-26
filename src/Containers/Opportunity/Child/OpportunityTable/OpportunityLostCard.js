@@ -119,7 +119,7 @@ function OpportunityLostCard(props) {
 
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`opportunity`}/${item.opportunityId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -187,7 +187,7 @@ function OpportunityLostCard(props) {
         dataLength={lostOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchinglostOpportunity?<div class="flex justify-center">Loading...</div> :null}
+        loader={fetchinglostOpportunity?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{overflowX:"hidden",scroll:"thin"}}
       >

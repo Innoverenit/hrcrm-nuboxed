@@ -3,7 +3,7 @@ import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar,MultiAvatar2, SubTitle } from "../../../../../Components/UI/Elements";
+import { MultiAvatar,MultiAvatar2 } from "../../../../../Components/UI/Elements";
 import "jspdf-autotable";
 import {getInvestorDeals
   } from "../../../InvestorAction";
@@ -216,7 +216,7 @@ if (loading) {
 
 
 <div class=" text-sm  font-poppins">
-<SubTitle>
+<div >
 {item.contactName === null ? "None" :
 <MultiAvatar2
 primaryTitle={item.contactName}
@@ -226,7 +226,7 @@ imgWidth={"1.8em"}
 imgHeight={"1.8em"}
 />
 }
-</SubTitle>
+</div >
 </div>
 </div>
 

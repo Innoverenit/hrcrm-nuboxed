@@ -1,5 +1,5 @@
 
-import React, {  useEffect, useState } from "react";
+import React, {  useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,  Badge } from "antd";
@@ -17,12 +17,13 @@ import {
     emptyOrders
 } from "./OrderAction";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
+import { BundleLoader } from "../../../Components/Placeholder";
 
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
 function CompleteOrder(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -67,7 +68,7 @@ function CompleteOrder(props) {
                     dataLength={props.comepletOrder.length}
                     next={handleLoadMore}
                     hasMore={hasMore}
-                    loader={props.fetchingCompleteOrders ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+                    loader={props.fetchingCompleteOrders ? <div ><BundleLoader/></div> : null}
                     height={"80vh"}
                     style={{scrollbarWidth:"thin"}}
                     endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
@@ -224,6 +225,7 @@ function CompleteOrder(props) {
                     })}
                 </InfiniteScroll>
             </OnlyWrapCard>
+            <Suspense>
             <AddNotesOrderDrawer
                 particularRowData={particularRowData}
                 addNotesInOrder={props.addNotesInOrder}
@@ -239,11 +241,13 @@ function CompleteOrder(props) {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}
                 addOrderDetailsModal={props.addOrderDetailsModal} />
+            </Suspense>
         </>
     );
 

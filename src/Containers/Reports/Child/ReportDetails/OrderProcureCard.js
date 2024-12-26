@@ -25,6 +25,52 @@ const OrderProcureCard = (props) => {
   const [data1, setData1] = useState([]);
   const [loading1, setLoading1] = useState(false);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+      const [loading, setLoading] = useState(true);
+   useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+      '71', // 0type
+  '110', // 1name
+  '111', // 2  end
+  '112', // 3 Ageing
+  '76', // 4assignedto
+  '77', // 5owner
+  '143', // 6 To Start
+  '144', // 7 In Progress
+  '78', // 8Completed
+   '118', // 9 Not available
+  '1389', // 10Feedback
+  '116', // 11 Approve
+  '117', //12    Reject
+  '316', //13 Notes
+  '138',//Document 14
+  '170',//Edit 15
+  '316',//notes
+  '113',// 17 Info
+  '140',// 18 email
+  '170',//19 edit
+  '1259',//20 "Do you want to delete?"
+  "100",// Delete 21
+   
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+  
+
     const fetchData1 = async () => {
         const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;
         const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
@@ -83,16 +129,24 @@ const OrderProcureCard = (props) => {
     <>
     
     <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">type</div>
-        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[9rem]">name</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">end</div>
+    <div class="rounded max-sm:m-1 m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent text-xs font-poppins font-bold sticky  z-10">
+        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">type</div>
+        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[9rem]">
+        {translatedMenuItems[1]} {/* name */}
+                     </div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">
+                        
+             {translatedMenuItems[2]}{/* end */}
+                       </div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Ageing</div>
-                        <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">Assigned To</div>
-        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">owner</div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        {translatedMenuItems[3]}{/* Ageing */}
+                    </div>
+                        <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]"> {translatedMenuItems[17]}</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"> {translatedMenuItems[4]}
+                        </div>
+        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]"> {translatedMenuItems[5]}</div>
         <div className="w-[6.01rem]"></div>
  
       </div>
@@ -117,7 +171,7 @@ const OrderProcureCard = (props) => {
                         <div>
                             <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[9.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
@@ -163,7 +217,7 @@ const OrderProcureCard = (props) => {
                                 </div>
                                </div>
                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex font-medium flex-col w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
@@ -179,7 +233,7 @@ const OrderProcureCard = (props) => {
 
                     </div>
                    
-                    <div className="flex font-medium flex-col w-[3.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex  w-[3.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
             
                     
@@ -202,7 +256,7 @@ const OrderProcureCard = (props) => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                    <div className=" flex  w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
@@ -227,7 +281,7 @@ const OrderProcureCard = (props) => {
                               </div>
                         
                     
-                                <div className=" flex font-medium flex-col  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex   w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     
                                     
                                 </div>
@@ -236,18 +290,18 @@ const OrderProcureCard = (props) => {
 <div>
 
      </div>
-     <div className="flex font-medium flex-col w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
     
      
      </div> 
 
 
-     <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
                         
 
      
      </div> 
-     <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
       </div> 
   

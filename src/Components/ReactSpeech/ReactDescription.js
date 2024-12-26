@@ -3,11 +3,14 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import {Tooltip} from "antd"
+import useGoogleMapsLoader from '../../Components/CustomMap/useGoogleMapsLoader'
 const SpeechRecognitionComponent = (props) => {
 //   const [text, setText] = useState("");         // For manual text input
   const [transcript, setTranscript] = useState('');  // For speech recognition text
   const [isListening, setIsListening] = useState(false);  // To control listening state
   const recognitionRef = useRef(null);  // Store recognition instance
+  const apiKey = "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY";
+  const { isLoaded, error } = useGoogleMapsLoader(apiKey, 'places');
 
   useEffect(() => {
     // Check if the browser supports speech recognition
@@ -80,6 +83,10 @@ const SpeechRecognitionComponent = (props) => {
   };
 
   return (
+    <>
+        {!isLoaded ? (
+      <div>Loading Google Autoplaces...</div>
+     ) : (
     <div>
     <div>
                     <span class="font-bold font-poppins text-xs"> 
@@ -131,6 +138,8 @@ const SpeechRecognitionComponent = (props) => {
                   </div>
                 </div>
     </div>
+       )}
+    </>
   );
 };
 

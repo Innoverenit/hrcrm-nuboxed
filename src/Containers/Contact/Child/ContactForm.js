@@ -51,17 +51,13 @@ class ContactForm extends Component {
       isLoadingContacts:false,
       loading: true,
       touchedCustomer: false,
+      touchedDepartment: false,
     };
     this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.fetchCustomers = this.fetchCustomers.bind(this);
   }
 
-  componentDidMount() {
-   
-    this.props.getDepartments();
-    
-  }
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
   
@@ -137,6 +133,14 @@ class ContactForm extends Component {
     }
   }
 
+
+  handleSelectDepartmentFocus() {
+    const { touchedDepartment } = this.state;
+    if (!touchedDepartment) {
+      this.props.getDepartments();
+      this.setState({ touchedDepartment: true });
+    }
+  }
 
   handleCustomerChange(customerId) {
     this.setState({ selectedCustomer: customerId });
@@ -365,7 +369,7 @@ class ContactForm extends Component {
             <Form className="form-background h-[70vh]">
               <div class=" flex justify-around max-sm:flex-col"
               >
-                <div class=" h-full w-w47.5 max-sm:w-wk"
+                <div class=" h-full w-w47.5.5 max-sm:w-wk"
                 >
                   <div class=" flex  flex-nowrap justify-between">
                   {this.props.customerConfigure.imageUploadInd===true&&
@@ -588,10 +592,10 @@ class ContactForm extends Component {
                     </div>
                   </div>                              
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "
                 >
                   <div class="  flex justify-between max-sm:mt-20">
-        <div class="flex flex-col w-w47.5">
+        <div class="flex flex-col w-w47.5.5">
                   {this.props.customerConfigure.tagCompanyInd===true&&
                   <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[9]}</div>
                   // Tag Company
@@ -617,7 +621,7 @@ class ContactForm extends Component {
                     </div>              
                
 
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
                     <div class=" text-xs font-semibold font-poppins">{translatedMenuItems[17]}
                        {/* Reports To */}
@@ -642,7 +646,7 @@ class ContactForm extends Component {
                      
                      
                   </div>
-                  <div class=" w-w47.5 ">
+                  <div class=" w-w47.5.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
                     <div class=" text-xs font-semibold font-poppins mt-1"> {translatedMenuItems[10]}</div>
                     
@@ -661,7 +665,7 @@ class ContactForm extends Component {
                         </div>
                  
                   <div class=" flex  justify-between">  
-                       <div class="w-w47.5 flex flex-col">
+                       <div class="w-w47.5.5 flex flex-col">
                   {this.props.customerConfigure.departmentInd===true&&  
                   <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[11]}</div> 
   }    
@@ -680,7 +684,7 @@ class ContactForm extends Component {
                   }
                   </div>
                   </div>
-                  <div class="w-w47.5">
+                  <div class="w-w47.5.5">
                   {this.props.customerConfigure.designationInd===true&&
                   <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[12]}</div>
   }
@@ -723,7 +727,7 @@ class ContactForm extends Component {
                 >
                   <div class=" flex  justify-between max-sm:mt-20">
                   <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[14]}</div>
-                    <div class="  w-w47.5">
+                    <div class="  w-w47.5.5">
                       <Field
                         name="bedrooms"
                         // selectType="customerList"
@@ -736,7 +740,7 @@ class ContactForm extends Component {
                     </div>
 
                    
-                    <div class=" w-w47.5" >
+                    <div class=" w-w47.5.5" >
                     <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[15]}</div>
                     <FastField
                             name="price"                        
@@ -752,7 +756,7 @@ class ContactForm extends Component {
                   
                   <div class=" flex justify-between mt-3">     
                   <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[16]}</div>    
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5.5">
                     <Field
                       name="propertyType"
                       // label="Property Type"

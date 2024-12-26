@@ -30,7 +30,9 @@ function DashboardProspectJumpstart(props) {
         "1288", //  "Prospects"//0
          "1468",   // "Current Quotation",//1
          "1291", // "Open Quotations",//2
-          "1289",  // "Quotations Life Time",//3 
+          "1289",  // "Quotations Life Time",//3
+          "1594",// By sector 4 
+          "1595",//5
         
          ];
 
@@ -190,11 +192,11 @@ console.log(props.prospectChart)
       </div>
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]} </div>
         <Suspense fallback={<BundleLoader />}> <CustomerPieChart/></Suspense>       
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <div class=" font-poppins font-bold text-base "> {translatedMenuItems[5]}</div>
         <Suspense fallback={<BundleLoader />}> <CustomerPieChart/></Suspense> </div>
       </div>
       </div>

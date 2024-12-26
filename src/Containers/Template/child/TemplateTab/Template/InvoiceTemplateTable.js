@@ -12,28 +12,28 @@ const invoiceData =  [
   
         name: "ABCD.",
         style:"Canadian",
-        address: "21A-81 Northern Heights Drive, Richmond Hill ON L4B 4C9",
-        phone: "+14162780878",
+        address: "21A-81 Sorthern Heights Drive, Dimonk ON L4B 4C9",
+        phone: "+566645",
         email: "sales@1di.ca",
-        gstNo: "71265570",
+        gstNo: "5765565",
         logo: "Logo_new.png", // Replace with the actual logo path
-            name: "Robert Cowman",
-            company: "FG Bradley's Fairview",
-            address: "1800 Sheppard Ave E. Fairview, Mall, Unit 2045, Toronto Ontario M2J 5A7",
-            name: "Robert Cowman",
-            company: "FG Bradley's Fairview",
-            address: "1800 Sheppard Ave E. Fairview, Mall, Unit 2045, Toronto Ontario M2J 5A7",
+            name: "Veham Josh",
+            company: "Jaun Wadr",
+            address: "167 weuyuh Fouxw, Mall, Unit 123478, Tikss Umaj M1J A47",
+            name: "Veham Josh",
+            company: "Jaun Wadr",
+            address: "167 weuyuh Fouxw, Mall, Unit 123478, Tikss Umaj M1J A47",
         id: "1361",
         date: "30/08/2024",
         dueDate: "29/09/2024",
         terms: "Net 30",
         shipDate: "30/08/2024",
-        shipVia: "MIKE DROPOFF",
+        shipVia: "KIJ SUIDU",
         salesRep: "Tracy Sales",
-        purchaseOrder: "BO-TM9456525",
+        purchaseOrder: "SO-TM9995",
     
             sku: "KES477",
-            description: "477 | Jumbo Foam D20",
+            description: "477 | OXKOJ KUNJER",
             qty: 36,
             rate: 12.50,
             amount: 450.00,
@@ -46,16 +46,15 @@ const invoiceData =  [
 }
 ]
 useEffect(() => {
-    // Simulate an initial POST request to show the first invoice
     if (invoiceData.length > 0) {
       const firstInvoice = invoiceData[0];
-      setSelectedInvoice(firstInvoice); // Set the first invoice as selected
+      setSelectedInvoice(firstInvoice); 
     }
   }, []);
-  const sendInvoiceData = (style) => {
+  const sendInvoiceData = (invoice) => {
     const payload = {
      // orgId: props.organizationId,
-       type: style.style,
+       type: invoice.style,
     };
 
     axios
@@ -100,10 +99,170 @@ useEffect(() => {
               </li>
               </>
             ))}
+
+            <div className="font-semibold text-sm">Kaf</div>
+              <li
+                className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
+                  selectedInvoice?.style === "Kaf" ? "bg-green-100" : "bg-gray-100"
+                }`}
+                onClick={() => setSelectedInvoice({ style: "Kaf" })}
+              >
+                <div className="font-bold">Invoice #5676677</div>
+                <div>Date: 30-09-2024</div>
+                <div></div>
+              </li>
           </ul>
         </div>
         <div className="w-3/4 bg-white font-sans h-[80vh] overflow-x-auto p-5">
         {selectedInvoice ? (
+            selectedInvoice.style === "Kaf" ? (
+              <div className="max-w-5xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+
+              {/* Header */}
+              <div className="mb-8 w-[60%] ml-auto">
+                <h1 className="text-4xl font-bold text-blue-700">LXG ASIAN FOOD</h1>
+                <hr className="my-4 border-gray-300" />
+                <div className="flex justify-between">
+                  <div>
+                    <p>Asuinch 90 <br /> 3047 Maeghalay <br /> The India <br /> 0031 (10) 415679</p>
+                  </div>
+                  <div className="text-center">
+                    <p>KNK: 86619853 <br /> MTW: NL5467567 <br /> UKSUH@YM.com <br /> www.krcim.com</p>
+                  </div>
+                  <div className="text-right">
+                    <p>Bankdetails: <br /> KNG Bank: 0878381 <br /> BIC Code nr: INGBNL2A <br /> BTW: NL5467567 <br /> KBAN: NL74INGB0067657</p>
+                  </div>
+                </div>
+              </div>
+        
+              {/* Invoice Info */}
+              <div className="w-full mb-8">
+                <div className="flex justify-between">
+                  {/* Left Section */}
+                  <div className="w-1/3 text-left">
+                    <strong>Soauuk Jan's Market</strong><br />
+                    West-Kruiskade 87<br />
+                    49 Hakkk Oas<br />
+                    Indabds<br />
+                    Email: Infikkk@Ymm.com<br />
+                    Order info:
+                  </div>
+        
+                  {/* Center Section */}
+                  <div className="w-1/3 text-center">
+                    <h5 className="text-lg font-bold">PLEASE MENTION OUR INVOICE NUMBER WHILE PROCESSING THE PAYMENT</h5>
+                    <strong>Factuur</strong><br />
+                    Tel no: 010 414 0955 <br />
+                    Mob: 06 3433 6633
+                  </div>
+        
+                  {/* Right Section */}
+                  <div className="w-1/3 text-right">
+                    Factuurnummer: LXG247163<br />
+                    Klantnummer: 2<br />
+                    Factuurdatum: 01-10-2024
+                  </div>
+                </div>
+              </div>
+        
+              {/* Items Section */}
+              <div className="flex flex-col mb-8 bg-gray-100 p-4 rounded-lg">
+                <div className="flex font-semibold text-gray-700 mb-2">
+                  <div className="w-1/6">Artikelcodes</div>
+                  <div className="w-1/6">Aantal</div>
+                  <div className="w-2/6">Omschrijving</div>
+                  <div className="w-1/6">BTW</div>
+                  <div className="w-1/6">Prijs</div>
+                  <div className="w-1/6">Totaal</div>
+                </div>
+        
+                {/* Item Row 1 */}
+                <div className="flex mb-2 border-t pt-2">
+                  <div className="w-1/6">TRSGF1</div>
+                  <div className="w-1/6">1.00</div>
+                  <div className="w-2/6">TRS Gramflour Besan (12 x 1 kg)</div>
+                  <div className="w-1/6">9</div>
+                  <div className="w-1/6">25.07</div>
+                  <div className="w-1/6">25.07</div>
+                </div>
+        
+                {/* Item Row 2 */}
+                <div className="flex mb-2 border-t pt-2">
+                  <div className="w-1/6">TRSABC1</div>
+                  <div className="w-1/6">2.00</div>
+                  <div className="w-2/6">TRS Another Item</div>
+                  <div className="w-1/6">9</div>
+                  <div className="w-1/6">10.00</div>
+                  <div className="w-1/6">20.00</div>
+                </div>
+              </div>
+        
+              {/* Summary Section */}
+              <div className="flex justify-between mb-8 space-x-8">
+                {/* Tax Breakdown Section */}
+                <div className="w-1/3 mb-8 bg-gray-100 p-4 rounded-lg shadow-md">
+                  <div className="flex mb-4 font-semibold text-gray-700">
+                    <div className="w-1/3 text-left">
+                      <strong>Btw %</strong>
+                    </div>
+                    <div className="w-1/3 text-left">
+                      <strong>Grondslag</strong>
+                    </div>
+                    <div className="w-1/3 text-left">
+                      <strong>Bedrag</strong>
+                    </div>
+                  </div>
+        
+                  {/* Row 1 */}
+                  <div className="flex mb-2">
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">0.00</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">9</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">565.42</div>
+                  </div>
+        
+                  {/* Row 2 */}
+                  <div className="flex mb-2">
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">9.00</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">0.00</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">50.89</div>
+                  </div>
+        
+                  {/* Row 3 */}
+                  <div className="flex mb-2">
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">21.00</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">0.00</div>
+                    <div className="w-1/3 py-2 px-4 border border-gray-300">0.00</div>
+                  </div>
+                </div>
+        
+                {/* Signature Section */}
+                <div className="w-1/3 border p-4 bg-gray-50">
+                  <strong>Handtekening voor ontvangst</strong>
+                </div>
+        
+                {/* Total Section */}
+                <div className="w-1/3 border p-4 bg-gray-50">
+                  <div className="flex justify-between py-2">
+                    <strong>Totaal gewicht</strong>
+                    <span>202.5 kg</span>
+                  </div>
+                  <div className="flex justify-between py-2">
+                    <strong>Totaal excl. btw</strong>
+                    <span>€ 565.42</span>
+                  </div>
+                  <div className="flex justify-between py-2">
+                    <strong>Totaal btw</strong>
+                    <span>€ 50.89</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-t mt-4">
+                    <strong>Factuurbedrag</strong>
+                    <strong>€ 616.31</strong>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+            ):
             <>   
         <style>
         {`

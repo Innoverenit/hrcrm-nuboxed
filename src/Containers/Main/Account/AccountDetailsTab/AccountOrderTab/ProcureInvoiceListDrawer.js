@@ -12,8 +12,7 @@ const ProcureInvoiceListDrawer = (props) => {
     return (
         <>
             <StyledDrawer  
-                //title={`${props.translatedMenuItems[10]}:${props.particularRowData.newOrderNo}`}
-                title={`Order ${props.particularRowData.newOrderNo}`}
+                title={`${props.translatedMenuItems[19]} ${props.particularRowData.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.openInvoiceModal}
                 closable
@@ -23,7 +22,6 @@ const ProcureInvoiceListDrawer = (props) => {
                 placement="right"
             >
                 <Suspense fallback={<BundleLoader />}>
-         
                <ProcureInvoiceList  orderPhoneId={props.particularRowData.orderPhoneId}
                orderId={props.particularRowData.orderId}
                particularRowData={props.particularRowData}

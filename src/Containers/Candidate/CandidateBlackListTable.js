@@ -7,7 +7,7 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
-import { MultiAvatar, SubTitle } from "../../Components/UI/Elements";
+import { MultiAvatar } from "../../Components/UI/Elements";
 import {
   handleUpdateCandidateModal,
   handleupdateCandidateResumeModal,
@@ -259,7 +259,7 @@ function CandidateBlackListTable(props) {
       width: "3%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div >
             <MultiAvatar
               primaryTitle={item.firstName}
               imageId={item.imageId}
@@ -267,7 +267,7 @@ function CandidateBlackListTable(props) {
               imgWidth={"2.1em"}
               imgHeight={"2.1em"}
             />
-          </SubTitle>
+          </div >
         );
       },
     },

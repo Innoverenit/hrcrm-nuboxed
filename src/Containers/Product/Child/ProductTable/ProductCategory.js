@@ -12,15 +12,14 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
-import ProductCategoryPUnblishToggle from "./ProductCategoryPUnblishToggle";
 import Tooltip from '@mui/material/Tooltip';
 import styled from "styled-components";
 import dayjs from "dayjs"; 
 import Carousel from "react-elastic-carousel";
-import ProductAddQualityCheckModal from "./ProductAddQualityCheckModal";
 
+const ProductCategoryPUnblishToggle = lazy(() => import("./ProductCategoryPUnblishToggle"));
+const ProductAddQualityCheckModal = lazy(() => import("./ProductAddQualityCheckModal"));
 const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
-
 
 function ProductCategory(props) {
 
@@ -37,27 +36,27 @@ function ProductCategory(props) {
   const [open,setOpen]= useState(false)
 
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
    
-            "14",//0 Category
+  //           "14",//0 Category
       
-        ];
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
   useEffect(() => {
     props.getCategory()
   }, []);

@@ -295,7 +295,7 @@ const {
             <div class="overflow-y-auto h-[44rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background h-wk">
               <div class=" flex justify-around max-sm:flex-col">
-                <div class=" h-full w-w47.5 mt-3 max-sm:w-wk">
+                <div class=" h-full w-w47.5.5 mt-3 max-sm:w-wk">
                   
                   <Field
                     isRequired
@@ -596,7 +596,7 @@ const {
                     </span>
                   )} */}
                 </div>
-                <div class=" h-full w-w47.5 mt-3 max-sm:w-wk ">
+                <div class=" h-full w-w47.5.5 mt-3 max-sm:w-wk ">
                 
                   <FieldArray
                     name="address"

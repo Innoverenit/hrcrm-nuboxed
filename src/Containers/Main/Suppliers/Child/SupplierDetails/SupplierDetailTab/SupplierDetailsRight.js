@@ -12,7 +12,8 @@ class SupplierDetailsRight extends Component {
         <Suspense fallback={<BundleLoader />}>
           <SupplierDetailsTab supplier={this.props.supplier} 
            translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}/>
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}/>
         </Suspense>
       </div>
     );

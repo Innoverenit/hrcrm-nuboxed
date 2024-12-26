@@ -55,6 +55,7 @@ import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
+import { Link } from 'react-router-dom';
 import EmptyPage from "../../../Main/EmptyPage";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
@@ -74,9 +75,7 @@ const CustomerContactDrawerModal = lazy(() =>
 const CustomerOpportunityDrawerModal = lazy(() =>
   import("./CustomerOpportunityDrawerModal")
 );
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -87,8 +86,6 @@ function CustomerCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  // const [page1, setPage1] = useState(0);
-  // const [page2, setPage2] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -142,7 +139,7 @@ function CustomerCardList(props) {
       props.emptyCustomer()
       props.getCustomerListByUserId(props.userId, page, "creationdate");
    props.getCountries();
-   props.getSources(props.orgId);
+  //  props.getSources(props.orgId);
    props.getSectors();
    props.getAllDialCodeList()
   }, []);
@@ -245,7 +242,7 @@ function CustomerCardList(props) {
     handleCustomerPulseDrawerModal,
     handleCustomerContactDrawerModal,
     handleCustomerOpportunityDrawerModal,
-    updateCustomerModal,
+    // updateCustomerModal,
     fetchingCustomersError,
     fetchingAllCustomers,
     user,
@@ -323,51 +320,48 @@ if (loading) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
-            <div class=" flex justify-between font-poppins w-[93%] items-end">
+            <div class=" flex justify-between font-poppins w-[91%] items-end">
          
-            <div className="truncate text-[#00A2E8] text-sm  w-[16.7rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8] text-sm  w-[17.4rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" truncate w-[13.5rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[10.6rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className=" w-[3.9rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[2.9rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
               {/* CountryFlag */}
             </div>
-            <div className=" truncate w-[13.1rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" truncate w-[12rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
-              {/* "Sector" */}
-          
+              {/* "Sector" */}        
             </div>
-            <div className=" truncate w-[12.5rem] max-md:w-[9.1rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" truncate w-[12.1rem] max-md:w-[9.1rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
-             {/* "Source" */}
-         
+             {/* "Source" */}       
             </div>         
-            <div className=" truncate w-[8.5rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" truncate w-[11.7rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
-              {/* Quotation" */}
-     
+              {/* Quotation" */}    
             </div>           
             {props.user.aiInd && (
-            <div className=" truncate w-[6.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+            <div className=" truncate w-[6.6rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="truncate w-[8.2rem] max-md:w-[7.2rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="truncate w-[8rem] max-md:w-[7.2rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className=" truncate w-[13.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+            <div className=" truncate w-[11.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon  text-[#667761]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
@@ -380,7 +374,7 @@ if (loading) {
             dataLength={customerByUserId.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center"><BundleLoader/></div> : null}
+            loader={fetchingCustomers || fetchingCustomerPagination ? <div><BundleLoader/></div> : null}
             height={"83vh"}
             style={{ scrollbarWidth:"thin"}}
           >
@@ -405,10 +399,7 @@ if (loading) {
                 <div>  {/* Data Row */}
                   <div
                 className="flex rounded justify-between  bg-white mt-1 items-center  w-[100%] py-ygap  max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-              >
-                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[13rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
-                        <div className="flex max-sm:w-auto">
+              >      
                         <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm  ">
@@ -421,6 +412,8 @@ if (loading) {
                         </div>
 
                       </div>
+                      <div className="flex max-sm:w-auto">
+                      <div className=" flex  w-[14rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
                             <MultiAvatar
@@ -432,13 +425,14 @@ if (loading) {
                             />
                             {/* </Tooltip> */}
                           </div>
-                          <div class="max-sm:w-full flex items-center">
+                      
                             <Tooltip>
-                              <div class="flex max-sm:flex-row justify-between w-full max-md:flex-col">
-                                <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
+                            <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
+                              <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
 
-                                
+                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
+                                    </Link>    
                                     &nbsp;&nbsp;
                                   {date === currentdate ? (
                                     <div class="text-[0.65rem] text-[tomato] font-bold"
@@ -454,14 +448,15 @@ if (loading) {
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
 <div onClick={() => 
     handleEditRowField(item.customerId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
@@ -471,10 +466,10 @@ if (loading) {
                                 </div>
                               </div>
                             </Tooltip>
-                          </div>
+                   
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[10.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[10.54rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs flex  font-poppins max-sm:text-sm  ml-gap ">        
 <div>
 {editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
@@ -495,7 +490,7 @@ if (loading) {
 <div onClick={() => 
 handleEditRowField(item.customerId, 'countryDialCode', item.countryDialCode)} 
 className="cursor-pointer text-xs font-poppins">
-{item.countryDialCode || "Update..."}
++{item.countryDialCode || "Update..."} &nbsp;
 
 </div>         
                         )}
@@ -508,12 +503,13 @@ className="cursor-pointer text-xs font-poppins">
   className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
+  onMouseDown={handleUpdateSubmit}
   onKeyDown={handleKeyDown} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 />
 ) : (
-<div onClick={() => 
+<div  onClick={() => 
     handleEditRowField(item.customerId, 'phoneNumber', item.phoneNumber)} 
     className="cursor-pointer text-xs font-poppins">
     {item.phoneNumber || "Update..."}
@@ -525,9 +521,8 @@ className="cursor-pointer text-xs font-poppins">
                           `${item.countryDialCode} ${item.phoneNumber}`
                           } */}
                         </div>
-
                       </div>
-                      <div className=" flex max-sm:w-auto  w-[3.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto  w-[3.1rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm  ">
                           <CountryFlag1 countryCode={countryCode} />
@@ -535,24 +530,20 @@ className="cursor-pointer text-xs font-poppins">
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[10.21rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[12.41rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
                           {item.sector}
                         </div>
-
                       </div>
-                    </div>
+                
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  w-[10.215rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
+                      <div className=" flex max-sm:w-auto  w-[10.215rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm  ">
                           {item.source}
                         </div>
-
                       </div>
-                      <div className=" flex   max-sm:w-auto w-[6.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[9.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
@@ -565,17 +556,9 @@ className="cursor-pointer text-xs font-poppins">
                               >
                         {item.oppNo}
                         </div>
-                      </div>
-                    
+                      </div>                  
                    
-                      <div className=" flex max-sm:w-auto w-[5.82rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-                       {/* Pipeline Value */}
-
-                        {/* {item.totalProposalValue > 0 && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center  ">
-        {`${item.userCurrency} ${item.totalProposalValue}`}
-      </div>
-    )} */}
+                      <div className=" flex max-sm:w-auto w-[5.82rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">            
                             {item.totalProposalValue && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center  ">
       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
@@ -591,27 +574,16 @@ className="cursor-pointer text-xs font-poppins">
           
             </div>
             )}               
-                      <div className=" flex  max-sm:w-auto   w-[6.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto   w-[6.30rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-
                         <div class=" text-xs  font-poppins max-sm:text-sm  ">
-
                           <div>
                             {item.assignedTo === null ? (
                               <div class="text-xs  font-poppins">No Data</div>
                             ) : (
-                              <>
-                                {/* {item.assignedTo === item.ownerName ? (
-
-                                  null
-                                ) : ( */}
+                              <>                           
                                   <div
-                                  style={{cursor:"pointer"}}
-                                // onClick={() => {
-                                //   handleSetCurrentCustomerId(item.customerId)
-                                //   props.handleUpdateUserModal(true);
-                                  
-                                // }}
+                                  style={{cursor:"pointer"}}                              
                                 onClick={() => {
                                   handleSetCurrentCustomerId(true);
                                   props.handleLeadsSubscriptionModal(item);
@@ -622,18 +594,13 @@ className="cursor-pointer text-xs font-poppins">
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
                                   />
-                                  </div>
-                                {/* )} */}
+                                  </div>                         
                               </>
                             )}
                           </div>
-
                         </div>
-                      </div>
-          
-              
-                      <div className=" flex  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-
+                      </div>                   
+                      <div className=" flex  w-[10.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title={translatedMenuItems[9]}
@@ -646,9 +613,9 @@ className="cursor-pointer text-xs font-poppins">
                               style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs   flex items-center w-wk " >
                               <NextPlanIcon  className="!text-icon mr-1 "/>
-                                {item.convertInd === 0 && translatedMenuItems[17]}
-                                {item.convertInd === 1 && translatedMenuItems[16]}
-                                {item.convertInd === 2 && translatedMenuItems[18]}
+                                {item.convertInd === 0 && translatedMenuItems[16]}
+                                {item.convertInd === 1 && translatedMenuItems[15]}
+                                {item.convertInd === 2 && translatedMenuItems[17]}
                       
                               </div>
                             </Button>
@@ -656,36 +623,21 @@ className="cursor-pointer text-xs font-poppins">
                         </Popconfirm>
                       </div>
                       </div>
-                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
+                      <div class="flex max-sm:justify-evenly  max-sm:w-wk items-center"> 
                       <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[11]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              // onClick={() => {
-                              //   handleCustomerPulseDrawerModal(true);
-                              //   handleSetCurrentCustomer(item);
-                              // }}
+                            <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"                                     
                               onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
-                                // handleMouseEnter(item);
-                                //handleSetCurrentCustomer(item);
-                              }}
-                             // onClick={handleMouseEnter}
-                            //  onMouseLeave={handleMouseLeave}
-                             
+                              }}                           
                             />
                           </Tooltip>
-                        </div>
-                     
+                        </div>                  
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
-                              // onClick={() => {
-                              //   handleCustomerNotesDrawerModal(true);
-                              //   handleSetCurrentCustomer(item);
-                              //   handleRowData(item);
                                 onClick={() => {
                                   handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -706,7 +658,7 @@ className="cursor-pointer text-xs font-poppins">
         />   
             </Tooltip>   
             </div>     
-            <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
+            <div class="items-center justify-center w-[1.1rem]  h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -728,16 +680,12 @@ className="cursor-pointer text-xs font-poppins">
                               </div>
                             }
                           </Tooltip>
-
-                   </div>
-                
-                          <div className="!text-icon"
-                      
+                   </div>              
+                          <div className="!text-icon"                     
                       onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
                               //   this.props.getCustomerDocument(item.customerId );
-
                               props.handleCustomerDrawerModal(item, true);
                             }}
                           >
@@ -757,39 +705,7 @@ className="cursor-pointer text-xs font-poppins">
 
                             />
                           </Tooltip>
-                        </div>
-                        {/* <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
-                          <Tooltip title={translatedMenuItems[10]}>
-                          <LightbulbIcon
-                              className=" !text-icon cursor-pointer text-[#AF5910]"
-                            
-
-                            />
-                        
-                          </Tooltip>
-
-                        </div>                                        */}
-                                                
-                       
-                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title={translatedMenuItems[13]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditCustomer(item);
-                                  handleUpdateCustomerModal(true);
-                                  handleSetCurrentCustomerId(item.customerId);
-
-                                }}
-                              />
-                            </Tooltip>
-                          )}
-                          
-                         
-                        </div>  
-                        {/* <div class=" text-xs  font-poppins"> */}
+                        </div>            
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >            
                         <StyledPopconfirm
                           title= "Do you want to delete?"
@@ -801,9 +717,7 @@ className="cursor-pointer text-xs font-poppins">
                           />
                        </Tooltip>
                         </StyledPopconfirm>
-                      </div>
-                          
-                
+                      </div>                                 
                   </div>
                 </div>
                 </div>
@@ -814,11 +728,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
   )}
   <Suspense fallback={<BundleLoader />}>
-  {/* <UpdateUserModal
-      currentCustomerId={currentCustomerId}
-      updateUserModal={props.updateUserModal}
-      handleUpdateUserModal={props.handleUpdateUserModal}
-      /> */}
+
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -827,15 +737,6 @@ className="cursor-pointer text-xs font-poppins">
       translatedMenuItems={props.translatedMenuItems}
       />
 
-      <UpdateCustomerModal
-        customerId={currentCustomerId}
-        updateCustomerModal={updateCustomerModal}
-        handleUpdateCustomerModal={handleUpdateCustomerModal}
-        handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
       <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
@@ -871,8 +772,6 @@ className="cursor-pointer text-xs font-poppins">
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
-
-
       <AddCustomerNotesDrawerModal
         rowdata={rowdata}
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
@@ -917,15 +816,16 @@ const mapStateToProps = ({
   fetchingAllCustomers: customer.fetchingAllCustomers,
   fetchingCustomers: customer.fetchingCustomers,
   fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
+  // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
-  countries: auth.countries,
+  // countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   customerSearch: customer.customerSearch,
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

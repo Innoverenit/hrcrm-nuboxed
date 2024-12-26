@@ -1,9 +1,8 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { StyledDrawer, StyledModal } from "../../../../../Components/UI/Antd";
-import OrderPaymentTable from "./OrderPaymentTable";
-// import OrderPaymentTable from "./OrderPaymentTable";
-// const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
+import { StyledDrawer } from "../../../../../Components/UI/Antd";
+
+const OrderPaymentTable = lazy(() => import("./OrderPaymentTable"));
 class ShowPaymentHistoryModal extends Component {
     render() {
         const {
@@ -25,7 +24,10 @@ class ShowPaymentHistoryModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                        <OrderPaymentTable 
+                        particularRowData={this.props.particularRowData} 
+                        translatedMenuItems={this.props.translatedMenuItems}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </>

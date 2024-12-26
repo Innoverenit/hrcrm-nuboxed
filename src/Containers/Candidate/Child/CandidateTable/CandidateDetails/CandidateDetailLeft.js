@@ -19,13 +19,17 @@ class CandidateDetailLeft extends Component {
        
         candidate={candidate} />
         <ProfileTopicOfIntrest 
-        candidate={candidate}
+         userType={"candidate"}
+         uniqueId={this.props.candidate.candidateId}
+         candidateId={this.props.candidate.candidateId}
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}
       translatedMenuItems={this.props.translatedMenuItems}
         />
         <CertificationLibrary 
-        candidate={candidate} 
+         userType={"candidate"}
+         uniqueId={this.props.candidate.candidateId}
+         candidateId={this.props.candidate.candidateId}
         translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}

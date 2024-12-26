@@ -9,7 +9,8 @@ import {
 import { Link } from 'react-router-dom';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Tooltip, Button, Input } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from "@mui/icons-material/Search";
@@ -27,6 +28,37 @@ const AddInvoiceProjectsModal =lazy(()=> import('./ProjectsDetail/AddInvoiceProj
 
 
 function ProjectsTable(props) {
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+           "137", // 'project', // 0
+         "248", // 'Customer', // 1
+       
+     "100",//new 2
+        // Create Invoice
+       "170" ,// Edit
+       "1259" ,// Delete
+       "77",  // 'Creator', // 2
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
      props.getProjectsData(props.organizationId);
   }, []);
@@ -150,13 +182,22 @@ function ProjectsTable(props) {
 
   return (
     <>
-        <div className=' flex justify-end sticky top-28 z-auto'>
+        <div className=' flex justify-end sticky top-28 z-auto h-[90vh]'>
             <OnlyWrapCard style={{ backgroundColor: "white" }}>
-                <div className=" flex text-xs font-bold font-poppins w-[90%] p-2 bg-transparent sticky top-0 z-10">
-                    <div className="w-[21.1rem] md:w-[21.1rem]">project</div>
-                    <div className="w-[27.1rem] md:w-[27.1rem]">customer</div>
-                    <div className="w-[9.8rem] md:w-[9.8rem] ">Creator</div>
-                    <div className="w-[5.8rem] md:w-[5.8rem]"></div>
+            <div className=" flex font-poppins text-xs justify-between w-[98%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
+                    <div className="w-[26.7rem] text-[#00A2E8] text-sm truncate max-md:w-[21.1rem]">{translatedMenuItems[0]}
+                      {/* project  */}
+                      </div>
+                    <div className="w-[19.1rem] truncate max-md:w-[27.1rem]">
+                    <AcUnitIcon  className="!text-icon text-[#4f5d75]  "/>
+                      {translatedMenuItems[1]}
+                      {/* customer */}
+                      </div>
+                    <div className="w-[18.8rem] truncate max-md:w-[9.8rem] ">
+                    <AccountCircleIcon  className="!text-icon  text-[#C1121F]  " />
+                    {translatedMenuItems[5]}                 
+                         </div>
+                    <div className="w-[13.8rem] truncate max-md:w-[5.8rem]"></div>
                     
                 </div>
                 {props.projectsData.map((item) => {
@@ -164,11 +205,9 @@ function ProjectsTable(props) {
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-4 bg-white h-12 items-center p-3 "
-
-                            >
-                                <div class="flex">
-                                    <div className=" flex font-medium  md:w-[22.2rem] max-sm:w-full  ">
+                      <div className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "  >                 
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+                      <div className=" flex w-[27rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                                     <>
                                     <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`projects/${item.projectId}`} title={item.projectName}>
       {item.projectName}
@@ -185,13 +224,16 @@ function ProjectsTable(props) {
                    fontWeight: "bold",
                  }}
                >
-                 New
+                <div class="text-[0.65rem] text-[tomato] font-bold">
+                  {translatedMenuItems[2]} 
+                 </div> 
+                 {/* New */}
                </span>
             ) : null}
          </>
                                     </div>
 
-                                    <div className=" flex font-medium   md:w-[26.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[19.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins">
                                         <span>
             {item.customerName === null ? (
@@ -207,10 +249,7 @@ function ProjectsTable(props) {
                                         </div>
 
                                     </div>
-                                    <div className=" flex font-medium w-[21.2rem]  md:w-[8.2rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-
+                                    <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[19rem]  max-sm:w-auto  max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
                                         <div class=" text-sm  font-poppins">
                                         <span>
                  <MultiAvatar2
@@ -222,27 +261,21 @@ function ProjectsTable(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium justify-end items-center w-[10.5rem] md:w-[24.5rem] max-sm:flex-row max-sm:justify-between ">
-                                <Tooltip title="Create Invoice">
-            <ReceiptIcon className="!text-icon"
+                                <div className=" items-center justify-end flex bg-[#eef2f9] h-8 w-[16rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div class=" text-xs  font-poppins">
+                                    <Tooltip title="Create Invoice">
+                                    {/* {translatedMenuItems[3]}  */}
+            <ReceiptIcon   className=" !text-icon cursor-pointer text-[#df9697]"
            onClick={()=>{
              props.handleInvoiceProjectModal(true);
-            // handlePassRowData(item);
-            
-
-           
-          }}
-          style={{fontSize:"0.8rem",cursor:"pointer"}}
-           
+            // handlePassRowData(item);        
+          }}      
            />
             </Tooltip>
-
-                                  
-                               
-                                <Tooltip title="Edit">
-             <BorderColorIcon  className="!text-icon"
+</div>                        
+                                <Tooltip title={translatedMenuItems[3]} >
+             <BorderColorIcon  className="!text-icon cursor-pointer text-[tomato]"
               type="edit"
-              style={{ cursor: "pointer", fontSize:"0.8rem"}}
               onClick={() => {
                 props.setEditProjects(item);
                handleUpdateProjectsModal(true);
@@ -252,10 +285,10 @@ function ProjectsTable(props) {
           </Tooltip>
                               
                                 <StyledPopconfirm
-            title="Do you want to delete?"
+            title= {translatedMenuItems[4]} 
              onConfirm={() => removeProjectData(item.projectId)}
           >
-            <DeleteIcon  className="!text-icon cursor-pointer text-red-600"
+            <DeleteIcon  className="!text-icon cursor-pointer text-[tomato]"
             type="delete" />
           </StyledPopconfirm>
                                 </div>

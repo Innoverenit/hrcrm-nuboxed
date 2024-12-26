@@ -13,13 +13,13 @@ class ShipperDetailView extends Component {
     return (
       <>
         <ShipperItemRow 
-        label="Phone"
+        label={this.props.translatedMenuItems[12]}
         value={phoneNo} />
         <ShipperItemRow 
-        label="Email"
+        label={this.props.translatedMenuItems[13]}
         value={emailId} />
         <ShipperItemRow 
-        label="Ship By"
+        label={this.props.translatedMenuItems[14]}
         value={shipByName} />
       </>
     );

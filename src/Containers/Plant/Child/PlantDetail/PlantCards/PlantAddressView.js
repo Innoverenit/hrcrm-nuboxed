@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 
 class PlantAddressView extends Component {
   render() {
@@ -29,10 +28,10 @@ const PlantItemRow = ({ label, value }) => {
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem]">
    
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{ marginLeft: "-30px", textOverflow: "ellipsis" }}>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk">
         {value}
-      </SubTitle>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, {  useEffect, useState  } from "react";
+import React, {  useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInventory,  } from "../Inventory/InventoryAction";
@@ -13,16 +13,10 @@ import {
 } from "./OrderAction";
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
-import EcomSearchedData from "./EcomSearchedData";
-import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer";
-import ProcureItemViewDrawer from "./ProcureItemViewDrawer";
-import CBMdrawer from "./CBMdrawer";
+import EventRepeatIcon from '@mui/icons-material/EventRepeat'
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { base_url2 } from "../../../Config/Auth";
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -32,6 +26,13 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import axios from "axios";
+import { BundleLoader } from "../../../Components/Placeholder";
+
+const EcomStatusCardDrawer = lazy(() => import("./EcomStatusCardDrawer"));
+const EcomSearchedData=lazy(()=>import("./EcomSearchedData"));
+const EcomInvoiceListDrawer = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer"));
+const ProcureItemViewDrawer = lazy(() => import("./ProcureItemViewDrawer")); //2
+const CBMdrawer = lazy(() => import("./CBMdrawer"));
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -149,7 +150,7 @@ const getRelativeTime = (creationDate) => {
 
   const viewAnDownloadPdf= async (item) => {  
     try {
-      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
         responseType: 'blob',
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -186,35 +187,35 @@ const {handleProcureNotesDrawerModal,
     ) : (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
-        <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky items-end z-10">
-                        <div className="w-[6rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm truncate"> 
+        <div className=" flex justify-between w-[77%]  p-1 bg-transparent font-poppins !text-lm font-bold sticky items-end z-10">
+                        <div className="w-[7.2rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm truncate"> 
                           <DynamicFeedIcon className='!text-icon mr-1 '/>
                           {translatedMenuItems[0]} ID</div>
-                        <div className="w-[5.14rem] max-md:w-[5.14rem] truncate">
+                        <div className="w-[4.9rem] max-md:w-[5.14rem] truncate">
                           <ContactsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
                           {translatedMenuItems[1]}</div>
                         <div className="w-[9.4rem] max-md:w-[9.4rem] flex truncate">
                           <ApartmentIcon className='!text-icon  text-[#606C38]'/>
                           {translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className="w-[10.4rem] max-md:w-[10.4rem] truncate">
+                        <div className="w-[13.4rem] max-md:w-[10.4rem] truncate">
                         <LocationOnIcon className='!text-icon  text-[#2B2D42]'/>
                         {translatedMenuItems[3]}</div>
                         {/* Shipping */}
-                        <div className="w-[11.04rem] max-md:w-[11.04rem] truncate">  
+                        <div className="w-[13.09rem] max-md:w-[11.04rem] truncate">  
                           <TextSnippetIcon className='!text-icon  text-[#457B9D]'/>
                       {translatedMenuItems[4]}</div>
                         {/* Billing */}
-                        <div className="w-[4.4rem] max-md:w-[4.4rem] truncate">
+                        <div className="w-[3.4rem] max-md:w-[4.4rem] truncate">
                           <AddShoppingCartIcon className='!text-icon  text-[#B23A48]'/>
                           {translatedMenuItems[5]}
                           </div>
                         {/* item */}              
-                        <div className="w-[5.8rem] max-md:w-[5.8rem] truncate"> 
+                        <div className="w-[7.8rem] max-md:w-[5.8rem] truncate"> 
                           <UpdateIcon className='!text-icon text-[#ff66b3]' /> 
                           {translatedMenuItems[6]}
                           </div>                 
-                        <div className="w-[5.4rem] max-md:w-[5.4rem] truncate"> 
+                        <div className="w-[6.4rem] max-md:w-[5.4rem] truncate"> 
                         < MergeTypeIcon className='!text-icon text-[#c42847] '  /> 
                           {translatedMenuItems[10]}                       
                           </div>                     
@@ -223,7 +224,7 @@ const {handleProcureNotesDrawerModal,
             hasMore={hasMore}
           dataLength={props.ecomList.length}
           next={handleLoadMore}
-          loader={props.fetchingEcomList?<div class="flex justify-center" >Loading...</div>:null}
+          loader={props.fetchingEcomList?<div><BundleLoader/></div>:null}
           height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex font-poppins text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -363,6 +364,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
           })}
         </InfiniteScroll>
       </div>
+      <Suspense>
       <EcomInvoiceListDrawer
                     particularRowData={particularRowData}
          openInvoiceModal={openInvoiceModal}
@@ -385,6 +387,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                 particularRowData={particularRowData}
                 modalVisible={modalVisible}
                 closeModal={closeModal} />
+                </Suspense>
 
     </>
        )}

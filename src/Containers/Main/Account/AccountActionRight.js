@@ -13,34 +13,35 @@ class AccountActionRight extends React.Component {
         };
       }
     
-      componentDidMount() {
-        this.fetchMenuTranslations();
-      }
+      // componentDidMount() {
+      //   this.fetchMenuTranslations();
+      // }
     
-      componentDidUpdate(prevProps) {
-        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-          this.fetchMenuTranslations();
-        }
-      }
+      // componentDidUpdate(prevProps) {
+      //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      //     this.fetchMenuTranslations();
+      //   }
+      // }
     
-      fetchMenuTranslations = async () => {
-        try {
-          const itemsToTranslate = [
+      // fetchMenuTranslations = async () => {
+      //   try {
+      //     const itemsToTranslate = [
             
               
              
-           "85", // "Add",
-           "123" // "Import"
+      //      "85", // "Add",
+      //      "123" // "Import"
             
             
-          ];
+      //     ];
     
-          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-          this.setState({ translatedMenuItems: translations });
-        } catch (error) {
-          console.error('Error translating menu items:', error);
-        }
-      };
+      //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      //     this.setState({ translatedMenuItems: translations });
+      //   } catch (error) {
+      //     console.error('Error translating menu items:', error);
+      //   }
+      // };
+
     render() {
         const { handleDistributorModal, viewType,user } = this.props;
         return (
@@ -51,7 +52,7 @@ class AccountActionRight extends React.Component {
         onClick={() => this.props.handleAccountImportModal(true)}
         >
           <UploadIcon className=" !text-icon"/> 
-          {this.state.translatedMenuItems[1]} {/* Import */}
+          {this.props.translatedMenuItems[23]} {/* Import */}
           </Button>
           </div>
            {viewType === "list" ? (
@@ -60,7 +61,7 @@ class AccountActionRight extends React.Component {
                 <Button
                     type="primary"  onClick={() => handleDistributorModal(true)}>
                     <DataSaverOnIcon className=" !text-icon" /> 
-                    {this.state.translatedMenuItems[0]} {/* Add  */}
+                    {this.props.translatedMenuItems[22]} {/* Add  */}
                 </Button>
                 )}
             </Tooltip>

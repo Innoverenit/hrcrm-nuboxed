@@ -53,13 +53,19 @@ function InvoiceReportUserTab (props) {
       <InvoiceUserInCompleteCard               
       selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
       />
 ) : clickedTab === "complete" ?
 <InvoiceUserCompleteCard selectedButtonIcon={props.selectedButtonIcon}
-      selectedCategory={props.selectedCategory}/>
+      selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}/>
 : clickedTab === "all" ?
 <InvoiceUserAllCard selectedButtonIcon={props.selectedButtonIcon}
-      selectedCategory={props.selectedCategory}/> 
+      selectedCategory={props.selectedCategory}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}/> 
       :null
 }
        </>

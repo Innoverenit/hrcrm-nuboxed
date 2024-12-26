@@ -252,7 +252,7 @@ class UpdateInvestorContactForm extends Component {
           }) => (
               <Form className="form-background">
                 <div  class=" flex justify-between">
-                  <div class=" h-full w-w47.5"
+                  <div class=" h-full w-w47.5.5"
                   >
                     <div  class=" flex flex-nowrap justify-between mt-3">
                       <FastField name="imageId" component={PostImageUpld} />
@@ -391,7 +391,7 @@ class UpdateInvestorContactForm extends Component {
                       </div>
                     </div>
                     <div class="  flex justify-between max-sm:mt-20">
-        <div class="flex flex-col w-w47.5">
+        <div class="flex flex-col w-w47.5.5">
                 
                   <div class=" text-xs font-bold font-poppins"> 
                     {/* {translatedMenuItems[9]} */}
@@ -420,7 +420,7 @@ class UpdateInvestorContactForm extends Component {
                     </div>              
                
 
-<div class=" w-w47.5 ">
+<div class=" w-w47.5.5 ">
                    
                     <div class=" text-xs font-bold font-poppins"> Reports To</div>
                     
@@ -476,7 +476,7 @@ class UpdateInvestorContactForm extends Component {
                     <div class=" flex justify-between"></div>
                   </div>
                 &nbsp;
-                <div class=" h-2/3 w-w47.5"
+                <div class=" h-2/3 w-w47.5.5"
                   >                  
                    
                     <FieldArray

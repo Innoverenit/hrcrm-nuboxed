@@ -803,6 +803,7 @@ export const distributorReducer = (state = initialState, action) => {
         distributorOrder: [],
         productionOrder: [],
         contactDistributor: [],
+        distributorDetailsByDistributorId: [],
       };
 
     /**
@@ -1855,6 +1856,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingCar: false,
         updateOrderModal: false,
+        addAccountOpportunityModal:false,
         addLinkDistributorOrderConfigureModal: false,
         distributorOrder: state.distributorOrder.map((item) => {
           if (item.orderId == action.payload.orderId) {

@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
-
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -33,7 +31,6 @@ function EditRecruitForm(props) {
     props.getCurrency();
   }, []);
   // console.log("djbhfkdhg", props.currentRecruitmentData);
-
   return (
     <>
       <Formik

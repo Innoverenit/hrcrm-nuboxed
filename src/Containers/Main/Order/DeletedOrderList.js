@@ -1,10 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Select, Button, Badge } from "antd";
 import dayjs from "dayjs";
-import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   emptyMOrders,
@@ -16,23 +15,30 @@ import {
     handlePaidModal
 } from "./OrderAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
-import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
-import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
-import ReInstateOrderToggle from "./ReInstateOrderToggle";
-import OrderSearchedData from "./OrderSearchedData";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupsIcon from '@mui/icons-material/Groups';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
+
+const NodataFoundPage = lazy(() => import("../../../Helpers/ErrorBoundary/NodataFoundPage")); //2
+const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
+const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
+const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
+const PaidButtonModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal"));
+const ReInstateOrderToggle = lazy(() => import("./ReInstateOrderToggle")); //2
+const OrderSearchedData = lazy(() => import("./OrderSearchedData"));
 const { Option } = Select;
 
 function DeletedOrderList(props) {
@@ -63,7 +69,6 @@ function DeletedOrderList(props) {
               "677",   // 'Lead',            
               "679",    // 'Created',             
               "108",  // "Normal"
-
 
           ];
     
@@ -113,7 +118,7 @@ function DeletedOrderList(props) {
 }
 const viewAnDownloadPdf= async (item) => {  
   try {
-    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`order`}/${item.orderId}`, {
       responseType: 'blob',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -132,7 +137,6 @@ const viewAnDownloadPdf= async (item) => {
   } catch (error) {
     console.error('Error fetching PDF:', error);
   }  
-
 }; 
 
     function handleSetParticularOrderData(item, data) {
@@ -157,26 +161,26 @@ const viewAnDownloadPdf= async (item) => {
             <div className=' flex justify-end sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent  sticky font-bold font-poppins z-10 max-sm:hidden">
-                        <div className="w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                <div className=" flex justify-between w-full p-1 bg-transparent !text-lm sticky font-bold font-poppins z-10 max-sm:hidden">
+                        <div className="w-[3.54rem] max-md:w-[3.54rem] truncate text-[white] flex justify-center bg-[red]">
                           {translatedMenuItems[0]} </div>
-                        <div className=" text-[#00A2E8] text-base  md:w-[10.31rem] ml-2">
-                          {translatedMenuItems[1]} ID</div>
-                        <div className=" w-[8.6rem]] text-xs  max-md:w-[8.6rem]">
-                          {translatedMenuItems[2]}</div>
-                        <div className=" w-[4.051rem]] text-xs  max-md:w-[4.051rem] ">
-                          {translatedMenuItems[3]}</div>
-                        <div className=" w-[5.018rem] text-xs  max-md:w-[5.018rem]">
-                          {translatedMenuItems[4]}</div>
-                        <div className=" w-[5.031rem] text-xs  max-md:w-[5.031rem]">
-                          {translatedMenuItems[8]}</div>
-                        <div className=" w-[5.2rem] text-xs  max-md:w-[5.2rem]">
+                        <div className=" text-[#00A2E8] text-sm truncate text-icon  md:w-[9.7rem] ml-3">
+                        <DynamicFeedIcon className='!text-icon mr-1 '/> {translatedMenuItems[1]} ID</div>
+                        <div className=" w-[11.3rem]  truncate max-md:w-[8.6rem]">
+                        <ApartmentIcon className='!text-icon    text-[#43e035]'/> {translatedMenuItems[2]}</div>
+                        <div className=" w-[6.3rem]  truncate  max-md:w-[4.051rem] ">
+                        <ContactsIcon className='!text-icon mr-1 text-[#9737c4]'/>  {translatedMenuItems[3]}</div>
+                        <div className=" w-[6.7rem]   truncate max-md:w-[5.018rem]">
+                       {translatedMenuItems[4]}</div>
+                        <div className=" w-[9.031rem]  truncate  max-md:w-[5.031rem]">
+                        <DateRangeIcon className="!text-icon  mr-1"/> {translatedMenuItems[8]}</div>
+                        <div className=" w-[7.2rem]  truncate max-md:w-[5.2rem]">
                           {translatedMenuItems[6]}</div>
-                        <div className=" w-[5.06rem] text-xs  max-md:w-[5.06rem]">
-                          {translatedMenuItems[7]}</div>
-                        <div className=" w-[9.73rem] text-xs  max-md:w-[9.73rem]">
-                          {translatedMenuItems[5]}</div>
-                        <div className=" w-[24rem] text-xs  max-md:w-[24rem]"></div>
+                        <div className=" w-[6.06rem] truncate  max-md:w-[5.06rem]">
+                        <GroupsIcon className='!text-icon mr-1 text-[#e93aa3]'/>  {translatedMenuItems[7]}</div>
+                        <div className=" w-[5.73rem]  truncate max-md:w-[9.73rem]">
+                        <AccountCircleIcon className="!text-icon text-[#dd5738]"/>  {translatedMenuItems[5]}</div>
+                        <div className=" w-[19rem] truncate max-md:w-[24rem]"></div>
                       </div>
                     <InfiniteScroll
                         dataLength={props.deletedHighOrder.length}
@@ -221,9 +225,9 @@ const viewAnDownloadPdf= async (item) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  w-wk   max-sm:w-full">
+                    <div className=" flex     max-sm:w-full">
                       <div className="flex  justify-center max-sm:w-full">
-                        <div class="w-[9.43rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="flex w-[9.43rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
@@ -245,7 +249,7 @@ const viewAnDownloadPdf= async (item) => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="flex max-sm:w-full md:w-[11.02rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -256,7 +260,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.23rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -264,26 +268,20 @@ const viewAnDownloadPdf= async (item) => {
                           imgWidth={"1.8rem"}
                           imgHeight={"1.8rem"}
                         />
-
                       </div>
-
-
-
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[6.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
-
-
-                  </div>
-                  <div class="flex flex-row  md:w-[5.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  </div>           
+                  <div className=" flex text-xs items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[8.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
+                  <div class="flex flex-row  md:w-[6.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -291,14 +289,10 @@ const viewAnDownloadPdf= async (item) => {
                         imgWidth={"1.8rem"}
                         imgHeight={"1.8rem"}
                       />
-
                     </div>
-
-
-
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -306,13 +300,9 @@ const viewAnDownloadPdf= async (item) => {
                           imgWidth={"1.8rem"}
                           imgHeight={"1.8rem"}
                         />
-
                       </div>
-
-
-
                     </div>
-                    <div class="flex flex-row  md:w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row  md:w-[6.04rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -341,37 +331,31 @@ const viewAnDownloadPdf= async (item) => {
                             imgWidth={"1.8rem"}
                             imgHeight={"1.8rem"}
                           />
-
-
                         }
                       </div>
                     </div>
-
-                  </div>
-                
+                  </div>             
                   <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
 <ReInstateOrderToggle item={item} />
-
 </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[5.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                    <div class="flex rounded-full text-xs cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                       {item.orderStatus}
                     </div>
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
-                    <div class="w-6 items-center justify-center h-8  bg-[#eef2f9]">
+                    <div class="flex w-6 items-center justify-center h-8  bg-[#eef2f9]">
                     <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
     />
           </div>        
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
+                      <div class="flex text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                              className=" !text-icon cursor-pointer text-green-800"
@@ -383,12 +367,9 @@ const viewAnDownloadPdf= async (item) => {
                           />
                         </Tooltip>
                       </div>
-
-
                     </div>
-
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                      <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -401,7 +382,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                    <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                                   className=" !text-icon cursor-pointer "
@@ -415,7 +396,7 @@ const viewAnDownloadPdf= async (item) => {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                    <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
                                   className=" !text-icon cursor-pointer text-[#e5625e]"
@@ -426,40 +407,40 @@ const viewAnDownloadPdf= async (item) => {
                           // style={{ color: "blue" }}
                           />
                         </Tooltip>
-
                       </div>
                     </div>
-
-
                   </div>
-
                 </div>
               </div>
-
                                     );
                                 })}
                             </> :
                             !props.deletedHighOrder.length && !props.fetchingDeletedHighOrderList ? <NodataFoundPage /> : null}
-
-
                     </InfiniteScroll>
                 </div>
             </div>
-
             <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
-          <div className="md:w-24"></div>
-        </div>
+                <div className=" flex justify-between w-full !text-lm p-1 bg-transparent font-bold font-poppins sticky  z-10 max-sm:hidden">
+                <div className="w-[3.54rem] truncate  max-md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+                <div className="w-[10.31rem] text-[#00A2E8] text-sm  max-md:w-[9.7rem] ml-3">
+                        <DynamicFeedIcon className='!text-icon mr-1 '/> {translatedMenuItems[1]} ID</div>
+                        <div className=" w-[11.3rem] truncate max-md:w-[8.6rem]">
+                        <ApartmentIcon className='!text-icon    text-[#43e035]'/> {translatedMenuItems[2]}</div>
+                        <div className=" w-[6.3rem] truncate  max-md:w-[4.051rem] ">
+                        <ContactsIcon className='!text-icon mr-1 text-[#9737c4]'/>  {translatedMenuItems[3]}</div>
+                        <div className=" w-[6.7rem] truncate max-md:w-[5.018rem]">
+                       {translatedMenuItems[4]}</div>
+                        <div className=" w-[9.031rem] truncate max-md:w-[5.031rem]">
+                        <DateRangeIcon className="!text-icon  mr-1"/> {translatedMenuItems[8]}</div>
+                        <div className=" w-[7.2rem] truncate  max-md:w-[5.2rem]">
+                          {translatedMenuItems[6]}</div>
+                        <div className=" w-[6.06rem] truncate max-md:w-[5.06rem]">
+                        <GroupsIcon className='!text-icon mr-1 text-[#e93aa3]'/>  {translatedMenuItems[7]}</div>
+                        <div className=" w-[5.73rem] truncate max-md:w-[9.73rem]">
+                        <AccountCircleIcon className="!text-icon text-[#dd5738]"/>  {translatedMenuItems[5]}</div>
+                        <div className=" w-[19rem] truncate max-md:w-[24rem]"></div>
+                      </div>
                     <InfiniteScroll
                         dataLength={props.deletedLowOrder.length}
                         next={handleLoadMoreLow}
@@ -479,10 +460,8 @@ const viewAnDownloadPdf= async (item) => {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-                // style={{
-                //   borderBottom: "3px dotted #515050",
-                // }}
+                  className="flex rounded justify-between mt-1 bg-white items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+       
                 >
                   <div class="flex">
                   <div className=" flex    md:w-[4.26rem] items-center max-sm:w-full  ">
@@ -503,9 +482,9 @@ const viewAnDownloadPdf= async (item) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  w-wk   max-sm:w-full">
+                    <div className=" flex     max-sm:w-full">
                       <div className="flex  items-centermax-sm:w-full">
-                        <div class="w-[9.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
+                        <div class="flex w-[9.43rem] items-center justify-start ml-gap bg-[#eef2f9] h-8">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] ml-tiny text-xs font-bold items-center"
@@ -524,20 +503,16 @@ const viewAnDownloadPdf= async (item) => {
                               ) : null}
                             </span>
                           </Badge>
-                        </div>
-                      
-
-                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
+                        </div>                
+                        <div class="flex max-sm:w-full md:w-[9.02rem] items-center justify-start  ml-gap bg-[#eef2f9] h-8">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
-
                             </div>
                           </Tooltip>
                         </div>
                       </div>
                     </div>
-
                     <div class="flex flex-row items-center md:w-[3.23rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
@@ -548,9 +523,6 @@ const viewAnDownloadPdf= async (item) => {
                         />
 
                       </div>
-
-
-
                     </div>
                   </div>
                   <div class="flex">
@@ -559,14 +531,12 @@ const viewAnDownloadPdf= async (item) => {
                         {item.noOfPhones}
                       </div>
                     </div>
-
-
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+             
+                  <div className=" flex text-xs  md:w-[11.912rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
-                  </div>
-                  
+                  </div>  
+                  <div  class="flex flex-row items-center md:w-[5.03rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">           
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -576,9 +546,6 @@ const viewAnDownloadPdf= async (item) => {
                       />
 
                     </div>
-
-
-
                   </div>
                   <div class=" flex">
                     <div class="flex flex-row items-center md:w-[3.02rem]  justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
@@ -589,11 +556,7 @@ const viewAnDownloadPdf= async (item) => {
                           imgWidth={"1.8rem"}
                           imgHeight={"1.8rem"}
                         />
-
                       </div>
-
-
-
                     </div>
                     <div class="flex flex-row items-center md:w-[6.02rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
@@ -624,8 +587,6 @@ const viewAnDownloadPdf= async (item) => {
                             imgWidth={"1.8rem"}
                             imgHeight={"1.8rem"}
                           />
-
-
                         }
                       </div>
                     </div>
@@ -633,9 +594,7 @@ const viewAnDownloadPdf= async (item) => {
                   </div>
                   
                   <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
 <ReInstateOrderToggle item={item} />
-
 </div>
                   <div class="flex">
                     <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full   items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between ">
@@ -647,7 +606,7 @@ const viewAnDownloadPdf= async (item) => {
                     <div class="rounded-full text-xs cursor-pointer w-8  items-center justify-center ml-gap bg-[#eef2f9] h-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div class="w-6  items-center justify-center  bg-[#eef2f9] h-8">
+                    <div class="flex w-6  items-center justify-center  bg-[#eef2f9] h-8">
                     <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
     />
@@ -655,7 +614,7 @@ const viewAnDownloadPdf= async (item) => {
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                      <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                            className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
@@ -667,12 +626,9 @@ const viewAnDownloadPdf= async (item) => {
                           />
                         </Tooltip>
                       </div>
-
-
                     </div>
-
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                    <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
@@ -685,7 +641,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                    <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                              className=" !text-icon cursor-pointer max-sm:!text-2xl "
@@ -699,7 +655,7 @@ const viewAnDownloadPdf= async (item) => {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
+                    <div class="flex text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
                              className=" !text-icon cursor-pointer text-[#e5625e] max-sm:!text-2xl "
@@ -713,23 +669,17 @@ const viewAnDownloadPdf= async (item) => {
 
                       </div>
                     </div>
-
-
-
                   </div>
-
                 </div>
               </div>
-
                                     );
                                 })}
                             </> :
                             !props.deletedLowOrder.length && !props.fetchingDeletedLowOrderList ? <NodataFoundPage /> : null}
-
-
                     </InfiniteScroll>
                 </div>
             </div>
+            <Suspense>
             <AddNotesOrderDrawer
                 particularRowData={particularRowData}
                 addNotesInOrder={props.addNotesInOrder}
@@ -745,11 +695,12 @@ const viewAnDownloadPdf= async (item) => {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}
-                addOrderDetailsModal={props.addOrderDetailsModal} />
+                addOrderDetailsModal={props.addOrderDetailsModal} /></Suspense>
 
         </>
           )}

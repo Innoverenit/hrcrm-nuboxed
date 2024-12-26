@@ -27,7 +27,6 @@ import {
   convertCustomerStatus
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
@@ -36,10 +35,7 @@ import ScoreIcon from '@mui/icons-material/Score';
 import FWLogo1 from "../../../../../src/Assets/Images/smallLogo.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
-
-import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
@@ -111,11 +107,9 @@ const LeadsTeamWarmcard = (props) => {
   
   const [currentLeadsId, setCurrentLeadsId] = useState("");
   const [rowdata, setrowData] = useState({});
-
   const handleRowData = (data) => {
     setrowData(data);
   };
-
 
   const handleLoadMore1 = () => {
     const callPageMapd = props.teamLeadsWarm && props.teamLeadsWarm.length &&props.teamLeadsWarm[0].pageCount
@@ -140,7 +134,6 @@ const LeadsTeamWarmcard = (props) => {
     }, 100);
   };
 
-
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
@@ -148,56 +141,44 @@ const LeadsTeamWarmcard = (props) => {
     deleteLeadsData,
     handleUpdateLeadsModal,
     handleLeadsNotesDrawerModal,
-    updateLeadsModal,
     fetchingTeamLeadsWarm,
     teamLeadsWarm,
     user,
   } = props;
 
-  // if (loading) {
-  //   return 
-  // }
-
    return (
-   
- 
     <>
-    
-
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-      <div className=" flex  w-[96%] max-sm:hidden p-1 bg-transparent  font-bold font-poppins text-xs sticky z-10">
-      <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate bg-orange-400 text-white">{translatedMenuItems[12]}</div>
-      <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] truncate max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+      <div className=" flex  w-[92%]  max-sm:hidden p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]   z-10">
+      <div className="flex items-center justify-center w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] truncate bg-orange-400 text-white">{translatedMenuItems[12]}</div>
+        <div className=" w-[2.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem]"></div>
+        <div className="  w-[21.1rem] text-[#00A2E8]  text-sm max-xl:w-[12.1rem] max-lg:w-[7.1rem]  truncate ">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
+       
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] truncate ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate">{translatedMenuItems[7]}</div> 
+        <div className=" w-[10.2rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  truncate "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
+        <div className=" w-[9.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] truncate">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
+        <div className= " w-[9.4rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] truncate"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
+        <div className= " w-[7.3rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] truncate">{translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem] truncate">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[22]}
-          
+            <div className=" w-[4.81rem] max-xl:w-[3.81rem] truncate">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[20]}      
             </div>
             )}
-        <div className=" w-[4.23rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
-        <div className=" w-[2.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] truncate max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[3.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] truncate max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] truncate max-lg:text-[0.45rem]"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
-   
-       
+        <div className=" w-[4.23rem] max-xl:w-[6.2rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
+        <div className=" w-[3.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] truncate">{translatedMenuItems[9]}</div>
+        <div className=" w-[3.7rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[10]}</div>
+        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] truncate"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+      
+        {/* <div className="w-12"></div> */}
 
       </div>
       <InfiniteScroll
         dataLength={teamLeadsWarm.length}
         next={handleLoadMore1}
         hasMore={hasMore}
-        loader={fetchingTeamLeadsWarm?<div class="flex justify-center"> <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div></div>:null}
+        loader={fetchingTeamLeadsWarm?<div> <BundleLoader/></div>:null}
         height={"24vh"}
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -213,10 +194,10 @@ const LeadsTeamWarmcard = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1  items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-             <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+             <div class=" text-xs  font-poppins max-sm:text-sm ">
                         {props.showCheckboxes && (
                         <Checkbox
                 onChange={() => props.handleCheckboxChange(item.leadsId)}
@@ -224,7 +205,7 @@ const LeadsTeamWarmcard = (props) => {
               />
                         )}
                         </div>
-             <div class="flex flex-row mr-1 items-center w-[6.2rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+             <div class="flex flex-row items-center w-[6.2rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
@@ -271,8 +252,8 @@ const LeadsTeamWarmcard = (props) => {
                     </ButtonGroup>
                   </div>
                 </div>
-                <div className=" flex w-[12rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
-                  <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-1">
+                <div className=" flex w-[14.4rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                  <div className="flex max-sm:w-full  ml-1">
                     <div>
                      
                         <MultiAvatar
@@ -289,7 +270,7 @@ const LeadsTeamWarmcard = (props) => {
                     <div class="max-sm:w-full md:flex items-center ml-1">
                       <Tooltip>
                         <div class="max-sm:w-full justify-between flex md:flex-col">
-                          <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                          <div class="text-xs flex  font-semibold  font-poppins cursor-pointer  max-lg:max-w-[10ch] truncate max-sm:text-sm">
                             {item.name}
                             &nbsp;&nbsp;
                             {date === currentdate ? (
@@ -310,7 +291,7 @@ const LeadsTeamWarmcard = (props) => {
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div className=" flex w-[2.5rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                  <div class=" text-xs  font-poppins  max-sm:text-sm">
                    
                      <CountryFlag1 countryCode={countryCode} />
                     &nbsp;
@@ -320,7 +301,7 @@ const LeadsTeamWarmcard = (props) => {
                 </div>
                 <div className=" flex w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
        
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                  <div class=" text-xs  font-poppins  max-sm:text-sm">
                     {item.countryDialCode && item.phoneNumber
                       ? `${item.countryDialCode} ${item.phoneNumber}`
                       : "None"}
@@ -328,8 +309,8 @@ const LeadsTeamWarmcard = (props) => {
                   </div>
                 </div>
                
-                <div className=" flex w-[6rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
-                  <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                <div className=" flex w-[6rem]  items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div class=" text-xs    font-poppins  max-lg:max-w-[10ch] truncate max-sm:text-sm">
                     {item.companyName || "None"}
                   </div>
                 </div>
@@ -355,25 +336,25 @@ const LeadsTeamWarmcard = (props) => {
 
                 <div className=" flex w-[7.35rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
          
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                  <div class=" text-xs  font-poppins  max-sm:text-sm">
                     {item.sector}
                   </div>
                 </div>
-                <div className=" flex w-[6.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                <div className=" flex w-[7.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
          
-         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+         <div class=" text-xs  font-poppins  max-sm:text-sm">
            {item.source}
          </div>
        </div>
        <div className=" flex w-[5.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
          
-         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+         <div class=" text-xs  font-poppins  max-sm:text-sm">
            {item.lob}
          </div>
        </div>
        {/* Score */}
        {props.user.aiInd && (
-           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.5rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
    {item.noteScoreInd}
           
             </div>
@@ -382,8 +363,8 @@ const LeadsTeamWarmcard = (props) => {
 
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                <div className=" flex w-[2.02rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
-                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                <div className=" flex w-[3.02rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                  <div class=" text-xs  font-poppins  max-sm:text-sm">
                     <div>
                     {item.assignedTo === null ? (
               "None"
@@ -405,7 +386,7 @@ const LeadsTeamWarmcard = (props) => {
                     </div>
                   </div>
                 </div>
-                   <div className=" flex w-[4rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                   <div className=" flex w-[3.03rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     {item.assignedBy && (
                   <div>
               <div class="max-sm:flex justify-end">
@@ -434,7 +415,7 @@ const LeadsTeamWarmcard = (props) => {
                   </div>
                 </div>
         
-                <div className=" flex w-[2.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                <div className=" flex w-[4.7rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
   {!item.companyName && item.leadType === "BtoC" ? (
@@ -539,31 +520,20 @@ const LeadsTeamWarmcard = (props) => {
                       />
                     </Tooltip>{" "}
                   </div>
-                  {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div >
-                      <Tooltip title={translatedMenuItems[18]}>
-                        <BorderColorIcon
-                         className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                            props.setEditLeads(item);
-                            handleUpdateLeadsModal(true);
-                            handleSetCurrentLeadsId(item);
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                  )}
+              
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div >
-                     
-                      <StyledPopconfirm
-                        title={translatedMenuItems[19]}
-                        onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                   <Tooltip title="Delete">
-                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
-                     </Tooltip>
-                      </StyledPopconfirm>
-                    </div>
+                       <div >                     
+                       <StyledPopconfirm
+                         title={translatedMenuItems[19]}
+                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                    <Tooltip title="Delete">
+                         <DeleteOutlineIcon
+                           type="delete"
+                           className=" !text-icon cursor-pointer text-[red]"
+                         />
+                      </Tooltip>
+                       </StyledPopconfirm>
+                     </div>
                   )}
                 
              </div>
@@ -575,18 +545,6 @@ const LeadsTeamWarmcard = (props) => {
          </InfiniteScroll>
       </div>
       </div>
-
-
-
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
-      />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
@@ -634,7 +592,6 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   lead: leads.lead,
   user: auth.userDetails,
   countries: auth.countries,
-  updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingTeamLeads: leads.fetchingTeamLeads,
   openCETmodal: leads.openCETmodal,
@@ -689,7 +646,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+        <i className={`${iconType} !text-icon `}  ></i>
       </Button>
     </Tooltip>
   );
@@ -714,7 +671,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} !text-icon `} ></i>
       </Button>
     </Tooltip>
   );
@@ -739,7 +696,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} !text-icon `} ></i>
       </Button>
     </Tooltip>
   );

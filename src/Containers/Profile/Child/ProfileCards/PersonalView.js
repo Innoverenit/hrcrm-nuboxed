@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import {
-  SubTitle,
-} from "../../../../Components/UI/Elements";
 import { StyledCollapse } from "../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
@@ -52,8 +49,8 @@ const ProfileItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center flex-no-wrap m-2"
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{ marginLeft: "-1.125em" }}>{value}</SubTitle>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{value}</div>
     </div>
   );
 };

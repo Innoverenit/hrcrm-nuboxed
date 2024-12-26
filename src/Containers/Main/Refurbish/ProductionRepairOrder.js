@@ -17,6 +17,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import RefurbishNoteAll from "./RefurbishNoteAll";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
@@ -208,7 +209,7 @@ function ProductionRepairOrder(props) {
                             dataLength={props.repairOrder.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingRepairorderById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingRepairorderById ? <div><BundleLoader/></div> : null}
                             height={"75vh"}
                             style={{ scrollbarWidth:"thin"}}
                         >

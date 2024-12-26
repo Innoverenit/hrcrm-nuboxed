@@ -198,7 +198,7 @@ function AddShipperForm(props) {
           <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[33rem]">
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
-                <div class="h-full w-w47.5 max-sm:w-full">
+                <div class="h-full w-w47.5.5 max-sm:w-full">
 
                   <Field
                     isRequired
@@ -305,7 +305,7 @@ function AddShipperForm(props) {
           />
                   </div>
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
+                <div class=" h-3/4 w-w47.5.5 max-sm:w-wk "  
                 >
                  <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
@@ -410,7 +410,7 @@ function AddShipperForm(props) {
                   htmlType="submit"
                  loading={props.addingCustomerConfig}
                 >
-                    Update
+                    Submit
                     {/* {props.translatedMenuItems[15]} */}
                 
                 </Button>

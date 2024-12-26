@@ -1,27 +1,18 @@
 import React, { Component,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { getCustomerDetailsById } from "../../CustomerAction";
 import { withRouter } from "react-router";
-import ReportDetailRight from "./ReportDetailRight";
-const ReportDetailLeft=lazy(()=> import("./ReportDetailLeft"));
 
+const ReportDetailLeft=lazy(()=> import("./ReportDetailLeft"));
+const ReportDetailRight=lazy(()=> import("./ReportDetailRight"));
 
 class ReportDetails extends Component {
-//   componentDidMount() {
-//     this.props.getCustomerDetailsById(this.props.match.params.customerId);
-//   }
   render() {
     const { customer, fetchingCustomerDetailsById } = this.props;
     return (
       <>
         <>
-          {/* <CustomerDetailHeader />
-          {fetchingCustomerDetailsById ? (
-            <MainWrapper>
-              <BundleLoader />
-            </MainWrapper>
-          ) : ( */}
+      
               <div>
                 <Suspense fallback={"Loading..."}>
                 <div className=" flex  flex-row">
@@ -44,6 +35,8 @@ class ReportDetails extends Component {
                handleButtonIcon={this.props.handleButtonIcon}
                UserOrgFlipClick={this.props.UserOrgFlipClick}
                userorgflipClick={this.props.userorgflipClick}
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
                />
                     </div>
                     <div class=" w-[70%] max-sm:w-full">
@@ -58,6 +51,8 @@ class ReportDetails extends Component {
           handleButtonIcon={this.props.handleButtonIcon}
           UserOrgFlipClick={this.props.UserOrgFlipClick}
           userorgflipClick={this.props.userorgflipClick}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
 
                       />
                     </div>

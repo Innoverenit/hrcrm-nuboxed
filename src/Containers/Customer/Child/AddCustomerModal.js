@@ -7,7 +7,7 @@ const AddCustomerModal = (props) => {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "50%";
     const handleClose = () => {
       window.location.reload(true);
     };

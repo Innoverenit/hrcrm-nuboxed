@@ -23,6 +23,7 @@
 const login_url = "https://develop.tekorero.com/testHr"; 
 const base_url = "https://develop.tekorero.com/testHr/api/v1";
 const base_url2 = "https://develop.tekorero.com/testErp";
+const base_url3 = "https://develop.tekorero.com/ThirdpartyLogistics"
 const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
@@ -41,4 +42,4 @@ const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 //  const sub_url = "http://develop.tekorero.com/Subscription/api/v2";
 
 
-export { base_url, sub_url,login_url, asses_url, base_url2 }; 
+export { base_url, sub_url,login_url, asses_url, base_url2,base_url3 }; 

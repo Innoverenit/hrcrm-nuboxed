@@ -7,8 +7,8 @@ const RemarkForm = lazy(() => import("./RemarkForm"));
 class AddRemarksModal extends Component {
   render() {
     const { addRemarksModal, handleRemarksModal, ...formProps } = this.props;
-    console.log(this.props.stageList);
-    console.log("candidate",this.props.candidateId)
+    // console.log(this.props.stageList);
+    // console.log("candidate",this.props.candidateId)
     return (
       <>
         <StyledModal

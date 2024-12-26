@@ -216,7 +216,7 @@ console.log(props.UOMListData)
 const mapStateToProps = ({ supplies,auth ,settings}) => ({
     materialsBySuppliesId: supplies.materialsBySuppliesId,
   fetchingMaterialsBySuppliesId:supplies.fetchingMaterialsBySuppliesId,
-  // UOMListData:settings.UOMListData,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>

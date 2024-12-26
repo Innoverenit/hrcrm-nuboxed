@@ -1,186 +1,15 @@
-// import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-
-// import dayjs from "dayjs";
-// import {
-//   getSupplierDocument,
-//   // deleteErpDocument
-// } from "../../../../SuppliersAction";
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
-// import DescriptionIcon from '@mui/icons-material/Description';
-// import ArticleIcon from '@mui/icons-material/Article';
-// import DateRangeIcon from '@mui/icons-material/DateRange';
-// import { BundleLoader } from "../../../../../../../Components/Placeholder";
-// import EmptyPage from "../../../../../EmptyPage";
-// class SupplierDocumentTable extends Component {
-
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       translatedMenuItems: [],
-//       loading: true
-//     };
-//   }
-//   componentDidMount() {
-//     this.props.getCustomerData(this.props.userId);
-//     this.props.getDepartments();
-    
-//   }
-//   componentDidMount() {
-//     this.fetchMenuTranslations();
-//     this.props.getSupplierDocument(this.props.supplier.supplierId);
-//   }
-//   async fetchMenuTranslations() {
-//     try {
-//       this.setState({ loading: true });
-//       const itemsToTranslate = [
-//        '74', // 0Date
-// '110', // 1 Name
-// '147', // 2 Description
-// '1207', // 3Uploaded By
-
-
-//       ];
-//       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-//       this.setState({ translatedMenuItems: translations ,loading: false});
-     
-//     } catch (error) {
-//       this.setState({ loading: false });
-//       console.error('Error translating menu items:', error);
-//     }
-//   }
-
-//   render() {
-//     const {
-//       documentsBySupplierId,
-//       documentsByDistributorId,
-//       fetchingDocumentsBySupplierId,
-//       fetchingDocumentsBySupplierIdError,
-//     } = this.props;
-//     if (fetchingDocumentsBySupplierId) {
-//       return <BundleLoader />;
-//     }
-//     const {loading,translatedMenuItems } = this.state;
-//     if (loading) {
-//       return <div><BundleLoader/></div>;
-//     } 
-//     return (
-//       <>
-//        <div className="flex justify-end sticky  z-auto">
-//           <div className="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-//             <div className="flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky items-end top-0 z-10">
-//               <div className="md:w-[0.5rem]"></div>
-//               <div className="max-md:w-[7.4rem] truncate w-[7.4rem] text-[#00A2E8] text-base font-poppins font-bold"><DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
-//               {/* Date */}
-//               </div>
-//               <div className="max-md:w-[5.1rem] truncate w-[5.1rem] font-poppins font-bold text-xs"><ArticleIcon className='!text-icon text-[#a379c9] '  /> {translatedMenuItems[1]} 
-//               {/* Name */}
-//               </div>
-//               <div className="max-md:w-[8.8rem] truncate w-[8.8rem] font-poppins font-bold text-xs">  <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]} 
-//                {/* Description */}
-//               </div>
-//               <div className="max-md:w-[8.8rem] truncate w-[8.8rem] font-poppins font-bold text-xs"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[3]} 
-//                {/* Uploaded By */}
-//               </div>
-//             </div>
-//             <div className="overflow-x-auto h-[64vh]">
-//               {documentsBySupplierId.length > 0 ? (
-//                 documentsBySupplierId.map((item) => (
-//                   <div key={item.id}>
-//                     <div className="flex rounded mt-1 bg-white py-ygap  items-center max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-//                       <div className="flex w-3/4 ">
-//                         <div className="flex border-l-2 h-8 border-green-500 bg-[#eef2f9] max-md:w-[1.56rem] w-[1.56rem] max-sm:w-full">
-//                           {dayjs(item.creationDate).format("ll")}
-//                         </div>
-//                         <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[7.4rem] w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-//                           <div className="text-xs ml-gap font-poppins text-center">
-//                             {item.contactDocumentName}
-//                           </div>
-//                         </div>
-//                         <div className="flex  items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-//                           <div className="text-xs ml-gap  font-poppins text-center">
-//                             {item.description}
-//                           </div>
-//                         </div>
-//                         <div className="flex items-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-//                           <div className="text-xs  font-poppins text-center">
-//                             {item.uploadedBy}
-//                           </div>
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 ))
-//               ) : (
-//                 <div className="text-center p-5">
-//                   <EmptyPage />
-//                 </div>
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//         {/* {true && (
-//           <StyledTable
-//             // rowSelection={rowSelection}
-//             pagination={{ pageSize: 50 }}
-//             scroll={{ y: 280 }}
-//             expandedRowRender={(record) => {
-//               //debugger;
-//               // return <p style={{ margin: 0 }}>{record.documentDescription}</p>;
-//             }}
-//             rowKey="CustomerId"
-//             columns={columns}
-//             dataSource={this.props.documentsBySupplierId}
-//             Loading={
-//               fetchingDocumentsBySupplierId ||
-//               fetchingDocumentsBySupplierIdError
-//             }
-//           />
-//         )} */}
-//       </>
-//     );
-//   }
-// }
-
-// const mapStateToProps = ({ suppliers }) => ({
-//   suppliers: suppliers.suppliers,
-//   fetchingDocumentsBySupplierId: suppliers.fetchingDocumentsBySupplierId,
-//   fetchingDocumentsBySupplierIdError:
-//     suppliers.fetchingDocumentsBySupplierIdError,
-//   documentsBySupplierId: suppliers.documentsBySupplierId,
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       getSupplierDocument,
-//       //   deleteErpDocument,
-//     },
-//     dispatch
-//   );
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(SupplierDocumentTable);
-
-
 import React, { useState, useEffect, useRef,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import Highlighter from "react-highlight-words";
 import {
   Tooltip,
-  Button,
-  Input,
+ 
   Popconfirm
 } from "antd";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../../../../Components/UI/Elements";
 import {
   getSupplierDocument,
@@ -308,9 +137,7 @@ const SupplierDocumentTable = (props) => {
                      {/* Contract */}
         
         
-      </div>
-   
-        
+      </div>        
       { !fetchingdocumentsBySupplierId && documentsBySupplierId.length === 0 ?<EmptyPage className=" overflow-hidden"/>: documentsBySupplierId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -342,7 +169,7 @@ const SupplierDocumentTable = (props) => {
                           <div class="flex">
 
                        
-                          <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex w-[13.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="flex text-xs ml-gap items-center  font-poppins">
                                  
@@ -404,13 +231,13 @@ const SupplierDocumentTable = (props) => {
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
                      <Tooltip title={item.uploadedBy}>
-            <SubTitle>
+            <div>
               <MultiAvatar
                 primaryTitle={item.uploadedBy}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            </SubTitle>
+            </div>
           </Tooltip>
                      </div>
 </div>

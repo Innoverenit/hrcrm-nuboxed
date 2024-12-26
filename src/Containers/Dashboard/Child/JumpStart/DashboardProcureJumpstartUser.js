@@ -6,6 +6,7 @@ import ProcureVolumePieChart from "../JumpStart/ProcureVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import {
+  getFinaceOrderDetails,
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
@@ -16,11 +17,10 @@ getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import DynamicPieChart from "./DynamicPieChart";
 const OrdersOpenDrawer=lazy(()=>import("./OrdersOpenDrawer"));
 const  OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
 const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
-
-
 
 function DashboardOrderJumpstart(props) {
 
@@ -39,6 +39,8 @@ function DashboardOrderJumpstart(props) {
      "1230", //  "Orders Open", // 1
       "1231",//   "Orders Closed", // 2
       "1232",//  "Orders Cancelled"//3
+      "1596",    // By Order Value 4
+        "1597",    // By Order Volume 5
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -52,11 +54,10 @@ function DashboardOrderJumpstart(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  
+
   useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+     props.getFinaceOrderDetails(props.userId,props.timeRangeType,"procure")
   }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
 
   useEffect(() => {
     if (props.orderAddedList) {
@@ -107,9 +108,7 @@ function DashboardOrderJumpstart(props) {
   };
 
   
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  } 
+
 
   return (
     <>
@@ -130,8 +129,8 @@ function DashboardOrderJumpstart(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Added")}
               cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
+              value={props.finaceOrderinDashboard.totalOrder}
+             isLoading={props.fetchingFinaceorderDetails}
             />
                          </div>
                      </div>
@@ -150,8 +149,8 @@ function DashboardOrderJumpstart(props) {
               title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
+              value={ props.finaceOrderinDashboard.pendingOrder}
+              isLoading={props.fetchingFinaceorderDetails}
             />
                            </div>
                        </div>
@@ -172,8 +171,8 @@ function DashboardOrderJumpstart(props) {
           
               jumpstartClick={()=> handleClick("Closed")}
               cursorData={"pointer"}
-            // value={completeOrder}
-            // isLoading={props.fetchingorderDetails}
+              value={props.finaceOrderinDashboard.completeOrder}
+              isLoading={props.fetchingFinaceorderDetails}
             />
                            </div>
                        </div>
@@ -193,8 +192,8 @@ function DashboardOrderJumpstart(props) {
                               title= {translatedMenuItems[3]} 
                               jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
+                              value={props.finaceOrderinDashboard.cancelOrder}
+                              isLoading={props.fetchingFinaceorderDetails}
                             />
                           </div>
                       </div>      
@@ -204,17 +203,19 @@ function DashboardOrderJumpstart(props) {
         </div>
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[4]} </div>
         <Suspense fallback={<BundleLoader />}>
         
-        <ProcureOrderValuePieChart/>
+        <DynamicPieChart dtype={"ProcureOrder"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
 </Suspense>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <div class=" font-poppins font-bold text-base ">{translatedMenuItems[5]} </div>
         <Suspense fallback={<BundleLoader />}>
         
-        <ProcureVolumePieChart/>
+        <DynamicPieChart dtype={"ProcureOrderValue"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
       </div>
@@ -255,9 +256,7 @@ function DashboardOrderJumpstart(props) {
 }
 const mapStateToProps = ({ dashboard, auth }) => ({
   user: auth.userDetails,
-  orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
-  fetchingorderDetails: dashboard.fetchingorderDetails,
   userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
   orderClosedModal:dashboard.orderClosedModal,
@@ -268,6 +267,9 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderOpenList:dashboard.orderOpenList,
   orderClosedList:dashboard.orderClosedList,
   orderCancelList:dashboard.orderCancelList,
+  finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
+  fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -280,7 +282,8 @@ const mapDispatchToProps = (dispatch) =>
       getOrderAddedList,
       getOrderOpenList,
       getOrderClosedList,
-      getOrderCancelList
+      getOrderCancelList,
+      getFinaceOrderDetails
 
     },
     dispatch

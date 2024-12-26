@@ -2,23 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Checkbox, Divider } from "antd";
-
-import { Formik, Form, FastField } from "formik";
-import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
+import { Formik, Form } from "formik";
 import {addNotificationConfig,
-    // getNotificationConfig
 } from "../../../../SettingsAction";
-import { TabsWrapper } from "../../../../../../Components/UI/Layout";
+
 
 const CheckboxGroup = Checkbox.Group;
 
 function NotificationToggleForm (props) {
-  
-//   useEffect(()=>{
-//     props.getNotificationConfig();
-//   },[]);
 
-  // const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
   const userOptions = [
     { label: 'Create', value: 'Create' },
     { label: 'Update', value: 'Update' },
@@ -67,9 +59,6 @@ const [reportingManagerPlus1Switch, setReportingManagerPlus1Switch] = useState(f
               reportingMan1: !prevState.reportingMan1,
             }));
           };  
-          
-          
-
           const handleChange = (checkedValues) => {
             setCheckedList(checkedValues);
             setCheckAll(checkedValues.length === userOptions.length);
@@ -101,24 +90,6 @@ const [reportingManagerPlus1Switch, setReportingManagerPlus1Switch] = useState(f
           }, [props.notificationConfig]);
     return (
       <>
-      {/* <TabsWrapper>
-<div >
-<div class=" text-clr flex justify-center mt-10 text-base font-bold"></div>
-
-              <div class=" flex justify-around mt-4" >
-            
-              <div >
-                <div class="text-sm font-semibold">Users</div>
-                <Checkbox indeterminate={indeterminateUser} onChange={onCheckAllUserChange} checked={checkAllUser}>
-                 <div class="text-xs"> Check all</div>
-                </Checkbox>
-                <Divider />
-                <CheckboxGroup options={userOptions} value={checkedUserList} onChange={onUserChange} />
-
-              </div>
-              </div>
-              </div>
-              </TabsWrapper> */}
 
                 <Formik
           initialValues={{
@@ -162,14 +133,6 @@ const [reportingManagerPlus1Switch, setReportingManagerPlus1Switch] = useState(f
 <div>
 <div class="font-bold text-xs">Admin &nbsp;</div>
                       <div>
-                        {/* <Switch
-                          style={{ width: "6.25em" }}
-                          checked={props.notificationConfig.admin || admini}
-                          onChange={handleAdmini}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        /> */}
-
 <Switch 
  style={{ width: "6.25em" }}
 checkedChildren="Yes"
@@ -180,13 +143,6 @@ onChange={handleAdminSwitchChange} checked={adminSwitch} />
 <div>
 <div class="font-bold text-xs">Reporting Manager &nbsp;</div>
                       <div>
-                        {/* <Switch
-                          style={{ width: "6.25em" }}
-                          checked={props.notificationConfig.reportingManager || reportingMan}
-                          onChange={handleReportingMan}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        /> */}
                          <Switch 
                          style={{ width: "6.25em" }}
                            checkedChildren="Yes"
@@ -197,13 +153,6 @@ onChange={handleAdminSwitchChange} checked={adminSwitch} />
 <div>
 <div class="font-bold text-xs">Reporting Manager +1 &nbsp;</div>
                       <div>
-                        {/* <Switch
-                          style={{ width: "6.25em" }}
-                          checked={props.notificationConfig.reportingManager1 || reportingMan1}
-                          onChange={handleReportingMan1}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        /> */}
                          <Switch
                              checkedChildren="Yes"
                              unCheckedChildren="No"
@@ -215,9 +164,6 @@ onChange={handleAdminSwitchChange} checked={adminSwitch} />
 </div>
 <div>
 <div class="text-sm font-semibold">Users</div>
-                {/* <Checkbox indeterminate={indeterminateUser} onChange={onCheckAllUserChange} checked={checkAllUser}>
-                 <div class="text-xs"> Check all</div>
-                </Checkbox> */}
                  <Checkbox
         indeterminate={checkedList.length > 0 && checkedList.length < userOptions.length}
         onChange={handleCheckAllChange}
@@ -226,9 +172,7 @@ onChange={handleAdminSwitchChange} checked={adminSwitch} />
       <div class="text-xs"> Check all</div>
       </Checkbox>
                 <Divider />
-                {/* <CheckboxGroup options={userOptions} value={checkedUserList} onChange={onUserChange} /> */}
                 <CheckboxGroup options={userOptions} value={checkedList} onChange={handleChange} />
-
 </div>
               </div>
               <div class="flex justify-end w-wk bottom-2 mr-2 md:absolute ">

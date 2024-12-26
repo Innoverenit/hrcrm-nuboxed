@@ -35,6 +35,7 @@ import {
          getAllRecruitmentDetailsByOppId,
          getOpportunitySKill,
          getFullOpportunity,
+         getTeamUserList
 } from "../../OpportunityAction";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -86,6 +87,7 @@ function OpportunityAllCardList(props) {
     props. getFullOpportunity(page);
     setPage(page + 1);
     // props.getCrm();
+     props.getTeamUserList(props.userId)
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -144,7 +146,7 @@ function OpportunityAllCardList(props) {
 
     const viewAnDownloadPdf= async (item) => {  
       try {
-        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${`opportunity`}/${item.opportunityId}`, {
           responseType: 'blob',
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -206,14 +208,14 @@ function OpportunityAllCardList(props) {
        <div class="w-[14vw]"> Search team Member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
-        {props.crmAllData.map((item,index) =>{
+        {props.teamUserList.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center  h-16">
           <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
-              primaryTitle={item.empName}
+              primaryTitle={item.fullName}
               imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
@@ -224,28 +226,18 @@ function OpportunityAllCardList(props) {
           
           <div class="font-semibold text-[#337df4] cursor-pointer !text-lm font-poppins" 
               onClick={() => handleButtonClick(item.employeeId)} 
-          >
-        
-          {item.empName}
-
+          >     
+         {item.fullName}
         </div> 
+        </div>     
         </div>
-          
-       
-        </div>
-        <div className="flex flex-col max-sm:justify-between ">
-          
+        <div className="flex flex-col max-sm:justify-between ">       
         <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
-                </div>
-            
+                </div>         
           <div>
-          <div class="font-medium text-xs ">
-       
+          <div class="font-medium text-xs ">      
           <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
-
-              </div>
-           
-            
+              </div>        
           </div>
           </div>
           </div>
@@ -258,7 +250,7 @@ function OpportunityAllCardList(props) {
    <div className=' flex  sticky  w-[87%] z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end   z-10">
-<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem]  !text-lm ">
+<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  !text-lm ">
    <div className=" w-[10.1rem] truncate  text-sm text-[#00A2E8]  ">
    <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[13]} ID</div>
         <div className=" w-[12.1rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
@@ -282,7 +274,7 @@ function OpportunityAllCardList(props) {
         dataLength={allOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
+        loader={fetchingAllOpportunity?<div><BundleLoader/></div> :null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
@@ -324,33 +316,21 @@ function OpportunityAllCardList(props) {
                                               
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link>
-     
+    </Link>  
                                           </div>
 </div>
                                       </Tooltip>
                             
                               </div>
                               </div>
-
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
                               <div className=" flex  w-[14rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                               <div className=" flex  w-[9rem] items-center justify-start  max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
-                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">   
-                                  
-                                  {item.customer}
-                  
+                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">                                   
+                                  {item.customer}               
                                   </div>
-                              </div>
-                           
-                            
-                              
-                           
-                              <div className=" flex  w-[5rem] items-center justify-center max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                
-
+                              </div>                         
+                              <div className=" flex  w-[5rem] items-center justify-center max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                              
                                 <div class=" text-xs  font-poppins  max-sm:text-sm">
                                
                                 {item.contactName === null ? "None" :
@@ -367,7 +347,6 @@ function OpportunityAllCardList(props) {
                             </div>                         
                            </div>
                               <div className=" flex   w-[6.45rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-   
 
                                   <div class=" text-xs ml-gap  font-poppins text-center  max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
@@ -379,8 +358,6 @@ function OpportunityAllCardList(props) {
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex   w-[7.01rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-           
-
            <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
            <Dropdown
 overlay={
@@ -411,22 +388,17 @@ strokeColor={"#005075"}
 />
 </Tooltip>
 </Dropdown>
-
            </div>
        </div>
-                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                    
-
-                                  <div class=" text-xs items-center font-poppins  max-sm:text-sm">
-                                  
+                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">           
+                                  <div class=" text-xs items-center font-poppins  max-sm:text-sm">                                
                                   <span>
                                   <MultiAvatar2
             primaryTitle={item.assignedTo}
             imgWidth={"1.8rem"}
             imgHeight={"1.8rem"}
           />
-          </span>
-           
+          </span>          
                                   </div>
                               </div>
                               <div className=" flex w-20 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
@@ -455,16 +427,11 @@ strokeColor={"#005075"}
                               <div class="flex max-sm:justify-between max-sm:w-wk  items-center  h-8 ml-gap bg-[#eef2f9]">
                               <div>
                                 <ReinstateToggleForLost 
-                        opportunityId={item.opportunityId} 
-                        
-                        
+                        opportunityId={item.opportunityId}                                            
                         />
-                                </div>
-               
-                
+                                </div>     
                  <div>
-                 <span
-       
+                 <span    
        className=" cursor-pointer"
   onClick={() => {
 props.getAllRecruitmentByOppId(item.opportunityId);
@@ -485,14 +452,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
            />
          )}
        </span>
-                      </div>
-         
+                      </div>     
                       <div>
                       <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
     onClick={()=> viewAnDownloadPdf(item)}
     />
-          </div> 
-                 
+          </div>                
                   <div>
                   <Tooltip title={translatedMenuItems[8]}><span
          onClick={() => {
@@ -500,11 +465,9 @@ handleSetCurrentOpportunityId(item.opportunityName);
           item.opportunityId,
           {
             closeInd:false,
-          }
-               
+          }              
         );         
-      }}         
-     
+      }}           
        >
         <LockIcon
          className=" !text-icon cursor-pointer"
@@ -512,20 +475,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </span>
    </Tooltip> 
                   </div>
-                
-               
-               
-                 
-                    <div>
+              <div>
                        <Tooltip
                       placement="right"
                       title={translatedMenuItems[9]}
                     >
-                      {user.opportunityUpdateInd ===true && (
-            
+                      {user.opportunityUpdateInd ===true && (           
             <span
-            className=" !text-icon cursor-pointer text-[grey]"
-             
+            className=" !text-icon cursor-pointer text-[grey]"            
                 onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
@@ -533,15 +490,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-icon cursor-pointer text-[tomato]"
-                            
+                          className=" !text-icon cursor-pointer text-[tomato]"                         
                           />
                         </span>
                       )}
                     </Tooltip>
-                    </div>
-                  
-                  
+                    </div>          
                     <div>
                     <StyledPopconfirm
                       title={translatedMenuItems[10]}
@@ -612,7 +566,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity ,leads}) => ({
+const mapStateToProps = ({ auth, account,customer, opportunity ,leads}) => ({
   crmAllData:leads.crmAllData,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
@@ -639,6 +593,7 @@ const mapStateToProps = ({ auth, account, opportunity ,leads}) => ({
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
     allOpportunity:opportunity.allOpportunity,
+    teamUserList:customer.teamUserList,
     ooportunitySerachedData: opportunity.ooportunitySerachedData
   
 });
@@ -660,6 +615,7 @@ const mapDispatchToProps = (dispatch) =>
          getAllRecruitmentPositionFilledByOppId,
          getAllRecruitmentDetailsByOppId,
          getFullOpportunity,
+         getTeamUserList
     //      LinklostdOpportunity,
     //      deleteLostOpportunity,
     },
