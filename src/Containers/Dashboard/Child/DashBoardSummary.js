@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {linkTaskStatusDashboard} from "../DashboardAction"
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
@@ -126,7 +127,17 @@ const DashBoardSummary=(props) =>{
     fetchData();
   }, [props.viewType, props.userId, props.orgId, props.locationId, page]);
   
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return; // If dropped outside the list
 
+    const reorderedTasks = Array.from(props.taskDashboard);
+    const [removed] = reorderedTasks.splice(source.index, 1);
+    reorderedTasks.splice(destination.index, 0, removed);
+
+    // Update the state with the reordered tasks
+   // props.updateTaskDashboard(reorderedTasks); // Ensure you pass this method to props for updating the list
+  };
 
   const handleLoadMore = () => {
     const callPageMapd = props.taskDashboard && props.taskDashboard.length &&props.taskDashboard[0].pageCount
@@ -171,74 +182,162 @@ const DashBoardSummary=(props) =>{
           {/* Spinner component */} 
         </div>
       ) : (
-        props.taskDashboard.map((deal, index) => {
-          const currentDate = dayjs();
-        const completionDate = dayjs(deal.completionDate);
-          const endDate = dayjs(deal.endDate);
-        const difference = currentDate.diff(endDate, 'days');
-        return (
-          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem]  min-w-[11rem]">
-            <div className="flex justify-between flex-col">
-              <div>
-                <div className="font-semibold font-poppins truncate text-xs ">{deal.taskName}</div>
+//         props.taskDashboard.map((deal, index) => {
+//           const currentDate = dayjs();
+//         const completionDate = dayjs(deal.completionDate);
+//           const endDate = dayjs(deal.endDate);
+//         const difference = currentDate.diff(endDate, 'days');
+//         return (
+//           <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem]  min-w-[11rem]">
+//             <div className="flex justify-between flex-col">
+//               <div>
+//                 <div className="font-semibold font-poppins truncate text-xs ">{deal.taskName}</div>
                
-              </div>
-              <div className=" flex flex-row justify-between w-full  items-center  content-end">
-              <div className=" text-gray-500 font-poppins flex justify-start ">
-                  <ButtonGroup>
-                    <StatusIcon
-                      class="!text-icon"
-                      type="To Start"
-                      iconType={<HourglassEmptyIcon className="!text-icon" />}
-                      tooltip={translatedMenuItems[10]}
-                      status={deal.taskStatus}
-                      difference={difference} 
-                      onClick={() =>
-                        props.linkTaskStatusDashboard(deal.taskId, {
-                          taskStatus: translatedMenuItems[10]
-                        })
-                      }
-                    />
-                    <StatusIcon
-                      class="!text-icon"
-                      type="In Progress"
-                      iconType={<HourglassTopIcon className="!text-icon" />}
-                      tooltip={translatedMenuItems[11]}
-                      status={deal.taskStatus}
-              difference={difference}
-              onClick={() =>
-                props.linkTaskStatusDashboard(deal.taskId, {
-                  //  ...item,
-                   taskStatus:translatedMenuItems[11]
-                })
-              }
-                    />
-                    <StatusIcon
-                      class="!text-icon"
-                      type="Completed"
-                      iconType={<HourglassBottomIcon className="!text-icon" />}
-                      tooltip={translatedMenuItems[12]}
-                      status={deal.taskStatus}
-                      difference={difference}
-                      onClick={() =>
-                        props.linkTaskStatusDashboard(deal.taskId, {
-                          //  ...item,
-                           taskStatus: translatedMenuItems[12]
-                        })
-                      }
-                    />
-                  </ButtonGroup>
-                </div>
-              <div className="text-red-600 text-xs font-bold bg-red-100  px-2 py-1 rounded max-h-max flex justify-end items-center mr-2">
-                {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
-              </div>
-              </div>
+//               </div>
+//               <div className=" flex flex-row justify-between w-full  items-center  content-end">
+//               <div className=" text-gray-500 font-poppins flex justify-start ">
+//                   <ButtonGroup>
+//                     <StatusIcon
+//                       class="!text-icon"
+//                       type="To Start"
+//                       iconType={<HourglassEmptyIcon className="!text-icon" />}
+//                       tooltip={translatedMenuItems[10]}
+//                       status={deal.taskStatus}
+//                       difference={difference} 
+//                       onClick={() =>
+//                         props.linkTaskStatusDashboard(deal.taskId, {
+//                           taskStatus: translatedMenuItems[10]
+//                         })
+//                       }
+//                     />
+//                     <StatusIcon
+//                       class="!text-icon"
+//                       type="In Progress"
+//                       iconType={<HourglassTopIcon className="!text-icon" />}
+//                       tooltip={translatedMenuItems[11]}
+//                       status={deal.taskStatus}
+//               difference={difference}
+//               onClick={() =>
+//                 props.linkTaskStatusDashboard(deal.taskId, {
+//                   //  ...item,
+//                    taskStatus:translatedMenuItems[11]
+//                 })
+//               }
+//                     />
+//                     <StatusIcon
+//                       class="!text-icon"
+//                       type="Completed"
+//                       iconType={<HourglassBottomIcon className="!text-icon" />}
+//                       tooltip={translatedMenuItems[12]}
+//                       status={deal.taskStatus}
+//                       difference={difference}
+//                       onClick={() =>
+//                         props.linkTaskStatusDashboard(deal.taskId, {
+//                           //  ...item,
+//                            taskStatus: translatedMenuItems[12]
+//                         })
+//                       }
+//                     />
+//                   </ButtonGroup>
+//                 </div>
+//               <div className="text-red-600 text-xs font-bold bg-red-100  px-2 py-1 rounded max-h-max flex justify-end items-center mr-2">
+//                 {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
+//               </div>
+//               </div>
               
-            </div>
-          </div> 
-        )
+//             </div>
+//           </div> 
+//         )
        
-})
+// })
+<DragDropContext onDragEnd={onDragEnd}>
+<Droppable droppableId="taskList" direction="vertical">
+  {(provided) => (
+    <div
+      className="task-list"
+      {...provided.droppableProps}
+      ref={provided.innerRef}
+    >
+      {props.taskDashboard.map((deal, index) => {
+        const currentDate = dayjs();
+        const completionDate = dayjs(deal.completionDate);
+        const endDate = dayjs(deal.endDate);
+        const difference = currentDate.diff(endDate, 'days');
+
+        return (
+          <Draggable key={deal.taskId} draggableId={String(deal.taskId)} index={index}>
+            {(provided) => (
+              <div
+                className="mb-2 p-1 ml-2 box-content h-16 min-h-[5.25rem] border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem] min-w-[11rem]"
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+              >
+                <div className="flex justify-between flex-col">
+                  <div>
+                    <div className="font-semibold font-poppins truncate text-xs">
+                      {deal.taskName}
+                    </div>
+                  </div>
+                  <div className="flex flex-row justify-between w-full items-center content-end">
+                    <div className="text-gray-500 font-poppins flex justify-start">
+                      <ButtonGroup>
+                        <StatusIcon
+                          class="!text-icon"
+                          type="To Start"
+                          iconType={<HourglassEmptyIcon className="!text-icon" />}
+                          tooltip={translatedMenuItems[10]}
+                          status={deal.taskStatus}
+                          difference={difference}
+                          onClick={() =>
+                            props.linkTaskStatusDashboard(deal.taskId, {
+                              taskStatus: translatedMenuItems[10],
+                            })
+                          }
+                        />
+                        <StatusIcon
+                          class="!text-icon"
+                          type="In Progress"
+                          iconType={<HourglassTopIcon className="!text-icon" />}
+                          tooltip={translatedMenuItems[11]}
+                          status={deal.taskStatus}
+                          difference={difference}
+                          onClick={() =>
+                            props.linkTaskStatusDashboard(deal.taskId, {
+                              taskStatus: translatedMenuItems[11],
+                            })
+                          }
+                        />
+                        <StatusIcon
+                          class="!text-icon"
+                          type="Completed"
+                          iconType={<HourglassBottomIcon className="!text-icon" />}
+                          tooltip={translatedMenuItems[12]}
+                          status={deal.taskStatus}
+                          difference={difference}
+                          onClick={() =>
+                            props.linkTaskStatusDashboard(deal.taskId, {
+                              taskStatus: translatedMenuItems[12],
+                            })
+                          }
+                        />
+                      </ButtonGroup>
+                    </div>
+                    <div className="text-red-600 text-xs font-bold bg-red-100 px-2 py-1 rounded max-h-max flex justify-end items-center mr-2">
+                      {`${dayjs(deal.endDate).format('DD/MM/YYYY')}`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Draggable>
+        );
+      })}
+      {provided.placeholder} {/* Needed for proper spacing */}
+    </div>
+  )}
+</Droppable>
+</DragDropContext>
       )}
       </InfiniteScroll>
     </div>
@@ -276,7 +375,15 @@ const DashBoardSummary=(props) =>{
     </>
    
   ) : (
-    props.quotationDashboard.map((lead, index) => (
+   props.quotationDashboard.map((lead, index) => {
+        <Draggable key={lead.invOpportunityId} draggableId={String(lead.invOpportunityId)} index={index}>
+           {(provided) => (
+           <div
+                className="mb-2 p-1 ml-2 box-content h-16 min-h-[5.25rem] border-2 border-[#00008b23] w-[11rem] max-sm:min-w-[9rem] min-w-[11rem]"
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+              >
       <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem] ">
         <div className="flex justify-between">
           <div className=" font-semibold font-poppins text-xs">{lead.newOrderNo}</div>
@@ -289,7 +396,16 @@ const DashBoardSummary=(props) =>{
         <Button style={{  fontSize: "0.75rem" }} type="primary">{translatedMenuItems[3]}</Button>
         </div>
       </div>
-    ))
+      </div>
+      )}
+      </Draggable>
+
+
+
+     })
+ 
+ 
+
   )}
    </InfiniteScroll>
   </div>
