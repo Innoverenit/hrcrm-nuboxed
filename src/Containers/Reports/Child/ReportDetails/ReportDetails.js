@@ -1,7 +1,7 @@
 import React, { Component,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 
 const ReportDetailLeft=lazy(()=> import("./ReportDetailLeft"));
 const ReportDetailRight=lazy(()=> import("./ReportDetailRight"));
@@ -81,6 +81,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ReportDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportDetails)
+

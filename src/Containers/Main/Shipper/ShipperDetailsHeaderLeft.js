@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router";
+
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
@@ -27,6 +27,5 @@ const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DistributorDetailsHeaderLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DistributorDetailsHeaderLeft)
+

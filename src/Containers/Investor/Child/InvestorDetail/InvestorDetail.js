@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInvestorDetailsById } from "../../InvestorAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InvestorDetailRight=lazy(()=> import("./InvestorDetailRight"));
 const InvestorDetailLeft=lazy(()=> import("./InvestorDetailLeft"));
@@ -63,6 +63,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InvestorDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorDetail)
+

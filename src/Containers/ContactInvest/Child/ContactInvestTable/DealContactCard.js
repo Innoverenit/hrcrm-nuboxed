@@ -9,7 +9,7 @@ import {getContactDeal} from "../../ContactInvestAction";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+//import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -239,9 +239,8 @@ const DealContactCard = (props) => {
                     <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[14.1rem] max-md:w-[14.1rem] max-sm:flex-row  max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
-                        <Link to="/investor">
-                          {item.investor}
-                        </Link>
+                       
+                        {item.investor}
                       </div>
                     </div>
                   

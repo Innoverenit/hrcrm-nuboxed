@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy,Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import PinIcon from '@mui/icons-material/Pin';
 import { Tooltip, Select } from "antd";
 import { getRoomRackByLocId, getRackList } from "./InventoryAction";
@@ -267,6 +267,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialStockTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialStockTableOut)
+

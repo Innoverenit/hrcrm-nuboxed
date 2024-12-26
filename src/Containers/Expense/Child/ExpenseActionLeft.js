@@ -5,7 +5,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import MicIcon from '@mui/icons-material/Mic';
 import {Input, Tooltip, Avatar } from "antd";
-import { withRouter } from "react-router-dom";
+
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -161,6 +161,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ExpenseActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseActionLeft)

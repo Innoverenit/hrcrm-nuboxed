@@ -6,7 +6,7 @@ import {
 } from "../DashboardAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Input,Tag } from "antd";
 
 const DashboardShareForm=lazy(() => import("./DashboardShareForm"));
@@ -67,6 +67,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(HeaderActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderActionRight)
+

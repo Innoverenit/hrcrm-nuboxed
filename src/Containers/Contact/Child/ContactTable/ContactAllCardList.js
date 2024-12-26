@@ -381,7 +381,7 @@ function ContactAllCardList(props) {
                                   <Tooltip>
                                   <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
                                   <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
-                                      <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   

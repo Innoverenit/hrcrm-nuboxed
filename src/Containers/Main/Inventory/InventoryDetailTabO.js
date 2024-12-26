@@ -2,7 +2,7 @@ import React, {  PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router";
+
 import {
   handleAddDispatchModal,
   handleAddOutputReasonModal,
@@ -185,9 +185,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTabO)
 
-);
+
 
 

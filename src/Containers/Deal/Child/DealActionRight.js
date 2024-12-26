@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
@@ -102,6 +102,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DealActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DealActionRight)
+

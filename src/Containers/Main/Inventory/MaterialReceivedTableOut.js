@@ -9,7 +9,7 @@ import {
 } from "./InventoryAction";
 import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import { TerminalSharp } from "@mui/icons-material";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -250,6 +250,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTableOut)
+

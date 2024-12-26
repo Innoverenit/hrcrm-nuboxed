@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleMileageModal } from "../MileageAction";
@@ -53,6 +53,5 @@ class MileageActionRight extends React.Component {
 const mapStateToProps = ({ auth, team, account }) => ({});
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ handleMileageModal }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MileageActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MileageActionRight)
+

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
   import { getProjectDetailById } from "../../ProjectsAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ProjectsDetailHeader from "./ProjectsDetailHeader";
 import ProjectsDetailLeft from "./ProjectsDetailLeft";
@@ -57,6 +57,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProjectsDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsDetail)
+

@@ -17,7 +17,7 @@ import {
 } from "../Inventory/InventoryAction";
 import { handleTermsnConditionModal } from "../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import { Tooltip, Select, Button } from "antd";
 import { base_url2 } from "../../../Config/Auth";
 
@@ -317,8 +317,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore)
+
 
 

@@ -3,7 +3,7 @@ import React, { useEffect,useRef,useState } from "react";
 import { Tooltip, Badge,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PeopleIcon from '@mui/icons-material/People';
@@ -408,6 +408,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DealActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DealActionLeft)

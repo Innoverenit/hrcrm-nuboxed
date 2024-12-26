@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
@@ -90,6 +90,5 @@ const mapStateToProps = ({ auth, team,leads, account }) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   // handleLeadsImportModal
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LeadsActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LeadsActionRight)
+

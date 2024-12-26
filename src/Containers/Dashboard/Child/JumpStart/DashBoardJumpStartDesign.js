@@ -1,7 +1,7 @@
 import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { JumpStartBox } from "../../../../Components/UI/Elements";
 
 function DashBoardJumpStartDesign(props) {
@@ -49,6 +49,5 @@ const mapStateToProps = ({ billings, auth }) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DashBoardJumpStartDesign)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DashBoardJumpStartDesign)
+
