@@ -11,13 +11,14 @@ class PersonalCard extends Component {
       <div>
         <ViewEditCard>
         <Suspense fallback={"Loading..."}>
-          {({ viewType }, toggleViewType) =>
+          {/* {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <PersonalView user={user} toggleViewType={toggleViewType} />
             ) : (
               <PersonalEdit user={user} toggleViewType={toggleViewType} />
             )
-          }
+          } */}
+           <PersonalView user={user}  />
           </Suspense>
         </ViewEditCard>
       </div>

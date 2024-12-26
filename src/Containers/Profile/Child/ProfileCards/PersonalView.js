@@ -14,12 +14,12 @@ class PersonalView extends Component {
     return (
       <>
         <div class=" flex justify-end" >
-          <VisibilityIcon
+          {/* <VisibilityIcon
             tooltipTitle="Edit"
             iconType="edit"
             handleIconClick={toggleViewType}
             size="1em"
-          />
+          /> */}
         </div>
         <StyledCollapse
           bordered={false}
