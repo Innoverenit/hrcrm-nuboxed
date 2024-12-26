@@ -1,6 +1,7 @@
 import React, { Suspense, lazy,useState,useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 
@@ -14,6 +15,7 @@ const InventoryMaterialTabO = lazy(() => import("./InventoryMaterialTabO"));
 function Inventory(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [tabData, setTabData] = useState("1");
+  const { locationDetailsId, data } = useParams();
   const [isInitialLoad, setIsInitialLoad] = useState(true); 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -116,12 +118,12 @@ function Inventory(props) {
    // props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
 
     // Set tabData based on URL params
-    if (props.match.params.data === "Receive") {
+    if (data === "Receive") {
       setTabData("4");
-    } else if (props.match.params.data === "Dispatch") {
+    } else if (data === "Dispatch") {
       setTabData("3");
     }
-  }, [props.match.params.locationDetailsId, props.inventory]);
+  }, [locationDetailsId, props.inventory]);
 
   const {
     inventory = { inventory },

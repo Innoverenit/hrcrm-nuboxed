@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import dayjs from "dayjs";
 
 
@@ -37,6 +37,5 @@ const mapStateToProps = ({ auth }) => ({
   user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CollectionActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionActionRight)
+

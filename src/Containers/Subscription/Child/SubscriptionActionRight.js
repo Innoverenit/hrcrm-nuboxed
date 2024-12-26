@@ -2,7 +2,7 @@
 import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 
@@ -35,6 +35,5 @@ const mapStateToProps = ({ auth }) => ({
   user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SubscriptionActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionActionRight)
+

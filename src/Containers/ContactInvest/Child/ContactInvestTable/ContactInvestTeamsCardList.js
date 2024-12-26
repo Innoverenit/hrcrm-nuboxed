@@ -401,7 +401,7 @@ if (loading) {
                                     <div class=" flex w-[100%] max-sm:w-full justify-between  md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500   justify-between font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap justify-between  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis whitespace-nowrap justify-between  text-[#042E8A] cursor-pointer"  to={`/contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   &nbsp;&nbsp;

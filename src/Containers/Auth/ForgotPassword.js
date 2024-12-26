@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Link, withRouter } from "react-router-dom";
+// import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
@@ -217,12 +217,12 @@ class ForgotPassword extends Component {
 
                             <span className=" font-bold flex justify-start">
                               {" "}
-                              <Link
+                              {/* <Link
                                 to="/login"
                                 style={{ textAlign: "center", fontSize: 14 }}
-                              >
+                              > */}
                                 Back to login
-                              </Link>
+                              {/* </Link> */}
                             </span>
 
                             <Button 
@@ -289,7 +289,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
+
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+
 import { BussinessCard } from "../../../../Components/UI/Elements";
 class SingleEmployee extends Component {  
   render() {
@@ -28,4 +28,4 @@ class SingleEmployee extends Component {
     );
   }
 }
-export default withRouter(SingleEmployee);
+export default (SingleEmployee);

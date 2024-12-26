@@ -15,6 +15,10 @@ function AddProcureExcel(props) {
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [currencyOpts, setcurrencyOpts] = useState([]);
   const [isCurrencyDropdownClick, setIsCurrencyDropdownClick] = useState(false);
+const [IsLocDropdownClick, setIsLocDropdownClick] =useState(false);
+const [LocationOpts,setLocationOpts]= useState([]);
+const [IsQualityDropdownClick, setIsQualityDropdownClick] = useState(false);
+const [QualityOpts,setQualityOpts] = useState([]);
 
   const fetchCategoryData = () => {
     if (!isCategoryDropdownClicked) {
@@ -40,10 +44,29 @@ const fetchCurrency = () => {
     }
   }, [props.saleCurrencies]);
 
-  useEffect(() => {
+const fetchLocationList =()=>{
+  if (!IsLocDropdownClick) {
     props.getLocationList(props.orgId);
-    props.getSupplierSuppliesQuality();
-  }, []);
+    setIsLocDropdownClick(true);
+  }
+}
+useEffect(() => {
+  if (props.locationlist && props.locationlist.length > 0) {
+    setLocationOpts(props.locationlist);
+  }
+}, [props.locationlist]);
+
+const fetchSupplierSuppliesQuality = () => {
+  if (!IsQualityDropdownClick) {
+    props.getSupplierSuppliesQuality(props.orgId);
+    setIsQualityDropdownClick(true);
+  }
+}
+useEffect(() => {
+  if (props.supplierSuppliesQuality && props.supplierSuppliesQuality.length > 0) {
+    setQualityOpts(props.supplierSuppliesQuality);
+  }
+}, [props.supplierSuppliesQuality]);
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
 
@@ -219,8 +242,9 @@ const fetchCurrency = () => {
                     style={{ width: 120 }}
                     value={row.quality}
                     onChange={(value) => handleQualityChange(value, index)}
+                    onClick={fetchSupplierSuppliesQuality}
                   >
-                    {props.supplierSuppliesQuality.map((a) => (
+                    {QualityOpts.map((a) => (
                       <Option key={a.qualityId} value={a.qualityId}>{a.code}</Option>
                     ))}
                   </Select>
@@ -233,8 +257,9 @@ const fetchCurrency = () => {
                     style={{ width: 100 }}
                     value={row.locationId}
                     onChange={(value) => handleLocationChange(value, index)}
+                    onClick={fetchLocationList}
                   >
-                    {props.locationlist.map((a) => (
+                    {LocationOpts.map((a) => (
                       <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
                     ))}
                   </Select>

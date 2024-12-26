@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import {updateOpportunitydragstage,getRegionSalesQuotationList} from "../../Opportunity/OpportunityAction"
 import styled from "styled-components";
 import {
@@ -303,6 +303,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(QuotationPlanList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(QuotationPlanList)
+

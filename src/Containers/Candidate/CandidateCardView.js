@@ -137,7 +137,7 @@ function handleSetCurrentCandidateId(candidateId) {
                   
                         <div>
                       {/* <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center"> */}
-                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.fullName}>
+                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/candidate/${item.candidateId}`} title={item.fullName}>
       {item.fullName}
     </Link>                     
                         {/* </div>  */}

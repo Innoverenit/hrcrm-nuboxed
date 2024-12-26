@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 const ProductionArchieveCard = lazy(() => import("./ProductionArchieveCard"));
 const CreateProductionCard = lazy(() => import("./ProductionCreateCard"));
 const ProductionDispatchCard = lazy(() => import("./ProductionDispatchCard"));
@@ -115,8 +115,7 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryProductionTab)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryProductionTab)
 
-);
+
 

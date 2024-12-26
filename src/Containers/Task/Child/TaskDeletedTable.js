@@ -10,7 +10,7 @@ import { Tooltip,Input, Button, Avatar } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   getDeletedTask,
@@ -706,9 +706,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TaskDeletedTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskDeletedTable)
+
 
 function StatusIcon({ type, iconType, tooltip, status, size, onClick, role }) {
   const start = type;

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import {handleStockUpload} from "../Inventory/InventoryAction"
 import UploadIcon from '@mui/icons-material/Upload';
 import TokenIcon from '@mui/icons-material/Token';
@@ -402,10 +402,9 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTabO)
 
-);
+
 
 
 

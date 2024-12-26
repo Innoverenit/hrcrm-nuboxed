@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  withRouter } from "react-router-dom";
+
 import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
 import CarouselItem from "./CarouselItem";
@@ -65,4 +65,4 @@ const mapStateToProps = ({ auth }) => ({
 
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppLoginMessage));
+export default connect(mapStateToProps, mapDispatchToProps)(AppLoginMessage);

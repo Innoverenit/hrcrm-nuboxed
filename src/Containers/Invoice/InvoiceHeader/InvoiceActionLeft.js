@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import TableViewIcon from '@mui/icons-material/TableView';
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { } from 'react-speech-recognition';
@@ -50,5 +50,4 @@ const mapStateToProps = ({leads}) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InvoiceActionLeft));
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceActionLeft);

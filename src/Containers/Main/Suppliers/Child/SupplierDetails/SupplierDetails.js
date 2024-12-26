@@ -2,7 +2,7 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSupplierBySupplierId } from "../../SuppliersAction";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import SupplierOverViewCard from "./SupplierCard/SupplierOverViewCard";
 import SupplierDetailCard from "./SupplierCard/SupplierDetailCard";
@@ -128,6 +128,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SupplierDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierDetails)
+

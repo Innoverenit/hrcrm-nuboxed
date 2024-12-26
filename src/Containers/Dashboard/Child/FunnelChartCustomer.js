@@ -4,7 +4,7 @@ import { StyledTabs, } from "../../../Components/UI/Antd";
 import {
     getProcessForOpportunity,   
 } from "../../Settings/SettingsAction";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -108,8 +108,7 @@ const FunnelChartCustomer = (props) => {
           },
           dispatch
         );
-      export default withRouter(
-        connect(mapStateToProps, mapDispatchToProps)(FunnelChartCustomer)
-      );
+      export default connect(mapStateToProps, mapDispatchToProps)(FunnelChartCustomer)
+    
 
 

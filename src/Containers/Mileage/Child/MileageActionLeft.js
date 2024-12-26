@@ -5,7 +5,7 @@ import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { Tooltip,Input, Avatar, Badge } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -168,6 +168,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MileageActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MileageActionLeft)

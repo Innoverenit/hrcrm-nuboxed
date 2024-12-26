@@ -514,10 +514,6 @@ function AccountDetailsTab(props) {
       case "15":
         return (
           <div>
-            {/* <DistributorChart
-                            distributorId={props.distributorData.distributorId}
-                            selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} /> */}
             {view === "Completed" ? (
               <DistributorCompletedTicket />
             ) : (

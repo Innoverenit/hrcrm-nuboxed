@@ -2,7 +2,7 @@ import React, { useEffect,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCandidateTotalBilling} from "../../ProjectsAction"
-import { withRouter } from "react-router";
+
 import CandidateBillingTable from "./CandidateBillingTable";
 import CandidateProjectsHeader from "./CandidateProjectsHeader";
 
@@ -43,6 +43,4 @@ bindActionCreators(
   dispatch
 );
 
-export default withRouter(
-connect(mapStateToProps, mapDispatchToProps)(CandidateTotalBilling)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateTotalBilling)

@@ -23,7 +23,7 @@ import {
 import DispatchToggle from "./DispatchToggle"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import DispatchPhoneListModalInventory from "./Child/InventoryDetails/Dispatch/DispatchPhoneListModalInventory";
@@ -1326,6 +1326,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DispatchCommerceAndRepairTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DispatchCommerceAndRepairTableOut)
+

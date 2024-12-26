@@ -11,7 +11,7 @@ import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress ,Input} from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import RepartitionIcon from '@mui/icons-material/Repartition';
@@ -400,9 +400,9 @@ const DealsTeamCardList = (props) => {
                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                     <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1 md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins">
-                        <Link to="/investor">
+                        {/* <Link to="/investor"> */}
                           {item.investor}
-                        </Link>
+                        {/* </Link> */}
                       </div>
                     </div>
                     <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1 md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">

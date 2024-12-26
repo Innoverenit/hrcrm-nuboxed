@@ -2,7 +2,7 @@ import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
 import {  Input, Tooltip, Badge,Avatar } from "antd";
 import MicIcon from '@mui/icons-material/Mic';
@@ -298,6 +298,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(EmployeesActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeesActionLeft)
+
