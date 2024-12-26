@@ -327,7 +327,7 @@ function ContactInvestCardList(props) {
                                           <div class=" flex  max-sm:w-full w-[100%] justify-between  md:flex-col">
                                             
                                             <div class="text-xs flex text-blue-500 justify-between font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`/contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
       

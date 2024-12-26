@@ -449,7 +449,7 @@ console.log(selectedAssign)
               <Tooltip>
               <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
               <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
-                                    <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                    <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`/customer/${item.customerId}`} title={item.name}>
 {item.name}
 </Link>  
 &nbsp;&nbsp;   
