@@ -108,7 +108,7 @@ function ShipperDeleteTable(props) {
  <div class=" text-xs ml-gap text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
-                                  to={`shipper/${item.shipperId}`} title={item.shipperName}>
+                                  to={`/shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
                               </div>

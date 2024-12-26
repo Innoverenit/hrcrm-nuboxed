@@ -1,4 +1,5 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component,useEffect, lazy, Suspense } from "react";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -10,14 +11,19 @@ const CandidateDetailHeader = lazy(() => import("../CandidateDetails/CandidateDe
 const CandidateDetailLeft = lazy(() => import("./CandidateDetailLeft"));
 const CandidateDetailRight = lazy(() => import("./CandidateDetailRight"));
 
-class CandidateDetails extends Component {
-  componentDidMount() {
-    this.props.getCandidateById(this.props.match.params.candidateId);
-  }
+function CandidateDetails (props) {
+  const { candidateId, data } = useParams();
 
-  render() {
-    const { candidate, fetchingCandidateById } = this.props;
-    console.log(this.props.candidateId);
+  // componentDidMount() {
+  //   props.getCandidateById(props.match.params.candidateId);
+  // }
+  useEffect(() => {
+       props.getCandidateById(candidateId);
+    }, [candidateId]);
+  // render() {
+
+    const { candidate, fetchingCandidateById } =props;
+    console.log(props.candidateId);
     return (
       <>
         <CandidateDetailHeader />
@@ -32,17 +38,17 @@ class CandidateDetails extends Component {
                 <div class=" w-[25%]" >
                   <CandidateDetailLeft 
                   candidate ={candidate}
-                  translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}
-                translatedMenuItems={this.props.translatedMenuItems}
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
                   />
                 </div>
                 <div class=" w-[75%]" >
                   <CandidateDetailRight 
                   candidate={candidate}
-                  translateText={this.props.translateText}
-             selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+                  translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
 
                   />
                 </div>
@@ -53,7 +59,7 @@ class CandidateDetails extends Component {
       </>
     );
   }
-}
+// }
 
 const mapStateToProps = ({ candidate }) => ({
   fetchingCandidateById: candidate.fetchingCandidateById,
