@@ -1,4 +1,4 @@
-import React, { useEffect,Suspense,lazy } from "react";
+import React, { useEffect, useState,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProjectDetailById } from "../../ProjectsAction";
@@ -11,11 +11,32 @@ import ProjectDetailsRight from "./ProjectDetailsRight";
 
 function ProjectsDetail  (props){
   const { ProjectId, data } = useParams();
-  // componentDidMount() {
-  
-  //     this.props.getProjectDetailById(this.props.match.params.ProjectId);
-  // }
-  // render() {
+   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+       useEffect(() => {
+              const fetchMenuTranslations = async () => {
+                try {
+                  setLoading(true); 
+                  const itemsToTranslate = [
+                            
+                  "77",// owner   0          
+                  "248",//customer #     1        
+                 //   "",// Create Invoice
+            
+                  ];
+          
+                  const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+                  setTranslatedMenuItems(translations);
+                  setLoading(false);
+                } catch (error) {
+                  setLoading(false);
+                  console.error('Error translating menu items:', error);
+                }
+              };
+          
+              fetchMenuTranslations();
+            }, [props.selectedLanguage]);
      useEffect(() => {
         props.getProjectDetailById(ProjectId);
       }, [ProjectId]);
@@ -36,10 +57,16 @@ function ProjectsDetail  (props){
                 <div class=" flex flex-nowrap w-full"
                 >
                     <div class=" w-1/4">
-                      <ProjectsDetailLeft projectsById={projectsById} />
+                      <ProjectsDetailLeft projectsById={projectsById}
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
+                        translatedMenuItems={translatedMenuItems} />
                     </div>
                     <div class=" w-3/4">
-                      <ProjectDetailsRight projectsById={projectsById} />
+                      <ProjectDetailsRight projectsById={projectsById}
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
+                        translatedMenuItems={translatedMenuItems} />
                     </div> 
                   </div>
                 </Suspense>

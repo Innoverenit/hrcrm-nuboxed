@@ -13,8 +13,7 @@ console.log(props.rowDataPass)
         <StyledDrawer
         //   title={`${props.rowDataPass.taskName}`}
         title="Invoice"
-          width="64%"
-          style={{marginTop:"5rem"}}
+          width="50%"
           visible={props.addCreateInvoiceDrawer}
           maskClosable={false}
           destroyOnClose

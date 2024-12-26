@@ -15,9 +15,12 @@ class CandidateDetailLeft extends Component {
     // console.log(userDetails);
     return (
       <div class=" flex flex-col "  >
-        <CandidateOverViewCard 
-       
-        candidate={candidate} />
+        <CandidateOverViewCard       
+        candidate={candidate}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+         />
         <ProfileTopicOfIntrest 
          userType={"candidate"}
          uniqueId={this.props.candidate.candidateId}
@@ -36,16 +39,26 @@ class CandidateDetailLeft extends Component {
         />
         <CandidateExtraDetailCard 
         candidate={candidate} 
-        translateText={this.props.translateText}
+             translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+             translatedMenuItems={this.props.translatedMenuItems}
         />
-        <ExtraCandidateCardView candidate={candidate}/>
+        <ExtraCandidateCardView candidate={candidate}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}/>
         
-        <CandidateDetailCard candidate={candidate} />
+        <CandidateDetailCard candidate={candidate}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems} />
+        
         <CandidateAddressCard candidate={candidate} />
         {/* <CandidateOverViewDetailCard candidate={candidate}/> */}
-        <CandidateDetailExtraCard candidate={candidate}/>
+        <CandidateDetailExtraCard candidate={candidate}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}/>
 
        
       </div>

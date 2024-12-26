@@ -14,7 +14,10 @@ class ProjectDetailsCard extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <ProjectDetailsView projectsById={projectsById} />
+              <ProjectDetailsView projectsById={projectsById}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems} />
             ) : null
           }
         </ViewEditCard>
