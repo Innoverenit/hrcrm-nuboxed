@@ -255,9 +255,25 @@ function AccountDetailsTab(props) {
           "252",//Proceed  142
           "267",//Previous 143
           "1721",//Discount 144
-          "144",//Description 145
+          "147",//Description 145
           "654",//Quality 146
-          "1492",// Value 147
+          "1492",// Total Value 147
+          "140", // "Email",148
+          "546",  // "Mobile",149
+"325", // "Designation",150
+"407",  // "Potential" 151
+"1344", // "C-Level" 152
+"1343",  // "Strategic" 153
+"1342",  // "Mid-Level" 154
+"1349", // Apply For Login  155
+"1347", // Login Applied 156
+"1348",  // Login Approved 157
+"392",  // "Pulse 158
+"1207" ,   // "Uploaded By",//159
+"1208" , // "File Name",//160
+"1205" , // "Contract",//161
+"1351" , // "Download"162
+"1227",   // "Applicable", 163
 
         ];
 
@@ -398,6 +414,7 @@ function AccountDetailsTab(props) {
               distributorId={props.distributorData.distributorId}
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
+              translatedMenuItems={translatedMenuItems}
             />
           </div>
         );
@@ -420,6 +437,7 @@ function AccountDetailsTab(props) {
               type={"distributor"}
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={translatedMenuItems}
             />
           </div>
         );
@@ -429,6 +447,7 @@ function AccountDetailsTab(props) {
             <SalesMapTable
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
+              translatedMenuItems={translatedMenuItems}
             />
           </div>
         );
@@ -487,6 +506,7 @@ function AccountDetailsTab(props) {
               distributorId={props.distributorData.distributorId}
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
+              translatedMenuItems={translatedMenuItems}
             />
           </div>
         );

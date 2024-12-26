@@ -11,11 +11,36 @@ import ProcureDetailsCardList from "./ProcureDetailsCardList";
 const { Option } = Select;
 
 function AddProcureExcel(props) {
+ const [isCategoryDropdownClicked, setIsCategoryDropdownClicked] = useState(false);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [currencyOpts, setcurrencyOpts] = useState([]);
+  const [isCurrencyDropdownClick, setIsCurrencyDropdownClick] = useState(false);
+
+  const fetchCategoryData = () => {
+    if (!isCategoryDropdownClicked) {
+      props.getCategorylist();
+      setIsCategoryDropdownClicked(true);
+    }
+  };
   useEffect(() => {
-    // props.getBrand();
-    props.getSaleCurrency()
-    props.getCategorylist();
-    // props.getAllProductList();
+    if (props.categoryList && props.categoryList.length > 0) {
+      setCategoryOptions(props.categoryList);
+    }
+  }, [props.categoryList]);
+
+const fetchCurrency = () => {
+    if (!isCurrencyDropdownClick) {
+      props.getSaleCurrency();
+      setIsCurrencyDropdownClick(true);
+    }
+  };
+  useEffect(() => {
+    if (props.saleCurrencies && props.saleCurrencies.length > 0) {
+      setcurrencyOpts(props.saleCurrencies);
+    }
+  }, [props.saleCurrencies]);
+
+  useEffect(() => {
     props.getLocationList(props.orgId);
     props.getSupplierSuppliesQuality();
   }, []);
@@ -99,10 +124,8 @@ function AddProcureExcel(props) {
   const handleCurrencyChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].currencyId = value;
-    // updatedRows[index].model = ""; // Reset model when brand changes
-    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    //props.getModel(value);
+
   };
 
   const handleSubmit = () => {
@@ -138,8 +161,9 @@ function AddProcureExcel(props) {
                     style={{ width: 120 }}
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
+                    onClick={fetchCategoryData}
                   >
-                    {props.categoryList.map((a) => (
+                    {categoryOptions.map((a) => (
                       <Option key={a.categoryId} value={a.categoryId}>{a.categoryName}</Option>
                     ))}
                   </Select>
@@ -249,8 +273,9 @@ function AddProcureExcel(props) {
                     style={{ width: 100 }}
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
+                    onClick={fetchCurrency}
                   >
-                    {props.saleCurrencies.map((a) => (
+                    {currencyOpts.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
                     ))}
                   </Select>
