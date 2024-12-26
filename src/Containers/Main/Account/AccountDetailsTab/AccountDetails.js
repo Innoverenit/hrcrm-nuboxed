@@ -2,14 +2,15 @@ import React, { Component, lazy, Suspense, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-
+import { useParams } from "react-router-dom";
 import { getDistributorByDistributorId } from "../AccountAction"
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AccountDetailsRight = lazy(() => import("./AccountDetailsRight"));
 const AccountDetailsHeader = lazy(() => import("./AccountDetailsHeader"));
 function AccountDetails(props) {
+  const { distributorId, data } = useParams();
   useEffect(() => {
-    props.getDistributorByDistributorId(props.match.params.distributorId);
+    props.getDistributorByDistributorId(distributorId);
   }, []);
   const { distributorData, fetchingDistributorDetailsByDistributorId } = props;
   return (
