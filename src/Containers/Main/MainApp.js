@@ -1769,7 +1769,7 @@ function MainApp(props) {
                     />
                     <Route
                      
-                      path="quality"
+                      path="/quality"
                       element={< Quality
                         translateText={translateText}
                         selectedLanguage={selectedLanguage}
@@ -1959,7 +1959,7 @@ function MainApp(props) {
                     />
                       <Route
                       exact
-                      path="procurement"
+                      path="/procurement"
                       // render={(props) => (
                       //   <Procurement
                       //     {...props}
@@ -1974,7 +1974,7 @@ function MainApp(props) {
                     />
                      <Route
                       exact
-                      path="demand"
+                      path="/demand"
                       // render={(props) => (
                       //   <Demand
                       //     {...props}
@@ -1990,7 +1990,7 @@ function MainApp(props) {
                      
                       <Route
                       exact
-                      path="pitch"
+                      path="/pitch"
                       // render={(props) => (
                       //   <Pitch
                       //     {...props}
@@ -2005,7 +2005,7 @@ function MainApp(props) {
                     />  
                     <Route
                       exact
-                      path="deal"
+                      path="/deal"
                       // render={(props) => (
                       //   <Deal
                       //     {...props}
@@ -2020,7 +2020,7 @@ function MainApp(props) {
                     />
                       <Route
                       exact
-                      path="contactInvest"
+                      path="/contactInvest"
                       element={< ContactInvest
                         translateText={translateText}
                         selectedLanguage={selectedLanguage}
@@ -2035,7 +2035,7 @@ function MainApp(props) {
                     />
                       <Route
                       exact
-                      path="investor"
+                      path="/investor"
                       // render={(props) => (
                       //   <Investor
                       //     {...props}
@@ -2050,7 +2050,7 @@ function MainApp(props) {
                     />
                     <Route
                       exact
-                      path="club"
+                      path="/club"
                       // render={(props) => (
                       //   <Club
                       //     {...props}
