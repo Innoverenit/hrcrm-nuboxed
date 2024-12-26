@@ -4,7 +4,6 @@ import HourglassFullIcon from "@mui/icons-material/HourglassFull";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory'; 
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import EngineeringIcon from '@mui/icons-material/Engineering';
@@ -17,7 +16,8 @@ import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import DesktopAccessDisabledIcon from '@mui/icons-material/DesktopAccessDisabled';
 import HouseboatIcon from '@mui/icons-material/Houseboat';
-import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
+
+const RecruitTab = lazy(() => import("../../Rules/Child/RulesTab/RecruitPro/RecruitTab"));
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
 const RecruitmentActionRight = lazy(() => import("./RecruitmentActionRight"));
