@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInvestorDetailsById } from "../../InvestorAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-
+import { useParams } from "react-router-dom";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InvestorDetailRight=lazy(()=> import("./InvestorDetailRight"));
 const InvestorDetailLeft=lazy(()=> import("./InvestorDetailLeft"));
 const InvestorDetailHeader=lazy(()=> import("./InvestorDetailHeader"));
 
 function InvestorDetail (props) {
+     const { investorId } = useParams();
     useEffect(()=> {
-    props.getInvestorDetailsById(props.match.params.investorId);
-  },[]);
+    props.getInvestorDetailsById(investorId);
+  },[investorId]);
 
     const { investorDetails, fetchingInvestorDetailsById } = props;
     return (
@@ -20,6 +21,7 @@ function InvestorDetail (props) {
         <>
        < Suspense fallback={"Loading..."}>
           <InvestorDetailHeader 
+          investorDetails={investorDetails}
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage}/>
            </Suspense>
@@ -33,12 +35,14 @@ function InvestorDetail (props) {
                   <div class=" flex flex-nowrap w-full"
                 >
                     <div class=" w-1/4">
-                      <InvestorDetailLeft investorDetails={investorDetails} 
+                      <InvestorDetailLeft 
+                      investorDetails={investorDetails} 
                        translateText={props.translateText}
                        selectedLanguage={props.selectedLanguage}/>
                     </div>
                     <div class=" w-3/4">
-                      <InvestorDetailRight investorDetails={investorDetails}
+                      <InvestorDetailRight 
+                      investorDetails={investorDetails}
                        translateText={props.translateText}
                        selectedLanguage={props.selectedLanguage} />
                     </div>

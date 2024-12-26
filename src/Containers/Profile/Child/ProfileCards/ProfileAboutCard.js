@@ -11,7 +11,7 @@ class ProfileAboutCard extends Component {
             <div>
                 <ViewEditCard>
                 <Suspense fallback={"Loading..."}>
-                    {({ viewType }, toggleViewType) => (
+                    {/* {({ viewType }, toggleViewType) => (
                         viewType === 'view'
                             ? <ProfileAboutView
                                 user={user}
@@ -21,7 +21,11 @@ class ProfileAboutCard extends Component {
                                 user={user}
                                 toggleViewType={toggleViewType}
                             />
-                    )}
+                    )} */}
+                    <ProfileAboutView
+                                user={user}
+                               
+                            />
                     </Suspense>
                 </ViewEditCard>
             </div>

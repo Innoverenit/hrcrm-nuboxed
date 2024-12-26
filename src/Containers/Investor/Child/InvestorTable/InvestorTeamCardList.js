@@ -448,7 +448,7 @@ function InvestorTeamCardList(props) {
                                             {/* Name */}
                                            
                                             <div class=" text-xs text-blue-500 flex justify-between font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`/investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>    
   {date === currentdate ? (
