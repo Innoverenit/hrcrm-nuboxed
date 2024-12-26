@@ -732,6 +732,7 @@ const viewAnDownloadPdf= async (item) => {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    modalTitleKey={1}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}

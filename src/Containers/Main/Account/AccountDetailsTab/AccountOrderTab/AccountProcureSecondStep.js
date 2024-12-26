@@ -6,8 +6,9 @@ const AccountProcureSecondStep = (props) => {
     return (
         <>
             <div>
-                <AddProcureExcel distributorId={props.distributorId}
-                
+                <AddProcureExcel 
+                distributorId={props.distributorId}
+                translatedMenuItems={props.translatedMenuItems}
                 />
             </div>
 

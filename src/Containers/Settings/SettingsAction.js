@@ -2774,8 +2774,8 @@ export const addProcessForOpportunity = (data, orgId, cb) => (
       cb && cb("failure");
     });
 };
+
 export const getProcessForOpportunity = (orgId,navType) => (dispatch) => {
-  debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_OPPORTUNITY_REQUEST,
   });
