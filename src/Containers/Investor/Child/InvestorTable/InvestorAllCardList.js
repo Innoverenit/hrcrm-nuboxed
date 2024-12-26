@@ -51,6 +51,7 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
 } from "../../InvestorAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
@@ -62,7 +63,7 @@ const InvestorSearchedData = lazy(() =>  import("./InvestorSearchedData"));
 const AddInvestorAdressModal = lazy(() =>  import("./AddInvestorAdressModal"));
 const Option = Select;
 function onChange(pagination, filters, sorter) {
-  console.log("params", pagination, filters, sorter);
+  console.log("params", pagination, filters, sorter); 
 }
 
 dayjs.extend(relativeTime);
@@ -403,7 +404,7 @@ console.log(selectedEmployee)
         dataLength={investorsbyId.length}
         next={handleLoadMore1}
         hasMore={hasMore}
-        loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
+        loader={fetchingInvestors?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

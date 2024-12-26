@@ -197,7 +197,7 @@ serachedPitchData={props.serachedPitchData}
         dataLength={props.teamPitch.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamPitch?<div class="flex justify-center" >Loading...</div>:null}
+        loader={fetchingTeamPitch?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
       >

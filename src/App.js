@@ -72,7 +72,8 @@ import PrivateRoute from "./Helpers/Auth/PrivateRoute"; // You might need to upd
 import AppLoginMessage from "./Containers/Auth/AppLoginMessage";
 import OnBoardOrganizationPage from "./Containers/Auth/OnBoardOrganizationPage";
 import NodataFoundPage from "./Helpers/ErrorBoundary/NodataFoundPage";
-
+import '@fontsource/poppins/300.css';
+// import '@fontsource/poppins';
 /**
  * Lazy loaded components
  */

@@ -133,7 +133,7 @@ const ReceivedTableOut = (props) => {
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold !text-lm items-end font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-              <div className=" w-[16.4rem] text-sm text-[#00A2E8] truncate max-md:w-[16.4rem] ">
+              <div className=" w-[17.4rem] text-sm text-[#00A2E8] truncate max-md:w-[16.4rem] ">
               <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>{translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
@@ -146,17 +146,17 @@ const ReceivedTableOut = (props) => {
                 </div>
               </>
               )}
-            <div className="w-[7.2rem] truncate max-md:w-[6.2rem]">
+            <div className="w-[14.2rem] truncate max-md:w-[6.2rem]">
               {translatedMenuItems[3]}
                 </div>
-              <div className="w-[6.2rem] truncate max-md:w-[6.2rem]">
+              <div className="w-[28.2rem] truncate max-md:w-[6.2rem]">
               <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[4]}
                 </div>
          
               <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">
               <   RvHookupIcon className='!text-icon  text-[#6ba368]'/>  {translatedMenuItems[5]}
                 </div>
-              <div className="w-[7.21rem] truncate max-md:w-[7.21rem]">
+              <div className="w-[10.21rem] truncate max-md:w-[7.21rem]">
               <LocationOnIcon
               className='!text-icon  text-[#e4eb2f]'
               /> {translatedMenuItems[6]}
@@ -207,15 +207,6 @@ const ReceivedTableOut = (props) => {
                           <div className=" flex w-[10.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] ml-gap max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.distributorName}
-                             {/* <Tooltip title={`${item.distributorName}  ${item.contactPersonName}`}>
-                              <InfoIcon/>
-                              </Tooltip> 
-                              <Tooltip title={<div className="flex flex-col">{`${item.distributorName} 
-                            ${item.contactPersonName}`}</div>}>
-  <InfoIcon onClick={() => alert(`${item.distributorName} ${item.contactPersonName}`)} />
-</Tooltip>  */}
-
-
                             </div>
                           </div>
                           <div className=" flex w-[9.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -227,17 +218,7 @@ const ReceivedTableOut = (props) => {
                           }
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          {/* <div className=" flex w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins  max-sm:text-sm">
-
-                              <MultiAvatar2
-                                primaryTitle={item.contactPersonName}
-                                imageId={item.imageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </div>
-                          </div> */}
+                      
                           <div className=" flex w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs    font-poppins  max-sm:text-sm">
 
@@ -312,7 +293,7 @@ const ReceivedTableOut = (props) => {
                                 <Button
                                   loading={item.orderId === rowData.orderId && props.updatingInspection}
                                   type="primary"
-                                  className="w-28 text-base"
+                                  className="w-36 text-base"
                                   onClick={() => {
                                     handleRowData(item)
                                     props.updateInspection({
@@ -326,7 +307,7 @@ const ReceivedTableOut = (props) => {
                                 </Button>
                                 : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
-                                    className="cursor-pointer text-base"
+                                    className="w-36 cursor-pointer text-base"
                                      type="primary"
                                     loading={item.orderId === rowData.orderId && props.addingDeliverDate}
                                     onClick={() => {
@@ -344,7 +325,7 @@ const ReceivedTableOut = (props) => {
                                   </Button> :
                                   item.inspectionInd === 1 && item.inventoryReceiveInd ?
                                     <Button
-                                      className="w-28 text-xs"
+                                      className="w-36 text-xs"
                                       type="primary"
                                       onClick={handlePauseResume}>
                                       {pause ? "Resume Inspection" : "Pause Inspection"}
@@ -357,7 +338,7 @@ const ReceivedTableOut = (props) => {
                             <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon text-[green] cursor-pointer"
-                                                            // style={{ cursor: "pointer" }}
+                                                       
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleProductionNotesModal(true);

@@ -30,6 +30,7 @@ import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import BentoIcon from '@mui/icons-material/Bento'; //units
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -49,57 +50,13 @@ function AccountProcureDetails(props) {
   const [newPrice, setPrice] = useState('');
   const [invoices, setInvoices] = useState('');
   const [RowInvoices, setRowInvoices] = useState('');
-
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [CreditMemo, setCreditMemo] = useState([]);
-
   const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
     const [creditmemoData,setcreditmemoData]=useState([]);
 
   useEffect(() => {
-      const fetchMenuTranslations = async () => {
-        try {
-          setLoading(true); 
-          const itemsToTranslate = [
-  '14', // 0
-  '264', // 1
-  '265', // 2
-  '259', // 3
-  '654', // 4
-  '658', // 5
-  '655',
-  '260',
-  '657',//8
-  '1093',
-  "1169",//10
-  "1225",
-  '1224',//12
-  "110",
-  
-        ];
-  
-          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-          setTranslatedMenuItems(translations);
-          setLoading(false);
-        } catch (error) {
-          setLoading(false);
-          console.error('Error translating menu items:', error);
-        }
-      };
-  
-      fetchMenuTranslations();
-    }, [props.selectedLanguage]);
-
-  useEffect(() => {
-    // props.getBrand();
-    // props.getCategorylist();
-    // props.getAllProductList();
-    // props.getSupplierSuppliesQuality();
-    // props.getLocationList(props.orgId);
-    // props.getSaleCurrency()
     props.getProcureDetails(props.particularRowData.orderPhoneId);
     fetchCreditMemoData();
   }, []);
@@ -373,60 +330,51 @@ const handleGenerateInvoice= async () => {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[89vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between font-bold font-poppins text-xs w-[97%] items-end  p-1 bg-transparent  sticky z-10">
           <div className="w-[19.2rem]  text-[#00A2E8] text-base ">
-          <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[13]}
+          <ContactsIcon className="!text-icon mr-1 "/>  {props.translatedMenuItems[122]}
           </div>
 
         <div className=" w-[8.2rem] md:w-[8.2rem] ">
-        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[0]} {/* Category" /> */}
+        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[31]} {/* Category" /> */}
           </div>
           <div className="w-[6.2rem] md:w-[6.2rem] ">
-          <BrandingWatermarkIcon className="!text-icon" />  {translatedMenuItems[1]}{/* Brand" /> */}
+          <BrandingWatermarkIcon className="!text-icon" />  {props.translatedMenuItems[69]}{/* Brand" /> */}
           </div>
           <div className="w-[5.2rem] md:w-[5.2rem]">
-          <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[2]} {/* Model" /> */}
+          <ModelTrainingIcon className=" !text-icon" /> {props.translatedMenuItems[70]} {/* Model" /> */}
           </div>
           <div className="w-[4.6rem] md:w-[5.6rem]">
-            <AttractionsIcon className="  !text-icon" /> {translatedMenuItems[3]} {/* Attribute" /> */}
+            <AttractionsIcon className="  !text-icon" /> {props.translatedMenuItems[123]} {/* Attribute" /> */}
           </div>
           <div className="w-[6.21rem] md:w-[5.21rem] ">
-          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[8]} {/*Price" /> */}
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {props.translatedMenuItems[124]} {/*Price" /> */}
           </div>
           <div className="w-[5.21rem] md:w-[5.21rem]">
-             <BentoIcon className="  !text-icon" /> {translatedMenuItems[7]} {/* Units" /> */}
+             <BentoIcon className="  !text-icon" /> {props.translatedMenuItems[125]} {/* Units" /> */}
           </div>
           <div className="w-[5.31rem] md:w-[4.31rem] ">
-          <ReceiptIcon className="!text-icon text-[#b91372]"/>{translatedMenuItems[10]}   {/* invoice */}
+          <ReceiptIcon className="!text-icon text-[#b91372]"/>{props.translatedMenuItems[10]}   {/* invoice */}
           </div>
           <div className=" w-[5.8rem] md:w-[5.8rem]">
-          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[9]} {/* balance */}
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {props.translatedMenuItems[126]} {/* balance */}
           </div>
               <div className="w-[7.01rem] md:w-[6.01rem]">
-                <QrCodeIcon className="!text-icon text-[#b91372]"/> Supplies ID
+                <QrCodeIcon className="!text-icon text-[#b91372]"/>{props.translatedMenuItems[127]} 
           </div>
       
        
         </div>
         <InfiniteScroll
         dataLength={props.procureDetails.length}
-      //   next={handleLoadMore}
-      // hasMore={hasMore}
-        loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingProcureDetails?<div class="flex justify-center"><BundleLoader/></div>:null}
         height={"77vh"}
         style={{scrollbarWidth:"thin"}}
-        // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         {props.procureDetails.length > 0 ? 
         props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1  items-center py-1 hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]
               >">
-              {/* <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
-              <div className="text-xs  font-poppins">
-           <MultiAvatar
-           imageId={item.imageId}
-           />
-           </div>
-              </div> */}
+              
               <div className="flex items-center border-l-2 border-green-500 h-8  bg-[#eef2f9]    max-sm:flex-row truncate w-[20rem]  max-sm:justify-between">
               <div className="text-xs ml-gap font-poppins">
            {item.productFullName ? item.productFullName : "No Data"}
@@ -453,22 +401,7 @@ const handleGenerateInvoice= async () => {
                   {item.attribute ? item.attribute :"No Data"}
                 </div>
               </div>
-              {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
-                  <div className=" text-xs  font-poppins">{item.quality}</div>      
-              </div> */}
-              {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                
-                 
-                  {item.location?item.location:"No Data"}
-                </div>
-              </div> */}
-              {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                  
-            <div className=" text-xs  font-poppins">{item.specs}</div>
-                </div>
-              </div> */}
+             
 
             <div className="flex   md:w-[6.1rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4.01rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
@@ -478,24 +411,17 @@ const handleGenerateInvoice= async () => {
               </div>
               <div className="flex  md:w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4.02rem] max-sm:justify-between">
                 <div className="text-xs ml-gap font-poppins">
-                {item.unit}
-                    
-                   
- 
-                 
+                {item.unit} 
                 </div>
               </div>
               <div className="flex  md:w-[5.8rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4.03rem] max-sm:justify-between">
                 <div className="text-xs ml-gap font-poppins">
-                {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
+                
                 <input className="border-border-gray-500 w-[5.11rem] h-[10vh] md:h-[4vh] md:w-[5.11rem]"
   placeholder="Units"
   min="1"
   value={inputValues[item.id] || ''}
   onChange={(e) => handleInputChange(item.id, e.target.value)}
-  
-  // value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
-  // onChange={(e) => setRowInvoices(item.id, e.target.value)}
 />
              
                 </div>
@@ -515,10 +441,10 @@ const handleGenerateInvoice= async () => {
                
                 <div>
                   <StyledPopconfirm
-                    title="Do you want to delete?"
+                    title={props.translatedMenuItems[120]}
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
-                    <Tooltip title="Delete">
+                    <Tooltip title={props.translatedMenuItems[59]}>
                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>
@@ -530,7 +456,7 @@ const handleGenerateInvoice= async () => {
          <div className="flex max-sm:flex-row mt-2 justify-end">
                 <div className="text-xs  font-poppins shadow-sm">
                    <input
-                  //  className=" border-red-600 h-6 shadow-sm "
+                
                    placeholder="invoice ID"
                    style={{border:"1px solid red",height:"2rem", }}
                    type="text"
@@ -555,16 +481,13 @@ const handleGenerateInvoice= async () => {
                     </Select>
                     </div>
                     <div className="ml-2 ">
-                    
-                
                     <Button
                         type='primary'
                         onClick={handleGenerateInvoice}
                     >
                       <IosShareIcon className=" !text-icon" />
-        {translatedMenuItems[12]}
-                    </Button>
-                   
+        {props.translatedMenuItems[128]}
+                    </Button> 
               </div>
               </div>
              

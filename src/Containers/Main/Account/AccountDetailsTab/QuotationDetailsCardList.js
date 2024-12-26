@@ -133,29 +133,29 @@ function QuotationDetailsCardList(props) {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between w-full  p-1 bg-transparent font-bold sticky  z-10">
         <div className="md:w-[7.4rem]">
-         Category
+        {props.translatedMenuItems[31]}
           </div>
           <div className="md:w-[7.4rem]">
-           Brand
+          {props.translatedMenuItems[69]}
           </div>
           <div className="md:w-[7.1rem]">
-         Model
+          {props.translatedMenuItems[70]}
           </div>
           <div className="md:w-[7.1rem]">
-         Attribute
+          {props.translatedMenuItems[123]}
           </div>
       
           <div className="md:w-[4.8rem]">
-           Units
+          {props.translatedMenuItems[125]}
           </div>
           <div className="md:w-[5.8rem]">
-           Price
+          {props.translatedMenuItems[124]}
           </div>
           <div className="md:w-[6.8rem]">
-          Discount
+          {props.translatedMenuItems[144]}
           </div>
           <div className="md:w-[6.8rem]">
-          Value
+          {props.translatedMenuItems[22]}
           </div>
           <div className="md:w-[6.12rem]"></div>
         </div>
@@ -323,15 +323,15 @@ function QuotationDetailsCardList(props) {
                   {editContactId === item.id ? (
                     <>
                       <Button onClick={() => handleUpdate(item.id)}>
-                        Save
+                      {props.translatedMenuItems[48]}
                       </Button>
                       <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
+                      {props.translatedMenuItems[49]}
                       </Button>
                     </>
                   ) : (
                     <BorderColorIcon
-                      tooltipTitle="Edit"
+                      tooltipTitle= {props.translatedMenuItems[58]}
                       iconType="edit"
                       onClick={() => handleEditClick(item.id, item.category,item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs)}
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
@@ -340,10 +340,10 @@ function QuotationDetailsCardList(props) {
                 </div>
                 <div>
                   <StyledPopconfirm
-                    title="Do you want to delete?"
+                    title={props.translatedMenuItems[120]}
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
-                    <Tooltip title="Delete">
+                    <Tooltip title={props.translatedMenuItems[59]}>
                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>

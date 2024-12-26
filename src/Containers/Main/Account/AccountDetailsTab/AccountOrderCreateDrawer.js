@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import AccountOpportunityStepper from "./AccountOpportunityStepper";
-
 const AccountOrderCreateDrawer = (props) => {
   const { ...formProps } = props;
 
@@ -16,14 +15,15 @@ const AccountOrderCreateDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountOpportunityStepper 
-          currentOrderType={props.currentOrderType}
-         isModalOpen={props.isModalOpen}
-         setIsModalOpen={props.setIsModalOpen}
-         current={props.current} 
-         setCurrent={props.setCurrent} 
-         type={props.type}
-         distributorId={props.distributorId}
+          <AccountOpportunityStepper
+            translatedMenuItems={props.translatedMenuItems}
+            currentOrderType={props.currentOrderType}
+            isModalOpen={props.isModalOpen}
+            setIsModalOpen={props.setIsModalOpen}
+            current={props.current}
+            setCurrent={props.setCurrent}
+            type={props.type}
+            distributorId={props.distributorId}
           />{" "}
         </Suspense>
       </StyledDrawer>

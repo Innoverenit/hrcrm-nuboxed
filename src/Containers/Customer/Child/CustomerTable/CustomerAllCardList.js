@@ -56,6 +56,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import {getCrm,}from"./././../../../Leads/LeadsAction";
 import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
@@ -157,10 +158,8 @@ function CustomerAllCardList(props) {
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
       props.getCrm();
       props.getSectors();
-      props.getSources(props.orgId);
-      props.getAllDialCodeList()
-    // props.getCountries();
-    // props.getAllCustomerEmployeelist();
+      // props.getSources(props.orgId);
+      // props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -389,7 +388,7 @@ console.log(selectedAssign)
         dataLength={allCustomers.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllCustomerList?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingAllCustomerList?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >     
@@ -937,6 +936,7 @@ const mapStateToProps = ({
   customerSearch: customer.customerSearch,
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

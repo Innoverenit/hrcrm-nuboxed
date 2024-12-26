@@ -34,6 +34,7 @@ import {
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 function OpportunityCloseCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -70,7 +71,7 @@ function OpportunityCloseCard(props) {
         dataLength={closeOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingCloseOpportunity?<div class="flex justify-center" >Loading...</div> :null}
+        loader={fetchingCloseOpportunity?<div><BundleLoader/></div> :null}
         height={"86vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">    

@@ -13,6 +13,7 @@ import PinIcon from '@mui/icons-material/Pin';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import ContactsIcon from '@mui/icons-material/Contacts';
+import { BundleLoader } from "../../../Components/Placeholder";
 function SuppliesDeletedTable(props) {
   useEffect(() => {
     props.getDeleteHistory()
@@ -95,10 +96,7 @@ function SuppliesDeletedTable(props) {
             dataLength={props.deleteSuppliesHistory.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingDeletedSuppliesHistory ? <div style={{ textAlign: 'center' }}><div className="custom-loader">
-            <div className="loader !block"> </div>
-        <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-      </div></div> : null}
+            loader={props.fetchingDeletedSuppliesHistory ? <div><BundleLoader/></div> : null}
             height={"83vh"}
             style={{overflowX:"hidden", scrollbarWidth:"thin"}}
             

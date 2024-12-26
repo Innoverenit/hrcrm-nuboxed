@@ -379,7 +379,7 @@ function PhoneListForRepair(props) {
                     <InfiniteScroll
                         dataLength={props.repairPhone.length}
 
-                        loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingRepairPhoneByUser ? <div><BundleLoader/></div> : null}
                         height={"82vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >

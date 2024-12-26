@@ -154,15 +154,16 @@ const InventoryMaterialBestBefore = (props) => {
         <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
           <div className="w-[14.9rem] text-sm text-[#00A2E8] truncate max-md:w-[11.52rem]"> 
             <AddShoppingCartIcon className="!text-icon "/>{props.translatedMenuItems[38]}</div>
-          <div className="w-[10.122rem] truncate max-md:w-[12.122rem]">
-              <FactoryIcon className='!text-base  text-[#e4eb2f]' />{props.translatedMenuItems[36]} {props.translatedMenuItems[0]} </div>
-          <div className="w-[5.122rem] truncate max-md:w-[4.122rem]">
-            <PinIcon className=" !text-base"/>HSN</div>
+          <div className="w-[9.9rem] truncate max-md:w-[12.122rem]">
+              <FactoryIcon className='!text-icon mr-1 text-[#e4eb2f]' />{props.translatedMenuItems[36]} {props.translatedMenuItems[0]} </div>
+          <div className="w-[4.6rem] truncate max-md:w-[4.122rem]">
+            <PinIcon className=" !text-icon mr-1"/>HSN</div>
           <div className="w-[6.12rem] truncate max-md:w-[8.12rem]"> 
-             <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]}  Id</div>
-          <div className="w-[4.12rem] truncate max-md:w-[5.12rem]">{props.translatedMenuItems[1]}</div>
-          <div className="w-[6.66rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[42]}</div>
-          <div className="w-[5.6rem] truncate max-md:w-[8.12rem]"></div>
+             <CategoryIcon className='!text-icon  text-[#e4eb2f]'/> {props.translatedMenuItems[36]}  Id</div>
+          <div className="w-[5.8rem] truncate max-md:w-[5.12rem]">{props.translatedMenuItems[1]}</div>
+          <div className="w-[4.4rem] truncate max-md:w-[8.12rem]">{props.translatedMenuItems[26]}</div>     {/* Unit */}
+          <div className="w-[6.66rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[42]}</div>   
+          <div className="w-[6.6rem] truncate max-md:w-[8.12rem]"></div>     
           <div className="w-[7.7rem] truncate max-md:w-[9.2rem]">< ShareLocationIcon className=" !text-icon"/>{props.translatedMenuItems[32]}</div>
           <div className="w-[7.8rem] truncate max-md:w-[9.2rem]">< MeetingRoomIcon className=" !text-icon"/>{props.translatedMenuItems[44]}</div>
           <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">< RepartitionIcon className=" !text-icon"/>{props.translatedMenuItems[33]}</div>
@@ -191,7 +192,7 @@ const InventoryMaterialBestBefore = (props) => {
             <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.newSuppliesNo}</div></div>
             <div className="flex w-[7.4rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
             <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.countryName}</div></div>
-            <div className=" flex w-[4.8rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+            <div className=" flex w-[5.8rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9]">
             <div class=" text-xs  font-poppins max-sm:text-sm  ">{item.remainingCorrectUnit}</div></div>
             <div className="  flex w-[8.22rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
             <div class=" text-xs  font-poppins max-sm:text-sm  ">{dayjs(item.creationDate).format("DD/MM/YYYY")}</div>

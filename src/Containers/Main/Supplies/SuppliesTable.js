@@ -54,6 +54,7 @@ import BestJumpOpen from "./BestJumpOpen";
 import ReOrderOpen from "./ReOrderOpen";
 import MaterialBarCodeInput from "./MaterialBarCodeInput";
 import PriceOpenDrawer from "./PriceOpenDrawer";
+import { BundleLoader } from "../../../Components/Placeholder";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
@@ -91,7 +92,7 @@ function SuppliesTable(props) {
   useEffect(() => {
     setPage(page + 1);
     props.getSuppliesList(page);
-    props.getUOM()
+    // props.getUOM()
     props.getBestBeforeJumpListCount(props.orgId)
     props.getReorderCount()
     props.getPriceUpdatedCount(props.locationId)
@@ -308,7 +309,7 @@ function SuppliesTable(props) {
             dataLength={props.purchaseList.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div  class="flex justify-center">Loading...</div>:null}
+            loader={props.fetchingPurchaseList ? <div><BundleLoader/></div>:null}
             height={"68vh"}
             style={{ scrollbarWidth:"thin" }}
             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

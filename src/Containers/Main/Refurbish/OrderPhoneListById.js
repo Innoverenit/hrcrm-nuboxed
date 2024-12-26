@@ -35,6 +35,7 @@ import QCSpareListModal from "./QCSpareListModal";
 import QCExpandListModal from "./QCExpandListModal";
 import RefurbishLevelModal from "./RefurbishLevelModal"
 import Barcode from 'react-barcode';
+import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
@@ -374,7 +375,7 @@ function OrderPhoneListById(props) {
                             dataLength={props.orderPhoneList.length}
                              next={handleLoadMore}
                              hasMore={hasMore}
-                            loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingOrderIdByUserId ? <div><BundleLoader/></div> : null}
                             height={"82vh"}
                             style={{ scrollbarWidth:"thin"}}
                             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}

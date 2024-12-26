@@ -41,6 +41,7 @@ import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -177,10 +178,7 @@ const LeadsTeamWarmcard = (props) => {
         dataLength={teamLeadsWarm.length}
         next={handleLoadMore1}
         hasMore={hasMore}
-        loader={fetchingTeamLeadsWarm?<div class="flex justify-center"> <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div></div>:null}
+        loader={fetchingTeamLeadsWarm?<div> <BundleLoader/></div>:null}
         height={"24vh"}
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}

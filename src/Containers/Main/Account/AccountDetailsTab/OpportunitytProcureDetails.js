@@ -24,6 +24,7 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
 function OpportunitytProcureDetails(props) {
@@ -55,35 +56,34 @@ const [RowItem,setRowItem]=useState({});
     price: false,
     unit: false
   });
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-      const fetchMenuTranslations = async () => {
-        try {
-          setLoading(true); 
-          const itemsToTranslate = [
-  '14', // 0
-  '264', // 1
-  '265', // 2
-  '259', // 3
-  '654', // 4
-  '658', // 5
-  '655', //6
-  '260', //7
-  '657',//8
-        ];
+
+  // useEffect(() => {
+  //     const fetchMenuTranslations = async () => {
+  //       try {
+  //         setLoading(true); 
+  //         const itemsToTranslate = [
+  // '14', // 0
+  // '264', // 1
+  // '265', // 2
+  // '259', // 3
+  // '654', // 4
+  // '658', // 5
+  // '655', //6
+  // '260', //7
+  // '657',//8
+  //       ];
   
-          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-          setTranslatedMenuItems(translations);
-          setLoading(false);
-        } catch (error) {
-          setLoading(false);
-          console.error('Error translating menu items:', error);
-        }
-      };
+  //         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //         setTranslatedMenuItems(translations);
+  //         setLoading(false);
+  //       } catch (error) {
+  //         setLoading(false);
+  //         console.error('Error translating menu items:', error);
+  //       }
+  //     };
   
-      fetchMenuTranslations();
-    }, [props.selectedLanguage]);
+  //     fetchMenuTranslations();
+  //   }, [props.selectedLanguage]);
 
   useEffect(() => {
    // props.getBrand();
@@ -202,42 +202,37 @@ const handleRowItem = (item) => {
         <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
  
         <div className="w-[7.4rem] truncate max-md:w-[7.4rem] text-[#00A2E8] text-sm">
-        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[0]} {/* Category" /> */}
+        <WidgetsIcon className='!text-icon    text-[#42858c]' />  {props.translatedMenuItems[31]} {/* Category" /> */}
           </div>
           <div className="w-[7.4rem] truncate max-md:w-[7.4rem] text-xs font-bold font-poppins">
-          <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[1]}{/* "Brand" /> */}
+          <BrandingWatermarkIcon className="!text-icon" />  {props.translatedMenuItems[69]}{/* "Brand" /> */}
           </div>
           <div className="w-[4.1rem] truncate max-md:w-[4.1rem] text-xs font-bold font-poppins">
-          <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[2]} {/* "Model" /> */}
+          <ModelTrainingIcon className=" !text-icon" />   {props.translatedMenuItems[70]} {/* "Model" /> */}
           </div>
           <div className="w-[4.1rem] truncate max-md:w-[4.1rem] text-xs font-bold font-poppins">
-          <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[3]} {/* "Attribute" /> */}
+          <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[123]} {/* "Attribute" /> */}
           </div>
           <div className="w-[2.4rem] truncate max-md:w-[7.1rem] text-xs font-bold font-poppins">
-          {translatedMenuItems[4]} {/* "Quality" /> */}
+          {props.translatedMenuItems[146]} {/* "Quality" /> */}
           </div>
           <div className="w-[2.1rem] truncate max-md:w-[7.1rem] text-xs font-bold font-poppins">
           Speci {/* "Quality" /> */}
           </div>
-      
             <div className="w-[7rem] truncate max-md:w-[5%] text-xs font-bold font-poppins">
-           <LocationOnIcon className="!text-icon"/>   {translatedMenuItems[5]} 
+           <LocationOnIcon className="!text-icon"/>   {props.translatedMenuItems[21]} 
             {/* Location */}
           </div>
           <div className="w-[2.8rem] truncate max-md:w-[2.8rem] text-xs font-bold font-poppins">
-          {translatedMenuItems[7]} {/* "Units" /> */}
+          {props.translatedMenuItems[125]} {/* "Units" /> */}
           </div>
-             
-         
         </div>
         <InfiniteScroll
         dataLength={props.quotationPhoneDetails.length}
-      //   next={handleLoadMore}
-      // hasMore={hasMore}
-        loader={props.fetchingQuotationExcelDetails?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingQuotationExcelDetails?<div class="flex justify-center"><BundleLoader/></div>:null}
         height={"79vh"}
         style={{scrollbarWidth:"thin"}}
-        // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        
       >
         {props.quotationPhoneDetails.map((item, index) => {
           return (
@@ -427,27 +422,7 @@ const handleRowItem = (item) => {
                   )}
                 </div>
               </div>
-              {/* <div className="flex  md:w-[1rem]  max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "5rem" }}
-                      value={currency}
-                      onChange={(e) => handleCurrencyChange(e.target.value)}
-                    >
-                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
-                        <option key={currencyIndex} value={currencyItem.currency_id}>
-                          {currencyItem.currency_name}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                  
-                    <div className="font-normal text-xs  font-poppins"></div>
-                  )}
-                </div>
-              </div> */}
+            
              
 
               <div className="flex flex-col w-[8rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-1 max-sm:flex-row max-sm:w-auto">
@@ -455,15 +430,15 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <>
                       <Button onClick={() => handleUpdate(item.id,)}>
-                        Save
+                      {props.translatedMenuItems[48]}
                       </Button>
                       <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
+                      {props.translatedMenuItems[49]}
                       </Button>
                     </>
                   ) : (
                     <BorderColorIcon
-                      tooltipTitle="Edit"
+                      tooltipTitle={props.translatedMenuItems[58]}
                       iconType="edit"
                       onClick={() => handleEditClick(item.id,item.category, item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs,item.price,item.currency,)}
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
@@ -471,10 +446,10 @@ const handleRowItem = (item) => {
                   )}
                     <div>
                   <StyledPopconfirm
-                    title="Do you want to delete?"
+                    title={props.translatedMenuItems[120]}
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
-                    <Tooltip title="Delete">
+                    <Tooltip title={props.translatedMenuItems[59]}>
                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>

@@ -69,7 +69,7 @@ function OpenRepairTable(props) {
                             dataLength={props.openRepair.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingOpenRepairByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingOpenRepairByUser ? <div><BundleLoader/></div> : null}
                             height={"75vh"}
                             style={{ scrollbarWidth:"thin"}}
                         >

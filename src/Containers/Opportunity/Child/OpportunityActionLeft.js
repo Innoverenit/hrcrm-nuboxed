@@ -201,7 +201,7 @@ const OpportunityActionLeft = (props) => {
   
       <Badge
         size="small"
-        count={(viewType === "table" && recordData.opportunityDetails) || 0}
+        count={(viewType === "table" && recordData.opportunty) || 0}
         overflowCount={999}
       >
         <Tooltip

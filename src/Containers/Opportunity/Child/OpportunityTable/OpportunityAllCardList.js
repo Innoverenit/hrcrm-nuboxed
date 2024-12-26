@@ -35,6 +35,7 @@ import {
          getAllRecruitmentDetailsByOppId,
          getOpportunitySKill,
          getFullOpportunity,
+         getTeamUserList
 } from "../../OpportunityAction";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -86,6 +87,7 @@ function OpportunityAllCardList(props) {
     props. getFullOpportunity(page);
     setPage(page + 1);
     // props.getCrm();
+     props.getTeamUserList(props.userId)
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -206,14 +208,14 @@ function OpportunityAllCardList(props) {
        <div class="w-[14vw]"> Search team Member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
-        {props.crmAllData.map((item,index) =>{
+        {props.teamUserList.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center  h-16">
           <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
-              primaryTitle={item.empName}
+              primaryTitle={item.fullName}
               imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
@@ -225,7 +227,7 @@ function OpportunityAllCardList(props) {
           <div class="font-semibold text-[#337df4] cursor-pointer !text-lm font-poppins" 
               onClick={() => handleButtonClick(item.employeeId)} 
           >     
-          {item.empName}
+         {item.fullName}
         </div> 
         </div>     
         </div>
@@ -248,7 +250,7 @@ function OpportunityAllCardList(props) {
    <div className=' flex  sticky  w-[87%] z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end   z-10">
-<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem]  !text-lm ">
+<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  !text-lm ">
    <div className=" w-[10.1rem] truncate  text-sm text-[#00A2E8]  ">
    <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[13]} ID</div>
         <div className=" w-[12.1rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
@@ -272,7 +274,7 @@ function OpportunityAllCardList(props) {
         dataLength={allOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
+        loader={fetchingAllOpportunity?<div><BundleLoader/></div> :null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
@@ -564,7 +566,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity ,leads}) => ({
+const mapStateToProps = ({ auth, account,customer, opportunity ,leads}) => ({
   crmAllData:leads.crmAllData,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
@@ -591,6 +593,7 @@ const mapStateToProps = ({ auth, account, opportunity ,leads}) => ({
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
     allOpportunity:opportunity.allOpportunity,
+    teamUserList:customer.teamUserList,
     ooportunitySerachedData: opportunity.ooportunitySerachedData
   
 });
@@ -612,6 +615,7 @@ const mapDispatchToProps = (dispatch) =>
          getAllRecruitmentPositionFilledByOppId,
          getAllRecruitmentDetailsByOppId,
          getFullOpportunity,
+         getTeamUserList
     //      LinklostdOpportunity,
     //      deleteLostOpportunity,
     },

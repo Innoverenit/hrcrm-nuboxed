@@ -103,7 +103,7 @@ const LocationCard = (props) => {
   }
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getlocation(props.orgId);
+    // props.getlocation(props.orgId);
   }
   if (props.fetchingLocationData) return <BundleLoader />;
   return (

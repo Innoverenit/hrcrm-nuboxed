@@ -9,7 +9,7 @@ const AddLocationInOrder = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
+                title={`${props.translatedMenuItems[51]} - ${props.particularRowData.newOrderNo}`}
                 width="40vw"
                 visible={props.addInventoryInOrder}
                 destroyOnClose
@@ -23,7 +23,9 @@ const AddLocationInOrder = (props) => {
                         type={props.type}
                         particularRowData={props.particularRowData} 
                         selectedLanguage={props.selectedLanguage}
-                        translateText={props.translateText} />
+                        translateText={props.translateText} 
+                        translatedMenuItems={props.translatedMenuItems}
+                        />
                 </Suspense>
             </StyledDrawer>
         </>

@@ -19,6 +19,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import RefurbishNoteAll from "./RefurbishNoteAll";
 import SpareDrawerOpen from "./SpareDrawerOpen";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 
 
@@ -228,7 +229,7 @@ function SpareNewList(props) {
                             dataLength={props.tabSpareList.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingTabSpareList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingTabSpareList ? <div><BundleLoader/></div> : null}
                             height={"75vh"}
                             style={{ scrollbarWidth:"thin"}}
                         >

@@ -59,59 +59,80 @@ const AllAccountList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [RowData, setRowData] = useState("");
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [particularRowData, setParticularRowData] = useState({});
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState(""); 
   const [customerLists,setcustomerLists]=useState([]);
+ const [isCategoryDropdownClicked, setIsCategoryDropdownClicked] = useState(false); 
+ const [categoryOptions, setCategoryOptions] = useState([]); 
+ const [customerListOpt, setcustomerListOpt] = useState([]); 
+ const [isCustomerDropDownClick, setIsCustomerDropDownClick] = useState(false);
+ const [isDialCodeDropDownClicked, setIsDialCodeDropDownClicked] = useState(false);
+ const [dialCodeOpts, setDialCodeOpts] = useState([]);
+ const [currencyOpts,setcurrencyOpts]=useState([]);
+ const [isCurrencyDropdownClick,setIsCurrencyDropdownClick]=useState(false);
+
 
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
     setPage(page + 1);
   }, []);
+
+  const fetchCategoryData = () => {
+          if (!isCategoryDropdownClicked) {
+              props.getCategory(props.orgId);
+              setIsCategoryDropdownClicked(true); 
+          }
+      };
+  
+      useEffect(() => {
+          if (props.category && props.category.length > 0) {
+              setCategoryOptions(props.category); 
+          }
+      }, [props.category]);
+  
+      const fetchCustomerList = () => {
+        if (!isCustomerDropDownClick) {
+          props.getCustomer(props.orgId);
+          setIsCustomerDropDownClick(true); 
+        }
+    };
+    useEffect(() => {
+      if (props.customerListData && props.customerListData.length > 0) {
+        setcustomerListOpt(props.customerListData); 
+      }
+  }, [props.customerListData]);
+  
+  const fetchDialCode = () => {
+    if (!isDialCodeDropDownClicked) {
+      props.getCountry();
+      setIsDialCodeDropDownClicked(true); 
+    }
+  };
+  useEffect(() => {
+  if (props.countries && props.countries.length > 0) {
+    setcustomerListOpt(props.countries); 
+  }
+  }, [props.countries]);
+  
+  const fetchCurrency = () => {
+    if (!isCurrencyDropdownClick) {
+      props.getSaleCurrency();
+      setIsCurrencyDropdownClick(true); 
+    }
+  };
+  useEffect(() => {
+  if (props.saleCurrencies && props.saleCurrencies.length > 0) {
+    setcurrencyOpts(props.saleCurrencies); 
+  }
+  }, [props.saleCurrencies]);
+  
+
   useEffect(() => {
     setcustomerLists(props.allDistributors);
-    props.getCustomer(props.orgId);
-    props.getCategory(props.orgId);
-    props.getSaleCurrency();
-    props.getCountry();
 }, [props.allDistributors]);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-          "110",    // 'Name', // 0
-          "378",     // 'Work', // 1
-          "14",    // 'Category', // 2
-          "71",   // 'Type', // 3
-          "1295",   // Open Order', // 4
-          "1215",  // 'Tax', // 5
-          "77",    // 'Owner' 6
-          "100", // New 7
-          "392",// "Pulse"  8
-          "170",// "Edit" 9
-          "76",// 'Assigned', // 10  
-          "1338",// "Credit",//11
-          "592",          // club    12
-          "185",//Address13
-          "679",//Created14
-          "1171"
-      ];
-
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
-
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
@@ -283,42 +304,42 @@ const handleEditRowField = (distributorId, field, currentValue) => {
         <div className=" flex max-sm:hidden  w-[96%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
         <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
             <div className=" w-[14.3rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
-            <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
+            <ContactsIcon className="!text-icon  "/> {props.translatedMenuItems[0]}
             {/* Name */}
             </div>
             <div className=" w-[10.1rem] max-md:w-[10.11rem] truncate">
-            <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
+            <ApartmentIcon className="!text-icon mr-1 "/>  {props.translatedMenuItems[1]}
              {/* Work */}</div>
             <div className=" w-[14.6rem] max-md:w-[12.1rem] truncate">
-            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[2]}
             {/*category */}</div>
             <div className="w-[9.2rem] max-md:w-[10.01rem] truncate">
-            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
+            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {props.translatedMenuItems[3]}
             {/* type % */}</div>
             <div className="w-[9.3rem] max-md:w-[12.2rem] truncate ">
             <DynamicFeedIcon className='  text-[#e4eb2f]'
-              /> {translatedMenuItems[4]}
+              /> {props.translatedMenuItems[24]}
             {/* Paymentdays % */}</div>
             <div className="w-[8.9rem] max-md:w-[12.2rem] truncate">
-            <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
+            <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{props.translatedMenuItems[17]}
             </div>  
             <div className="w-[17.2rem] max-md:w-[9.2rem]">
-            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[15]}
+            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {props.translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>     
                 <div className="w-[21.8rem] max-md:w-[7.8rem] truncate">
-                <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' />  {translatedMenuItems[11]}
+                <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' />  {props.translatedMenuItems[8]}
            {/* credit */}        
             </div>
       
             <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {props.translatedMenuItems[7]}
             {/* Assigned */}          
             </div>  
             <div className="w-[4.9rem] max-md:w-[6.2rem] truncate ">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}
-            {/* Assigned */}          
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {props.translatedMenuItems[26]}
+            {/* Owner */}          
             </div>      
             </div>
           </div>
@@ -326,7 +347,7 @@ const handleEditRowField = (distributorId, field, currentValue) => {
             dataLength={customerLists.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            loader={props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
             height={"83vh"}
             style={{scrollbarWidth:"thin"}}
             endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
@@ -375,7 +396,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                     </Link>  &nbsp;&nbsp;
                                     {date === currentdate ? (
                                       <div class="text-[0.65rem] text-[tomato] font-bold" >
-                                        {translatedMenuItems[7]}  {/* New */}
+                                        {props.translatedMenuItems[7]}  {/* New */}
                                       </div>
                                     ) : null}
 
@@ -393,8 +414,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               value={editingValue}
                               onChange={handleChangeRowSelectItem} 
                               autoFocus
+                              onClick={fetchDialCode} 
                             >
-                              {props.countries.map((cntr) => (
+                               {dialCodeOpts.map((cntr) => (
                                 <Option key={cntr.country_dial_code} value={cntr.country_dial_code}>
                                   {cntr.country_dial_code}
                                 </Option>
@@ -442,8 +464,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCategoryData} 
     >
-      {props.category.map((ctg) => (
+      {categoryOptions.map((ctg) => (
         <Option key={ctg.categoryId} value={ctg.categoryId}>
           {ctg.name}
         </Option>
@@ -470,8 +493,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCustomerList} 
     >
-      {props.customerListData.map((clnt) => (
+      {customerListOpt.map((clnt) => (
         <Option key={clnt.customerTypeId} value={clnt.customerTypeId}>
           {clnt.name}
         </Option>
@@ -580,19 +604,19 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                                 <div className=" flex justify-between ">
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
-                                                                    }} >{translatedMenuItems[10]}
+                                                                    }} >{props.translatedMenuItems[10]}
                                                                       
                                                                             {/* defaultMessage="Save" */}
                                                                         
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[15]} 
+                                                                    {props.translatedMenuItems[15]} 
                                                                         {/* defaultMessage="Cancel" */}
                                                                    
                                                                     </Button>
                                                                 </div>
                                                             </>
-                                                        ) : <Tooltip title={translatedMenuItems[16]}
+                                                        ) : <Tooltip title={props.translatedMenuItems[16]}
                                                       
                                                         //     defaultMessage="Update Revised Price"
                                                          
@@ -638,8 +662,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
+      onClick={fetchCurrency} 
     >
-      {props.saleCurrencies.map((crr) => (
+      {currencyOpts.map((crr) => (
         <Option key={crr.currency_id} value={crr.currency_id}>
           {crr.currency_name}
         </Option>
@@ -728,7 +753,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       <div className=" flex max-md:w-[1.2rem]  max-xl:w-[1.2rem] max-sm:flex-row items-center justify-center h-8 bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
-                            <Tooltip title=  {translatedMenuItems[8]}>
+                            <Tooltip title=  {props.translatedMenuItems[8]}>
                             {/* "Pulse"> */}
                               <MonitorHeartIcon
                                 onClick={() => {
@@ -741,18 +766,15 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                         </div>
                         <div class=" flex items-center justify-center h-8  bg-[#eef2f9]">
-                        <Tooltip title=  {translatedMenuItems[13]}>
+                        <Tooltip title=  {props.translatedMenuItems[13]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
             props.handleAccountAddress(true);
             handleCurrentRowData(item);
-          }}
-          
-        /> 
+          }}/> 
         </Tooltip>  
         </div>
-
                       <div className=" flex    max-xl:w-[1.2rem] items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                       <div>
                         <Tooltip title={item.url}>
@@ -780,7 +802,6 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 </div>
                       </div>
                     </div>
-                
                   )
                 })}
               </> 
@@ -790,7 +811,6 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         </div>
           )}
             <Suspense fallback={<BundleLoader />}>
-  
       <AccountPulseModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -843,7 +863,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-
 export default connect(mapStateToProps, mapDispatchToProps)(AllAccountList);
 
 

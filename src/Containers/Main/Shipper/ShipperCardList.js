@@ -52,12 +52,19 @@ const[storedApiKey,setstoredApiKey]=useState([{apikeyId:"api1",apikeyName:"apiOn
 const[ErrorFetchApiKey,setErrorFetchApiKey]=useState(null);
 const [editableField, setEditableField] = useState(null); 
 const [editingValue, setEditingValue] = useState(""); 
+const [datadialcode, setdatadialcode] = useState(false);
 
+ const handleSelectDialcode = () => {
+    if (!datadialcode) {
+      props.getAllDialCodeList();
+      setdatadialcode(true);
+    }
+  };
 
   useEffect(() => {
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
-    fetchApiKeyList();
+    // fetchApiKeyList();
     // props.getAllDialCodeList();
     // props.getShipByData(props.orgId);
   }, []);
@@ -103,20 +110,20 @@ const handleToggleConfirm = (shipperId) => {
   setEditsuppliesId(shipperId); 
 };
 
-const fetchApiKeyList = async () => {
-  try {
-    const response = await axios.get(`${base_url2}/DUMMY`,{
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    });
-    setstoredApiKey(response.data);
-    // setLoading(false);
-  } catch (error) {
-    setErrorFetchApiKey(error);
-    // setLoading(false);
-  }
-};
+// const fetchApiKeyList = async () => {
+//   try {
+//     const response = await axios.get(`${base_url2}/DUMMY`,{
+//       headers: {
+//         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//       },
+//     });
+//     setstoredApiKey(response.data);
+//     // setLoading(false);
+//   } catch (error) {
+//     setErrorFetchApiKey(error);
+//     // setLoading(false);
+//   }
+// };
   const handleSelectedApiDropDown =  async (value,item) => {
     setSelectedApi(value);
     let payload={
@@ -371,6 +378,7 @@ const fetchApiKeyList = async () => {
                                 value={editingValue}
                                 onChange={handleChangeRowSelectItem} 
                                 onBlur={() => handleEditRowField(null, null, null)}
+                                onFocus={handleSelectDialcode}
                                 autoFocus
                               >
                               {props.dialcodeList.map((country) => (

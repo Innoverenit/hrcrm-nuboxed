@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handlePitchModal,getPitch,updateOwnerPitchById
  } from "../Pitch/PitchAction";
+import { BundleLoader } from '../../Components/Placeholder';
 const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
 const PitchCardList =lazy(()=>import("./Child/PitchCardList"));
 const AddPitchModal =lazy(()=>import("../Pitch/Child/AddPitchModal"));
@@ -90,7 +91,7 @@ function Pitch (props) {
   } = props;
         return (
             <React.Fragment>
-           <Suspense fallback={"Loading...."}>
+           <Suspense fallback={<BundleLoader/>}>
             <PitchHeader
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}
@@ -155,23 +156,11 @@ function Pitch (props) {
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
             /> }
-            {viewType === 'teams' ? ( <PitchTeamCardlist
+            {viewType === 'teams' && <PitchTeamCardlist
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
-            />
-            ):(
-<PitchCardList       filter={filter}
-             handleCheckboxChange={handleCheckboxChange}
-             selectedUser={selectedUser}
-             showCheckboxes={showCheckboxes}
-             selectedDeals={selectedDeals}
-             translateText={props.translateText}
-             selectedLanguage={props.selectedLanguage}
-             translatedMenuItems={props.translatedMenuItems}
-            />
-
-            )}
+            />}
           </>
         )}
             </Suspense> 

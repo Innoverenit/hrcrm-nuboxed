@@ -11,6 +11,13 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import UpdateIcon from '@mui/icons-material/Update';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import { BundleLoader } from "../../../Components/Placeholder";
 
 function QuotationCardList(props) {
   const [page, setPage] = useState(0);
@@ -64,9 +71,6 @@ useEffect(() => {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
-
-
- 
   const handleLoadMore = () => {
     const callPageMapd = props.ecomQuotation && props.ecomQuotation.length &&props.ecomQuotation[0].pageCount
     setTimeout(() => {
@@ -88,54 +92,38 @@ useEffect(() => {
   };
 
 
-
   dayjs.extend(relativeTime);
-
-
-
-
 
 const {handleProcureNotesDrawerModal,
   addDrawerProcureNotesModal
 } = props;
   return (
     <div>
-
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:hidden">
-        <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
-        <div className=" md:w-[0.5rem]"></div>
-                        <div className="w-[10rem] md:w-[4.02rem] text-[#00A2E8] text-base"><DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[0]} ID</div>
-                        <div className="w-[5.4rem] md:w-[5.04rem]"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
-                        <div className="w-[13.4rem] md:w-[8.04rem] flex">{translatedMenuItems[2]}</div>
+        <div className=" flex justify-between w-[96%]  p-1 bg-transparent font-poppins !text-lm font-bold sticky  z-10">
+    
+                        <div className="w-[8.5rem] truncate max-md:w-[4.02rem] text-[#00A2E8] text-sm"><DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[0]} ID</div>
+                        <div className="w-[8.1rem] truncate max-md:w-[5.04rem]"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
+                        <div className="w-[9.4rem] truncate max-md:w-[8.04rem] flex"> <ApartmentIcon className='!text-icon  text-[#606C38]'/>{translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className="w-[8.4rem] md:w-[12.14rem]">{translatedMenuItems[3]}</div>
+                        <div className="w-[15.4rem] truncate max-md:w-[12.14rem]"> <LocationOnIcon className='!text-icon  text-[#2B2D42]'/>{translatedMenuItems[3]}</div>
                         {/* Shipping */}
-                        <div className="w-[8.4rem] md:w-[8.13rem]">{translatedMenuItems[4]}</div>
+                        <div className="w-[15.5rem] truncate max-md:w-[8.13rem]">        <TextSnippetIcon className='!text-icon  text-[#457B9D]'/>{translatedMenuItems[4]}</div>
                         {/* Billing */}
-                        <div className="w-[5.4rem] md:w-[5.12rem]">{translatedMenuItems[5]}</div>
-                        {/* item */}
-                       
-                        <div className="w-[4.4rem] md:w-[4.3rem]">{translatedMenuItems[6]}</div>
-            
-                     
-                        <div className="w-[4.4rem] md:w-[5.4rem]"> 
-                          {translatedMenuItems[10]}
+                        <div className="w-[9.04rem] truncate max-md:w-[5.12rem]"> <AddShoppingCartIcon className='!text-icon  text-[#B23A48]'/>{translatedMenuItems[5]}</div>
+                        {/* item */}                    
+                        <div className="w-[9.7rem] truncate max-md:w-[4.3rem]">  <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[6]}</div>              
+                        <div className="w-[4.3rem] truncate max-md:w-[5.4rem]"> 
+                        < MergeTypeIcon className='!text-icon text-[#c42847] '  />   {translatedMenuItems[10]}
                           
-                          </div>
-                          {/* <div className=" md:w-[5.4rem]"> 
-                          {translatedMenuItems[11]}
-                          
-                          </div> */}
-                    
-                       
-                      
+                          </div>              
         </div>
         <InfiniteScroll
             hasMore={hasMore}
           dataLength={props.ecomQuotation.length}
           next={handleLoadMore}
-          loader={props.fetchingecomQuotation?<div class="flex justify-center" >Loading...</div>:null}
+          loader={props.fetchingecomQuotation?<div><BundleLoader/></div>:null}
           height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -150,7 +138,7 @@ const {handleProcureNotesDrawerModal,
                 <div
 className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                     <div class="flex max-sm:justify-between max-sm:w-wk items-center border-l-2 border-green-500 bg-[#eef2f9]">
+                     <div class="flex max-sm:justify-between w-[8.04rem] max-sm:w-wk items-center border-l-2 border-green-500 bg-[#eef2f9]">
                         <div className=" flex   md:w-[6.4rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
@@ -163,7 +151,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                         </div>
                       
                         </div>
-                        <div className=" flex  items-center md:w-[3.9rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  items-center md:w-[7.9rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                           
                             <div class=" text-xs  items-center font-poppins ">
                             <MultiAvatar
@@ -177,27 +165,23 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                     
                         </div>
 
-                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[9.12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs ml-gap  font-poppins">
                                 {item.distributorName}
                             </div>
 
                         </div>
-                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[13.3rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[15.3rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs ml-gap  font-poppins">
                                
                             </div>
-
                         </div>
-                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[13.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[15.5rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs ml-gap  font-poppins">
                              
                             </div>
-
                         </div>
-
-
-                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[9.1rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs cursor-pointer text-blue-500 font-poppins"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
@@ -205,13 +189,11 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                             }}>
                                 {item.itemCount}
                             </div>
-
                         </div>
-                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[7.8rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[9.8rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.status}
                             </div>
-
                         </div>
                         <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[6.6rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
@@ -219,9 +201,6 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                             </div>
 
                         </div>
-
-                     
-
                 </div>
             </div>
             );

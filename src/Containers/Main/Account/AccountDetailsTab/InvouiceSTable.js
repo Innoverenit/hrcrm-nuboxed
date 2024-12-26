@@ -1,343 +1,136 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    getInvoiveL,
-   // handleInvoiceModal
-} from "../AccountAction";
-import {  Select,Input,Button } from 'antd';
+import { getInvoiveL } from "../AccountAction";
+import { Select, Input, Button } from "antd";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import CategoryIcon from '@mui/icons-material/Category';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
+import CategoryIcon from "@mui/icons-material/Category";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 const { Option } = Select;
-
 function InvouiceSTable(props) {
-    const [pageNo, setPageNo] = useState(0);
-    const [data, setData] = useState([]);
-    const [date, setDate] = useState('');
-    const [trackId, settrackId] = useState('');
-    const [editedFields, setEditedFields] = useState({});
-    const [editsuppliesId, setEditsuppliesId] = useState(null);
-    const [hasMore, setHasMore] = useState(true);
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-    '110', // 0
-    '14', // 1
-    '218', // 2
-    '71', // 3
-    '260', // 4
-    '142', // 5
-   '259',//6
-    "1492",// Value 7
-  "1379", // Ship on 8
-   "1486", // track ID 9 
-   "1169",//10
-   "1044",//Item 11
-   "660",//Order
+  const [pageNo, setPageNo] = useState(0);
+  const [data, setData] = useState([]);
+  const [date, setDate] = useState("");
+  const [trackId, settrackId] = useState("");
+  const [editedFields, setEditedFields] = useState({});
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  useEffect(() => {
+    props.getInvoiveL(props.particularRowData.procureOrderInvoiceId);
+  }, []);
+  const [particularRowData, setParticularRowData] = useState({});
+  const [currency, setCurrency] = useState("");
+  const [showIcon, setShowIcon] = useState(false);
 
+  useEffect(() => {
+    setData(props.invoiceL);
+  }, [props.invoiceL]);
 
-          ];
-    
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
-    
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
-    useEffect(() => {
-       // setPageNo(pageNo + 1);
-        props.getInvoiveL(props.particularRowData.procureOrderInvoiceId)
-    }, []);
-    const [particularRowData, setParticularRowData] = useState({})
-    const handleRowData = (item) => {
-        setParticularRowData(item)
-    }
-    const [currency, setCurrency] = useState("")
-    const [showIcon, setShowIcon] = useState(false)
-    const handleCurrencyField = () => {
-        setShowIcon(!showIcon)
-
-    }
-    const handleChangeCurrency = (val) => {
-        setCurrency(val)
-    }
-    const handleCallback = () => {
-        setShowIcon(false)
-        setCurrency("")
-    }
-    useEffect(() => {
-        setData(props.invoiceL);
-    }, [props.invoiceL]);
-
-    const handleInputChange = (value, key, dataIndex) => {
-        const updatedData = data.map((item) =>
-            item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
-        );
-        setData(updatedData);
-        const updatedTrackId = updatedData.find(item => item.procureOrderInvoiceId === key)?.trackId;
-    settrackId(updatedTrackId);
-    };
-    
-      const handleDateChange = (e, item) => {
-        const selectedDate = new Date(e.target.value);
-        const deliveryDate = new Date(item.deliveryDate);
-    setDate(e.target.value);
-
-        // if (selectedDate >= deliveryDate) {
-        //     setDate(e.target.value);
-        // } else {   
-        //     alert('Shipping date cannot be earlier than delivery date');
-        // }
-    };
-    
-    
-      const handleEditClick = (procureOrderInvoiceId) => {
-        setEditsuppliesId(procureOrderInvoiceId);
-      };
-      const handleCancelClick = (procureOrderInvoiceId) => {
-        setEditedFields((prevFields) => ({ ...prevFields, [procureOrderInvoiceId]: undefined }));
-        setEditsuppliesId(null);
-      };
-    
-   
-    
-
-    const handlePostChange =  async (item) => {
-        let updatedItem={
-            shippingDate: new Date(date).toISOString(),
-          trackId:trackId?trackId:item.trackId,
-          procureOrderInvoiceId:item.procureOrderInvoiceId,
-        }
-      
-        try {
-          const headers = {
-            'Content-Type': 'application/json',
-            'Authorization':  `Bearer ${props.token}` 
-          };
-
-            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
-            console.log("API Response:", response.data);
-        setData(prevData => 
-              prevData.map(cat =>
-                cat.procureOrderInvoiceId === item.procureOrderInvoiceId ? response.data : cat
-              )
-            );
-        
-            setEditsuppliesId(null);
-        
-          } catch (error) {
-            // Handle errors
-            console.error("Error updating item:", error);
-            setEditsuppliesId(null);
-          }
-      };
-  
-
-    return (
-        <>
-            <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold !text-lm font-poppins sticky z-10">
-                    <div class="w-[8.5rem] text-[#00A2E8]">
-                   
-                    <CategoryIcon className="!text-icon text-[#00A2E8]  text-sm"  />
-                      {translatedMenuItems[11]} 
-                      </div>
-                    <div class="w-[8.5rem]">
-                    <ApartmentIcon className="!text-icon text-[#1e7a54]   "/> 
-                      {translatedMenuItems[0]}
-                      </div>
-                    <div class="w-[8.5rem]">
-                      {translatedMenuItems[12]}
-                      </div>
-                    <div className=" md:w-[5.1rem]">
-                      {translatedMenuItems[4]}
-                      </div>
-                        <div className=" md:w-[5.1rem]">
-                          {translatedMenuItems[2]}
-                          </div>
-                        <div className=" md:w-[5.01rem] ">
-                          Additional
-                          </div>
-                        <div className="md:w-[13rem]">
-                          {translatedMenuItems[7]}
-                          </div>
-                       
-                        {/* <div className="md:w-[3.8rem]">
-                        {translatedMenuItems[9]} ID</div>
-                        <div className="md:w-[3.8rem]">
-                        {translatedMenuItems[8]}</div> */}
-                    </div>
-                    <div class="">
-                        {/* <InfiniteScroll
-                            dataLength={props.invoiceL.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingInvoiceL ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"79vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
-                            {props.invoiceL.length ? <>
-                                {props.invoiceL.length === 0 ? "No data available" : props.invoiceL.map((item) => {
-                                    const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
-                                        <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
-                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex items-center font-medium justify-between  ml-gap h-8  flex-row w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9] mt-1 ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
-                                                           {item.newProductId}
-                                                           
-
-                                                        </div>
-                                                        {/* {date === currentdate ? (
-                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
-                                                                </div>
-                                                            ) : null} */}
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[5.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins truncate">
-
-                                                            {item.productFullName}
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.newOrderNo}
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    {item.unit}
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.price}
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.additional}
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.totalPrice}
-                                                        </div>
-                                                    </div>
-                                                   
-                                                    
-                                                      
-                                                        {/* {editsuppliesId === item.procureOrderInvoiceId ? (
-                                                         
-                                                                <input
-          type="date"
-          // value={date}
-          value={dayjs(item.shippingDate).format("YYYY-MM-DD")}
-          onChange={(e) => handleDateChange(e,item)}
-        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
-          class="border border-black rounded"
-        /> ) : (
-            <div className="font-normal text-sm  font-poppins">
-               {item.shippingDate === null ? "" :
-              <div> 
-              {dayjs(item.shippingDate).format("YYYY/MM/DD")} 
-              </div>}
+  return (
+    <>
+      <div className=" flex sticky  z-auto">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold !text-lm font-poppins sticky z-10">
+            <div class="w-[8.5rem] text-[#00A2E8]">
+              <CategoryIcon className="!text-icon text-[#00A2E8]  text-sm" />
+              {props.translatedMenuItems[129]}
             </div>
-          )} */}
-                                                       
-
-                                                    {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-    {editsuppliesId === item.procureOrderInvoiceId ? (
+            <div class="w-[8.5rem]">
+              <ApartmentIcon className="!text-icon text-[#1e7a54]   " />
+              {props.translatedMenuItems[122]}
+            </div>
+            <div class="w-[8.5rem]">{props.translatedMenuItems[19]}</div>
+            <div className=" md:w-[5.1rem]">
+              {props.translatedMenuItems[125]}
+            </div>
+            <div className=" md:w-[5.1rem]">
+              {props.translatedMenuItems[22]}
+            </div>
+            <div className=" md:w-[5.01rem] ">Additional</div>
+            <div className="md:w-[13rem]">{props.translatedMenuItems[147]}</div>
+          </div>
+          <div class="">
+            {props.invoiceL.length ? (
+              <>
+                {props.invoiceL.length === 0
+                  ? "No data available"
+                  : props.invoiceL.map((item) => {
+                      const currentdate = dayjs().format("DD/MM/YYYY");
+                      const date = dayjs(item.creationDate).format(
+                        "DD/MM/YYYY"
+                      );
+                      return (
                         <>
-                      <Button 
-                      type="primary"
-                      loading={props.updatingOrdrSuplrItems}
-                      onClick={() => handlePostChange(item)}>
-                        Save
-                      </Button>
-                        <Button 
-                         type="primary"
-                        onClick={() => handleCancelClick(item.procureOrderInvoiceId)} className="ml-[0.5rem]">
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <>
-              
-                      <Button
-                      type="primary"
-                        onClick={() => handleEditClick(item.procureOrderInvoiceId)}
-                      >Ship</Button>
-          
-                    </>
-                    )}
-    </div>
-                                                </div>   */}
-                                                 </div>
-
-
-                                            </div>
-                                         </>
-                                     )
-                                })}
-                            </>
-                                : !props.invoiceL.length
-                                    && !props.fetchingInvoiceL ? <NodataFoundPage /> : null}  
-                        {/* </InfiniteScroll> */}
-                    </div>
-                </div>
-            </div>
-            {/* <InvoiceModal
-                    particularRowData={particularRowData}
-                    handleInvoiceModal={props.handleInvoiceModal}
-                    invoiceO={props.invoiceO}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                />   */}
-        </>
-    )
+                          <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1">
+                            <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
+                              <div className=" flex items-center font-medium justify-between  ml-gap h-8  flex-row w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9] mt-1 ">
+                                <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
+                                  {item.newProductId}
+                                </div>
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[5.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                <div class="  max-xl:text-[0.65rem] text-xs font-poppins truncate">
+                                  {item.productFullName}
+                                </div>
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                  {item.newOrderNo}
+                                </div>
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                {item.unit}
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                  {item.price}
+                                </div>
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                  {item.additional}
+                                </div>
+                              </div>
+                              <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                  {item.totalPrice}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })}
+              </>
+            ) : !props.invoiceL.length && !props.fetchingInvoiceL ? (
+              <NodataFoundPage />
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 const mapStateToProps = ({ distributor, auth }) => ({
-    userId: auth.userDetails.userId,
-    orgId: auth.userDetails.organizationId,
-    currencies: auth.currencies,
-    fetchingInvoiceL:distributor.fetchingInvoiceL,
-    invoiceL:distributor.invoiceL,
-    invoiceO:distributor.invoiceO
+  userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
+  currencies: auth.currencies,
+  fetchingInvoiceL: distributor.fetchingInvoiceL,
+  invoiceL: distributor.invoiceL,
+  invoiceO: distributor.invoiceO,
 });
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            getInvoiveL,
-           // handleInvoiceModal
-           
-        },
-        dispatch
-    );
+  bindActionCreators(
+    {
+      getInvoiveL,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvouiceSTable);

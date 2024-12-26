@@ -33,6 +33,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import BentoIcon from '@mui/icons-material/Bento'; //units
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { base_url2 } from "../../../../../Config/Auth";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -55,7 +56,7 @@ function ItemListShow(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [RowInvoices, setRowInvoices] = useState('');
 
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [CreditMemo, setCreditMemo] = useState([]);
 
   const [data, setData] = useState(null);
@@ -64,39 +65,39 @@ function ItemListShow(props) {
 
     const [creditmemoData,setcreditmemoData]=useState([]);
 
-  useEffect(() => {
-      const fetchMenuTranslations = async () => {
-        try {
-          setLoading(true); 
-          const itemsToTranslate = [
-  '14', // 0
-  '264', // 1
-  '265', // 2
-  '259', // 3
-  '654', // 4
-  '658', // 5
-  '655',
-  '260',
-  '657',//8
-  '1093',
-  "1169",//10
-  "1225",
-  '1224',//12
-  "110",
+  // useEffect(() => {
+  //     const fetchMenuTranslations = async () => {
+  //       try {
+  //         setLoading(true); 
+  //         const itemsToTranslate = [
+  // '14', // 0
+  // '264', // 1
+  // '265', // 2
+  // '259', // 3
+  // '654', // 4
+  // '658', // 5
+  // '655',
+  // '260',
+  // '657',//8
+  // '1093',
+  // "1169",//10
+  // "1225",
+  // '1224',//12
+  // "110",
   
-        ];
+  //       ];
   
-          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-          setTranslatedMenuItems(translations);
-          setLoading(false);
-        } catch (error) {
-          setLoading(false);
-          console.error('Error translating menu items:', error);
-        }
-      };
+  //         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //         setTranslatedMenuItems(translations);
+  //         setLoading(false);
+  //       } catch (error) {
+  //         setLoading(false);
+  //         console.error('Error translating menu items:', error);
+  //       }
+  //     };
   
-      fetchMenuTranslations();
-    }, [props.selectedLanguage]);
+  //     fetchMenuTranslations();
+  //   }, [props.selectedLanguage]);
 
   useEffect(() => {
     props.getProcureDetails(props.particularRowData.orderPhoneId);
@@ -393,41 +394,33 @@ const handleGenerateInvoice= async () => {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[89vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between font-bold font-poppins text-xs w-[97%] items-end  p-1 bg-transparent  sticky z-10">
           <div className="w-[19.2rem]  text-[#00A2E8] text-base ">
-          <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[13]}
+          <ContactsIcon className="!text-icon mr-1 "/>  {props.translatedMenuItems[122]}
           </div>
 
         <div className=" w-[8.2rem] md:w-[8.2rem] ">
-        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[0]} {/* Category" /> */}
+        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[31]}{/* Category" /> */}
           </div>
           <div className="w-[6.2rem] md:w-[6.2rem] ">
-          <BrandingWatermarkIcon className="!text-icon" />  {translatedMenuItems[1]}{/* Brand" /> */}
+          <BrandingWatermarkIcon className="!text-icon" /> {props.translatedMenuItems[69]}{/* Brand" /> */}
           </div>
           <div className="w-[5.2rem] md:w-[5.2rem]">
-          <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[2]} {/* Model" /> */}
+          <ModelTrainingIcon className=" !text-icon" /> {props.translatedMenuItems[70]} {/* Model" /> */}
           </div>
           <div className="w-[4.6rem] md:w-[5.6rem]">
-            <AttractionsIcon className="  !text-icon" /> {translatedMenuItems[3]} {/* Attribute" /> */}
+            <AttractionsIcon className="  !text-icon" /> {props.translatedMenuItems[123]} {/* Attribute" /> */}
           </div>
           <div className="w-[6.21rem] md:w-[5.21rem] ">
-          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[8]} {/*Price" /> */}
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {props.translatedMenuItems[124]}{/*Price" /> */}
           </div>
           <div className="w-[5.21rem] md:w-[5.21rem]">
-             <BentoIcon className="  !text-icon" /> {translatedMenuItems[7]} {/* Units" /> */}
+             <BentoIcon className="  !text-icon" /> {props.translatedMenuItems[125]} {/* Units" /> */}
           </div>
-       
-        
-             
-      
-       
         </div>
         <InfiniteScroll
         dataLength={props.procureDetails.length}
-      //   next={handleLoadMore}
-      // hasMore={hasMore}
-        loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingProcureDetails?<div class="flex justify-center"><BundleLoader/></div>:null}
         height={"77vh"}
         style={{scrollbarWidth:"thin"}}
-        // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         {props.procureDetails.length > 0 ? 
         props.procureDetails.map((item, index) => {
@@ -478,25 +471,21 @@ const handleGenerateInvoice= async () => {
               <div className="flex  md:w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4.02rem] max-sm:justify-between">
                 <div className="text-xs ml-gap font-poppins">
                 {item.unit}
-                    
-                   
- 
-                 
                 </div>
               </div>
               {props.user.disPackInd && canPack && newpack &&
               <Button className="w-[5rem]"
                       type="primary"
-                      onClick={() => handlePostChange(item)}
-                      > <InputIcon className="!text-icon text-white"/>Pack</Button>}
+                      onClick={() => handlePostChange(item)}> 
+                      <InputIcon className="!text-icon text-white"/>Pack</Button>}
               <div className="flex justify-end w-[1.06rem] items-center h-8 ml-gap bg-[#eef2f9]   max-sm:flex-row max-sm:w-auto">
                
                 <div>
                   <StyledPopconfirm
-                    title="Do you want to delete?"
+                    title={props.translatedMenuItems[120]}
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
-                    <Tooltip title="Delete">
+                    <Tooltip title={props.translatedMenuItems[59]}>
                       
                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>

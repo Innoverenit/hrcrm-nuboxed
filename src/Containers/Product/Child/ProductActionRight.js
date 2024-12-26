@@ -25,37 +25,6 @@ class ProductActionRight extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
-
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        
-          
-         
-        "85",//Add
-        "294",//upload
-       "104", // Create"
-       "731", // Export Product
-       "1625", // Upload Image
-        
-        
-      ];
-
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
   render() {
     const {
       handleConfigureModal,
@@ -68,7 +37,7 @@ class ProductActionRight extends React.Component {
  
          
 
-          <Tooltip title= {this.state.translatedMenuItems[3]}>
+          <Tooltip title= {this.props.translatedMenuItems[2]}>
             <Button
               className="export"
               default
@@ -79,20 +48,20 @@ class ProductActionRight extends React.Component {
 
 
 
-          <Tooltip title= {this.state.translatedMenuItems[4]}>
+          <Tooltip title= {this.props.translatedMenuItems[4]}>
             <Button
               className="export"
               onClick={() => this.props.handleImageProductModal(true)}
               //default
              // href={`${base_url}/export/product?orgId=${organizationId}`}
             >
-             {this.state.translatedMenuItems[4]} {/* Upload Image */}
+             {this.props.translatedMenuItems[4]} {/* Upload Image */}
             </Button>
           </Tooltip>
           
 
          
-          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
+          <Tooltip placement="left" title= {this.props.translatedMenuItems[1]}>
             <Button
               type="primary"
               ghost
@@ -100,21 +69,21 @@ class ProductActionRight extends React.Component {
             >
              <UploadIcon className=" !text-icon"/>
               {/* Upload */}
-              {this.state.translatedMenuItems[1]}
+              {this.props.translatedMenuItems[1]}
             </Button>
           </Tooltip>
-          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
+          <Tooltip placement="left" title= {this.props.translatedMenuItems[0]}>
             <Button
               type="primary"
               onClick={() => handleConfigureModal(true)}
             ><DataSaverOnIcon className="!text-icon"/>
             {/* Add */}
-            {this.state.translatedMenuItems[0]}
+            {this.props.translatedMenuItems[0]}
             </Button>
           </Tooltip>
          
         </div>
-        <Suspense fallback={<BundleLoader />}>
+        <Suspense fallback={"Loading..."}>
         <UploadCatalogue
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}

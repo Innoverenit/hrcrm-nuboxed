@@ -113,35 +113,35 @@ function DispatchTableOut(props) {
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-              <div className=" w-[6.51rem] text-sm text-[#00A2E8] truncate max-md:w-[6.51rem] max-xl:w-[5.5rem]">
+              <div className=" w-[9.9rem] text-sm text-[#00A2E8] truncate max-md:w-[6.51rem] max-xl:w-[5.5rem]">
               <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/> {translatedMenuItems[0]}
                 </div>
              
-              <div className="w-[5.01rem] truncate max-md:w-[5.01rem] max-xl:w-[5.001rem]">
+              <div className="w-[9.01rem] truncate max-md:w-[5.01rem] max-xl:w-[5.001rem]">
                
               <BookmarkAddedIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[2]}
                 </div>
 
-              <div className="w-[4.03rem] truncate max-md:w-[4.03rem] max-xl:w-[5.03rem]">
+              <div className="w-[12.03rem] truncate max-md:w-[4.03rem] max-xl:w-[5.03rem]">
                 
               <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[3]}
                 </div>
-              <div className="w-[10.2rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
+              <div className="w-[12.2rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
                 <LocalShippingIcon className='!text-icon  text-[#832161]'/> {translatedMenuItems[4]}
                 </div>
-              <div className=" w-[5.03rem] truncate max-md:w-[5.03rem] max-xl:w-[6.03rem]">
+              <div className=" w-[12.03rem] truncate max-md:w-[5.03rem] max-xl:w-[6.03rem]">
                 <LocalShippingIcon className='!text-icon  text-[#6ba368]'/>{translatedMenuItems[5]}
                 </div>
-              < div className=" w-[6.5rem] truncate max-md:w-[6.5rem] max-xl:w-[5.5rem]">
+              < div className=" w-[11.5rem] truncate max-md:w-[6.5rem] max-xl:w-[5.5rem]">
               <   RvHookupIcon className='!text-icon mr-1 text-[#6ba368]'/> {translatedMenuItems[6]}
               </div>
-             
-              <div className=" w-[4.20rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
+              <div className=" w-[12.20rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]"></div>
+              <div className=" w-[6.2rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
                 <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
                 </div>
-              <div className="w-[3.51rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
+              <div className="w-[1.51rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
                 
-               {translatedMenuItems[9]}
+        
                 </div>
              
             </div>
@@ -169,7 +169,7 @@ function DispatchTableOut(props) {
                       <div className="flex rounded justify-between mt-1 bg-white items-center py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex  w-[7.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                          <div className=" flex  w-[9.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                             <div class="text-xs flex items-center ml-gap font-bold underline font-poppins cursor-pointer   max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
@@ -189,18 +189,38 @@ function DispatchTableOut(props) {
                                                    
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                          <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[6.14rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.14rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  ml-gap font-poppins  max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
                         </div>
                         
-                        
-                       
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.02rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                           
+                            </div>
+                          </div>
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.03rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                               
+                            </div>
+                          </div>
+
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.04rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                           
+                            </div>
+                          </div>
+
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.05rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
+                           
+                            </div>
+                          </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins  max-sm:text-sm">
                                 {date1}
                             </div>
@@ -217,7 +237,7 @@ function DispatchTableOut(props) {
                             <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon text-[green] cursor-pointer"
-                                                            // style={{ cursor: "pointer" }}
+                                                    
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleProductionNotesModal(true);

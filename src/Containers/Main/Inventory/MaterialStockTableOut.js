@@ -94,33 +94,26 @@ const MaterialStockTableOut = (props) => {
     return (
         <>
             <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
-                        <div className="w-[9.5rem]"></div>
+                        <div className="w-[2.5rem]"></div>
                    {/* po # */}
-                        <div className="text-[#00A2E8] w-[8.21rem] truncate text-base max-md:w-[11.21rem]">
-                   {/* name */}
-                   <LocationCityIcon className='!text-icon  '  />  {props.translatedMenuItems[0]}
+                        <div className="text-[#00A2E8] w-[8.21rem] truncate text-base max-md:w-[11.21rem]">        {/* name */}          
+                                <LocationCityIcon className='!text-icon  '  />  {props.translatedMenuItems[0]}
                             </div>
-                        <div className="w-[6.82rem] truncate max-md:w-[9.82rem]">
-                            {/* Category */}
-                            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[24]}
-                            </div>
-                    {/* price */}
-                        <div className="w-[5.25rem] truncate max-md:w-[9.25rem]">
-                            {/* attribute */}
-                            <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
-                            </div>
-                     
-                        <div className="w-[7.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-icon"/>HSN</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< ShareLocationIcon className=" !text-icon"/>{props.translatedMenuItems[32]}</div>  {/* Zone*/}
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< MeetingRoomIcon className=" !text-icon"/> room</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< RepartitionIcon className=" !text-icon"/>{props.translatedMenuItems[33]}</div> {/* Zone*/}
-                        <div className="w-[6.10rem] truncate max-md:md:w-[6.10rem]">
+                         <div className="w-[13.52rem] truncate max-md:w-[9.82rem]">      {/* Category */}                       
+                            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[24]}    </div>                    
+                        <div className="w-[10.1rem] truncate max-md:w-[9.25rem]">     {/* attribute */}
+                            <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]} </div>
+                        <div className="w-[10.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-icon"/>HSN</div>
+                        <div className="w-[8.12rem] truncate max-md:md:w-[4.11rem]">< ShareLocationIcon className=" !text-icon"/>{props.translatedMenuItems[32]}</div>  {/* Zone*/}
+                        <div className="w-[10.2rem] truncate max-md:md:w-[4.11rem]">< MeetingRoomIcon className=" !text-icon"/> room</div>
+                        <div className="w-[6.6rem] truncate max-md:md:w-[4.11rem]">< RepartitionIcon className=" !text-icon"/>{props.translatedMenuItems[33]}</div> {/* Zone*/}
+                        <div className="w-[7.3rem] truncate max-md:md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
                         </div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.51rem]">< MeetingRoomIcon className=" !text-icon"/> Publish</div>
+                        <div className="w-[6.9rem] truncate max-md:md:w-[4.51rem]">< MeetingRoomIcon className=" !text-icon"/> Publish</div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
@@ -158,17 +151,17 @@ const MaterialStockTableOut = (props) => {
                                         </div>
 
 
-                                        <div className=" flex  md:w-[15.2rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[15.2rem] truncate items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs ml-gap font-poppins">
                                                 {item.suppliesFullName}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[11.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[11.1rem] truncate items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs ml-gap font-poppins">
                                                 {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[11.1rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  ml-gap font-poppins">
                                                 {item.attributeName}  {item.subAttributeName}
                                             </div>
@@ -193,10 +186,7 @@ const MaterialStockTableOut = (props) => {
                                                 {item.balanced}
                                             </div>
                                         </div>
-
-
                                         <div class="flex justify-center h-8 ml-gap bg-[#eef2f9] w-6 items-center max-sm:flex-row max-sm:w-[10%]">
-
 <div>
     <Tooltip title="">
         <i class="far fa-share-square"
@@ -209,11 +199,8 @@ const MaterialStockTableOut = (props) => {
         />
     </Tooltip>
 </div>
-
-
 <div></div>
-</div>
-                                      
+</div>                                
 <MaterialStockToggle
                                       publishInd={item.publishInd}
                                       suppliesId={item.suppliesId}
@@ -225,12 +212,9 @@ const MaterialStockTableOut = (props) => {
                                             selectedLanguage={props.selectedLanguage}
                                             translateText={props.translateText}
                                             row={row} 
-                                            inventory={props.inventory}
-                                          
-
+                                            inventory={props.inventory}                                      
                                             />}
-                                    </div>
-                                  
+                                    </div>                               
                                 </div>
                             );
                         })}
@@ -253,7 +237,6 @@ const MaterialStockTableOut = (props) => {
         </>
     );
 }
-
 
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,

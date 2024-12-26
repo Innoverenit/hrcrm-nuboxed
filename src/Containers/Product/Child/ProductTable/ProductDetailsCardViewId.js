@@ -8,10 +8,7 @@ function ProductDetailsCardViewId (props) {
           setLoading(true); 
           const itemsToTranslate = [
      
-             "",//0 Completed puzzle dimension
-              "",//1 Piece count
-              "",//2  Age group
-              "",//3Package dimension
+      
               "799",//5Hsn
               "1241",//5 Weight
               "259",//6Attribute

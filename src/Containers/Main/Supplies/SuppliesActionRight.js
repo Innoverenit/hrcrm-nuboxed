@@ -27,32 +27,32 @@ class SuppliesActionRight extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        "85",//0
-        "294",//1
-        "104",//2
-        "796",//3
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //       "85",//0
+  //       "294",//1
+  //       "104",//2
+  //       "796",//3
         
-      ];
+  //     ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
   render() {
     const { handleSuppliesModal, addSuppliesModal,bestBeforemodal, user, viewType,handleNewAriival,handleBestbefore,newArivalmodal } = this.props;
 
@@ -69,7 +69,7 @@ class SuppliesActionRight extends React.Component {
           </Tooltip>
           : null}
           
-          <Tooltip title= {this.state.translatedMenuItems[4]}>
+          <Tooltip title= {this.props.translatedMenuItems[3]}>
             <Button
             style={{background: "green", color:"white"}}
               className="export"
@@ -81,7 +81,7 @@ class SuppliesActionRight extends React.Component {
             Upload Image
             </Button>
           </Tooltip>
-         <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
+         <Tooltip placement="left" title={this.props.translatedMenuItems[7]}>
             <Button
               type="primary"
               style={{background: "green", color:"white"}}
@@ -118,7 +118,7 @@ class SuppliesActionRight extends React.Component {
           </Tooltip>
   
         {viewType === "all" && (
-          <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
+          <Tooltip placement="left" title={this.props.translatedMenuItems[8]}>
             <Button
               type="primary"
               onClick={() => handleSuppliesModal(true)}

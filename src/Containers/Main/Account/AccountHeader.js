@@ -13,6 +13,7 @@ class AccountHeader extends Component {
             setCurrentData,
             currentData,
             handleClear,
+            translatedMenuItems
         } = this.props;
 
         return (
@@ -23,6 +24,7 @@ class AccountHeader extends Component {
                         <AccountActionLeft
                         selectedLanguage={this.props.selectedLanguage}
                         translateText={this.props.translateText}
+                        translatedMenuItems={translatedMenuItems}
                             viewType={viewType}
                             setDistributorViewType={setDistributorViewType}
                             setCurrentData={setCurrentData}
@@ -34,6 +36,7 @@ class AccountHeader extends Component {
                         <AccountActionRight
                             selectedLanguage={this.props.selectedLanguage}
                             translateText={this.props.translateText}
+                            translatedMenuItems={translatedMenuItems}
                             viewType={viewType}
                             handleAccountImportModal={handleAccountImportModal}
                             handleDistributorModal={handleDistributorModal}

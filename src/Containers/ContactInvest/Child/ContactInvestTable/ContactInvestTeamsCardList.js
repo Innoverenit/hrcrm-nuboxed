@@ -352,7 +352,7 @@ if (loading) {
         dataLength={props.teamsContactInvestData.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+        loader={props.fetchingTeamsContactInvest?<div><BundleLoader/></div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}

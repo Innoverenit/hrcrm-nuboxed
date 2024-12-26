@@ -232,7 +232,7 @@ const ProductionOrderList = (props) => {
                         dataLength={props.productionUrgent.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingProductionUrgent ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingProductionUrgent ? <div><BundleLoader/></div> : null}
                         height={"39vh"} 
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
                         endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
@@ -500,7 +500,7 @@ const ProductionOrderList = (props) => {
                         dataLength={props.productionNormal.length}
                         next={handleLoadMore2}
                         hasMore={hasMore}
-                        loader={props.fetchingProductionNormal ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingProductionNormal ? <div><BundleLoader/></div> : null}
                         height={"39vh"}
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
                         endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}

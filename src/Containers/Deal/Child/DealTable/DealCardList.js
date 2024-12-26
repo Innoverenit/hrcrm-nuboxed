@@ -145,7 +145,7 @@ function DealCardList(props) {
         hasMore={hasMore}
         loader={
           fetchingDeal ? (
-            <div class="flex justify-center">Loading...</div>
+           <div><BundleLoader/></div>
           ) : null
         }
         height={"83vh"}

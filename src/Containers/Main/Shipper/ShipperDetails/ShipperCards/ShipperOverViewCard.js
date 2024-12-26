@@ -12,8 +12,9 @@ class ShipperOverViewCard extends Component {
                         viewType === "view" ? (
                             <Suspense fallback={"Loading..."}> <ShipperOverViewView
                                 shipper={shipper}
-                                translatedMenuItems={this.translatedMenuItems}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 selectedLanguage={this.props.selectedLanguage}
+                                
                             /></Suspense>
                         ) : null
                     }

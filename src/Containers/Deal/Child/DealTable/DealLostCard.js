@@ -128,7 +128,7 @@ function DealLostCard(props) {
                  dataLength={lostDeals.length}
                 next={handleLoadMore}
                 hasMore={hasMore}
-                loader={fetchingLostDeals ?<div class="flex justify-center">Loading...</div>:null}
+                loader={fetchingLostDeals ?<div><BundleLoader/></div>:null}
                 height={"83vh"}
                 style={{scrollbarWidth:"thin"}}
               >

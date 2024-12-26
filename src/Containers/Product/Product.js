@@ -14,6 +14,48 @@ const ProductBrandModelList =lazy(()=>import("./ProductBrandModelList"));
 const  BrandList=lazy(()=>import("../Product/Child/BrandList"));
 
 class Product extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "85",//Add//0
+        "294",//upload//1
+       "104", // Create"//2
+       "731", // Export Product//3
+       "1625", // Upload Image//4
+       "726" , // Active Products//5
+       "14" ,   // Category//6
+       "1607" ,   // "BrandModel//7
+       "728" ,  // Suspended Products//8
+       "264" , // Brand"//9
+       "1069" ,  // Reinstate//10
+       "1239" ,   // Search by Category Name //11
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       user,
@@ -32,6 +74,7 @@ class Product extends Component {
         <ProductHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.state.translatedMenuItems}
           setProductViewType={setProductViewType}
           viewType={viewType}
           handleConfigureModal={handleConfigureModal}
