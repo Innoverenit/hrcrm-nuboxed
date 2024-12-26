@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import InvoiceStatusCardView from "./InvoiceStatusCardView";
-
 function InvoiceStatusDrawer (props) {
   return (
     <>
@@ -16,7 +15,9 @@ function InvoiceStatusDrawer (props) {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        <InvoiceStatusCardView particularRowData={props.particularRowData}/> 
+        <InvoiceStatusCardView particularRowData={props.particularRowData}
+                translatedMenuItems={props.translatedMenuItems}
+        /> 
         </Suspense>
       </StyledDrawer>
     </>

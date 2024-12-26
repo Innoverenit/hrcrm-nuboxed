@@ -2,8 +2,7 @@ import React, { Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import InvoiceMultipleDrawerCard from "./InvoiceMultipleDrawerCard";
-
-function InvoiceMultipleDrawer (props) {
+function InvoiceMultipleDrawer(props) {
   return (
     <>
       <StyledDrawer
@@ -16,18 +15,17 @@ function InvoiceMultipleDrawer (props) {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        <InvoiceMultipleDrawerCard 
-        particularRowData={props.particularRowData}
-        openMultipleDrawer={props.openMultipleDrawer}
-         setopenMultipleDrawer={props.setopenMultipleDrawer}
-         distributorId={props.distributorId}
-         selectedLanguage={props.selectedLanguage}
-         translateText={props.translateText} 
-        /> 
+          <InvoiceMultipleDrawerCard
+            particularRowData={props.particularRowData}
+            openMultipleDrawer={props.openMultipleDrawer}
+            setopenMultipleDrawer={props.setopenMultipleDrawer}
+            distributorId={props.distributorId}
+            translatedMenuItems={props.translatedMenuItems}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+          />
         </Suspense>
       </StyledDrawer>
     </>
-  );
-};
-
+  );}
 export default InvoiceMultipleDrawer;

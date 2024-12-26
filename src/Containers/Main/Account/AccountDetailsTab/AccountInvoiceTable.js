@@ -544,6 +544,7 @@ function AccountInvoiceTable(props) {
         particularRowData={particularRowData}
         openStatus={openStatus}
         setopenStatus={setopenStatus}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
       <MultipleOrderDrawer
@@ -559,6 +560,7 @@ function AccountInvoiceTable(props) {
         particularRowData={particularRowData}
         openMultipleDrawer={openMultipleDrawer}
         setopenMultipleDrawer={setopenMultipleDrawer}
+        translatedMenuItems={props.translatedMenuItems}
         distributorId={props.distributorId}
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}
