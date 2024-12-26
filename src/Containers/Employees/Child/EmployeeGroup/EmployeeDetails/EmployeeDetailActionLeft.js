@@ -1,12 +1,11 @@
 import React from "react";
-
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import { useNavigate } from "react-router-dom";
 
-class EmployeeDetailActionLeft extends React.Component {
-  render() {
+const EmployeeDetailActionLeft  = (props) =>{
+   const navigate = useNavigate();
     return (
       <div class=" flex items-center">
         <KeyboardReturnIcon
@@ -15,12 +14,15 @@ class EmployeeDetailActionLeft extends React.Component {
           tooltiptitle="Back"
 
          
-          onClick={() => this.props.history.goBack()}
+          onClick={() =>  {
+              navigate(-1)
+              
+            }}
         />{" "}
       </div>
     );
   }
-}
+
 const mapStateToProps = ({ }) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
