@@ -1,9 +1,7 @@
 import React, { useEffect, lazy, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  Select,
-} from "../../../../../Components/UI/Elements";
+import { Select,} from "../../../../../Components/UI/Elements";
 import { Switch, Popconfirm, message } from "antd";
 import {
   updateRequirement,
@@ -11,7 +9,8 @@ import {
 } from "../../../../Settings/SettingsAction";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import Identifier from "./Identifier";
+
+const Identifier = lazy(() => import("./Identifier"));
 const Notifications = lazy(() => import("../General/Notifications"));
 const { Option } = Select;
 const GeneralSchema = Yup.object().shape({
@@ -248,25 +247,11 @@ function General(props) {
                 <div class=" flex justify-between w-full p-3 ">             
                   <div>   
                  
-                  <div class=" text-sm  font-bold">HR aa</div>           
-                    {/* <div class=" flex justify-between mt-2">                    
-                     <div class=" text-xs  ">Drop Open Orders (in months)</div>
-                     <div>
-                     <Select
-  value={formValues.timePeriod}
-  onChange={(value) => handleDropdownChange("timePeriod", value)}
->
-  <Option value="1">1</Option>
-  <Option value="2">2</Option>
-  <Option value="3">3</Option>
-  <Option value="4">4</Option>
-  <Option value="5">5</Option>
-  <Option value="Not Applicable">Not Applicable</Option>
-</Select>
-                  </div>
-                    </div> */}
-
-                  
+                 
+                  {props.user.hrInd  === true ? (
+   <> 
+                  <div class=" text-sm  font-bold">HR</div>           
+                                 
                     <div class=" flex justify-between   mt-2">                
                        <div class=" text-xs  ">Send Job Anniversary Email</div>
                       <div>
@@ -310,6 +295,14 @@ function General(props) {
    
                       </div>
                     </div>
+                    </>
+                  ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    HR module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
+       {props.user.crmInd   === true ? (
+   <> 
                     <div class=" flex  justify-between mt-3">
                       <div class=" text-sm  font-bold ">CRM</div>
                       </div>
@@ -533,7 +526,7 @@ function General(props) {
                     </div>
                     
                     <div class=" flex justify-between ] mt-2">           
-                        <div class=" text-xs  ">Material / Pricing</div>    
+                        <div class=" text-xs  ">Material-Pricing-Calculating method</div>    
                         <div className="w-[10rem]">
                       <Select
   value={formValues.matPrc}
@@ -548,7 +541,7 @@ function General(props) {
                     </div>
 
                     <div class=" flex justify-between ] mt-2">           
-                        <div class=" text-xs  ">Price Update</div>    
+                        <div class=" text-xs  ">Material-Price Update Trigger</div>    
                         <div className="w-[10rem]">
                                           <Select
                       value={formValues.prcUpdt}
@@ -583,6 +576,14 @@ function General(props) {
    
                       </div>
                     </div>
+                    </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    CRM module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
+        { props.user.inventoryAccessInd === true && props.user.erpInd === true  ? (
+   <> 
                 <div class=" flex  mt-2">
                       <div class=" text-sm  font-bold">Inventory</div>
                       </div>
@@ -608,7 +609,7 @@ function General(props) {
                       </div>
                     </div>
                     <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">StuckUpdate</div>
+                    <div class=" text-xs  ">Stock Update</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -685,29 +686,75 @@ function General(props) {
                       </div>
                     </div>
 }
-                     
-
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Change Password </div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Package")}
-                      okText="yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.mfaCPInd}
-                        checkedChildren={"yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("mfaCPInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
+<div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">Dispatch to Packing</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("Dispatch to Packing")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.disPackInd}
+        checkedChildren={"Item"}
+        unCheckedChildren={"Order"}
+        onChange={(checked) => handleToggleChange("disPackInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div>  
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">B2b Inventory Order</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("B2b Inventory Order")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.b2bCheckInvenOrdInd}
+        checkedChildren={"Yes"}
+        unCheckedChildren={"No"}
+        onChange={(checked) => handleToggleChange("b2bCheckInvenOrdInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">B2c Inventory Order</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("B2c Inventory Order")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.b2cCheckInvenOrdInd}
+        checkedChildren={"Yes"}
+        unCheckedChildren={"No"}
+        onChange={(checked) => handleToggleChange("b2cCheckInvenOrdInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div>
+    </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Inventory module is Switched off. Switch it on to Access Features.
+  </div>
+)}     
 
                     <div class=" flex  mt-2">
                       <div class=" text-sm  font-bold">Production</div>                      
@@ -777,6 +824,71 @@ function General(props) {
                   </div>
    
                       </div>
+                      <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">Manufacturing process</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("Manufacturing process")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.manfProcInd}
+        checkedChildren={"Cell"}
+        unCheckedChildren={"Batch"}
+        onChange={(checked) => handleToggleChange("manfProcInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
+
+  <div class=" flex justify-between   mt-2">                
+  <div class=" text-xs  ">B2b Production</div>
+    <div>
+    <div>
+  <Popconfirm
+    title="Are you sure to change ?"
+    onConfirm={() => handleConfirm("B2b Production")}
+    okText="Yes"
+    cancelText="No"
+  >
+    <Switch
+      checked={formValues.b2bProductionInd}
+      checkedChildren={"Yes"}
+      unCheckedChildren={"No"}
+      onChange={(checked) => handleToggleChange("b2bProductionInd", checked)}
+    />
+  </Popconfirm>
+</div>
+
+    </div>
+  </div>
+  <div class=" flex justify-between   mt-2">                
+ <div class=" text-xs  ">B2c Production</div>
+   <div>
+   <div>
+ <Popconfirm
+   title="Are you sure to change ?"
+   onConfirm={() => handleConfirm("B2c Production")}
+   okText="Yes"
+   cancelText="No"
+ >
+   <Switch
+     checked={formValues.b2cProductionInd}
+     checkedChildren={"Yes"}
+     unCheckedChildren={"No"}
+     onChange={(checked) => handleToggleChange("b2cProductionInd", checked)}
+   />
+ </Popconfirm>
+</div>
+
+   </div>
+ </div> 
+
                     </div>
                     </>
  ) : (
@@ -784,6 +896,8 @@ function General(props) {
     Production module is Switched off. Switch it on to Access Features.
   </div>
 )}   
+  {props.user.repairInd   === true ? (
+   <> 
 
                     <div class=" flex  justify-between mt-3">
                       <div class=" text-sm  font-bold ">Repair</div>
@@ -887,12 +1001,63 @@ function General(props) {
                   </div>
                 </div>
             
-                 
+              
+   <div class=" flex justify-between   mt-2">                
+   <div class=" text-xs  ">B2b Repair</div>
+     <div>
+     <div>
+   <Popconfirm
+     title="Are you sure to change ?"
+     onConfirm={() => handleConfirm("B2b Reapir")}
+     okText="Yes"
+     cancelText="No"
+   >
+     <Switch
+       checked={formValues.b2bRepairInd}
+       checkedChildren={"Yes"}
+       unCheckedChildren={"No"}
+       onChange={(checked) => handleToggleChange("b2bRepairInd", checked)}
+     />
+   </Popconfirm>
+ </div>
+
+     </div>
+   </div>
+
              
+          
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">B2c Repair</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("B2c Reapir")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.b2cRepairInd}
+        checkedChildren={"Yes"}
+        unCheckedChildren={"No"}
+        onChange={(checked) => handleToggleChange("b2cRepairInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
 
-
-
-                    <div class=" text-sm mt-3 font-bold ">Invoice</div>
+      </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+  Repair module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
+        {props.user.financeInd   === true ? (
+   <> 
+          
+ <div class=" text-sm mt-3 font-bold ">Invoice</div>
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Proforma Invoice (PI) needed</div>
                       <div>
@@ -979,52 +1144,8 @@ function General(props) {
                       </div>
                     </div>
 )}
-{props.user.repairInd  && (
-   <div class=" flex justify-between   mt-2">                
-   <div class=" text-xs  ">B2b Repair</div>
-     <div>
-     <div>
-   <Popconfirm
-     title="Are you sure to change ?"
-     onConfirm={() => handleConfirm("B2b Reapir")}
-     okText="Yes"
-     cancelText="No"
-   >
-     <Switch
-       checked={formValues.b2bRepairInd}
-       checkedChildren={"Yes"}
-       unCheckedChildren={"No"}
-       onChange={(checked) => handleToggleChange("b2bRepairInd", checked)}
-     />
-   </Popconfirm>
- </div>
 
-     </div>
-   </div>
-)}
- {props.user.productionInd  && (
-  <div class=" flex justify-between   mt-2">                
-  <div class=" text-xs  ">B2b Production</div>
-    <div>
-    <div>
-  <Popconfirm
-    title="Are you sure to change ?"
-    onConfirm={() => handleConfirm("B2b Production")}
-    okText="Yes"
-    cancelText="No"
-  >
-    <Switch
-      checked={formValues.b2bProductionInd}
-      checkedChildren={"Yes"}
-      unCheckedChildren={"No"}
-      onChange={(checked) => handleToggleChange("b2bProductionInd", checked)}
-    />
-  </Popconfirm>
-</div>
 
-    </div>
-  </div>
-)}
  {props.user.ecomInd  && (
   <div class=" flex justify-between   mt-2">                
   <div class=" text-xs  ">B2c Procure</div>
@@ -1048,94 +1169,11 @@ function General(props) {
     </div>
   </div>
 )}
-  {props.user.repairInd  && (
-    <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">B2c Repair</div>
-      <div>
-      <div>
-    <Popconfirm
-      title="Are you sure to change ?"
-      onConfirm={() => handleConfirm("B2c Reapir")}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Switch
-        checked={formValues.b2cRepairInd}
-        checkedChildren={"Yes"}
-        unCheckedChildren={"No"}
-        onChange={(checked) => handleToggleChange("b2cRepairInd", checked)}
-      />
-    </Popconfirm>
-  </div>
-  
-      </div>
-    </div> 
-)}
-{props.user.productionInd  && (
- <div class=" flex justify-between   mt-2">                
- <div class=" text-xs  ">B2c Production</div>
-   <div>
-   <div>
- <Popconfirm
-   title="Are you sure to change ?"
-   onConfirm={() => handleConfirm("B2c Production")}
-   okText="Yes"
-   cancelText="No"
- >
-   <Switch
-     checked={formValues.b2cProductionInd}
-     checkedChildren={"Yes"}
-     unCheckedChildren={"No"}
-     onChange={(checked) => handleToggleChange("b2cProductionInd", checked)}
-   />
- </Popconfirm>
-</div>
+ 
 
-   </div>
- </div> 
-)}
- <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">B2b Inventory Order</div>
-      <div>
-      <div>
-    <Popconfirm
-      title="Are you sure to change ?"
-      onConfirm={() => handleConfirm("B2b Inventory Order")}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Switch
-        checked={formValues.b2bCheckInvenOrdInd}
-        checkedChildren={"Yes"}
-        unCheckedChildren={"No"}
-        onChange={(checked) => handleToggleChange("b2bCheckInvenOrdInd", checked)}
-      />
-    </Popconfirm>
-  </div>
+
+
   
-      </div>
-    </div> 
-    <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">B2c Inventory Order</div>
-      <div>
-      <div>
-    <Popconfirm
-      title="Are you sure to change ?"
-      onConfirm={() => handleConfirm("B2c Inventory Order")}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Switch
-        checked={formValues.b2cCheckInvenOrdInd}
-        checkedChildren={"Yes"}
-        unCheckedChildren={"No"}
-        onChange={(checked) => handleToggleChange("b2cCheckInvenOrdInd", checked)}
-      />
-    </Popconfirm>
-  </div>
-  
-      </div>
-    </div> 
     <div class=" flex justify-between   mt-2">                
     <div class=" text-xs  ">Ship Invoice Payment</div>
       <div>
@@ -1157,48 +1195,16 @@ function General(props) {
   
       </div>
     </div> 
-    <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">Dispatch to Packing</div>
-      <div>
-      <div>
-    <Popconfirm
-      title="Are you sure to change ?"
-      onConfirm={() => handleConfirm("Dispatch to Packing")}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Switch
-        checked={formValues.disPackInd}
-        checkedChildren={"Item"}
-        unCheckedChildren={"Order"}
-        onChange={(checked) => handleToggleChange("disPackInd", checked)}
-      />
-    </Popconfirm>
+    </>
+  ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Invoice module is Switched off. Switch it on to Access Features.
   </div>
+)}
   
-      </div>
-    </div> 
-    <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">Manufacturing process</div>
-      <div>
-      <div>
-    <Popconfirm
-      title="Are you sure to change ?"
-      onConfirm={() => handleConfirm("Manufacturing process")}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Switch
-        checked={formValues.manfProcInd}
-        checkedChildren={"Cell"}
-        unCheckedChildren={"Batch"}
-        onChange={(checked) => handleToggleChange("manfProcInd", checked)}
-      />
-    </Popconfirm>
-  </div>
-  
-      </div>
-    </div> 
+    {props.user.logisticsInd === true ? (
+   <> 
+
     <div class=" text-sm mt-3 font-bold ">Logistics</div>
     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Enable shipment on part payment</div>
@@ -1221,7 +1227,17 @@ function General(props) {
    
                       </div>
                     </div>
-    <div class=" text-sm mt-3 font-bold ">Investor Management</div>
+                  
+                    </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Logistic module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
+                  {props.user.imInd   === true ? (
+   <> 
+                  
+   <div class=" text-sm mt-3 font-bold ">Investor Management</div>
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Show Orders To Investor</div>
                       <div>
@@ -1243,7 +1259,13 @@ function General(props) {
    
                       </div>
                     </div>
-
+                    
+                    </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Investor module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
                   </div>
                 </div>
                 <div class="mt-4">
@@ -1280,6 +1302,28 @@ function General(props) {
    
                       </div>
                     </div>
+                    <div class=" flex justify-between   mt-2 ml-2">                
+                    <div class=" text-xs  ">Change Password </div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.mfaCPInd}
+                        checkedChildren={"yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("mfaCPInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                  
               <Notifications />
               <Identifier/>
               </div>
