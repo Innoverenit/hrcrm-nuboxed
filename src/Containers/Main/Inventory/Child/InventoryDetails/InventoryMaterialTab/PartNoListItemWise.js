@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 
 import { getPartNoByItem } from "../../../InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -87,6 +87,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(PartNoListItemWise)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PartNoListItemWise)
+

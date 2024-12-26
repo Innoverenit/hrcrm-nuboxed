@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
-import { withRouter } from "react-router-dom";
+
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recognition";
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
@@ -348,4 +348,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InvestorActionLeft));
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorActionLeft);

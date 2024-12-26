@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import PeopleIcon from '@mui/icons-material/People';
@@ -425,5 +425,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getLeadsTeamRecords,
   getLeadsAllRecords
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LeadsActionLeft));
+export default connect(mapStateToProps, mapDispatchToProps)(LeadsActionLeft);

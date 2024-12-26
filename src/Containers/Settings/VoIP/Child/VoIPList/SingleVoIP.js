@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router-dom";
+
 import axios from 'axios';
 import { base_url } from "../../../../Config/Auth";
 import { BussinessCard } from "../../../../Components/UI/Elements";
@@ -26,4 +26,4 @@ class SingleVoIP extends Component {
         )
     }
 }
-export default withRouter(SingleVoIP);
+export default (SingleVoIP);

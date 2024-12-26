@@ -3,7 +3,7 @@
 import React, { lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { BundleLoader, } from "../../../Components/Placeholder";
@@ -82,6 +82,5 @@ const mapStateToProps = ({ auth, team, account,pitch }) =>
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   handleUploadPitchModal
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PitchActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PitchActionRight)
+

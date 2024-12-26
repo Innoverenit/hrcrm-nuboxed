@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Formik, Form, Field, FastField } from "formik";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -303,4 +303,4 @@ const mapDispatchToProps = (dispatch) =>
     generateOtpByEmail,
     validateOtp
   }, dispatch);
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OnBoardOrganizationPage));
+export default connect(mapStateToProps, mapDispatchToProps)(OnBoardOrganizationPage);

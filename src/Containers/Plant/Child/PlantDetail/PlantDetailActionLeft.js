@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router";
+
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -23,6 +23,5 @@ const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PlantDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PlantDetailActionLeft)
+

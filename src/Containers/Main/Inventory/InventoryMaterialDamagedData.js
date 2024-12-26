@@ -8,7 +8,7 @@ import {
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
 import {  Switch, Input, message } from 'antd';
-import { withRouter } from "react-router";
+
 import {  Select, Button } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -272,6 +272,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialDamagedData)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialDamagedData)
+

@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {  Tooltip,Input, Button, Avatar } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { withRouter } from "react-router-dom";
+
 import Highlighter from "react-highlight-words";
 import Box from "@mui/material/Box";
 import { DataGrid} from "@mui/x-data-grid";
@@ -419,9 +419,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LinkedCustomerProjectTaskTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LinkedCustomerProjectTaskTable)
+
 
 function StatusIcon({ type, iconType, tooltip, status, size, onClick, role }) {
   const start = type;

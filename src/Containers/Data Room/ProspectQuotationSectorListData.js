@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import styled from "styled-components";
 import StageColumns1  from "../../Containers/Opportunity/Child/StageColumns1"
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -277,9 +277,8 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProspectSectorListData)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectSectorListData)
+
 
 
 

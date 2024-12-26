@@ -7,7 +7,7 @@ import {
     handlegrnlistmodal
 } from "../../../InventoryAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ReceivedDetailModal from "./ReceivedDetailModal";
@@ -218,6 +218,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialReceivedTable)
+

@@ -3,7 +3,7 @@
 import React, { useEffect,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import styled from "styled-components";
 import {getOrderPlanList,emptyOrderPlan} from "../RegionalDashAction"
 import { StyledTabs, } from "../../../Components/UI/Antd";
@@ -180,6 +180,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OrderPlanList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPlanList)
+

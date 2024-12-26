@@ -6,7 +6,7 @@ import {
   StyledTable,
 } from "../../../../../Components/UI/Antd";
 import AddTemplateViewModal from "../Template/AddTemplateViewModal"
-import { withRouter } from "react-router-dom";
+
 import { getTemplate } from "../../../../Rules/RulesAction";
 import dayjs from "dayjs";
 import { setCurrentEmail,handleTemplateViewModal } from "../../../../Rules/RulesAction";
@@ -187,9 +187,10 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(EmployeeTable)
-);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeTable)
+
 // function Button({ type, iconType, tooltip, role, size, onClick }) {
 //   if (role === type) {
 //     size = "1.375em";

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getContactByContactId } from "../../ContactAction";
 import {  MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 const ContactDetailsRight = lazy(()=>import("./ContactDetailsRight"));
 const ContactDetailsLeft = lazy(()=>import("./ContactDetailsLeft"));
@@ -62,6 +62,5 @@ const mapStateToProps = ({ contact }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getContactByContactId }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ContactDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactDetails)
+

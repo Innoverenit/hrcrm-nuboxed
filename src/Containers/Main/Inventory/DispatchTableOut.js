@@ -17,7 +17,7 @@ import {
   clearDispatch
 } from "./InventoryAction"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
-import { withRouter } from "react-router";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddpackDrawer from "./AddpackDrawer";
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
@@ -806,6 +806,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DispatchTableOut)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DispatchTableOut)
+

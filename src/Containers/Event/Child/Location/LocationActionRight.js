@@ -2,7 +2,7 @@
 import React, { useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../../Components/UI/Antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
@@ -69,6 +69,4 @@ class LocationActionRight extends React.Component {
 const mapStateToProps = ({  }) => ({});
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({  }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LocationActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationActionRight)

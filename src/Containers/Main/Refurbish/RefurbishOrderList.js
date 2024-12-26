@@ -14,7 +14,7 @@ import {
     handleOrderPhone,
     updateFinalPrice
 } from "./RefurbishAction";
-import { withRouter } from "react-router";
+
 import dayjs from "dayjs";
 import ProductionNotesModal from "./ProductionNotesModal";
 
@@ -451,6 +451,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(RefurbishOrderList)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(RefurbishOrderList)
+

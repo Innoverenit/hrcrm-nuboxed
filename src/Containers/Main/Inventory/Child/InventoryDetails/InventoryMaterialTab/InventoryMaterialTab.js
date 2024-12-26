@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import MaterialUnitsData from "../InventoryMaterialTab/MaterialUnitsData"
 import MaterialReceivedTable from "./MaterialReceivedTable";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -166,10 +166,9 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTab)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialTab)
 
-);
+
 
 
 // import React from "react";

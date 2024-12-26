@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
@@ -22,6 +22,5 @@ const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProjectsDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsDetailActionLeft)
+

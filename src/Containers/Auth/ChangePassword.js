@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { message, Input} from "antd";
-import { withRouter } from "react-router-dom";
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -184,6 +184,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ChangePassword)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword)
+
