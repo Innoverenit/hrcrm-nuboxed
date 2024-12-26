@@ -198,16 +198,19 @@ className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  lead
   {/* <Link to="/dashboard" 
   // onClick={() => handleSelect('/dashboard')}
    > */}
+    <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
     <DashboardIcon
 
     className='!text-base  text-[#e4eb2f] '
     />
+    
 
     <span class="text-white text-ls ml-1">     
       {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
     </span>
+    </Link>
   {/* </Link> */}
 </Menu.Item>
 
