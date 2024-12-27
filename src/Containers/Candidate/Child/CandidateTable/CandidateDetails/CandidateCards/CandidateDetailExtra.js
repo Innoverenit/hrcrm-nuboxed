@@ -6,18 +6,18 @@ class CandidateDetailExtra extends Component {
     const {
       candidate: { noticePeriod,noticeDetail,experience,location },
     } = this.props;
-    // const extraData=;
-    // const extraData1=address&&address.length&&address[0].street;
-    // const extraData2=address&&address.length&&address[0].city;
-    // const extraData3=address&&address.length&&address[0].state;
-    // const extraData4=address&&address.length&&address[0].postalCode;
+ 
     return (
       <>
-        <CandidateItemRow label="Notice Period"  value={`${noticePeriod } months ${noticeDetail}`}/> 
-        {/* <CandidateItemRow label="Notice Remarks" value={noticeDetail} /> */}
-        <CandidateItemRow label="Experience" value= {`${experience } years `}/> 
-        {/* <CandidateItemRow label="Location" value={location} /> */}
-        {/* <CandidateItemRow label="Postal Code" value={extraData4||""} /> */}
+        <CandidateItemRow 
+        // label="Notice Period" 
+        label={this.props.translatedMenuItems[6]}
+         value={`${noticePeriod } months ${noticeDetail}`}/> 
+
+        <CandidateItemRow 
+        label={this.props.translatedMenuItems[6]}
+        value= {`${experience } years `}/> 
+    
        
       </>
     );
@@ -29,8 +29,8 @@ const CandidateItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center justify-between flex-nowrap m-2"
     >
-      <div  style={{ color: "#444", fontWeight: 600 }}>{label}</div >
-      <div  style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</div >
+         <div className="text-[#444] font-semibold text-sm"  >{label}</div >
+         <div className="-ml-6 hidden ellipsis">{value}</div >
     </div>
   );
 };

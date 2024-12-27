@@ -142,11 +142,11 @@ class certificationLibrary extends React.Component {
                 })
               )}
               {inputVisible && (
-                <Input
+                <Input 
+                className="w-78 text-capitalize"
                   ref={this.saveInputRef}
                   type="text"
                   size="small"
-                  style={{ width: 78,textTransform: "capitalize" }}
                   value={inputValue}
                   onChange={this.handleInputChange}
                   onBlur={this.handleInputConfirm}
@@ -155,9 +155,9 @@ class certificationLibrary extends React.Component {
               )}
               {!inputVisible && (
                 <Tag
+                className="bg-[#fff] border-dashed"
                   onClick={this.showInput}
                    visible={this.props.certificationByCandidateId.length===null?[]:this.props.certificationByCandidateId.length !== 30}
-                  style={{ background: "#fff", borderStyle: "dashed" }}
                 >
                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Certification
                 </Tag>

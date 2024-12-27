@@ -5,7 +5,6 @@ const InvestorActionRight=lazy(()=> import("./InvestorActionRight"));
 
 function InvestorHeader (props) {
  
-
     const {
       handleInvestorModal,
       viewType,
@@ -38,8 +37,7 @@ function InvestorHeader (props) {
             setInvestorViewType={setInvestorViewType}
             currentUser={currentUser}
             currentData={currentData}
-            handleClear={handleClear}
-     
+            handleClear={handleClear}    
             handleChange={handleChange}
             handleCurrentData={handleCurrentData}
             handleFilterChange={props.handleFilterChange}
@@ -51,8 +49,6 @@ function InvestorHeader (props) {
             < Suspense fallback={"Loading..."}>
             <InvestorActionRight
             viewType={viewType}
-            // currentUser={this.props.currentUser} 
-            // handleDropChange={this.props.handleDropChange}
             handleInvestorModal={handleInvestorModal}
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}

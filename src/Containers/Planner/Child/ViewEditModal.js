@@ -7,7 +7,7 @@ const AddEventModal = props => {
     <>
       <StyledModal
         title="Schedule Event"
-        width="50vw"
+        width="50%"
         visible={addEventModal}
         maskClosable={false}
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
@@ -15,7 +15,10 @@ const AddEventModal = props => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <EventForm {...formProps} />
+          <EventForm {...formProps}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems} />
         </Suspense>
       </StyledModal>
     </>

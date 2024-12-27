@@ -191,7 +191,7 @@ function InvestorDeleteList(props) {
         <FactoryIcon className="!text-icon   text-[#84a59d]"/>  {translatedMenuItems[1]}
         {/* "Sector" */}
                     </div>
-        <div className=" w-[4.12rem] truncate max-md:w-[4.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
+        <div className=" w-[4.12rem] truncate max-md:w-[4.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[2]}
          {/* "Deals" */}          
                 </div>

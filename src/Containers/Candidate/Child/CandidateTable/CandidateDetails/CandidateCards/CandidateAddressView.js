@@ -29,8 +29,8 @@ const CandidateItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center justify-between flex-nowrap m-2"
     >
-      <div style={{ color: "#444", fontWeight: 600 }}>{label}</div >
-      <div style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</div >
+       <div className="text-[#444] font-semibold text-sm"  >{label}</div >
+       <div className="-ml-6 hidden ellipsis">{value}</div >
     </div>
   );
 };

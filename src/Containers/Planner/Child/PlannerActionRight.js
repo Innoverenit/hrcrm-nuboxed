@@ -11,7 +11,11 @@ const PlannerActionRight = (props) => {
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
         {props.user.dashboardFullListInd === true &&(
-       <PlannerSharedForm/>
+       <PlannerSharedForm
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+       />
        )} 
       &nbsp;
       

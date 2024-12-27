@@ -216,20 +216,15 @@ const LinkedDocuments = (props) => {
                       <div>
                        <div
                 className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-              >
-                               
+              >                            
                           <div className=" flex w-[9rem] maax-md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex  items-center"> 
 
     <div class="">
     <Tooltip>
-                                          <div class=" flex  justify-between flex-row md:flex-col w-[8rem]">
-                                          
-                                            <div class="flex text-xs ml-gap items-center   font-poppins   cursor-pointer">
-                                                
+                                          <div class=" flex  justify-between flex-row md:flex-col w-[8rem]">                                       
+                                            <div class="flex text-xs ml-gap items-center   font-poppins   cursor-pointer">                                              
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
-     
-       
                                             </div>
                                             </div>
                                         </Tooltip>
@@ -237,12 +232,8 @@ const LinkedDocuments = (props) => {
                                   </div>
                           </div>
                           <div class="flex">
-
-                       
-                          <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
-                             
-                              <div class="flex text-xs ml-gap items-center  font-poppins">
-                                 
+                    <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">                          
+                              <div class="flex text-xs ml-gap items-center  font-poppins">                               
          {isEditingName === item.documentId ? (
         <input
           type="text"
@@ -257,7 +248,7 @@ const LinkedDocuments = (props) => {
         <div onClick={() => {
           setIsEditingName(item.documentId); // Enable editing mode
             setnameInput(item.documentTitle); // Set the initial value from the batchNo of the item
-          }} className="cursor-pointer text-sm font-[Poppins]">
+          }} className="cursor-pointer text-xs font-poppins">
             {item.documentTitle || "Enter Name"}
             
             </div> // Click to enter edit mode
@@ -288,7 +279,7 @@ const LinkedDocuments = (props) => {
         <div onClick={() => {
           setIsDescVisible(item.documentId); 
           setDescType(item.documentDescription); 
-          }} className="cursor-pointer text-sm font-[Poppins]">
+          }} className="cursor-pointer text-sm font-poppins">
             {elipsize(item.documentDescription || "", 15) || "Enter Desc"}
             
             </div> 
@@ -327,9 +318,6 @@ const LinkedDocuments = (props) => {
 
                               </div>
                           </div>
-                       
-                              
-
                               <div class="flex items-center justify-center h-8 bg-[#eef2f9]">
                               <a
             href={`${base_url}/document/${item.documentId}`}
@@ -340,26 +328,22 @@ const LinkedDocuments = (props) => {
             /></Tooltip>
           </a>  
                  </div>
-                 <div class="flex items-center justify-center h-8 bg-[#eef2f9]">
-            
+                 <div class="flex items-center justify-center h-8 bg-[#eef2f9]">          
           <Popconfirm
                         title= {translatedMenuItems[10]}
                         okText="Yes"
                         cancelText="No"
                         onConfirm={() => deleteDocument(item.documentId,props.type)}
                       >
-                         <Tooltip title= {translatedMenuItems[11]}>
-      
-                         <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                         <Tooltip title= {translatedMenuItems[11]}>     
+                         <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
             </Tooltip>
           </Popconfirm>
-            </div>
-                         
+            </div>                       
                       </div>
                   </div>
 )
-                })}
-                    
+                })}            
       </div>
       </>
     )

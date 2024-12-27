@@ -1,4 +1,4 @@
-import React, { Component,useEffect, lazy, Suspense } from "react";
+import React, { Component,useEffect,useState, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -13,7 +13,8 @@ const CandidateDetailRight = lazy(() => import("./CandidateDetailRight"));
 
 function CandidateDetails (props) {
   const { candidateId, data } = useParams();
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   // componentDidMount() {
   //   props.getCandidateById(props.match.params.candidateId);
   // }
@@ -21,7 +22,42 @@ function CandidateDetails (props) {
        props.getCandidateById(candidateId);
     }, [candidateId]);
   // render() {
-
+   useEffect(() => {
+          const fetchMenuTranslations = async () => {
+            try {
+              setLoading(true); 
+              const itemsToTranslate = [
+                        
+              "140",// Email ID    0          
+              "299",//Mobile #     1        
+              "547",//Linkedin     2             
+              "980",// Role 3
+              "1783",//Benefits 4
+              "1010",//Billing 5
+              "1275",//Availability 6
+              "277",//Company 7
+             "325",// Designation 8
+             "622",// Identification 9 
+             "1775",// Gender 10 
+             "1779",// Notice Period 11
+             "1697",// Experience 12 
+           //  "",//Skills 13 
+            // "",//Certification 14
+              //"",// Nationality 6
+              // "" ,// "Cost Type",//6
+              ];
+      
+              const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+              setTranslatedMenuItems(translations);
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+              console.error('Error translating menu items:', error);
+            }
+          };
+      
+          fetchMenuTranslations();
+        }, [props.selectedLanguage]);
     const { candidate, fetchingCandidateById } =props;
     console.log(props.candidateId);
     return (
@@ -40,7 +76,7 @@ function CandidateDetails (props) {
                   candidate ={candidate}
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage}
-                translatedMenuItems={props.translatedMenuItems}
+                  translatedMenuItems={translatedMenuItems}
                   />
                 </div>
                 <div class=" w-[75%]" >
@@ -48,7 +84,7 @@ function CandidateDetails (props) {
                   candidate={candidate}
                   translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
-           translatedMenuItems={props.translatedMenuItems}
+             translatedMenuItems={translatedMenuItems}
 
                   />
                 </div>
