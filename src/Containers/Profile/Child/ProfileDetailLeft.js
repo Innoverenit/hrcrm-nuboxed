@@ -1,11 +1,14 @@
 import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProfileStatsView from "./ProfileCards/ProfileStatsView";
+import PersonalView from "./ProfileCards/PersonalView";
+import ProfileTopicOfIntrest from "../../Candidate/Child/CandidateTable/CandidateDetails/CandidateCards/CandidateTopicOfInterest";
+import ProfileAboutView from "./ProfileCards/ProfileAboutView";
 const ProfileOverviewCard = lazy(() => import("./ProfileCards/ProfileOverviewCard"));
-const ProfileAboutCard = lazy(() => import("./ProfileCards/ProfileAboutCard"));
-const ProfileStatsCard = lazy(() => import("./ProfileCards/ProfileStatsCard"));
-const PersonalCard = lazy(() => import("./ProfileCards/PersonalCard"));
-const ProfileTopicOfIntrest = lazy(() => import("./ProfileCards/ProfileTopicOfIntrest"));
+
+
+
 class ProfileDetailLeft extends Component {
   render() {
     const { userDetails } = this.props;
@@ -16,16 +19,26 @@ class ProfileDetailLeft extends Component {
         <ProfileOverviewCard user={userDetails} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}/>
-        <ProfileTopicOfIntrest user={userDetails} 
+    
+         <ProfileTopicOfIntrest
+                 userType={"employee"}
+                 uniqueId={this.props.userDetails.userId}
+                 employeeId={this.props.userDetails.userId}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+                />
+        <ProfileStatsView
+        user={userDetails} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}/>
-        <ProfileStatsCard user={userDetails} 
-        translateText={this.props.translateText}
-        selectedLanguage={this.props.selectedLanguage}/>
-        <ProfileAboutCard user={userDetails} 
-        translateText={this.props.translateText}
-        selectedLanguage={this.props.selectedLanguage}/>
-        <PersonalCard user={userDetails} 
+       
+        <ProfileAboutView
+                              user={userDetails} 
+                              translateText={this.props.translateText}
+                              selectedLanguage={this.props.selectedLanguage}
+                            />
+         <PersonalView user={userDetails} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}/>
         </Suspense>
