@@ -2,10 +2,10 @@ import React, { Component, lazy,useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useParams } from "react-router-dom";
-import OpportunityDetailHeader from "./OpportunityDetailHeader";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { getOpportunityById } from "../../OpportunityAction";
+const OpportunityDetailHeader = lazy(() => import("./OpportunityDetailHeader"));
 const OpportunityDetailLeft = lazy(() => import("./OpportunityDetailLeft"));
 const OpportunityDetailRight = lazy(() => import("./OpportunityDetailRight"));
 

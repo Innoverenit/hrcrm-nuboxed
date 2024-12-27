@@ -115,7 +115,7 @@ function SuppliersDeletedCardList(props) {
                             <div className=" h-8  ml-gap flex items-center w-[12.1rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-semibold text-[0.85rem]  font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
-                                  to={`supplier/${item.supplierId}`}
+                                  to={`/supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}
                                 >{item.name}</Link>
                               </div>
