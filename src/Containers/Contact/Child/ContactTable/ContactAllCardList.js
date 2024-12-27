@@ -267,7 +267,7 @@ function ContactAllCardList(props) {
       <div className=" flex">
       <div className=' flex flex-col rounded w-[13%] h-[85vh]  border border-[#0000001f] items-center justify-center  '>
       <div class="flex  rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-      <div className="w-[14vw]"  > Search team Member</div>
+      <div > Search team member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw] p-1 h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
