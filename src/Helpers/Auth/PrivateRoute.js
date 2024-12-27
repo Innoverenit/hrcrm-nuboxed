@@ -120,7 +120,7 @@ const PrivateRoute = ({ token, setFiscalTimeIntervalReport, children }) => {
     if (!token) {
       sessionStorage.clear();
       navigate("/login");
-      message.error("Your session has expired. Please re-login.");
+     // message.error("Your session has expired. Please re-login.");
     }
 
     // Cleanup interceptor
@@ -146,4 +146,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);
+
+
 
