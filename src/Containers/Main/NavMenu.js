@@ -305,7 +305,7 @@ className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  lead
           </Menu.Item>
         )}
 
-{(user.basicAccessInd === true || user.role === "ADMIN") && (
+{/* {(user.basicAccessInd === true || user.role === "ADMIN") && (
           <Menu.Item key="/Analytics" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/Analytics' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Analytics"onClick={() => handleSelect('/Analytics')}>
@@ -315,11 +315,11 @@ className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  lead
               <span class="text-white text-ls ml-1">
                
                 Analytics
-                {/* {translatedMenuItems[5]} */}
+                
               </span>
             </Link>
           </Menu.Item>
-        )}
+        )} */}
 
 
 
