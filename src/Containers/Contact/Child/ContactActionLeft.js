@@ -228,25 +228,7 @@ const ContactActionLeft = (props) => {
         </Badge>
       </Tooltip>
       )}
-      {/* <Tooltip
-        title=
-      >
-        <Badge
-          size="small"
-          count={(props.viewType === "dashboard" && props.recordData.record) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setContactsViewType("dashboard")}
-            style={{
-              color: props.viewType === "dashboard" && "#1890ff",
-            }}
-          >
-            <HandshakeIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
+    
       <div class=" w-72 md:ml-4 max-sm:w-36 ml-0">
       <Input
        placeholder="Search by Name, Company"
@@ -256,15 +238,7 @@ const ContactActionLeft = (props) => {
             onChange={handleChange}
              value={currentData}
           />
-        {/* <Input
-          placeholder="Search by Name, Company"
-          class="w-96"
-          suffix={suffix}
-          allowClear
-          enterButton
-          onChange={(e) => props.handleChange(e)}
-          value={props.currentData}
-        /> */}
+     
       </div>
     
 <div class="w-32 md:ml-4 max-sm:hidden">
@@ -292,20 +266,7 @@ const ContactActionLeft = (props) => {
             <Option value="descending">Z To A</Option>
           </StyledSelect>
         </div>
-         {/* <Select
-  style={{ width: "10rem" }}
-  value={editingValue}
-  onChange={handleChangeRowSelectItem} 
-  onBlur={() => handleEditRowField(null, null, null)}
-  onFocus={handleSelectDepartmentFocus}
-  autoFocus
->
-{props.departments.map((country) => (
-   <Option key={country.departmentId} value={country.departmentId}>
-  {country.departmentName}
-   </Option>
- ))}
-</Select> */}
+        
     </div>
   );
 };

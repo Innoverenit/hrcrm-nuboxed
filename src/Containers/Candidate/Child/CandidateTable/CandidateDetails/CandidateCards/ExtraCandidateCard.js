@@ -10,8 +10,11 @@ class ExtraCandidateCard extends Component {
     } = this.props;
     return (
       <>
-        <CandidateItemRow label="Benefits"  value={benifit} />
-        <CandidateItemRow label="Billing"
+        <CandidateItemRow
+          label={this.props.translatedMenuItems[4]}
+          value={benifit} />
+        <CandidateItemRow 
+          label={this.props.translatedMenuItems[5]}
           value={
             <span>
           <CurrencySymbol currencyType={currency} />
@@ -20,7 +23,10 @@ class ExtraCandidateCard extends Component {
           }
         />
         
-        <CandidateItemRow label="Cost Type" value={costType} />
+        <CandidateItemRow 
+        label="Cost Type"
+        // label={this.props.translatedMenuItems[6]}
+         value={costType} />
        
       </> 
     );
@@ -32,8 +38,8 @@ const CandidateItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center justify-between flex-nowrap m-2"
     >
-      <div  style={{ color: "#444", fontWeight: 600 }}>{label}</div >
-      <div  style={{ marginLeft: "-1.875em",overflow:"hidden",textOverflow:"ellipsis" }}>{value}</div >
+      <div className="text-[#444] font-semibold text-sm"  >{label}</div >
+      <div className="-ml-6 hidden ellipsis">{value}</div >
     </div>
   );
 };

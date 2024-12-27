@@ -216,7 +216,7 @@ return(
                             <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div className="flex w-[100%]"  >
                               <a class="flex items-center w-[100%] overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
-                            href={`supplier/${item.supplierId}`}>{item.name}</a>
+                            href={`/supplier/${item.supplierId}`}>{item.name}</a>
                             <div className="flex">
                       {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'name' ? (
@@ -233,7 +233,7 @@ return(
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
     className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
 )}                 

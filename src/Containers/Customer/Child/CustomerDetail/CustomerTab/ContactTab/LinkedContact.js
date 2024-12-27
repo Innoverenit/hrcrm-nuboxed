@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import {
-  StyledPopconfirm,
-} from "../../../../../../Components/UI/Antd";
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import {  Tooltip, Select,Button,Input } from "antd";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import {
@@ -25,12 +23,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 const ContactReportData = lazy(() => import("./ContactReportData"));
-
-
-
 const Option = Select;
-
-
 
 function LinkedContact(props) {
   const [loading, setLoading] = useState(true);
@@ -193,41 +186,30 @@ function LinkedContact(props) {
   console.log(props.uniqueId)
   return (
     <>
-      
-     
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold font-poppins sticky !text-lm  z-10">
-            <div class="w-[2.1rem]"></div>
-        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[13.6rem]  max-md:w-[16.5rem]">
+            <div class="w-[2.5rem]"></div>
+        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[21.6rem]  max-md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="  w-[8.7rem] truncate  max-md:w-[9.1rem]">
+        <div className="  w-[10.7rem] truncate  max-md:w-[9.1rem]">{/* Email */}
         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
          {translatedMenuItems[1]}
-{/* Email */}
         </div>
-        <div className=" w-[7.1rem] truncate  max-md:w-[8.1rem]">
+        <div className=" w-[9.1rem] truncate  max-md:w-[8.1rem]">          {/* Mobile */}
         <MobileFriendlyIcon className='!text-icon mr-1 text-[#41ead4] '  /> {translatedMenuItems[2]}
-          {/* Mobile */}
         </div>
-        <div className=" w-[8.8rem]  truncate max-md:w-[8.2rem]">
+        <div className=" w-[7.8rem]  truncate max-md:w-[8.2rem]">          {/* Department */}
         <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
-          {/* Department */}
         </div>
-                     <div className="  w-[7.7rem] truncate max-md:w-[7.2rem]">
-                     <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
-                      {/* Designation */}
-                     </div>
-      
-        <div className="truncate w-[11.1rem] max-md:w-[7.21rem]">
+           <div className="  w-[7.7rem] truncate max-md:w-[7.2rem]">    {/* Designation */}
+             <DesignServicesIcon className="!text-icon mr-1 text-[#b744b8]"/>{translatedMenuItems[4]}               
+              </div>  
+        <div className="truncate w-[11.1rem] max-md:w-[7.21rem]">{/* Portal */}
         <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[5]}
-{/* Portal */}
         </div>
-
-      </div>
-   
-        
+      </div>      
       { !fetchingCustomerContact && contactByCustomerId.length === 0 ?<EmptyPage/>:contactByCustomerId.map((item,index) =>  {
          const dataLoc = ` Address : ${
           item.address && item.address.length && item.address[0].address1
@@ -271,8 +253,6 @@ function LinkedContact(props) {
                                         </div> 
                                         <div className="flex max-sm: items-center">   
                                 <div className=" flex items-center w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
- 
-
         <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
@@ -317,18 +297,13 @@ function LinkedContact(props) {
     
     </div> 
 )}    
-       
                                             </div>
                                             </div>
-                                        </Tooltip>
-                          
+                                        </Tooltip>               
                                         </div>
                                 </div>
-                                <div class="flex">
-
-                             
-                                <div className=" flex w-[9.2rem] max-md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
-                                   
+                                <div class="flex">                        
+                                <div className=" flex w-[9.2rem] max-md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">                           
                                     <div class="flex text-xs  items-center ml-gap font-poppins">
                                          {item.emailId}
                                     </div>
@@ -346,32 +321,21 @@ function LinkedContact(props) {
     {item.department}
   </div>
 </div>
-<div className=" flex w-[11rem] max-md:w-[11rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
-                                    
-
+<div className=" flex w-[11rem] max-md:w-[11rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">                            
                                     <div class=" text-xs flex items-center ml-gap  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
                                 </div>
                                 <div className=" flex  w-[11.45rem] max-md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
-
-
 {item.accessInd === 0 ? <div class=" text-xs font-bold  font-poppins">
     <Button
         type="primary"
-        //loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
         onClick={() => {
-          //  handleChangeRow(item)
-          //   props.setEditSupplierContact(item);
-            props.putCustomerContactToggle(
-                
+            props.putCustomerContactToggle(             
                 item.contactId,
                 props.userId,
-                "Prospect Contact To User",
-                // props.supplier.supplierId,
-                // props.distributorId,
-              
+                "Prospect Contact To User",                    
             )
         }}
     >
@@ -387,9 +351,7 @@ function LinkedContact(props) {
 
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-              <span
-              className=" !cursor-pointer "
-              >
+              <span className=" !cursor-pointer ">           
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
               </span>
             </Tooltip>
@@ -398,7 +360,6 @@ function LinkedContact(props) {
                                 </div>
                                 <div className=" flex w-[2rem] max-md:w-[2rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     {/* <NotAccessibleOutlined/> */}
-
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
               <span
@@ -411,12 +372,8 @@ function LinkedContact(props) {
                 </a>
               </span>
             </Tooltip>
-
                                     </div>
-                                </div>
-                           
-
-
+                                </div>                         
                             </div>
                             <div>
                             {itemHistory && (currentContact.contactId === item.contactId)
@@ -424,16 +381,12 @@ function LinkedContact(props) {
                                             selectedLanguage={props.selectedLanguage}
                                             translateText={props.translateText}
                                             currentContact={currentContact} 
-                                            reportsToId={item.reportsToId}
-                                          
-
+                                            reportsToId={item.reportsToId}                                     
                                             /></Suspense>}
                                             </div>
                         </div>
-
                     )
-                })}
-                    
+                })}             
       </div>
 
 <Suspense>  

@@ -430,57 +430,17 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              {/* <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                  
-                              <div class=" text-xs  font-poppins">
-                            {item.assignedTo === null ? (
-        "None"
-      ) : (
-                            <div>
-         {isAssignDropdownVisible === item.newOppId ? (
-          <Select
-            style={{ width: "8rem" }}
-            value={selectedAssign}          
-            onChange={(value) => {
-              setSelectedAssign(value); 
-              handleAssignChange(item.newOppId,value); 
-            }}
-             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
-            autoFocus
-          >
-             {props.crmAllData.map(customer => (
-                 <Option key={customer.employeeId} value={customer.employeeId}>
-                  <div className="flex">
-                   <MultiAvatar
-          primaryTitle={customer.empName} 
-          imageId={item.imageId}
-                    imageURL={item.imageURL}
-                    imgWidth={"1.8rem"}
-                    imgHeight={"1.8rem"} 
-        />
-                  <span>{customer.empName}</span> 
-                  </div>
-                 </Option>
-               ))}
-          </Select>
-        ):(
-          <div 
-          onClick={() => {
-            setIsAssignDropdownVisible(item.newOppId); 
-            setSelectedAssign(item.assignedTo); 
-            }}  
-          className="cursor-pointer"
-        >
-          <MultiAvatar2
-          primaryTitle={item.assignedTo}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />   
-        </div>  
-                              )}  
-    </div>
-       )}
-                            </div>
-                              </div> */}
+                             <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">           
+                                                              <div class=" text-xs items-center font-poppins  max-sm:text-sm">                                
+                                                              <span>
+                                                              <MultiAvatar2
+                                        primaryTitle={item.assignedTo}
+                                        imgWidth={"1.8rem"}
+                                        imgHeight={"1.8rem"}
+                                      />
+                                      </span>          
+                                                              </div>
+                                                          </div>
                               <div className=" flex w-20 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between "> 
             <Tooltip title={item.ownerName}>
         <span>
