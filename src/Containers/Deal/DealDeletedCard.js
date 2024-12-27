@@ -12,7 +12,7 @@ import {
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import EmptyPage from "../Main/EmptyPage";
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -224,9 +224,9 @@ const DealDeletedCard = (props) => {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div className=" flex  w-[11rem]  max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
-                        <Link to="/investor">
+                        {/* <Link to="/investor"> */}
                           {item.investor}
-                        </Link>
+                        {/* </Link> */}
                       </div>
                     
 </div>

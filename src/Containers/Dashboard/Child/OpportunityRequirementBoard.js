@@ -1,7 +1,7 @@
 import React, { useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import styled from "styled-components";
 import {
   updateRequirementStage,
@@ -484,9 +484,8 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OpportunityRequirementBoard)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunityRequirementBoard)
+
 
 
 

@@ -6,7 +6,7 @@ import {
     getWasteMaterialLocation,getInventory
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import {Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
@@ -414,6 +414,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InvenoryWastetab)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InvenoryWastetab)
+

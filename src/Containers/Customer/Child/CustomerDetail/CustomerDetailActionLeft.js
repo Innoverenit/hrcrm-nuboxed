@@ -1,28 +1,26 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
-class CustomerDetailActionLeft extends React.Component {
-  render() {
+function CustomerDetailActionLeft (props) {
+  const navigate = useNavigate();
     return (
       <div class=" flex items-center">
         <KeyboardReturnIcon
           iconType="rollback"
          tooltipTitle="Back"
         className=" cursor-pointer"
-        onClick={() => this.props.history.goBack()}
+        onClick={() => {navigate(-1)}}
         />
       </div>
     );
-  }
+
 }
 const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CustomerDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerDetailActionLeft)
+

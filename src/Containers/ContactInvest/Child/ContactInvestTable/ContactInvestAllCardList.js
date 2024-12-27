@@ -254,7 +254,7 @@ if (loading) {
     <div  className=" flex">
     <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-      <div className="w-[14vw]"  > Search team Member</div>
+      <div > Search team member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.allEmployeeList.map((item,index) =>{
@@ -399,7 +399,7 @@ if (loading) {
                                     <div class=" flex  max-sm:w-full w-[100%] justify-between  md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500 justify-between   font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`/contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   &nbsp;&nbsp;

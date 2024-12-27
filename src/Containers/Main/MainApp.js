@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect,useRef, useState, } from "react";
-import { Route, Switch } from "react-router-dom";
+
+import { Routes,Link, Route, Navigate, } from "react-router-dom";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import {
@@ -10,7 +11,7 @@ import {
 } from "./Account/AccountAction";
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+
 import { login_url } from "../../Config/Auth";
 import {
   handleCandidateResumeModal,
@@ -711,7 +712,7 @@ function MainApp(props) {
                     {props.role}
                   </div>
                 
-                  <div class=" flex items-center h-8">
+                   <div class=" flex items-center h-8">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                 
                       <SettingsDropdown/>
@@ -723,7 +724,7 @@ function MainApp(props) {
 
                     <RepositoryData  />
                     <FAQPage/>
-</div>
+</div> 
               
                   <ProfileDropdown />
 
@@ -741,19 +742,28 @@ function MainApp(props) {
               {/* <NodataFoundPage> */}
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
-                    <Switch>
+                    {/* <Switch> */}
+                   
+                    <Routes>
                     <Route
-                      exact
+                      // exact
+                      // path="/planner"
+                      // render={(props) => (
+                      //   <Planner
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
                       path="/planner"
-                      render={(props) => (
-                        <Planner
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={<Planner 
+                        translateText={translateText}
+                          selectedLanguage={selectedLanguage}
+                      />}
+                      // )}
+                      
+
                     />
-                       <Route
+                       {/* <Route
                       exact
                       path="/dashboardRegional"
                       render={(props) => (
@@ -763,195 +773,266 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    />
+                    /> */}
                      <Route
-                      exact
-                      path="/dashboard"
-                      render={(props) => (
-                        <Dashboard
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="dashboard"
+                      element={< Dashboard
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      
+                      // exact
+                      // path="/dashboard"
+                      // render={(props) => (
+                      //   <Dashboard
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      
                      <Route
                       exact
                       path="/profile"
-                      render={(props) => (
-                        <Profile
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />
+                      // render={(props) => (
+                      //   <Profile
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Profile
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                    />  
                     <Route
                       exact
-                      path="/Invoice"
-                      render={(props) => (
-                        <Invoice
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="Invoice"
+                      element={< Invoice
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Invoice
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
  <Route
                       exact
-                      path="/permissions"
-                      render={(props) => (
-                        <Permissions
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="permissions"
+                      element={< Permissions
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      
+                      // render={(props) => (
+                      //   <Permissions
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
 <Route
                       exact
-                      path="/mileage"
-                      render={(props) => (
-                        <Mileage
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="mileage"
+                      element={< Mileage
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Mileage
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                        <Route
                       exact
-                      path="/shipper"
-                      render={(props) => (
-                        <Shipper
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="shipper"
+                      element={< Shipper
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Shipper
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                    <Route
                       exact
                       path="/expense"
-                      render={(props) => (
-                        <Expense
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Expense
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Expense
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
-                      path="/supplies"
-                      render={(props) => (
-                        <Supplies
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="supplies"
+                      // render={(props) => (
+                      //   <Supplies
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Supplies
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
-                      path="/procre"
-                      render={(props) => (
-                        <Procre
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="procre"
+                      element={< Procre
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Procre
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
-                      path="/order"
-                      render={(props) => (
-                        <Order
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="order"
+                      element={< Order
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Order
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />         
                      <Route
                       exact
-                      path="/account"
-                      render={(props) => (
-                        <Account
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="account"
+                      // render={(props) => (
+                      //   <Account
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Account
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
-                      path="/plant"
-                      render={(props) => (
-                        <Plant
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="plant"
+                      element={< Plant
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Plant
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                      <Route
                       exact
                       path="/plant/:plantId"
-                      render={(props) => (
-                        <PlantDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <PlantDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< PlantDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                      <Route
                       exact
-                      path="/suppliers"
-                      render={(props) => (
-                        <Suppliers
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="suppliers"
+                      element={< Suppliers
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Suppliers
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                       <Route
                       exact
-                      path="/trade"
-                      render={(props) => (
-                        <Trade
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="trade"
+                      element={< Trade
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Trade
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                                        
                      <Route
                       exact
-                      path="/inventory"
-                      render={(props) => (
-                        <Inventory
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="inventory"
+                      element={< Inventory
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Inventory
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                      <Route
                       exact
-                      path="/refurbish"
-                      render={(props) => (
-                        <Refurbish
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="refurbish"
+                      // render={(props) => (
+                      //   <Refurbish
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Refurbish
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                      
                      
@@ -960,348 +1041,473 @@ function MainApp(props) {
                      
                       <Route
                       exact
-                      path="/location"
-                      render={(props) => (
-                        <Location
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="location"
+                      element={< Location
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Location
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
-                      path="/teams"
-                      render={(props) => (
-                        <Teams
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="teams"
+                      element={< Teams
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Teams
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
-                      path="/employees"
-                      render={(props) => (
-                        <Employees
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="employees"
+                      element={< Employees
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Employees
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
-                      path="/leads"
-                      render={(props) => (
-                        <Leads
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="leads"
+                      // render={(props) => (
+                      //   <Leads
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Leads
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                     <Route
                       exact
-                      path="/assessment"
-                      render={(props) => (
-                        <AssessmentData
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="assessment"
+                      // render={(props) => (
+                      //   <AssessmentData
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< AssessmentData
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                     <Route
                       exact
-                      path="/holiday"
-                      render={(props) => (
-                        <Holiday
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="holiday"
+                      // render={(props) => (
+                      //   <Holiday
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Holiday
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
                       path="/organization"
-                      render={(props) => (
-                        <Organization
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Organization
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Organization
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                      <Route
                       exact
-                      path="/leave"
-                      render={(props) => (
-                        <Leave
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="leave"
+                      // render={(props) => (
+                      //   <Leave
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Leave
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                      <Route
                       exact
-                      path="/rules"
-                      render={(props) => (
-                        <Rules
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="rules"
+                      // render={(props) => (
+                      //   <Rules
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Rules
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                      <Route
                       exact
-                      path="/template"
-                      render={(props) => (
-                        <Template
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="template"
+                      // render={(props) => (
+                      //   <Template
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Template
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                       
                       <Route
                       exact
-                      path="/category"
-                      render={(props) => (
-                        <Category
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="category"
+                      // render={(props) => (
+                      //   <Category
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Category
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
-                      path="/categoryTab"
-                      render={(props) => (
-                        <CategoryTab
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="categoryTab"
+                      // render={(props) => (
+                      //   <CategoryTab
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< CategoryTab
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
-                      path="/library"
-                      render={(props) => (
-                        <Library
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="library"
+                      element={< Library
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Library
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
-                      path="/planner"
-                      render={(props) => (
-                        <Planner
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="planner"
+                      element={< Planner
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Planner
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
                       path="/psettinglanner"
-                      render={(props) => (
-                        <Settings
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Settings
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Settings
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/reports"
-                      render={(props) => (
-                        <Reports
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Reports
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Reports
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                     <Route
                       exact
                       path="/analytics"
-                      render={(props) => (
-                        <Analytics
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Analytics
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Analytics
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
                       path="/partner"
-                      render={(props) => (
-                        <Partner
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Partner
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Partner
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
                       path="/collection"
-                      render={(props) => (
-                        <Collection
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Collection
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Collection
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
                       path="/dataroom"
-                      render={(props) => (
-                        <DataRoom
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< DataRoom
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <DataRoom
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
-                      path="/call"
-                      render={(props) => (
-                        <Call
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="call"
+                      element={< Call
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Call
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
 
 <Route
                       exact
                       path="/Sold"
-                      render={(props) => (
-                        <Waranty
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Waranty
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Waranty
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                     <Route
                       exact
-                      path="/event"
-                      render={(props) => (
-                        <Event
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      path="event"
+                      // render={(props) => (
+                      //   <Event
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Event
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
-                      exact
-                      path="/task"
-                      render={(props) => (
-                        <Task
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // exact
+                      path="Task"
+                      // render={(props) => (
+                      //   <Task
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={<Task
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
                       path="/employee/:id"
-                      render={(props) => (
-                        <EmployeeDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <EmployeeDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< EmployeeDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                        <Route
                       exact
                       path="/distributor/:distributorId"
-                      render={(props) => (
-                        <AccountDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <AccountDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< AccountDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
 
                      <Route
                       exact
                       path="/hour/candidate/hour-details/project/:candidateId/:projectId"
-                      render={(props) => (
-                        <CandidateTotalBilling
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <CandidateTotalBilling
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< CandidateTotalBilling
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                      <Route
                       exact
                       path="/locationDetails/:locationDetailsId/:data?"
-                      render={(props) => (
-                        <InventoryDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <InventoryDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< InventoryDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />   
                      <Route
                       exact
                       path="/emptypage"
-                      render={(props) => (
-                        <EmptyPage
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <EmptyPage
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< EmptyPage
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                      <Route
                       exact
                       path="/nodatafoundpage"
-                      render={(props) => (
-                        <NodataFoundPage
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< NodataFoundPage
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      
+                      // render={(props) => (
+                      //   <NodataFoundPage
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                  
                      <Route
                       exact
                       path="/scan/:phoneId"
-                      render={(props) => (
-                        <PhoneScanner
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< PhoneScanner
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <PhoneScanner
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
 
 <Route
@@ -1315,230 +1521,297 @@ function MainApp(props) {
                         />
                       )}
                     /> 
-{/* 
-<Route
-                      exact
-                      path="/production/:manufactureId"
-                      render={(props) => (
-                        <ProductionPhoneScanner
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />  */}
+
                     <Route
                       exact
                       path="/course/:courseId"
-                      render={(props) => (
-                        <CourseDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< CourseDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <CourseDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     /> 
                      <Route
                       exact
                       path="/projects/:ProjectId"
-                      render={(props) => (
-                        <ProjectsDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <ProjectsDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+
+                      element={< ProjectsDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                      <Route
                       exact
                       path="/program/:programDetailsId"
-                      render={(props) => (
-                        <ProjectsDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <ProjectsDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< ProjectsDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                          <Route
                       exact
                       path="/assessment/:assessmentId"
-                      render={(props) => (
-                        <AssessmentDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <AssessmentDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< AssessmentDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     /> 
                       <Route
                       exact
                       path="/change-password"
-                      render={(props) => (
-                        <ChangePassword
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <ChangePassword
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< ChangePassword
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                        <Route
                       exact
                       path="/recruite"
-                      render={(props) => (
-                        <Recruitment
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Recruitment
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Recruitment
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />  
                      <Route
                       exact
                       path="/publish"
-                      render={(props) => (
-                        <Publish
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Publish
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Publish
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />  
                    <Route
                       exact
                       path="/program"
-                      render={(props) => (
-                        <Program
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Program
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Program
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       
                       <Route
                       exact
                       path="/course"
-                      render={(props) => (
-                        <Course
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Course
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Course
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                                           
                                           <Route
                       exact
                       path="/project"
-                      render={(props) => (
-                        <Projects
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Projects
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Projects
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      
                      <Route
                       exact
                       path="/billing"
-                      render={(props) => (
-                        <Billing
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Billing
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Billing
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                                      
                       <Route
                       exact
                       path="/customer"
-                      render={(props) => (
-                        <Customer
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Customer
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Customer
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
                       path="/contact"
-                      render={(props) => (
-                        <Contact
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Contact
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Contact
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                        <Route
                       exact
                       path="/opportunity"
-                      render={(props) => (
-                        <Opportunity
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Opportunity
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Opportunity
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                     <Route
                       exact
                       path="/product"
-                      render={(props) => (
-                        <Product
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Product
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Product
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
                       path="/production"
-                      render={(props) => (
-                        <Production
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Production
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Production
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                     <Route
-                      exact
+                     
                       path="/quality"
-                      render={(props) => (
-                        <Quality
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Quality
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Quality
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                      <Route
                       exact
                       path="/shipper/:shipperId"
-                      render={(props) => (
-                        <ShipperDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <ShipperDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+
+                      element={< ShipperDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/candidate"
-                      render={(props) => (
-                        <Candidate
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< Candidate
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <Candidate
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />          
                       {/* <Route
                       exact
@@ -1555,226 +1828,307 @@ function MainApp(props) {
                       <Route
                         exact
                         path="/candidate/:candidateId"
-                        render={(props) => <CandidateDetails {...props} 
-                        translateText={translateText}
-                        selectedLanguage={selectedLanguage} />}
+                        element={< CandidateDetails
+                          translateText={translateText}
+                          selectedLanguage={selectedLanguage}
+                        />}
+                        // element={< CandidateDetails
+                        //   translateText={translateText}
+                        //   selectedLanguage={selectedLanguage}
+                        // />}
+                        // render={(props) => <CandidateDetails {...props} 
+                        // translateText={translateText}
+                        // selectedLanguage={selectedLanguage} />}
                       />
 
                     <Route
                       exact
                       path="/customer/:customerId"
-                      render={(props) => (
-                        <CustomerDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< CustomerDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <CustomerDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
                       path="/contact/:contactId"
-                      render={(props) => (
-                        <ContactDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< ContactDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <ContactDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
                       path="/supplier/:supplierId"
-                      render={(props) => (
-                        <SupplierDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <SupplierDetails
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< SupplierDetails
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      
                      <Route
                       exact
                       path="/opportunity"
-                      render={(props) => (
-                        <Opportunity
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Opportunity
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Opportunity
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
-                      path="/opportunity/:opportunityId"
-                      render={(props) => (
-                        <OpportunityDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                     path="/opportunity/:opportunityId"
+                    
+
+                      element={< OpportunityDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/partner/:partnerId"
-                      render={(props) => (
-                        <PartnerDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <PartnerDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< PartnerDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/import/account"
-                      render={(props) => (
-                        <AccountImport
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <AccountImport
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< AccountImport
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/requirement"
-                      render={(props) => (
-                        <Requirement
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Requirement
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Requirement
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/procurement"
-                      render={(props) => (
-                        <Procurement
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Procurement
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Procurement
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
                       path="/demand"
-                      render={(props) => (
-                        <Demand
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Demand
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Demand
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      
                       <Route
                       exact
                       path="/pitch"
-                      render={(props) => (
-                        <Pitch
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Pitch
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Pitch
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />  
                     <Route
                       exact
                       path="/deal"
-                      render={(props) => (
-                        <Deal
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Deal
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Deal
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                       <Route
                       exact
                       path="/contactInvest"
-                      render={(props) => (
-                        <ContactInvest
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      element={< ContactInvest
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
+                      // render={(props) => (
+                      //   <ContactInvest
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
                     />
                       <Route
                       exact
                       path="/investor"
-                      render={(props) => (
-                        <Investor
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Investor
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Investor
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                     <Route
                       exact
                       path="/club"
-                      render={(props) => (
-                        <Club
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Club
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Club
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                        <Route
                       exact
                       path="/investor/:investorId"
-                      render={(props) => (
-                        <InvestorDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <InvestorDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< InvestorDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      <Route
                       exact
                       path="/promotion"
-                      render={(props) => (
-                        <Prmotion
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <Prmotion
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< Prmotion
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                     <Route
                       exact
                       path="/contactinvest/:contactId"
-                      render={(props) => (
-                        <ContactInvestDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <ContactInvestDetail
+                      //     {...props}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< ContactInvestDetail
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />                      
                     <Route
                       exact
                       path="/subscriptionmainapps"
-                      render={(props) => (
-                        <SubscriptionMainApps
-                          {...props}
-                          rowData={rowData}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
+                      // render={(props) => (
+                      //   <SubscriptionMainApps
+                      //     {...props}
+                      //     rowData={rowData}
+                      //     translateText={translateText}
+                      //      selectedLanguage={selectedLanguage}
+                      //   />
+                      // )}
+                      element={< SubscriptionMainApps
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage}
+                      />}
                     />
                      
                      
-                    </Switch>
+                    {/* </Switch> */}
+                  </Routes>
+                
                   </Suspense>
                 </Content>
               {/* </NodataFoundPage> */}

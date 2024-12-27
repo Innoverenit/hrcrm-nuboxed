@@ -18,7 +18,7 @@ import {handleProductionNotesModal} from "../../../../Refurbish/RefurbishAction"
 import { getLocationList } from "../../../../Account/AccountAction"
 import InfoIcon from '@mui/icons-material/Info'; 
 import dayjs from "dayjs";
-import { withRouter } from "react-router";
+
 
 import { MultiAvatar, MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceivedOrderToggle from "./ReceivedOrderToggle";
@@ -451,6 +451,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ReceivedTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ReceivedTable)
+

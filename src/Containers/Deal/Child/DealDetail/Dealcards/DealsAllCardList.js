@@ -20,7 +20,7 @@ import { getAllDeals,updateDeal } from "../../../DealAction";
 import { CurrencySymbol } from "../../../../../Components/Common";
 import { Button, Tooltip, Dropdown, Menu, Progress,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { getSources } from "../../../../Settings/Category/Source/SourceAction";
 import { getSectors } from "../../../../Settings/Sectors/SectorsAction";
@@ -200,7 +200,7 @@ const DealsAllCardList = (props) => {
     <div className="flex">
        <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-       <div> Search team Member</div>
+       <div> Search team member</div>
         </div>
         <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -384,9 +384,9 @@ const DealsAllCardList = (props) => {
                  <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
-                     <Link to="/investor">
+                     {/* <Link to="/investor"> */}
                        {item.investor}
-                     </Link>
+                     {/* </Link> */}
                    </div>
                  </div>
 

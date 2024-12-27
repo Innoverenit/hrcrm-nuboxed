@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import axios from "axios";
 import dayjs from "dayjs";
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -200,6 +200,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(AddPacketTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPacketTable)
+

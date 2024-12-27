@@ -23,8 +23,14 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import styled from "styled-components";
 import { base_url, base_url2 } from "../../../../../../../Config/Auth";
-
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import GroupsIcon from '@mui/icons-material/Groups';
 import dayjs from "dayjs";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
 }
@@ -198,272 +204,403 @@ class SummaryTable extends Component {
       this.props.allRecruitmentDetailsByOppId.length &&
         this.props.allRecruitmentDetailsByOppId[0].publishInd
     );
-    const columns = [
-      {
-        title: "",
+    // const columns = [
+    //   {
+    //     title: "",
 
-        width: "2%",
-      },
-      {
-        title: "Job ID",
-        width: "7%",
-        dataIndex: "jobOrder",
-      },
-      {
-        title: "Requirement",
-        dataIndex: "recruiterName",
-        width: "7%",
-      },
+    //     width: "2%",
+    //   },
+    //   {
+    //     title: "Job ID",
+    //     width: "7%",
+    //     dataIndex: "jobOrder",
+    //   },
+    //   {
+    //     title: "Requirement",
+    //     dataIndex: "recruiterName",
+    //     width: "7%",
+    //   },
 
-      {
-        title:"Sponsor",
-        dataIndex: "sponserName",
-        width: "8%",
-        render: (text, item) => {
-          return (
-            <>
-              <Tooltip title={item.sponserName}>
-                <span>
-                  <MultiAvatar
-                    primaryTitle={item.sponserName}
-                    imgWidth={"1.8em"}
-                    imgHeight={"1.8em"}
-                  />
-                </span>
-              </Tooltip>
-            </>
-          );
-        },
-      },
+    //   {
+    //     title:"Sponsor",
+    //     dataIndex: "sponserName",
+    //     width: "8%",
+    //     render: (text, item) => {
+    //       return (
+    //         <>
+    //           <Tooltip title={item.sponserName}>
+    //             <span>
+    //               <MultiAvatar
+    //                 primaryTitle={item.sponserName}
+    //                 imgWidth={"1.8em"}
+    //                 imgHeight={"1.8em"}
+    //               />
+    //             </span>
+    //           </Tooltip>
+    //         </>
+    //       );
+    //     },
+    //   },
 
-      {
-        title: "# Positions",
+    //   {
+    //     title: "# Positions",
    
-        dataIndex: "number",
-        width: "6%",
-      },
+    //     dataIndex: "number",
+    //     width: "6%",
+    //   },
 
-      {
-        title: "Submitted",
-        dataIndex: "offered",
-        width: "6%",
-      },
+    //   {
+    //     title: "Submitted",
+    //     dataIndex: "offered",
+    //     width: "6%",
+    //   },
 
-      {
-        title:"Selected" ,
-        dataIndex: "closedPosition",
-        width: "5%",
-      },
+    //   {
+    //     title:"Selected" ,
+    //     dataIndex: "closedPosition",
+    //     width: "5%",
+    //   },
 
-      {
-        title: "OnBoarded",
-        dataIndex: "onBoardNo",
-        width: "7%",
-      },
+    //   {
+    //     title: "OnBoarded",
+    //     dataIndex: "onBoardNo",
+    //     width: "7%",
+    //   },
 
-      {
-        title: "Recruiter",
-        width: "9%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                  this.state.subTableVisible &&
-                  this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
-              },
-            },
+    //   {
+    //     title: "Recruiter",
+    //     width: "9%",
+    //     render: (name, item, i) => {
+    //       return {
+    //         props: {
+    //           style: {
+    //             background:
+    //               this.state.subTableVisible &&
+    //               this.state.recruitmentId === item.recruitmentId
+    //                 ? "rgb(158 183 223)"
+    //                 : null,
+    //           },
+    //         },
 
-            children: (
-              <>
-                <Avatar.Group
-                  maxCount={2}
-                  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
-                >
-                  {item.recruiterList &&
-                    item.recruiterList.map((recruiter, i) => {
-                      const recruit =
-                      recruiter.fullName &&
-                      recruiter.fullName
-                      .slice(0, 2)
-                      .toUpperCase();
-                        // .slice(0, 2)
-                        // // .split("")[0]
-                        // .toUpperCase();
-                      console.log("datas", recruit);
-                      return (
-                        <Tooltip title={item.fullName}>
-                          <Avatar style={{ backgroundColor: "#f56a00" }}>
-                            {recruit}
-                          </Avatar>
-                        </Tooltip>
-                      );
-                    })}
-                </Avatar.Group>
-              </>
-            ),
-          };
-        },
-      },
-   
-
-      {
-        title: "Talent",
-        dataIndex: "candidatetList",
-        width: "12%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                  this.state.subTableVisible &&
-                  this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
-              },
-            },
-            children: (
-              <>
-                <div
-                  style={{
-                    margin: "2px",
-                    borderRadius: "50%",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Avatar.Group
-                    maxCount={7}
-                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
-                  >
-                    {item.candidatetList &&
-                      item.candidatetList.map((candidate, i) => {
-                        const data1 = candidate.fullName
-                          .split("")[0]
-                          .toUpperCase();
-                        console.log("datas", data1);
-                        return (
-                          <Tooltip title={candidate.fullName}>
-                            <Avatar style={{ backgroundColor: "#f56a00" }}>
-                              {data1}
-                            </Avatar>
-                          </Tooltip>
-                        );
-                      })}
-                    <div
-                style={{ placeSelf: "center" }}
-                    >
-                      {item.candidateNo}
-                    </div>
-                  </Avatar.Group>
-                </div>
-              </>
-            ),
-          };
-        },
-      },
-
+    //         children: (
+    //           <>
+    //             <Avatar.Group
+    //               maxCount={2}
+    //               maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+    //             >
+    //               {item.recruiterList &&
+    //                 item.recruiterList.map((recruiter, i) => {
+    //                   const recruit =
+    //                   recruiter.fullName &&
+    //                   recruiter.fullName
+    //                   .slice(0, 2)
+    //                   .toUpperCase();
+    //                     // .slice(0, 2)
+    //                     // // .split("")[0]
+    //                     // .toUpperCase();
+    //                   console.log("datas", recruit);
+    //                   return (
+    //                     <Tooltip title={item.fullName}>
+    //                       <Avatar style={{ backgroundColor: "#f56a00" }}>
+    //                         {recruit}
+    //                       </Avatar>
+    //                     </Tooltip>
+    //                   );
+    //                 })}
+    //             </Avatar.Group>
+    //           </>
+    //         ),
+    //       };
+    //     },
+    //   },
    
 
-      {
-        title: "Website",
-        width: "5%",
-        render: (name, item, i) => {
-          return (
+    //   {
+    //     title: "Talent",
+    //     dataIndex: "candidatetList",
+    //     width: "12%",
+    //     render: (name, item, i) => {
+    //       return {
+    //         props: {
+    //           style: {
+    //             background:
+    //               this.state.subTableVisible &&
+    //               this.state.recruitmentId === item.recruitmentId
+    //                 ? "rgb(158 183 223)"
+    //                 : null,
+    //           },
+    //         },
+    //         children: (
+    //           <>
+    //             <div
+    //               style={{
+    //                 margin: "2px",
+    //                 borderRadius: "50%",
+    //                 cursor: "pointer",
+    //               }}
+    //             >
+    //               <Avatar.Group
+    //                 maxCount={7}
+    //                 maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+    //               >
+    //                 {item.candidatetList &&
+    //                   item.candidatetList.map((candidate, i) => {
+    //                     const data1 = candidate.fullName
+    //                       .split("")[0]
+    //                       .toUpperCase();
+    //                     console.log("datas", data1);
+    //                     return (
+    //                       <Tooltip title={candidate.fullName}>
+    //                         <Avatar style={{ backgroundColor: "#f56a00" }}>
+    //                           {data1}
+    //                         </Avatar>
+    //                       </Tooltip>
+    //                     );
+    //                   })}
+    //                 <div
+    //             style={{ placeSelf: "center" }}
+    //                 >
+    //                   {item.candidateNo}
+    //                 </div>
+    //               </Avatar.Group>
+    //             </div>
+    //           </>
+    //         ),
+    //       };
+    //     },
+    //   },
+
+   
+
+    //   {
+    //     title: "Website",
+    //     width: "5%",
+    //     render: (name, item, i) => {
+    //       return (
           
 
-            <Button
-              style={{ marginLeft: "-12px" }}
-              onClick={() =>
-                this.props.addWebsite({
-                  recruitmentId: item.recruitmentId,
-                  opportunityId: this.props.opportunityId,
-                  orgId: this.props.orgId,
-                  userId: this.props.userId,
-                  profileId: item.profileId,
-                  //publishInd:publishInd ? false: true
-                })
-              }
-            >
-              {item.publishInd === true ? "Unpublish" : "Publish"}
-              {/* Publish */}
-            </Button>
-          );
-        },
-      },
-      {
-        title: "Monster",
-        width: "6%",
-        render: (name, item, i) => {
-          return (
-            <Button
-              onClick={() => {
-                handleMonsterModal(true);
-                this.handleIconClick(item.recruitmentId);
-              }}
-            >
-              {item.monsterInd === true ? "Unpublish" : "Monster"}
-              {/* Publish */}
-            </Button>
-          );
-        },
-      },
+    //         <Button
+    //           style={{ marginLeft: "-12px" }}
+    //           onClick={() =>
+    //             this.props.addWebsite({
+    //               recruitmentId: item.recruitmentId,
+    //               opportunityId: this.props.opportunityId,
+    //               orgId: this.props.orgId,
+    //               userId: this.props.userId,
+    //               profileId: item.profileId,
+    //               //publishInd:publishInd ? false: true
+    //             })
+    //           }
+    //         >
+    //           {item.publishInd === true ? "Unpublish" : "Publish"}
+    //           {/* Publish */}
+    //         </Button>
+    //       );
+    //     },
+    //   },
+    //   {
+    //     title: "Monster",
+    //     width: "6%",
+    //     render: (name, item, i) => {
+    //       return (
+    //         <Button
+    //           onClick={() => {
+    //             handleMonsterModal(true);
+    //             this.handleIconClick(item.recruitmentId);
+    //           }}
+    //         >
+    //           {item.monsterInd === true ? "Unpublish" : "Monster"}
+    //           {/* Publish */}
+    //         </Button>
+    //       );
+    //     },
+    //   },
 
-      {
-        title: "",
-        width: "6%",
-        render: (name, item, i) => {
-          const data = (item.onBoardNo / item.number) * 100;
-          return (
-            <Progress
-              type="circle"
-              style={{ cursor: "pointer" }}
-              percent={parseInt(data)}
-              width={40}
-              strokeColor={"#005075"}
-            />
-          );
-        },
-      },
-      {
-        title: "",
-        dataIndex: "id",
-        width: "2%",
-        render: (name, item, i) => {
-          return (
-            <Tooltip title="Close Requirement">
-              <span
-                onClick={() => {
-                  this.props.LinkClosedRequirement(
-                    item.recruitmentId,
-                    this.handleCallback
-                    // this.props.organizationId,
-                  );
-                  // item.opportunityId
-                }}
+    //   {
+    //     title: "",
+    //     width: "6%",
+    //     render: (name, item, i) => {
+    //       const data = (item.onBoardNo / item.number) * 100;
+    //       return (
+    //         <Progress
+    //           type="circle"
+    //           style={{ cursor: "pointer" }}
+    //           percent={parseInt(data)}
+    //           width={40}
+    //           strokeColor={"#005075"}
+    //         />
+    //       );
+    //     },
+    //   },
+    //   {
+    //     title: "",
+    //     dataIndex: "id",
+    //     width: "2%",
+    //     render: (name, item, i) => {
+    //       return (
+    //         <Tooltip title="Close Requirement">
+    //           <span
+    //             onClick={() => {
+    //               this.props.LinkClosedRequirement(
+    //                 item.recruitmentId,
+    //                 this.handleCallback
+    //                 // this.props.organizationId,
+    //               );
+    //               // item.opportunityId
+    //             }}
               
-              >
-                <LockIcon style={{ fontSize: "0.8rem" }} />
+    //           >
+    //             <LockIcon style={{ fontSize: "0.8rem" }} />
                
-              </span>
-            </Tooltip>
-          );
-        },
-      },
-    ];
+    //           </span>
+    //         </Tooltip>
+    //       );
+    //     },
+    //   },
+    // ];
     if (this.props.fetchingAllRecruitmentDetailsByOppId) {
       return <BundleLoader />;
     }
     return (
       <>
-        <div
+       <div className=' flex   sticky  z-auto'>
+     <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+     <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
+        <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
+      
+        <div className="  w-[2.02rem]">   </div>
+        <div className="  w-[15.7rem] text-sm text-[#00A2E8]  truncate ">            
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />
+        {/* {translatedMenuItems[0]} */}
+        Job ID
+     
+        </div>
+        <div className=" w-[14.9rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />  
+        {/* {translatedMenuItems[1]} */}
+        Requirement
+          </div>
+        <div className="   w-[15.9rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
+        {/* {translatedMenuItems[2]} */}
+        Sponsor
+        </div>
+        <div className="  w-[15.6rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>
+        {/* {translatedMenuItems[3]} */}
+        # Positions
+        </div>
+        <div className="   w-[15.99rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
+        {/* {translatedMenuItems[4]} */}
+        Submitted</div> 
+        <div className="  w-[15.8rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        {/* {translatedMenuItems[5]} */}
+        Selected </div>
+        <div className=" w-[16.1rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />
+        {/* {translatedMenuItems[6]} */}
+        OnBoarded</div>
+        <div className="   w-[16.3rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
+        {/* {translatedMenuItems[7]} */}
+        Recruiter</div>
+        <div className="  w-[13.2rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>
+        {/* {translatedMenuItems[8]} */}
+        Talent</div>
+        <div className="   w-[14.01rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
+        {/* {translatedMenuItems[8]} */}
+        Website</div> 
+        <div className="  w-[14.02rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        {/* {translatedMenuItems[10]} */}
+        Monster</div>
+         </div>    
+      </div>
+      { !this.props.fetchingAllRecruitmentDetailsByOppId && this.props.allRecruitmentDetailsByOppId.length ===0 ?<EmptyPage/>: this.props.allRecruitmentDetailsByOppId.map((item, index) => {
+    return (
+        <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+           >
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+              <div class="flex  w-[3.1rem] items-center justify-start  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+              <div className='text-xs ml-gap font-poppins'>
+         
+           </div>
+                </div>
+                </div>
+                <div class="flex  w-[8.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+            
+          </div>
+          </div> 
+          <div class="flex  w-[8.3rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+        
+          {item.jobOrder}
+          </div>
+          </div> 
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+ 
+          </div>
+          </div> 
+          <div class="flex  w-[7.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+         
+          </div>
+          </div> 
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+      
+          </div>
+          </div> 
+          <div class="flex  w-[8.5rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+       
+          </div>
+          </div> 
+          <div class="flex  w-[8.6rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+ 
+          </div>
+          </div> 
+          <div class="flex  w-[8.7rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+          
+          </div>
+          </div> 
+          <div class="flex  w-[8.8rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+         
+          </div>
+          </div> 
+          <div class="flex  w-[7.1rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  font-poppins'>
+    
+          </div>
+          </div> 
+          <div class="flex  w-[7.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+      
+          </div>
+          </div> 
+        
+                </div>             
+    ) }
+            )} 
+      </div>    
+      </div>
+        {/* <div
           style={{
             borderBottom: "0.5em solid silver",
             padding: "0.625em 0em 0.625em 0em",
           }}
-        ></div>
-   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+        ></div> */}
+   {/* <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <PDFPreviewTable>
             <StyledTable
               columns={columns}
@@ -533,7 +670,7 @@ class SummaryTable extends Component {
               </Tooltip>
             </div>
           </PDFPreviewTable>
-        </div>
+        </div> */}
       </>
     );
   }

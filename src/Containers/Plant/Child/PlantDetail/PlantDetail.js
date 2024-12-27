@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPlantById } from "../../PlantAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import PlantDetailHeader from "./PlantDetailHeader";
 const PlantDetailRight = lazy(() => import("./PlantDetailRight"));
@@ -55,6 +55,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PlantDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PlantDetail)
+

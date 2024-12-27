@@ -25,7 +25,7 @@ import {
     inputAllDataSearch,
     ClearSearchedDataOfAll
 } from "./RefurbishAction";
-import { withRouter } from "react-router";
+
 import dayjs from "dayjs";
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -572,6 +572,5 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(SearchedDataRefurbish)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchedDataRefurbish)
+

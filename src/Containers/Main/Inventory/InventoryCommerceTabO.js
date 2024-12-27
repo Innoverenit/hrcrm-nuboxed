@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import DispatchCommerceAndRepairTableOut from "./DispatchCommerceAndRepairTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
 import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
@@ -152,9 +152,8 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryCommerceDetailTabO)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryCommerceDetailTabO)
 
-);
+
 
 

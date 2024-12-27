@@ -122,7 +122,7 @@ return(
     <div className=" flex">
     <div className=' flex rounded w-[13vw] max-sm:w-[39vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
     <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-     <div> Search team Member</div>
+     <div> Search team member</div>
       </div>
       <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
        <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -216,7 +216,7 @@ return(
                             <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div className="flex w-[100%]"  >
                               <a class="flex items-center w-[100%] overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
-                            href={`supplier/${item.supplierId}`}>{item.name}</a>
+                            href={`/supplier/${item.supplierId}`}>{item.name}</a>
                             <div className="flex">
                       {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'name' ? (

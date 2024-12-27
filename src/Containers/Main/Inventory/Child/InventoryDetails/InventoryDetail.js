@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInventoryById, setInventoryDetailViewType } from "../../InventoryAction";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import InventoryDetailTab from "./InventoryDetailTab/InventoryDetailTab";
 import InventoryMaterialTab from "./InventoryMaterialTab/InventoryMaterialTab";
@@ -181,6 +181,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetail)
+

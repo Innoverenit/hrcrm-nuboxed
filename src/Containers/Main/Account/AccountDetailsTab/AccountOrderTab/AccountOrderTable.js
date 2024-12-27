@@ -68,7 +68,6 @@ const AccountOrderTable = (props) => {
   useEffect(() => {
     setPage(page + 1);
     props.getOrderRecords(props.distributorId, "repair");
-    props.getLocationList(props.orgId);
     props.getDistributorOrderOfHigh(
       props.distributorId,
       page,

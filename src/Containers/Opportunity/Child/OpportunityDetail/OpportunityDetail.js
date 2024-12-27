@@ -1,29 +1,34 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, lazy,useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OpportunityDetailHeader from "./OpportunityDetailHeader";
+import { useParams } from "react-router-dom";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { getOpportunityById } from "../../OpportunityAction";
+const OpportunityDetailHeader = lazy(() => import("./OpportunityDetailHeader"));
 const OpportunityDetailLeft = lazy(() => import("./OpportunityDetailLeft"));
 const OpportunityDetailRight = lazy(() => import("./OpportunityDetailRight"));
 
-class OpportunityDetail extends Component {
-  componentDidMount() {
-    this.props.getOpportunityById(this.props.match.params.opportunityId);
-    console.log(this.props.location);
-  }
-  render() {
-    const { opportunity, fetchingOpportunityById } = this.props;
-    // console.log(this.props.opportunity&&this.props.opportunity.recruiterDetails.length&&this.props.opportunity.recruiterDetails[0].fullName)
+function OpportunityDetail (props){
+  const { opportunityId, data } = useParams();
+  // componentDidMount() {
+  //   this.props.getOpportunityById(this.props.match.params.opportunityId);
+  //   console.log(this.props.location);
+  // }
+    useEffect(() => {
+      props.getOpportunityById(opportunityId);
+    }, [opportunityId]);
+ 
+    const { opportunity, fetchingOpportunityById } = props;
+    
     return (
       <>
         <OpportunityDetailHeader
           opportunity={opportunity}
           fetchingOpportunityById={fetchingOpportunityById}
-          translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
         />
         {fetchingOpportunityById ? (
           <MainWrapper>
@@ -35,16 +40,16 @@ class OpportunityDetail extends Component {
             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
                 <div class=" w-[22%] max-sm:w-full max-sm:flex flex-col">
                   <OpportunityDetailLeft opportunity={opportunity}
-                   translateText={this.props.translateText}
-                   selectedLanguage={this.props.selectedLanguage}
-                   translatedMenuItems={this.props.translatedMenuItems}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
                   />
                 </div>
                 <div class="w-[80%] max-sm:hidden">
                   <OpportunityDetailRight 
-                   translateText={this.props.translateText}
-                   selectedLanguage={this.props.selectedLanguage}
-                   translatedMenuItems={this.props.translatedMenuItems}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
                   opportunity={opportunity}
                   />
                 </div>
@@ -55,7 +60,7 @@ class OpportunityDetail extends Component {
       </>
     );
   }
-}
+
 
 const mapStateToProps = ({ opportunity, auth }) => ({
   fetchingOpportunityById: opportunity.fetchingOpportunityById,

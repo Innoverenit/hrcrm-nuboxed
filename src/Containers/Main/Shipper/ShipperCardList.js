@@ -336,8 +336,8 @@ const handleToggleConfirm = (shipperId) => {
                         <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-md:flex-initial">
                           <div className=" flex font-medium  flex-row  w-[9.9rem] max-md:w-44 items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
                               <div class=" text-xs flex w-full    text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
-                                <Link class=" w-[100%]  overflow-ellipsis whitespace-nowrap items-center h-8 text-xs p-1 text-[#042E8A] cursor-pointer truncate   max-sm:text-xs"
-                                  to={`shipper/${item.shipperId}`} title={item.shipperName}>
+                                <Link class="flex w-[100%]  overflow-ellipsis whitespace-nowrap items-center h-8 text-xs p-1 text-[#042E8A] cursor-pointer truncate   max-sm:text-xs"
+                                  to={`/shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
                                 <div>

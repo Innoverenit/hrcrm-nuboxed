@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleLeavesModal } from "../LeavesAction";
@@ -51,6 +51,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LeaveActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LeaveActionRight)
+

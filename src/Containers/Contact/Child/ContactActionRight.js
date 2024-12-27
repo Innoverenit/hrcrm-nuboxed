@@ -1,7 +1,7 @@
 import React,{lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
@@ -139,6 +139,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ContactActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactActionRight)
+

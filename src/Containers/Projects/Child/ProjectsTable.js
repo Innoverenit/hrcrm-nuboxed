@@ -209,7 +209,7 @@ function ProjectsTable(props) {
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                       <div className=" flex w-[27rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                                     <>
-                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`projects/${item.projectId}`} title={item.projectName}>
+                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/projects/${item.projectId}`} title={item.projectName}>
       {item.projectName}
     </Link>
              {/* <ProjectsDetailsView

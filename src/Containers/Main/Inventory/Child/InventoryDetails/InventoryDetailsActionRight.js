@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { withRouter } from "react-router";
+
 import { Title, } from "../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -59,9 +59,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     emptyInventory
 }, dispatch);
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)
+
 
 const InventoryItemRow = ({ label, value }) => {
     return (

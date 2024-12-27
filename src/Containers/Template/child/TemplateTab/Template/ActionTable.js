@@ -9,7 +9,7 @@ import {
   StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
 
-import { withRouter } from "react-router-dom";
+
 import { getActionTable } from "../../../../../Containers/Rules/RulesAction";
 import dayjs from "dayjs";
 
@@ -76,6 +76,5 @@ const mapStateToProps = ({ rule,auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getActionTable}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ActionTable)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ActionTable)
+

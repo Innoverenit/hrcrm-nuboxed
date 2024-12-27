@@ -9,7 +9,7 @@ import {getInvestorDeals
   } from "../../../InvestorAction";
 import { CurrencySymbol } from "../../../../../Components/Common"; 
 import { Button, Tooltip,Dropdown ,Menu,Progress} from "antd";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -206,9 +206,9 @@ if (loading) {
                                 <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-start  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div class=" text-sm  font-poppins">   
-<Link to ="/investor">
+{/* <Link to ="/investor"> */}
 {item.investor}
-</Link>
+{/* </Link> */}
 </div>
 </div>
 

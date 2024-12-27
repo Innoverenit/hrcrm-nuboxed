@@ -5,7 +5,7 @@ import { setSelectedTimeIntervalReport } from "../BillingAction";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import {  StyledSelect } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
+
 import { base_url } from "../../../Config/Auth";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -184,6 +184,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BillingActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BillingActionRight)
+

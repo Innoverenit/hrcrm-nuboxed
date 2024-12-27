@@ -231,7 +231,7 @@ function CandidateWhiteTable(props) {
           console.log(date, currentdate, currentdate === date);
         return (
           <>
-              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.candidateName}>
+              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/candidate/${item.candidateId}`} title={item.candidateName}>
       {item.fullName}
     </Link>
           {/* <CandidateDetailsView
@@ -347,7 +347,7 @@ function CandidateWhiteTable(props) {
 
         return (
           <>
-            {item.skillList === [] ? (
+            {item.skillList === null ? (
               "None"
             ) : (
               <span>

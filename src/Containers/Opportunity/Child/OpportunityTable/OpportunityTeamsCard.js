@@ -233,7 +233,7 @@ function OpportunityTeamsCard(props) {
     <div className=" flex">
        <div className=' flex rounded w-[13vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-       <div class="w-[14vw]"> Search team Member</div>
+       <div> Search team Member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{
@@ -344,7 +344,7 @@ function OpportunityTeamsCard(props) {
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">    
                                           <div class=" text-xs text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">                                       
-                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
                                           </div>

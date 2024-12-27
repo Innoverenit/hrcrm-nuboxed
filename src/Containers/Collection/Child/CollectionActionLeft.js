@@ -2,7 +2,7 @@ import React, {useState,  useEffect} from "react";
 import { Tooltip, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import {
   inputCustomerAllDataSearch,
   inputCustomerReceivableDataSearch,
@@ -164,6 +164,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CollectionActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionActionLeft)
+
