@@ -22,8 +22,6 @@ const { Option } = Select;
 
 function InvoiceMultipleDrawerCard(props) {
     const [pageNo, setPageNo] = useState(0);
-    
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
@@ -33,29 +31,29 @@ function InvoiceMultipleDrawerCard(props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [plusOpen, setPlusOpen]=useState(false);
 
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-   "1169", // 'Invoice ', // 0
-   "660", // 'Order', // 1
-   "218" ,// 'Value', // 2
-   "71" ,// 'Type', // 3
- "660"   // ' Status', // 4
-          ];
+//     useEffect(() => {
+//         const fetchMenuTranslations = async () => {
+//           try {
+//             setLoading(true); 
+//             const itemsToTranslate = [
+//    "1169", // 'Invoice ', // 0
+//    "660", // 'Order', // 1
+//    "218" ,// 'Value', // 2
+//    "71" ,// 'Type', // 3
+//  "660"   // ' Status', // 4
+//           ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+//             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+//             setTranslatedMenuItems(translations);
+//             setLoading(false);
+//           } catch (error) {
+//             setLoading(false);
+//             console.error('Error translating menu items:', error);
+//           }
+//         };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+//         fetchMenuTranslations();
+//       }, [props.selectedLanguage]);
 
       const fetchData = async () => {
         try {
@@ -155,22 +153,10 @@ function InvoiceMultipleDrawerCard(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
-                    {/* <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div> */}
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div>
-                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div> */}
-                      
+                        <div className=" md:w-[7.4rem]">{props.translatedMenuItems[19]} ID</div>
+                        <div className=" md:w-[7.1rem]">{props.translatedMenuItems[22]}</div>
                     </div>
                     <div class="">
-                        {/* <InfiniteScroll
-                            dataLength={props.orderInvoice.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingOrderInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"79vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
                             {data.length ? <>
                                 {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -213,17 +199,9 @@ function InvoiceMultipleDrawerCard(props) {
                             </>
                                 : !data.length
                                     && !props.fetchingOrderInvoice ? <EmptyPage /> : null}  
-                        {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-            {/* <InvoiceModal
-                    particularRowData={particularRowData}
-                    handleInvoiceModal={props.handleInvoiceModal}
-                    invoiceO={props.invoiceO}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                />   */}
         </>
     )
 }

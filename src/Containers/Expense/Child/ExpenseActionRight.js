@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleExpenseModal } from "../ExpenseAction";
@@ -61,6 +61,4 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ExpenseActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseActionRight)

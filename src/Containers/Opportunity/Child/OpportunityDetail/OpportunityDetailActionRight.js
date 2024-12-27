@@ -1,5 +1,5 @@
 import React, { } from "react";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../../../Components/UI/Layout";
@@ -27,6 +27,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OpportunityDetailActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunityDetailActionRight)
+

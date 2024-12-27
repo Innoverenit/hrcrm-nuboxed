@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router";
+
 import { getItemHistoryDataInstock } from "../../../InventoryAction"
 import { BundleLoader } from '../../../../../../Components/Placeholder';
 
@@ -145,8 +145,7 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ItemHistoryInStockData)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemHistoryInStockData)
+
 
 

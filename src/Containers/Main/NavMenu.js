@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { useNavigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -28,7 +29,7 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PortraitIcon from "@mui/icons-material/Portrait";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { Link } from "react-router-dom";
+
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import CategoryIcon from '@mui/icons-material/Category'
@@ -52,6 +53,8 @@ const SubMenu = Menu.SubMenu;
 
 function NavMenu(props) {
   const { user } = props;
+  const navigate = useNavigate();
+  
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log("abv", props.selectedLanguage)
@@ -139,6 +142,11 @@ function NavMenu(props) {
       setSelectedMenuItem(storedMenuItem);
     }
   }, []);
+
+  const handleClick = (e) => {
+    console.log(e.key)
+    navigate(e.key);
+  };
   const handleSelect = (menuItemKey) => {
     setSelectedMenuItem(menuItemKey);
     localStorage.setItem('selectedMenuItem', menuItemKey);
@@ -173,29 +181,37 @@ function NavMenu(props) {
         style={{ background: "#38445E", fontFamily: "Poppins", }}
          inlineCollapsed={props.collapsed}
         selectedKeys={[selectedMenuItem]}
+        onClick={handleClick}
       >
         {/* dashboard */}
  
  
           {/* {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && ( */}
 
-<Menu.Item key="/dashboard" style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
+<Menu.Item key="/dashboard" 
+// style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
 
-color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '
+// color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} 
+className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '
 
 >
-  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')} >
+  {/* <Link to="/dashboard" 
+  // onClick={() => handleSelect('/dashboard')}
+   > */}
+    <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
     <DashboardIcon
 
     className='!text-base  text-[#e4eb2f] '
     />
+    
 
     <span class="text-white text-ls ml-1">     
       {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
     </span>
-  </Link>
+    </Link>
+  {/* </Link> */}
 </Menu.Item>
 
 {/* )} */}
@@ -236,7 +252,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           </Menu.Item>
         )}
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="task" style={{ height: "1.45rem", display:"flex",
+          <Menu.Item key="/Task" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/Task' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Task" onClick={() => handleSelect('/Task')}>    
               <FactCheckIcon
@@ -658,7 +674,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
   ) &&  (
 <Menu.Item key="/quality" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
-          <Link to="/quality" onClick={() => handleSelect('/quality')}>
+          {/* <Link to="/quality" onClick={() => handleSelect('/quality')}> */}
             <VerifiedUserIcon
             className='!text-base  text-[#e4eb2f]'
             />
@@ -667,7 +683,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
              */}
              {translatedMenuItems[19]}
             </span>
-          </Link>
+          {/* </Link> */}
         </Menu.Item>
  )}
   {(user.warAccInd === true &&  user.erpInd === true && user.hrInd === true

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Menu,  } from "antd";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import { withRouter } from "react-router-dom";
+
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import {
@@ -102,4 +102,4 @@ class SettingsDropdown extends Component {
   }
 }
 
-export default withRouter(SettingsDropdown);
+export default (SettingsDropdown);

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import LanguageIcon from '@mui/icons-material/Language';
 import TableViewIcon from '@mui/icons-material/TableView';
-import { withRouter } from "react-router-dom";
+
 import SpeechRecognition, {  } from 'react-speech-recognition';
 import MicIcon from '@mui/icons-material/Mic';
 import {
@@ -133,6 +133,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getRecords
 }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PartnerActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PartnerActionLeft)
+

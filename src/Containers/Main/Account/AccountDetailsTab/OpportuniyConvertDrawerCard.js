@@ -1,5 +1,5 @@
 import React, {Component,useState,useEffect} from "react";
-import { useHistory } from "react-router-dom";
+
 import { Radio,Button } from "antd";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,7 +8,7 @@ import {codInventoryOrder} from "../AccountAction";
 
 const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo,particularRowItem, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
-  const history = useHistory();
+ 
 
   const [paymentMethod, setPaymentMethod] = useState("");
   const handlePaymentChange = (e) => {

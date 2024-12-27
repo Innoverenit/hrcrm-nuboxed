@@ -390,7 +390,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                                     <Link
                                       class="overflow-ellipsis whitespace-nowrap  max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
-                                      to={`distributor/${item.distributorId}`}
+                                      to={`/distributor/${item.distributorId}`}
                                       title={`${item.name}`}>
                                       {item.name.substring(0, 25)}
                                     </Link>  &nbsp;&nbsp;

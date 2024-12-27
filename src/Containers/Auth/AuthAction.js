@@ -1,9 +1,10 @@
 import * as types from "./AuthTypes";
+import { useNavigate } from "react-router-dom";
 // import { SET_FISCAL_TIME_INTERVAL } from "../Dashboard/DashBoardActionTypes";
 import { base_url, login_url } from "../../Config/Auth";
 import axios from "axios";
 import { message, notification } from "antd";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 import dayjs from "dayjs";
 
 import {
@@ -15,7 +16,8 @@ import { SET_FISCAL_TIME_INTERVAL_REPORT } from "../Reports/ReportActionType";
 import Swal from "sweetalert2";
 // import { SET_FISCAL_TIME_INTERVAL_TEAM } from "../Teams/TeamsActionTypes";
 // import { SET_FISCAL_TIME_INTERVAL_VIEWPORT } from "../Viewport/ViewportActionTypes";
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
+
 
 export const updateUserAddress = (userId, address) => (dispatch) => {
   console.log(userId, address);
@@ -82,7 +84,7 @@ export const register = (user) => (dispatch) => {
  * this method verify the email and if user is verified it send them to set Password page
  */
 export const validateEmail =
-  (employeeId, token, emailId, organizationId, history) => (dispatch) => {
+  (employeeId, token, emailId, organizationId, navigate) => (dispatch) => {
     console.log(employeeId, token, emailId, organizationId);
     dispatch({
       type: types.VALIDATE_EMAIL_REQUEST,
@@ -101,8 +103,17 @@ export const validateEmail =
         if (res.data === true) {
           console.log("email is valid");
           message.success("Your email has been validated successfully.");
-          history.push({
-            pathname: "/setPassword",
+          // history.push({
+          //   pathname: "/setPassword",
+          //   state: {
+          //     employeeId: employeeId,
+          //     emailId: emailId,
+          //     organizationId: organizationId,
+          //     token: token,
+          //   },
+          // });
+          
+          navigate("/setPassword", {
             state: {
               employeeId: employeeId,
               emailId: emailId,
@@ -110,9 +121,11 @@ export const validateEmail =
               token: token,
             },
           });
-          // dispatch({
-          //     type: types.VALIDATE_EMAIL_SUCCESS,
-          // })
+
+
+          dispatch({
+              type: types.VALIDATE_EMAIL_SUCCESS,
+          })
         }
       })
       .catch((err) => {
@@ -142,15 +155,15 @@ export const resetPassword =
         .then((res) => {
           console.log(res);
           if (res.data === true) {
-            history.push({
-              pathname: "/setPassword",
-              state: {
-                employeeId: employeeId,
-                emailId: emailId,
-                organizationId: organizationId,
-                token: token,
-              },
-            });
+            // history.push({
+            //   pathname: "/setPassword",
+            //   state: {
+            //     employeeId: employeeId,
+            //     emailId: emailId,
+            //     organizationId: organizationId,
+            //     token: token,
+            //   },
+            // });
           }
         })
         .catch((err) => {
@@ -164,7 +177,7 @@ export const resetPassword =
 
 
 export const setPassword =
-  (userId, organizationId, emailId, password, history) => (dispatch) => {
+  (userId, organizationId, emailId, password, navigate) => (dispatch) => {
     console.log(userId, organizationId, emailId, password);
     axios
       .post(`${base_url}/setPassword`, {
@@ -178,7 +191,8 @@ export const setPassword =
         console.log(res);
         if (res.data === true) {
           message.success("Your password has been saved successfully.");
-          history.push("/login");
+          // history.push("/login");
+          navigate("/login");
         }
       })
       .catch((err) => {
@@ -230,7 +244,7 @@ export const forgotPassword = (email) => (dispatch) => {
  * after successfull login it store the recieved token to local storage sends to dashboard
  */
 export const login =
-  ({ userName, password }, history, cb) =>
+  ({ userName, password }, navigate, cb) =>
     (dispatch) => {
       dispatch({
         type: types.LOGIN_REQUEST,
@@ -246,12 +260,8 @@ export const login =
           sessionStorage.setItem("token", res.data.token);
 
           dispatch(getUserDetails(res.data.token));
-          // if(res.data.dashboardRegionalInd === true){
-          //   history.push("/dashboardRegional"); 
-          // }else{
-          //   history.push("/dashboard"); 
-          // }
-          history.push("/dashboard");
+         
+          navigate("/dashboard");
           dispatch({
             type: types.LOGIN_SUCCESS,
             payload: res.data,
@@ -272,9 +282,10 @@ export const login =
           } else {
             message.error(err.response.data);
             console.log(err);
-            history.push({
-              pathname: "/",
-            });
+            navigate("/");
+            // history.push({
+            //   pathname: "/",
+            // });
           }
           dispatch({
             type: types.LOGIN_FAILURE,
@@ -412,7 +423,7 @@ export const getSaleCurrency = () => (dispatch) => {
 
  * get user details after login
  */
-export const getUserDetails = (token) => (dispatch) => {
+export const getUserDetails = (token,navigate) => (dispatch) => {
   dispatch({
     type: types.GET_USER_DETAILS_REQUEST,
   });
@@ -441,9 +452,8 @@ export const getUserDetails = (token) => (dispatch) => {
     .catch((err) => {
       // message.error("Oops, something went wrong during getting user details.");
       console.log(err);
-      history.push({
-        pathname: "/",
-      });
+     
+      navigate("/");
       dispatch({
         type: types.GET_USER_DETAILS_FAILURE,
         payload: err,
@@ -616,9 +626,10 @@ export const getLoginDetails = (userId) => (dispatch) => {
  * clear token from sessionStorage
  * redirect to login
  */
-export const logout = (history) => (dispatch) => {
+export const logout = (navigate) => (dispatch) => {
   window.sessionStorage.clear();
-  history.push("/login");
+ 
+  navigate("/login");
   dispatch({ type: types.LOGOUT });
   message.success("You have successfully logged out. See you soon.");
 };

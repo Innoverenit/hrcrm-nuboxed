@@ -5,7 +5,7 @@ import {  message } from "antd";
 import {
   handleStripeModal,
 } from "../ModuleAction";
-import { withRouter } from "react-router-dom";
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 class CheckoutForm extends React.Component {
@@ -93,6 +93,4 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)

@@ -295,7 +295,7 @@ console.log(selectedAssign)
         {props.crmAllData.map((item,index) =>{
            return (
          <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] mt-1 max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  text-[#444444] mt-1 max-sm:w-wk  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center  h-16">
           <div class=" flex mr-[0.2rem] h-15" >
             <MultiAvatar
@@ -441,7 +441,7 @@ console.log(selectedAssign)
                       <Tooltip>
                       <div class=" flex max-sm:w-full justify-center w-[100%] flex-row md:flex-col ml-1"> 
                       <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`/customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>    
     &nbsp;&nbsp;

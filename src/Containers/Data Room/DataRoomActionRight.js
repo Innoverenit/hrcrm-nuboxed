@@ -3,7 +3,7 @@
 import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import { Button } from "antd";
 import { StyledSelect } from "../../Components/UI/Antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
@@ -71,6 +71,5 @@ class DataRoomActionRight extends React.Component {
 }
 const mapStateToProps = ({ auth, team, account }) => ({ user: auth.userDetails,});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DataRoomActionRight)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DataRoomActionRight)
+

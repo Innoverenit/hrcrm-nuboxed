@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {getAssessmentById} from "../../AccessmentAction";
 import AssessmentDetailsHeader from "./AssessmentDetailsTab/AssessmentDetailsHeader";
@@ -51,6 +51,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getAssessmentById
 }, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(AssessmenntDetails)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AssessmenntDetails)
+

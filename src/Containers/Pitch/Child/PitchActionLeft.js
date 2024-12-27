@@ -3,7 +3,7 @@ import React, { useEffect,useState,useRef  } from "react";
 import { connect } from "react-redux";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import PeopleIcon from '@mui/icons-material/People';
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
@@ -368,5 +368,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getPitchAllRecords,
   getTeamsPitchCount
 }, dispatch);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PitchActionLeft));
+export default connect(mapStateToProps, mapDispatchToProps)(PitchActionLeft);

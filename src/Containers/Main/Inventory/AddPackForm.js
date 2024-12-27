@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { base_url2 } from '../../../Config/Auth';
 import axios from "axios";
 import { Button } from "antd";
-import { withRouter } from "react-router-dom";
+
 import {getPackData,getPackNo} from "../Inventory/InventoryAction";
 import { useDispatch } from 'react-redux';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
@@ -168,8 +168,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InputToggleForm)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(InputToggleForm)
+
 
 

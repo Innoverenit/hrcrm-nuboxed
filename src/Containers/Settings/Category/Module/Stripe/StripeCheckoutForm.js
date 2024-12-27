@@ -3,7 +3,7 @@ import {Elements, ElementsConsumer} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 // import {sendPaymentInfo} from "../../LeadsAction";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -88,6 +88,4 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(StripeCheckoutForm)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(StripeCheckoutForm)

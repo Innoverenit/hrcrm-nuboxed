@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import { Tooltip, Badge, Avatar } from "antd";
 import {getReaasignProduct} from "../ProductionAction"
@@ -166,6 +166,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductionActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionActionLeft)
+

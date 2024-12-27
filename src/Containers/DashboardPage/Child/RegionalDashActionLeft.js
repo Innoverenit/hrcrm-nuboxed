@@ -4,7 +4,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import TimeInterval from "../../../Utils/TimeInterval";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -95,6 +95,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RegionalDashActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(RegionalDashActionLeft)
+

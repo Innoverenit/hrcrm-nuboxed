@@ -37,15 +37,68 @@ function ProcureDetailsCardList(props) {
   const [newPrice, setPrice] = useState('');
   const [specs, setSpecs] = useState("");
   const [particularRowData, setParticularRowData] = useState({});
+ const [isCategoryDropdownClicked, setIsCategoryDropdownClicked] = useState(false);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [currencyOpts, setcurrencyOpts] = useState([]);
+  const [isCurrencyDropdownClick, setIsCurrencyDropdownClick] = useState(false);
+const [IsLocDropdownClick, setIsLocDropdownClick] =useState(false);
+const [LocationOpts,setLocationOpts]= useState([]);
+const [IsQualityDropdownClick, setIsQualityDropdownClick] = useState(false);
+const [QualityOpts,setQualityOpts] = useState([]);
+
+
+ const fetchCategoryData = () => {
+    if (!isCategoryDropdownClicked) {
+      props.getCategorylist();
+      setIsCategoryDropdownClicked(true);
+    }
+  };
+  useEffect(() => {
+    if (props.categoryList && props.categoryList.length > 0) {
+      setCategoryOptions(props.categoryList);
+    }
+  }, [props.categoryList]);
+
+const fetchCurrency = () => {
+    if (!isCurrencyDropdownClick) {
+      props.getSaleCurrency();
+      setIsCurrencyDropdownClick(true);
+    }
+  };
+  useEffect(() => {
+    if (props.saleCurrencies && props.saleCurrencies.length > 0) {
+      setcurrencyOpts(props.saleCurrencies);
+    }
+  }, [props.saleCurrencies]);
+
+const fetchLocationList =()=>{
+  if (!IsLocDropdownClick) {
+    props.getLocationList(props.orgId);
+    setIsLocDropdownClick(true);
+  }
+}
+useEffect(() => {
+  if (props.locationlist && props.locationlist.length > 0) {
+    setLocationOpts(props.locationlist);
+  }
+}, [props.locationlist]);
+
+const fetchSupplierSuppliesQuality = () => {
+  if (!IsQualityDropdownClick) {
+    props.getSupplierSuppliesQuality(props.orgId);
+    setIsQualityDropdownClick(true);
+  }
+}
+useEffect(() => {
+  if (props.supplierSuppliesQuality && props.supplierSuppliesQuality.length > 0) {
+    setQualityOpts(props.supplierSuppliesQuality);
+  }
+}, [props.supplierSuppliesQuality]);
 
   useEffect(() => {
     props.getBrand();
     props.getProcureDetails(props.orderDetailsId.orderId);
-    props.getCategorylist();
-    props.getSaleCurrency()
     props.getAllProductList();
-    props.getSupplierSuppliesQuality();
-    props.getLocationList(props.orgId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -195,7 +248,7 @@ function ProcureDetailsCardList(props) {
                       value={category}
                       onChange={(e) => handleCategoryChange(e.target.value)}
                     >
-                      {props.categoryList.map((categoryItem, categoryIndex) => (
+                      {categoryOptions.map((categoryItem, categoryIndex) => (
                         <option key={categoryIndex} value={categoryItem.id}>
                           {categoryItem.categoryName}
                         </option>
@@ -274,7 +327,7 @@ function ProcureDetailsCardList(props) {
                       value={quality}
                       onChange={(e) => handleQualityChange(e.target.value)}
                     >
-                      {props.supplierSuppliesQuality.map((qualityItem, qualityIndex) => (
+                      {QualityOpts.map((qualityItem, qualityIndex) => (
                         <option key={qualityIndex} value={qualityItem.qualityId}>
                           {qualityItem.code}
                         </option>
@@ -294,7 +347,7 @@ function ProcureDetailsCardList(props) {
                       value={location}
                       onChange={(e) => handleLocationChange(e.target.value)}
                     >
-                      {props.locationlist.map((locationItem, locationIndex) => (
+                      {LocationOpts.map((locationItem, locationIndex) => (
                         <option key={locationIndex} value={locationItem.locationDetailsId}>
                           {locationItem.locationName}
                         </option>
@@ -363,7 +416,7 @@ function ProcureDetailsCardList(props) {
                       value={currency}
                       onChange={(e) => handleCurrencyChange(e.target.value)}
                     >
-                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
+                      {currencyOpts.map((currencyItem, currencyIndex) => (
                         <option key={currencyIndex} value={currencyItem.currency_id}>
                           {currencyItem.currency_name}
                         </option>

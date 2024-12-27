@@ -6,7 +6,7 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
-import { withRouter } from "react-router";
+
 import {
   handleAddDispatchModal,
   handleAddOutputReasonModal,
@@ -179,10 +179,9 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTab)
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryDetailTab)
 
-);
+
 
 
 // import React from "react";

@@ -237,7 +237,11 @@ console.log(props.userDetails.imageId)
           <div class="flex flex-col basis-[100%] overflow-hidden">
           
             <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
-            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+            <Link
+  className="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
+  to={`/opportunity/${item.opportunityId}`} // Absolute path
+  title={item.opportunityName}
+>
       {item.opportunityName}
     </Link>
           {/* <Link

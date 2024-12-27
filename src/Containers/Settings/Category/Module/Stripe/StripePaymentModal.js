@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
+
 import StripeCheckoutForm from "./StripeCheckoutForm";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../Components/UI/Antd";
@@ -36,6 +36,5 @@ const mapStateToProps = ({ leads, auth }) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(StripePaymentModal)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(StripePaymentModal)
+

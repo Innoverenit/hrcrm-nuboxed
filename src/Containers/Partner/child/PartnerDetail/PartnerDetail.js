@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPartnerDetailsById } from "../../PartnerAction";
 import {  MainWrapper } from "../../../../Components/UI/Layout";
-import { withRouter } from "react-router";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import PartnerDetailRight from "./PartnerDetailRight";
 import PartnerDetailLeft from "./PartnerDetailLeft";
@@ -54,6 +54,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PartnerDetail)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PartnerDetail)
+

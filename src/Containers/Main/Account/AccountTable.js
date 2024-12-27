@@ -430,7 +430,7 @@ function AccountTable(props) {
                                     <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
                                       <Link
                                         class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] font-bold font-poppins flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
-                                        to={`distributor/${item.distributorId}`}
+                                        to={`/distributor/${item.distributorId}`}
                                         title={`${item.name}`}
                                       >
                                         {item.name.substring(0, 25)}

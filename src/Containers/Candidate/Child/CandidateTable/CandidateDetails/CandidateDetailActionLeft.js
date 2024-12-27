@@ -1,12 +1,11 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
-class CandidateDetailActionLeft extends React.Component {
-  render() {
+function CandidateDetailActionLeft (props) {
+   const navigate = useNavigate();
     return (
       <div class=" flex items-center" >
         <KeyboardReturnIcon
@@ -15,16 +14,19 @@ class CandidateDetailActionLeft extends React.Component {
           tooltipTitle="Back"
          
          
-          onClick={() => this.props.history.goBack()}
+          onClick={() => {
+            navigate(-1)
+            
+          }}
+
         />{" "}
       </div>
     );
   }
-}
+
 const mapStateToProps = ({ }) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CandidateDetailActionLeft)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateDetailActionLeft)
+
