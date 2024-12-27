@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
-import "./Stripe.scss";
+// import "./Stripe.scss";
 import {  message } from "antd";
 import {
   handleStripeModal,
