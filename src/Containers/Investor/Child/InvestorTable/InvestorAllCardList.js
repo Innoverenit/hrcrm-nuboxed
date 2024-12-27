@@ -468,7 +468,7 @@ console.log(selectedEmployee)
                                                   {/* Name */}
                                                  
                                                   <div class=" text-xs text-blue-500 flex justify-between  font-poppins font-semibold cursor-pointer">
-                                                  <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                                  <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`/investor/${item.investorId}`} title={item.name}>
             {item.name}
         </Link>                                
             
@@ -758,17 +758,17 @@ handleCurrentRowData(item);
        {/* Shares # */}
           </div>              
           <div className=" w-[4.21rem] truncate max-md:w-[4.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[18]}
+          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[8]}
         {/* Club */}
           </div>
           {props.user.aiInd && (
             <div className=" w-[5.1rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
+            <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[7]}
           {/* Score */}
             </div>
             )}
         <div className=" w-[4.3rem] truncate max-md:w-[6.3rem] max-xl:w-[10.3rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]}
         {/* Assigned" */}           
          </div>      
       </div>
@@ -805,7 +805,8 @@ handleCurrentRowData(item);
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1  py-ygap items-center max-sm:rounded-lg max-xl:text-xs max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1   py-ygap items-center max-sm:rounded-lg max-xl:text-xs max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col 
+              scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  w-[10.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
@@ -836,14 +837,14 @@ handleCurrentRowData(item);
                                         <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                          
                                             {/* Name */}
                                            
-                                            <div class=" text-xs text-blue-500 flex justify-between  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <div class="flex items-center truncate text-xs text-blue-500 flex justify-between  font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap truncate  text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                
       
-        &nbsp;&nbsp;
+        &nbsp;
         {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
+          <span class="text-[tomato]  font-bold ml-1 text-[0.65rem]">
             New
           </span>
         ) : null}
@@ -876,7 +877,7 @@ handleCurrentRowData(item);
                                 </div>
                                 </div> 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex   w-[8.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
+                                <div className=" flex   w-[8.12rem] items-center truncate h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
@@ -897,7 +898,7 @@ handleCurrentRowData(item);
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] truncate w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Category */}
 
                                     <div class=" text-xs justify-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -905,7 +906,7 @@ handleCurrentRowData(item);
                                     </div>
                                 </div>
 
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] truncate w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}

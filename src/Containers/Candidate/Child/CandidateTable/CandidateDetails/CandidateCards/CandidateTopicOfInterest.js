@@ -6,7 +6,7 @@ import {
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { ViewEditCard, Title } from "../../../../../../Components/UI/Elements";
+import { ViewEditCard } from "../../../../../../Components/UI/Elements";
 import {
   addTopicByCandidateId,
   getTopicsByCandidateId,
@@ -30,7 +30,6 @@ class CandidateTopicOfInterest extends React.Component {
     this.setState({ inputVisible: true }, () => this.input.focus());
 
   handleInputChange = (e) => this.setState({ inputValue: e.target.value });
-  // handleSelectChange = (e) => this.setState({ selectValue: e.target.value });
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
@@ -63,7 +62,6 @@ class CandidateTopicOfInterest extends React.Component {
 
       addTopicByCandidateId,
     } = this.props;
-    // if (selectValue) {
       addTopicByCandidateId(
         {
           candidateId: this.props.uniqueId,
@@ -71,11 +69,6 @@ class CandidateTopicOfInterest extends React.Component {
         },
         this.props.userType
       );
-    
-    // this.setState({
-    //   inputVisible: false,
-    //   selectValue: "",
-    // });
   };
   handleTopicDelete = ({ skillId }) => {
     const { deleteTopicByCandidateId } = this.props;
@@ -89,32 +82,6 @@ class CandidateTopicOfInterest extends React.Component {
   };
 
   render() {
-
-    // const libraryOption = this.props.librarys
-    // .sort((a, b) => {
-    //   const libraryNameA = a.name && a.name.toLowerCase();
-    //   const libraryNameB = b.name && b.name.toLowerCase();
-    //   if (libraryNameA < libraryNameB) {
-    //     return -1;
-    //   }
-    //   if (libraryNameA > libraryNameB) {
-    //     return 1;
-    //   }
-
-    //   // names must be equal
-    //   return 0;
-    // }
-    // )
-    // .map((item) => {
-    //   return {
-    //     // label: `${item.salutation || ""} ${item.firstName ||
-    //     //   ""} ${item.middleName || ""} ${item.name || ""}`,
-    //     // value: item.userId,
-    //     label: item.name || "",
-    //     value: item.name,
-    //   };
-    // });
-    // console.log(this.props.candidate.candidateId)
 
     console.log("select",this.state.selectValue)
 
@@ -157,11 +124,12 @@ class CandidateTopicOfInterest extends React.Component {
                   const isLongTopic = topic.skillName===null?[]:topic.skillName.length >= 30;
                   const topicElem = (
                     <Tag
+                    className="mb-[0.4rem]"
                       key={topic.skillId}
                       color="blue"
                       closable
                       onClose={() => this.handleTopicDelete(topic)}
-                      style={{ marginBottom: "0.4rem" }}
+                  
                     >
                       {isLongTopic
                         ? `${topic.skillName===null?[]:topic.skillName.slice(0, 30)}...`
@@ -181,11 +149,10 @@ class CandidateTopicOfInterest extends React.Component {
                 })
               )}
               {inputVisible && (
-                <Input
+                <Input className="w-78 text-capitalize"
                   ref={this.saveInputRef}
                   type="text"
-                  size="small"
-                  style={{ width: 78,textTransform: "capitalize" }}
+                  size="small"         
                   value={inputValue}
                   onChange={this.handleInputChange}
                   onBlur={this.handleInputConfirm}
@@ -194,9 +161,9 @@ class CandidateTopicOfInterest extends React.Component {
               )}
               {!inputVisible && (
                 <Tag
+                className="bg-[#fff] border-dashed"
                   onClick={this.showInput}
-                  visible={this.props.topicsByCandidateId.length===null?[]:this.props.topicsByCandidateId.length !== 30}
-                  style={{ background: "#fff", borderStyle: "dashed" }}
+                  visible={this.props.topicsByCandidateId.length===null?[]:this.props.topicsByCandidateId.length !== 30}               
                 >
                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>

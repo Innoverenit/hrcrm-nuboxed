@@ -46,6 +46,9 @@ export class PlannerTab extends Component {
                   endDate={plannerEndDate}
                   startTime={plannerStartTime}
                   endTime={plannerEndTime}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                 translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
             </TabPane>
@@ -65,6 +68,9 @@ export class PlannerTab extends Component {
                   // endDate={plannerEndDate}
                   startTime={plannerStartTime}
                   endTime={plannerEndTime}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                 translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
             </TabPane>
@@ -80,8 +86,9 @@ export class PlannerTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 <TaskForm
-                // startDate={plannerStartDate}
-                // endDate={plannerEndDate}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
             </TabPane>
@@ -100,44 +107,7 @@ export class PlannerTab extends Component {
                 />
               </Suspense>
             </TabPane>
-            {/* <TabPane
-              tab={
-                <span>
-                  <Icon type="luggage-cart" />
-                  Travel
-                </span>
-              }
-              key="5"
-            >
-              <Suspense fallback={"Loading ..."}>
-                <LeaveForm
-                  startDate={plannerStartDate}
-                  endDate={plannerEndDate}
-                  startTime={plannerStartTime}
-                  endTime={plannerEndTime}
-                />
-              </Suspense>
-            </TabPane> */}
-
-{/* 
-            <TabPane
-              tab={
-                <span>
-                  <ProjectOutlined type="project" />
-                  Projects
-                </span>
-              }
-              key="6"
-            >
-              <Suspense fallback={"Loading ..."}>
-                <ProjectForm
-                  startDate={plannerStartDate}
-                  endDate={plannerEndDate}
-                  startTime={plannerStartTime}
-                  endTime={plannerEndTime}
-                />
-              </Suspense>
-            </TabPane> */}
+           
           </StyledTabs>
         </TabsWrapper>
       </>

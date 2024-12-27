@@ -48,13 +48,8 @@ function EventForm (props) {
       const [reminder,setRemider] = useState(true);
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
-
-
-
       const [isLoadingContacts, setIsLoadingContacts] = useState(false);
       const [contacts, setContacts] = useState([]);
-
-    
 
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
@@ -66,10 +61,7 @@ function EventForm (props) {
   setRemider(checked);
   };
   useEffect(()=> {
-    // props.getAssignedToList(props.orgId);
-  //  props.getAllCustomerData(userId)
-  //  props.getAllOpportunityData(userId)
-  //  props.getFilteredEmailContact(userId);
+
   },[])
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -444,15 +436,12 @@ ${base_url}/opportunity/open/${value}`;
   };
 
   const handleSelectChangeDeal = (value) => {
-    setSelectedDeal(value)
-    
+    setSelectedDeal(value)   
   };
 
   const handleSelectOpportunityFocus = () => {
     if (!touchedOpportunity) {
-     
       fetchOpportunity();
-
       setTouchedOpportunity(true);
     }
   };
@@ -460,7 +449,6 @@ ${base_url}/opportunity/open/${value}`;
   const fetchContacts = async (value) => {
     setIsLoadingContacts(true);
     try {
-   
       const apiEndpoint = `${base_url}/customer/contact/drop/${value}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
@@ -513,9 +501,6 @@ const {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
   
-
-
-
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
@@ -639,8 +624,7 @@ const {
                     startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
-                    endTime: 0,
-                   
+                    endTime: 0,               
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
                   handleCallback

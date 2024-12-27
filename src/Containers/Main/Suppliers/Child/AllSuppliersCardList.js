@@ -233,7 +233,7 @@ return(
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
     className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
 )}                 

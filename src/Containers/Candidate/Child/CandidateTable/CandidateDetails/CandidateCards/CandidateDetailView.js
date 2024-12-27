@@ -13,44 +13,32 @@ class CandidateDetailView extends Component {
     return (
       <>     
       <CandidateItemRow 
-          label="Availability"
-        
-
+         label={this.props.translatedMenuItems[6]}
           value={this.props.candidate.availableDate === null ? "None" :
-          <>
-          
+          <>    
           {dayjs(availableDate).format("ll")}
           </>
           }
            />
   
         <CandidateItemRow 
-        label="Company" 
-          
+          label={this.props.translatedMenuItems[7]}  
           value={tag_with_company } />
        
             
            <CandidateItemRow 
-          label="Designation"
-       
+         label={this.props.translatedMenuItems[8]}   
           value={designation
           } />
            
            <CandidateItemRow //label="Mobile Number" 
-          label="Identification"
-         
-         
+         label={this.props.translatedMenuItems[9]}  
           value={`${idProof || ""} ${idNumber || ""}`}/>
 
           
             <CandidateItemRow //label="Mobile Number" 
-          label="Gender"
-         
-           value={gender} />
-            
-
-           
-           
+           label={this.props.translatedMenuItems[10]}  
+           value={gender} />                         
       </>
     );
   }
@@ -61,8 +49,8 @@ const CandidateItemRow = ({ label, value }) => {
   return (
     <div  class=" flex items-center  justify-between flex-nowrap m-2"
     >
-      <div  style={{ color: "#444", fontWeight: 600 }}>{label}</div >
-      <div  style={{ marginLeft: "-1.875em" ,overflow:"hidden",textOverflow:"ellipsis"}}>
+       <div className="text-[#444] font-semibold text-sm"  >{label}</div >
+       <div className="-ml-6 hidden ellipsis">{value}
         <Tooltip title={value}>
         {value}
         </Tooltip>

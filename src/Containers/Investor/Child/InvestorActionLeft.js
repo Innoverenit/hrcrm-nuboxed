@@ -1,5 +1,4 @@
 import React, { useEffect, useState,useRef } from "react";
-
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Tooltip, Badge, Avatar,Button,Select } from "antd";
@@ -7,7 +6,6 @@ import { connect } from "react-redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
-
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recognition";
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
@@ -25,9 +23,11 @@ const InvestorActionLeft = (props) => {
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const [startTime, setStartTime] = useState(null);
-    const [isRecording, setIsRecording] = useState(false); 
-    const minRecordingTime = 3000; // 3 seconds
-    const timerRef = useRef(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
  
   const {
     transcript,
@@ -162,6 +162,30 @@ const InvestorActionLeft = (props) => {
     }
 
   }, [props.viewType, props.userId, props.orgId]);
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [         
+              "585",//0 My Investor
+              "227",// 1 Team View
+              "228",//2 All
+              "873",// 3 Delete List
+              "1713",//4 Transfer
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
   const fetchUser = async () => {
     setIsLoadingUser(true);
     try {
@@ -188,7 +212,8 @@ const InvestorActionLeft = (props) => {
   return (
     <div class=" flex items-center">
 
-      <Tooltip title="My Investors">
+      <Tooltip title={translatedMenuItems[0]}>
+      {/* My Investors */}
         <Badge
           size="small"
           count={(props.viewType === "list" && props.investorRecord.investor) || 0}
@@ -212,8 +237,8 @@ const InvestorActionLeft = (props) => {
 
       {props.user.teamsAccessInd === true && (
         <Tooltip
-          title="Team View"
-        >
+          title={translatedMenuItems[1]}>
+      {/* Team View */}
           <Badge
             size="small"
             count={(teamCount || props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
@@ -236,7 +261,8 @@ const InvestorActionLeft = (props) => {
         </Tooltip>
       )}
       {(props.user.investorFullListInd === true || props.user.role === "ADMIN") && (
-        <Tooltip title="All" >
+        <Tooltip title={translatedMenuItems[2]} >
+          {/* All */}
           <Badge
             size="small"
             count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
@@ -258,7 +284,8 @@ const InvestorActionLeft = (props) => {
           </Badge>
         </Tooltip>
       )}
-       <Tooltip title="Delete List">           
+       <Tooltip title={translatedMenuItems[3]}> 
+       {/* Deleted List           */}
                     <span class=" mr-1 !text-icon cursor-pointer"
                         onClick={() => props.setInvestorViewType("delete")}
                         style={{
