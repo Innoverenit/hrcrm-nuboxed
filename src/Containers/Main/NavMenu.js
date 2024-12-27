@@ -189,9 +189,9 @@ function NavMenu(props) {
           {/* {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && ( */}
 
 <Menu.Item key="/dashboard" 
-// style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
+style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
 
-// color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} 
+ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} 
 className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '
 
 >
