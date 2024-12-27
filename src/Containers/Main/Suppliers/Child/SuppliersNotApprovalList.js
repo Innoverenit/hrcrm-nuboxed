@@ -171,6 +171,7 @@ const handleSelectDialcode = () => {
                               <div className=" flex items-center  justify-start h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div class="flex items-center  font-semibold text-[0.85rem] font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" 
+                             
                                     to={`/supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>

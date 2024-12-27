@@ -259,8 +259,15 @@ function ContactCardList(props) {
         <div className="w-[27.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
+        {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :   
         <div className="w-[16.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
+}
          {/* Quotation */}
         <div className=" w-[13.15rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>

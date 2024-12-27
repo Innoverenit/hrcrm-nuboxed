@@ -344,12 +344,19 @@ if (loading) {
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}       
-            </div>         
+            </div>   
+            {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :        
             <div className=" truncate w-[11.7rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}    
-            </div>           
+            </div>    
+}       
             {props.user.aiInd && (
             <div className=" truncate w-[6.6rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
