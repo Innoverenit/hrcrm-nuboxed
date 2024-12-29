@@ -139,7 +139,7 @@ function KpiList(props) {
         }) => (
             <Form className="form-background">
             <div class="flex   items-center  pr-2 max-sm:flex-col">
-              <div class=" w-[21%] flex justify-between">
+              <div class=" w-[30%] flex justify-between">
                 <div>Assesment Year</div>
             <select 
       ref={yearSelectRef}

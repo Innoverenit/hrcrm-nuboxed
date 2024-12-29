@@ -250,10 +250,6 @@ function EmployeeTable(props) {
     updaterowEmployees
   } = props;
   const { imgRadius } = props;
- 
-  
-
-
   return (
     <>
   {props.employeeSerachedData.length > 0 ? (
@@ -269,19 +265,19 @@ function EmployeeTable(props) {
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%] justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
-                    <div className="w-[14rem] text-[#00A2E8] text-sm font-bold  font-poppins max-md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
+                    <div className="w-[13rem] text-[#00A2E8] text-sm font-bold  font-poppins max-md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" max-md:w-[9.1rem] w-[9.1rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>
+                    <div className=" max-md:w-[9.1rem] w-[7.9rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" max-md:w-[6.8rem]  w-[6.8rem]"><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
+                    <div className=" max-md:w-[6.8rem]  w-[5.9rem]"><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="max-md:w-[9.7rem] w-[9.7rem]"><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
+                    <div className="max-md:w-[9.7rem] w-[10.9rem]"><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="max-md:w-[13.9rem] w-[13.9rem]"><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
+                    <div className="max-md:w-[13.9rem] w-[20.9rem]"><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="max-md:w-[10.2rem] w-[10.2rem]"> <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[5]}</div>
+                    <div className="max-md:w-[10.2rem] w-[8.2rem]"> <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="max-md:w-[11.4rem] w-[11.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
+                    <div className="max-md:w-[11.4rem] w-[15.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
                     {/* Multi Org */}               
                 </div>
               
@@ -297,7 +293,7 @@ function EmployeeTable(props) {
                                     {/* <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
-        /> */}  <Link class="overflow-ellipsis  font-bold whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
+        /> */}  <Link class="flex items-center justify-center overflow-ellipsis  font-bold whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
         to={`/employee/${item.employeeId}`} title={item.fullName}>
         {item.fullName}
       </Link>
@@ -318,23 +314,18 @@ function EmployeeTable(props) {
 
                                     </div>
                                     <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-
-                                        <div class=" text-xs  items-center ml-gap font-poppins">
-                                            
+                                        <div class=" text-xs  items-center ml-gap font-poppins">                                   
                                            {item.roleTypeName}
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="flex  h-8 ml-gap bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[11.2rem] max-sm:flex-row w-[11.2rem]  max-sm:justify-between ">
+                                <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[11.2rem]  max-sm:flex-row w-[11.2rem]  max-sm:justify-between ">
                                     <div class=" text-xs  items-center ml-gap font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[12.2rem] max-sm:flex-row  w-[12.2rem] max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[12.2rem]  max-sm:flex-row w-[12.2rem]  max-sm:justify-between ">
                                     <div class=" text-xs items-center ml-gap  font-poppins text-center">
                                        {item.emailId}
                                     </div>
@@ -368,16 +359,7 @@ function EmployeeTable(props) {
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.21rem] max-md:w-[8.21rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer items-center ml-gap  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
-              <Tooltip  title={item.role}>
-                {/* <Button
-                  size={"small"}
-                  type="ghost"
-                  style={{            
-                    borderColor: "transparent",
-                    alignSelf: "flex-end",
-                  }}
-                
-                > */}
+              <Tooltip  title={item.role}>             
                 { item.role === "ADMIN" ?(
 <CellTowerIcon  className=" text-[123%]"
 //  style={{ 
@@ -426,7 +408,7 @@ function EmployeeTable(props) {
                  title="Do you want to delete?"
                  onConfirm={() => props.deleteEmployeeData(item.userId)}>
            <Tooltip title="Delete">
-           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+           <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
        
            </Tooltip>
            </StyledPopconfirm>
