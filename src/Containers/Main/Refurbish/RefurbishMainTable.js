@@ -185,34 +185,32 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                 <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 ">
+                 <div className=" flex max-sm:hidden  justify-between w-[91%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 ">
                     <div className=" max-md:w-[3rem] w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className="max-md:w-[10.2rem]  w-[10.2rem] flex justify-start ">
+                        <div className="max-md:w-[10.2rem]  w-[10.7rem] flex justify-start ml-3 ">
                          
                         {/* orderid" */}
-                        <DynamicFeedIcon className='!text-sm mr-1  text-[#3F37C9]'/> {translatedMenuItems[0]}
+                        <DynamicFeedIcon className='!text-icon mr-1  text-[#3F37C9]'/> {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className="max-md:w-[10.2rem] w-[7.71rem] ">
+                        <div className="max-md:w-[10.2rem] w-[10.7rem] ">
                            {/* customer  */}
-                           <AcUnitIcon className='!text-base  text-[#92dce5]'
+                           <AcUnitIcon className='!text-icon  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                      
-                        <div className="w-[4.5rem] max-md:w-[4.5rem] "> <LightbulbIcon
-              className='!text-base  text-[#84a59d]'
+                        <div className="w-[5.2rem] max-md:w-[4.5rem] "> <LightbulbIcon className='!text-icon  text-[#84a59d]'
               /> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[3.6rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon
-              className='!text-base  text-[#4CC9F0]'
+                        <div className="w-[5.1rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon className='!text-icon  text-[#4CC9F0]'
               /> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-md:w-[5.7rem]">
-                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
+                        <div className="w-[5.6rem] max-md:w-[5.7rem]">
+                        <LocalShippingIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[27.2rem] max-md:w-[27.2rem]"></div>
-                            <div className="w-[3.01rem] max-md:w-[3.01rem]">
+                            <div className="w-[35.2rem] max-md:w-[27.2rem]"></div>
+                            <div className="w-[5.01rem] max-md:w-[4.01rem]">
                                 {/* lead */}
                                 <GroupsIcon className='!text-icon text-[#B23A48]'/> {translatedMenuItems[2]}
                         </div>
@@ -220,7 +218,7 @@ const ProductionOrderList = (props) => {
                            {/* Assigned */}
                            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-md:w-[4.81rem]">
+                        <div className="w-[5.81rem] max-md:w-[4.81rem]">
                            {/* Owner */}
                            <AccountCircleIcon className="!text-icon  text-[#FED0BB]"/>   {translatedMenuItems[4]}
                          </div>
@@ -243,9 +241,9 @@ const ProductionOrderList = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white  items-center justify-between py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
-                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center   max-sm:items-center">
-                                        <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center md:w-2.26rem]  " >
+                                        <div className=" flex w-[3.5rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center md:w-2.26rem]  " >
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row items-center justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -309,7 +307,7 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
 
-                                            <div className="flex w-[13.22rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className="flex w-[16.22rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs flex items-center justify-start font-poppins  text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 0 ?<div class="ml-gap font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
@@ -330,7 +328,7 @@ const ProductionOrderList = (props) => {
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[10.18rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex w-[12.18rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class="flex text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcRepairInd === 1 ?
                                                         <Tooltip title="Assign For Repair">
@@ -378,7 +376,7 @@ const ProductionOrderList = (props) => {
                                                  }
                                              </div>
                                          </div>
-                                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                              <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                  {item.supervisorUserName && 
@@ -390,7 +388,7 @@ const ProductionOrderList = (props) => {
                                               } 
                                              </div>
                                          </div>
-                                         <div className=" flex w-[3.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                         <div className=" flex w-[4.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                  {item.userName && <MultiAvatar
@@ -455,41 +453,41 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex  sticky  z-auto'>
                 <div class="rounded  max-sm:m-1  py-ygap w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-                <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-lm sticky items-end z-10">
-                    <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[10.2rem] max-md:w-[10.2rem] flex justify-start ">
+                <div className=" flex max-sm:hidden  justify-between w-[91%]  p-1 bg-transparent font-bold font-poppins text-lm sticky items-end z-10">
+                    <div className=" max-md:w-[3.54rem] w-[3rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
+                        <div className=" w-[10.7rem] max-md:w-[10.2rem] flex justify-start ml-3">
                             {/* orderID */}
-                            <DynamicFeedIcon className='!text-base mr-1  text-[#3F37C9]'/>{translatedMenuItems[0]}
+                            <DynamicFeedIcon className='!text-icon mr-1  text-[#3F37C9]'/>{translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[7.71rem] max-md:w-[10.2rem]">
+                        <div className=" w-[10.7rem] max-md:w-[10.2rem]">
                             {/* customer */}
-                            <AcUnitIcon className='!text-base  text-[#92dce5]'
+                            <AcUnitIcon className='!text-icon  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                    
-                        <div className="w-[4.5rem] max-md:w-[4.5rem]"> <LightbulbIcon
-              className='!text-base  text-[#84a59d]'
+                        <div className="w-[5.2rem] max-md:w-[4.5rem]"> <LightbulbIcon
+              className='!text-icon  text-[#84a59d]'
               /> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[3.6rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon
-              className='!text-base  text-[#4CC9F0]'
+                        <div className="w-[5.1rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon
+              className='!text-icon  text-[#4CC9F0]'
               /> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-md:w-[5.7rem]">
-                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
+                        <div className="w-[5.6rem] max-md:w-[5.7rem]">
+                        <LocalShippingIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[27.2rem] max-md:w-[27.2rem]"></div>
-                            <div className="w-[3.01rem] max-md:w-[3.01rem]">
+                            <div className="w-[35.2rem] max-md:w-[27.2rem]"></div>
+                            <div className="w-[5.01rem] max-md:w-[4.01rem]">
                           {/* lead */}
-                          <GroupsIcon className='!text-base  text-[#B23A48]'/>  {translatedMenuItems[2]}
+                          <GroupsIcon className='!text-icon  text-[#B23A48]'/>  {translatedMenuItems[2]}
                         </div>
                         <div className="w-[4.92rem] max-md:w-[4.92rem]">
                           {/* Assigned */}
                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-md:w-[4.81rem]">
+                        <div className="w-[5.81rem] max-md:w-[4.81rem]">
                            
                            {/* Owner  */}
                            <AccountCircleIcon className="!text-icon  text-[#FED0BB]"/>   {translatedMenuItems[4]}
@@ -511,9 +509,9 @@ const ProductionOrderList = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white  items-center justify-between py-ygap   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
-                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center max-sm:items-center">
-                                        <div className=" flex items-center md:w-[2.26rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] " >
+                                        <div className=" flex items-center max-md:w-[2.26rem] w-[3.5rem] border-l-2 h-8 border-green-500 bg-[#eef2f9]" >
                                                         <Tooltip>
                                                             <div class="flex items-center max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -573,15 +571,11 @@ const ProductionOrderList = (props) => {
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
                                             </div>
-                                            {/* <div className=" flex   w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.suggestedPrice}
-                                                </div>
-                                            </div> */}
+                                    
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 
-                                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[13.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[16.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                         <div class="flex items-center justify-start text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 0 ?<div class="ml-gap font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
@@ -602,7 +596,7 @@ const ProductionOrderList = (props) => {
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[10.18rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[12.18rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcRepairInd === 1 ?
                                                         <Tooltip title="Assign For Repair">
@@ -650,7 +644,7 @@ const ProductionOrderList = (props) => {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.supervisorUserName && 
@@ -662,7 +656,7 @@ const ProductionOrderList = (props) => {
                                                  } 
                                                 </div>
                                             </div>
-                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.userName && <MultiAvatar
@@ -673,7 +667,7 @@ const ProductionOrderList = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex max-sm:justify-evenly max-sm:w-wk w-wk max-sm:items-center items-center justify-end h-8 ml-gap bg-[#eef2f9] ">
+                                        <div class="flex w-wk max-sm:justify-evenly max-sm:w-wk  max-sm:items-center items-center justify-end h-8 ml-gap bg-[#eef2f9] ">
  
                                                 <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                                     <Tooltip title={translatedMenuItems[11]}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy,useRef  } from "react";
+import React, { useEffect, useState,useRef  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getTabSpareList, handleRepairPhone,
@@ -43,11 +43,11 @@ function SpareNewList(props) {
           setLoading(true); 
           const itemsToTranslate = [
      
-           "660", // "order",//0
-            "760",  // "duedate",//1
-             "677", //   "Lead"2
-              "142",   // "Status"3
-              "1280",// ""Search by OrderID 4
+           "660", // "Imei",//0
+            "660",  // "OrderID",//1
+             "677", //   "Submitted"2
+              "142",   // "Approved"3
+              "1280",// Spares 4
             "100",  // New5
              "316",  // "Notes"6
              "1315",  // Start Repair7
@@ -205,24 +205,24 @@ function SpareNewList(props) {
         />
       </div>
                     <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">
-                        <div className="w-[3.5rem] max-md:w-[3.5rem]"></div>
-                        <div className=" w-[18.92rem]  text-sm max-md:w-[18.92rem]">
+                        <div className="w-[2.9rem] max-md:w-[3.5rem]"></div>
+                        <div className=" w-[14.92rem]  truncate text-[#00A2E8] text-sm max-md:w-[18.92rem]">
                         Imei
                           </div>
-                          <div className="w-[10.12rem] max-md:w-[16.12rem]"> <DynamicFeedIcon className='!text-icon mr-1  text-[#3F37C9]'/> OrderID</div>
+                          <div className="w-[14.12rem] truncate max-md:w-[16.12rem]"> <DynamicFeedIcon className='!text-icon mr-1  text-[#3F37C9]'/> OrderID</div>
                        
-                        <div className=" w-[16.12rem] max-md:w-[14.1rem]">
+                        <div className=" w-[18.7rem] truncate max-md:w-[14.1rem]">
                         <DateRangeIcon className='!text-icon   text-[#92dce5]'  /> Submitted
                          {/* Due Date/> */}
                         </div>               
-                        <div className=" w-[14.1rem] max-md:w-[14.1rem]">
+                        <div className=" w-[10.01rem] truncate max-md:w-[14.1rem]">
                         <ContactsIcon className='!text-icon mr-1  text-[#e4eb2f]'/>Approved
                         {/* (Date&Multiavtar) */}
                         </div>
-                        <div className="w-[10.8rem] max-md:w-[10.8rem]">
+                        <div className="w-[9.8rem] truncate max-md:w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' />  Spares
                           </div>
-                        <div className="w-[10.1rem] max-md:w-[10.8rem]"></div>
+                        <div className="w-[13.5rem] truncate max-md:w-[10.8rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -250,9 +250,9 @@ function SpareNewList(props) {
                       <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     </div>
-                                            <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                    
-                                                        <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex  max-sm:text-xs"
+                                                        <span class="flex items-center justify-center underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex  max-sm:text-xs"
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleRepairPhone(true)
