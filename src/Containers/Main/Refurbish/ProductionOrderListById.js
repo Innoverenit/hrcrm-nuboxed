@@ -30,10 +30,6 @@ function ProductionOrderListById(props) {
         props.ClearSearchedDataOfQc()
     }, [])
     const [hasMore, setHasMore] = useState(true);
-    // const handleLoadMore = () => {
-    //     setPage(page + 1);
-    //     props.getOrderByUser(props.userId)
-    // };
     const {
         transcript,
         listening,
@@ -195,21 +191,21 @@ function ProductionOrderListById(props) {
         />
       </div>
 
-                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className='w-[3.2rem] max-md:w-[3.5rem] '></div>
-                        <div className=" w-[18.92rem] max-md:w-[18.92rem] "> 
-                          <DynamicFeedIcon className='!text-base mr-1  text-[#3F37C9]'/>{translatedMenuItems[0]} ID</div>
-                        <div className=" w-[11.121rem] max-md:w-[16.12rem]">
+                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">
+                        <div className='w-[3.2rem] truncate max-md:w-[3.5rem] '></div>
+                        <div className=" w-[18.92rem] truncate text-[#00A2E8] text-sm max-md:w-[18.92rem] "> 
+                          <DynamicFeedIcon className='!text-icon mr-1'/>{translatedMenuItems[0]} ID</div>
+                        <div className=" w-[11.121rem] truncate max-md:w-[16.12rem]">
                         <DateRangeIcon className="!text-icon  text-[#92dce5]"/> {translatedMenuItems[1]}
                         </div>
                         <div className=" w-[12.1rem] max-md:w-[14.1rem] ">
-                        <ContactsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
+                        <ContactsIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
 
-                        <div className="w-[10.8rem] max-md:w-[10.8rem]">
+                        <div className="w-[10.8rem] truncate max-md:w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[3]}
                         </div>
-                        <div className=" w-[10.1rem] max-md:w-[10.1rem]"></div>
+                        <div className=" w-[10.1rem] truncate max-md:w-[10.1rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
