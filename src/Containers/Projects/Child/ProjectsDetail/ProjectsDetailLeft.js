@@ -9,8 +9,15 @@ class ProjectsDetailLeft extends Component {
     return (
       <>
         <div class=" flex flex-col" >
-         <ProjectOverViewCard projectsById={projectsById} />
-         <ProjectDetailsCard projectsById={projectsById} />
+         <ProjectOverViewCard projectsById={projectsById}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems} />
+         <ProjectDetailsCard projectsById={projectsById}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+         />
          </div>
       </>
     );

@@ -17,8 +17,6 @@ import {
   getLocationList
 } from "../../AccountAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import dayjs from "dayjs";
-
 import { BundleLoader } from "../../../../../Components/Placeholder";
 
 const { Option } = Select;
@@ -45,6 +43,10 @@ const [IsLocDropdownClick, setIsLocDropdownClick] =useState(false);
 const [LocationOpts,setLocationOpts]= useState([]);
 const [IsQualityDropdownClick, setIsQualityDropdownClick] = useState(false);
 const [QualityOpts,setQualityOpts] = useState([]);
+const [isBrandDropdownClick, setIsBrandDropdownClick] = useState(false);
+const [brandOpts, setBrandOpts] = useState([]);
+const [isProductListDropdownClick, setIsProductListDropdownClick] = useState(false);
+const [productListOpts, setProductListOpts] = useState([]);
 
 
  const fetchCategoryData = () => {
@@ -95,10 +97,34 @@ useEffect(() => {
   }
 }, [props.supplierSuppliesQuality]);
 
-  useEffect(() => {
+const fetchBrand = () => {
+  if (!isBrandDropdownClick) {
     props.getBrand();
-    props.getProcureDetails(props.orderDetailsId.orderId);
+    setIsBrandDropdownClick(true);
+  }
+}
+
+useEffect(() => {
+  if (props.brand && props.brand.length > 0) {
+    setBrandOpts(props.brand);
+  }
+}, [props.brand]);
+
+const fetchProductList = () => {
+  if (!isProductListDropdownClick) {
     props.getAllProductList();
+    setIsProductListDropdownClick(true);
+  }
+}
+
+useEffect(() => {
+  if (props.allProduct && props.allProduct.length > 0) {
+    setProductListOpts(props.allProduct);
+  }
+}, [props.allProduct]);
+
+  useEffect(() => {
+    props.getProcureDetails(props.orderDetailsId.orderId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -202,38 +228,36 @@ useEffect(() => {
           categoryItem
           </div>
           <div className="md:w-[7.4rem]">
-            Brand
+          {props.translatedMenuItems[31]}
           </div>
           <div className="md:w-[7.1rem]">
-            Model
+          {props.translatedMenuItems[70]}
           </div>
           <div className="md:w-[7.1rem]">
             attributeItem
           </div>
           <div className="md:w-[7.1rem]">
-            Quality
+          {props.translatedMenuItems[146]}
             </div>
           <div className="md:w-[7.1rem]">
-            Location
+          {props.translatedMenuItems[21]}
           </div>
           <div className="md:w-[8.8rem]">
             Specs
           </div>   
           <div className="md:w-[8.8rem]">
-            Units
+          {props.translatedMenuItems[125]} 
             </div>
           <div className="md:w-[8.8rem]">
-            Price
+          {props.translatedMenuItems[124]}
           </div>
         
         
           <div className="md:w-[6.12rem]"></div>
         </div>
         <InfiniteScroll
-            // hasMore={hasMore}
           dataLength={props.procureDetails.length}
-          // next={handleLoadMore}
-          loader={props.fetchingProcureDetails?<div class="flex justify-center" >Loading...</div>:null}
+          loader={props.fetchingProcureDetails?<div class="flex justify-center" ><BundleLoader/></div>:null}
           height={"79vh"}
         >
         {props.procureDetails.map((item, index) => {
@@ -247,6 +271,7 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={category}
                       onChange={(e) => handleCategoryChange(e.target.value)}
+                      onClick={fetchCategoryData}
                     >
                       {categoryOptions.map((categoryItem, categoryIndex) => (
                         <option key={categoryIndex} value={categoryItem.id}>
@@ -267,8 +292,9 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={brand}
                       onChange={(e) => handleBrandChange(e.target.value)}
-                    >
-                      {props.brand.map((brandItem, brandIndex) => (
+                      onClick={fetchBrand}
+                   >
+                      {brandOpts.map((brandItem, brandIndex) => (
                         <option key={brandIndex} value={brandItem.brand}>
                           {brandItem.brand}
                         </option>
@@ -306,8 +332,9 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={attribute}
                       onChange={(e) => handleAttributeChange(e.target.value)}
+                      onClick={fetchProductList}
                     >
-                      {props.allProduct.map((attributeItem, attributeIndex) => (
+                      {productListOpts.map((attributeItem, attributeIndex) => (
                         <option key={attributeIndex} value={attributeItem.productId}>
                           {attributeItem.productFullName}
                         </option>
@@ -326,6 +353,7 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={quality}
                       onChange={(e) => handleQualityChange(e.target.value)}
+                      onClick={fetchSupplierSuppliesQuality}
                     >
                       {QualityOpts.map((qualityItem, qualityIndex) => (
                         <option key={qualityIndex} value={qualityItem.qualityId}>
@@ -346,7 +374,8 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={location}
                       onChange={(e) => handleLocationChange(e.target.value)}
-                    >
+                      onClick={fetchLocationList}
+                   >
                       {LocationOpts.map((locationItem, locationIndex) => (
                         <option key={locationIndex} value={locationItem.locationDetailsId}>
                           {locationItem.locationName}
@@ -401,6 +430,7 @@ useEffect(() => {
                       type="text"
                       value={newPrice}
                       onChange={(e) => setPrice(e.target.value)}
+                    
                     />
                   ) : (
                     <div className="font-normal text-sm  font-poppins">{item.price} {item.currency}</div>
@@ -415,6 +445,7 @@ useEffect(() => {
                       style={{ width: "70%" }}
                       value={currency}
                       onChange={(e) => handleCurrencyChange(e.target.value)}
+                      onClick={fetchCurrency}
                     >
                       {currencyOpts.map((currencyItem, currencyIndex) => (
                         <option key={currencyIndex} value={currencyItem.currency_id}>

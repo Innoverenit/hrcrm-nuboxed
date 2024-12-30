@@ -178,7 +178,7 @@ useEffect(() => {
           <div key={index}>
             <div className="flex justify-around w-[30rem]">
             <div>
-                <div class="font-bold text-xs font-poppins text-black">Category</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[31]}</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -194,7 +194,7 @@ useEffect(() => {
               </div>
            
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Brand</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[69]}</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -208,7 +208,7 @@ useEffect(() => {
                 </div>
               </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Model</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[70]}</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -222,7 +222,7 @@ useEffect(() => {
                 </div>
               </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[123]}</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -236,7 +236,7 @@ useEffect(() => {
                 </div>
               </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Quality</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[146]}</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -251,7 +251,7 @@ useEffect(() => {
                 </div>
               </div>
               <div class=" ml-2">
-                <div class="font-bold text-xs font-poppins text-black">Location</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[21]}</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -281,7 +281,7 @@ useEffect(() => {
                 </div>
               </div>
               <div class=" ml-2">
-                <div class="font-bold text-xs font-poppins text-black">Price</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[124]}</div>
                 <div className="w-24">
                   <Input
                     type="text"
@@ -292,7 +292,7 @@ useEffect(() => {
                 </div>
               </div>
               <div class=" ml-2">
-                <div class="font-bold text-xs font-poppins text-black">Currency</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[116]}</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -308,7 +308,7 @@ useEffect(() => {
               </div>
              
               <div class=" ml-2">
-                <div class="font-bold text-xs font-poppins text-black">Unit</div>
+                <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[125]}</div>
                 <div className="w-24">
                   <Input
                     type="text"
@@ -325,10 +325,10 @@ useEffect(() => {
             </div>
           </div>
         ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingProcureDetails} onClick={handleSubmit}>Submit</Button>
+        <Button type="primary" onClick={handleAddRow}>{props.translatedMenuItems[164]}</Button>
+        <Button type="primary" loading={props.addingProcureDetails} onClick={handleSubmit}>{props.translatedMenuItems[84]}</Button>
       </div>
-      <ProcureDetailsCardList />
+      <ProcureDetailsCardList translatedMenuItems={props.translatedMenuItems}/>
     </>
   );
 }

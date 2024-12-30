@@ -431,6 +431,7 @@ const StatusOfOrder = (props) => {
             handlePaidModal={props.handlePaidModal}
             particularRowData={props.orderStatus}
             translatedMenuItems={props.translatedMenuItems}
+            modalTitleKey={55}
           />
         </Suspense>
       </>
