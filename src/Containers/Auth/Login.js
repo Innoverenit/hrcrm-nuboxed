@@ -287,6 +287,7 @@ const Login = (props) => {
               {({ isSubmitting }) => (
                 <Form className="form-background">
                   <Field
+                   className="gvbmIs"
                     name="userName"
                     type="email"
                     placeholder="Email"

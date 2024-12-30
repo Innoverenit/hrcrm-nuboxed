@@ -75,15 +75,12 @@ const UserMachineCrd = (props) => {
 
     const handleSelectChange = (machinaryId, value) => {
       setSelectedValues({ ...selectedValues, [machinaryId]: value });
-    };
-  
+    };  
     const handleSubmit = (machineCode, machinaryId) => {
       const selectedValue = selectedValues[machinaryId];
       console.log('Selected Value:', selectedValue, 'Machine Code:', machineCode, 'Machine ID:', machinaryId);
       props.createMachinaryCell()
     };
-
-
     const handleSaveMachine=()=> {
       let data={
         cellChamberId:props.currentItems.cellChamberLinkId,
@@ -91,15 +88,11 @@ const UserMachineCrd = (props) => {
         equipmentId:machine,
         equipmentNo:machinecode,
         locationId:props.locationId,
-      }
-    
-      
+      }        
       props.createMachinary(data);
       setMachine("");
-      setMachineCode("");
-   
+      setMachineCode("");   
     }
-
     return (
       <>
       <div class="flex">
