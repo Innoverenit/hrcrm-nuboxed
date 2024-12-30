@@ -7,7 +7,8 @@ import {
   handleLocationCustomerDrawer,
   handleLocationSupplierDrawer,
   deleteLocation, addingLocationToggle,
-  handleLocnCellDrawer
+  handleLocnCellDrawer,
+  handleLocationMachineModal
 } from "./LocationAction";
 import TokenIcon from '@mui/icons-material/Token';
 import {  Tooltip } from "antd";
@@ -36,7 +37,9 @@ import LanguageIcon from'@mui/icons-material/Language';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import LocationSearchedData from "./LocationSearchedData";
+import AddLocationMachineModal from "./AddLocationMachineModal";
 
 const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
@@ -312,7 +315,17 @@ const LocationCard = (props) => {
                         </Tooltip>
                       </div>
                    
-
+                      <div>
+                        <Tooltip title={translatedMenuItems[11]} >
+                          <ConstructionIcon
+                            className="!text-icon cursor-pointer text-[teal]"
+                            onClick={() => {
+                              props.handleLocationMachineModal(true);
+                              handleStoredLocations(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
                     <div class="flex  max-sm:w-[10%]">
                       {item.productionInd ?
                         <div>
@@ -396,6 +409,13 @@ const LocationCard = (props) => {
         clickLocDrwr={props.clickLocDrwr}
         handleLocnCellDrawer={props.handleLocnCellDrawer}
       />
+      <AddLocationMachineModal
+      translatedMenuItems={translatedMenuItems}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      addLocationMachineModal={props.addLocationMachineModal}
+      handleLocationMachineModal={props.handleLocationMachineModal}
+      storedLoc={storedLoc}/>
       </Suspense>
     </>
   );
@@ -415,7 +435,9 @@ const mapStateToProps = ({ location, auth }) => ({
   fetchingLocationData: location.fetchingLocationData,
   clickLocDrwr: location.clickLocDrwr,
   locationSerachedData:location.locationSerachedData,
-  fetchingLocationSearchData:location.fetchingLocationSearchData
+  fetchingLocationSearchData:location.fetchingLocationSearchData,  
+  addLocationMachineModal:location.addLocationMachineModal,
+  locationId:auth.userDetails.locationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -427,7 +449,8 @@ const mapDispatchToProps = (dispatch) =>
       handleLocationCustomerDrawer,
       handleLocationSupplierDrawer,
       addingLocationToggle,
-      handleLocnCellDrawer
+      handleLocnCellDrawer,
+      handleLocationMachineModal
     },
     dispatch
   );

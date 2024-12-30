@@ -110,9 +110,9 @@ class ProjectDetailsTab extends Component {
                        />
                 </>
               }
-              key="2"
+              key="3"
             >
-           {/* <ProjectInvoiceTable projectsById={this.props.projectsById}/> */}
+           <ProjectInvoiceTable projectsById={this.props.projectsById}/>
             </TabPane>      
           </StyledTabs>
         </TabsWrapper>

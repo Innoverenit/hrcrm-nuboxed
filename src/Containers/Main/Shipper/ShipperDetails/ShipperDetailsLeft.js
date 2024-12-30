@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { FlexContainer } from "../../../../Components/UI/Layout";
 const ShipperOverViewCard =lazy(()=>import("./ShipperCards/ShipperOverViewCard"));
 const ShipperDetailCard =lazy(()=>import("./ShipperCards/ShipperDetailCard"));
-const ShipperOverViewDetailCard =lazy(()=>import("./ShipperCards/ShipperOverViewDetailCard"));
+// const ShipperOverViewDetailCard =lazy(()=>import("./ShipperCards/ShipperOverViewDetailCard"));
 
 class ShipperDetailLeft extends Component {
   render() {
@@ -21,11 +21,12 @@ class ShipperDetailLeft extends Component {
   selectedLanguage={this.props.selectedLanguage}
   translatedMenuItems={this.props.translatedMenuItems}
           />
-          <ShipperOverViewDetailCard shipper={shipper}
+          {/* <ShipperOverViewDetailCard shipper={shipper}
   translateText={this.props.translateText}
   selectedLanguage={this.props.selectedLanguage}
   translatedMenuItems={this.props.translatedMenuItems}
-           /></Suspense>
+           /> */}
+           </Suspense>
         </FlexContainer>
       </>
     );

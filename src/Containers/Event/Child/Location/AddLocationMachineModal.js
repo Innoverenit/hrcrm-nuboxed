@@ -1,4 +1,4 @@
-import React, { Component, Suspense ,lazy} from "react";
+import React, {  Suspense ,lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,35 +6,34 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 
 const UsersMachineCard = lazy(() => import("./UsersMachineCard"));
 
-class AddLocationMachineModal extends Component {
-  render() {
+function AddLocationMachineModal(props) {
+  
     
     return (
       <div>
         <StyledDrawer
           title="Machine"
-          width="55%"
-       
-          visible={this.props.addLocationMachineModal}
-          closable
-     
-          destroyOnClose
-       
-          onClose={() => this.props.handleLocationMachineModal(false)}
+          // {`${props.translatedMenuItems[7]}`}        
+          width="50%"       
+          visible={props.addLocationMachineModal}
+          closable     
+          destroyOnClose       
+          onClose={() => props.handleLocationMachineModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
           <UsersMachineCard
-          currentItems={this.props.currentItems}
-          locationId={this.props.locationId}
-          translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
+          currentItems={props.currentItems}
+          locationId={props.locationId}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
                 />
           </Suspense>
         </StyledDrawer>
       </div>
     );
   }
-}
+
 const mapStateToProps = ({ opportunity, candidate }) => ({
 
 });

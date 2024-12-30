@@ -28,10 +28,10 @@ export default ProjectDetailsView;
 
 const ProjectItemRow = ({ label, value }) => {
   return (
-    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem] ">
+    <div class=" flex flex-row flex-wrap items-center justify-between grow shrink h-auto mr-auto m-[0.4rem] ">
   
-      <div style={{ color: "#444", fontWeight: 600 }}>{label}</div>
-      <div>{value}</div>
+      <div className=" text-[#444] font-bold flex flex-start ">{label}</div>
+      <div className=" flex justify-end ">{value}</div>
     </div>
   );
 };

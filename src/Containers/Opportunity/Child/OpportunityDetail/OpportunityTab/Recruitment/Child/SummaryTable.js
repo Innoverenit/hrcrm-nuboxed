@@ -198,12 +198,12 @@ class SummaryTable extends Component {
 
   render() {
     const { addMonsterModal, handleMonsterModal } = this.props;
-    console.log("GGG", this.props.candidatePostData);
-    console.log(
-      "publish",
-      this.props.allRecruitmentDetailsByOppId.length &&
-        this.props.allRecruitmentDetailsByOppId[0].publishInd
-    );
+    // console.log("GGG", this.props.candidatePostData);
+    // console.log(
+    //   "publish",
+    //   this.props.allRecruitmentDetailsByOppId.length &&
+    //     this.props.allRecruitmentDetailsByOppId[0].publishInd
+    // );
     // const columns = [
     //   {
     //     title: "",
@@ -517,57 +517,57 @@ class SummaryTable extends Component {
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  w-[3.1rem] items-center justify-start  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
               <div className='text-xs ml-gap font-poppins'>
-         
+              {item.jobOrder}
            </div>
                 </div>
                 </div>
                 <div class="flex  w-[8.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs  ml-gap font-poppins'>
-            
+           {item.recruiterName}
           </div>
           </div> 
           <div class="flex  w-[8.3rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs  ml-gap font-poppins'>
         
-          {item.jobOrder}
+          {item.sponserName}
           </div>
           </div> 
           <div class="flex  w-[8.4rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs  ml-gap font-poppins'>
- 
+          {item.number}
           </div>
           </div> 
           <div class="flex  w-[7.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-         
+         {item.offered}
           </div>
           </div> 
           <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-      
+        {item.closedPosition}
           </div>
           </div> 
           <div class="flex  w-[8.5rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'>
-       
+       {item.onBoardNo}
           </div>
           </div> 
           <div class="flex  w-[8.6rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'> 
- 
+         
           </div>
           </div> 
           <div class="flex  w-[8.7rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs font-poppins'> 
-          
+           {item.candidatetList}
           </div>
           </div> 
           <div class="flex  w-[8.8rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
