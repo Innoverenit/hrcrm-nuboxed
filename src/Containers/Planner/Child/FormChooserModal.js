@@ -26,7 +26,10 @@ class FormChooserModal extends React.Component {
         >
           <div className="flex items-center justify-evenly">
             <Suspense fallback={"Loading"}>
-            <PlannerTab />
+            <PlannerTab
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems} />
             </Suspense>
           </div>
         </StyledDrawer>

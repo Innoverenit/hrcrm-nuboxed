@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import { StyledModal } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const TeamsForm =lazy(()=> import('./TeamsForm'));
@@ -11,7 +10,7 @@ const TeamsModal = props => {
     <>
       <StyledDrawer
         title="Teams"
-        width="60%"
+        width="50%"
         visible={addTeamsModal}
         closable
         destroyOnClose
@@ -21,8 +20,7 @@ const TeamsModal = props => {
         <Suspense fallback={<BundleLoader />}>
           <TeamsForm {...formProps}
            
-       translateText={props.translateText}
-     
+       translateText={props.translateText}    
        selectedLanguage={props.selectedLanguage} />
         </Suspense>
       </StyledDrawer>

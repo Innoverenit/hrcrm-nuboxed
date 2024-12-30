@@ -13,6 +13,7 @@ class PlannerHeader extends Component {
                         setPlannerViewType={setPlannerViewType}
                     />}
                     rightComponent={<PlannerActionRight
+                    
                     />}
                 />
             </div>

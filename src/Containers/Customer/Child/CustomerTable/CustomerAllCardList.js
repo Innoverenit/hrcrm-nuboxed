@@ -289,7 +289,7 @@ console.log(selectedAssign)
     <div class="flex">
        <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-       <div className="w-[14vw]"  > Search team Member</div>
+       <div > Search team member</div>
         </div>
         <div class="flex flex-col rounded overflow-x-auto  w-[11vw] h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
@@ -351,13 +351,20 @@ console.log(selectedAssign)
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
-            </div>                
+            </div>    
+            {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :               
             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
+}
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 

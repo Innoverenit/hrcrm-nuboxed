@@ -712,7 +712,7 @@ function MainApp(props) {
                     {props.role}
                   </div>
                 
-                  <div class=" flex items-center h-8">
+                   <div class=" flex items-center h-8">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                 
                       <SettingsDropdown/>
@@ -724,7 +724,7 @@ function MainApp(props) {
 
                     <RepositoryData  />
                     <FAQPage/>
-</div>
+</div> 
               
                   <ProfileDropdown />
 

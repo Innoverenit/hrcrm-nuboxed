@@ -2,10 +2,12 @@ import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProfileStatsView from "./ProfileCards/ProfileStatsView";
+import PersonalView from "./ProfileCards/PersonalView";
 import ProfileTopicOfIntrest from "../../Candidate/Child/CandidateTable/CandidateDetails/CandidateCards/CandidateTopicOfInterest";
+import ProfileAboutView from "./ProfileCards/ProfileAboutView";
 const ProfileOverviewCard = lazy(() => import("./ProfileCards/ProfileOverviewCard"));
-const ProfileAboutCard = lazy(() => import("./ProfileCards/ProfileAboutCard"));
-const PersonalCard = lazy(() => import("./ProfileCards/PersonalCard"));
+
+
 
 class ProfileDetailLeft extends Component {
   render() {
@@ -30,10 +32,13 @@ class ProfileDetailLeft extends Component {
         user={userDetails} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}/>
-        <ProfileAboutCard user={userDetails} 
-        translateText={this.props.translateText}
-        selectedLanguage={this.props.selectedLanguage}/>
-        <PersonalCard user={userDetails} 
+       
+        <ProfileAboutView
+                              user={userDetails} 
+                              translateText={this.props.translateText}
+                              selectedLanguage={this.props.selectedLanguage}
+                            />
+         <PersonalView user={userDetails} 
         translateText={this.props.translateText}
         selectedLanguage={this.props.selectedLanguage}/>
         </Suspense>

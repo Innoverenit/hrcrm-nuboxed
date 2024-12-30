@@ -1,10 +1,8 @@
 import React, { } from "react";
-
 import { connect } from "react-redux";
-
 import { bindActionCreators } from "redux";
 import OpportunityStatsCard from "./OpportunityCards/OpportunityStatsCard";
-import { Spin, Tooltip, Icon } from "antd";
+import { Spin, Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
@@ -24,10 +22,10 @@ const OpportunityDetailActionLeft = (props) => {
   console.log(stageMapper);
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-      <div style={{ width: "21vw" }}>
+      <div  className="w-[21vw]">
         <Tooltip title="Back">
-          <KeyboardReturnIcon
-            style={{ marginRight: "0.3rem", color: "#1890ff", fontSize: "1.5625em" }}
+          <KeyboardReturnIcon 
+           className=" cursor-pointer ml-1 text-2xl text-[#1890ff]"
             //iconType="rollback"
             tooltipTitle="Back"
          

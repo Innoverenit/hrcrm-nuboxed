@@ -267,7 +267,7 @@ function ContactAllCardList(props) {
       <div className=" flex">
       <div className=' flex flex-col rounded w-[13%] h-[85vh]  border border-[#0000001f] items-center justify-center  '>
       <div class="flex  rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-      <div className="w-[14vw]"  > Search team Member</div>
+      <div > Search team member</div>
         </div>
         <div class="flex flex-col rounded w-[11vw] p-1 h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
@@ -317,8 +317,15 @@ function ContactAllCardList(props) {
             {translatedMenuItems[2]}</div>
         <div className="  max-md:w-[9.1rem]  truncate w-[15.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
+        {props.user.recruitProInd ?  
+             <div className=" w-[8.5rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            Requirement
+             </div>   
+             :   
         <div className=" max-md:w-[10.2rem] truncate w-[16.1rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon truncate  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
+}
         <div className=" w-[14.11rem] max-md:w-[8.11rem] truncate  max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[6]}</div>
         {props.user.aiInd && (

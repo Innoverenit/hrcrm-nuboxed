@@ -90,7 +90,7 @@ function InvestorCardList(props) {
             "579",//4signed
             "14",//5 Category
             "279",//6Source
-            "589",//7 First Meeting
+            "164",//7 First Meeting
             "1161",//8 Shares
             "218",//9Value
             "592",//10Club
@@ -317,8 +317,8 @@ function InvestorCardList(props) {
         {/* "Source"         */}
           </div>
           <div className=" w-[9.22rem]  truncate max-md:w-[9.22rem] max-xl:w-[8.2rem]">
-          {/* {translatedMenuItems[7]} */}
-      {/* First Meeting */} <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>  1st Meeting
+    
+       <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[7]} {/* 1st Meeting*/}
           </div>
         <div className="  w-[10.12rem]  truncate max-md:w-[10.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
         <CurrencyExchangeIcon className='!text-icon mr-1   text-[#e4eb2f]' />
@@ -407,16 +407,16 @@ function InvestorCardList(props) {
                                                   
                                         </div>                                                 
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                         
+                                        <div class=" flex max-sm:w-full w-[100%]  flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                   
-                                            <div class=" flex items-center justify-between  text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
+                                            <div class=" flex items-center justify-between truncate text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`/investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* {/* <Link */}
                                                {date === currentdate ? (
-                                                <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold">
+                                                <span class="text-[tomato] text-[0.65rem]  font-bold">
                                                   New
                                                 </span>
                                               ) : null}
@@ -449,14 +449,14 @@ function InvestorCardList(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] truncate w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                 {/* Sector                     */}
                                     <div class="text-xs  font-poppins ml-gap  max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
                                                                                                                                                   
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-12 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
+                                <div className=" flex  items-center justify-center  h-8 ml-gap bg-[#eef2f9] w-12 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
                                {/* Country */}
                                   <div class="text-xs  font-poppins  max-sm:text-xs">
                                               <ReactCountryFlag
@@ -471,14 +471,14 @@ function InvestorCardList(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
-                                          <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                          <div className=" flex  items-center truncate h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Category */}
 
                                     <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
                                     {item.category}
                                     </div>
                                 </div>
-                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[6.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center truncate h-8 ml-gap bg-[#eef2f9] w-[6.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs ml-gap font-poppins  max-sm:text-sm">

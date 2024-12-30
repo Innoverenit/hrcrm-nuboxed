@@ -293,7 +293,7 @@ function InvestorTeamCardList(props) {
     <div  className=" flex">
        <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
     <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-     <div> Search team Member</div>
+     <div> Search team member</div>
       </div>
       <div class="flex  flex-col rounded w-[11vw]   h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
       {props.teamUserList.map((item,index) =>{
@@ -417,7 +417,7 @@ function InvestorTeamCardList(props) {
                             <div  className="flex rounded justify-between max-sm:rounded-lg  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[10rem] max-sm:flex-col 
                 bg-white mt-1  py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                     <div className=" flex items-center   max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     <div className=" flex items-center    max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -447,12 +447,12 @@ function InvestorTeamCardList(props) {
                                         <div class=" flex max-sm:w-full w-[100%] flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                            
-                                            <div class=" text-xs text-blue-500 flex justify-between font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`/investor/${item.investorId}`} title={item.name}>
+                                            <div class=" text-xs  text-blue-500 flex justify-between font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis truncate whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-sm:text-sm"  to={`/investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>    
   {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
+          <span class="text-[tomato]  font-bold ml-1 text-[0.65rem]">
             New
           </span>
         ) : null}                               
@@ -478,10 +478,8 @@ function InvestorTeamCardList(props) {
     </div> 
 )}                 
                       </div>
-    
-       
-                                            </div>
-</div>
+                             </div>
+                                  </div>
                                         </Tooltip>                             
                                 </div>
                                 </div>
@@ -532,9 +530,7 @@ className="cursor-pointer text-xs font-poppins">
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                              <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Category */}
-
+                              <div className=" flex  items-center truncate h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                          
                                     <div class=" text-xs justify-center ml-gap font-poppins max-sm:text-sm">
                                     {/* {Category} */}
                                     <div>
@@ -559,11 +555,9 @@ className="cursor-pointer text-xs font-poppins">
     </div>
   )}
 </div>
-
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Source */}
+                                <div className=" flex  items-center truncate h-8 ml-gap bg-[#eef2f9] w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     <div class=" text-xs ml-gap font-poppins max-sm:text-sm">
                                     {/* {item.source} */}
                                     <div>
@@ -592,22 +586,18 @@ className="cursor-pointer text-xs font-poppins">
                         )}
                       </div>
                                     </div>
-                                </div>
-                         
+                                </div>                       
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/*signed */}
-
                                     <div class=" text-xs justify-center  font-poppins max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
                                     </div>
                                 </div>    
                                 </div>    
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* sHARES*/}
 
@@ -642,7 +632,6 @@ className="cursor-pointer text-xs font-poppins">
             )}
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Assigned */}
-
                                     <div class=" text-xs  font-poppins max-sm:text-sm">
                                     
                                     <span>
@@ -650,10 +639,7 @@ className="cursor-pointer text-xs font-poppins">
                 "None"
               ) : (
                 <>
-                {/* {item.assignedTo === item.ownerName ? (
-                  
-                  null
-                ) : ( */}
+             
                   <Tooltip title={item.assignedTo}> 
                 <MultiAvatar2
                   primaryTitle={item.assignedTo}

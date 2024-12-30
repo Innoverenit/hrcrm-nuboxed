@@ -7,7 +7,11 @@ class EmployeeDetailHeader extends Component {
     return (
       <div>
         <ActionHeader
-          leftComponent={<EmployeeDetailActionLeft />}
+          leftComponent={<EmployeeDetailActionLeft
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.translatedMenuItems}
+            />}
           rightComponent={<></>}
         />
       </div>

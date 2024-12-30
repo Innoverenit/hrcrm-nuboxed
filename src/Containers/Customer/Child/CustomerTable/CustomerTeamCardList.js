@@ -289,7 +289,7 @@ console.log(selectedAssign)
      
       <div className=' flex rounded w-[13%]  flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
-       <div> Search team Member</div>
+       <div> Search team member</div>
         </div>
         <div class="flex rounded  flex-col  overflow-x-auto w-[11vw] font-poppins h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{

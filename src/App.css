@@ -289,10 +289,10 @@
 
 .ant-input-affix-wrapper {
   position: relative;
-  display: inline-block;
-  width: -webkit-fill-available;
+  /* display: inline-block; */
+  /* width: -webkit-fill-available; */
   height: 1.88rem;
-  min-width: 0;
+  /* min-width: 0; */
   padding: 4px 11px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 0.75rem;
@@ -306,6 +306,7 @@
   box-shadow: lightgrey 2px 2px 2px 2px;
   justify-content: center;
   align-items: center;
+  font-family: "Poppins";
 }
 
 .ant-input-affix-wrapper > input.ant-input {
