@@ -11,8 +11,8 @@ import { Button, Input,Popconfirm } from "antd";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
-import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
-import Tooltip from '@mui/material/Tooltip';
+import EditUpload from "../../../../Components/Forms/Edit/EditUpload"
+import {Tooltip } from "antd";
 import styled from "styled-components";
 import dayjs from "dayjs"; 
 import Carousel from "react-elastic-carousel";

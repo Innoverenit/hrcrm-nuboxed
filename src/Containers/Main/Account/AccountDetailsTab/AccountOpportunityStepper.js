@@ -171,7 +171,7 @@ class AccountOpportunityStepper extends Component {
 className=" w-16 absolute top-3/4 right-0 mt"
 style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.props.setIsModalOpen(false)}
 >
-Close
+{this.props.translatedMenuItems[165]}
 </Button>}
 
 </>

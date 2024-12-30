@@ -57,7 +57,7 @@ const UserCellMachineCrd = (props) => {
             style={{ width: 548 }}
           />
         </div>
-        <div style={{ marginTop: "18px", marginLeft: "21px" }}>
+        <div className=" mt-4 ml-5" >
           <Button
             type="primary"
             onClick={handleSaveMachine}
@@ -66,19 +66,19 @@ const UserCellMachineCrd = (props) => {
           </Button>
         </div>
       </div>
-      <div className='flex justify-end sticky z-auto'>
-        <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className='flex sticky z-auto'>
+        <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className="flex w-[100%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=""></div>
-            <div className="md:w-[22.12rem]">
+            <div className="w-[22.12rem]">
           Equipment
             </div>
           </div>
           {props.userMachineCard.map((item, index) => (
             <div key={index}>
-              <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
-                <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
-                  <div className="flex justify-between text-sm font-semibold font-poppins">
+              <div className="flex rounded mt-1 bg-white h-8 items-center p-1">
+                <div className="flex w-[36.1rem] max-sm:w-full">
+                  <div className="flex justify-between text-xs font-semibold font-poppins">
                     {item.name}
                   </div>
                 </div>

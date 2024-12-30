@@ -7,7 +7,6 @@ import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { getCrm } from "../../Leads/LeadsAction";
-import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { Listbox } from '@headlessui/react'
@@ -38,7 +37,7 @@ const AddAccountForm = ({
   user,
   countryDialCode1,
   orgId,
-  accounts, clearbit, fullName, allCustomerEmployeeList,
+  accounts, clearbit, fullName, 
   crmAllData,
   countries,
   setClearbitData,
@@ -47,7 +46,6 @@ const AddAccountForm = ({
   customerListData,
   saleCurrencies,
   getCountry,
-  getAllCustomerEmployeelist,
   getCrm,
   getCustomer,
   getSaleCurrency,
@@ -60,6 +58,87 @@ const AddAccountForm = ({
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+const [categoryOptions, setCategoryOptions] = useState([]);
+  const [loadingCategory, setLoadingCategory] = useState(false);
+    const [currencySaleOptions, setcurrencySaleOptions] = useState([]);
+  const [loadingCurrency, setLoadingCurrency] = useState(false);
+  const [countryOptions, setcountryOptions] = useState([]);
+  const [loadingCountry, setLoadingCountry] = useState(false);
+  const [clientCustomerOptions, setclientCustomerOptions] = useState([]);
+  const [loadingclientCustomer, setLoadingclientCustomer] = useState(false);
+
+
+   const fetchCategoryOptions = async () => {
+      setLoadingCategory(true);
+      await getCategory(orgId);
+      setLoadingCategory(false);
+    };
+    useEffect(() => {
+      if (category && category.length > 0) {
+        const options = category.map((item) => {
+          return {
+            label: item.name || "",
+      value: item.categoryId,
+          };
+        });
+        setCategoryOptions(options);
+      }
+    }, [category]);
+
+    const fetchCurrencyOptions = async () => {
+        setLoadingCurrency(true);
+        await getSaleCurrency();
+        setLoadingCurrency(false);
+      };
+      useEffect(() => {
+        if (saleCurrencies && saleCurrencies.length > 0) {
+          const options = saleCurrencies.map((item) => {
+            return {
+              label: item.currency_name || "",
+              value: item.currency_id,
+            };
+          });
+          setcurrencySaleOptions(options);
+        }
+      }, [saleCurrencies]);
+    
+      const fetchCountryOptions = async () => {
+        setLoadingCountry(true);
+        await getCountry();
+        setLoadingCountry(false);
+      };
+      useEffect(() => {
+        if (countries && countries.length > 0) {
+          const options = countries.map((item) => {
+            return {
+              label: `${item.country_name || ""}`,
+              value: item.country_id,
+            };
+          });
+          setcountryOptions(options);
+        }
+      }, [countries]);
+
+      const fetchClientCustomerOptions = async () => {
+        setLoadingclientCustomer(true);
+          await   getCustomer(orgId);
+        setLoadingclientCustomer(false);
+        };
+        useEffect(() => {
+          if (customerListData && customerListData.length > 0) {
+            const options = customerListData.map((item) => {
+              return {
+                label: `${item.name}`,
+                value: item.customerTypeId,
+              };
+            });
+            setclientCustomerOptions(options);
+          }
+        }, [customerListData]);     
+
+useEffect(() => {
+  getCrm();
+}, []);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -101,16 +180,7 @@ const AddAccountForm = ({
     fetchMenuTranslations();
   }, [selectedLanguage]);
 
-  useEffect(() => {
-    getCountry();
-    getAllCustomerEmployeelist();
-    getCrm();
-    getCustomer(orgId);
-    getSaleCurrency();
-    getCategory(orgId);
-
-
-  }, []);
+  
   useEffect(() => {
     return () => {
       emptyClearbit(); 
@@ -123,41 +193,9 @@ const AddAccountForm = ({
     setBillingSameAsCommunication(!billingSameAsCommunication);
   };
 
-  const CountryOptions = countries.map((item) => {
-    return {
-      label: `${item.country_name || ""}`,
-      value: item.country_id,
-    };
-  });
-
-  const customerTypeOptions = customerListData.map((item) => {
-    return {
-      label: `${item.name}`,
-      value: item.customerTypeId,
-    };
-  });
-
-  const currencyOption = saleCurrencies.map((item) => {
-    return {
-      label: item.currency_name || "",
-      value: item.currency_id,
-    };
-  });
-
-  const categoryOption = category.map((item) => {
-    return {
-      label: item.name || "",
-      value: item.categoryId,
-    };
-  });
-
-
-  console.log(countryDialCode1)
-
   const [defaultOption, setDefaultOption] = useState(fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = crmAllData.find((item) => item.empName === selected);
-  // console.log(category.categoryId)
   const [text, setText] = useState("");
   function handletext(e) {
     setText(e.target.value);
@@ -341,9 +379,9 @@ const AddAccountForm = ({
                       style={{ borderRight: "4px red solid" }}
                       isRequired
                       component={SelectComponent}
-                      options={
-                        Array.isArray(CountryOptions) ? CountryOptions : []
-                      }
+                      options={Array.isArray(countryOptions) ? countryOptions : []}
+                      onFocus={fetchCountryOptions}
+                      isLoading={loadingCountry}
                     />
                   </div>
                   </div>
@@ -372,11 +410,9 @@ const AddAccountForm = ({
                       style={{ borderRight: "3px red solid" }}
                       component={SelectComponent}
                       options={
-                        Array.isArray(categoryOption)
-                          ? categoryOption
-                          : []
-                      }
-
+                        Array.isArray(categoryOptions)? categoryOptions: []}
+                        onFocus={fetchCategoryOptions}
+                        isLoading={loadingCategory}  
                     />
                   </div>
                  
@@ -384,16 +420,12 @@ const AddAccountForm = ({
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
                       name="clientId"
-                     
                       isColumn
                       placeholder="Type"
                       component={SelectComponent}
-                      options={
-                        Array.isArray(customerTypeOptions)
-                          ? customerTypeOptions
-                          : []
-                      }
-
+                      options={Array.isArray(clientCustomerOptions)? clientCustomerOptions: []}
+                      onFocus={fetchClientCustomerOptions}
+                      isLoading={loadingclientCustomer}  
                     />
                   </div>
                 </div>
@@ -418,12 +450,9 @@ const AddAccountForm = ({
                       placeholder="Currency"
                       component={SelectComponent}
                       style={{ borderRight: "4px red solid" }}
-                      options={
-                        Array.isArray(currencyOption)
-                          ? currencyOption
-                          : []
-                      }
-
+                      options={Array.isArray(currencySaleOptions) ? currencySaleOptions : []}
+                      onFocus={fetchCurrencyOptions}
+                      isLoading={loadingCurrency}
                     />
                   </div>
                 </div>
@@ -623,7 +652,6 @@ const mapStateToProps = ({ auth, countrys, leads,employee, catgCustomer, distrib
   groupId: auth.userDetails.groupId,
   vat: rule.vat,
   fullName: auth.userDetails.fullName,
-  allCustomerEmployeeList: employee.allCustomerEmployeeList,
   user: auth.userDetails,
   orgId: auth.userDetails.organizationId,
   customerListData: catgCustomer.customerListData,
@@ -646,7 +674,6 @@ const mapDispatchToProps = (dispatch) =>
       getCountry,
       getCustomer,
       getCrm,
-      getAllCustomerEmployeelist,
       getSaleCurrency,
       getCategory
     },

@@ -223,7 +223,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form, Field } from "formik";
 import Button from "antd/lib/button";
-import "./autoplaycarousel.scss";
+// import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
 import CarouselItem from "./CarouselItem";
 import { useNavigate,Link } from "react-router-dom";

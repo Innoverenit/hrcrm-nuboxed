@@ -51,6 +51,17 @@ function AccountOpportunityForm(props) {
     phoneNumber: "",
     countryDialCode: "",
   });
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [lobOptions, setLobOptions] = useState([]);
+  const [contactOptions, setContactOptions] = useState([]);
+  const [currencySaleOptions, setcurrencySaleOptions] = useState([]);
+  const [dialCodeOptions, setdialCodeOptions] = useState([]);
+
+  const [loadingCategory, setLoadingCategory] = useState(false);
+  const [loadingLob, setLoadingLob] = useState(false);
+  const [loadingContact, setLoadingContact] = useState(false);
+  const [loadingCurrency, setLoadingCurrency] = useState(false);
+  const [loadingdialCode, setLoadingdialCode] = useState(false);
 
   const handleOnSelectType = (ontype) => {
     setselectOnType(ontype);
@@ -110,46 +121,95 @@ function AccountOpportunityForm(props) {
     setNewContact((prev) => ({ ...prev, countryDialCode: value }));
   };
 
-  const contactOption = props.contactDistributor.map((item) => {
-    return {
-      value: item.contactPersonId,
-      label: `${item.firstName || ""} ${item.lastName || ""}`,
-    };
-  });
+  const fetchCategoryOptions = async () => {
+    setLoadingCategory(true);
+    await props.getBrandCategoryData(props.orgId);
+    setLoadingCategory(false);
+  };
 
   useEffect(() => {
-    props.getContactDistributorList(props.distributorId, props.type);
-    props.getSaleCurrency();
-    props.getLobList(props.orgId);
-    props.getBrandCategoryData(props.orgId);
-    props.getAllDialCodeList();
-  }, []);
+    if (props.BrandCategoryData && props.BrandCategoryData.length > 0) {
+      const options = props.BrandCategoryData.map((item) => {
+        return {
+          label: item.name || "",
+          value: item.shipById,
+        };
+      });
+      setCategoryOptions(options);
+    }
+  }, [props.BrandCategoryData]);
+
+  const fetchLobOptions = async () => {
+    setLoadingLob(true);
+    await props.getLobList(props.orgId);
+    setLoadingLob(false);
+  };
+  useEffect(() => {
+    if (props.lobList && props.lobList.length > 0) {
+      const options = props.lobList.map((item) => {
+        return {
+          label: item.name || "",
+          value: item.lobDetsilsId,
+        };
+      });
+      setLobOptions(options);
+    }
+  }, [props.lobList]);
+
+  const fetchContactOptions = async () => {
+    setLoadingContact(true);
+    await props.getContactDistributorList(props.distributorId, props.type);
+    setLoadingContact(false);
+  };
+
+  useEffect(() => {
+    if (props.contactDistributor && props.contactDistributor.length > 0) {
+      const options = props.contactDistributor.map((item) => {
+        return {
+          value: item.contactPersonId,
+          label: `${item.firstName || ""} ${item.lastName || ""}`,
+        };
+      });
+      setContactOptions(options);
+    }
+  }, [props.contactDistributor]);
+
+  const fetchCurrencyOptions = async () => {
+    setLoadingCurrency(true);
+    await props.getSaleCurrency();
+    setLoadingCurrency(false);
+  };
+
+  useEffect(() => {
+    if (props.saleCurrencies && props.saleCurrencies.length > 0) {
+      const options = props.saleCurrencies.map((item) => {
+        return {
+          label: item.currency_name || "",
+          value: item.currency_id,
+        };
+      });
+      setcurrencySaleOptions(options);
+    }
+  }, [props.saleCurrencies]);
+
+  const fetchDialCodeOptions = async () => {
+    setLoadingCurrency(true);
+    await props.getAllDialCodeList();
+    setLoadingCurrency(false);
+  };
+
+  useEffect(() => {
+    if (props.dialcodeList && props.dialcodeList.length > 0) {
+      setdialCodeOptions(props.dialcodeList);
+    }
+  }, [props.dialcodeList]);
 
   const [priority, setPriority] = useState("High");
-
   function handleButtonClick(type) {
     console.log(type);
     setPriority(type);
   }
-  const currencyOption = props.saleCurrencies.map((item) => {
-    return {
-      label: item.currency_name || "",
-      value: item.currency_id,
-    };
-  });
 
-  const categoryOption = props.BrandCategoryData.map((item) => {
-    return {
-      label: item.name || "",
-      value: item.shipById,
-    };
-  });
-  const lobOption = props.lobList.map((item) => {
-    return {
-      label: item.name || "",
-      value: item.lobDetsilsId,
-    };
-  });
   const disabledDate = (current) => {
     return current && current < dayjs().startOf("day");
   };
@@ -441,8 +501,12 @@ function AccountOpportunityForm(props) {
                       inlineLabel
                       component={SelectComponent}
                       options={
-                        Array.isArray(currencyOption) ? currencyOption : []
+                        Array.isArray(currencySaleOptions)
+                          ? currencySaleOptions
+                          : []
                       }
+                      onFocus={fetchCurrencyOptions}
+                      isLoading={loadingCurrency}
                     />
                   </div>
 
@@ -467,8 +531,10 @@ function AccountOpportunityForm(props) {
                       inlineLabel
                       component={SelectComponent}
                       options={
-                        Array.isArray(categoryOption) ? categoryOption : []
+                        Array.isArray(categoryOptions) ? categoryOptions : []
                       }
+                      onFocus={fetchCategoryOptions}
+                      isLoading={loadingCategory}
                     />
                   </div>
                   <div class="w-[45%]">
@@ -477,11 +543,13 @@ function AccountOpportunityForm(props) {
                         label="LOB"
                         name="lobDetsilsId"
                         component={SelectComponent}
-                        options={Array.isArray(lobOption) ? lobOption : []}
+                        options={Array.isArray(lobOptions) ? lobOptions : []}
                         inlineLabel
                         width={"100%"}
                         style={{ borderRight: "3px red solid" }}
                         isColumn
+                        onFocus={fetchLobOptions}
+                        isLoading={loadingLob}
                       />
                     </div>
                   </div>
@@ -505,10 +573,14 @@ function AccountOpportunityForm(props) {
                     name="contactPersonId"
                     placeholder="Value"
                     component={SelectComponent}
-                    options={Array.isArray(contactOption) ? contactOption : []}
+                    options={
+                      Array.isArray(contactOptions) ? contactOptions : []
+                    }
                     inlineLabel
                     width={"100%"}
                     isColumn
+                    onFocus={fetchContactOptions}
+                    isLoading={loadingContact}
                   />
                   {isAddingContact && (
                     <div class="flex  justify-between max-sm:flex-col mt-[0.75rem]">
@@ -548,8 +620,9 @@ function AccountOpportunityForm(props) {
                             style={{ width: "80px" }}
                             onChange={handleDialCodeChange}
                             value={newContact.dialCode}
+                            onClick={fetchDialCodeOptions}
                           >
-                            {props.dialcodeList.map((contact) => (
+                            {dialCodeOptions.map((contact) => (
                               <Option
                                 key={`+${contact.country_dial_code}`}
                                 value={`+${contact.country_dial_code}`}

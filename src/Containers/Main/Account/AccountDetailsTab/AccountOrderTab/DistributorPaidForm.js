@@ -28,22 +28,62 @@ const DistributorSchema = Yup.object().shape({
   orderCurrencyId: Yup.string().required("Input required"),
 });
 function DistributorPaidForm(props) {
-  const currencyOption = props.currencies.map((item) => {
-    return {
-      label: item.currency_name || "",
-      value: item.currency_id,
-    };
-  });
-  const payOption = props.paymentModee.map((item) => {
-    return {
-      label: item.name || "",
-      value: item.paymentCatagoryId,
-    };
-  });
+
+   const [currencyOptions,setcurrencyOptions] =useState([]);
+   const [payModeOptions,setpayModeOptions]=useState([]);
+
+ const [loadingCurrency, setLoadingCurrency] = useState(false);
+const [loadingpayMode, setLoadingpayMode] = useState(false);
+
+ const fetchCurrencyOptions = async () => {
+     setLoadingCurrency(true);
+     await props.getCurrency();
+     setLoadingCurrency(false); 
+   };
+ 
+   useEffect(() => {
+     if (props.currencies && props.currencies.length > 0) {
+       const options = props.currencies.map((item) => {
+         return {
+          label: item.currency_name || "",
+              value: item.currency_id,
+         };
+       });
+       setcurrencyOptions(options);
+     }
+   }, [props.currencies]);
+
+   const fetchPayModeOptions = async () => {
+    setLoadingpayMode(true);
+    await  props.getPaymentMode(props.orgId);
+    setLoadingpayMode(false); 
+  };
+
   useEffect(() => {
-    props.getCurrency();
-    props.getPaymentMode(props.orgId);
-  }, []);
+    if (props.paymentModee && props.paymentModee.length > 0) {
+      const options = props.paymentModee.map((item) => {
+        return {
+          label: item.name || "",
+          value: item.paymentCatagoryId,
+        };
+      });
+      setpayModeOptions(options);
+    }
+  }, [props.paymentModee]);
+
+  // const currencyOption = props.currencies.map((item) => {
+  //   return {
+  //     label: item.currency_name || "",
+  //     value: item.currency_id,
+  //   };
+  // });
+  // const payOption = props.paymentModee.map((item) => {
+  //   return {
+  //     label: item.name || "",
+  //     value: item.paymentCatagoryId,
+  //   };
+  // });
+
 
   return (
     <>
@@ -155,9 +195,9 @@ function DistributorPaidForm(props) {
                       isColumn
                       inlineLabel
                       component={SelectComponent}
-                      options={
-                        Array.isArray(currencyOption) ? currencyOption : []
-                      }
+                      options={Array.isArray(currencyOptions) ? currencyOptions : []}
+                      onFocus={fetchCurrencyOptions} 
+                      isLoading={loadingCurrency} 
                     />
                   </div>
                 </div>
@@ -218,7 +258,9 @@ function DistributorPaidForm(props) {
                       inlineLabel
                       width={"100%"}
                       component={SelectComponent}
-                      options={Array.isArray(payOption) ? payOption : []}
+                      options={Array.isArray(payModeOptions) ? payModeOptions : []}
+                      onFocus={fetchPayModeOptions} 
+                      isLoading={loadingpayMode} 
                     />
                   </div>
                 </div>

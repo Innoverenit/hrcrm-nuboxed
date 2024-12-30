@@ -78,6 +78,7 @@ useEffect(() => {
       "1078",   // Save17
       "1079",   // Cancel18
       "170",   // Edit19
+      "660",    // 'Order', // 20
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);

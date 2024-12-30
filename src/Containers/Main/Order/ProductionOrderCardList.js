@@ -37,7 +37,7 @@ function ProductionOrderCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          '660', // 0  Order#
+          '660', // 0  Order
           '679', // 1  Created(Name ANd Date)
           '142', // 2Status
           
@@ -270,6 +270,7 @@ console.log(page)
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                     translatedMenuItems={props.translatedMenuItems}
+                    modalTitleKey={0}
                />
                       <AccountOrderDetailsModal
         particularRowData={particularRowData}

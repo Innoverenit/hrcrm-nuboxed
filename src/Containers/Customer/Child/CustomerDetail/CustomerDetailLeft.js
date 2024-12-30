@@ -8,10 +8,19 @@ class CustomerDetailLeft extends Component {
     return (
       <>
         <div class=" flex flex-col">
-          <CustomerOverviewCard customer={customer} />
+          <CustomerOverviewCard customer={customer}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems} />
           {/* <CustomerTopicOfIntrest customer={customer} /> */}
-          <CustomerExtraDetailCard customer={customer} />         
-          <CustomerDetailCard customer={customer} />
+          <CustomerExtraDetailCard customer={customer}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems} />         
+          <CustomerDetailCard customer={customer}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems} />
         </div>
       </>
     );

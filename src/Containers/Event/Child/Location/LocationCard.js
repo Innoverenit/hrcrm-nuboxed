@@ -318,7 +318,7 @@ const LocationCard = (props) => {
                         <div>
                           <Tooltip title={translatedMenuItems[12]} >
                             <TokenIcon
-                              className=" !text-icon cursor-pointer text-[#755b69]"
+                              className=" !text-icon cursor-pointer text-[blue]"
                               onClick={() => {
                                 handleStoredLocations(item);
                                 props.handleLocnCellDrawer(true);

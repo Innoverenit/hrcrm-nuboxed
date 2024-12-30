@@ -12,19 +12,14 @@ class ProjectDetailsView extends Component {
     return (
       <>
         <ProjectItemRow 
-          label="Owner" 
+        label={this.props.translatedMenuItems[0]}     
           value={creatorName}
         />
-
-
         <ProjectItemRow 
-          label="Customer "
+        label={this.props.translatedMenuItems[1]}     
           
           value={customerName}
         />
-
-      
-  
       </>
     );
   }
