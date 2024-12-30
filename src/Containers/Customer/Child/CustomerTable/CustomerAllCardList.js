@@ -95,6 +95,9 @@ function CustomerAllCardList(props) {
   const [editingValue, setEditingValue] = useState("");
   const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
   const [selectedAssign, setSelectedAssign] = useState();
+  const [touchcrm, setTouchcrm] = useState(false);
+    const [touchSector, setTouchSector] = useState(false);
+    const [touchDialCode, setTouchDialCode] = useState(false);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -156,10 +159,6 @@ function CustomerAllCardList(props) {
     })
     setPage(page + 1);
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
-      props.getCrm();
-      props.getSectors();
-      // props.getSources(props.orgId);
-      // props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -252,6 +251,26 @@ const [rowdata, setrowdata] = useState("");
     props.emptyLeads();
     setSelectedEmployee(employeeId);
   };
+   const handleSelectAssignFocus = () => {
+        if (!touchcrm) {
+          props.getCrm()
+          setTouchcrm(true);
+        }
+      };
+  
+      const handleSelectSectorFocus = () => {
+        if (!touchSector) {
+          props.getSectors();
+          setTouchSector(true);
+        }
+      }
+  
+      const handleSelectDialCodeFocus = () => {
+        if (!touchDialCode) {
+          props.getAllDialCodeList();
+          setTouchDialCode(true);
+        }
+      }
   const {
     fetchingAllCustomerList,
     allCustomers,
@@ -495,6 +514,7 @@ console.log(selectedAssign)
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialCodeFocus}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -555,6 +575,7 @@ className="cursor-pointer text-xs font-poppins">
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSectorFocus}
   autoFocus
 >
 {props.sectors.map((country) => (
@@ -667,6 +688,7 @@ className="cursor-pointer text-xs font-poppins">
                                          handleAssignChange(item.customerId,value); 
                                        }}
                                         onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+                                        onFocus={handleSelectAssignFocus}
                                        autoFocus
                                      >
                                         {props.crmAllData.map(customer => (
@@ -944,6 +966,7 @@ const mapStateToProps = ({
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
   orgId: auth.userDetails.organizationId,
+  dialcodeList: auth.dialcodeList,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

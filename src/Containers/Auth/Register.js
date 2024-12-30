@@ -6,7 +6,6 @@ import { Button, Carousel} from "antd";
 import * as Yup from "yup";
 import { get } from "lodash";
 import dayjs from "dayjs";
-import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
 import CarouselItem from "./CarouselItem";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";

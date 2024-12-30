@@ -43,6 +43,8 @@ class ReportDetails extends Component {
                       <ReportDetailRight 
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}
+                      reportLeads={this.props.reportLeads}
+                      gettingReportLeads={this.props.gettingReportLeads}
                       selectedCategory={this.props.selectedCategory}
                       customer={customer} 
                       reportTask={this.props.reportTask}

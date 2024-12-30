@@ -18,26 +18,26 @@ class CustomerExtraDetailView extends Component {
     return (
       <>
         <CustomerItemRow // label="URL"
-          label="URL"
+          label={this.props.translatedMenuItems[4]}
           value={url}
         />
         <CustomerItemRow
-          label="Phone #"
+          label={this.props.translatedMenuItems[3]}
           value={`${countryDialCode || ""} ${phoneNumber || ""}`}
         />
 
         <CustomerItemRow //label="Phone Number"
-          label="Registration #"
+         label={this.props.translatedMenuItems[2]}
           value={vatNo}
         />
 
         <CustomerItemRow //label="Phone Number"
-          label="Tax Registration #"
+          label={this.props.translatedMenuItems[0]}
           value={businessRegistration}
         />
 
         <CustomerItemRow //label="Phone Number"
-          label="Sector" 
+         label={this.props.translatedMenuItems[1]}
           value={sector}
         />
       </>

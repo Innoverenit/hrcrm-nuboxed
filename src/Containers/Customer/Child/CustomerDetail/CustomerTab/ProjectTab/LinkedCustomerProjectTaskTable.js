@@ -8,7 +8,6 @@ import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 import Highlighter from "react-highlight-words";
-import Box from "@mui/material/Box";
 import { DataGrid} from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 const ButtonGroup = Button.Group;
@@ -386,7 +385,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
     return (
       <>
         
-        <Box sx={{ height: "50em", width: "100%" }}>
+        <div>
         <DataGrid
       getRowId={(row) => row.taskId}
         rows={this.props.linkedcustomerProjectTask}
@@ -396,7 +395,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         scrollbarSize={false}
       
       />
-      </Box>
+      </div>
                 
       </>
     );

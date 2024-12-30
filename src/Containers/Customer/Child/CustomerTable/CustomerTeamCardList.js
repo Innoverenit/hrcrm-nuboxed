@@ -92,7 +92,9 @@ function CustomerTeamCardList(props) {
   const [selectedAssign, setSelectedAssign] = useState();
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
-
+  const [touchcrm, setTouchcrm] = useState(false);
+  const [touchSector, setTouchSector] = useState(false);
+  const [touchDialCode, setTouchDialCode] = useState(false);
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -115,10 +117,6 @@ function CustomerTeamCardList(props) {
     props.getTeamCustomer(props.userId, pageNo);
     setPageNo(pageNo + 1);
     props.getTeamUserList(props.userId)
-    props.getCrm()
-       props.getSectors();
-      //  props.getSources(props.orgId);
-       props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -249,6 +247,26 @@ const [rowdata, setrowdata] = useState("");
       setEditingValue("");
     
   };
+    const handleSelectAssignFocus = () => {
+      if (!touchcrm) {
+        props.getCrm()
+        setTouchcrm(true);
+      }
+    };
+
+    const handleSelectSectorFocus = () => {
+      if (!touchSector) {
+        props.getSectors();
+        setTouchSector(true);
+      }
+    }
+
+    const handleSelectDialCodeFocus = () => {
+      if (!touchDialCode) {
+        props.getAllDialCodeList();
+        setTouchDialCode(true);
+      }
+    }
   const {
     fetchingTeamCustomer,
     teamCustomer,
@@ -497,6 +515,7 @@ console.log(selectedAssign)
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialCodeFocus}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -558,6 +577,7 @@ className="cursor-pointer text-xs font-poppins">
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
+  onFocus={handleSelectSectorFocus}
 >
 {props.sectors.map((country) => (
    <Option key={country.sectorId} value={country.sectorId}>
@@ -675,6 +695,7 @@ className="cursor-pointer text-xs font-poppins">
               handleAssignChange(item.customerId,value); 
             }}
              onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+             onFocus={handleSelectAssignFocus}
             autoFocus
           >
              {props.crmAllData.map(customer => (

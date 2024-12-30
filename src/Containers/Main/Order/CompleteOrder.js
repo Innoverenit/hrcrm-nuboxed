@@ -242,6 +242,7 @@ function CompleteOrder(props) {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                     translatedMenuItems={props.translatedMenuItems}
+                    modalTitleKey={0}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}

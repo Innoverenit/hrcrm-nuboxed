@@ -6,7 +6,13 @@ const initialState = {
     fetchingOrganisationReportError: false,
     organisationReportData: [],
 
+    gettingReportLeads: false,
+    gettingReportLeadsError: false,
+    reportLeads:[],
 
+    gettingReportLeadsOrg: false,
+          gettingReportLeadsOrgError: true,
+          reportLeadsOrg:[],
 
     fetchingReportsAttendence:false,
     fetchingReportsAttendenceError:false,
@@ -270,6 +276,39 @@ export const reportReducer = (state = initialState, action) => {
         gettingReportProspectError: true,
       };
 
+      case types.GET_REPORT_LEAD_REQUEST:
+      return { ...state, gettingReportLeads: true };
+
+    case types.GET_REPORT_LEAD_SUCCESS:
+      return {
+        ...state,
+        gettingReportLeads: false,
+        reportLeads: action.payload,
+      };
+
+    case types.GET_REPORT_LEAD_FAILURE:
+      return {
+        ...state,
+        gettingReportLeads: false,
+        gettingReportLeadsError: true,
+      };
+
+      case types.GET_REPORT_LEAD_ORG_REQUEST:
+        return { ...state, gettingReportLeadsOrg: true };
+  
+      case types.GET_REPORT_LEAD_ORG_SUCCESS:
+        return {
+          ...state,
+          gettingReportLeadsOrg: false,
+          reportLeadsOrg: action.payload,
+        };
+  
+      case types.GET_REPORT_LEAD_ORG_FAILURE:
+        return {
+          ...state,
+          gettingReportLeadsOrg: false,
+          gettingReportLeadsOrgError: true,
+        };
 
         case types.SET_SELECTED_REPORT_TYPE:
             return {
