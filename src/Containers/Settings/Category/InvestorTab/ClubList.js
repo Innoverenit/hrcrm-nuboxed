@@ -9,7 +9,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { SketchPicker } from "react-color"; 
-
+import AddIcon from '@mui/icons-material/Add';
 const { Option } = Select;
 
 function ClubList(props) {
@@ -116,36 +116,6 @@ function ClubList(props) {
     setEditsuppliesId(null);
     setColorPickerVisible(false); // Hide color picker on cancel
   };
-//   const { clubShareData } = props;
-//   if (clubShareData && clubShareData.length > 0) {
-//     const firstItem = clubShareData[0];
-//     const clubId = firstItem.clubId;
-//     console.log(clubId); // or use the clubId as needed
-//   } else {
-//     console.error("clubShareData is undefined or empty");
-//   }
-
-//   function handleUpdate(key) {
-//     console.log('Submitting Row:', key);
-//     const updatedData = {
-//       clubName: key.clubName,
-//       noOfShare: key.noOfShare,
-//       discount: key.discount,
-//       //clubId: clubId,
-//     };
-//     props.updateClub(updatedData,clubId);
-//     setEditsuppliesId(null);
-//   };
-// const { clubShareData } = props;
-// let clubId; // Declare clubId outside
-
-// if (clubShareData && clubShareData.length > 0) {
-//   const firstItem = clubShareData[0];
-//   clubId = firstItem.clubId;
-//   console.log(clubId); // or use the clubId as needed
-// } else {
-//   console.error("clubShareData is undefined or empty");
-// }
 
 function handleUpdate(key) {
   console.log('Submitting Row:', key);
@@ -166,14 +136,15 @@ function handleUpdate(key) {
 console.log(props.clubShareData)
   return (
     <div>
+      <div class="flex right-0 ">
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
+        <AddIcon className="!text-icon  "/>
         Add Row
       </Button>
+      </div>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-between w-wk  ">
-              
-
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Name</div>
                 <div class="w-24"></div>
@@ -209,8 +180,6 @@ console.log(props.clubShareData)
                       />
                         {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
-               
-
               </div>
               <div>
               <div className="font-bold text-xs font-poppins text-black">Color</div>
@@ -244,10 +213,12 @@ console.log(props.clubShareData)
 
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">         
-            <div className=" md:w-[10rem]">Name</div>
-            <div className=" md:w-[10.1rem]"># Shares</div>
-            <div className=" md:w-[11.2rem] ">Discount %</div>
+          <div className=" flex justify-between w-[95%]  p-1 bg-transparent font-bold sticky z-10">         
+            <div className="w-[1rem] max-md:w-[10rem]">
+            {/* <ContactsIcon className="!text-icon  "/> */}
+              Name</div>
+            <div className="w-[5rem] max-md:w-[10.1rem]"># Shares</div>
+            <div className="w-[11.2rem] max-md:w-[11.2rem] ">Discount %</div>
             <div className="w-12"></div>           
               </div>
 
