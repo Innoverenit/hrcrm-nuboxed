@@ -35,7 +35,8 @@ import {
          getAllRecruitmentDetailsByOppId,
          getOpportunitySKill,
          getFullOpportunity,
-         getTeamUserList
+         getTeamUserList,
+         LinkStageOpportunity
 } from "../../OpportunityAction";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -73,6 +74,7 @@ function OpportunityAllCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [page1, setPage1] = useState(0);
+  const [clickedArrow, setClickedArrow] = useState(null);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -166,6 +168,18 @@ function OpportunityAllCardList(props) {
         console.error('Error fetching PDF:', error);
       }  
     };
+
+    const handleArrowClick = (stageName, stagesId,item) => {
+        props.LinkStageOpportunity(
+          {
+            opportunityId: item.opportunityId,
+            opportunityStagesId:stagesId
+          },
+         
+        );
+        setClickedArrow(stagesId);
+        // console.log(`Stage Name: ${stageName}, ID: ${id}`);
+      };
 
 
 
@@ -388,8 +402,49 @@ strokeColor={"#005075"}
 />
 </Tooltip>
 </Dropdown>
+<div class="flex text-xs  font-poppins text-center  max-sm:text-sm">
+                                         {item.stageList&&item.stageList.map((stage) => (
+                                              <Tooltip title={stage.stageName}>
+                     <svg
+                       key={stage.stagesId}
+                       width="21"
+                       height="17"
+                       xmlns="http://www.w3.org/2000/svg"
+                       onClick={() => handleArrowClick(stage.stageName, stage.stagesId,item)} // Attach click handler
+                       style={{ cursor: "pointer" }} // Add pointer cursor for better UX
+                     >
+                       <g>
+                         <title>background</title>
+                         <rect
+                           fill="#fff"
+                           id="canvas_background"
+                           height="19"
+                           width="23"
+                           y="-1"
+                           x="-1"
+                         />
+                       </g>
+                       <g>
+                         <path
+                           stroke="#5f5f5c"
+                           d="m0.74999,0.75001l14.25,0l4.75001,7.49998l-4.75001,7.50001l-14.25,0l4.75001,-7.50001l-4.75001,-7.49998z"
+                           strokeWidth="0.5"
+                          //  fill="rgba(3, 89, 30, 0.6)"
+                          fill={
+                            clickedArrow === stage.stagesId
+                              ? "rgba(9, 191, 45, 0.6)" // Change color to red if this arrow is clicked
+                              : "rgba(88, 93, 89, 0.6)"
+                          }
+                         />
+                       </g>
+                     </svg>
+                     </Tooltip>
+                   ))}
+       
+                                         </div>
            </div>
        </div>
+       
                               <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">           
                                   <div class=" text-xs items-center font-poppins  max-sm:text-sm">                                
                                   <span>
@@ -604,6 +659,7 @@ const mapDispatchToProps = (dispatch) =>
       getCrm,
       getRecruiterList,
       getOpportunitySKill,
+      LinkStageOpportunity,
       handleUpdateOpportunityModal,
       handleOpportunityDrawerModal,
       setEditOpportunity,
