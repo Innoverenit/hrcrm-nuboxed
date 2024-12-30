@@ -195,8 +195,58 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
       });
   };
 
-
-
+  export const getReportLeads = (userId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_LEAD_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/leads/createded-leads/list/${userId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_LEAD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_LEAD_FAILURE,
+          payload: err,
+        });
+      });
+  };
+  export const getReportLeadsOrg = (orgId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_LEAD_ORG_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/leads/createded-leads/list/for-org/${orgId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_LEAD_ORG_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_LEAD_ORG_FAILURE,
+          payload: err,
+        });
+      });
+  };
 
   export const getReportTask = (userId, startDate, endDate,type) => (dispatch) => {
     dispatch({
