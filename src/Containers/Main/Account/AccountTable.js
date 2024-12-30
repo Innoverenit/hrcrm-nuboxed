@@ -55,6 +55,8 @@ import Swal from "sweetalert2";
 import { base_url2 } from "../../../Config/Auth";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import axios from "axios";
+import OppoOpenDrawer from "./OppoOpenDrawer";
+import OrderOpenDrawer from "./OrderOpenDrawer";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -84,6 +86,8 @@ function AccountTable(props) {
   const [dialCodeOpts, setDialCodeOpts] = useState([]);
   const [currencyOpts, setcurrencyOpts] = useState([]);
   const [isCurrencyDropdownClick, setIsCurrencyDropdownClick] = useState(false);
+  const [openOrder, setOpenOrder] = useState(false);
+  const [openOpportunity, setOpenOpportunity] = useState(false);
 
   const fetchCategoryData = () => {
     if (!isCategoryDropdownClicked) {
@@ -615,7 +619,12 @@ function AccountTable(props) {
                               </div>
                             </div>
                             <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
-                              <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              <div class=" text-xs cursor-pointer text-blue-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                               onClick={() => {
+                                setOpenOpportunity(true);
+                                        handleCurrentRowData(item);
+                                      }}
+                              >
                                 {item.procureCount}
                               </div>
                             </div>
@@ -623,11 +632,10 @@ function AccountTable(props) {
                               <div
                                 class=" text-xs cursor-pointer font-bold font-poppins text-center text-blue-600  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
-                                //  onClick={() => {
-                                //   handleCustomerOpportunityDrawerModal(true);
-                                //   handleSetCurrentCustomer(item);
-                                //           handleCurrentRowData(item);
-                                //         }}
+                                 onClick={() => {
+                                  setOpenOrder(true);
+                                          handleCurrentRowData(item);
+                                        }}
                               >
                                 {item.qtProcureCount}
                               </div>
@@ -993,6 +1001,20 @@ function AccountTable(props) {
           RowData={RowData}
           setasignedDrawer={setasignedDrawer}
           asignedDrawer={asignedDrawer}
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
+        />
+         <OppoOpenDrawer
+          RowData={RowData}
+          setOpenOrder={setOpenOrder}
+          openOrder={openOrder}
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
+        />
+         <OrderOpenDrawer
+          RowData={RowData}
+          setOpenOpportunity={setOpenOpportunity}
+          openOpportunity={openOpportunity}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}
         />

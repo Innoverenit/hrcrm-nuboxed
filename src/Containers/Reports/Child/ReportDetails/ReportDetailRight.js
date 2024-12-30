@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
+import ReportsLeadsList from "./ReportsLeadsList";
 
 const ReportsAttendenceCard=lazy(()=>import  ("../ReportDetails/ReportsAttendenceCard"));
 const ReportsTaskList = lazy(()=>import("../ReportDetails/ReportsTaskList"));
@@ -60,6 +61,14 @@ class ReportDetailRight extends Component {
     <ReportsProspectList 
     gettingReportProspect={this.props.gettingReportProspect}
     reportProspect={this.props.reportProspect}
+    allReportInvestors={this.props.allReportInvestors} 
+    translateText={this.props.translateText}
+    selectedLanguage={this.props.selectedLanguage}/>
+  )}
+  {this.props.selectedCategory === "Leads Generated" && (
+    <ReportsLeadsList 
+    reportLeads={this.props.reportLeads}
+    gettingReportLeads={this.props.gettingReportLeads}
     allReportInvestors={this.props.allReportInvestors} 
     translateText={this.props.translateText}
     selectedLanguage={this.props.selectedLanguage}/>

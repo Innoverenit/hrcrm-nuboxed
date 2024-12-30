@@ -291,6 +291,7 @@ const Login = (props) => {
                     type="email"
                     placeholder="Email"
                     component={InputComponent}
+                    style={{ width: "100%" }}
                   />
                   <div className="mt-3" />
                   <div className="flex flex-row flex-wrap items-center self-start justify-between grow shrink h-auto mr-auto">
@@ -301,19 +302,18 @@ const Login = (props) => {
                           placeholder="Password"
                           type={type}
                           component={InputComponent}
+                          style={{ width: "100%" }}
                         />
                       </div>
                       {show ? (
                         <VisibilityIcon
                           onClick={handleClick}
-                          style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
-                          className="text-xs"
+                          className="!text-xs items-center -ml-5"
                         />
                       ) : (
                         <VisibilityOffIcon
                           onClick={handleClick}
-                          style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
-                          className="text-xs"
+                         className="!text-xs items-center -ml-5"
                         />
                       )}
                     </div>

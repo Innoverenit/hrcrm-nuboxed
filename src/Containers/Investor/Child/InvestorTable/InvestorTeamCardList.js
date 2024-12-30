@@ -27,7 +27,7 @@ import {
   getCustomerKeySkill,
   handleCustomerEmailDrawerModal,
   getCustomerById,
-  getTeamUserList
+  getTeamUserList,
 } from "../../../Customer/CustomerAction";
 import ReactCountryFlag from 'react-country-flag';
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -47,7 +47,7 @@ import {getTeamInvestor,
   handleInvestorContModal,
   deleteInvestorData,
   handleInvestorPriceDrawer,
-  UpdateInvestor} 
+  UpdateInvestor,getAllEmployeelist} 
   from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -87,6 +87,7 @@ function InvestorTeamCardList(props) {
   const [editingValue, setEditingValue] = useState(""); 
   const [touchedSector, setTouchedSector] = useState(false);
   const [touchedSource, setTouchedSource] = useState(false);
+  const [touchedAssign, setTouchedAssign] = useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -257,6 +258,12 @@ function InvestorTeamCardList(props) {
     if (!touchedSource) {
       props.getSources(props.orgId);
       setTouchedSource(true);
+    }
+  };
+  const handleSelectAssignFocus = () => {
+    if (!touchedAssign) {
+      props.getAllEmployeelist();
+      setTouchedAssign(true);
     }
   };
 
@@ -563,7 +570,7 @@ className="cursor-pointer text-xs font-poppins">
                                     <div>
 {editableField?.investorId === item.investorId && editableField?.field === 'source' ? (
   <Select
-  style={{ width: "10rem" }}
+  style={{ width: "7rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
@@ -639,15 +646,49 @@ className="cursor-pointer text-xs font-poppins">
                 "None"
               ) : (
                 <>
-             
-                  <Tooltip title={item.assignedTo}> 
+             {editableField?.investorId === item.investorId && editableField?.field === 'assignedTo' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectAssignFocus}
+  autoFocus
+>
+{props.allEmployeeList.map((item) => (
+   <Option key={item.employeeId} value={item.employeeId}>
+   <div className="flex">
+                    <MultiAvatar
+           primaryTitle={item.empName} 
+           imageId={item.imageId}
+                     imageURL={item.imageURL}
+                     imgWidth={"1.8rem"}
+                     imgHeight={"1.8rem"} 
+         />
+                   <span>{item.empName}</span> 
+                   </div>
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.investorId, 'assignedTo', item.assignedTo)} 
+className="cursor-pointer text-xs font-poppins">
+<MultiAvatar2
+          primaryTitle={item.assignedTo}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
+        /> 
+</div>         
+                        )}
+                  {/* <Tooltip title={item.assignedTo}> 
                 <MultiAvatar2
                   primaryTitle={item.assignedTo}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />
-                   </Tooltip>
-                {/* )} */}
+                   </Tooltip> */}
+                   
                 </>
               )}
             </span>           
@@ -814,7 +855,8 @@ const mapStateToProps = ({
   opportunity,
   employee,
   investor,
-  source
+  source,
+  leads
 }) => ({
   userId: auth.userDetails.userId,
   teamInvestor:investor.teamInvestor,
@@ -834,7 +876,8 @@ const mapStateToProps = ({
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
   addDrawerInvestorContactModal:investor.addDrawerInvestorContactModal,
-  teamUserList:customer.teamUserList
+  teamUserList:customer.teamUserList,
+  allEmployeeList:investor.allEmployeeList,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -857,7 +900,8 @@ const mapDispatchToProps = (dispatch) =>
       getTeamUserList,
       UpdateInvestor,
       getSectors,
-      getSources
+      getSources,
+      getAllEmployeelist
     },
     dispatch
   );
