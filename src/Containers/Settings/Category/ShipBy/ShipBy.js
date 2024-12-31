@@ -135,15 +135,19 @@ const ShipBy = (props) => {
           {addingRegion ? (
             <div>
               <input
-                style={{ border: "2px solid black", width: "54%" }}
+                className="border-2 border-gray mr-1 ml-1"
                 type="text"
                 placeholder="Add ShipBy"
                 value={newShipByName}
                 onChange={(e) => setShipByName(e.target.value)}
               />
               {error && <div style={{ color: "red" }}>{error}</div>}
-              <button onClick={handleShipBy} disabled={!newShipByName.trim()}>Save</button>
-              <button onClick={handleCancelAdd}>Cancel</button>
+              <button
+              className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+              onClick={handleShipBy} disabled={!newShipByName.trim()}>Save</button>
+              <button
+              className="bg-red-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+              onClick={handleCancelAdd}>Cancel</button>
             </div>
           ) : (
             <button style={{ backgroundColor: "tomato", color: "white" }} onClick={handleAddShipBy}>
@@ -166,7 +170,7 @@ const ShipBy = (props) => {
                 >
                   {editingId === region.shipById ? (
                     <input
-                      style={{ border: "2px solid black" }}
+                      className="border-2 border-gray mr-1 ml-1"
                       type="text"
                       placeholder="Update ShipBy"
                       value={newShipByName}
@@ -183,8 +187,12 @@ const ShipBy = (props) => {
                   <div>
                     {editingId === region.shipById ? (
                       <div>
-                        <button onClick={() => handleUpdateShipBy(region)}>Save</button>
-                        <button className="ml-4" onClick={cancelEdit}>Cancel</button>
+                        <button
+                        className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                        onClick={() => handleUpdateShipBy(region)}>Save</button>
+                        <button 
+                        className="bg-red-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                        onClick={cancelEdit}>Cancel</button>
                       </div>
                     ) : (
                       <BorderColorIcon
