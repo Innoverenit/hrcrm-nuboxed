@@ -11,7 +11,6 @@ import {getProjectsTeamListById,
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
-import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -218,21 +217,20 @@ function ProjectsTeamTable (props)  {
         <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
       
         <div className="  w-[2.02rem]">   </div>
-        <div className="  w-[15.7rem] text-sm text-[#00A2E8]  truncate "> <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' /> Team</div>
+        <div className="  w-[15.7rem] text-sm text-[#00A2E8]  truncate "> <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' /> Name</div>
         <div className="   w-[15.9rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
-        Customer
+        Skills
         </div>
-        <div className="  w-[15.6rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>
-        Project
-        </div>
-        <div className="   w-[15.99rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
-        Billable Hour</div> 
         <div className="  w-[15.8rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
         Onboard Date</div>
-        
+        <div className="   w-[15.99rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
+        Billable Hour</div> 
         <div className="   w-[16.3rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
         End Date</div>
-        
+        <div className="  w-[15.8rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        Hours</div>
+        <div className="  w-[15.8rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        Task</div>
          </div>    
       </div>
       { !props.fetchingTeamProject && props.teamProject.length ===0 ?<EmptyPage/>: props.teamProject.map((item, index) => {
@@ -248,19 +246,7 @@ function ProjectsTeamTable (props)  {
            </div>
                 </div>
                 </div>
-                <div class="flex  w-[8.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs  ml-gap font-poppins'>
-           {item.customerName}
-          </div>
-          </div> 
-          <div class="flex  w-[8.3rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-           
-           <div className='text-xs  ml-gap font-poppins'>
-        
-          {item.projectName}
-          </div>
-          </div> 
+                
           <div class="flex  w-[8.4rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
            
            <div className='text-xs  ml-gap font-poppins'>

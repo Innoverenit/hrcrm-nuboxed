@@ -207,7 +207,7 @@ function ProjectsTaskTable (props)  {
         
         },
         {
-          title: "Team",
+          title: "Status",
           dataIndex: "candidateName",
           width:"10%",
           render: (text, item) => {
