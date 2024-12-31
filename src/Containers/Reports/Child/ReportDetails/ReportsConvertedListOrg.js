@@ -25,7 +25,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function ReportsLeadsList(props) {
+function ReportsConvertedListOrg(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
@@ -79,7 +79,7 @@ function ReportsLeadsList(props) {
 
 
 console.log(page)
-if(props.gettingReportLeads){
+if(props.gettingReportConvertOrg){
     return <BundleLoader/>
 }
 const {user}=props
@@ -124,13 +124,13 @@ const {user}=props
           </div>
        
 
-            {!props.gettingReportLeads && props.reportLeads.length === 0 ? <EmptyPage/> : props.reportLeads.map((item, index) => {
+            {!props.gettingReportConvertOrg && props.reportConvertedOrg.length === 0 ? <EmptyPage/> : props.reportConvertedOrg.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const diff = Math.abs(
                 dayjs().diff(dayjs(item.lastRequirementOn), "days")
               );
-              
+             
               return (
                 <div>
                   <div className="flex rounded justify-between max-sm:  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 "
@@ -206,7 +206,7 @@ const {user}=props
 
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
                         <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                         
+                        
                         </div>
                       </div>
 
@@ -424,5 +424,5 @@ const mapDispatchToProps = (dispatch,) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ReportsLeadsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsConvertedListOrg);
 

@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsLeadsList from "./ReportsLeadsList";
+import ReportsLeadsListOrg from "./ReportsLeadsListOrg";
+import ReportsConvertedList from "./ReportsConvertedList";
+import ReportsConvertedListOrg from "./ReportsConvertedListOrg";
+import ReportsCallListOrg from "./ReportsCallListOrg";
+import ReportsCallList from "./ReportsCallList";
 
 const ReportsAttendenceCard=lazy(()=>import  ("../ReportDetails/ReportsAttendenceCard"));
 const ReportsTaskList = lazy(()=>import("../ReportDetails/ReportsTaskList"));
@@ -47,123 +52,164 @@ class ReportDetailRight extends Component {
     console.log("selectedSubReportType", selectedSubReportType, selectedReportType)
     console.log("lkj",this.props.customer,this.props.reportViewType,this.props.userorgflipClick);
     return (
-      <div class=" w-full">
-        <Suspense>
-                  {this.props.selectedCategory === "Productivity" && (
-    <ReportsAttendenceCard 
-    gettingReportProspect={this.props.gettingReportProspect}
-    reportProspect={this.props.reportProspect}
-    allReportInvestors={this.props.allReportInvestors}
-    translateText={this.props.translateText}
-    selectedLanguage={this.props.selectedLanguage} />
-  )}
-              {this.props.selectedCategory === "Prospect" && (
-    <ReportsProspectList 
-    gettingReportProspect={this.props.gettingReportProspect}
-    reportProspect={this.props.reportProspect}
-    allReportInvestors={this.props.allReportInvestors} 
-    translateText={this.props.translateText}
-    selectedLanguage={this.props.selectedLanguage}/>
-  )}
-  {this.props.selectedCategory === "Leads Generated" && (
-    <ReportsLeadsList 
-    reportLeads={this.props.reportLeads}
-    gettingReportLeads={this.props.gettingReportLeads}
-    allReportInvestors={this.props.allReportInvestors} 
-    translateText={this.props.translateText}
-    selectedLanguage={this.props.selectedLanguage}/>
-  )}
-            {this.props.selectedCategory === "Task" && (
-    <ReportsTaskList 
-  
-    reportTask={this.props.reportTask}      
-    gettingReportTask={this.props.gettingReportTask}
-    translateText={this.props.translateText}
-    selectedLanguage={this.props.selectedLanguage} />
-  )}
-   
-
-
-          {this.props.reportViewType === "ME" && (
-            <>
-{this.props.selectedCategory === "Orders" && (
-   <OrdeRepairTab               
-   selectedButtonIcon={this.props.selectedButtonIcon}
-   selectedCategory={this.props.selectedCategory}
-   translateText={this.props.translateText}
-   selectedLanguage={this.props.selectedLanguage}
-   />
-  )}
-
-  {this.props.selectedCategory === "Invoice" && (
-  <InvoiceReportUserTab
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  translateText={this.props.translateText}
-  selectedLanguage={this.props.selectedLanguage}
-  />
-  )}
-    {this.props.selectedCategory === "GST" && (
-  <GSTReportUser
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  translateText={this.props.translateText}
-  selectedLanguage={this.props.selectedLanguage}
-  />
-  )}
-              {selectedReportType === "Requirement" && <Requirement 
-               translateText={this.props.translateText}
-               selectedLanguage={this.props.selectedLanguage}/>}
-              {selectedReportType === "Selected" && <Selected 
-               translateText={this.props.translateText}
-               selectedLanguage={this.props.selectedLanguage}/>}
-            </>
-          )}
-           {this.props.reportViewType === "ALL" && this.props.userorgflipClick && (
-            <>
-          {this.props.selectedCategory === "Orders" && (
-   <OrdeRepairOrgTab               
-   selectedButtonIcon={this.props.selectedButtonIcon}
-   selectedCategory={this.props.selectedCategory}
-   translateText={this.props.translateText}
-   selectedLanguage={this.props.selectedLanguage}
-   />
-  )}
-  {this.props.selectedCategory === "Invoice" && (
-  <InvoiceReportOrgTab
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  translateText={this.props.translateText}
-  selectedLanguage={this.props.selectedLanguage}
-  />
-  )}
-    {this.props.selectedCategory === "Production" && (
-  <ProductionReportOrgTab
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  translateText={this.props.translateText}
-  selectedLanguage={this.props.selectedLanguage}
-  />
-  )}
-  {this.props.selectedCategory === "GST" && (
-  <GSTReportOrg
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  translateText={this.props.translateText}
-  selectedLanguage={this.props.selectedLanguage}
-  />
-  )}
-              {selectedReportType === "Requirement" &&
-                <OrgRequirement
-                translateText={this.props.translateText}
-                selectedLanguage={this.props.selectedLanguage} />}
-              {selectedReportType === "Selected" && <OrgSelected 
-               translateText={this.props.translateText}
-               selectedLanguage={this.props.selectedLanguage}/>}
-               
-            </>
-          )}
-          </Suspense>
+      <div class="w-full">
+      <Suspense>
+        {this.props.selectedCategory === "Productivity" ? (
+        <ReportsAttendenceCard
+          gettingReportProspect={this.props.gettingReportProspect}
+          reportProspect={this.props.reportProspect}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        />
+        ) : this.props.selectedCategory === "Prospect" ? (
+        <ReportsProspectList
+          gettingReportProspect={this.props.gettingReportProspect}
+          reportProspect={this.props.reportProspect}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        />
+        ) : this.props.selectedCategory === "Leads Generated" ? (
+        this.props.userorgflipClick ? (
+          <ReportsLeadsListOrg
+          reportLeadsOrg={this.props.reportLeadsOrg}
+          gettingReportLeadsOrg={this.props.gettingReportLeadsOrg}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        ) : (
+          <ReportsLeadsList
+          reportLeads={this.props.reportLeads}
+          gettingReportLeads={this.props.gettingReportLeads}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        )
+      ) : this.props.selectedCategory === "Calls" ? (
+        this.props.userorgflipClick ? (
+          <ReportsCallListOrg
+          reportCallOrg={this.props.reportCallOrg}
+          gettingReportCallOrg={this.props.gettingReportCallOrg}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        ) : (
+          <ReportsCallList
+          reportCall={this.props.reportCall}
+          gettingReportCall={this.props.gettingReportCall}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        )
+        ) : this.props.selectedCategory === "Leads Converted" ? (
+        this.props.userorgflipClick ? (
+          <ReportsConvertedListOrg
+          reportConvertedOrg={this.props.reportConvertedOrg}
+          gettingReportConvertOrg={this.props.gettingReportConvertOrg}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        ) : (
+          <ReportsConvertedList
+          reportConverted={this.props.reportConverted}
+          gettingReportConvert={this.props.gettingReportConvert}
+          allReportInvestors={this.props.allReportInvestors}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          />
+        )
+        ) : this.props.selectedCategory === "Task" ? (
+        <ReportsTaskList
+          reportTask={this.props.reportTask}
+          gettingReportTask={this.props.gettingReportTask}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        />
+        ) : this.props.reportViewType === "ME" ? (
+        <>
+          {this.props.selectedCategory === "Orders" ? (
+          <OrdeRepairTab
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : this.props.selectedCategory === "Invoice" ? (
+          <InvoiceReportUserTab
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : this.props.selectedCategory === "GST" ? (
+          <GSTReportUser
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : selectedReportType === "Requirement" ? (
+          <Requirement
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : selectedReportType === "Selected" ? (
+          <Selected
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : null}
+        </>
+        ) : this.props.reportViewType === "ALL" && this.props.userorgflipClick ? (
+        <>
+          {this.props.selectedCategory === "Orders" ? (
+          <OrdeRepairOrgTab
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : this.props.selectedCategory === "Invoice" ? (
+          <InvoiceReportOrgTab
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : this.props.selectedCategory === "Production" ? (
+          <ProductionReportOrgTab
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : this.props.selectedCategory === "GST" ? (
+          <GSTReportOrg
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            selectedCategory={this.props.selectedCategory}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : selectedReportType === "Requirement" ? (
+          <OrgRequirement
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : selectedReportType === "Selected" ? (
+          <OrgSelected
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
+          ) : null}
+        </>
+        ) : null}
+      </Suspense>
       </div>
     );
   }

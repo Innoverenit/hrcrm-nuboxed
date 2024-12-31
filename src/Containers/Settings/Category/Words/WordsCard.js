@@ -12,7 +12,7 @@ function WordsCard(props) {
   const [editedValues, setEditedValues] = useState({});
 
   useEffect(() => {
-    props.getLangWords();
+    props.getLangWords(props.orgId);
   }, []);
 
   // Get languages, excluding only 'creationDate'
@@ -36,7 +36,7 @@ function WordsCard(props) {
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
-      props.searchWordsName(currentData);
+      props.searchWordsName(currentData,props.orgId);
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -45,7 +45,7 @@ function WordsCard(props) {
   const handleSave = (index) => {
     // Log the respective values including 'id'
     console.log(editedValues);
-    props.updateWords(editedValues,editedValues.id)
+    props.updateWords(editedValues,editedValues.id,props.orgId)
 
     // Dispatch an action to save the updated values if needed
     // props.updateLangWords(index, editedValues);
@@ -60,7 +60,7 @@ function WordsCard(props) {
 
     if (e.target.value.trim() === "") {
     //   setPage(pageNo + 1);
-    props.getLangWords();
+    props.getLangWords(props.orgId);
     //   props.ClearReducerDataOfLoad()
     }
   };
@@ -162,9 +162,10 @@ function WordsCard(props) {
   );
 }
 
-const mapStateToProps = ({ settings }) => ({
+const mapStateToProps = ({ settings,auth }) => ({
   langWords: settings.langWords,
   fetchingLangWords: settings.fetchingLangWords,
+  orgId:auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

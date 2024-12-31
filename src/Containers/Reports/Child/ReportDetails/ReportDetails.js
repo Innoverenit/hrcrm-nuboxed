@@ -45,6 +45,16 @@ class ReportDetails extends Component {
                       reportProspect={this.props.reportProspect}
                       reportLeads={this.props.reportLeads}
                       gettingReportLeads={this.props.gettingReportLeads}
+                      reportLeadsOrg={this.props.reportLeadsOrg}
+                      gettingReportLeadsOrg={this.props.gettingReportLeadsOrg}
+                      reportConvertedOrg={this.props.reportConvertedOrg}
+                      gettingReportConvertOrg={this.props.gettingReportConvertOrg}
+                      gettingReportConvert={this.props.gettingReportConvert}
+                      reportCallOrg={this.props.reportCallOrg}
+                      gettingReportCallOrg={this.props.gettingReportCallOrg}
+                      reportCall={this.props.reportCall}
+                      gettingReportCall={this.props.gettingReportCall}
+                      reportConverted={this.props.reportConverted}
                       selectedCategory={this.props.selectedCategory}
                       customer={customer} 
                       reportTask={this.props.reportTask}

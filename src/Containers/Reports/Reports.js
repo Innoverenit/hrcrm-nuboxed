@@ -1,7 +1,12 @@
 import React, {  Suspense, lazy,useState,useEffect } from "react";
 import { BundleLoader } from "../../Components/Placeholder";
 import { connect } from "react-redux";
-import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData,getReportLeads,getReportLeadsOrg } from "./ReportAction";
+import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData,getReportLeads,getReportLeadsOrg, 
+  getReportConvertedOrg,getReportConverted,
+  getReportCallOrg,
+  getReportCall
+
+} from "./ReportAction";
 import { bindActionCreators } from "redux";
 
 const ReportHeader =lazy(()=> import("./Child/ReportHeader"));
@@ -76,6 +81,19 @@ console.log(selectedTask)
       } else {
         props.getReportLeads(props.userId,props.endDate,props.startDate);
       }
+    }else if(selectedCategory==="Leads Converted"){
+      if (userorgflipClick) {
+        props.getReportConvertedOrg(props.orgId,props.endDate,props.startDate);
+      } else {
+        props.getReportConverted(props.userId,props.endDate,props.startDate);
+      }
+    }
+    else if(selectedCategory==="Calls"){
+      if (userorgflipClick) {
+        props.getReportCallOrg(props.orgId,props.endDate,props.startDate);
+      } else {
+        props.getReportCall(props.userId,props.endDate,props.startDate);
+      }
     }
 
     props.getTaskData(props.organizationId)
@@ -149,8 +167,16 @@ console.log(selectedTask)
           gettingReportProspect={props.gettingReportProspect}
           reportLeads={props.reportLeads}
           reportLeadsOrg={props.reportLeadsOrg}
+          reportConvertedOrg={props.reportConvertedOrg}
+          gettingReportConvertOrg={props.gettingReportConvertOrg}
+          gettingReportConvert={props.gettingReportConvert}
+          reportConverted={props.reportConverted}
           gettingReportLeadsOrg={props.gettingReportLeadsOrg}
           gettingReportLeads={props.gettingReportLeads}
+          reportCall={props.reportCall}
+          gettingReportCall={props.gettingReportCall}
+          reportCallOrg={props.reportCallOrg}
+          gettingReportCallOrg={props.gettingReportCallOrg}
           buttonData={buttonData}
           visibilityConditions={visibilityConditions}
           selectedCategory={selectedCategory}
@@ -191,6 +217,14 @@ const mapStateToProps = ({ auth, report }) => ({
   selectedSubReportType: report.selectedSubReportType,
   reportLeadsOrg:report.reportLeadsOrg,
   gettingReportLeadsOrg:report.gettingReportLeadsOrg,
+  reportConvertedOrg:report.reportConvertedOrg,
+  gettingReportConvertOrg:report.gettingReportConvertOrg,
+  gettingReportConvert:report.gettingReportConvert,
+  reportConverted:report.reportConverted,
+  reportCall:report.reportCall,
+  gettingReportCall:report.gettingReportCall,
+  reportCallOrg:report.reportCallOrg,
+  gettingReportCallOrg:report.gettingReportCallOrg,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -202,7 +236,12 @@ const mapDispatchToProps = (dispatch) =>
       getReportProspect,
       getReportTask,
       getReportLeads,
-      getReportLeadsOrg
+      getReportLeadsOrg,
+      getReportConvertedOrg,
+      getReportConverted,
+      getReportCallOrg,
+      getReportCall
+
     },
     dispatch
   );
