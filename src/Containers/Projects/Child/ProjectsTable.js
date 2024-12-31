@@ -105,7 +105,7 @@ function ProjectsTable(props) {
         confirm,
         clearFilters,
       }) => (
-        <div style={{ padding: 8 }}>
+        <div className=" p-1">
           <Input
             placeholder={`Search ${dataIndex}`}
             value={selectedKeys[0]}
@@ -183,8 +183,8 @@ function ProjectsTable(props) {
 
   return (
     <>
-        <div className=' flex justify-end sticky top-28 z-auto h-[90vh]'>
-            <OnlyWrapCard style={{ backgroundColor: "white" }}>
+        <div className=' flex  sticky z-auto h-[90vh]'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex font-poppins text-xs justify-between w-[98%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
                     <div className="w-[15.7rem] text-[#00A2E8] text-sm truncate max-md:w-[21.1rem]">{translatedMenuItems[0]}
                       {/* project  */}
@@ -221,10 +221,6 @@ function ProjectsTable(props) {
              &nbsp;&nbsp;
              {date === currentdate ? (
                <span
-                 style={{
-                  color: "tomato",
-                   fontWeight: "bold",
-                 }}
                >
                 <div class="text-[0.65rem] text-[tomato] font-bold">
                   {translatedMenuItems[2]} 
@@ -299,7 +295,7 @@ function ProjectsTable(props) {
                         </div>
                     )
                 })}
-            </OnlyWrapCard>
+            </div>
             <AddInvoiceProjectsModal
         // rowDataPass={rowDataPass}
         invoiceProjectModal={props.invoiceProjectModal}
