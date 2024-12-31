@@ -5627,10 +5627,10 @@ export const addSalary = (process, cb) => (dispatch) => {
     });
 };
 
-export const getLangWords = (word) => (dispath) => {
+export const getLangWords = (orgId,word) => (dispath) => {
   dispath({ type: types.GET_LANG_WORDS_REQUEST });
   axios
-    .get(`${login_url}/words/allWords`,{
+    .get(`${login_url}/words/allWords/${orgId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -6753,10 +6753,10 @@ export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
 
 
 
-export const updateWords = (data,id) => (dispatch) => {
+export const updateWords = (data,id,orgId) => (dispatch) => {
   dispatch({ type: types.UPDATE_WORDS_REQUEST });
   axios
-    .put(`${login_url}/words/${id}`, data, {
+    .put(`${login_url}/words/${id}/${orgId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -6779,12 +6779,12 @@ export const updateWords = (data,id) => (dispatch) => {
 
 
 
-export const searchWordsName = (word) => (dispatch) => {
+export const searchWordsName = (word,orgId) => (dispatch) => {
   dispatch({
     type: types.GET_WORDS_SEARCH_REQUEST,
   });
   axios
-    .get(`${login_url}/words/navLangSearch/${word}`, {
+    .get(`${login_url}/words/navLangSearch/${word}/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
