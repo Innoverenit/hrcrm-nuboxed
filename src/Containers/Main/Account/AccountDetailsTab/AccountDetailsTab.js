@@ -1032,8 +1032,8 @@ function AccountDetailsTab(props) {
             /> */}
       <Suspense fallback={<BundleLoader />}>
         <AddSupplierDocumentModal
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
+          // selectedLanguage={props.selectedLanguage}
+          // translateText={props.translateText}
           uniqueId={props.distributorData.distributorId}
           type={"distributor"}
           distributorId={props.distributorData.distributorId}

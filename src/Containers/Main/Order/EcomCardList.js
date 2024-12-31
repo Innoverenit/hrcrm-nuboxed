@@ -64,40 +64,40 @@ function EcomCardList(props) {
 const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-        "660",// 'Order',//0
-       "73", //  'Created', 1
-       "248",  // 'Customer',//2
-       "1209",// 'Shipping Address',3
-        "710",  // 'Billing Address',//4
-       "253", // 'Items',//5
-        "142",// 'Status',6    
-      "1210",  // 'Invoices',7
-       "1377",  // 'Ship',8
-     "100", //  New 9
-     "71" ,//Type 10
-     "880",//Inventory 11
-     "1169",// Invoice 12
-     "1486",// Track 13
-     "218",// Value 14
+// useEffect(() => {
+//     const fetchMenuTranslations = async () => {
+//       try {
+//         setLoading(true); 
+//         const itemsToTranslate = [
+//         "660",// 'Order',//0
+//        "73", //  'Created', 1
+//        "248",  // 'Customer',//2
+//        "1209",// 'Shipping Address',3
+//         "710",  // 'Billing Address',//4
+//        "253", // 'Items',//5
+//         "142",// 'Status',6    
+//       "1210",  // 'Invoices',7
+//        "1377",  // 'Ship',8
+//      "100", //  New 9
+//      "71" ,//Type 10
+//      "880",//Inventory 11
+//      "1169",// Invoice 12
+//      "1486",// Track 13
+//      "218",// Value 14
 
 
-      ];
-      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+//       ];
+//       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+//         setTranslatedMenuItems(translations);
+//         setLoading(false);
+//       } catch (error) {
+//         setLoading(false);
+//         console.error('Error translating menu items:', error);
+//       }
+//     };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+//     fetchMenuTranslations();
+//   }, [props.selectedLanguage]);
 
 
 
@@ -190,34 +190,34 @@ const {handleProcureNotesDrawerModal,
         <div className=" flex justify-between w-[77%]  p-1 bg-transparent font-poppins !text-lm font-bold sticky items-end z-10">
                         <div className="w-[7.2rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm truncate"> 
                           <DynamicFeedIcon className='!text-icon mr-1 '/>
-                          {translatedMenuItems[0]} ID</div>
+                          {props.translatedMenuItems[14]} ID</div>
                         <div className="w-[4.9rem] max-md:w-[5.14rem] truncate">
                           <ContactsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
-                          {translatedMenuItems[1]}</div>
+                          {props.translatedMenuItems[15]}</div>
                         <div className="w-[9.4rem] max-md:w-[9.4rem] flex truncate">
                           <ApartmentIcon className='!text-icon  text-[#606C38]'/>
-                          {translatedMenuItems[2]}</div>
+                          {props.translatedMenuItems[18]}</div>
                         {/* Customer */}
                         <div className="w-[13.4rem] max-md:w-[10.4rem] truncate">
                         <LocationOnIcon className='!text-icon  text-[#2B2D42]'/>
-                        {translatedMenuItems[3]}</div>
+                        {props.translatedMenuItems[62]}</div>
                         {/* Shipping */}
                         <div className="w-[13.09rem] max-md:w-[11.04rem] truncate">  
                           <TextSnippetIcon className='!text-icon  text-[#457B9D]'/>
-                      {translatedMenuItems[4]}</div>
+                      {props.translatedMenuItems[63]}</div>
                         {/* Billing */}
                         <div className="w-[3.4rem] max-md:w-[4.4rem] truncate">
                           <AddShoppingCartIcon className='!text-icon  text-[#B23A48]'/>
-                          {translatedMenuItems[5]}
+                          {props.translatedMenuItems[64]}
                           </div>
                         {/* item */}              
                         <div className="w-[7.8rem] max-md:w-[5.8rem] truncate"> 
                           <UpdateIcon className='!text-icon text-[#ff66b3]' /> 
-                          {translatedMenuItems[6]}
+                          {props.translatedMenuItems[16]}
                           </div>                 
                         <div className="w-[6.4rem] max-md:w-[5.4rem] truncate"> 
                         < MergeTypeIcon className='!text-icon text-[#c42847] '  /> 
-                          {translatedMenuItems[10]}                       
+                          {props.translatedMenuItems[68]}                       
                           </div>                     
         </div>
         <InfiniteScroll
@@ -227,7 +227,7 @@ const {handleProcureNotesDrawerModal,
           loader={props.fetchingEcomList?<div><BundleLoader/></div>:null}
           height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
-          endMessage={ <div class="flex font-poppins text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+          endMessage={ <div class="flex font-poppins text-center font-bold text-xs text-red-500">{props.translatedMenuItems[31]}. </div>}
         >
           {data.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
@@ -246,7 +246,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                             </div>
                             {date === currentDate ? (
                                 <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold" >
-                                 {translatedMenuItems[9]} {/* New */}
+                                 {props.translatedMenuItems[25]} {/* New */}
                                 </span>
                               ) : null}
                         </div>
@@ -313,7 +313,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                         <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>          <DataSaverOnIcon className=" !text-icon" /> 
-                  {translatedMenuItems[7]}
+                  {props.translatedMenuItems[66]}
                   </Button>
                         </div>
                         <div class="flex text-xs  items-center font-poppins  justify-center h-8 ml-gap  bg-[#eef2f9]">
@@ -332,7 +332,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
     />
           </div>                                                 
                         <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">                       
-                        <Tooltip title={translatedMenuItems[6]}
+                        <Tooltip title={props.translatedMenuItems[16]}
                         // "Status"
                                                                 
                                                             >
@@ -369,7 +369,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                     particularRowData={particularRowData}
          openInvoiceModal={openInvoiceModal}
          setopenInvoiceModal={setopenInvoiceModal}
-         translatedMenuItems={translatedMenuItems}
+         translatedMenuItems={props.translatedMenuItems}
          />
           <ProcureItemViewDrawer       
            particularRowData={particularRowData}
