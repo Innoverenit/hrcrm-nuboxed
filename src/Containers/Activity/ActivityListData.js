@@ -125,7 +125,7 @@ const ActivityListData = (props) => {
         
                         </div>
                         )}
-          <div class="flex  items-center  justify-end">
+          <div class="flex    justify-end">
            {(status.category === "Call" || status.category === "Event") && (
         
   <div class="">

@@ -1,16 +1,14 @@
+
 import React, {  lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { StyledTabs } from "../../../../../../Components/UI/Antd";
-import ActivityForm from "../../../../../Activity/ActivityForm";
-// const AcitivityCallForm = lazy(() => import("./AcitivityCallForm"));
-// const ActivityEventForm = lazy(() => import("./ActivityEventForm"));
-// const ActivityTaskForm = lazy(() => import("./ActivityTaskForm"));
+import { BundleLoader } from "../../../../../Components/Placeholder";
+import { StyledDrawer } from "../../../../../Components/UI/Antd";
+import { StyledTabs } from "../../../../../Components/UI/Antd";
+import ActivityForm from "../../../../Activity/ActivityForm";
 
 const TabPane = StyledTabs.TabPane;
-function AddShipperActivityModal (props) {
+function AddcontactActivityModal (props) {
    const {
             callActivityModal,
             handleCallActivityModal,
@@ -32,23 +30,7 @@ function AddShipperActivityModal (props) {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        {/* <StyledTabs defaultActiveKey="1">
-                            <TabPane tab={`Call`} key="1">
-                                <div style={{ marginTop: 20 }}>
-                                    <AcitivityCallForm />
-                                </div>
-                            </TabPane>
-                            <TabPane tab={`Event`} key="2">
-                                <div style={{ marginTop: 20 }}>
-                                    <ActivityEventForm />
-                                </div>
-                            </TabPane>
-                            <TabPane tab={`Task`} key="3">
-                                <div style={{ marginTop: 20 }}>
-                                    <ActivityTaskForm/>
-                                </div>
-                            </TabPane>
-                        </StyledTabs> */}
+                     
                         <ActivityForm
            defaultValue={props.defaultValue}
            uniqueId={props.uniqueId}
@@ -69,4 +51,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddShipperActivityModal);
+)(AddcontactActivityModal);
