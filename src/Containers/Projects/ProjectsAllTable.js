@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import { OnlyWrapCard } from "../../Components/UI/Layout";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const UpdateProjectsModal =lazy(()=> import('./Child/UpdateProject/UpdateProjectsModal'));
 const AddInvoiceProjectsModal =lazy(()=> import('./Child/ProjectsDetail/AddInvoiceProjectsModal'));
 
@@ -184,21 +185,22 @@ function ProjectsAllTable(props) {
       <div className=' flex justify-end sticky top-28 z-auto h-[90vh]'>
             <OnlyWrapCard style={{ backgroundColor: "white" }}>
             <div className=" flex font-poppins text-xs justify-between w-[98%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-                    <div className="w-[26.7rem] text-[#00A2E8] text-sm truncate max-md:w-[21.1rem]">{translatedMenuItems[0]}
+                    <div className="w-[15.7rem] text-[#00A2E8] text-sm truncate max-md:w-[21.1rem]">{translatedMenuItems[0]}
                       {/* project  */}
                       </div>
-                    <div className="w-[19.1rem] truncate max-md:w-[27.1rem]">
+                    <div className="w-[12.1rem] truncate max-md:w-[27.1rem]">
                     <AcUnitIcon  className="!text-icon text-[#4f5d75]  "/>
                       {translatedMenuItems[1]}
                       {/* customer */}
                       </div>
-                    <div className="w-[18.8rem] truncate max-md:w-[9.8rem] ">
+                    <div className="w-[10.8rem] truncate max-md:w-[9.8rem] ">
                     
                     <AccountCircleIcon  className="!text-icon  text-[#C1121F]  " />
                    
                     {/* {translatedMenuItems[2]}        */}          
                     Owner</div>
-                    <div className="w-[13.8rem] truncate max-md:w-[5.8rem]"></div>
+                    <div className="w-[5.8rem] truncate max-md:w-[5.8rem]"><DateRangeIcon className="!text-icon text-[green]"/>Start Date</div>
+                    <div className="w-[6.8rem] truncate max-md:w-[5.8rem]"><DateRangeIcon className="!text-icon text-[teal]"/>End Date</div>
                     
                 </div>
                 {props.projectsData.map((item) => {
