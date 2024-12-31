@@ -6,8 +6,7 @@ import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
-  TabsWrapper,
-} from "../../../../../Components/UI/Layout";
+  TabsWrapper,} from "../../../../../Components/UI/Layout";
 import { Badge, message, Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ContactsIcon from '@mui/icons-material/Contacts';
