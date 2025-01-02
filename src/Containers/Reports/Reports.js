@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData,getReportLeads,getReportLeadsOrg, 
   getReportConvertedOrg,getReportConverted,
   getReportCallOrg,
-  getReportCall
+  getReportCall,
+  getReportEvent,
+  emptyClearEvent
 
 } from "./ReportAction";
 import { bindActionCreators } from "redux";
@@ -94,6 +96,14 @@ console.log(selectedTask)
       } else {
         props.getReportCall(props.userId,props.endDate,props.startDate);
       }
+    }
+    else if(selectedCategory==="Events"){
+      if (userorgflipClick) {
+        props.getReportEvent(props.orgId,"org",props.endDate,props.startDate);
+      } else {
+        props.getReportEvent(props.userId,"user",props.endDate,props.startDate);
+      }
+      props.emptyClearEvent();
     }
 
     props.getTaskData(props.organizationId)
@@ -188,6 +198,8 @@ console.log(selectedTask)
           handleButtonIcon={handleButtonIcon}
           UserOrgFlipClick={UserOrgFlipClick}
           userorgflipClick={userorgflipClick}
+          gettingReportEvent={props.gettingReportEvent}
+          reportEvent={props.reportEvent}
           />
         </Suspense>
       </React.Fragment>
@@ -225,6 +237,8 @@ const mapStateToProps = ({ auth, report }) => ({
   gettingReportCall:report.gettingReportCall,
   reportCallOrg:report.reportCallOrg,
   gettingReportCallOrg:report.gettingReportCallOrg,
+  gettingReportEvent:report.gettingReportEvent,
+  reportEvent:report.reportEvent,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -240,8 +254,9 @@ const mapDispatchToProps = (dispatch) =>
       getReportConvertedOrg,
       getReportConverted,
       getReportCallOrg,
-      getReportCall
-
+      getReportCall,
+      getReportEvent,
+      emptyClearEvent
     },
     dispatch
   );

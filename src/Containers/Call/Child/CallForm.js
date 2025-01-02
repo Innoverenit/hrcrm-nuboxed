@@ -7,7 +7,7 @@ import InputIcon from '@mui/icons-material/Input';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import { Button,  Switch, Tooltip,Select } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field, FastField,ErrorMessage } from "formik";
 import * as Yup from "yup";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
@@ -54,10 +54,10 @@ const CallSchema = Yup.object().shape({
     .nullable()
     .required("Input required !"),
 
-  startTime: Yup.string()
+    startDate: Yup.string()
     .nullable()
     .required("Input required !"),
-  endTime: Yup.string()
+    endDate: Yup.string()
     .nullable()
     .required("Input required !"),
 
@@ -415,7 +415,12 @@ function CallForm(props) {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
-
+  const formatToISOWithZ = (datetime) => {
+    const date = new Date(datetime);
+    const timezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const adjustedDate = new Date(date.getTime() - timezoneOffset);
+    return adjustedDate.toISOString();
+  };
    return (
       <>
         <Formik
@@ -435,11 +440,8 @@ function CallForm(props) {
                 remindTime: "",
                 candidate: "",
                 complitionInd: "Incomplete",
-                startDate: startDate || dayjs(),
-                startTime: startDate || null,
-                endDate: endDate || null,
-                endTime: endDate || null,
-
+                startDate: '', 
+                endDate: '',
                 callResult: "",
                 callDescription: "",
 
@@ -453,92 +455,17 @@ function CallForm(props) {
           validationSchema={CallSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            let timeZoneFirst = values.timeZone;
-            console.log(timeZone);
-
-            let mytimeZone = timeZoneFirst.substring(4, 10);
-            console.log(mytimeZone);
-
-            var a = mytimeZone.split(":");
-            console.log(a);
-            var timeZoneminutes = +a[0] * 60 + +a[1];
-            console.log(timeZoneminutes);
-            if (!values.endDate) {
-              values.endDate = values.startDate;
-            }
-            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
-            console.log(newStartDate);
-            //Time calculation
-            let firstStartTime = dayjs(values.startTime).format(
-              "HH:mm:ss.SSS[Z]"
-            ); // getting start time from form input
-            console.log(firstStartTime);
-
-            let firstStartHours = firstStartTime.substring(0, 5); // getting only hours and minutes
-            console.log(firstStartHours);
-
-            let timeEndPart = firstStartTime.substring(5, 13); // getting seconds and rest
-            console.log(timeEndPart);
-
-            var firstStartTimeSplit = firstStartHours.split(":"); // removing the colon
-            console.log(firstStartTimeSplit);
-
-            var minutes =
-              +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1]; // converting hours into minutes
-            console.log(minutes);
-
-            var firstStartTimeminutes = minutes - timeZoneminutes; // start time + time zone
-            console.log(firstStartTimeminutes);
-
-            let h = Math.floor(firstStartTimeminutes / 60); // converting to hours
-            let m = firstStartTimeminutes % 60;
-            h = h < 10 ? "0" + h : h;
-            m = m < 10 ? "0" + m : m;
-            let finalStartTime = `${h}:${m}`;
-            console.log(finalStartTime);
-
-            let newStartTime = `${finalStartTime}${timeEndPart}`;
-            console.log(newStartTime);
-
-            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
-            console.log(firstEndTime);
-            let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
-            console.log(firstEndHours);
-
-            var firstEndTimeSplit = firstEndHours.split(":"); // removing the colon
-            console.log(firstEndTimeSplit);
-            var endMinutes = +firstEndTimeSplit[0] * 60 + +firstEndTimeSplit[1]; // converting hours into minutes
-            console.log(endMinutes);
-            var firstEndTimeminutes = Math.abs(endMinutes - timeZoneminutes); // start time + time zone
-            console.log(firstEndTimeminutes);
-            let hr = Math.floor(firstEndTimeminutes / 60); // converting to hours
-            console.log(hr);
-            let mi = firstEndTimeminutes % 60;
-            console.log(hr);
-            hr = hr < 10 ? "0" + hr : hr;
-            mi = mi < 10 ? "0" + mi : mi;
-            let finalEndTime = `${hr}:${mi}`;
-            console.log(finalEndTime);
-            console.log(timeEndPart);
-            console.log(`${finalEndTime}${timeEndPart}`);
-
-            let newEndTime = `${finalEndTime}${timeEndPart}`;
+          
             let testVal = {
               ...values,
               callCategory: category,
               callType: Type,
               included:selectedIncludeValues,
-              // startDate: `${newStartDate}T${newStartTime}`,
-              // endDate: `${newEndDate}T${newEndTime}`,
-              startDate: `${newStartDate}T20:00:00Z`,
-              endDate: `${newEndDate}T20:00:00Z`,
+              startDate: formatToISOWithZ(values.startDate),
+              endDate: formatToISOWithZ(values.endDate),
               contactId: selectedContact,
               opportunityId:selectedOpportunity,
               customerId: selectedCustomer,
-              // startTime: values.startTime?values.startTime:null,
-              startTime: 0,
-              endTime: 0,
               assignedTo: selectedOption ? selectedOption.employeeId:userId,
             };
             isEditing
@@ -548,15 +475,9 @@ function CallForm(props) {
                   ...values,
                   callCategory: category,
                   callType: Type,
-              
                   customerId:selectedCustomer,
                   contactId: selectedContact,
                   opportunityId:selectedOpportunity,
-                  startTime: values.startTime?values.startTime:null,
-                  startDate: `${newStartDate}T20:00:00Z`,
-                  endDate: `${newEndDate}T20:00:00Z`,
-                  // startTime: 0,
-                  endTime: 0,
                   assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 },
                 () => handleCallback(resetForm)
@@ -738,48 +659,35 @@ function CallForm(props) {
                     width={"100%"}
                     inlineLabel
                   />
-           <div class="mt-3">
-          <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
-                  <Field
-                    name="startDate"
-                    // label="Date"                
-                    component={DatePicker}
-                    isColumn
-                    width={"100%"}
-                    value={values.startDate}
-                    inlineLabel
-                  />
-                  </div>
                   <div class=" flex mt-3 justify-between max-sm:flex-col">
                     <div class=" w-5/12 max-sm:w-wk">
-                    {/* start
-      /> */}        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>   
-                    <Field
-                        name="startTime"
-                        // label="Start Time"
-                       
-                        component={TimePicker}
-                        isRequired
-                        isColumn
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                       
-                      />
+    
+               <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>   
+                       <Field
+             type="datetime-local"
+              id="startDate"
+              name="startDate"
+              className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <ErrorMessage
+              name="startDate"
+              component="div"
+              className="text-red-600 text-sm mt-1"
+            />
                     </div>
                     <div class=" w-5/12 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
-                      <Field
-                        name="endTime"
-                        // label="End Time"                 
-                        component={TimePicker}
-                        use12Hours
-                        isRequired
-                        isColumn
-                        value={values.endTime}
-                        // inlineLabel
-                       
-                      />
+                       <Field
+             type="datetime-local"
+              id="endDate"
+              name="endDate"
+              className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <ErrorMessage
+              name="endDate"
+              component="div"
+              className="text-red-600 text-sm mt-1"
+            />
                     </div>
                   </div>
                   <div class="mt-3">
@@ -1043,3 +951,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CallForm);
+
