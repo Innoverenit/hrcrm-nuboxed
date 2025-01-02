@@ -111,7 +111,7 @@ const RequirementTable = (props) => {
 
       let result={
         recruitmentId:item.recruitmentId,
-recruiterId:selectedIds
+        recruiterIds:selectedIds
       }
 
       props.updateRecruiterData(result)
