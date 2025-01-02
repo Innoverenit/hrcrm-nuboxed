@@ -133,7 +133,7 @@ const FeedBack = (props) => {
                 style={{ backgroundColor: "tomato", color: "white" }}
                 onClick={handleaddFeedBack}
               >
-                <AddIcon className="!text-icon" /> Add
+                <AddIcon className="!text-icon" /> Add 
               </button>
             )}
           </div>
@@ -187,7 +187,7 @@ const FeedBack = (props) => {
                       {editingId === region.feedbackId ? (
                         <div>
                           <button
-                            className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                            className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1" 
                             onClick={() => handleupdateFeedBack(region)}
                           >
                             Save
