@@ -65,7 +65,8 @@ class ReportDetails extends Component {
           userorgflipClick={this.props.userorgflipClick}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
-
+          gettingReportEvent={this.props.gettingReportEvent}
+          reportEvent={this.props.reportEvent}
                       />
                     </div>
                   </div>

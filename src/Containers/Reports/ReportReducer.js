@@ -10,6 +10,10 @@ const initialState = {
     gettingReportLeadsError: false,
     reportLeads:[],
 
+    gettingReportEvent: false,
+    gettingReportEventError: false,
+    reportEvent:[],
+
     gettingReportLeadsOrg: false,
           gettingReportLeadsOrgError: true,
           reportLeadsOrg:[],
@@ -390,6 +394,26 @@ export const reportReducer = (state = initialState, action) => {
               gettingReportCallOrg: false,
               gettingReportCallOrgError: true,
             };
+
+            case types.GET_REPORT_EVENT_REQUEST:
+            return { ...state, gettingReportEvent: true };
+      
+          case types.GET_REPORT_EVENT_SUCCESS:
+            return {
+              ...state,
+              gettingReportEvent: false,
+              reportEvent: action.payload,
+            };
+      
+          case types.GET_REPORT_EVENT_FAILURE:
+            return {
+              ...state,
+              gettingReportEvent: false,
+              gettingReportEventError: true,
+            };
+
+             case types.EMPTY_EVENT_TABLE:
+                    return { ...state,  reportEvent: [] };
 
 
         case types.SET_SELECTED_REPORT_TYPE:

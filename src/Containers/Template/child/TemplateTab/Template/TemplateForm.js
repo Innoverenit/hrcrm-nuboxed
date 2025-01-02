@@ -60,10 +60,8 @@ function TemplateForm(props) {
       setTouched(true);
     }
   };
-  const handleSelectChange = (value) => {
-    setSelectedCatlouge(value)
-
-    console.log('Selected user:', value);
+  const handleSelectChange = (productId) => {
+    setSelectedCatlouge(productId)
   };
   function onEditorStateChange(editorState) {
     console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -183,8 +181,8 @@ function TemplateForm(props) {
         onChange={handleSelectChange}
       >
         {catalouge.map(item => (
-          <Option key={item.sourceId} value={item.sourceId}>
-            {item.name}
+          <Option key={item.productId} value={item.productId}>
+            {item.productFullName}
           </Option>
         ))}
       </Select>
@@ -322,6 +320,7 @@ const mapStateToProps = ({ rule, settings,customer,auth }) => ({
   userId: auth.userDetails.userId,
   customerByUserId: customer.customerByUserId,
   signatureInd: settings.signatureInd && settings.signatureInd,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

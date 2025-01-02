@@ -8,6 +8,7 @@ import ReportsConvertedList from "./ReportsConvertedList";
 import ReportsConvertedListOrg from "./ReportsConvertedListOrg";
 import ReportsCallListOrg from "./ReportsCallListOrg";
 import ReportsCallList from "./ReportsCallList";
+import ReportsEventList from "./ReportsEventList";
 
 const ReportsAttendenceCard=lazy(()=>import  ("../ReportDetails/ReportsAttendenceCard"));
 const ReportsTaskList = lazy(()=>import("../ReportDetails/ReportsTaskList"));
@@ -70,6 +71,14 @@ class ReportDetailRight extends Component {
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         />
+        ): this.props.selectedCategory === "Events" ? (
+          <ReportsEventList
+          gettingReportEvent={this.props.gettingReportEvent}
+          reportEvent={this.props.reportEvent}
+            allReportInvestors={this.props.allReportInvestors}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          />
         ) : this.props.selectedCategory === "Leads Generated" ? (
         this.props.userorgflipClick ? (
           <ReportsLeadsListOrg

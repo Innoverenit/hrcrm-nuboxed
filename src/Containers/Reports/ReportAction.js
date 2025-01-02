@@ -357,6 +357,40 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
   };
 
 
+  export const getReportEvent = (id,type, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_EVENT_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/event/list/report/${id}/${type}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_EVENT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_EVENT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const emptyClearEvent = () => (dispatch) => {
+    dispatch({
+      type: types.EMPTY_EVENT_TABLE,
+      
+    });
+  };
+
   export const getReportTask = (userId, startDate, endDate,type) => (dispatch) => {
     dispatch({
       type: types.GET_REPORT_TASK_REQUEST,
