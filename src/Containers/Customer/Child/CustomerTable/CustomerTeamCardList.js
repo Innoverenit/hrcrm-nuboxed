@@ -656,8 +656,8 @@ className="cursor-pointer text-xs font-poppins">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         {props.user.aiInd && (
    <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-{/* {item.noteScoreInd} */}
-<div>
+{item.noteScoreInd}
+{/* <div>
                       {editableField?.customerId === item.customerId &&
    editableField?.field === 'noteScoreInd' ? (
 <Input
@@ -677,7 +677,7 @@ className="cursor-pointer text-xs font-poppins">
     {item.noteScoreInd  || "Update..."}
     </div> 
 )}                 
-                      </div>
+                      </div> */}
     </div>
     )}
                         <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
