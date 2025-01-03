@@ -475,9 +475,11 @@ strokeColor={"#005075"}
                     strokeWidth="0.5"
                     fill={
                       clickedArrow === stage.stagesId
-                        ? "rgba(9, 191, 45, 0.6)" // Change color to red if this arrow is clicked
-                        : "rgba(88, 93, 89, 0.6)"
-                    }
+                      ? "rgba(9, 191, 45, 0.6)" // Color when the arrow is clicked
+                      : stage.stageName === item.oppStage
+                      ? "rgba(9, 191, 45, 0.6)" // Color when stageName matches oppStage
+                      : "rgba(88, 93, 89, 0.6)" // Default color
+                  }
                   />
                 </g>
               </svg>
