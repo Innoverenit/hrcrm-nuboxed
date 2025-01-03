@@ -25,7 +25,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function ReportsLeadsList(props) {
+function ReportsCallListOrg(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
@@ -79,7 +79,7 @@ function ReportsLeadsList(props) {
 
 
 console.log(page)
-if(props.gettingReportLeads){
+if(props.gettingReportCallOrg){
     return <BundleLoader/>
 }
 const {user}=props
@@ -124,7 +124,7 @@ const {user}=props
           </div>
        
 
-            {!props.gettingReportLeads && props.reportLeads.length === 0 ? <EmptyPage/> : props.reportLeads.map((item, index) => {
+            {!props.gettingReportCallOrg && props.reportCallOrg.length === 0 ? <EmptyPage/> : props.reportCallOrg.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const diff = Math.abs(
@@ -424,5 +424,5 @@ const mapDispatchToProps = (dispatch,) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ReportsLeadsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsCallListOrg);
 

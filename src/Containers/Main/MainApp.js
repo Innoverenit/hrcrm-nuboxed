@@ -411,7 +411,7 @@ function MainApp(props) {
   };
 
   const translateText = async (text, targetLanguage) => {
-    const url = `${login_url}/words/convertWordsById`;
+    const url = `${login_url}/words/convertWordsById/${props.orgId}`;
 
     const response = await fetch(url, {
       method: 'POST',

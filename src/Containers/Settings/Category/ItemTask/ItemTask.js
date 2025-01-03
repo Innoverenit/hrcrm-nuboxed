@@ -139,7 +139,7 @@ const ItemTask = (props) => {
           {addingRegion ? (
             <div>
               <input
-                style={{ border: "2px solid black", width: "53%" }}
+                className="border-2 border-black w-[53%]"
                 type="text"
                 placeholder="Add Repair Task"
                 value={newItemTaskName}
@@ -156,8 +156,12 @@ const ItemTask = (props) => {
                 <Option value="L2">L2</Option>
                 <Option value="L3">L3</Option>
               </Select>
-              <button loading={props.addingItemTask} onClick={handleItemTaskLine}>Save</button>
-              <button onClick={handleCancelAdd}>Cancel</button>
+              <button
+              className="bg-green-400 text-white border-none p-2.5 rounded-md mr-1 ml-1"
+              loading={props.addingItemTask} onClick={handleItemTaskLine}>Save</button>
+              <button
+              className="bg-red-400 text-white border-none p-2.5 rounded-md mr-1 ml-1"
+               onClick={handleCancelAdd}>Cancel</button>
             </div>
           ) : (
             <button style={{ backgroundColor: "tomato", color: "white" }} onClick={handleAddItemTask}>
@@ -205,8 +209,12 @@ const ItemTask = (props) => {
                 <div className="justify-end">
                   {editingId === region.itemTaskId ? (
                     <div>
-                      <button onClick={() => handleUpdateRegion(region)}>Save</button>
-                      <button onClick={cancelEdit}>Cancel</button>
+                      <button 
+                      className="bg-green-400 text-white border-none p-2.5 rounded-md mr-1 ml-1"
+                      onClick={() => handleUpdateRegion(region)}>Save</button>
+                      <button 
+                      className="bg-red-400 text-white border-none p-2.5 rounded-md mr-1 ml-1"
+                      onClick={cancelEdit}>Cancel</button>
                     </div>
                   ) : (
                     <BorderColorIcon className="!text-icon text-red-600 cursor-pointer" onClick={() => editRegion(region.itemTaskId, region.name, region.level)} />

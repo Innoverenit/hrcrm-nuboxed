@@ -9,6 +9,8 @@ import { FlexContainer, TabsWrapper } from "../../../../Components/UI/Layout";
 import ShipperActivityTable from "./ShipperDetailsTab/ShipperActivityTab/ShipperActivityTable";
 import AddShipperActivityModal from "./ShipperDetailsTab/ShipperActivityTab/AddShipperActivityModal";
 import { handleShipperActivityModal } from "../ShipperAction";
+import ActivityListData from "../../../Activity/ActivityListData";
+import { handleCallActivityModal } from "../../../Activity/ActivityAction";
 const ShipperOverViewCard =lazy(()=>import("./ShipperCards/ShipperOverViewCard"));
 const ShipperDetailCard =lazy(()=>import("./ShipperCards/ShipperDetailCard"));
 // const ShipperOverViewDetailCard =lazy(()=>import("./ShipperCards/ShipperOverViewDetailCard"));
@@ -24,7 +26,10 @@ class ShipperDetailLeft extends Component {
   
   handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
-    const { shipper } = this.props;
+    const { shipper,
+      callActivityModal,
+      handleCallActivityModal,
+     } = this.props;
     const { activeKey } = this.state;
     return (
       <>
@@ -57,11 +62,9 @@ class ShipperDetailLeft extends Component {
  text-[#6f0080ad]"
                                                
                                                 tooltipTitle="Create"
-                                                onClick={() => {
-                                                    this.props.handleShipperActivityModal(true);
-                                                }}
-                                              
-                                            />
+                                                onClick={() =>
+                                                  handleCallActivityModal(true)
+                                                } />
                                         </Tooltip>
                     </>
                   )}
@@ -70,11 +73,15 @@ class ShipperDetailLeft extends Component {
               // key="1"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperActivityTable
-                  // shipperId={this.props.shipper.shipperId}
-                  translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}
-                />
+  <ActivityListData
+       uniqueId={this.props.shipper.shipperId}
+       type={"shipper"}
+       shipper={this.props.shipper}
+           shipperId={this.props.shipper.shipperId}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+          /> 
               </Suspense>
             </TabPane>
                   </StyledTabs>
@@ -90,8 +97,8 @@ class ShipperDetailLeft extends Component {
         <AddShipperActivityModal
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
-                    addShipperActivityModal={this.props.addShipperActivityModal}
-                    handleShipperActivityModal={this.props.handleShipperActivityModal}
+         callActivityModal={callActivityModal}
+         handleCallActivityModal={handleCallActivityModal}
                     defaultValue={[{ label: this.props.shipper.name, value: this.props.shipper.shipperId }]}
                     shipperId={{ value: this.props.shipper.shipperId }}
                     uniqueId={this.props.shipper.shipperId}
@@ -104,28 +111,17 @@ class ShipperDetailLeft extends Component {
     );
   }
 }
-const mapStateToProps = ({ shipper, auth, suppliers }) => ({
+const mapStateToProps = ({ shipper, auth, activity }) => ({
   userId: auth.userDetails.userId,
   ownerId: shipper.shipperDetailsByShipperId.userId,
-  addLinkShipperOrderConfigureModal: shipper.addLinkShipperOrderConfigureModal,
-  addShipperSubscriptionConfigureModal:
-    shipper.addShipperSubscriptionConfigureModal,
-    addLinkShipperCostModal:shipper.addLinkShipperCostModal,
-  addShipperActivityModal: shipper.addShipperActivityModal,
-  orderForGenerating: shipper.orderForGenerating,
-  shipperShipperId: shipper.shipperDetailsByShipperId.shipperId,
-  shipperDocumentUploadModal: shipper.shipperDocumentUploadModal,
-  shipperContactModal: shipper.shipperContactModal,
-  addSupplierContactModal: suppliers.addSupplierContactModal,
-  supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
-  documentCountSupplierId:suppliers.documentCountSupplierId
+  callActivityModal:activity.callActivityModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
     
-      handleShipperActivityModal,
+      handleCallActivityModal,
     
     },
     dispatch

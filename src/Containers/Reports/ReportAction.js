@@ -248,6 +248,149 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
       });
   };
 
+  export const getReportConvertedOrg = (orgId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_CONVERT_ORG_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/leads/qualified-leads/list/for-report/enterprise/${orgId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_CONVERT_ORG_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_CONVERT_ORG_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getReportConverted = (userId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_CONVERT_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/leads/qualified-leads/list/for-report/self/${userId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_CONVERT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_CONVERT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getReportCall = (userId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_CALL_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/call/self-list/${userId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_CALL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_CALL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getReportCallOrg = (orgId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_CALLORG_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/call/org-list/${orgId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_CALLORG_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_CALLORG_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+  export const getReportEvent = (id,type, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_EVENT_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/event/list/report/${id}/${type}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_EVENT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_EVENT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const emptyClearEvent = () => (dispatch) => {
+    dispatch({
+      type: types.EMPTY_EVENT_TABLE,
+      
+    });
+  };
+
   export const getReportTask = (userId, startDate, endDate,type) => (dispatch) => {
     dispatch({
       type: types.GET_REPORT_TASK_REQUEST,

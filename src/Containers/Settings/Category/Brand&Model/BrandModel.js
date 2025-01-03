@@ -176,12 +176,15 @@ const BrandModel = (props) => {
                 {modelError && <div style={{ color: "red", marginTop: "5px" }}>{modelError}</div>}
 
                 <button
+                 className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
                   onClick={handleBrandModel}
                   disabled={!newBrandModelName.trim() || !newModelName.trim()}
                 >
                   Save
                 </button>
-                <button onClick={handleCancelAdd}>Cancel</button>
+                <button
+                className="bg-red-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                 onClick={handleCancelAdd}>Cancel</button>
               </div>
             ) : (
               <button
@@ -206,7 +209,7 @@ const BrandModel = (props) => {
                 >
                   {editingId === region.phoneMasterListId ? (
                     <input
-                      style={{ border: "2px solid black" }}
+                      className="border-2 border-gray mr-1 ml-1"
                       type="text"
                       value={newBrandModelName}
                       onChange={(e) => setBrandModelName(e.target.value)}
@@ -216,7 +219,7 @@ const BrandModel = (props) => {
                   )}
                   {editingId === region.phoneMasterListId ? (
                     <input
-                      style={{ border: "2px solid black" }}
+                      className="border-2 border-gray mr-1 ml-1"
                       type="text"
                       value={newModelName}
                       onChange={(e) => setModelName(e.target.value)}

@@ -25,7 +25,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function ReportsLeadsList(props) {
+function ReportsEventList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
@@ -79,7 +79,7 @@ function ReportsLeadsList(props) {
 
 
 console.log(page)
-if(props.gettingReportLeads){
+if(props.gettingReportEvent){
     return <BundleLoader/>
 }
 const {user}=props
@@ -124,7 +124,7 @@ const {user}=props
           </div>
        
 
-            {!props.gettingReportLeads && props.reportLeads.length === 0 ? <EmptyPage/> : props.reportLeads.map((item, index) => {
+            {!props.gettingReportEvent && props.reportEvent.length === 0 ? <EmptyPage/> : props.reportEvent.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const diff = Math.abs(
@@ -158,7 +158,7 @@ const {user}=props
                                 <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
-                                    {item.name}
+                                    {item.eventId}
                                   </Link>
 
                                   &nbsp;&nbsp;
@@ -179,7 +179,7 @@ const {user}=props
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {`${item.countryDialCode} ${item.phoneNumber}`}
+                        
                         </div>
 
                       </div>
@@ -187,7 +187,7 @@ const {user}=props
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.sector}
+                         
                         </div>
 
                       </div>
@@ -197,14 +197,14 @@ const {user}=props
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.source}
+                        
                         </div>
 
                       </div>
                       <div className=" flex font-medium max-sm:w-auto  justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
-                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                      
                         <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                          
                         </div>
@@ -212,10 +212,10 @@ const {user}=props
 
 
                       <div className=" flex font-medium  max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                       
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.oppNo}
+                        
 
                         </div>
                       </div>
@@ -223,172 +223,28 @@ const {user}=props
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
                        
-                            {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue/1000}K`}
-      </div>
-    )}
+                           
                       </div>
-                      {/* <div className=" flex font-medium  md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex font-medium  md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
                                     <div class=" text-xs  font-poppins text-center">
-                                    {item.weight}
+                               
 
                                     </div>
-                                </div> */}
+                                </div>
                       <div className=" flex font-medium items-center max-sm:w-auto   w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                       
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                          <div>
-                            {item.assignedTo === null ? (
-                              <div class="text-xs  font-poppins">None</div>
-                            ) : (
-                              <>
-                                {item.assignedTo === item.ownerName ? (
-
-                                  null
-                                ) : (
-                                  <MultiAvatar2
-                                    primaryTitle={item.assignedTo}
-                                    imgWidth={"1.8rem"}
-                                    imgHeight={"1.8rem"}
-                                  />
-                                )}
-                              </>
-                            )}
-                          </div>
+                         
 
                         </div>
                       </div>
-                      <div className=" flex font-medium items-center max-sm:w-auto  w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
-                          <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
-                              <MultiAvatar
-                                primaryTitle={item.ownerName}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.9rem"}
-                                imgHeight={"1.9rem"}
-                              />
-                            </Tooltip>
-                          </div>
-                        </Tooltip>
-                      </div>
+                     
                     </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                  
-
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
-                        <div>
-                          <Tooltip title={item.url}>
-                            {item.url !== "" ? (
-                              <div
-                                //type="edit"
-                                style={{ cursor: "pointer" }}
-                                onClick={() => { }}
-                              >
-                                {" "}
-                                <a href={`https://${item.url}`} target="_blank">
-                                  <ExploreIcon
-                                    className=" !text-icon cursor-pointer text-[green]"
-
-                                  />
-                                </a>
-                              </div>
-                            )
-                              : <div class=" w-3">
-
-                              </div>
-                            }
-                          </Tooltip>
-
-                        </div>
-                        <div>
-                          <div  >
-                            {" "}
-                            {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                            />}
-                          </div>
-                        </div>
-                        <div>
-
-
-                        </div>
-                      </div>
-
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
-                          <Tooltip title={translatedMenuItems[13]}>
-                            <ContactsIcon
-                              className=" !text-icon cursor-pointer text-[#709ab3]"
-                           
-                            />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <Tooltip title={translatedMenuItems[14]}>
-                            <LightbulbIcon
-                              className=" !text-icon cursor-pointer text-[#AF5910]"
-                           
-                            />
-                          </Tooltip>
-
-                        </div>
-                      </div>
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
-                          <Tooltip title= {translatedMenuItems[15]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                            
-
-                            />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <Tooltip title= {translatedMenuItems[16]}>
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#28a355]"
-                           
-
-                            />
-                          </Tooltip>
-
-                        </div>
-                      </div>
-
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-                        <div >
-                          <Tooltip overlayStyle={{ maxWidth: "300px" }} >
-
-                            <LocationOnIcon
-                              className=" !text-icon cursor-pointer text-[#960A0A]"
-
-                            />
-
-                          </Tooltip>
-                        </div>
-                        <div>
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title={translatedMenuItems[17]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                              
-                              />
-                            </Tooltip>
-                          )}
-                      
-
-                        </div>
-                      </div>
-
-                    </div>
+                   
                   </div>
                 </div>
 
@@ -424,5 +280,5 @@ const mapDispatchToProps = (dispatch,) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ReportsLeadsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsEventList);
 
