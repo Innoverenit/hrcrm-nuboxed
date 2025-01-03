@@ -222,11 +222,6 @@ export const investorReducer = (state = initialState, action) => {
         fetchingInvestors: false,
         fetchingInvestorsError: true,
       };
-        return {
-          ...state,
-          fetchingTeamUserList: false,
-          fetchingTeamUserListError: true,
-        };
       case types.GET_INVESTORS_DELETELIST_REQUEST:
       return { ...state, fetchingDeleteInvestors: true };
     case types.GET_INVESTORS_DELETELIST_SUCCESS:
@@ -1017,7 +1012,14 @@ export const investorReducer = (state = initialState, action) => {
                                                     return {
                                                       ...state,
                                                       creatingUpdateInvestorShare: false,
-                                                      inventoryShare: [action.payload, ...state.inventoryShare]
+                                                      inventoryShare: state.inventoryShare.map((item) => {
+                                                        if (item.investorsShareId === action.payload.investorsShareId) {
+                                                          return action.payload;
+                                                        } else {
+                                                          return item;
+                                                        }
+                                                      }),
+                                                      // inventoryShare: [action.payload, ...state.inventoryShare]
                                                     };
                                                   case types.INVESTOR_SHARE_UPDATE_FAILURE:
                                                     return {

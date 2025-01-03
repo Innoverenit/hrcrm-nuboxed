@@ -86,7 +86,7 @@ let type="Deals"
 
   useEffect(() => {
     if (!processData) return;
-    props.getProcessStagesForDeals(props.orgId,processData.workflowDetailsId);
+    props.getProcessStagesForDeals(processData.workflowDetailsId);
   }, [processData]);
 
 
@@ -140,7 +140,7 @@ let type="Deals"
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForDeals(props.orgId,item.workflowDetailsId);
+    props.getProcessStagesForDeals(item.workflowDetailsId);
   }
 
 

@@ -131,11 +131,11 @@ function InventoryPriceAddTable(props) {
       props.investorShare(result)
       setRows([{  amountPerShare: '', quantityOfShare: '', }]);
   };
-  const handleEditClick = (investorId) => {
-    setEditsuppliesId(investorId);
+  const handleEditClick = (investorsShareId) => {
+    setEditsuppliesId(investorsShareId);
   };
-  const handleCancelClick = (investorId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [investorId]: undefined }));
+  const handleCancelClick = (investorsShareId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [investorsShareId]: undefined }));
     setEditsuppliesId(null);
   };
 
@@ -160,7 +160,7 @@ function InventoryPriceAddTable(props) {
       currency: key.currency_id,
       buyingDate: key.buyingDate ? dayjs(key.buyingDate).format('YYYY-MM-DDTHH:mm:ss[Z]') : null,
     };
-    props.investorShareUpdate(updatedData,props.RowData.investorId);
+    props.investorShareUpdate(updatedData);
     setEditsuppliesId(null);
   };
   if (loading) {
@@ -256,13 +256,13 @@ function InventoryPriceAddTable(props) {
 
           {data.length ? data.map((item) => {
             return (
-              <div key={item.investorId}>
+              <div key={item.investorsShareId}>
                 <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
                  
  <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 md:w-[16.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.investorId ? (
+                  {editsuppliesId === item.investorsShareId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
@@ -280,7 +280,7 @@ function InventoryPriceAddTable(props) {
                   <div className=" flex  items-center  justify-start ml-gap bg-[#eef2f9] h-8 md:w-[19.01rem] max-sm:w-full  ">
                   <div className=" flex   md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.investorId ? (
+                    {editsuppliesId === item.investorsShareId ? (
                       <Select
                       style={{width:"5rem"}}
                         value={item.currency}
@@ -300,7 +300,7 @@ function InventoryPriceAddTable(props) {
                     </div>
                </div>
                   <div className=" flex   md:w-[6.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                  {editsuppliesId === item.investorId ? (
+                  {editsuppliesId === item.investorsShareId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
@@ -318,7 +318,7 @@ function InventoryPriceAddTable(props) {
 </div>
 
 <div className=" flex  items-center  justify-start ml-gap bg-[#eef2f9] h-8 md:w-[19.1rem] max-sm:w-full  ">
-                  {editsuppliesId === item.investorId ? (
+                  {editsuppliesId === item.investorsShareId ? (
   <DatePicker
   style={{width:"9rem"}}
     value={item.buyingDate ? dayjs(item.buyingDate) : null}
@@ -333,7 +333,7 @@ function InventoryPriceAddTable(props) {
 </div>
 
                   <div class="flex md:items-center items-center  justify-center ml-gap bg-[#eef2f9] h-8">
- {editsuppliesId === item.investorId ? (
+ {editsuppliesId === item.investorsShareId ? (
                         <>
                       <Button 
                       type="primary"
@@ -342,7 +342,7 @@ function InventoryPriceAddTable(props) {
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.investorId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.investorsShareId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -352,7 +352,7 @@ function InventoryPriceAddTable(props) {
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.investorId)}
+                        onClick={() => handleEditClick(item.investorsShareId)}
                       />
                     )}
  

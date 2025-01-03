@@ -22,6 +22,8 @@ class AddInvestorAdressModal extends Component {
           <Suspense fallback={<BundleLoader />}>
           
           <AddressData
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
           uniqueId={this.props.item.investorId}
           type={this.props.type}
           />

@@ -842,6 +842,8 @@ className="cursor-pointer text-xs font-poppins">
          type="investor"
          addInvestorAddressModal={props.addInvestorAddressModal}
          handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
       /> </Suspense>
       
     </>

@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState,useEffect,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -27,7 +27,7 @@ import {getInvestorList} from "../../Settings/Category/InvestorTab/InvestorListA
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import {base_url} from "../../../Config/Auth";
 import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
-
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription";
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const InvestorSchema = Yup.object().shape({
@@ -157,6 +157,10 @@ function InvesterForm(props) {
     const [selectedSector, setSelectedSector] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [touchedSector, setTouchedSector] = useState(false);
+    const [transcript, setTranscript] = useState('');
+    const [isListening, setIsListening] = useState(false);
+      const recognitionRef = useRef(null);
+
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -235,19 +239,47 @@ function InvesterForm(props) {
       endDate,
     } = props;
     const [text, setText] = useState("");
+      useEffect(() => {
+        if (!('webkitSpeechRecognition' in window)) {
+          console.log('Browser does not support speech recognition.');
+          return;
+        }
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+    
+      recognition.onresult = (event) => {
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          }
+        }
+        finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+    
+        // Ensure the final transcript is appended only once
+        setTranscript((prevTranscript) => {
+          setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+          return prevTranscript + ' ' + finalTranscript;
+        });
+      };
+    
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+    
+      recognitionRef.current = recognition;
+    
+      return () => {
+        recognition.stop();
+      };
+    }, []);
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+
 
     return (
       <>
@@ -265,6 +297,7 @@ function InvesterForm(props) {
             countryDialCode:  user.countryDialCode || "",
             phoneNumber: "",
             fullName:"",
+             notes: "",
             category: checked ? "Both" : whiteblue ? "White" : "Blue",
             userId: props.userId,
             notes: "",
@@ -325,6 +358,7 @@ function InvesterForm(props) {
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 pvtAndIntunlInd: contract ? "true" : "false",
                 firstMeetingDate: `${newEndDate}T20:00:00Z`,
+                 notes: text,
               },
               props.userId,
               () => handleReset(resetForm)
@@ -656,43 +690,11 @@ function InvesterForm(props) {
                 </div>            
              <div class="mt-3">
                     <div>
-                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
                   {/* description */}           
-                  <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span >                      
-                        
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>           
+                  <ReactDescription
+                setText={setText}
+                text={text}
+                />        
                 </div>
                   </div>
                
