@@ -10,7 +10,7 @@ const AddAccountModal = (props) => {
         <>
             <StyledDrawer
                 title="Customer"
-                width="60%"
+                width="50%"
                 visible={addDistributorModal}
                 onClose={() => { handleDistributorModal(false)}}
                 footer={null}

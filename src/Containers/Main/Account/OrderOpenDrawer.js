@@ -6,18 +6,22 @@ import COrderTable from "./COrderTable";
 
 const OrderOpenDrawer = (props) => {
   const { ...formProps } = props;
-
   return (
     <>
       <StyledDrawer
         title={`Order : ${props.RowData.name}`} 
         width="50%"
-        visible={props.openOpportunity}
-        onClose={() => props.setOpenOpportunity(false)}
+        visible={props.openOrder}
+        onClose={() => props.setOpenOrder(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-       <COrderTable/>
+       <COrderTable 
+       RowData={props.RowData}
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
+               translatedMenuItems={props.translatedMenuItems}
+       />
         </Suspense>
       </StyledDrawer>
     </>

@@ -26,45 +26,6 @@ function OrderActionLeft (props) {
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
-
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-
-  // useEffect(() => {
-  //   const fetchMenuTranslations = async () => {
-  //     try {
-  //       setLoading(true); 
-  //       const itemsToTranslate = [
-  //       "941",  // List View 0
-  //       "203",   // Production 1
-  //       "667",  // Complete Orders 2
-  //       "228",  // ALL 3
-  //       "663",   // My Repair Orders 4
-  //       "661",   // Repair 5
-  //       "664",   // my Repair Orders-Completed 6
-  //       "856",   // trade 7 
-  //       "1518",   // Ecom 8
-  //       "1212",  // Commerce 9
-  //       "667",  // Completed Orders 10
-  //         "668",  // Cancelled Orders 11
-  //         "1280",// Search by OrderId 12
-  //        "665",   // My Repair Orders-Deleted
-  //       ];
-
-  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-  //       setTranslatedMenuItems(translations);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //       console.error('Error translating menu items:', error);
-  //     }
-  //   };
-
-  //   fetchMenuTranslations();
-  // }, [props.selectedLanguage]);
-
-
   useEffect(() => {
     if (props.viewType === "list") {
       props.getOrderCount(props.userId);
@@ -111,9 +72,8 @@ function OrderActionLeft (props) {
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
       props.inputOrderNoSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      setSearchOnEnter(true);  
     } else {
       console.error("Input is empty. Please provide a value.");
     }

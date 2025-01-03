@@ -106,6 +106,10 @@ const Account = ({
           "194", // "Clear 42
           "710", // Billing address 43
           "241",   // "Currency",44
+          "660", // Order 45
+          "218", //  "Value",46
+          "142", //   "Status",47
+          "1251", // You have reached the end of page 48
         ];
 
         const translations = await translateText(

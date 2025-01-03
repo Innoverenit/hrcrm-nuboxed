@@ -391,7 +391,6 @@ function OrderTableByUserID(props) {
                                     props.handlePaidModal(true);
                                     handleSetParticularOrderData(item);
                                   }}
-                                  // style={{ color: "blue" }}
                                 />
                               </Tooltip>
                             </div>
@@ -399,7 +398,6 @@ function OrderTableByUserID(props) {
                               <Tooltip title={props.translatedMenuItems[30]}>
                                 <Popconfirm
                                   title={props.translatedMenuItems[29]}
-                                  // "Do you want to delete?"
                                   onConfirm={() =>
                                     props.deleteOrderRepairData(
                                       item.orderId,
@@ -417,7 +415,6 @@ function OrderTableByUserID(props) {
                     );
                   })}
                 </>
-                {/* : !props.repairHighCompleteOrder.length && !props.fetchingRepairHighOrderList ? <NodataFoundPage /> : null} */}
               </InfiniteScroll>
             </div>
           </div>
@@ -478,9 +475,7 @@ function OrderTableByUserID(props) {
                   </div>
                 }
               >
-                {/* {props.repairLowCompleteOrder.length === 0 ? */}
                 <>
-                  {/* <EmptyPage/> */}
                   {props.repairLowCompleteOrder.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
