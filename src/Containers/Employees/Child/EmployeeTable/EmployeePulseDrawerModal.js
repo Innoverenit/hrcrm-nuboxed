@@ -19,35 +19,35 @@ class EmployeePulseDrawerModal extends Component {
     super(props);
     this.state = {
       activeKey: "1",
-      translatedMenuItems: [],
+      // translatedMenuItems: [],
     };
   }
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        "1193",//0  Performance
-        "1646",//1  360 View
-        "981",//2 Salary
-        "1202",//3  Equipment
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //       "1193",//0  Performance
+  //       "1646",//1  360 View
+  //       "981",//2 Salary
+  //       "1202",//3  Equipment
         
-      ];
+  //     ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
   handleTabChange = (key) => {
     this.setState({ activeKey: key });
 
@@ -82,7 +82,7 @@ class EmployeePulseDrawerModal extends Component {
                   <span>
  <ContactsIcon className="!text-icon"/>
                     <span class=" ml-1 !text-tab">
-                    {this.state.translatedMenuItems[0]}{/* Performance */}
+                    {this.props.translatedMenuItems[66]}{/* Performance */}
                     </span>
                   </span>
                
@@ -108,7 +108,7 @@ class EmployeePulseDrawerModal extends Component {
                  className="!text-icon"
                   />
                   <span class=" ml-1  !text-tab">
-                  {this.state.translatedMenuItems[1]}   {/* 360 View */}
+                  {this.props.translatedMenuItems[67]}   {/* 360 View */}
                     
                   </span>
               
@@ -134,7 +134,7 @@ class EmployeePulseDrawerModal extends Component {
                   <span>
  <ContactsIcon  className="!text-icon"/>
                     <span class=" ml-1  !text-tab">
-                    {this.state.translatedMenuItems[2]} {/* Salary */}
+                    {this.props.translatedMenuItems[68]} {/* Salary */}
                     </span>
                   </span>
                 
@@ -158,7 +158,7 @@ class EmployeePulseDrawerModal extends Component {
                   <span>
  <ContactsIcon className="!text-icon"/>
                     <span class=" ml-1  !text-tab">
-                    {this.state.translatedMenuItems[3]}       {/* Equipment */}
+                    {this.props.translatedMenuItems[69]}       {/* Equipment */}
                     </span>
                   </span>
                 </>

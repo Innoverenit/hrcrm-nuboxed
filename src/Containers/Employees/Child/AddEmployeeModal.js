@@ -23,6 +23,8 @@ class AddEmployeeModal extends Component {
               <div class="mt-5 ">
                 <Suspense fallback={<BundleLoader/>}>
                 <EmployeeForm
+                        
+               translatedMenuItems={this.props.translatedMenuItems}
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage} />
                 </Suspense>
