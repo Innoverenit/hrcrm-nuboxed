@@ -16,6 +16,7 @@ updateContactAddress,
   addContactMand,
   removeAddressData
 } from "../../Containers/Contact/ContactAction";
+import useGoogleMapsLoader from '../../Components/CustomMap/useGoogleMapsLoader'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AddressTable = (props) => {
@@ -25,7 +26,9 @@ const AddressTable = (props) => {
   const [currentAddress, setCurrentAddress] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
- 
+  const apiKey = "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY";
+  const { isLoaded, error } = useGoogleMapsLoader(apiKey, 'places');
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -186,6 +189,10 @@ const AddressTable = (props) => {
  
 
   return (
+    <>
+    {!isLoaded ? (
+      <div>Loading Google Autoplaces...</div>
+     ) : (
     <div className="address-table">
       <table>
         <thead>
@@ -314,6 +321,8 @@ const AddressTable = (props) => {
       <Button type="primary" onClick={handleAddRow}>{translatedMenuItems[8]}</Button>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

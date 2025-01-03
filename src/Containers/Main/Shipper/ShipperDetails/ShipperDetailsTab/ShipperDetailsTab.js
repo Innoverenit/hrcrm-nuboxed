@@ -6,8 +6,7 @@ import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
-  TabsWrapper,
-} from "../../../../../Components/UI/Layout";
+  TabsWrapper,} from "../../../../../Components/UI/Layout";
 import { Badge, message, Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -212,13 +211,13 @@ class ShipperDetailsTab extends Component {
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
        
 
-            <TabPane
+            {/* <TabPane
               tab={
                 <>
                   <span className="!text-tab">
                   <HourglassFullIcon className="text-blue-500   !text-tab" />&nbsp;
                   {/* Activity */}
-                    {this.props.translatedMenuItems[0]}
+                    {/* {this.props.translatedMenuItems[0]}
 
                   </span>
                   {activeKey === "1" && (
@@ -246,8 +245,8 @@ class ShipperDetailsTab extends Component {
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
                 /> */}
-              </Suspense>
-            </TabPane>
+              {/* </Suspense> */}
+            {/* </TabPane> */}
 
             <TabPane
               tab={
@@ -428,7 +427,7 @@ class ShipperDetailsTab extends Component {
             handleSupplierDocumentUploadModal={
               this.props.handleSupplierDocumentUploadModal}
           />
-
+{/* 
 <AddShipperActivityModal
  translateText={this.props.translateText}
  selectedLanguage={this.props.selectedLanguage}
@@ -441,7 +440,7 @@ class ShipperDetailsTab extends Component {
           name={this.props.shipper.name}
           
           />
-
+ */}
 
 <AddShipperCostModal
 addLinkShipperCostModal={this.props.addLinkShipperCostModal}

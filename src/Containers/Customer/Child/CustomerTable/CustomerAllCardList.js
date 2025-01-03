@@ -95,6 +95,9 @@ function CustomerAllCardList(props) {
   const [editingValue, setEditingValue] = useState("");
   const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
   const [selectedAssign, setSelectedAssign] = useState();
+  const [touchcrm, setTouchcrm] = useState(false);
+    const [touchSector, setTouchSector] = useState(false);
+    const [touchDialCode, setTouchDialCode] = useState(false);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -156,10 +159,6 @@ function CustomerAllCardList(props) {
     })
     setPage(page + 1);
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
-      props.getCrm();
-      props.getSectors();
-      // props.getSources(props.orgId);
-      // props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -252,6 +251,26 @@ const [rowdata, setrowdata] = useState("");
     props.emptyLeads();
     setSelectedEmployee(employeeId);
   };
+   const handleSelectAssignFocus = () => {
+        if (!touchcrm) {
+          props.getCrm()
+          setTouchcrm(true);
+        }
+      };
+  
+      const handleSelectSectorFocus = () => {
+        if (!touchSector) {
+          props.getSectors();
+          setTouchSector(true);
+        }
+      }
+  
+      const handleSelectDialCodeFocus = () => {
+        if (!touchDialCode) {
+          props.getAllDialCodeList();
+          setTouchDialCode(true);
+        }
+      }
   const {
     fetchingAllCustomerList,
     allCustomers,
@@ -495,6 +514,7 @@ console.log(selectedAssign)
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialCodeFocus}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -555,6 +575,7 @@ className="cursor-pointer text-xs font-poppins">
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectSectorFocus}
   autoFocus
 >
 {props.sectors.map((country) => (
@@ -628,8 +649,8 @@ className="cursor-pointer text-xs font-poppins">
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 {props.user.aiInd && (
             <div className=" flex    w-[4.62rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {/* {item.noteScoreInd} */}
-            <div>
+            {item.noteScoreInd}
+            {/* <div>
                                   {editableField?.customerId === item.customerId &&
                editableField?.field === 'noteScoreInd' ? (
             <Input
@@ -649,7 +670,7 @@ className="cursor-pointer text-xs font-poppins">
                 {item.noteScoreInd  || "Update..."}
                 </div> 
             )}                 
-                                  </div>
+                                  </div> */}
                 </div>
             )}
                              <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
@@ -667,6 +688,7 @@ className="cursor-pointer text-xs font-poppins">
                                          handleAssignChange(item.customerId,value); 
                                        }}
                                         onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+                                        onFocus={handleSelectAssignFocus}
                                        autoFocus
                                      >
                                         {props.crmAllData.map(customer => (
@@ -944,6 +966,7 @@ const mapStateToProps = ({
   addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
   orgId: auth.userDetails.organizationId,
+  dialcodeList: auth.dialcodeList,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

@@ -42,6 +42,7 @@ class SubTableClickCandidate extends Component {
       candidateId: "",
       currentcandidateIdId:"",
       setCurrentcandidateIdId:"",
+      clickedArrow: null,
       // contactId: "",
       // candidateId: "",
       // editModal: false,
@@ -141,6 +142,29 @@ class SubTableClickCandidate extends Component {
 
   handleCloseIconClick = () => {
     this.setState({ show: false });
+  };
+
+  handleArrowClick = (stageName, stagesId,item) => {
+    // console.log(`Stage Name: ${stageName}, ID: ${id}`);
+    this.setState({ clickedArrow: stagesId });
+    this.props.LinkStageRecruit(
+      {
+        opportunityId: this.props.opportunityId,
+        stageId: stagesId,
+        recruitmentProcessId: item.recruitmentProcessId,
+        recruitmentId: item.recruitmentId,
+        profileId: item.profileId,
+      },
+      // this.props.emailSendStage({
+      //   opportunityId: item.opportunityId,
+      //   userId: this.props.userId,
+      //   profileId: item.profileId,
+      //   stageId: stageId,
+      //   candidateId: item.contactId,
+      // })
+    );
+     // Update the clicked arrow state
+    //  this.props.LinkStageOpportunity()
   };
 
   
@@ -274,90 +298,149 @@ class SubTableClickCandidate extends Component {
       );
     },
   },
-    // {
-    //     title: "Stages",
-       
-    //     dataIndex: "callType",
-    //     width: "7%",
-    //     render: (name, item, i) => {
-    //       var findProbability = 0;
-    //       item.stageList.forEach((element) => {
-    //         if (element.stageId === item.stageId) {
-    //           findProbability = element.probability;
-    //         }
-    //       });
 
-    //       // const config = {
-    //       //   height: 100,
-    //       //   width: 100,
-    //       //   autoFit: false,
-    //       //   percent: findProbability,
-    //       //   color: ['#5B8FF9', '#6'],
-    //       // };
-    //       return (
-    //         <span>
-    //           <Dropdown
-    //             overlay={
-    //               <div>
-    //                 <Menu mode="horizontal">
-    //                   <Menu.Item
-    //                     style={{
-    //                       paddingLeft: 5,
-    //                       paddingRight: 5,
-    //                       backgroundColor: "#F5F5F5",
-    //                     }}
-    //                   >
-    //                     <RecruitmentStages
-    //                       rec={item}
-    //                       stageId={item.stageId}
-    //                       recruitOwner={item.recruitOwner}
-    //                       candidateName={item.candidateName}
-    //                       approveInd={item.approveInd}
-    //                       rejectInd={item.rejectInd}
-    //                       stageClick={(stageId) => {
-    //                         this.props.LinkStageRecruit(
-    //                           {
-    //                             opportunityId: this.props.opportunityId,
-    //                             stageId: stageId,
-    //                             recruitmentProcessId: item.recruitmentProcessId,
-    //                             recruitmentId: item.recruitmentId,
-    //                             profileId: item.profileId,
-    //                           },
-    //                           // this.props.emailSendStage({
-    //                           //   opportunityId: item.opportunityId,
-    //                           //   userId: this.props.userId,
-    //                           //   profileId: item.profileId,
-    //                           //   stageId: stageId,
-    //                           //   candidateId: item.contactId,
-    //                           // })
-    //                         );
-    //                       }}
-    //                     />{" "}
-    //                   </Menu.Item>
-    //                 </Menu>
-    //               </div>
-    //             }
-    //             trigger={["click"]}
-    //           >
-    //             <Tooltip title={item.stageName}>
-    //               {" "}
-    //                {/* {item.recruitOwner ===this.props.fullName && (  */}
-    //               <Progress
-    //                 type="circle"
-    //                 style={{ cursor: "pointer",color:"red" }}
-    //                 percent={findProbability}
-    //                 //disable={true}
-    //                 width={30}
-    //                  strokeColor={"#005075"}
+
+  {
+    title: "",
+    width: "4%",
+    render: (name, item, i) => {
+      return (
+        <>
+
+          <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
+                                          {item.stageList&&item.stageList.map((stage) => (
+                                               <Tooltip title={stage.stageName}>
+                      <svg
+                        key={stage.stagesId}
+                        width="21"
+                        height="17"
+                        xmlns="http://www.w3.org/2000/svg"
+                        onClick={() => this.handleArrowClick(stage.stageName, stage.stagesId,item)} // Attach click handler
+                        style={{ cursor: "pointer" }} // Add pointer cursor for better UX
+                      >
+                        <g>
+                          <title>background</title>
+                          <rect
+                            fill="#fff"
+                            id="canvas_background"
+                            height="19"
+                            width="23"
+                            y="-1"
+                            x="-1"
+                          />
+                        </g>
+                        <g>
+                          <path
+                            stroke="#5f5f5c"
+                            d="m0.74999,0.75001l14.25,0l4.75001,7.49998l-4.75001,7.50001l-14.25,0l4.75001,-7.50001l-4.75001,-7.49998z"
+                            strokeWidth="0.5"
+                            fill={
+                              this.state.clickedArrow === stage.stagesId
+                                ? "rgba(9, 191, 45, 0.6)" // Change color to red if this arrow is clicked
+                                : "rgba(88, 93, 89, 0.6)"
+                            }
+                          />
+                        </g>
+                      </svg>
+                      </Tooltip>
+                    ))}
+        
+                                          </div>
+              
+            {/* <AddCandidateDateModal
+                handleCandidateDateModal={this.props.handleCandidateDateModal}
+                   profileId={item.profileId}
+                addCandidateDateModal={this.props.addCandidateDateModal}
+               /> */}   
+        </>
+               
+      );
+    },
+  },
+    {
+        title: "Stages",
+       
+        dataIndex: "callType",
+        width: "7%",
+        render: (name, item, i) => {
+          var findProbability = 0;
+          item.stageList.forEach((element) => {
+            if (element.stageId === item.stageId) {
+              findProbability = element.probability;
+            }
+          });
+
+          // const config = {
+          //   height: 100,
+          //   width: 100,
+          //   autoFit: false,
+          //   percent: findProbability,
+          //   color: ['#5B8FF9', '#6'],
+          // };
+          return (
+            <span>
+              <Dropdown
+                overlay={
+                  <div>
+                    <Menu mode="horizontal">
+                      <Menu.Item
+                        style={{
+                          paddingLeft: 5,
+                          paddingRight: 5,
+                          backgroundColor: "#F5F5F5",
+                        }}
+                      >
+                        <RecruitmentStages
+                          rec={item}
+                          stageId={item.stageId}
+                          recruitOwner={item.recruitOwner}
+                          candidateName={item.candidateName}
+                          approveInd={item.approveInd}
+                          rejectInd={item.rejectInd}
+                          stageClick={(stageId) => {
+                            this.props.LinkStageRecruit(
+                              {
+                                opportunityId: this.props.opportunityId,
+                                stageId: stageId,
+                                recruitmentProcessId: item.recruitmentProcessId,
+                                recruitmentId: item.recruitmentId,
+                                profileId: item.profileId,
+                              },
+                              // this.props.emailSendStage({
+                              //   opportunityId: item.opportunityId,
+                              //   userId: this.props.userId,
+                              //   profileId: item.profileId,
+                              //   stageId: stageId,
+                              //   candidateId: item.contactId,
+                              // })
+                            );
+                          }}
+                        />{" "}
+                      </Menu.Item>
+                    </Menu>
+                  </div>
+                }
+                trigger={["click"]}
+              >
+                <Tooltip title={item.stageName}>
+                  {" "}
+                   {/* {item.recruitOwner ===this.props.fullName && (  */}
+                  <Progress
+                    type="circle"
+                    style={{ cursor: "pointer",color:"red" }}
+                    percent={findProbability}
+                    //disable={true}
+                    width={30}
+                     strokeColor={"#005075"}
                    
-    //               />
-    //                {/* )}  */}
-    //             </Tooltip>
-    //           </Dropdown>
-    //         </span>
-    //       );
-    //     },
-    //    },
+                  />
+                   {/* )}  */}
+                </Tooltip>
+              </Dropdown>
+            </span>
+          );
+        },
+       },
     {
         title: "",
         dataIndex: "callType",

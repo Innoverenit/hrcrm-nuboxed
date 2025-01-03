@@ -26,45 +26,6 @@ function OrderActionLeft (props) {
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
-
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-        "941",  // List View 0
-        "203",   // Production 1
-        "667",  // Complete Orders 2
-        "228",  // ALL 3
-        "663",   // My Repair Orders 4
-        "661",   // Repair 5
-        "664",   // my Repair Orders-Completed 6
-        "856",   // trade 7 
-        "1518",   // Ecom 8
-        "1212",  // Commerce 9
-        "667",  // Completed Orders 10
-          "668",  // Cancelled Orders 11
-          "1280",// Search by OrderId 12
-         "665",   // My Repair Orders-Deleted
-        ];
-
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
-
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
-
-
   useEffect(() => {
     if (props.viewType === "list") {
       props.getOrderCount(props.userId);
@@ -111,9 +72,8 @@ function OrderActionLeft (props) {
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
       props.inputOrderNoSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      setSearchOnEnter(true);  
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -171,7 +131,7 @@ function OrderActionLeft (props) {
       <>
       {props.user.moduleMapper.productionInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
       <div className="">
-        <Tooltip title={translatedMenuItems[0]}>
+        <Tooltip title={props.translatedMenuItems[0]}>
           <Badge
             size="small"
             count={(props.viewType === "production" && props.orderCount.order) || 0}
@@ -187,11 +147,11 @@ function OrderActionLeft (props) {
             >
               
               <Button type={props.viewType === "production" ? "primary" : ""} style={{ backgroundColor: props.viewType === "production" ? "" : "tomato" }}>
-             <div class="text-white ">{translatedMenuItems[1]}</div></Button>
+             <div class="text-white ">{props.translatedMenuItems[1]}</div></Button>
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title={translatedMenuItems[2]}>
+        <Tooltip title={props.translatedMenuItems[2]}>
           <Badge
             size="small"
             // count={(props.viewType === "complete" && orderCount.order) || 0}
@@ -214,7 +174,7 @@ function OrderActionLeft (props) {
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title={translatedMenuItems[3]}>
+        <Tooltip title={props.translatedMenuItems[3]}>
           <Badge
             size="small"
             count={(props.viewType === "productionAll" && props.allOrderCount.order) || 0}
@@ -232,7 +192,7 @@ function OrderActionLeft (props) {
                  boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
                }}>
-                <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
+                <div className="text-white ">{props.translatedMenuItems[3]}</div></Avatar>
 
             </span>
           </Badge>
@@ -245,7 +205,7 @@ function OrderActionLeft (props) {
       <div className=" cursor-pointer">
       {props.user.moduleMapper.repairInd === true && props.user.moduleMapper.orderManagementInd === true && (
         <>
-        <Tooltip title={translatedMenuItems[4]}>
+        <Tooltip title={props.translatedMenuItems[4]}>
           <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -266,13 +226,13 @@ function OrderActionLeft (props) {
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
  }}>
                 
-                <div class="text-white ">{translatedMenuItems[5]}</div></Button>
+                <div class="text-white ">{props.translatedMenuItems[5]}</div></Button>
                 
             </span>
           </Badge>
         </Tooltip>
       
-        <Tooltip title={translatedMenuItems[6]}>
+        <Tooltip title={props.translatedMenuItems[6]}>
           <Badge
             size="small"
             // count={(props.viewType === "allcomplete" && orderCount.order) || 0}
@@ -295,7 +255,7 @@ function OrderActionLeft (props) {
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title= {translatedMenuItems[13]}>
+        <Tooltip title= {props.translatedMenuItems[13]}>
                 {/* <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
@@ -318,7 +278,7 @@ function OrderActionLeft (props) {
                 </Tooltip>
                 {props.user.erpInd === true && props.user.repairInd === true && props.user.orderFullListInd === true && props.user.orderManagementInd === true && (  
                 <>
-                <Tooltip title={translatedMenuItems[3]}>
+                <Tooltip title={props.translatedMenuItems[3]}>
           <Badge
             size="small"
             count={(props.viewType === "all" && props.allOrderCount.order) || 0}
@@ -336,7 +296,7 @@ function OrderActionLeft (props) {
                     boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
               }}>
-                <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
+                <div className="text-white ">{props.translatedMenuItems[3]}</div></Avatar>
 
             </span>
           </Badge>
@@ -347,7 +307,7 @@ function OrderActionLeft (props) {
               )}
           {props.user.moduleMapper.tradingInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
             <>
-            <Tooltip title={translatedMenuItems[7]}>
+            <Tooltip title={props.translatedMenuItems[7]}>
             {/* <Badge
               size="small"
               count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -363,7 +323,7 @@ function OrderActionLeft (props) {
               >         
   <Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
                   
-                  <div class="text-white ">{translatedMenuItems[7]}</div></Button>
+                  <div class="text-white ">{props.translatedMenuItems[7]}</div></Button>
                   
               </span>
             {/* </Badge> */}
@@ -373,7 +333,7 @@ function OrderActionLeft (props) {
          {props.user.moduleMapper.ecomModInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
           <>     
         
-        <Tooltip title={translatedMenuItems[8]}>
+        <Tooltip title={props.translatedMenuItems[8]}>
 
 <span class=" mr-1 text-sm cursor-pointer"
   onClick={() => props.handleViewChange("ecom")}
@@ -383,12 +343,12 @@ function OrderActionLeft (props) {
 >         
 <Button type={props.viewType === "ecom" ? "primary" : ""} style={{ backgroundColor: props.viewType === "ecom" ? "" : "tomato" }}>
     
-    <div class="text-white">{translatedMenuItems[9]}</div></Button>
+    <div class="text-white">{props.translatedMenuItems[9]}</div></Button>
     
 </span>
 
 </Tooltip>
-        <Tooltip title={translatedMenuItems[10]}>
+        <Tooltip title={props.translatedMenuItems[10]}>
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -413,7 +373,7 @@ function OrderActionLeft (props) {
           {/* </Badge> */}
         </Tooltip>
 
-        <Tooltip title={translatedMenuItems[11]}>
+        <Tooltip title={props.translatedMenuItems[11]}>
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -447,7 +407,7 @@ function OrderActionLeft (props) {
     
       <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
           <Input
-            placeholder={translatedMenuItems[12]}
+            placeholder={props.translatedMenuItems[12]}
             class="w-96"
             suffix={suffix}
             onPressEnter={handleSearch}

@@ -34,6 +34,7 @@ import { getCountry } from "../../../Containers/Settings/Category/Country/Countr
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
+import OrderOpenDrawer from './OrderOpenDrawer';
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
@@ -71,7 +72,7 @@ const AllAccountList = (props) => {
  const [dialCodeOpts, setDialCodeOpts] = useState([]);
  const [currencyOpts,setcurrencyOpts]=useState([]);
  const [isCurrencyDropdownClick,setIsCurrencyDropdownClick]=useState(false);
-
+  const [openOrder, setOpenOrder] = useState(false);
 
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
@@ -324,7 +325,7 @@ const handleEditRowField = (distributorId, field, currentValue) => {
             <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{props.translatedMenuItems[17]}
             </div>  
             <div className="w-[17.2rem] max-md:w-[9.2rem]">
-            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {props.translatedMenuItems[5]}
+            {props.translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>     
@@ -515,32 +516,20 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       
                         <div className=" flex  max-sm:w-auto w-[5.7rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                          {editableField?.distributorId === item.distributorId &&
-   editableField?.field === 'payment' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
-) : (
-<div onClick={() => 
-    handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xs font-Poppins">
-    {item.payment || "Update..."} 
-    </div> 
-)}
-
-                          </div>
+                        <div class=" text-xs cursor-pointer text-blue-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                               onClick={() => {
+                                setOpenOrder(true);
+                               
+                                        handleCurrentRowData(item);
+                                      }}
+                              >
+                                {item.procureCount}
+                              </div>
                         </div>
                       
                         <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[6rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                            {editableField?.distributorId === item.distributorId &&
+                            {/* {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clubName' ? (
 <Input
   type="text"
@@ -557,8 +546,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
     className="cursor-pointer !text-xs font-Poppins">
     {item.clubName || "Update..."}
     </div> 
-)}
-
+)} */}  
+{item.clubName}
                             </div>
                           </div>
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[10.7rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
@@ -581,8 +570,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
     {item.payment || "Update..."} days
     </div> 
 )}
-
-                            </div>
+      </div>
                          
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-md:w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
@@ -823,6 +811,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         handleUpdateAccountUserModal={props.handleUpdateAccountUserModal}  
         updateAccountUserModal={props.updateAccountUserModal}
       />
+       <OrderOpenDrawer
+          RowData={RowData}
+          setOpenOrder={setOpenOrder}
+          openOrder={openOrder}
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
+        translatedMenuItems={props.translatedMenuItems}
+        />
        <AddAccountAdressModal   
         item={RowData}
          type="Distributor"

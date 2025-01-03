@@ -25,6 +25,7 @@ const UpdateEmployeeModal = (props) => {
            selectedLanguage={props.selectedLanguage}
              currentEmployeeId={currentEmployeeId}
              userData={props.userData}
+             translatedMenuItems={props.translatedMenuItems}
             />
     </Suspense>
       </StyledDrawer>

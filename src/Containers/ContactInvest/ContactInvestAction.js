@@ -46,6 +46,21 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
           type: types.ADD_CONTACT_INVEST_SUCCESS,
           payload: res.data,
         });
+           if (res.data.message) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: res.data.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                } else {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Created Successfully',
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
       })
       .catch((err) => {
         console.log(err);

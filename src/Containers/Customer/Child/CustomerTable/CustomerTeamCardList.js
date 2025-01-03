@@ -92,7 +92,9 @@ function CustomerTeamCardList(props) {
   const [selectedAssign, setSelectedAssign] = useState();
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
-
+  const [touchcrm, setTouchcrm] = useState(false);
+  const [touchSector, setTouchSector] = useState(false);
+  const [touchDialCode, setTouchDialCode] = useState(false);
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -115,10 +117,6 @@ function CustomerTeamCardList(props) {
     props.getTeamCustomer(props.userId, pageNo);
     setPageNo(pageNo + 1);
     props.getTeamUserList(props.userId)
-    props.getCrm()
-       props.getSectors();
-      //  props.getSources(props.orgId);
-       props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -249,6 +247,26 @@ const [rowdata, setrowdata] = useState("");
       setEditingValue("");
     
   };
+    const handleSelectAssignFocus = () => {
+      if (!touchcrm) {
+        props.getCrm()
+        setTouchcrm(true);
+      }
+    };
+
+    const handleSelectSectorFocus = () => {
+      if (!touchSector) {
+        props.getSectors();
+        setTouchSector(true);
+      }
+    }
+
+    const handleSelectDialCodeFocus = () => {
+      if (!touchDialCode) {
+        props.getAllDialCodeList();
+        setTouchDialCode(true);
+      }
+    }
   const {
     fetchingTeamCustomer,
     teamCustomer,
@@ -497,6 +515,7 @@ console.log(selectedAssign)
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialCodeFocus}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -558,6 +577,7 @@ className="cursor-pointer text-xs font-poppins">
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
+  onFocus={handleSelectSectorFocus}
 >
 {props.sectors.map((country) => (
    <Option key={country.sectorId} value={country.sectorId}>
@@ -636,8 +656,8 @@ className="cursor-pointer text-xs font-poppins">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         {props.user.aiInd && (
    <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-{/* {item.noteScoreInd} */}
-<div>
+{item.noteScoreInd}
+{/* <div>
                       {editableField?.customerId === item.customerId &&
    editableField?.field === 'noteScoreInd' ? (
 <Input
@@ -657,7 +677,7 @@ className="cursor-pointer text-xs font-poppins">
     {item.noteScoreInd  || "Update..."}
     </div> 
 )}                 
-                      </div>
+                      </div> */}
     </div>
     )}
                         <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
@@ -675,6 +695,7 @@ className="cursor-pointer text-xs font-poppins">
               handleAssignChange(item.customerId,value); 
             }}
              onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+             onFocus={handleSelectAssignFocus}
             autoFocus
           >
              {props.crmAllData.map(customer => (

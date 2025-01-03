@@ -34,30 +34,13 @@ class ProjectOverView extends Component {
                 {`${projectName || ""}`}
               </Title>
             </div>
-            <Button
-              type="primary"
-              onClick={()=>{
-                this.props.handleCreateInvoiceDrawer(true);
-               // handlePassRowData(item);
-               
-   
-              
-             }}
-              style={{position: "static"}}
-              
-             
-            >
-          Create Invoice
-            </Button>
+          
           </div>
           </div>
           
         <ProjectsInvoiceCreateModal
        handleCreateInvoiceDrawer={this.props.handleCreateInvoiceDrawer}
        addCreateInvoiceDrawer={this.props.addCreateInvoiceDrawer}
-        // provider={this.props.provider}
-        // provider={provider}
-    
       />
       </>
     );

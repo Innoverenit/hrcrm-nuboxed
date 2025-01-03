@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { CalendarInstance } from "../../../../Components/Utils";
 import dayjs from "dayjs";
 import {
-  LayoutWrapper,
   MainWrapper,
 } from "../../../../Components/UI/Layout";
 import FormChooserModal from "../FormChooserModal";
@@ -33,10 +32,9 @@ import { handleEventModal } from "../../../Event/EventAction";
 import { handleCallModal } from "../../../Call/CallAction";
 import { handleTaskModal } from "../../../Task/TaskAction";
 import { 
-  // getHoliday
+
   getPlannerHoliday } from "../../../Holiday/HolidayAction";
 import { handleProjectModal } from "../../../Project/ProjectAction";
-// import { LeavesReducer } from "../../../Leave/LeavesReducer";
 export class PlannerCalendar extends Component {
   constructor(props) {
     super(props);

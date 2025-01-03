@@ -33,7 +33,6 @@ import { PersonAddAlt1 } from "@mui/icons-material";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import { BundleLoader } from "../../../Components/Placeholder";
-
 const AddNotesOrderDrawer=lazy(()=>import("./AddNotesOrderDrawer"));
 const AccountOrderDetailsModal = lazy(() => import("../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal"));
 const StatusOfOrderModal=lazy(()=>import("../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal"));
@@ -58,53 +57,46 @@ const getRelativeTime = (creationDate) => {
 function AllCompleteOrderList(props) {
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-              // 2
-  "106",  // 'Urgent', // 0
-  "660",    // 'Order', // 1
-  "248",    // ' Customer', // 2
-  "73",  // 'Contact', // 3
-  "260",  // ' Units', // 4
-  "77", // 'Owner', // 5
-  "676",  // ' Supervisor',
-  "677",   // 'Lead',
-   
-  "679",    // 'Created',
-  
-  "108",  // "Normal"
-  "100",     // New10
-  "1380",   // Add Supervisor11
-  "316",     // Notes12
-  "142",      // "Status"13
-  "920",      // "Collection"14
-  
-        "85",  // Add15
-       "1079"   // Cancel16
-          ];
+  //   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  //   const [loading, setLoading] = useState(true);
+  //   useEffect(() => {
+  //       const fetchMenuTranslations = async () => {
+  //         try {
+  //           setLoading(true); 
+  //           const itemsToTranslate = [
+  // "106",  // 'Urgent', // 0
+  // "660",    // 'Order', // 1
+  // "248",    // ' Customer', // 2
+  // "73",  // 'Contact', // 3
+  // "260",  // ' Units', // 4
+  // "77", // 'Owner', // 5
+  // "676",  // ' Supervisor',
+  // "677",   // 'Lead',
+  // "679",    // 'Created',
+  // "108",  // "Normal"
+  // "100",     // New10
+  // "1380",   // Add Supervisor11
+  // "316",     // Notes12
+  // "142",      // "Status"13
+  // "920",      // "Collection"14
+  //       "85",  // Add15
+  //      "1079"   // Cancel16
+  //         ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+  //           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //           setTranslatedMenuItems(translations);
+  //           setLoading(false);
+  //         } catch (error) {
+  //           setLoading(false);
+  //           console.error('Error translating menu items:', error);
+  //         }
+  //       };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+  //       fetchMenuTranslations();
+  //     }, [props.selectedLanguage]);
     useEffect(() => {
-      
         props.getCompletedHighOrderList(props.userId, page,"High");
-        props.getCompletedMediumOrderList(props.userId, page,"Medium");
         props.getCompletedLowOrderList(props.userId, page,"Low");
-        
         setPage(page + 1);
     }, []);
 
@@ -132,13 +124,6 @@ function AllCompleteOrderList(props) {
         setPage(page + 1);
         props.getCompletedHighOrderList(props.userId, props.currentUser ? props.currentUser : page,"High");
     }
-
-    const handleLoadMoreMedium = () => {
-      setPage(page + 1);
-      props.getCompletedMediumOrderList(props.userId, props.currentUser ? props.currentUser : page,"Medium");
-  }
-
-  
   const handleLoadMoreLow = () => {
     setPage(page + 1);
     props.getCompletedLowOrderList(props.userId, props.currentUser ? props.currentUser : page,"Low");
@@ -192,28 +177,27 @@ const viewAnDownloadPdf= async (item) => {
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               
                 <div className=" flex justify-between w-[92%] p-1 !text-lm bg-transparent  items-end sticky font-bold font-poppins  z-10 max-sm:hidden">
-                  
-                <div className="  w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                <div className="  w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{props.translatedMenuItems[17]} </div>
                         <div className="w-[9.55rem] truncate text-[#00A2E8] text-sm max-md:w-[8.31rem] ml-3">
-                        <DynamicFeedIcon className='!text-icon mr-1 '/>{translatedMenuItems[1]}  ID</div>
+                        <DynamicFeedIcon className='!text-icon mr-1 '/>{props.translatedMenuItems[14]}  ID</div>
                       <div className=" w-[12.8rem] truncate  max-md:w-[9.6rem]">
-                        <ApartmentIcon className='!text-icon    text-[#43e035]'/>{translatedMenuItems[2]}</div>
+                        <ApartmentIcon className='!text-icon    text-[#43e035]'/>{props.translatedMenuItems[18]}</div>
                       <div className=" w-[8.051rem] truncate  max-md:w-[5.051rem] ">
                         <ContactsIcon className='!text-icon mr-1 text-[#9737c4]'/> 
-                         {translatedMenuItems[3]}</div>
+                         {props.translatedMenuItems[19]}</div>
                       <div className="  w-[7.4rem] truncate max-md:w-[5.018rem]">
-                        {translatedMenuItems[4]}</div>
+                        {props.translatedMenuItems[20]}</div>
                       <div className="  w-[10.06rem]  truncate max-md:w-[5.031rem]">
                         <DateRangeIcon className="!text-icon  mr-1"/>
-                        {translatedMenuItems[8]}</div>
+                        {props.translatedMenuItems[15]}</div>
                       <div className="  w-[6.2rem] truncate max-md:w-[3.2rem]">
-                        {translatedMenuItems[6]}</div>
+                        {props.translatedMenuItems[22]}</div>
                       <div className="  w-[6.06rem] truncate max-md:w-[5.06rem]">
                         <GroupsIcon className='!text-icon mr-1 text-[#e93aa3]'/>
-                        {translatedMenuItems[7]}</div>
+                        {props.translatedMenuItems[23]}</div>
                       <div className="  w-[12.73rem] truncate max-md:w-[12.73rem]">   
                          <AccountCircleIcon className="!text-icon text-[#dd5738]"/>
-                          {translatedMenuItems[5]}</div>
+                          {props.translatedMenuItems[21]}</div>
          
         </div>
                     <InfiniteScroll
@@ -223,7 +207,7 @@ const viewAnDownloadPdf= async (item) => {
                         loader={props.fetchingCompletedHighOrderList ? <div><BundleLoader/></div> : null}
                         height={"38vh"}
                         style={{scrollbarWidth:"thin"}}
-                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">{props.translatedMenuItems[31]}. </p>}
                     >
                             <>
                       
@@ -271,7 +255,7 @@ const viewAnDownloadPdf= async (item) => {
                               {date === currentdate ? (
                                 <span  className=" text-[0.65rem] text-[tomato] font-bold" 
                                 >
-                                 {translatedMenuItems[10]} {/* New */}
+                                 {props.translatedMenuItems[25]} {/* New */}
                                 </span>
                               ) : null}
                             </span>
@@ -350,10 +334,10 @@ const viewAnDownloadPdf= async (item) => {
                             <Button
                               type="primary"
                             >
-                            {translatedMenuItems[15]}  {/* Add */}
+                            {props.translatedMenuItems[32]}  {/* Add */}
                             </Button>
                             <Button onClick={handleCancel}>
-                            {translatedMenuItems[16]} {/* Cancel */}
+                            {props.translatedMenuItems[33]} {/* Cancel */}
                             </Button>
                           </div>
                           :
@@ -389,7 +373,7 @@ const viewAnDownloadPdf= async (item) => {
     />
           </div> 
                     <div class="flex font-poppins items-center justify-center  bg-[#eef2f9] h-8">
-                        <Tooltip title={translatedMenuItems[12]}>
+                        <Tooltip title={props.translatedMenuItems[27]}>
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
@@ -401,7 +385,7 @@ const viewAnDownloadPdf= async (item) => {
                         </Tooltip>
                       </div>
                       <div class="flex text-xs  font-poppins items-center justify-center  bg-[#eef2f9] h-8">
-                        <Tooltip title={translatedMenuItems[11]}>
+                        <Tooltip title={props.translatedMenuItems[34]}>
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -413,7 +397,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                    
                       <div class="flex text-xs  font-poppins items-center justify-center  bg-[#eef2f9] h-8">
-                        <Tooltip title={translatedMenuItems[13]}>
+                        <Tooltip title={props.translatedMenuItems[16]}>
                           <EventRepeatIcon
                          className=" !text-icon cursor-pointer max-sm:!text-2xl text-[green]"
                             onClick={() => {
@@ -426,14 +410,13 @@ const viewAnDownloadPdf= async (item) => {
 
                   
                       <div class="flex text-xs  font-poppins items-center justify-center  bg-[#eef2f9] h-8">
-                        <Tooltip title={translatedMenuItems[14]}>
+                        <Tooltip title={props.translatedMenuItems[28]}>
                           <PaidIcon
                            className=" !text-icon cursor-pointer max-sm:!text-2xl text-[#e5625e]"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
                             }}
-                          // style={{ color: "blue" }}
                           />
                         </Tooltip>
                       </div>
@@ -451,40 +434,38 @@ const viewAnDownloadPdf= async (item) => {
             <div class="rounded  m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">           
             <div className=" flex justify-between w-[94%] p-1 bg-transparent !text-lm items-end sticky font-bold font-poppins  z-10 max-sm:hidden">               
                   <div className=" text-xs w-[3.54rem] truncate max-md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
-                    {translatedMenuItems[9]} </div>
+                    {props.translatedMenuItems[24]} </div>
                     <div className="w-[9.55rem] truncate text-[#00A2E8] text-sm max-md:w-[8.31rem] ml-3">
-                        <DynamicFeedIcon className='!text-icon mr-1 '/>{translatedMenuItems[1]}  ID</div>
+                        <DynamicFeedIcon className='!text-icon mr-1 '/>{props.translatedMenuItems[14]}  ID</div>
                       <div className=" w-[12.8rem] truncate  max-md:w-[9.6rem]">
-                        <ApartmentIcon className='!text-icon    text-[#43e035]'/>{translatedMenuItems[2]}</div>
+                        <ApartmentIcon className='!text-icon    text-[#43e035]'/>{props.translatedMenuItems[18]}</div>
                       <div className=" w-[8.051rem] truncate  max-md:w-[5.051rem] ">
                         <ContactsIcon className='!text-icon mr-1 text-[#9737c4]'/> 
-                         {translatedMenuItems[3]}</div>
+                         {props.translatedMenuItems[19]}</div>
                       <div className="  w-[7.4rem] truncate max-md:w-[5.018rem]">
-                        {translatedMenuItems[4]}</div>
+                        {props.translatedMenuItems[20]}</div>
                       <div className="  w-[10.06rem]  truncate max-md:w-[5.031rem]">
                         <DateRangeIcon className="!text-icon  mr-1"/>
-                        {translatedMenuItems[8]}</div>
+                        {props.translatedMenuItems[15]}</div>
                       <div className="  w-[6.2rem] truncate max-md:w-[3.2rem]">
-                        {translatedMenuItems[6]}</div>
+                        {props.translatedMenuItems[22]}</div>
                       <div className="  w-[6.06rem] truncate max-md:w-[5.06rem]">
                         <GroupsIcon className='!text-icon mr-1 text-[#e93aa3]'/>
-                        {translatedMenuItems[7]}</div>
+                        {props.translatedMenuItems[23]}</div>
                       <div className="  w-[12.73rem] truncate max-md:w-[12.73rem]">   
                          <AccountCircleIcon className="!text-icon text-[#dd5738]"/>
-                          {translatedMenuItems[5]}</div>
+                          {props.translatedMenuItems[21]}</div>
                           </div>
                     <InfiniteScroll
                         dataLength={props.completedLowOrder.length}
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
-                        loader={props.fetchingCompletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingCompletedLowOrderList ? <div style={{ textAlign: 'center' }}><BundleLoader/></div> : null}
                         height={"38vh"}
                         style={{scrollbarWidth:"thin"}}
-                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">{props.translatedMenuItems[31]}. </p>}
                     >
-                        {/* {props.completedLowOrder.length === 0 ? */}
                             <>
-                            {/* <EmptyPage/> */}
                                 {props.completedLowOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -493,11 +474,7 @@ const viewAnDownloadPdf= async (item) => {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-                // style={{
-                //   borderBottom: "3px dotted #515050",
-                // }}
-                >
+                  className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center w-[4.26rem]  max-md:w-[4.26rem] max-sm:w-full border-l-2 border-green-500 bg-[#eef2f9]  ">
                                                         <Tooltip>
@@ -533,7 +510,7 @@ const viewAnDownloadPdf= async (item) => {
                             
                               {date === currentdate ? (
                                 <span className=" text-[0.65rem] text-[tomato] font-bold"  >
-                                 {translatedMenuItems[10]} {/* New */}
+                                 {props.translatedMenuItems[25]} {/* New */}
                                 </span>
                               ) : null}
                             </span>
@@ -621,10 +598,10 @@ const viewAnDownloadPdf= async (item) => {
                             <Button
                               type="primary"
                             >
-                            {translatedMenuItems[15]}  {/* Add */}
+                            {props.translatedMenuItems[32]}  {/* Add */}
                             </Button>
                             <Button onClick={handleCancel}>
-                            {translatedMenuItems[16]}  {/* Cancel */}
+                            {props.translatedMenuItems[33]}  {/* Cancel */}
                             </Button>
                           </div>
                           :
@@ -641,16 +618,7 @@ const viewAnDownloadPdf= async (item) => {
                   </div>
                  
                   </div>
-                  <div class="flex w-[5.7rem]  items-center justify-center h-8 bg-[#eef2f9] h-8 max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  {/* <div className=" flex  max-md:w-[0.01rem] items-center justify-center ml-gap h-8 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <div class=" text-xs  font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                      </div>
-                    </div> */}
-                    {/* <div class="rounded-full text-xs bg-white  items-center justify-center ml-gap h-8 bg-[#eef2f9] h-5 cursor-pointer w-8 justify-cente">
-                      {item.orderStatus}
-                    </div> */}
+                  <div class="flex w-[5.7rem]  items-center justify-center bg-[#eef2f9] h-8 max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     </div>
                     <div class="flex ml-gap max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class="flex w-[1.2rem]  items-center justify-center h-8 bg-[#eef2f9]">
@@ -660,7 +628,7 @@ const viewAnDownloadPdf= async (item) => {
           </div>
                     
                       <div class="flex text-xs  font-poppins items-center justify-center h-8 bg-[#eef2f9]">
-                        <Tooltip title={translatedMenuItems[12]}>
+                        <Tooltip title={props.translatedMenuItems[27]}>
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
@@ -672,7 +640,7 @@ const viewAnDownloadPdf= async (item) => {
                         </Tooltip>
                       </div>             
                       <div class="flex text-xs  font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
-                        <Tooltip title={translatedMenuItems[11]}>
+                        <Tooltip title={props.translatedMenuItems[34]}>
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -684,7 +652,7 @@ const viewAnDownloadPdf= async (item) => {
                       </div>
                     
                       <div class="flex text-xs  font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
-                        <Tooltip title={translatedMenuItems[13]}>
+                        <Tooltip title={props.translatedMenuItems[16]}>
                           <EventRepeatIcon
                              className=" !text-icon cursor-pointer max-sm:!text-2xl text-[green]"
                             onClick={() => {
@@ -695,14 +663,13 @@ const viewAnDownloadPdf= async (item) => {
                         </Tooltip>
                       </div>               
                       <div class="flex text-xs  font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
-                        <Tooltip title={translatedMenuItems[14]}>
+                        <Tooltip title={props.translatedMenuItems[28]}>
                           <PaidIcon
                             className=" !text-icon cursor-pointer max-sm:!text-2xl text-[#e5625e]"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
                             }}
-                          // style={{ color: "blue" }}
                           />
                         </Tooltip>
 
@@ -732,6 +699,7 @@ const viewAnDownloadPdf= async (item) => {
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
+                    modalTitleKey={1}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}

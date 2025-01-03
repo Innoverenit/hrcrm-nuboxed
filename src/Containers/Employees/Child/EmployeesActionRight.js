@@ -14,12 +14,12 @@ class EmployeesActionRight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      translatedMenuItems: [],
+      // translatedMenuItems: [],
     };
   }
 
   componentDidMount() {
-    this.fetchMenuTranslations();
+    // this.fetchMenuTranslations();
   }
   handleClicked = (value) => {
     this.setState({
@@ -28,23 +28,23 @@ class EmployeesActionRight extends React.Component {
     
   };
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
+    // if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    //   this.fetchMenuTranslations();
+    // }
   }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-     "85" //  'Add'
-       ];
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //    "85" //  'Add'
+  //      ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
   state = {
     isClicked: "import",
   };
@@ -70,7 +70,7 @@ class EmployeesActionRight extends React.Component {
             onClick={() => handleEmployeeModal(true)}
           >
           < DataSaverOnIcon className="!text-icon"/>  
-          {this.state.translatedMenuItems[0]} {/* Add */}
+          {this.props.translatedMenuItems[47]} {/* Add */}
           </Button>
          ):null} 
         </div>

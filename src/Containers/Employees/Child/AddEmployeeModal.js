@@ -8,7 +8,7 @@ class AddEmployeeModal extends Component {
   render() {
     const { addEmployeeModal, handleEmployeeModal, ...formProps } = this.props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "50%";
     return (
       <>
         <StyledDrawer
@@ -23,6 +23,8 @@ class AddEmployeeModal extends Component {
               <div class="mt-5 ">
                 <Suspense fallback={<BundleLoader/>}>
                 <EmployeeForm
+                        
+               translatedMenuItems={this.props.translatedMenuItems}
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage} />
                 </Suspense>

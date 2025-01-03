@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {Button ,Radio,Select} from "antd";
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Formik, Form, Field, FieldArray,ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {getAllCustomerData} from "../../Customer/CustomerAction"
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
@@ -34,11 +34,9 @@ const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
   eventSubject: Yup.string().required("Input required!"),
   timeZone: Yup.string().required("Input required!"),
-  // endDate: Yup.string()
-  //   .nullable()
-  //   .required("Input required !"),
-  startTime: Yup.string().nullable().required("Input required!"),
-  endTime: Yup.string().nullable().required("Input required!"),
+  endDate: Yup.string()
+    .nullable()
+    .required("Input required !"),
   startDate: Yup.string().nullable().required("Input required!"),
 });
 
@@ -504,6 +502,12 @@ const {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
+  const formatToISOWithZ = (datetime) => {
+    const date = new Date(datetime);
+    const timezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const adjustedDate = new Date(date.getTime() - timezoneOffset);
+    return adjustedDate.toISOString();
+  };
     return (
       <>
         <Formik
@@ -521,10 +525,8 @@ const {
                   notificationEmail: false,
                   eventDescription: "",
                   timeZone: timeZone,
-                  startDate: startDate || dayjs(),
-                  startTime: startDate || null,
-                  endDate: endDate || null,
-                  endTime: endDate || null,
+                  startDate: '', 
+                  endDate: '',
                   assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   note: "",
                   eventStatus: "",
@@ -558,73 +560,15 @@ const {
           validationSchema={EventSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            let timeZoneFirst = values.timeZone;
-            console.log(timeZone);
-
-            let mytimeZone = timeZoneFirst.substring(4, 10);
-            console.log(mytimeZone);
-            var a = mytimeZone.split(":");
-            console.log(a);
-            var timeZoneminutes = +a[0] * 60 + +a[1];
-            console.log(timeZoneminutes);
-            if (!values.endDate) {
-              values.endDate = values.startDate;
-            }
-            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
-            console.log(newStartDate);
-            //Time calculation
-            let firstStartTime = dayjs(values.startTime).format(
-              "HH:mm:ss.SSS[Z]"
-            ); // getting start time from form input
-            console.log(firstStartTime);
-            let firstStartHours = firstStartTime.substring(0, 5); // getting only hours and minutes
-            console.log(firstStartHours);
-
-            let timeEndPart = firstStartTime.substring(5, 13); // getting seconds and rest
-            console.log(timeEndPart);
-
-            var firstStartTimeSplit = firstStartHours.split(":"); // removing the colon
-            console.log(firstStartTimeSplit);
-            var minutes =
-              +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1]; // converting hours into minutes
-            console.log(minutes);
-
-            var firstStartTimeminutes = minutes - timeZoneminutes; // start time + time zone
-            console.log(firstStartTimeminutes);
-
-            let h = Math.floor(firstStartTimeminutes / 60); // converting to hours
-            let m = firstStartTimeminutes % 60;
-            h = h < 10 ? "0" + h : h;
-            m = m < 10 ? "0" + m : m;
-            let finalStartTime = `${h}:${m}`;
-
-            let newStartTime = `${finalStartTime}${timeEndPart}`;
-
-            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
-            let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
-            var firstEndTimeSplit = firstEndHours.split(":"); // removing the colon
-            var endMinutes = +firstEndTimeSplit[0] * 60 + +firstEndTimeSplit[1]; // converting hours into minutes
-            console.log(endMinutes);
-            var firstEndTimeminutes = Math.abs(endMinutes - timeZoneminutes); // start time + time zone
-            console.log(firstEndTimeminutes);
-            let hr = Math.floor(firstEndTimeminutes / 60); // converting to hours
-            let mi = firstEndTimeminutes % 60;
-            hr = hr < 10 ? "0" + hr : hr;
-            mi = mi < 10 ? "0" + mi : mi;
-            let finalEndTime = `${hr}:${mi}`;
-
-            let newEndTime = `${finalEndTime}${timeEndPart}`;
+            
 
             isEditing
               ? updateEvent(
                   prefillEvent.eventId,
                   {
                     ...values,
-                    startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
-                    startTime: 0,
-                    endTime: 0,               
+                    startDate: formatToISOWithZ(values.startDate),
+                    endDate: formatToISOWithZ(values.endDate),            
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
                   handleCallback
@@ -634,10 +578,8 @@ const {
                     ...values,
                     included:selectedIncludeValues,
                     ownerIds: userId === userId ? [userId] : [],
-                    startDate: `${newStartDate}T20:00:00Z`,
-                    endDate: `${newEndDate}T20:00:00Z`,
-                    startTime: 0,
-                    endTime: 0,
+                    startDate: formatToISOWithZ(values.startDate),
+                    endDate: formatToISOWithZ(values.endDate),
                     customer:selectedCustomer,
                     contacts:selectedValue === 'Investor'?selectedContactInvestor:selectedContact,
                     oppertunity:selectedOpportunity,
@@ -693,75 +635,33 @@ const {
                   <div class="mt-3">
                     <div class=" flex justify-between">
                       <div class=" w-5/12 flex flex-col">
-                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
-                        <Field
-                          isRequired
-                          name="startDate"
-                          //label="Start "                    
-                          isColumn
-                          component={DatePicker}
-                          value={values.startDate}
-                          inlineLabel
-                        
-                        />
+                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
+                         <Field
+                                                  type="datetime-local"
+                                                   id="startDate"
+                                                   name="startDate"
+                                                   className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                 />
+                                                 <ErrorMessage
+                                                   name="startDate"
+                                                   component="div"
+                                                   className="text-red-600 text-sm mt-1"
+                                                 />
                       </div>
                       <div class=" w-5/12 flex flex-col">
-                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
-                        <Field
-                          isRequired
-                          name="startTime"
-                          // label="Start Time"                    
-                          isColumn
-                          component={TimePicker}
-                          use12Hours
-                          value={values.startTime}
-                          inlineLabel
-                        
-                        />
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[5]} </div>
+                       <Field
+                                               type="datetime-local"
+                                                id="endDate"
+                                                name="endDate"
+                                                className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              />
+                                              <ErrorMessage
+                                                name="endDate"
+                                                component="div"
+                                                className="text-red-600 text-sm mt-1"
+                                              />
                       </div>
-                    </div>
-                  </div>
-                  <div class=" flex justify-between">
-                    <div class=" w-5/12 flex flex-col mt-1">
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
-                      <Field
-                        isRequired
-                        name="endDate"
-                        // label="End "               
-                        component={DatePicker}
-                        isColumn
-                        value={values.endDate || values.startDate}
-                        defaultValue={dayjs("2015-01-01")}
-                        inlineLabel
-                       
-                        disabledDate={(currentDate) => {
-                          if (values.startDate) {
-                            if (
-                              dayjs(currentDate).isBefore(
-                                dayjs(values.startDate)
-                              )
-                            ) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          }
-                        }}
-                      />
-                    </div>
-                    <div class=" w-5/12 flex flex-col mt-1">
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
-                      <Field
-                        isRequired
-                        name="endTime"
-                        //label="End Time"              
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                        
-                      />
                     </div>
                   </div>
                   <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[6]}</div>

@@ -14,7 +14,7 @@ function AccountDetailsHeaderLeft (props) {
             <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                 <Tooltip title="Back">
                     <KeyboardReturnIcon
-                        style={{ marginRight: "0.3rem", color: "#1890ff" }}
+                        style={{ marginRight: "0.3rem", color: "#1890ff", cursor:"pointer" }}
                       onClick={() => {
               navigate(-1)
               props.emptyDistributor()

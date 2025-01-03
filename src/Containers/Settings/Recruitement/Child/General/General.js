@@ -824,7 +824,9 @@ function General(props) {
                   </div>
    
                       </div>
-                      <div class=" flex justify-between   mt-2">                
+                    
+                    </div>
+                    <div class=" flex justify-between   mt-2">                
     <div class=" text-xs  ">Manufacturing process</div>
       <div>
       <div>
@@ -889,7 +891,6 @@ function General(props) {
    </div>
  </div> 
 
-                    </div>
                     </>
  ) : (
   <div className="mt-4 ml-4 text-red-500">

@@ -153,7 +153,7 @@ const LocationCellForm = (props) => {
                                       
                                     }}
                                 >
-                                   {translatedMenuItems[12]}   {/* Add Multiple */}
+                                   {translatedMenuItems[10]}   {/* Add Multiple */}
                                 </Button>
                                 </div>
                                 <div class="mt-[1.125rem]">
@@ -284,6 +284,9 @@ const LocationCellForm = (props) => {
       locationId={props.storedLoc.locationDetailsId}
       addLocationMachineModal={props.addLocationMachineModal}
       handleLocationMachineModal={props.handleLocationMachineModal}
+      translatedMenuItems={translatedMenuItems}
+      translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       
       />
       </Suspense>

@@ -1,16 +1,19 @@
-import React, {lazy} from "react";
+import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addHoliday, getHoliday, updateHoliday,deleteHoliday } from "../../../../Holiday/HolidayAction";
+import {
+  addHoliday,
+  getHoliday,
+  updateHoliday,
+  deleteHoliday,
+} from "../../../../Holiday/HolidayAction";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
-import {  TextInput } from "../../../../../Components/UI/Elements";
+import { TextInput } from "../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import { Button, Switch } from "antd";
+import { Button, Switch, DatePicker } from "antd";
 
-import { DatePicker } from "antd";
 const SettingsSingleHoliday = lazy(() => import("./SettingsSingleHoliday"));
-
 const TabPane = StyledTabs.TabPane;
 
 class SettingsHolidayPage extends React.Component {
@@ -19,156 +22,98 @@ class SettingsHolidayPage extends React.Component {
     this.state = {
       isTextInputOpen: false,
       holidayName: "",
-      selectedYear: null,
+      selectedYear: dayjs().year(),
       holidayType: false,
-      date: "",
-      selectedDate:null
+      selectedDate: null,
     };
   }
-  // componentDidMount() {
-  //   const currentYear = new Date().getFullYear();
-  //   this.props.getHoliday(this.props.country_name,currentYear);
-  // } 
+
   componentDidMount() {
-    this.fetchHolidayData();
+    this.fetchHolidayData(this.state.selectedYear);
   }
 
   componentDidUpdate(prevProps) {
-    // Check if the country_name prop has changed
     if (prevProps.country_name !== this.props.country_name) {
-      this.fetchHolidayData();
+      this.fetchHolidayData(this.state.selectedYear);
     }
   }
 
-  fetchHolidayData = () => {
-    const currentYear = new Date().getFullYear();
-    this.props.getHoliday(this.props.country_name, currentYear);
-  }
-  handleChangeHolidayTime = (checked) => {
-    this.setState({
-      holidayType: checked,
-    });
+  fetchHolidayData = (year) => {
+    const { getHoliday, country_name } = this.props;
+    if (country_name) {
+      getHoliday(country_name, year);
+    }
   };
-  toggleInput = () =>
+
+  handleHolidayTypeChange = (checked) => {
+    this.setState({ holidayType: checked });
+  };
+
+  toggleTextInput = () => {
     this.setState((prevState) => ({
       isTextInputOpen: !prevState.isTextInputOpen,
     }));
-  handleAddProcess = () => {
-    const { updateProcessName } = this.props;
-
-    const {
-      processName,
-
-      currentProcess,
-    } = this.state;
-    const Id = currentProcess.processId;
-    let process = { processName, processId: Id };
-    updateProcessName(process, this.handleCallBack1);
-    this.setState({
-      isProcessTextInputOpen: false,
-    });
   };
-  handleCallBack = (status,dateString) => {
-    if (status === "Success") {
-      const currentYear = new Date().getFullYear();
-      this.props.getHoliday(this.props.country_name,this.state.selectedYear?this.state.selectedYear:currentYear);
+
+  handleAddHoliday = () => {
+    const { holidayName, holidayType, selectedDate } = this.state;
+    const { addHoliday, country_id } = this.props;
+
+    if (holidayName && selectedDate) {
+      const formattedDate = dayjs(selectedDate).format("YYYY-MM-DD") + "T00:00:00Z";
+      addHoliday(
+        {
+          country: country_id,
+          holidayName,
+          date: formattedDate,
+          holidayType: holidayType ? "Optional" : "Mandatory",
+        },
+        this.handleAddHolidayCallback
+      );
+      this.setState({ isTextInputOpen: false, holidayName: "", selectedDate: null });
     } else {
-      alert("error");
+      alert("Please provide valid holiday name and date.");
     }
   };
-  // onChange = (date, dateString) => {
-  //   this.setState({ selectedYear: dateString });
-  //   console.log(date, dateString);
-  // };
-  onChange = (date, dateString) => {
-    if (dateString) {
-      const selectedYear = parseInt(dateString, 10);
-      
-     
-      console.log('Selected Year:', selectedYear);
-      this.setState({ selectedYear });
-      this.props.getHoliday(this.props.country_name,selectedYear);
-    }
-   
-  };
-  handleAddStage = () => {
-    console.log(this.state.date)
-    const formattedDate = dayjs(this.state.selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z';
-    console.log(this.state.holidayName);
-    // console.log(dayjs(this.state.date).toISOString());
-    console.log(this.state.holidayType ? "Optional" : "Mandatory");
-    this.props.addHoliday(
-      {
-        country:this.props.country_id,
-        holidayName: this.state.holidayName,
-        date: formattedDate,
-        holidayType: this.state.holidayType ? "Optional" : "Mandatory",
-      },
-      this.handleCallBack
-    );
 
-    this.setState({
-      isTextInputOpen: false,
-    });
+  handleAddHolidayCallback = (status) => {
+    if (status === "Success") {
+      this.fetchHolidayData(this.state.selectedYear);
+    } else {
+      alert("Error adding holiday");
+    }
   };
-  handleCancel = () => {
-    console.log("cancel button");
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  };
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-  onChangeDatePicker = (date, dateString) => {
+
+  handleDatePickerChange = (date) => {
     this.setState({ selectedDate: date });
-    console.log("Selected date:", dateString);  // To see the selected date string
   };
-  // onChangeDatePicker = (date, dateString) => {
-  //   console.log(date, dateString);
-  //   this.setState({ date: dayjs(dateString) });
-  // };
+
+  handleYearChange = (date, dateString) => {
+    const year = parseInt(dateString, 10);
+    if (year) {
+      this.setState({ selectedYear: year }, () => this.fetchHolidayData(year));
+    }
+  };
+
   handleUpdateHoliday = (id, holidayName, date, holidayType) => {
-    const formattedDate = dayjs(date).format('YYYY-MM-DD') + 'T00:00:00Z';
+    const formattedDate = dayjs(date).format("YYYY-MM-DD") + "T00:00:00Z";
     this.props.updateHoliday(id, holidayName, formattedDate, holidayType);
   };
-  // handleUpdateHoliday = (id, holidayName, date, holidayType) => {
-  //   this.props.updateHoliday(id, holidayName, date, holidayType);
-  // };
+
   handleDeleteHoliday = (id) => {
     this.props.deleteHoliday(id);
-    this.setState({ holidayType: "", singleHoliday: "" });
-};
-handleYearChange = (date) => {
-  if (date) {
-    const selectedYear = dayjs(date).year();
-    console.log('Selected Year:', selectedYear);
-    this.setState({ selectedYear });
-  }
-};
-  render() {
-    console.log(this.state.date)
-    const currentYear = dayjs().format('YYYY');
-   
-    const { selectedYear } = this.state;
-    const yearPickerConfig = {
-      format: 'YYYY',
-      mode: 'year',
-      picker: 'year',
-    };
-    console.log(selectedYear)
-    const { isTextInputOpen } = this.state;
-    const {
-      userType,
+  };
 
-    } = this.props;
-    // console.log(currentYear)
-    console.log(this.state.holidayName);
+  render() {
+    const { isTextInputOpen, holidayName, holidayType, selectedYear, selectedDate } = this.state;
+    const { holidays = [], role, addingHoliday } = this.props;
+
     return (
       <>
-        <div class=" flex ">
-          <div class=" w-[80%]">
+        <div className="flex">
+          <div className="w-[80%]">
             <MainWrapper justifyContent="space-between">
-              <h1 
+              <h1
                 style={{
                   display: "flex",
                   justifyContent: "left",
@@ -177,31 +122,20 @@ handleYearChange = (date) => {
                   backgroundColor: "#40A9FF",
                 }}
               >
-                Holiday List-
-                <div>
-         
-                 <DatePicker 
-                //  format="YYYY"
-                defaultValue={dayjs(currentYear, 'YYYY')}
-             
-                 onChange={this.onChange}
-                  picker="year" />
-                 </div>
-            
+                Holiday List
+                <DatePicker
+                  defaultValue={dayjs(selectedYear, "YYYY")}
+                  picker="year"
+                  onChange={this.handleYearChange}
+                  style={{ marginLeft: "10px" }}
+                />
               </h1>
-             
-            
-           
 
-
-
-          
-          
               <div>
-                {this.props.holidays.map((item, i) => (
+                {holidays.map((holiday) => (
                   <SettingsSingleHoliday
-                    holidays={item}
-                    newHolidayName="holidayName"
+                    key={holiday.id}
+                    holidays={holiday}
                     handleUpdateHoliday={this.handleUpdateHoliday}
                     handleDeleteHoliday={this.handleDeleteHoliday}
                   />
@@ -209,82 +143,60 @@ handleYearChange = (date) => {
               </div>
 
               {isTextInputOpen ? (
-                <div class=" flex items-left justify-between mt-[5%]"  >
-                
-                  <div >
+                <div className="flex items-center justify-between mt-4">
                   <TextInput
                     placeholder="Holiday name"
                     name="holidayName"
-                    value={this.state.holidayName}
-                    onChange={this.handleChange}
-                    width={"85%"}
+                    value={holidayName}
+                    onChange={({ target: { value } }) => this.setState({ holidayName: value })}
+                    width="30%"
                   />
-                  </div>
-                  <div>
-                  <DatePicker onChange={this.onChangeDatePicker} />
-                  </div>
-                  <div>
+                  <DatePicker onChange={this.handleDatePickerChange} value={selectedDate} />
                   <Switch
-                    style={{ width: "6.25em", marginLeft: "0.625em" }}
-                    onChange={this.handleChangeHolidayTime}
-                    checked={this.state.holidayType}
+                    onChange={this.handleHolidayTypeChange}
+                    checked={holidayType}
                     checkedChildren="Optional"
                     unCheckedChildren="Mandatory"
                   />
-                  </div>
-                  <div class=" flex justify-end"  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      Loading={this.props.addingHoliday}
-                      onClick={this.handleAddStage}
-                    >
+                  <Button type="primary" loading={addingHoliday} onClick={this.handleAddHoliday}>
                     Save
-                    </Button>
-                    &nbsp;
-                    <Button type="primary" ghost onClick={this.handleCancel}>
-                   
-                 Cancel
-                    </Button>
-                  </div>
+                  </Button>
+                  <Button type="default" onClick={this.toggleTextInput}>
+                    Cancel
+                  </Button>
                 </div>
               ) : (
-                  <div class=" flex justify-end" style={{ float: "right" }} >
-                    {this.props.role === "ADMIN" && (
-                      <div style={{ marginTop: "0.3125em" }}>
-                        <Button
-                          style={{
-                            border: "0.0625em solid #1890ff",
-                            color: "#1890ff",
-                          }}
-                          htmlType="submit"
-                          onClick={this.toggleInput}
-                        >
-                          Add Holiday
+                role === "ADMIN" && (
+                  <div className="flex justify-end">
+                    <Button type="primary" onClick={this.toggleTextInput}>
+                      Add Holiday
                     </Button>
-                    &nbsp;
-                      </div>
-                    )}
                   </div>
-
-                )} 
+                )
+              )}
             </MainWrapper>
           </div>
         </div>
-        <h4>Updated on {dayjs(this.props.holidays && this.props.holidays.length && this.props.holidays[0].updationDate).format("YYYY-MM-DD")} by {this.props.holidays && this.props.holidays.length && this.props.holidays[0].updatedBy}</h4>
+        {holidays.length > 0 && (
+          <h4>
+            Updated on {dayjs(holidays[0].updationDate).format("YYYY-MM-DD")} by{" "}
+            {holidays[0].updatedBy}
+          </h4>
+        )}
       </>
     );
   }
 }
+
 const mapStateToProps = ({ holiday, auth }) => ({
   holidays: holiday.holidays,
   addingHoliday: holiday.addingHoliday,
-  userType: auth.userDetails,
-  deleteHoliday:holiday.deleteHoliday,
-  deleteHolidayError:holiday.deleteHolidayError,
-  role: auth.userDetails.role,
-
+  country_id: holiday.country_id,
+  role: auth.userDetails?.role,
+  country_name: holiday.country_name,
 });
+
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ addHoliday, getHoliday, updateHoliday,  deleteHoliday }, dispatch);
+  bindActionCreators({ addHoliday, getHoliday, updateHoliday, deleteHoliday }, dispatch);
+
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsHolidayPage);

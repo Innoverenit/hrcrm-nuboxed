@@ -48,7 +48,7 @@ class UpdateEmployeeForm extends Component {
       locations: [],
       selectedLocation: "",
       workType:this.props.userData.employee_type || "",
-      translatedMenuItems: [],
+      // translatedMenuItems: [],
     };
   }
 
@@ -68,61 +68,61 @@ class UpdateEmployeeForm extends Component {
     getCurrency();
     this.props.getDepartmentwiserUser(this.state.department);
     getDesignations();
-    this.fetchMenuTranslations();
+    // this.fetchMenuTranslations();
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        "295",//0First Name"
-        "353",//1Middle Name"
-        "354",//2"Last Name"
-        "140",//3 Email"
-        "241",// Currency4
-        "357", // Dial Code"5
-        "964",// Personal"6
-        "685",// "Work #7
-        "967",// "Date of Joining"8
-        "968", // Date of Birth"9
-        "547", // LinkedIn"10
-        "95", // "time Zone"11
-        "326",// "Department"12
-        "979",// Level13
-        "980",// "Role"14
-        "981", // "Salary"15
-        "325",// Designation"16
-        "983",// Workplace"17
-        "658", // "Location"18
-        "985",// Job Type19
-        "986",// Full Time20
-        "987", // Part Time21
-        "14", // Category"22
-        "990", // External23
-        "989",// Internal"24
-        "991",// Employee Type"25
-        "992",// Employee26
-        "993", // Contractor27
-        "1270", // Intern28
-        "995", // Reports To29
-        "997", // Reporting Manager30
-        "998", // Secondary Department31
-        "999", // Secondary Reporting Manager32
-        "1246", // Update33
-       "1641", // input
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //       "295",//0First Name"
+  //       "353",//1Middle Name"
+  //       "354",//2"Last Name"
+  //       "140",//3 Email"
+  //       "241",// Currency4
+  //       "357", // Dial Code"5
+  //       "964",// Personal"6
+  //       "685",// "Work #7
+  //       "967",// "Date of Joining"8
+  //       "968", // Date of Birth"9
+  //       "547", // LinkedIn"10
+  //       "95", // "time Zone"11
+  //       "326",// "Department"12
+  //       "979",// Level13
+  //       "980",// "Role"14
+  //       "981", // "Salary"15
+  //       "325",// Designation"16
+  //       "983",// Workplace"17
+  //       "658", // "Location"18
+  //       "985",// Job Type19
+  //       "986",// Full Time20
+  //       "987", // Part Time21
+  //       "14", // Category"22
+  //       "990", // External23
+  //       "989",// Internal"24
+  //       "991",// Employee Type"25
+  //       "992",// Employee26
+  //       "993", // Contractor27
+  //       "1270", // Intern28
+  //       "995", // Reports To29
+  //       "997", // Reporting Manager30
+  //       "998", // Secondary Department31
+  //       "999", // Secondary Reporting Manager32
+  //       "1246", // Update33
+  //      "1641", // input
 
-      ];
+  //     ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
   handleReset = (resetForm) => {
     resetForm();
   };
@@ -418,7 +418,7 @@ class UpdateEmployeeForm extends Component {
                         <div class=" flex justify-between max-sm:flex-col" >
                       
                           <div class=" w-wk max-sm:w-full">
-                          <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[0]}</div>
+                          <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[12]}</div>
                             <Field
                               isRequired
                               name="firstName"
@@ -432,7 +432,7 @@ class UpdateEmployeeForm extends Component {
                         </div>
                         <div class=" flex justify-between max-sm:flex-col" >
                           <div class=" w-2/5 max-sm:w-full">
-                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[1]}</div>
+                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[13]}</div>
                             <Field
 
                               name="middleName"
@@ -444,7 +444,7 @@ class UpdateEmployeeForm extends Component {
                             />
                           </div>
                           <div class=" w-3/6 max-sm:w-full">
-                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[2]}</div>
+                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[14]}</div>
                             <Field
                               name="lastName"
                               type="text"
@@ -463,7 +463,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between" >
                       <div class=" w-[70%] flex flex-col max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[3]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[5]}</div>
                         <Field
                           isRequired
                           name="emailId"
@@ -475,11 +475,11 @@ class UpdateEmployeeForm extends Component {
                         />
                       </div>
                       <div class=" max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[4]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[16]}</div>
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
-                          placeholder=  {this.state.translatedMenuItems[4]}
+                          placeholder=  {this.props.translatedMenuItems[16]}
                        
                           isColumn
                         
@@ -497,7 +497,7 @@ class UpdateEmployeeForm extends Component {
                     <div class="flex justify-between max-sm:flex-col">
                       <div class=" flex  w-w47.5.5 justify-between max-sm:flex-col max-sm:w-wk " >
                         <div class=" w-w47.5.5 max-sm:w-wk ">
-                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[17]}</div>
                           <FastField
                             name="countryDialCode"
                             isColumnWithoutNoCreate
@@ -509,12 +509,12 @@ class UpdateEmployeeForm extends Component {
                           />
                         </div>
                         <div class=" w-w47.5.5 max-sm:w-wk">
-                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[6]}</div>
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[18]}</div>
                           <Field
                             type="text"
                             name="mobileNo"
                             // label="Personal"
-                            placeholder= {this.state.translatedMenuItems[34]}
+                            placeholder= {this.props.translatedMenuItems[46]}
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -526,7 +526,7 @@ class UpdateEmployeeForm extends Component {
                       </div>
                       <div class=" flex  w-w47.5.5 justify-between max-sm:flex-col max-sm:w-wk" >
                         <div class="w-w47.5.5 max-sm:w-wk">
-                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[17]}</div>
                           <FastField
                             name="countryDialCode1"
                             isColumnWithoutNoCreate
@@ -538,12 +538,12 @@ class UpdateEmployeeForm extends Component {
                           />
                         </div>
                         <div class="w-w47.5.5 max-sm:w-wk">
-                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[7]}</div>
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[19]}</div>
                           <Field
                             type="text"
                             name="phoneNo"
                             // label="Work #"
-                            placeholder= {this.state.translatedMenuItems[34]}
+                            placeholder= {this.props.translatedMenuItems[46]}
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -555,7 +555,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[8]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[20]}</div>
                         <Field
                           isRequired
                           name="dateOfJoining"
@@ -571,7 +571,7 @@ class UpdateEmployeeForm extends Component {
                         />
                       </div>
                       <div class=" w-w47.5.5 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[9]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[21]}</div>
                         <Field
                           isRequired
                           name="dob"n
@@ -586,7 +586,7 @@ class UpdateEmployeeForm extends Component {
                     </div>
                     <div class=" flex justify-between" >
                       <div class=" w-full">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[10]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[22]}</div>
                         <Field
                           name="linkedinPublicUrl"
                           type="text"
@@ -604,13 +604,13 @@ class UpdateEmployeeForm extends Component {
                   </div>
                   <div class="  w-[47.5%] max-sm:w-wk ">
                     <div class=" w-full mt-4" >
-                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[11]}</div>
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[23]}</div>
                     <Field
                     isRequired
                 
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    placeholder= {this.state.translatedMenuItems[11]}
+                    placeholder= {this.props.translatedMenuItems[23]}
                     options={
                       Array.isArray(timeZoneOption)
                         ? timeZoneOption
@@ -625,7 +625,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[12]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[24]}</div>
                         <Field
                           name="departmentId"
                           isColumnWithoutNoCreate
@@ -642,7 +642,7 @@ class UpdateEmployeeForm extends Component {
                         />
                       </div>
                       <div class="w-w47.5.5 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[13]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[25]}</div>
                         <FastField
                           name="label"
                           type="level"
@@ -656,7 +656,7 @@ class UpdateEmployeeForm extends Component {
                     </div>
                     <div class=" flex justify-between mt-2" >
                     <div class=" w-w48 max-sm:w-wk">
-                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[14]}</div>
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[26]}</div>
                       <Field
                         name="roleType"
                         isColumnWithoutNoCreate
@@ -688,7 +688,7 @@ class UpdateEmployeeForm extends Component {
                       />
                     </div>
                       <div class=" w-w48 flex  max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[15]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[27]}</div>
                       <Field
                         name="salary"
                         type="text"
@@ -700,11 +700,11 @@ class UpdateEmployeeForm extends Component {
                       </div>
                     </div>
                     <div class=" max-sm:w-wk">
-                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[16]}</div>
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[28]}</div>
                       <Field
                         name="designationType"
                         isColumnWithoutNoCreate
-                        placeholder= {this.state.translatedMenuItems[16]}
+                        placeholder= {this.props.translatedMenuItems[28]}
                         // label="Designation"
                         isColumn
                         // selectType="currencyName"
@@ -721,7 +721,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[17]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[29]}</div>
                         <Field
                           name="workplace"
                           isColumnWithoutNoCreate
@@ -740,7 +740,7 @@ class UpdateEmployeeForm extends Component {
                       </div>
 
                       <div class="w-w47.5.5 flex flex-col">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[18]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[30]}</div>
                         <Field
                           name="location"
                           isColumnWithoutNoCreate
@@ -778,26 +778,26 @@ class UpdateEmployeeForm extends Component {
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                        
                             {/* defaultMessage="Job Type" */}
-                          {this.state.translatedMenuItems[19]}
+                          {this.props.translatedMenuItems[31]}
                         </div>
                         <Switch
                           checked={this.state.active}
                           onChange={this.handleJobType}
-                          checkedChildren= {this.state.translatedMenuItems[20]}
-                          unCheckedChildren= {this.state.translatedMenuItems[21]}
+                          checkedChildren= {this.props.translatedMenuItems[32]}
+                          unCheckedChildren= {this.props.translatedMenuItems[33]}
                         />
 
                       </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                         {this.state.translatedMenuItems[22]}
+                         {this.props.translatedMenuItems[34]}
                         </div>
                         <Switch
                           checked={this.state.typeInd}
                           onChange={this.handleType}
-                          checkedChildren= {this.state.translatedMenuItems[23]}
-                          unCheckedChildren= {this.state.translatedMenuItems[24]}
+                          checkedChildren= {this.props.translatedMenuItems[35]}
+                          unCheckedChildren= {this.props.translatedMenuItems[36]}
                         />
 
                       </div>
@@ -805,7 +805,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" mt-3">
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                       {this.state.translatedMenuItems[25]}
+                       {this.props.translatedMenuItems[37]}
                       </div>
 
                       <Radio.Group
@@ -816,29 +816,29 @@ class UpdateEmployeeForm extends Component {
                           value={"Employee"}
                           onChange={() => this.radioClick("employee")}
                         >
-                       {this.state.translatedMenuItems[26]}   {/* Employee */}
+                       {this.props.translatedMenuItems[38]}   {/* Employee */}
                         </Radio>
                         &nbsp;&nbsp;
                         <Radio
                           value={"contractor"}
                           onChange={() => this.radioClick("contractor")}
                         >
-                        {this.state.translatedMenuItems[27]}  {/* Contractor */}
+                        {this.props.translatedMenuItems[39]}  {/* Contractor */}
                         </Radio>
                         &nbsp;&nbsp;
                         <Radio
                           value={"intern"}
                           onChange={() => this.radioClick("intern")}
                         >
-                    {this.state.translatedMenuItems[28]}{/* Intern */}
+                    {this.props.translatedMenuItems[40]}{/* Intern */}
                         </Radio>
                         &nbsp;&nbsp;
                       </Radio.Group>
                     </div>
-                    <div class="mt-2"><div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[29]}</div></div>
+                    <div class="mt-2"><div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[31]}</div></div>
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[12]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[24]}</div>
                         <Select
                           className="w-[250px]"
                           value={department}
@@ -851,7 +851,7 @@ class UpdateEmployeeForm extends Component {
                       </div>
 
                       <div class="w-w47.5.5 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[30]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[42]}</div>
                         <Select
                           className="w-[250px]"
                           value={reportingManager}
@@ -866,7 +866,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[31]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[43]}</div>
                         <Select
                           className="w-[250px]"
                           value={secondatDepartment}
@@ -879,7 +879,7 @@ class UpdateEmployeeForm extends Component {
                       </div>
 
                       <div class="w-w47.5.5 max-sm:w-wk">
-                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[32]}</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.props.translatedMenuItems[44]}</div>
                         <Select
                           className="w-[250px]"
                           value={secondaryReportingManager}
@@ -899,7 +899,7 @@ class UpdateEmployeeForm extends Component {
                     type="primary"
                     loading={this.props.updatingEmployee}
                   >
-                  {this.state.translatedMenuItems[33]}  {/* Update */}
+                  {this.props.translatedMenuItems[45]}  {/* Update */}
                   </Button>
                 </div>
               </Form>

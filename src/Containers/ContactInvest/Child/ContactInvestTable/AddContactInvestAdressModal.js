@@ -28,6 +28,8 @@ class AddContactInvestAdressModal extends Component {
           <AddressData
           uniqueId={this.props.item.contactId}
           type={this.props.type}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           />
 
 

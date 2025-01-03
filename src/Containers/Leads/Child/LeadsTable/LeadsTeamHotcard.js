@@ -47,53 +47,12 @@ const ButtonGroup = Button.Group;
 const LeadsTeamHotcard = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     setPage(page + 1);
     props.getTeamLeadsHot(props.userId, page,"hot");
     
   }, []);
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-              '271', // 0
-          '110', // 1
-          '102', // 2
-          '1109', // 3
-          '277', // 4
-          '278', // 5
-          '279', // 6
-          '280', // 7
-          '76', // 8
-          '1335', // 9
-          '77', // 10
-          '1114', // 11
-          '272', //12
-          '273', //13
-          '185',//Address 14
-'316',//notes15
-'1165',// 16activity
-'140',// 17 email
-'170',//18 edit
-'1259',//19 "Do you want to delete?"
-'1581',//20
-            ];
-
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
-
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -154,25 +113,25 @@ const LeadsTeamHotcard = (props) => {
         <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex  w-[92%]  max-sm:hidden p-1 bg-transparent font-bold font-poppins !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-        <div className="flex w-[6.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  text-white bg-red-600 items-center justify-center "> {translatedMenuItems[0]}</div>
+        <div className="flex w-[6.1rem] truncate max-xl:w-[12.1rem] max-lg:w-[7.1rem]  text-white bg-red-600 items-center justify-center "> {props.translatedMenuItems[0]}</div>
         <div className=" w-[2.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem]"></div>
-        <div className="  w-[21.1rem] text-[#00A2E8]  text-sm max-xl:w-[12.1rem] max-lg:w-[7.1rem]  truncate ">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
+        <div className="  w-[21.1rem] text-[#00A2E8]  text-sm max-xl:w-[12.1rem] max-lg:w-[7.1rem]  truncate ">    <ApartmentIcon className="!text-icon  "/> {props.translatedMenuItems[1]}</div>
        
-        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] truncate ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] truncate ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{props.translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[10.2rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  truncate "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
-        <div className=" w-[9.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] truncate">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.4rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] truncate"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
-        <div className= " w-[7.3rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] truncate">{translatedMenuItems[7]}</div> 
+        <div className=" w-[10.2rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  truncate "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{props.translatedMenuItems[4]}</div>
+        <div className=" w-[9.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] truncate">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {props.translatedMenuItems[5]}</div> 
+        <div className= " w-[9.4rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] truncate"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {props.translatedMenuItems[6]}</div> 
+        <div className= " w-[7.3rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] truncate">{props.translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
             <div className=" w-[4.81rem] max-xl:w-[3.81rem] truncate">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[20]}      
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {props.translatedMenuItems[20]}      
             </div>
             )}
-        <div className=" w-[4.23rem] max-xl:w-[6.2rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
-        <div className=" w-[3.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] truncate">{translatedMenuItems[9]}</div>
-        <div className=" w-[3.7rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[10]}</div>
-        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] truncate"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+        <div className=" w-[4.23rem] max-xl:w-[6.2rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {props.translatedMenuItems[8]} </div>
+        <div className=" w-[3.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] truncate">{props.translatedMenuItems[9]}</div>
+        <div className=" w-[3.7rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] truncate"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {props.translatedMenuItems[10]}</div>
+        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] truncate"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{props.translatedMenuItems[11]}</div>
       
         {/* <div className="w-12"></div> */}
 
@@ -475,7 +434,7 @@ const LeadsTeamHotcard = (props) => {
                   <div class="flex max-sm:justify-evenly max-sm:w-wk  items-center justify-center h-8 ml-gap bg-[#eef2f9]"> 
                  
                     <div >
-                      <Tooltip title={translatedMenuItems[15]}>
+                      <Tooltip title={props.translatedMenuItems[15]}>
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
@@ -499,7 +458,7 @@ const LeadsTeamHotcard = (props) => {
         </Tooltip>
                     <div >
                       <Tooltip
-                        title={translatedMenuItems[16]}
+                        title={props.translatedMenuItems[16]}
                       >
                         {/* activity */}
                         <HourglassFullIcon
@@ -514,7 +473,7 @@ const LeadsTeamHotcard = (props) => {
                     </div>
                   
                     <div >
-                      <Tooltip title={translatedMenuItems[17]}>
+                      <Tooltip title={props.translatedMenuItems[17]}>
                         <MailOutlineIcon
                           type="mail"
                           className="!text-icon cursor-pointer text-green-400"
@@ -529,7 +488,7 @@ const LeadsTeamHotcard = (props) => {
                     {user.leadsDeleteInd === true && user.crmInd === true && (
                     <div >                     
                     <StyledPopconfirm
-                      title={translatedMenuItems[19]}
+                      title={props.translatedMenuItems[19]}
                       onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                  <Tooltip title="Delete">
                       <DeleteOutlineIcon

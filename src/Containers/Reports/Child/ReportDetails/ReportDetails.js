@@ -43,6 +43,18 @@ class ReportDetails extends Component {
                       <ReportDetailRight 
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}
+                      reportLeads={this.props.reportLeads}
+                      gettingReportLeads={this.props.gettingReportLeads}
+                      reportLeadsOrg={this.props.reportLeadsOrg}
+                      gettingReportLeadsOrg={this.props.gettingReportLeadsOrg}
+                      reportConvertedOrg={this.props.reportConvertedOrg}
+                      gettingReportConvertOrg={this.props.gettingReportConvertOrg}
+                      gettingReportConvert={this.props.gettingReportConvert}
+                      reportCallOrg={this.props.reportCallOrg}
+                      gettingReportCallOrg={this.props.gettingReportCallOrg}
+                      reportCall={this.props.reportCall}
+                      gettingReportCall={this.props.gettingReportCall}
+                      reportConverted={this.props.reportConverted}
                       selectedCategory={this.props.selectedCategory}
                       customer={customer} 
                       reportTask={this.props.reportTask}
@@ -53,7 +65,8 @@ class ReportDetails extends Component {
           userorgflipClick={this.props.userorgflipClick}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
-
+          gettingReportEvent={this.props.gettingReportEvent}
+          reportEvent={this.props.reportEvent}
                       />
                     </div>
                   </div>

@@ -11,10 +11,9 @@ import ActivityForm from "../../../../../Activity/ActivityForm";
 
 const TabPane = StyledTabs.TabPane;
 function AddShipperActivityModal (props) {
-   
-        const {
-            addShipperActivityModal,
-            handleShipperActivityModal,
+   const {
+            callActivityModal,
+            handleCallActivityModal,
         } = props;
         const isSmallScreen = window.innerWidth <= 600;
         const drawerWidth = isSmallScreen ? "90%" : "60%";
@@ -24,12 +23,12 @@ function AddShipperActivityModal (props) {
                 <StyledDrawer
                     title="Schedule"
                   width={drawerWidth}
-                    visible={addShipperActivityModal}
+                    visible={callActivityModal}
                     destroyOnClose
                     maskClosable={false}
                     maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
                     style={{ top: 40 }}
-                    onClose={() => handleShipperActivityModal(false)}
+                    onClose={() => handleCallActivityModal(false)}
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>

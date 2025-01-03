@@ -164,7 +164,7 @@ console.log(departmentData.clubName)
              
                 <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
                 <Input
-          placeholder="Search by Brand or Model"
+          placeholder="Search by Name"
           width={"100%"}
          // suffix={suffix}
          // onPressEnter={handleSearch}
