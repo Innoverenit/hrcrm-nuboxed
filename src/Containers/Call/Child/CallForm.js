@@ -465,7 +465,7 @@ function CallForm(props) {
               endDate: formatToISOWithZ(values.endDate),
               contactId: selectedContact,
               opportunityId:selectedOpportunity,
-              customerId: selectedCustomer,
+              customer: selectedCustomer,
               assignedTo: selectedOption ? selectedOption.employeeId:userId,
             };
             isEditing
