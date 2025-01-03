@@ -22,35 +22,35 @@ class EmployeeDrawerForAdmin extends Component {
     this.state = {
       isLevelTextInputOpen: false,
       isAddModuleNameInputOpen: false,
-      translatedMenuItems: [],
+      // translatedMenuItems: [],
     };
   }
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        "1024",//0   Functions
-        "1643",//1 Custom Function
-        "1078",//2Save"
-        "1079",//3 Cancel"
+  // fetchMenuTranslations = async () => {
+  //   try {
+  //     const itemsToTranslate = [
+  //       "1024",//0   Functions
+  //       "1643",//1 Custom Function
+  //       "1078",//2Save"
+  //       "1079",//3 Cancel"
         
-      ];
+  //     ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
+  //     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+  //     this.setState({ translatedMenuItems: translations });
+  //   } catch (error) {
+  //     console.error('Error translating menu items:', error);
+  //   }
+  // };
 
   handleAddCustomModule = () => {
     this.setState((prevState) => ({
@@ -126,7 +126,7 @@ class EmployeeDrawerForAdmin extends Component {
               <div class=" w-full" >
               <div class=" flex justify-between">
                   <div  className=" pl-2 text-sm font-bold sticky mt-3" >
-                  {this.state.translatedMenuItems[0]}{/* Functions */}
+                  {this.props.translatedMenuItems[62]}{/* Functions */}
                   </div>
 
                   <div class=" mt-1">
@@ -137,12 +137,12 @@ class EmployeeDrawerForAdmin extends Component {
                 </div>
                 <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
                   <div class=" mt-1">
-                  <div className=" text-xs font-poppins font-bold text-black ">{this.state.translatedMenuItems[1]}</div>
+                  <div className=" text-xs font-poppins font-bold text-black ">{this.props.translatedMenuItems[63]}</div>
                     {this.state.isAddModuleNameInputOpen && (
                      
                       <div>
                         <TextInput
-                          placeholder={this.state.translatedMenuItems[1]}
+                          placeholder={this.props.translatedMenuItems[63]}
                           name="departmentName"
                          
                           onChange={this.handleChange}
@@ -155,7 +155,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           htmlType="submit"
                           onClick={this.handleAddCustomeDepartment}
-                        >{this.state.translatedMenuItems[2]}
+                        >{this.props.translatedMenuItems[64]}
                         </Button>
                         &nbsp;
                         <Button
@@ -165,7 +165,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           onClick={this.handleCancelCustomeDepartment}
                         >
-                         {this.state.translatedMenuItems[3]}
+                         {this.props.translatedMenuItems[65]}
                         </Button>
                       </div>
                     )}

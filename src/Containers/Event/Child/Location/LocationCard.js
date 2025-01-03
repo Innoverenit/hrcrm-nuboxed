@@ -306,7 +306,7 @@ const LocationCard = (props) => {
                       <div>
                         <Tooltip title={translatedMenuItems[11]} >
                           <AcUnitIcon
-                            className="!text-icon cursor-pointer text-[#fecdaa]"
+                            className="!text-icon cursor-pointer text-[#3a7039]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationCustomerDrawer(true);
@@ -316,7 +316,7 @@ const LocationCard = (props) => {
                       </div>
                    
                       <div>
-                        <Tooltip title={translatedMenuItems[11]} >
+                        <Tooltip title="Machine" >
                           <ConstructionIcon
                             className="!text-icon cursor-pointer text-[teal]"
                             onClick={() => {
@@ -358,7 +358,7 @@ const LocationCard = (props) => {
                           onConfirm={() => props.deleteLocation(item.locationDetailsId, props.orgId)}
                         >
                           <Tooltip title={translatedMenuItems[15]} >
-                          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                          <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer"  />
                           </Tooltip>
                         </StyledPopconfirm>
 
