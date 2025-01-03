@@ -23,46 +23,45 @@ function CommerceTab(props) {
     const [loading, setLoading] = useState(true);
     const [clickSideIcon,setclickSideIcon]=useState(false);
     const [selectedHistory, setSelectedHistory] = useState("completed");
-
     
-    useEffect(() => {
-        const fetchMenuTranslations = async () => {
-          try {
-            setLoading(true); 
-            const itemsToTranslate = [
-   "203", // 'Production', // 0
-   "661", // 'Repair', // 1
-   "666", // ' Procure', // 2
-    "213",// 'Quotation', // 3
-    "1165",// ' Activity', // 4
-    "316",// 'Notes', // 5
-   "138", // ' Documents',6
-   "1167", // 'Sales Map',7
-    "1168",// 'Summary',8
-    "73",// 'Contact ',9
-    "1169",// 'Invoice',//10
-    "104",// 'Create',11
-   "1212", //  'Commerce', //12              
-   "1213", // 'Add Commerce',//13
-   '1357',// Memo 14
-     "202",       //    Order
-     "667",      //    Completed Orders
-     "1475",       //    Add Order
- "1474",       //    Add Contact
- "660"
-          ];
+//     useEffect(() => {
+//         const fetchMenuTranslations = async () => {
+//           try {
+//             setLoading(true); 
+//             const itemsToTranslate = [
+//    "203", // 'Production', // 0
+//    "661", // 'Repair', // 1
+//    "666", // ' Procure', // 2
+//     "213",// 'Quotation', // 3
+//     "1165",// ' Activity', // 4
+//     "316",// 'Notes', // 5
+//    "138", // ' Documents',6
+//    "1167", // 'Sales Map',7
+//     "1168",// 'Summary',8
+//     "73",// 'Contact ',9
+//     "1169",// 'Invoice',//10
+//     "104",// 'Create',11
+//    "1212", //  'Commerce', //12              
+//    "1213", // 'Add Commerce',//13
+//    '1357',// Memo 14
+//      "202",       //    Order
+//      "667",      //    Completed Orders
+//      "1475",       //    Add Order
+//  "1474",       //    Add Contact
+//  "660"
+//           ];
     
-            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-            setTranslatedMenuItems(translations);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            console.error('Error translating menu items:', error);
-          }
-        };
+//             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+//             setTranslatedMenuItems(translations);
+//             setLoading(false);
+//           } catch (error) {
+//             setLoading(false);
+//             console.error('Error translating menu items:', error);
+//           }
+//         };
     
-        fetchMenuTranslations();
-      }, [props.selectedLanguage]);
+//         fetchMenuTranslations();
+//       }, [props.selectedLanguage]);
 
 
     const handleTabChange = (key) => {
@@ -83,25 +82,28 @@ function CommerceTab(props) {
             return     <div> 
                   <EcomCardList
             selectedLanguage={props.selectedLanguage}
-            translateText={props.translateText}/>
+            translateText={props.translateText} 
+            translatedMenuItems={props.translatedMenuItems}
+            />
                 </div>;
           case "2":
             return  <div><QuotationCardList
             selectedLanguage={props.selectedLanguage}
-            translateText={props.translateText}/> </div>;
+            translateText={props.translateText} 
+            translatedMenuItems={props.translatedMenuItems}
+            /> </div>;
             case "3":
                 return  <div><InvoiceCardList
                 selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText}/> </div>;
-                
-
+                translateText={props.translateText}
+                translatedMenuItems={props.translatedMenuItems}
+                /> 
+                </div>;
           default:
             return null;
         }
       };
-
-
-    console.log("opIND",clickSideIcon)  
+ 
     return (
         <>
             <TabsWrapper>
@@ -112,7 +114,7 @@ function CommerceTab(props) {
                         tab={
                             <>
                                 <span >
-                                   Orders   
+                                {props.translatedMenuItems[59]}  {/* Orders    */}
                                 </span>
                                 {activeKey === "1" && (
                                     <>
@@ -128,7 +130,7 @@ function CommerceTab(props) {
                         tab={
                             <>
                              <span>
-                                        Quotation
+                             {props.translatedMenuItems[51]}   {/* Quotation */}
                                     </span>
                                
                                  
@@ -157,7 +159,7 @@ function CommerceTab(props) {
                            
                                            
                                             <span class=" ml-1 !text-tab font-poppins " >
-                                           Invoices
+                                            {props.translatedMenuItems[56]} {/* Invoices */}
                                                 </span>
                                         
                                 
@@ -197,7 +199,7 @@ function CommerceTab(props) {
                     props.quatationDrawer(true);
                 }}
                 >
-           + Quotation
+           {/* + Quotation */} + {props.translatedMenuItems[51]}
                 </Button>
                 </div>                
 
@@ -216,7 +218,7 @@ function CommerceTab(props) {
                     props.invoiceDrawer(true);
                  }}
                 >
-           + Invoice
+           {/* + Invoice */} + {props.translatedMenuItems[56]}
                 </Button>  
                    </div>                 
 
@@ -231,7 +233,7 @@ function CommerceTab(props) {
                 
                 </StyledTabs>
                
-                <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                <Suspense fallback={<div class="flex justify-center"><BundleLoader/></div>}>
                 {renderTabContent(activeKey)}
               </Suspense>
             </TabsWrapper>
@@ -239,10 +241,12 @@ function CommerceTab(props) {
 <QuotationDrawer
 quotationItemDrwr={props.quotationItemDrwr}
 quatationDrawer={props.quatationDrawer}
+translatedMenuItems={props.translatedMenuItems}
 />
 <InvoiceDrawer
 invoiceItemDrwr={props.invoiceItemDrwr}
 invoiceDrawer={props.invoiceDrawer}
+translatedMenuItems={props.translatedMenuItems}
 />
             </Suspense>
            

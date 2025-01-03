@@ -280,6 +280,7 @@ function AccountDetailsTab(props) {
 "137",//Project 167
 "36",//Hour 168
 "66",//Month 169
+"1484",// Outstanding // 170
 
         ];
 
@@ -1032,8 +1033,8 @@ function AccountDetailsTab(props) {
             /> */}
       <Suspense fallback={<BundleLoader />}>
         <AddSupplierDocumentModal
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
+          // selectedLanguage={props.selectedLanguage}
+          // translateText={props.translateText}
           uniqueId={props.distributorData.distributorId}
           type={"distributor"}
           distributorId={props.distributorData.distributorId}

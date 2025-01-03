@@ -52,7 +52,7 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
 import Swal from "sweetalert2";
-import { base_url2 } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import axios from "axios";
 import OppoOpenDrawer from "./OppoOpenDrawer";
@@ -88,6 +88,11 @@ function AccountTable(props) {
   const [isCurrencyDropdownClick, setIsCurrencyDropdownClick] = useState(false);
   const [openOrder, setOpenOrder] = useState(false);
   const [openOpportunity, setOpenOpportunity] = useState(false);
+ const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+  const [selectedAssign, setSelectedAssign] = useState();
+ const [usersList, setusersList] = useState([]);
+  const [touchedUser, setTouchedUser] = useState(false);
+  const [isLoadingUsers, setIsLoadingUser] = useState(false);
 
   const fetchCategoryData = () => {
     if (!isCategoryDropdownClicked) {
@@ -160,6 +165,64 @@ function AccountTable(props) {
       setPrice("");
     }
   };
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+        try {
+            const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.organizationId}`;
+            const response = await fetch(apiEndpoint,{
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${props.token}`,
+                'Content-Type': 'application/json',
+              },
+            });
+            const data = await response.json();
+      setusersList(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      setTouchedUser(true);
+    }
+  };
+
+    const handleAssignChange = async (distributorId,value) => { 
+      try {
+        const response = await axios.put(
+          `${base_url2}/distributor/changesAssignTo/${distributorId}/${value}`,{
+            assignTo :props.userId, 
+            },
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+        setcustomerLists((prevData) =>
+          prevData.map((cat) =>
+            cat.distributorId === distributorId ? response.data : cat
+          )
+        );
+        setEditableField(null);
+        setEditingValue("");
+        Swal.fire({
+          icon: "success",
+          title: "Update successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null);
+      } 
+      setIsAssignDropdownVisible(null);
+    };
+
   const handleSubmitPrice = () => {
     props.updateAccountPrice(
       {
@@ -344,7 +407,7 @@ function AccountTable(props) {
                 </div>
 
                 <div className="w-[10.2rem] max-md:w-[9.2rem]">
-                  <CurrencyExchangeIcon className="!text-icon    text-[#c42847]" />{" "}
+                  
                   {props.translatedMenuItems[5]}
                   {/* Payment % */}
                 </div>
@@ -621,7 +684,8 @@ function AccountTable(props) {
                             <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
                               <div class=" text-xs cursor-pointer text-blue-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                onClick={() => {
-                                setOpenOpportunity(true);
+                                setOpenOrder(true);
+                               
                                         handleCurrentRowData(item);
                                       }}
                               >
@@ -633,7 +697,7 @@ function AccountTable(props) {
                                 class=" text-xs cursor-pointer font-bold font-poppins text-center text-blue-600  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                  onClick={() => {
-                                  setOpenOrder(true);
+                                  setOpenOpportunity(true);
                                           handleCurrentRowData(item);
                                         }}
                               >
@@ -849,18 +913,52 @@ function AccountTable(props) {
                             <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[5.1rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* Assigned */}
                               {item.assignToUser ? (
-                                <span
-                                  onClick={() => {
-                                    handleCurrentRowData(item);
-                                    setasignedDrawer(true);
-                                  }}
-                                >
+                                  <div>
+                                         {isAssignDropdownVisible === item.distributorId ? (
+                                          <Select
+                                            style={{ width: "8rem" }}
+                                            value={selectedAssign}          
+                                            onChange={(value) => {
+                                              setSelectedAssign(value); 
+                                              handleAssignChange(item.distributorId,value); 
+                                            }}
+                                             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+                                             onFocus={handleSelectUserFocus}
+                                            autoFocus
+                                          >
+                                             {usersList.map(customer => (
+                                                 <Option key={customer.employeeId} value={customer.employeeId}>
+                                                  <div className="flex">
+                                                   <MultiAvatar
+                                          primaryTitle={customer.empName} 
+                                          imageId={item.imageId}
+                                                    imageURL={item.imageURL}
+                                                    imgWidth={"1.8rem"}
+                                                    imgHeight={"1.8rem"} 
+                                        />
+                                                  <span>{customer.empName}</span> 
+                                                  </div>
+                                                 </Option>
+                                               ))}
+                                          </Select>
+                                        ):(
+                                          <div 
+                                          onClick={() => {
+                                            setIsAssignDropdownVisible(item.distributorId); 
+                                            setSelectedAssign(item.assignedTo); 
+                                            }}  
+                                          className="cursor-pointer"
+                                        >
+                                
                                   <MultiAvatar2
                                     primaryTitle={item.assignToUser}
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
                                   />
-                                </span>
+                            
+                                </div>
+                                )}  
+                                    </div>
                               ) : (
                                 ""
                               )}
@@ -1006,17 +1104,19 @@ function AccountTable(props) {
         />
          <OppoOpenDrawer
           RowData={RowData}
-          setOpenOrder={setOpenOrder}
-          openOrder={openOrder}
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
-        />
-         <OrderOpenDrawer
-          RowData={RowData}
           setOpenOpportunity={setOpenOpportunity}
           openOpportunity={openOpportunity}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}
+          translatedMenuItem={props.translatedMenuItems}
+        />
+         <OrderOpenDrawer
+          RowData={RowData}
+          setOpenOrder={setOpenOrder}
+          openOrder={openOrder}
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
+        translatedMenuItems={props.translatedMenuItems}
         />
         {/* <CustomerOpportunityDrawerModal
         RowData={RowData}
@@ -1055,6 +1155,7 @@ const mapStateToProps = ({ distributor, auth, catgCustomer, customer }) => ({
   customerListData: catgCustomer.customerListData,
   saleCurrencies: auth.saleCurrencies,
   countries: auth.countries,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>
