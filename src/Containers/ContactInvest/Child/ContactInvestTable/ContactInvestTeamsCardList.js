@@ -612,6 +612,8 @@ className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover
          type="contact"
         addContactAddressModal={props.addContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       /> 
       <AddContactInvestDealModal
         translateText={props.translateText}
