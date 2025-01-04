@@ -13,7 +13,7 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
 import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
-import { MultiAvatar } from '../../../Components/UI/Elements';
+import { MultiAvatar, MultiAvatar2} from '../../../Components/UI/Elements';
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
 import { Tooltip, Input,Button,Progress,Select  } from 'antd';
@@ -29,7 +29,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import { base_url2 } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import axios from "axios";
 import Swal from 'sweetalert2'
@@ -73,6 +73,11 @@ const AllAccountList = (props) => {
  const [currencyOpts,setcurrencyOpts]=useState([]);
  const [isCurrencyDropdownClick,setIsCurrencyDropdownClick]=useState(false);
   const [openOrder, setOpenOrder] = useState(false);
+ const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+  const [selectedAssign, setSelectedAssign] = useState();
+ const [usersList, setusersList] = useState([]);
+  const [touchedUser, setTouchedUser] = useState(false);
+  const [isLoadingUsers, setIsLoadingUser] = useState(false);
 
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
@@ -285,6 +290,60 @@ const handleEditRowField = (distributorId, field, currentValue) => {
     setEditingValue("");     
   };
 
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+        try {
+          const response = await axios.get(`${base_url}/employee/active/user/drop-down/${props.orgId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+      setusersList(response.data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      setTouchedUser(true);
+    }
+  };
+
+    const handleAssignChange = async (distributorId,value) => { 
+      try {
+        const response = await axios.put(
+          `${base_url2}/distributor/changesAssignTo/${distributorId}/${value}`,{
+            assignTo :props.userId, 
+            },
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+        setcustomerLists((prevData) =>
+          prevData.map((cat) =>
+            cat.distributorId === distributorId ? response.data : cat
+          )
+        );
+        setEditableField(null);
+        setEditingValue("");
+        Swal.fire({
+          icon: "success",
+          title: "Update successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null);
+      } 
+      setIsAssignDropdownVisible(null);
+    };
+    
   const {
     handleUpdateAccountModal,
   } = props;
@@ -529,7 +588,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       
                         <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[6rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                            {/* {editableField?.distributorId === item.distributorId &&
+                            {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clubName' ? (
 <Input
   type="text"
@@ -546,8 +605,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
     className="cursor-pointer !text-xs font-Poppins">
     {item.clubName || "Update..."}
     </div> 
-)} */}  
-{item.clubName}
+)}  
+
                             </div>
                           </div>
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[10.7rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
@@ -690,22 +749,56 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                     
                        <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
-                          {item.assignToUser?
-                            <Tooltip title={item.assignToUser}>
-                                 <div className=' cursor-pointer'
-                                  onClick={() => {
-                                  //handleSetCurrentCustomerId(item.customerId)
-                                  props.handleUpdateAccountUserModal(true);
-                                  handleCurrentRowData(item);
-                                }} >
-                              <MultiAvatar
-                                primaryTitle={item.assignToUser}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                              </div>
-                            </Tooltip>:""}
+                          {item.assignToUser ? (
+                            <div>
+                                         {isAssignDropdownVisible === item.distributorId ? (
+                                          <Select
+                                            style={{ width: "8rem" }}
+                                            value={selectedAssign}          
+                                            onChange={(value) => {
+                                              setSelectedAssign(value); 
+                                              handleAssignChange(item.distributorId,value); 
+                                            }}
+                                             onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+                                             onFocus={handleSelectUserFocus}
+                                            autoFocus
+                                          >
+                                             {usersList.map(customer => (
+                                                 <Option key={customer.employeeId} value={customer.employeeId}>
+                                                  <div className="flex">
+                                                   <MultiAvatar
+                                          primaryTitle={customer.empName} 
+                                          imageId={item.imageId}
+                                                    imageURL={item.imageURL}
+                                                    imgWidth={"1.8rem"}
+                                                    imgHeight={"1.8rem"} 
+                                        />
+                                                  <span>{customer.empName}</span> 
+                                                  </div>
+                                                 </Option>
+                                               ))}
+                                          </Select>
+                                        ):(
+                                          <div 
+                                          onClick={() => {
+                                            setIsAssignDropdownVisible(item.distributorId); 
+                                            setSelectedAssign(item.assignedTo); 
+                                            }}  
+                                          className="cursor-pointer"
+                                        >
+                                
+                                  <MultiAvatar2
+                                    primaryTitle={item.assignToUser}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
+                            
+                                </div>
+                                )}  
+                                    </div>
+                              ) : (
+                                ""
+                              )}
                           </div>                      
                       </div>    
                       <div className=" flex  items-center max-sm:w-auto flex-col w-[4.5rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">

@@ -168,16 +168,12 @@ function AccountTable(props) {
   const fetchUser = async () => {
     setIsLoadingUser(true);
         try {
-            const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.organizationId}`;
-            const response = await fetch(apiEndpoint,{
-              method: 'GET',
-              headers: {
-                'Authorization': `Bearer ${props.token}`,
-                'Content-Type': 'application/json',
-              },
-            });
-            const data = await response.json();
-      setusersList(data);
+          const response = await axios.get(`${base_url}/employee/active/user/drop-down/${props.orgId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+      setusersList(response.data);
     } catch (error) {
       console.error('Error fetching customers:', error);
     } finally {
@@ -1108,7 +1104,7 @@ function AccountTable(props) {
           openOpportunity={openOpportunity}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}
-          translatedMenuItem={props.translatedMenuItems}
+          translatedMenuItems={props.translatedMenuItems}
         />
          <OrderOpenDrawer
           RowData={RowData}

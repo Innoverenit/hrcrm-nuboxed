@@ -334,7 +334,7 @@ function ShipperDeletedOrderTable(props) {
       {show && <OrderDetailsTable orderId={orderId} />}
       {showHistory && <ShipperOrderHistory orderId={orderId} />}
       {showFeed && <ShipperOrderFeedback orderId={orderId} />}
-      {showPayment && <OrderPaymentTable orderId={orderId} />}
+      {/* {showPayment && <OrderPaymentTable orderId={orderId} />} */}
       {showRes && <ShipperDeletedOrderReason orderId={orderId} />}
     </>
   );

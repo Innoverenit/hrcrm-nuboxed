@@ -16,6 +16,7 @@ const PaidButtonModal = ({
     activeTab,
     translatedMenuItems,
     modalTitleKey,
+     contextType
 }) => {
 
     const getTranslation = (keyIndex, fallback = "Default Modal Title") => {
@@ -55,6 +56,7 @@ const PaidButtonModal = ({
                             translateText={translateText}
                             activeTab={activeTab}
                             translatedMenuItems={translatedMenuItems}
+                            contextType={contextType}
                         />
                     </>
                 ) : (
@@ -64,6 +66,7 @@ const PaidButtonModal = ({
                         translateText={translateText}
                         activeTab={activeTab}
                         translatedMenuItems={translatedMenuItems}
+                        contextType={contextType}
                     />
                 )}
             </Suspense>

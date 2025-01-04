@@ -1,17 +1,10 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState,} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
-  Popconfirm,
-  Tooltip,
-  Input,
-  Button,
-  Progress,
   Select,
-  Avatar,
 } from "antd";
-import { Link } from "react-router-dom";
 import {
   getOrderProcurement,
 } from "./AccountAction";
@@ -110,7 +103,8 @@ const [hasMore, setHasMore] = useState(true);
                                 ) : null}
                               </div>
                             </div>
-                            <div class="flex flex-row w-[5.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
+                           </div>
+                           <div class="flex flex-row w-[5.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
                             <div class=" font-poppins text-xs">
                               {item.newFinalPrice}
                             </div>
@@ -120,7 +114,6 @@ const [hasMore, setHasMore] = useState(true);
                               {item.status}
                             </div>
                           </div>
-                           </div>
                         </div>
                       </div>
                     );
@@ -135,7 +128,7 @@ const [hasMore, setHasMore] = useState(true);
     </>
   );
 }
-const mapStateToProps = ({ distributor, auth, catgCustomer, customer }) => ({
+const mapStateToProps = ({ distributor, auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   procurementOrder:distributor.procurementOrder,

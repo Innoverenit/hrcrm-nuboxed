@@ -1187,6 +1187,7 @@ const AccountOrderTable = (props) => {
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal}
         translatedMenuItems={props.translatedMenuItems}
+        contextType={props.contextType}
       />
       <StatusOfOrderModal
         selectedLanguage={props.selectedLanguage}
@@ -1195,6 +1196,7 @@ const AccountOrderTable = (props) => {
         addStatusOfOrder={props.addStatusOfOrder}
         particularRowData={particularRowData}
         translatedMenuItems={props.translatedMenuItems}
+        contextType={props.contextType}
       />
       <PaidButtonModal
         distributorId={props.distributorId}
@@ -1207,6 +1209,7 @@ const AccountOrderTable = (props) => {
         activeTab={props.activeTab}
         translatedMenuItems={props.translatedMenuItems}
         modalTitleKey={55}
+        contextType={props.contextType}
       />
       <AccountproductionModal
         selectedLanguage={props.selectedLanguage}

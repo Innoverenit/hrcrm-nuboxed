@@ -103,6 +103,47 @@ function OrderPaymentTable(props) {
       console.error("Error fetching PDF:", error);
     }
   };
+  const { translatedMenuItems,contextType } = props;
+
+
+  function getTranslation(key) {
+    const contextTranslationIndex = {
+      accountDetails: {
+        transaction: 64,       
+        created: 26, 
+        entry:118, 
+        amount:66,
+        mode:67,
+        reason:117,
+        approved:119,
+        save:48,
+        cancel:49,
+        doyouwanttodelete:120,
+        delete:59,
+        refund:121,
+      },
+      orders: {
+        transaction: 74,      
+        created: 15,  
+        entry:75,
+        amount:76, 
+        mode:77,
+        reason:78,
+        approved:79,
+        save:49,
+        cancel:33,
+        doyouwanttodelete:29,
+        delete:30,
+        refund:80,
+      },
+      
+    };
+    if (contextTranslationIndex[contextType] && contextTranslationIndex[contextType][key] !== undefined) {
+      const index = contextTranslationIndex[contextType][key];
+      return translatedMenuItems[index] || "Translation not available";
+    }
+    return "Translation not available"; 
+  }
 
   return (
     <>
@@ -115,31 +156,28 @@ function OrderPaymentTable(props) {
               <div className="w-[7.09rem] max-max-md:w-[7rem] text-sm">
                 {" "}
                 <ReadMoreIcon className=" !text-icon" />
-                {props.translatedMenuItems[64]} ID
+                {getTranslation("transaction")} ID
               </div>
-              {/* <div className=" max-md:w-[4.21rem] ">Invoice Id</div>  */}
               <div className="w-[4.5rem] max-max-md:w-[4.5rem] ">
                 <DateRangeIcon className=" !text-icon" />
-                {props.translatedMenuItems[26]}
+                {getTranslation("created")}
               </div>
               <div className="w-[5.8rem] max-max-md:w-[5.8rem] ">
                 <ArrowForwardIcon className=" !text-icon" />
-                {props.translatedMenuItems[118]}
+                {getTranslation("entry")}
               </div>
               <div className="w-[4.25rem] max-max-md:w-[4.2rem] ">
                 <CurrencyExchangeIcon className=" !text-icon" />
-                {props.translatedMenuItems[66]}
+                {getTranslation("amount")}
               </div>{" "}
-              {/* 929 */}
               <div className="w-[4.24rem] max-max-md:w-[4.2rem] ">
-                {props.translatedMenuItems[67]}
+              {getTranslation("mode")}
               </div>
-              {/* 86 */}
               <div className="w-[4.22rem] max-max-md:w-[4.2rem] ">
-                {props.translatedMenuItems[117]}
+              {getTranslation("reason")} 
               </div>
               <div className="w-[6.21rem] max-max-md:w-[6.2rem] ">
-                {props.translatedMenuItems[119]}
+              {getTranslation("approved")}  
               </div>
             </div>
 
@@ -281,13 +319,13 @@ function OrderPaymentTable(props) {
                                 );
                               }}
                             >
-                              {props.translatedMenuItems[48]}
+                               {getTranslation("save")} 
                             </Button>
                             <Button
                               className="ml-2"
                               onClick={() => handleEditIcon()}
                             >
-                              {props.translatedMenuItems[49]}
+                             {getTranslation("cancel")} 
                             </Button>
                           </>
                         ) : (
@@ -307,7 +345,7 @@ function OrderPaymentTable(props) {
                       {item.approveByFinanceInd === false ? (
                         <div>
                           <StyledPopconfirm
-                            title={props.translatedMenuItems[120]}
+                            title={getTranslation("doyouwanttodelete")} 
                             onConfirm={() =>
                               props.deleteOrderPaymentData(
                                 {
@@ -319,7 +357,7 @@ function OrderPaymentTable(props) {
                               )
                             }
                           >
-                            <Tooltip title={props.translatedMenuItems[59]}>
+                            <Tooltip title={getTranslation("delete")}>
                               <DeleteIcon className="!text-icon cursor-pointer text-[red]" />
                             </Tooltip>
                           </StyledPopconfirm>
@@ -327,7 +365,7 @@ function OrderPaymentTable(props) {
                       ) : (
                         <div>
                           <Button type="primary">
-                            {props.translatedMenuItems[121]}
+                          {getTranslation("refund")}
                           </Button>
                         </div>
                       )}

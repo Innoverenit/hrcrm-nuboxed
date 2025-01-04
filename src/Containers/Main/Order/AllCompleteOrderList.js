@@ -57,43 +57,6 @@ const getRelativeTime = (creationDate) => {
 function AllCompleteOrderList(props) {
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-  //   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  //   const [loading, setLoading] = useState(true);
-  //   useEffect(() => {
-  //       const fetchMenuTranslations = async () => {
-  //         try {
-  //           setLoading(true); 
-  //           const itemsToTranslate = [
-  // "106",  // 'Urgent', // 0
-  // "660",    // 'Order', // 1
-  // "248",    // ' Customer', // 2
-  // "73",  // 'Contact', // 3
-  // "260",  // ' Units', // 4
-  // "77", // 'Owner', // 5
-  // "676",  // ' Supervisor',
-  // "677",   // 'Lead',
-  // "679",    // 'Created',
-  // "108",  // "Normal"
-  // "100",     // New10
-  // "1380",   // Add Supervisor11
-  // "316",     // Notes12
-  // "142",      // "Status"13
-  // "920",      // "Collection"14
-  //       "85",  // Add15
-  //      "1079"   // Cancel16
-  //         ];
-    
-  //           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-  //           setTranslatedMenuItems(translations);
-  //           setLoading(false);
-  //         } catch (error) {
-  //           setLoading(false);
-  //           console.error('Error translating menu items:', error);
-  //         }
-  //       };
-    
-  //       fetchMenuTranslations();
-  //     }, [props.selectedLanguage]);
     useEffect(() => {
         props.getCompletedHighOrderList(props.userId, page,"High");
         props.getCompletedLowOrderList(props.userId, page,"Low");
@@ -170,6 +133,7 @@ const viewAnDownloadPdf= async (item) => {
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
     translatedMenuItems={props.translatedMenuItems}
+       contextType={props.contextType}
       />
     ) : (
         <>
@@ -693,6 +657,8 @@ const viewAnDownloadPdf= async (item) => {
                     handleStatusOfOrder={props.handleStatusOfOrder}
                     addStatusOfOrder={props.addStatusOfOrder}
                     particularRowData={particularRowData}
+                    translatedMenuItems={props.translatedMenuItems}
+                    contextType={props.contextType}
                 />
              <PaidButtonModal
                     type={props.type}
@@ -700,11 +666,16 @@ const viewAnDownloadPdf= async (item) => {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                     modalTitleKey={1}
+                    translatedMenuItems={props.translatedMenuItems}
+                    contextType={props.contextType}
                 />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}
-                addOrderDetailsModal={props.addOrderDetailsModal} />
+                addOrderDetailsModal={props.addOrderDetailsModal}
+                contextType={props.contextType}
+                translatedMenuItems={props.translatedMenuItems}
+                />
                 </Suspense>
         </>
          )}

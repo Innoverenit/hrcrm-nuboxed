@@ -40,7 +40,8 @@ class InvoicePaidModal extends Component {
                   translateText={this.props.translateText}
                   activeTab={this.props.activeTab}
                   translatedMenuItems={this.props.translatedMenuItems}
-                />
+                  contextType={this.props.contextType}
+               />
               </div>
             </div>
           </Suspense>

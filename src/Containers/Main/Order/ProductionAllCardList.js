@@ -229,11 +229,15 @@ function ProductionAllCardList(props) {
                     particularRowData={particularRowData}
                     translatedMenuItems={props.translatedMenuItems}
                     modalTitleKey={0}
+                    contextType={props.contextType}
                />
                       <AccountOrderDetailsModal
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
-        addOrderDetailsModal={props.addOrderDetailsModal} />
+        addOrderDetailsModal={props.addOrderDetailsModal}
+        contextType={props.contextType}
+                translatedMenuItems={props.translatedMenuItems}
+        />
   </Suspense>
     </>
   );

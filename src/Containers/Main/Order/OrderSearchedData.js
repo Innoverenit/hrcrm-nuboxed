@@ -447,13 +447,17 @@ const handleLoadMoreLow = () => {
         handlePaidModal={props.handlePaidModal}
         particularRowData={particularRowData}
         translatedMenuItems={props.translatedMenuItems}
+        contextType={props.contextType}
       />
       <AccountOrderDetailsModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
-        addOrderDetailsModal={props.addOrderDetailsModal} />
+        addOrderDetailsModal={props.addOrderDetailsModal}
+        contextType={props.contextType}
+                translatedMenuItems={props.translatedMenuItems}
+        />
     </>
 
 
