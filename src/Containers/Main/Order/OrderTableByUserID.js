@@ -734,6 +734,7 @@ function OrderTableByUserID(props) {
               particularRowData={particularRowData}
               translatedMenuItems={props.translatedMenuItems}
               modalTitleKey={14}
+              contextType={props.contextType}
             />
             <AccountOrderDetailsModal
               selectedLanguage={props.selectedLanguage}
@@ -741,6 +742,8 @@ function OrderTableByUserID(props) {
               particularRowData={particularRowData}
               handleOrderDetailsModal={props.handleOrderDetailsModal}
               addOrderDetailsModal={props.addOrderDetailsModal}
+              contextType={props.contextType}
+              translatedMenuItems={props.translatedMenuItems}
             />
           </Suspense>
         </>

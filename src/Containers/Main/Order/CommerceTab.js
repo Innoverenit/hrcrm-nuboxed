@@ -6,64 +6,19 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {quatationDrawer,invoiceDrawer} from "../Order/OrderAction";
-
 const EcomCardList=lazy(()=>import("./EcomCardList"));
 const QuotationDrawer=lazy(()=>import("./QuotationDrawer"));
 const InvoiceDrawer = lazy(() => import("./InvoiceDrawer"));
 const QuotationCardList = lazy(() => import("./QuotationCardList")); //2
 const InvoiceCardList = lazy(() => import("./InvoiceCardList"));
-
-
 const TabPane = StyledTabs.TabPane;
 
 function CommerceTab(props) {
- 
     const [activeKey, setactiveKey] = useState("1")
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [clickSideIcon,setclickSideIcon]=useState(false);
     const [selectedHistory, setSelectedHistory] = useState("completed");
-    
-//     useEffect(() => {
-//         const fetchMenuTranslations = async () => {
-//           try {
-//             setLoading(true); 
-//             const itemsToTranslate = [
-//    "203", // 'Production', // 0
-//    "661", // 'Repair', // 1
-//    "666", // ' Procure', // 2
-//     "213",// 'Quotation', // 3
-//     "1165",// ' Activity', // 4
-//     "316",// 'Notes', // 5
-//    "138", // ' Documents',6
-//    "1167", // 'Sales Map',7
-//     "1168",// 'Summary',8
-//     "73",// 'Contact ',9
-//     "1169",// 'Invoice',//10
-//     "104",// 'Create',11
-//    "1212", //  'Commerce', //12              
-//    "1213", // 'Add Commerce',//13
-//    '1357',// Memo 14
-//      "202",       //    Order
-//      "667",      //    Completed Orders
-//      "1475",       //    Add Order
-//  "1474",       //    Add Contact
-//  "660"
-//           ];
-    
-//             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-//             setTranslatedMenuItems(translations);
-//             setLoading(false);
-//           } catch (error) {
-//             setLoading(false);
-//             console.error('Error translating menu items:', error);
-//           }
-//         };
-    
-//         fetchMenuTranslations();
-//       }, [props.selectedLanguage]);
-
-
     const handleTabChange = (key) => {
         setactiveKey(key);
     
@@ -75,7 +30,6 @@ function CommerceTab(props) {
             setSelectedHistory(null); 
                 }
     };
-
     const renderTabContent = (key) => {
         switch (key) {
           case "1":
@@ -84,6 +38,7 @@ function CommerceTab(props) {
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText} 
             translatedMenuItems={props.translatedMenuItems}
+            contextType={props.contextType}
             />
                 </div>;
           case "2":
@@ -91,12 +46,14 @@ function CommerceTab(props) {
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText} 
             translatedMenuItems={props.translatedMenuItems}
+            contextType={props.contextType}
             /> </div>;
             case "3":
                 return  <div><InvoiceCardList
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 translatedMenuItems={props.translatedMenuItems}
+                contextType={props.contextType}
                 /> 
                 </div>;
           default:

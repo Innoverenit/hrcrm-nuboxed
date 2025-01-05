@@ -379,6 +379,7 @@ function AccountDetailsTab(props) {
                 translateText={props.translateText}
                 currentOrderType={currentOrderType}
                 translatedMenuItems={translatedMenuItems}
+                contextType="accountDetails"
               />
             )}
             {openOrder === false && (
@@ -389,7 +390,8 @@ function AccountDetailsTab(props) {
                 translateText={props.translateText}
                 activeTab={activeKey}
                 translatedMenuItems={translatedMenuItems}
-              />
+                contextType="accountDetails"
+                />
             )}
           </div>
         );
@@ -402,6 +404,7 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 translatedMenuItems={translatedMenuItems}
+               contextType="accountDetails"
               />
             ) : (
               <CustomerProcurementTable
@@ -410,6 +413,7 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 translatedMenuItems={translatedMenuItems}
+               contextType="accountDetails"
               />
             )}
           </div>
@@ -445,6 +449,7 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
               translatedMenuItems={translatedMenuItems}
+             contextType="accountDetails"
             />
           </div>
         );
@@ -468,7 +473,8 @@ function AccountDetailsTab(props) {
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
               translatedMenuItems={translatedMenuItems}
-            />
+            contextType="accountDetails"
+           />
           </div>
         );
       case "11":
@@ -480,7 +486,8 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
               activeTab={activeKey}
               translatedMenuItems={translatedMenuItems}
-            />
+            contextType="accountDetails"
+           />
           </div>
         );
       case "12":

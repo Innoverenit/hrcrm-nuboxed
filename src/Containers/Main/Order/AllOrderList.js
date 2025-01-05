@@ -748,12 +748,16 @@ function AllOrderList(props) {
             handlePaidModal={props.handlePaidModal}
             particularRowData={particularRowData}
             modalTitleKey={14}
+            contextType={props.contextType}
+            translatedMenuItems={props.translatedMenuItems}
           />
           <AccountOrderDetailsModal
             particularRowData={particularRowData}
             handleOrderDetailsModal={props.handleOrderDetailsModal}
             addOrderDetailsModal={props.addOrderDetailsModal}
-          />
+            contextType={props.contextType}
+            translatedMenuItems={props.translatedMenuItems}
+         />
         </>
       )}
     </div>

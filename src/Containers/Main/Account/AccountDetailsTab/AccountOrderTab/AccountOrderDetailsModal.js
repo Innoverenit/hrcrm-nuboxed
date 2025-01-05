@@ -2,7 +2,6 @@ import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 const AccountOrderDetails = lazy(() => import("./AccountOrderDetails"));
-
 class AccountOrderDetailsModal extends Component {
     render() {
         const {
@@ -12,7 +11,6 @@ class AccountOrderDetailsModal extends Component {
         } = this.props;
         return (
             <>
-                {/* - ${this.props.particularRowData.orderId} */}
                 <StyledDrawer
                     title={`Order : ${this.props.particularRowData.newOrderNo}`}
                     width="90%"
@@ -27,6 +25,7 @@ class AccountOrderDetailsModal extends Component {
                          selectedLanguage={this.props.selectedLanguage}
                          translateText={this.props.translateText}
                          translatedMenuItems={this.props.translatedMenuItems}
+                         contextType={this.props.contextType}
                          />
                     </Suspense>
                 </StyledDrawer>

@@ -106,6 +106,29 @@ const Order = (props) => {
           "1492", // Total Value 72
           "1309", // Total Unit 73
           "926", // Transaction 74
+          "1424", // Entry 75
+          "929", // Amount 76
+          "86", // Mode 77
+          "1422", // Reason 78
+          "116", //  Approved 79
+          "1423", //  Refund 80
+          "264", // 'Brand', 81
+          "265", // ' Model', 82
+          "1216", // 'Unique ID', 83
+          "113", // 'Info', 84
+          "1217", // 'Condition', 85
+          "1218", // 'Total Hours', 86
+          "1219", // "Total Cost",87
+          "1220", // "Final Price",88
+          "1222", // "Issue",89
+          "1308", // Spare 90
+          "199", //Task 91
+          "1252", // Print 92
+          "946", //  Team Member 93
+          "326", //  Department 94
+          "154", //  Submit 95
+          "770", // "Quoted" 96
+
         ];
 
         const translations = await props.translateText(
@@ -168,6 +191,7 @@ const Order = (props) => {
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "production" &&
           props.user.moduleMapper.productionInd === true &&
@@ -176,6 +200,7 @@ const Order = (props) => {
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "complete" ? (
           <ProductionHistoryCardList
@@ -188,30 +213,35 @@ const Order = (props) => {
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "all" ? (
           <AllOrderList
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "complete" ? (
           <CompleteOrder
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "delete" ? (
           <DeletedOrderList
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "allcomplete" ? (
           <AllCompleteOrderList
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "procure" &&
           props.user.moduleMapper.tradingInd &&
@@ -220,6 +250,7 @@ const Order = (props) => {
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : viewType === "ecom" &&
           props.user.moduleMapper.ecomModInd &&
@@ -228,6 +259,7 @@ const Order = (props) => {
             selectedLanguage={selectedLanguage}
             translateText={translateText}
             translatedMenuItems={translatedMenuItems}
+            contextType="orders"
           />
         ) : null}
       </Suspense>

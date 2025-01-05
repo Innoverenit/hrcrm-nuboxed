@@ -537,6 +537,7 @@ function AccountInvoiceTable(props) {
         addPaidButtonModal={props.addPaidButtonModal}
         handlePaidModal={props.handlePaidModal}
         activeTab={props.activeTab}
+        contextType={props.contextType}
       />
       <InvoiceStatusDrawer
         selectedLanguage={props.selectedLanguage}
