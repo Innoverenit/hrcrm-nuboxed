@@ -338,7 +338,7 @@ const handleCheckboxChange = (item) => {
                     </Popconfirm>
                         </div>
                                            <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.company}</div> 
-                                           <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
+                                           {/* <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
                                            <input
             id="packingUnits"
             type="text"
@@ -348,11 +348,11 @@ const handleCheckboxChange = (item) => {
             onChange={(e) => setInputValue(e.target.value)}
            placeholder="Enter number of packets"
           />
-          </div>
+          </div> */}
           <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.model}</div>
           <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.imei}</div>
           <div className="w-[12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.qcStatus}</div>
-          <div className="w-32 flex items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
+          {/* <div className="w-32 flex items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
            <input
             id="manualNo"
             type="text"
@@ -362,7 +362,7 @@ const handleCheckboxChange = (item) => {
             onChange={(e) => setNumberInput(e.target.value)}
            placeholder="Enter number "
           />
-          </div>
+          </div> */}
           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <Button
                                              onClick={() => {

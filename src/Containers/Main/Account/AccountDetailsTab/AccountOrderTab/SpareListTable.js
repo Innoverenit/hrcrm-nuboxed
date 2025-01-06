@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSpareListByPhoneId } from "../../AccountAction";
+import EmptyPage from "../../../EmptyPage";
 
 function SpareListTable(props) {
     useEffect(() => {
@@ -24,7 +25,7 @@ function SpareListTable(props) {
                         <div className="md:w-[4.6rem]">Total</div>
 
                     </div>
-                    {props.spareList.map((item) => {
+                    {props.spareList.length === 0 ? <EmptyPage /> : props.spareList.map((item) => {
                         return (
                             <div>
                                 <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >

@@ -1689,7 +1689,14 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         addingLead: false,
         showRefurbishLead: false,
-        productionOrder: state.productionOrder.map((item) => {
+        productionUrgent: state.productionUrgent.map((item) => {
+          if (item.orderPhoneId == action.payload.orderPhoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        productionNormal: state.productionNormal.map((item) => {
           if (item.orderPhoneId == action.payload.orderPhoneId) {
             return action.payload;
           } else {
