@@ -26,6 +26,9 @@ import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import NodataFoundPageAccount from "./NodataFoundPageAccount";
+import { handleReceivedOrderIdPhoneNoteModal,handleInventoryexpand} from "../../../Inventory/InventoryAction";
+import ReceivedOrderIdPhoneNoteModal from "../../../Inventory/Child/InventoryDetails/Recieved/ReceivedOrderIdPhoneNoteModal";
+import InventoryExpandListModal from "../../../Inventory/Child/InventoryDetails/Recieved/InventoryExpandListModal";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -343,42 +346,42 @@ function DistributorPauseForm(props) {
                                   {item.model}
                                 </div>
                               </div>
-                              <div className=" flex    items-center justify-start h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex    items-center justify-start h-8 ml-gap bg-[#eef2f9]  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.imei}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap  font-poppins">
                                   {item.os} {item.gb} {item.color}
                                 </div>
                               </div>
-                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.condition}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap  font-poppins">
                                   {item.expectedPrice}
                                 </div>
                               </div>
-                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs   ml-gap font-poppins">
                                   {item.totalhours}
                                 </div>
                               </div>
-                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs   ml-gap font-poppins">
                                   {item.totalExtraCost}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.totalPrice}
                                 </div>
                               </div>
-                              <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9]    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   <ButtonGroup className="w-[4rem]">
                                     <StatusIcon
@@ -460,6 +463,7 @@ function DistributorPauseForm(props) {
                                         onClick={() => {
                                           handleSetRowData(item);
                                           handleExpand(item.phoneId);
+                                          props.handleInventoryexpand(true);
                                         }}
                                       />
                                     </Tooltip>
@@ -474,7 +478,7 @@ function DistributorPauseForm(props) {
                                         className="!text-icon cursor-pointer"
                                         onClick={() => {
                                           handleSetRowData(item);
-                                          props.handlePhoneNotesOrderModal(
+                                          props.handleReceivedOrderIdPhoneNoteModal(
                                             true
                                           );
                                         }}
@@ -554,24 +558,29 @@ function DistributorPauseForm(props) {
         </>
       </div>
       <Suspense fallback={<BundleLoader />}>
-        {expand && (
-          <AccountPhoneTaskTable phoneId={phoneId} RowData={RowData} />
-        )}
-        <PhoneNotesOrderModal
-          RowData={RowData}
-          phoNotesOrderModal={props.phoNotesOrderModal}
-          handlePhoneNotesOrderModal={props.handlePhoneNotesOrderModal}
-        />
+        <ReceivedOrderIdPhoneNoteModal
+                    particularRowData={RowData}
+                    phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
+                    handleReceivedOrderIdPhoneNoteModal={props.handleReceivedOrderIdPhoneNoteModal}
+                  />
+        <InventoryExpandListModal   
+           phoneId={phoneId}         
+                  particularRowData={RowData}
+                  inventoryExpandList={props.inventoryExpandList}
+                  handleInventoryexpand={props.handleInventoryexpand}
+                />
         {spares && <AddingSpareList phoneId={phoneId} RowData={RowData} />}
       </Suspense>
     </>
   );
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,inventory }) => ({
   phoneListById: distributor.phoneListById,
   phoNotesOrderModal: distributor.phoNotesOrderModal,
   fetchingPhoneListById: distributor.fetchingPhoneListById,
+  phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
+  inventoryExpandList: inventory.inventoryExpandList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -581,6 +590,8 @@ const mapDispatchToProps = (dispatch) =>
       handlePhoneNotesOrderModal,
       searchimeiNamePhone,
       ClearPhoneDataOfrefurbish,
+      handleReceivedOrderIdPhoneNoteModal,
+      handleInventoryexpand,
     },
     dispatch
   );

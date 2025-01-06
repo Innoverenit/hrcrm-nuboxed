@@ -60,7 +60,6 @@ const ProductionOrderList = (props) => {
         setPageNo(pageNo + 1);
         // props.getProductionOrderId(props.userId,pageNo)
         props.getProductionUrgent(props.userId,pageNo,"High")
-        props.getProductionHigh(props.userId,pageNo,"Medium")
         props.getProductionNormal(props.userId,pageNo,"Low")
     }, [])
     const [hasMore, setHasMore] = useState(true);
@@ -88,25 +87,7 @@ const ProductionOrderList = (props) => {
         }, 100);
       };
 
-      const handleLoadMore1 = () => {
-        const callPageMapd = props.productionHigh && props.productionHigh.length &&props.productionHigh[0].pageCount
-        setTimeout(() => {
-          const {
-            getProductionHigh,
-           // userDetails: { employeeId },
-          } = props;
-          if  (props.productionOrder)
-          {
-            if (pageNo < callPageMapd) {
-                setPageNo(pageNo + 1);
-                getProductionHigh(props.userId,pageNo,"Medium"); 
-          }
-          if (pageNo === callPageMapd){
-            setHasMore(false)
-          }
-        }
-        }, 100);
-      };
+
 
       const handleLoadMore2 = () => {
         const callPageMapd = props.productionNormal && props.productionNormal.length &&props.productionNormal[0].pageCount

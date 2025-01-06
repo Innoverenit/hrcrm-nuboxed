@@ -77,7 +77,7 @@ function AddPackToggle(props) {
          checked={toggle || props.item.packingInd}
          isLoading={true}
           checkedChildren="Packed"
-          unCheckedChildren="UnPacked"
+          unCheckedChildren="Not Packed"
           disabled={props.item.trackId}
         />
       </Popconfirm>

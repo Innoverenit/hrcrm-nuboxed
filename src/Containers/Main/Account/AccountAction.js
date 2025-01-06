@@ -712,7 +712,7 @@ export const getDistributorOrderOfMedium = (distributorId, pageNo, type,ptype) =
     type: types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/priorityLowOrders/${distributorId}/${pageNo}/${type}/${ptype} `,
+    .get(`${base_url2}/phoneOrder/priorityMediumOrders/${distributorId}/${pageNo}/${type}/${ptype} `,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -740,7 +740,7 @@ export const getDistributorOrderOfLow = (distributorId, pageNo, type,ptype) => (
     type: types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/priorityMediumOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
+    .get(`${base_url2}/phoneOrder/priorityLowOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3178,7 +3178,6 @@ export const startRepairInStatus = (data, id) => (dispatch) => {
 };
 
 export const updateOfferPrice = (data, orderPhoneId, id, cb) => (dispatch) => {
-  // debugger;
   dispatch({
     type: types.UPDATE_OFFER_PRICE_REQUEST,
   });

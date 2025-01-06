@@ -295,6 +295,9 @@ function AccountTable(props) {
   };
   const handleUpdateSubmit = async () => {
     const { distributorId, field } = editableField;
+    if (editingValue.trim() === "") {
+      return;
+    }
     const updatedData = {};
     let mappedField = field;
     if (field === "clientName") {

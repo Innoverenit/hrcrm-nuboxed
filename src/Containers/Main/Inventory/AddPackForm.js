@@ -128,7 +128,7 @@ const InputToggleForm = (props) => {
                 checked={field.packingInd}
                 className="toggle-checkbox"
                 checkedChildren="Packed"
-                unCheckedChildren="UnPacked"
+                unCheckedChildren="Not Packed"
               />
             </Popconfirm>
           </div>

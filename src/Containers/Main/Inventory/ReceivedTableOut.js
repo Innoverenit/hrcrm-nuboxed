@@ -17,7 +17,7 @@ import {
   handleInventoryReceivedNoteOrderModal,
   addDeliveryDate,
 } from "./InventoryAction";
-import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
+import {handleProductionNotesModal} from "../Refurbish/RefurbishAction";
 import { getLocationList } from "../Account/AccountAction"
 import dayjs from "dayjs";
 
