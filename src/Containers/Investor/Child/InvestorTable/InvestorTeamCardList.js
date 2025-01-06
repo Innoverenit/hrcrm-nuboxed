@@ -437,15 +437,15 @@ function InvestorTeamCardList(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex   w-[9.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
+                                <div className=" flex   w-[9.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center h-8">
                                 <div>
 
             <MultiAvatar
               primaryTitle={item.name}
               imageId={item.imageId}
               imageURL={item.imageURL}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />        
 </div>
                                    <div>

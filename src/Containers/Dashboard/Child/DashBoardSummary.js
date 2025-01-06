@@ -74,20 +74,20 @@ const DashBoardSummary=(props) =>{
   const [loading1, setLoading1] = useState(false);
   const [error1,setError1]=useState(null);
 
-    const fetchBestBefore = async (Ids) => {
-      try {
-        const response = await axios.get(`${base_url2}/po/getBestBeforeItemList/${Ids}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setBestBefore(response.data);
-        setLoading1(false);
-      } catch (error) {
-        setError1(error);
-        setLoading1(false);
-      }
-    };
+    // const fetchBestBefore = async (Ids) => {
+    //   try {
+    //     const response = await axios.get(`${base_url2}/po/getBestBeforeItemList/${Ids}`,{
+    //       headers: {
+    //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    //       },
+    //     });
+    //     setBestBefore(response.data);
+    //     setLoading1(false);
+    //   } catch (error) {
+    //     setError1(error);
+    //     setLoading1(false);
+    //   }
+    // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,6 +99,7 @@ const DashBoardSummary=(props) =>{
         props.getBestDashboardCount(props.locationId);
         props.getTaskDashboard(props.userId, page);
         props.getTasklist(props.userId);
+        // props.getReorderdata("user");
         props.getReorderdata("user");
         props.getDealDashboard(props.userId);
         props.getReorderDashboardCount();
@@ -106,21 +107,22 @@ const DashBoardSummary=(props) =>{
         props.getOrderDashboard(props.userId, "procure");
         props.getOrderDashboardCount(props.userId, "procure");
         props.getPriceUpdated(props.locationId);
-        fetchBestBefore(props.userId);
+        // fetchBestBefore(props.userId);
       } else if (props.viewType === "ALL") {
         console.log("Fetching for organization", props.viewType);
         props.getQuotationDashboard(props.orgId);
         props.getQuotationDashboardCount(props.orgId);
         props.getTaskDashboard(props.orgId, page);
         props.getTasklist(props.orgId);
-        props.getReorderdata("org");
+        // props.getReorderdata("org");
+        props.getReorderdata("");
         props.getDealDashboard(props.orgId);
         props.getReorderDashboardCount();
         props.getDealDashboardCount(props.orgId);
         props.getOrderDashboard(props.orgId, "procure");
         props.getOrderDashboardCount(props.orgId, "procure");
         props.getPriceUpdated(props.locationId);
-        fetchBestBefore(props.orgId);
+        // fetchBestBefore(props.orgId);
       }
     };
   
@@ -445,9 +447,9 @@ const DashBoardSummary=(props) =>{
       </>
         )}
          {/* Best Before */}
-         {(user.materialAccessInd === true && user.erpInd === true )
-        && (user.supplierAccessInd === true && user.erpInd === true
-      ) &&  (
+        {(user.materialAccessInd === true && user.erpInd === true )
+        && (user.supplierAccessInd === true && user.erpInd === true 
+       ) &&  (
         <>
         <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
          <div class="flex flex-col w-[14rem] items-center">

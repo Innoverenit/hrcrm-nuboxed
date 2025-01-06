@@ -82,13 +82,13 @@ const LeavesActionLeft = (props) => {
         >
 
           <span class=" mr-1 cursor-pointer !text-icon "
-            onClick={() => props.setExpenseViewType("all")}
+            onClick={() => props.setExpenseViewType("card")}
             style={{
-              color: props.viewType === "all" && "#1890ff",
+              color: props.viewType === "card" && "#1890ff",
               cursor: 'pointer',
             }}
           >
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
             ALL
 
             </Avatar>
