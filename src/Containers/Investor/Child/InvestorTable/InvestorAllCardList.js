@@ -486,7 +486,7 @@ console.log(selectedEmployee)
                   New
                 </span>
               ) : null}
-                <div>
+           <div>
                       {editableField?.investorId === item.investorId &&
    editableField?.field === 'name' ? (
 <Input
@@ -502,7 +502,7 @@ console.log(selectedEmployee)
 ) : (
 <div onClick={() => 
     handleEditRowField(item.investorId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100  ">
+    className="cursor-pointer text-xs font-poppins flex items-center opacity-0 hover:opacity-100 ">
    <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
@@ -990,7 +990,31 @@ handleCurrentRowData(item);
                                 <div className=" flex   w-[8.12rem] items-center truncate h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
-                                    {item.sector}
+                                           <div>
+                                   {editableField?.investorId === item.investorId && editableField?.field === 'sector' ? (
+                                     <Select
+                                     style={{ width: "10rem" }}
+                                     value={editingValue}
+                                     onChange={handleChangeRowSelectItem} 
+                                     onBlur={() => handleEditRowField(null, null, null)}
+                                     onFocus={handleSelectSectorFocus}
+                                     autoFocus
+                                   >
+                                   {props.sectors.map((item) => (
+                                      <Option key={item.sectorId} value={item.sectorId}>
+                                     {item.sectorName}
+                                      </Option>
+                                    ))}
+                                   </Select>
+                                   ) : (
+                                   <div onClick={() => 
+                                   handleEditRowField(item.investorId, 'sector', item.sector)} 
+                                   className="cursor-pointer text-xs font-poppins">
+                                   {item.sector || "Update..."}
+                                   
+                                   </div>         
+                                                           )}
+                                                         </div> {/* {item.sector} */}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.30rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
@@ -1012,14 +1036,60 @@ handleCurrentRowData(item);
                                    {/* Category */}
 
                                     <div class=" text-xs justify-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {Category}
+                                    {/* {Category} */}
+                                      <div>
+                                      {editableField?.investorId === item.investorId && editableField?.field === 'Category' ? (
+                                        <Switch
+                                          style={{ width: "6.25em", marginLeft: "0.625em" }}
+                                          onChange={(checked) => handleContract(checked, item.investorId)}
+                                          checked={Category === "Institutional"} // Assuming `category` has values like "Institutional" or "Private"
+                                          checkedChildren="Institutional"
+                                          unCheckedChildren="Private"
+                                          onBlur={() => handleEditRowField(null, null, null)}
+                                          autoFocus
+                                        />
+                                      ) : (
+                                        <div
+                                          onClick={() =>
+                                            handleEditRowField(item.investorId, 'Category', Category)
+                                          }
+                                          className="cursor-pointer text-xs font-poppins"
+                                        >
+                                          {Category || "Update..."}
+                                        </div>
+                                      )}
+                                    </div>
                                     </div>
                                 </div>
 
                                 <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] truncate w-[7.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
+                                    {/* {item.source} */}       <div>
+                                    {editableField?.investorId === item.investorId && editableField?.field === 'source' ? (
+                                      <Select
+                                      style={{ width: "7rem" }}
+                                      value={editingValue}
+                                      onChange={handleChangeRowSelectItem} 
+                                      onBlur={() => handleEditRowField(null, null, null)}
+                                      onFocus={handleSelectSourceFocus}
+                                      autoFocus
+                                    >
+                                    {props.sources.map((item) => (
+                                       <Option key={item.sourceId} value={item.sourceId}>
+                                      {item.name}
+                                       </Option>
+                                     ))}
+                                    </Select>
+                                    ) : (
+                                    <div onClick={() => 
+                                    handleEditRowField(item.investorId, 'source', item.source)} 
+                                    className="cursor-pointer text-xs font-poppins">
+                                    {item.source || "Update..."}
+                                    
+                                    </div>         
+                                                            )}
+                                                          </div>
                                     </div>
                                 </div>   
                                                     
@@ -1075,26 +1145,50 @@ handleCurrentRowData(item);
 
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
-                                    <span>
-              {item.assignedTo === null ? (
-                "None"
-              ) : (
-                <>
-                {item.assignedTo === item.ownerName ? (
-                  
-                  null
-                ) : (
-                  <Tooltip title={item.assignedTo}> 
-                <MultiAvatar2
-                  primaryTitle={item.assignedTo}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-                   </Tooltip>
-                )}
-                </>
-              )}
-            </span>           
+                                 <span>
+                                           {item.assignedTo === null ? (
+                                             "None"
+                                           ) : (
+                                             <>
+                                          {editableField?.investorId === item.investorId && editableField?.field === 'assignedTo' ? (
+                               <Select
+                               style={{ width: "10rem" }}
+                               value={editingValue}
+                               onChange={handleChangeRowSelectItem} 
+                               onBlur={() => handleEditRowField(null, null, null)}
+                               onFocus={handleSelectAssignFocus}
+                               autoFocus
+                             >
+                             {props.allEmployeeList.map((item) => (
+                                <Option key={item.employeeId} value={item.employeeId}>
+                                <div className="flex">
+                                                 <MultiAvatar
+                                        primaryTitle={item.empName} 
+                                        imageId={item.imageId}
+                                                  imageURL={item.imageURL}
+                                                  imgWidth={"1.8rem"}
+                                                  imgHeight={"1.8rem"} 
+                                      />
+                                                <span>{item.empName}</span> 
+                                                </div>
+                                </Option>
+                              ))}
+                             </Select>
+                             ) : (
+                             <div onClick={() => 
+                             handleEditRowField(item.investorId, 'assignedTo', item.assignedTo)} 
+                             className="cursor-pointer text-xs font-poppins">
+                             <MultiAvatar2
+                                       primaryTitle={item.assignedTo}
+                                       imgWidth={"1.8rem"}
+                                       imgHeight={"1.8rem"}
+                                     /> 
+                             </div>         
+                                                     )}
+                                               
+                                             </>
+                                           )}
+                                         </span>           
                                     </div>
                                 </div>                          
                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
