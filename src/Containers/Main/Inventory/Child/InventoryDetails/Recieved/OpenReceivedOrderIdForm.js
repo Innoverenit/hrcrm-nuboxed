@@ -23,7 +23,6 @@ import {
 } from "../../../InventoryAction";
 import { useDispatch } from 'react-redux';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
-import TaskIcon from '@mui/icons-material/Task';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
@@ -161,6 +160,37 @@ function OpenReceivedOrderIdForm(props) {
   const onSearch = (value) => console.log(value);
 
   const [receivePhoneInd, setReceivePhoneInd] = useState({});
+
+   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+      const [loading, setLoading] = useState(true);
+      useEffect(() => {
+          const fetchMenuTranslations = async () => {
+            try {
+              setLoading(true); 
+              const itemsToTranslate = [
+        
+               "264", //   Brand 0
+               "265", //   "model"01
+              "1284",//  IMEI,
+              "113",//  info
+              "1217",// Conditions
+              "1222", //   Issue4
+               "1085", //   Receved
+               "142", //  "Status"6
+               
+              ];
+      
+              const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+              setTranslatedMenuItems(translations);
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+              console.error('Error translating menu items:', error);
+            }
+          };
+      
+          fetchMenuTranslations();
+        }, [props.selectedLanguage]);
 
  useEffect(() => {
     const initialReceivePhoneInd = {};
@@ -323,7 +353,7 @@ console.log(selectedItems)
           <div className="md:w-[2.01rem]">
           {props.rowData.inspectionInd === 1 && (
           <Popconfirm
-          title="Do you want to select all?"
+          title="Clicking on Yes?"
           onConfirm={handleBulkReceiveConfirmed} 
           onCancel={() => setSelectAll(false)}
           okText="Yes"
@@ -335,22 +365,23 @@ console.log(selectedItems)
           </Popconfirm>
           )}
           </div>
-            <div className="w-[7.20rem] text-[#00A2E8] text-sm  truncate max-md:w-[4.74rem]"><BrandingWatermarkIcon className="!text-icon" /> Brand</div>
-            <div className="w-[5.7rem] truncate max-md:w-[6.73rem]"> <ModelTrainingIcon className=" !text-icon" /> Model</div>
-            <div className="w-[9.07rem] truncate max-md:w-[8.07rem] ">IMEI</div>
+            <div className="w-[7.20rem] text-[#00A2E8] text-sm  truncate max-md:w-[4.74rem]">
+              <BrandingWatermarkIcon className="!text-icon" />Brand  {translatedMenuItems[0]}</div>
+            <div className="w-[5.7rem] truncate max-md:w-[6.73rem]"> <ModelTrainingIcon className=" !text-icon" />{translatedMenuItems[1]} Model</div>
+            <div className="w-[9.07rem] truncate max-md:w-[8.07rem] ">{translatedMenuItems[2]}IMEI</div>
             <div className="w-[8.71rem] truncate max-md:w-[6.71rem]">
             <InfoIcon className=" !text-icon text-[#FCA311]"  />
-              Info</div>
+              Info{translatedMenuItems[3]} </div>
 
 
-            <div className="w-[4.5rem] truncate max-md:w-[6.75rem]">Condition</div>
+            <div className="w-[4.5rem] truncate max-md:w-[6.75rem]">Condition {translatedMenuItems[4]}</div>
             <div className="w-[21rem] truncate max-md:w-[20rem]">
             <ConfirmationNumberIcon className=" !text-icon text-[#4F772D]"   />
-              Issue</div>
+              Issue {translatedMenuItems[5]}</div>
            
             <div className="w-[7.1rem] truncate max-md:w-[9.1rem]">
             <FactCheckIcon className=" !text-icon text-[#8338EC]"  />
-             Received
+             Received {translatedMenuItems[6]}
             </div>
            
            
@@ -564,11 +595,11 @@ console.log(selectedItems)
                                                     </div>
                                                 </div>
 
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
-                            <TaskIcon   className="!text-icon  text-[black]" type="file-done"
+                            <FactCheckIcon   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                  handleExpand(item.phoneId);
@@ -581,7 +612,7 @@ console.log(selectedItems)
                         </div>
                          ):null}
                       </div>
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8  bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon

@@ -59,7 +59,7 @@ function LocationOrderForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-2/5">
-                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[82]}</div>
+                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[83]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -73,7 +73,7 @@ function LocationOrderForm(props) {
                         </div>
 
                         <div className=" w-2/5">
-                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[83]}</div>
+                            <div class="font-bold text-xs font-poppins text-black">{props.translatedMenuItems[82]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"

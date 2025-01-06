@@ -1,37 +1,40 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
+
 const OpenReceivedOrderIdForm = lazy(() => import("./OpenReceivedOrderIdForm.js"));
 
+const OpenReceivedOrderIdModal = (props) => {
+    const {
+        receivedOrdeIdModal,
+        handleReceivedOrderIdModal,
+        rowData,
+        locationDetailsId,
+        translateText,
+        selectedLanguage,
+        ...formProps
+    } = props;
 
-class OpenReceivedOrderIdModal extends Component {
-    render() {
-        const {
-            receivedOrdeIdModal,
-            handleReceivedOrderIdModal,
-            ...formProps
-        } = this.props;
-        return (
-            <>
-                <StyledDrawer
-                    title={`Order ID - ${this.props.rowData.newOrderNo}`}
-                    width="90%"
-                    visible={receivedOrdeIdModal}
-                    onClose={() => handleReceivedOrderIdModal(false)}
-                    footer={null}
-                    maskClosable={false}
-                    destroyOnClose
-                >
-                    <Suspense fallback={<BundleLoader />}>
-                        <OpenReceivedOrderIdForm
-                            rowData={this.props.rowData}
-                            locationDetailsId={this.props.locationDetailsId}
-                        />
-                    </Suspense>
-                </StyledDrawer>
-            </>
-        );
-    }
-}
+    return (
+        <StyledDrawer
+            title={`Order ID - ${rowData.newOrderNo}`}
+            width="90%"
+            visible={receivedOrdeIdModal}
+            onClose={() => handleReceivedOrderIdModal(false)}
+            footer={null}
+            maskClosable={false}
+            destroyOnClose
+        >
+            <Suspense fallback={<BundleLoader />}>
+                <OpenReceivedOrderIdForm
+                    rowData={rowData}
+                    locationDetailsId={locationDetailsId}
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                />
+            </Suspense>
+        </StyledDrawer>
+    );
+};
 
 export default OpenReceivedOrderIdModal;

@@ -14,6 +14,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import TaskIcon from '@mui/icons-material/Task';
 import RejectedReasonModal from "./RejectedReasonModal";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import QCPhoneNotesOrderModal from "../../../../Refurbish/QCPhoneNotesOrderModal";
 import InventoryExpandTaskModal from "./InventoryExpandTaskModal";
@@ -171,7 +172,7 @@ let buttonRendered = false;
                                             </div>
                                             <div className="flex items-center w-[2rem] justify-end h-8 ml-gap bg-[#eef2f9] ">
                                             <Tooltip title="Task">
-            <TaskIcon style={{ color: "black" }} type="file-done"
+            <FactCheckIcon style={{ color: "black" }} type="file-done"
               onClick={() => {
                 handleRowData(item);
                 handlePhoneTask(item.phoneId);
