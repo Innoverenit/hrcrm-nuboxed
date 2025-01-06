@@ -41,13 +41,14 @@ const OrderPickupForm = (props) => {
   };
   return (
     <div>
-      <div class="mt-2 flex ">
+      <div class="mt-2 flex items-center">
         <div>
           <div class="text-sm font-semibold">
             {props.translatedMenuItems[21]}
           </div>
           <Select
-            className="w-[8rem]"
+            // className="w-[15rem]"
+            style={{width:"8rem"}}
             value={location}
             onChange={(value) => handleLocation(value)}
           >
@@ -60,15 +61,17 @@ const OrderPickupForm = (props) => {
         </div>
 
         <div class=" ml-2">
-          <div class="text-sm font-semibold m-[10px]">
+          <div class="text-sm font-semibold ">
             {props.translatedMenuItems[65]}
           </div>
+          <div>
           <DatePicker
             className="w-[8rem]"
             value={date}
             onChange={(value) => handleDate(value)}
             style={{ borderRight: "1px solid red" }}
           />
+          </div>
         </div>
         {location.length === 0 && date.length === 0 ? null : (
           <div>
