@@ -105,16 +105,15 @@ useEffect(() => {
 
   const handleAddRow = () => {
     const newRow = {
-      currencyId: '',
+      currency_id: '',
       suppliesPrice: '',
       suppliesPriceB2C: '',
       vat: '',
-      catagoryId:"",
-
-
+      catagoryId: "", 
     };
-    setRows([...rows, newRow]);
+    setRows([...rows, newRow]);  
   };
+
   const sendInputPutRequest =  async (item) => {
     
     try {
@@ -382,7 +381,7 @@ suppliesId:props.particularDiscountData.suppliesId
                 <div class="font-bold text-xs font-poppins text-black">
                   {/* Currency */} {translatedMenuItems[1]}
                   </div>
-                <div class="w-16">
+                <div class="w-32">
                 <Select                   
                         value={row.currency_id}
                         onChange={(value) => handleChange(index, 'currency_id',value)}
