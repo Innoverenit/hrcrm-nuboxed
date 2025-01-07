@@ -6,7 +6,7 @@
 // const sub_url = "https://hrnuboxed.azurewebsites.net";
 
 // // // CT
-// const login_url = "https://crm.celltechnologies.nl";
+// const login_url = "https://crm.celltechnologies.nl"; 
 // const base_url = "https://crm.celltechnologies.nl/api/v1";
 // const base_url2 = "https://crm.celltechnologies.nl/Erp";
 // const asses_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
