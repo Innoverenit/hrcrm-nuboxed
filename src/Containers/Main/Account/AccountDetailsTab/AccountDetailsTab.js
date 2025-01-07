@@ -261,7 +261,7 @@ function AccountDetailsTab(props) {
           "140", // "Email",148
           "546",  // "Mobile",149
 "325", // "Designation",150
-"407",  // "Potential" 151
+"407",  // "Potential" 151 
 "1344", // "C-Level" 152
 "1343",  // "Strategic" 153
 "1342",  // "Mid-Level" 154
@@ -274,6 +274,13 @@ function AccountDetailsTab(props) {
 "1205" , // "Contract",//161
 "1351" , // "Download"162
 "1227",   // "Applicable", 163
+"85",//Add 164 
+"1367",//Close 165
+"495",// teams 166
+"137",//Project 167
+"36",//Hour 168
+"66",//Month 169
+"1484",// Outstanding // 170
 
         ];
 
@@ -372,6 +379,7 @@ function AccountDetailsTab(props) {
                 translateText={props.translateText}
                 currentOrderType={currentOrderType}
                 translatedMenuItems={translatedMenuItems}
+                contextType="accountDetails"
               />
             )}
             {openOrder === false && (
@@ -382,7 +390,8 @@ function AccountDetailsTab(props) {
                 translateText={props.translateText}
                 activeTab={activeKey}
                 translatedMenuItems={translatedMenuItems}
-              />
+                contextType="accountDetails"
+                />
             )}
           </div>
         );
@@ -395,6 +404,7 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 translatedMenuItems={translatedMenuItems}
+               contextType="accountDetails"
               />
             ) : (
               <CustomerProcurementTable
@@ -403,6 +413,7 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 translatedMenuItems={translatedMenuItems}
+               contextType="accountDetails"
               />
             )}
           </div>
@@ -438,6 +449,7 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
               translatedMenuItems={translatedMenuItems}
+             contextType="accountDetails"
             />
           </div>
         );
@@ -461,7 +473,8 @@ function AccountDetailsTab(props) {
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
               translatedMenuItems={translatedMenuItems}
-            />
+            contextType="accountDetails"
+           />
           </div>
         );
       case "11":
@@ -473,7 +486,8 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
               activeTab={activeKey}
               translatedMenuItems={translatedMenuItems}
-            />
+            contextType="accountDetails"
+           />
           </div>
         );
       case "12":
@@ -527,6 +541,7 @@ function AccountDetailsTab(props) {
             <InvoiceTable
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
+              translatedMenuItems={translatedMenuItems}
             />
           </div>
         );
@@ -1025,8 +1040,8 @@ function AccountDetailsTab(props) {
             /> */}
       <Suspense fallback={<BundleLoader />}>
         <AddSupplierDocumentModal
-          selectedLanguage={props.selectedLanguage}
-          translateText={props.translateText}
+          // selectedLanguage={props.selectedLanguage}
+          // translateText={props.translateText}
           uniqueId={props.distributorData.distributorId}
           type={"distributor"}
           distributorId={props.distributorData.distributorId}

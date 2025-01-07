@@ -146,22 +146,22 @@ function ProcureInvoiceList (props) {
                     <div className=" flex justify-between w-[82.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
                    
                     <div class=" text-[#00A2E8] text-base w-[9.5rem]">
-                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {props.translatedMenuItems[14]} ID 
+                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {props.translatedMenuItems[10]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {props.translatedMenuItems[15]}
+                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {props.translatedMenuItems[170]}
                             
                             </div>
                         <div className=" md:w-[7.4rem]">
-                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {props.translatedMenuItems[16]}  {/* Balance */}
+                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {props.translatedMenuItems[22]}  
                            
                             </div>
                          
                             <div className=" md:w-[7.4rem]">
-                            <UpdateIcon className='!text-icon text-[#ff66b3]' />  {props.translatedMenuItems[17]} {/* status */}
+                            <UpdateIcon className='!text-icon text-[#ff66b3]' />  {props.translatedMenuItems[24]} {/* status */}
                             
                             </div>
-                        <div className=" md:w-[12.1rem]">  {/* Track */}
+                        <div className=" md:w-[12.1rem]">  
                           <GpsFixedIcon className='!text-icon    text-[#42bfdd]' /> {props.translatedMenuItems[18]} 
                         </div>
                     </div>

@@ -1,15 +1,15 @@
-import React, { useEffect,lazy,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
+import { Button, Popconfirm, Tooltip, Input } from "antd";
 import { base_url } from "../../../../Config/Auth";
 import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-
+import AddIcon from '@mui/icons-material/Add';
 import {
   getShipByData,
   getShipByCount,
@@ -27,199 +27,217 @@ const ShipBy = (props) => {
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
   const [newShipByName, setShipByName] = useState('');
+  const [error, setError] = useState('');
+
   useEffect(() => {
-      props.getShipByData(props.orgId); 
-      props.getShipByCount(props.orgId) 
-  }, [])
+    props.getShipByData(props.orgId); 
+    props.getShipByCount(props.orgId);
+  }, []);
 
   const editRegion = (shipById, name) => {
-    console.log(name)
-    console.log(name)
-      setEditingId(shipById);
-      setShipByName(name);
+    setEditingId(shipById);
+    setShipByName(name); // Pre-fill the input field for editing.
+    setError(''); // Clear error on edit.
   };
-
-
 
   const handleAddShipBy = () => {
-      setAddingRegion(true);
-      setShipByName("")
+    setAddingRegion(true);
+    setShipByName(""); // Reset input for new entry.
+    setError(''); // Clear any previous error.
   };
 
-  const handleUpdateShipBy=(region)=>{
-      console.log(region)
-      let data={
-        shipById:region.shipById,
-        name:newShipByName
-       
-      }
-props.updateShipBy(data,region.shipById)
-setEditingId(null);
-  }
+  const handleUpdateShipBy = (region) => {
+    if (!newShipByName.trim()) {
+      setError('ShipBy name is required.');
+      return;
+    }
+
+    const data = {
+      shipById: region.shipById,
+      name: newShipByName
+    };
+    props.updateShipBy(data, region.shipById);
+    setEditingId(null);
+    setError('');
+  };
 
   const handleShipBy = () => {
-     
-      let data={
-        name:newShipByName,
-        orgId:props.orgId,
-      }
-      props.addShipBy(data,props.orgId)
-      setAddingRegion(false)
-  };
-  const handleChange = (e) => {
-      setCurrentData(e.target.value.trim());
-    
-  
-      if (e.target.value.trim() === "") {
-      //   setPage(pageNo + 1);
-      props.getShipByData(props.orgId);
-      //   props.ClearReducerDataOfLoad()
-      }
-    };
+    if (!newShipByName.trim()) {
+      setError('ShipBy name is required.');
+      return;
+    }
 
-    const handleSearch = () => {
-      if (currentData.trim() !== "") {
-        // Perform the search
-        props.searchShipByName(currentData);
-      } else {
-        console.error("Input is empty. Please provide a value.");
-      }
+    const data = {
+      name: newShipByName,
+      orgId: props.orgId,
     };
+    props.addShipBy(data, props.orgId);
+    setAddingRegion(false);
+    setError('');
+  };
+
+  const handleChange = (e) => {
+    setCurrentData(e.target.value.trim());
+    if (e.target.value.trim() === "") {
+      props.getShipByData(props.orgId);
+    }
+  };
+
+  const handleSearch = () => {
+    if (currentData.trim() !== "") {
+      props.searchShipByName(currentData);
+    } else {
+      console.error("Input is empty. Please provide a value.");
+    }
+  };
 
   const handleCancelAdd = () => {
-    setShipByName('');
-      setAddingRegion(false);
+    setAddingRegion(false);
+    setError(''); // Clear any error.
   };
+
   const cancelEdit = () => {
-      setEditingId(null);
+    setEditingId(null);
+    setError(''); // Clear any error.
   };
+
   useEffect(() => {
-      
-      if (props.ShipByData.length > 0) {
-        
-        setShipByData(props.ShipByData);
-      }
-    }, [props.ShipByData]);
+    if (props.ShipByData.length > 0) {
+      setShipByData(props.ShipByData);
+    }
+  }, [props.ShipByData]);
 
-// console.log(regions)
-if (props.fetchingShipBy) {
-return <div><BundleLoader/></div>;
-}
+  if (props.fetchingShipBy) {
+    return <div><BundleLoader /></div>;
+  }
+
   return (
-      <div>
-    <div class=" flex flex-row justify-end items-center">
-    <div class=" flex w-[18vw] mt-1 mr-4"  >
+    <div>
+      <div className="flex flex-row justify-end items-center">
+        <div className="flex w-[18vw] mt-1 mr-4">
           <Input
-       placeholder="Search by Name"
-      style={{width:"100%",marginLeft:"0.5rem"}}
-          // suffix={suffix}
-          onPressEnter={handleSearch}  
-          onChange={handleChange}
-          // value={currentData}
-        />
-          </div>
-          <div class="w-[3rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
-    <div className="circle-icon !text-base cursor-pointer text-[green]">
-      <Tooltip placement="top" title="Download XL">
-        <DownloadIcon />
-      </Tooltip>
-    </div>
-  </a>
-</div>
-            <div className="add-region">
-              {addingRegion ? (
-                  <div>
-                      <input 
-                      style={{border:"2px solid black",width:"54%"}}
-                          type="text" 
-                          placeholder="Add ShipBy"
-                          value={newShipByName} 
-                          onChange={(e) => setShipByName(e.target.value)} 
-                      />
-                      <button 
-                         loading={props.addingItemTask}
-                      onClick={handleShipBy}>Save</button>
-                      <button onClick={handleCancelAdd}>Cancel</button>
-                  </div>
-              ) : (
-                  <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddShipBy}> Add More</button>
-              )}
-          </div>
-          </div>
-          <div class=" flex flex-col" >
-         
-         <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingShipBy && ShipByData.length === 0 ? <NodataFoundPage /> : ShipByData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.shipById}>
-            {/* Region name display or input field */}
-            
-            {editingId === region.shipById ? (
-                <input
-                style={{border:"2px solid black"}}
-                    type="text"
-                    placeholder="Update ShipBy"
-                    value={newShipByName}
-                    onChange={(e) => setShipByName(e.target.value)}
-                />
-            ) : (
-                <div >{region.name}&nbsp;&nbsp;&nbsp;
-                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
-                                      >
-                                        New
-                                      </span> : null}</div>
-            )}
-
-            {/* Action buttons */}
-            <div >
-                {/* Edit button */}
-                {editingId === region.shipById ? (
-                    <div>
-                        <button onClick={() => handleUpdateShipBy(region)}>Save</button>
-                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                    </div>
-                ) : (
-                    <BorderColorIcon     className=" !text-icon text-red-600 cursor-pointer "  onClick={() => editRegion(region.shipById, region.name)} />
-                )}
-
-                {/* Delete button */}
-                <Popconfirm
-                        title="Do you want to delete?"
-                        okText="Yes"
-                        cancelText="No"
-                        onConfirm={() =>  props.removeShipBy(region.shipById,props.orgId)}
-                      >
-                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
-                 </Popconfirm>
-            </div>
+            placeholder="Search by Name"
+            style={{ width: "100%", marginLeft: "0.5rem" }}
+            onPressEnter={handleSearch}
+            onChange={handleChange}
+          />
         </div>
-          ))}
-          </MainWrapper>
+        <div className="w-[3rem]">
+          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
+            <div className="circle-icon !text-base cursor-pointer text-[green]">
+              <Tooltip placement="top" title="Download XL">
+                <DownloadIcon />
+              </Tooltip>
             </div>
-  <div class=" font-bold">Updated on {dayjs(props.ShipByData && props.ShipByData.length && props.ShipByData[0].updationDate).format('YYYY-MM-DD')} by {props.ShipByData && props.ShipByData.length && props.ShipByData[0].updatedBy}</div>
+          </a>
+        </div>
+        <div className="add-region">
+          {addingRegion ? (
+            <div>
+              <input
+                className="border-2 border-gray mr-1 ml-1"
+                type="text"
+                placeholder="Add ShipBy"
+                value={newShipByName}
+                onChange={(e) => setShipByName(e.target.value)}
+              />
+              {error && <div style={{ color: "red" }}>{error}</div>}
+              <button
+              className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+              onClick={handleShipBy} disabled={!newShipByName.trim()}>Save</button>
+              <button
+              className="bg-red-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+              onClick={handleCancelAdd}>Cancel</button>
+            </div>
+          ) : (
+            <button style={{ backgroundColor: "tomato", color: "white" }} onClick={handleAddShipBy}>
+              <AddIcon className="!text-icon" /> Add More
+            </button>
+          )}
+        </div>
       </div>
+      <div className="flex flex-col">
+        <MainWrapper className="!h-[69vh] !mt-2">
+          {!props.fetchingShipBy && ShipByData.length === 0 ? (
+            <NodataFoundPage />
+          ) : (
+            ShipByData.slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((region) => (
+                <div
+                  key={region.shipById}
+                  className="flex rounded ml-1 font-bold shadow border bg-white text-[#444] mt-1 p-2 justify-between items-center"
+                >
+                  {editingId === region.shipById ? (
+                    <input
+                      className="border-2 border-gray mr-1 ml-1"
+                      type="text"
+                      placeholder="Update ShipBy"
+                      value={newShipByName}
+                      onChange={(e) => setShipByName(e.target.value)}
+                    />
+                  ) : (
+                    <div>
+                      {region.name}&nbsp;&nbsp;&nbsp;
+                      {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") && (
+                        <span className="text-xs text-[tomato] font-bold">New</span>
+                      )}
+                    </div>
+                  )}
+                  <div>
+                    {editingId === region.shipById ? (
+                      <div>
+                        <button
+                        className="bg-green-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                        onClick={() => handleUpdateShipBy(region)}>Save</button>
+                        <button 
+                        className="bg-red-400 text-white border-none p-2.5 rounded-md ml-1 mr-1"
+                        onClick={cancelEdit}>Cancel</button>
+                      </div>
+                    ) : (
+                      <BorderColorIcon
+                        className="!text-icon text-red-600 cursor-pointer"
+                        onClick={() => editRegion(region.shipById, region.name)}
+                      />
+                    )}
+                    <Popconfirm
+                      title="Do you want to delete?"
+                      okText="Yes"
+                      cancelText="No"
+                      onConfirm={() => props.removeShipBy(region.shipById, props.orgId)}
+                    >
+                      <DeleteOutlineIcon className="!text-icon text-[tomato] cursor-pointer" />
+                    </Popconfirm>
+                  </div>
+                </div>
+              ))
+          )}
+        </MainWrapper>
+      </div>
+      <div className="font-bold">
+        Updated on{" "}
+        {dayjs(props.ShipByData && props.ShipByData.length && props.ShipByData[0].updationDate).format("YYYY-MM-DD")}{" "}
+        by {props.ShipByData && props.ShipByData.length && props.ShipByData[0].updatedBy}
+      </div>
+    </div>
   );
 };
 
-
-
-const mapStateToProps = ({ shipBy,auth }) => ({
+const mapStateToProps = ({ shipBy, auth }) => ({
   addingShipBy: shipBy.addingShipBy,
   addingShipByError: shipBy.addingShipByError,
   ShipByData: shipBy.ShipByData,
-  shipByCount:shipBy.shipByCount,
-orgId:auth.userDetails.organizationId,
-userId:auth.userDetails.userId,
-removingShipBy: shipBy.removingShipBy,
-removingShipByError: shipBy.removingShipByError,
-fetchingShipBy: shipBy.fetchingShipBy,
-fetchingShipByError: shipBy.fetchingShipByError,
-
-updatingShipBy: shipBy.updatingShipBy,
-updatingShipByError: shipBy.updatingShipByError,
-
+  shipByCount: shipBy.shipByCount,
+  orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
+  removingShipBy: shipBy.removingShipBy,
+  removingShipByError: shipBy.removingShipByError,
+  fetchingShipBy: shipBy.fetchingShipBy,
+  fetchingShipByError: shipBy.fetchingShipByError,
+  updatingShipBy: shipBy.updatingShipBy,
+  updatingShipByError: shipBy.updatingShipByError,
 });
+
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
@@ -230,8 +248,8 @@ const mapDispatchToProps = (dispatch) =>
       addShipBy,
       removeShipBy,
       updateShipBy,
-
     },
     dispatch
   );
+
 export default connect(mapStateToProps, mapDispatchToProps)(ShipBy);

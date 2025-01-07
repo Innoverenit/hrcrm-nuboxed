@@ -26,6 +26,9 @@ import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import NodataFoundPageAccount from "./NodataFoundPageAccount";
+import { handleReceivedOrderIdPhoneNoteModal,handleInventoryexpand} from "../../../Inventory/InventoryAction";
+import ReceivedOrderIdPhoneNoteModal from "../../../Inventory/Child/InventoryDetails/Recieved/ReceivedOrderIdPhoneNoteModal";
+import InventoryExpandListModal from "../../../Inventory/Child/InventoryDetails/Recieved/InventoryExpandListModal";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -204,6 +207,51 @@ function DistributorPauseForm(props) {
       </Tooltip>
     );
   }
+  function getTranslation(key) {
+    const contextTranslationIndex = {
+      accountDetails: {
+        brand: 69,       
+        model: 70, 
+        unique:71, 
+        info:72,
+        condition:73,
+        quoted:41,
+        totalHours:74,
+        totalCost:75,
+        finalPrice:76,
+        issue:77,
+        print:81,
+        youhavereachedtheendofpage:78,
+        spare:79,
+        task:80,
+        notes:5,
+      },
+      orders: {
+        brand: 81,      
+        model: 82,  
+        unique:83,
+        info:84, 
+        condition:85,
+        quoted:96,
+        totalHours:86,
+        totalCost:87,
+        finalPrice:88,
+        issue:89,
+        print:92,
+        youhavereachedtheendofpage:31,
+        spare:90,
+        task:91,
+        notes:27,
+      },
+      
+    };
+    if (contextTranslationIndex[props.contextType] && contextTranslationIndex[props.contextType][key] !== undefined) {
+      const index = contextTranslationIndex[props.contextType][key];
+      return props.translatedMenuItems[index] || "Translation not available";
+    }
+    return "Translation not available"; 
+  }
+
   return (
     <>
       <div>
@@ -223,39 +271,39 @@ function DistributorPauseForm(props) {
               <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
                 <div className="w-[4.9rem] text-sm text-[#00A2E8] truncate max-md:w-[4.2rem]">
                   <BrandingWatermarkIcon className="!text-icon" />{" "}
-                  {props.translatedMenuItems[69]}
+                  {getTranslation("brand")}
                 </div>
                 <div className=" md:w-[6.5rem]">
                   <ModelTrainingIcon className=" !text-icon" />{" "}
-                  {props.translatedMenuItems[70]}
+                  {getTranslation("model")}
                 </div>
                 <div className="w-[9.4rem] truncate max-md:w-[11.2rem]">
                   <LightbulbIcon className="!text-base  text-[#e4eb2f]" />
-                  {props.translatedMenuItems[71]}
+                  {getTranslation("unique")}
                 </div>
                 <div className="w-[8.1rem] truncate max-md:w-[9.2rem]">
-                  {props.translatedMenuItems[72]}
+                {getTranslation("info")}
                 </div>
                 <div className="w-[4.5rem] truncate max-md:w-[7.5rem]">
-                  {props.translatedMenuItems[73]}
+                {getTranslation("condition")}
                 </div>
                 <div className="w-[7.7rem] truncate max-md:w-[5.8rem]">
-                  {props.translatedMenuItems[41]}
+                {getTranslation("quoted")} 
                 </div>
                 <div className="w-[6.5rem] truncate max-md:w-[6.5rem]">
-                  {props.translatedMenuItems[74]}
+                {getTranslation("totalHours")}
                 </div>
                 <div className="w-[6.31rem] truncate max-md:w-[5.31rem]">
                   <CurrencyExchangeIcon className="!text-icon  mr-1   text-[#84a59d]" />{" "}
-                  {props.translatedMenuItems[75]}
+                  {getTranslation("totalCost")}
                 </div>
                 <div className="w-[9.3rem] truncate max-md:w-[6.3rem]">
                   <CurrencyExchangeIcon className="!text-icon  mr-1   text-[#84a59d]" />{" "}
-                  {props.translatedMenuItems[76]}
+                  {getTranslation("finalPrice")}
                 </div>
                 <div className="w-[6rem] truncate max-md:w-[4rem]">QC</div>
                 <div className="w-[7rem] truncate max-md:w-[6rem]">
-                  {props.translatedMenuItems[77]}
+                {getTranslation("issue")}
                 </div>
                 <div className="w-[7rem] truncate max-md:w-[2rem]"></div>
               </div>
@@ -275,7 +323,7 @@ function DistributorPauseForm(props) {
                   style={{ scrollbarWidth: "thin" }}
                   endMessage={
                     <p class="flex text-center font-bold text-xs text-red-500">
-                      {props.translatedMenuItems[78]}.{" "}
+                          {getTranslation("youhavereachedtheendofpage")}.{" "}
                     </p>
                   }
                 >
@@ -298,42 +346,42 @@ function DistributorPauseForm(props) {
                                   {item.model}
                                 </div>
                               </div>
-                              <div className=" flex    items-center justify-start h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex    items-center justify-start h-8 ml-gap bg-[#eef2f9]  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.imei}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap  font-poppins">
                                   {item.os} {item.gb} {item.color}
                                 </div>
                               </div>
-                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.condition}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap  font-poppins">
                                   {item.expectedPrice}
                                 </div>
                               </div>
-                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs   ml-gap font-poppins">
                                   {item.totalhours}
                                 </div>
                               </div>
-                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs   ml-gap font-poppins">
                                   {item.totalExtraCost}
                                 </div>
                               </div>
-                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   {item.totalPrice}
                                 </div>
                               </div>
-                              <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9]    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                              <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  ml-gap font-poppins">
                                   <ButtonGroup className="w-[4rem]">
                                     <StatusIcon
@@ -379,7 +427,7 @@ function DistributorPauseForm(props) {
                                 <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                   <div class=" text-xs  font-poppins">
                                     <Tooltip
-                                      title={props.translatedMenuItems[79]}
+                                      title= {getTranslation("spare")}
                                     >
                                       <PrecisionManufacturingIcon
                                         style={{
@@ -401,7 +449,7 @@ function DistributorPauseForm(props) {
                                 <div className=" flex    md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                   <div class=" text-xs  font-poppins">
                                     <Tooltip
-                                      title={props.translatedMenuItems[80]}
+                                      title={getTranslation("task")}
                                     >
                                       <FormatListBulletedIcon
                                         className="!text-icon cursor-pointer"
@@ -415,6 +463,7 @@ function DistributorPauseForm(props) {
                                         onClick={() => {
                                           handleSetRowData(item);
                                           handleExpand(item.phoneId);
+                                          props.handleInventoryexpand(true);
                                         }}
                                       />
                                     </Tooltip>
@@ -423,13 +472,13 @@ function DistributorPauseForm(props) {
                                 <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                   <div class=" text-xs text-green-600   font-poppins">
                                     <Tooltip
-                                      title={props.translatedMenuItems[5]}
+                                      title={getTranslation("notes")}
                                     >
                                       <NoteAltIcon
                                         className="!text-icon cursor-pointer"
                                         onClick={() => {
                                           handleSetRowData(item);
-                                          props.handlePhoneNotesOrderModal(
+                                          props.handleReceivedOrderIdPhoneNoteModal(
                                             true
                                           );
                                         }}
@@ -441,7 +490,7 @@ function DistributorPauseForm(props) {
                               <div className=" flex  items-center  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div class=" text-xs  font-poppins">
                                   <Tooltip
-                                    title={props.translatedMenuItems[81]}
+                                    title={getTranslation("print")}
                                   >
                                     <ReactToPrint
                                       trigger={() => (
@@ -499,7 +548,7 @@ function DistributorPauseForm(props) {
                 <div class="flex justify-end mr-4 mb-2">
                   <div class=" w-10">
                     <Button type="primary" onClick={handlePrint}>
-                      {props.translatedMenuItems[81]}
+                    {getTranslation("print")}
                     </Button>
                   </div>
                 </div>
@@ -509,24 +558,29 @@ function DistributorPauseForm(props) {
         </>
       </div>
       <Suspense fallback={<BundleLoader />}>
-        {expand && (
-          <AccountPhoneTaskTable phoneId={phoneId} RowData={RowData} />
-        )}
-        <PhoneNotesOrderModal
-          RowData={RowData}
-          phoNotesOrderModal={props.phoNotesOrderModal}
-          handlePhoneNotesOrderModal={props.handlePhoneNotesOrderModal}
-        />
+        <ReceivedOrderIdPhoneNoteModal
+                    particularRowData={RowData}
+                    phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
+                    handleReceivedOrderIdPhoneNoteModal={props.handleReceivedOrderIdPhoneNoteModal}
+                  />
+        <InventoryExpandListModal   
+           phoneId={phoneId}         
+                  particularRowData={RowData}
+                  inventoryExpandList={props.inventoryExpandList}
+                  handleInventoryexpand={props.handleInventoryexpand}
+                />
         {spares && <AddingSpareList phoneId={phoneId} RowData={RowData} />}
       </Suspense>
     </>
   );
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,inventory }) => ({
   phoneListById: distributor.phoneListById,
   phoNotesOrderModal: distributor.phoNotesOrderModal,
   fetchingPhoneListById: distributor.fetchingPhoneListById,
+  phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
+  inventoryExpandList: inventory.inventoryExpandList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -536,6 +590,8 @@ const mapDispatchToProps = (dispatch) =>
       handlePhoneNotesOrderModal,
       searchimeiNamePhone,
       ClearPhoneDataOfrefurbish,
+      handleReceivedOrderIdPhoneNoteModal,
+      handleInventoryexpand,
     },
     dispatch
   );

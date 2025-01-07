@@ -47,30 +47,23 @@ function TeamsCardList(props) {
     <>
   
   <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] h-[88vh]">
-<div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-<div className="font-bold font-poppins text-xs md:w-[44.5rem]">
-< ApartmentIcon className=" text-base"/> {props.translatedMenuItems[0]}
+<div className=" flex justify-between w-[100%]  p-1 bg-transparent  !text-lm font-bold font-poppins  sticky  z-10">
+<div className=" w-[27.5rem] truncate text-[#00A2E8] text-sm max-md:w-[44.5rem]">
+< ApartmentIcon className=" text-icon"/> {props.translatedMenuItems[0]}
 </div>
 
-<div className="font-bold font-poppins text-xs md:w-[28.12rem]"> 
-<GroupsIcon className=" text-base"/>{props.translatedMenuItems[1]}</div>
-
- <div className="font-bold font-poppins text-xs md:w-[22.1rem]"> 
- <GroupsIcon className=" text-base"/> {props.translatedMenuItems[2]}</div>
-
-
-
-
+<div className=" w-[28.12rem] truncate max-md:w-[28.12rem]"> 
+<GroupsIcon className=" text-icon"/>{props.translatedMenuItems[1]}</div>
+ <div className="w-[28.9rem] truncate  max-md:w-[22.1rem]"> 
+ <GroupsIcon className=" text-icon"/> {props.translatedMenuItems[2]}</div>
 </div>
-
-
 {props.teamList.map((item) => { 
 const firstTeamMember = item.teamMemberIds && item.teamMemberIds.length > 0 ? item.teamMemberIds[0] : null;
 const empName = firstTeamMember ? firstTeamMember.empName : null;
 console.log(empName)
           return (
               <div>
-                  <div className="flex rounded  bg-white justify-between mt-[0.5rem]  items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="flex rounded  bg-white justify-between mt-[0.5rem]  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       >
                            
                            <div className=" flex  items-center justify-start h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[28rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -78,31 +71,19 @@ console.log(empName)
 
 <div class="max-sm:w-full">
                               <Tooltip>
-                                <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                                
-                                  <div class="text-xs text-blue-500 ml-gap items-center font-poppins font-semibold  cursor-pointer">
-                                      
+                                <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">                             
+                                  <div class="text-xs text-blue-500 ml-gap items-center justify-center font-poppins font-semibold  cursor-pointer">                                   
                            {item.teamName}
-
-
                                   </div>
                                   </div>
                               </Tooltip>
                               </div>
                               </div>
-                      </div>
-                     
-
-                   
-                    
-                      <div className=" flex  md:w-[29.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
-                      
-                        
+                      </div>  
+                      <div className=" flex  md:w-[29.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">                      
                         <div >
                           <MultiAvatar2
-
-                           primaryTitle= {item.teamLead}
-                          
+                           primaryTitle= {item.teamLead}                  
                             imgHeight={"1.8rem"}
                             imgWidth={"1.8rem"}
                             imgRadius={20}
@@ -110,30 +91,20 @@ console.log(empName)
                          </div>
                     </div>
 
-                    <div className=" flex  md:w-[29.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
+                    <div className=" flex  md:w-[29.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                       
                         <div class="text-xs ml-gap items-center font-poppins">
                         {empName}
                         </div>
-                    </div>
-
-                 
-                   
-            
-
-                    
-                   
+                    </div>               
                   </div>
               </div>
-
-
           )
       })}
           
 </div>
      
 
-   
    
     </>
   );

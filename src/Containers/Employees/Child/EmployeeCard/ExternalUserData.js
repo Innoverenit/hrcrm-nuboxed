@@ -42,37 +42,37 @@ function ExternalUserdata (props) {
   const [currentEmployeeId, setCurrentEmployeeId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-          "1547",//0 Data Not Available
-          "118",//1 Not Available
-           "995",//2Reports To:
-          "1548",//3Not Assigned 
-           "392",//4 Pulse
-           "1549",//5Required Document
-           "10",// "Admin"
-          "1551",//  Onboarding
-          "170",//  "Edit" 
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
+  //         "1547",//0 Data Not Available
+  //         "118",//1 Not Available
+  //          "995",//2Reports To:
+  //         "1548",//3Not Assigned 
+  //          "392",//4 Pulse
+  //          "1549",//5Required Document
+  //          "10",// "Admin"
+  //         "1551",//  Onboarding
+  //         "170",//  "Edit" 
                  
-        ];
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
 
 function handleSetCurrentEmployeeId(employeeId,) {
   setCurrentEmployeeId(employeeId,);
@@ -109,7 +109,7 @@ function handleSetCurrentUser(item) {
 
 {props.employees=="Data not Found" ? "Data Not Available" :
             <div class="flex flex-wrap  justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
-              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8"> {translatedMenuItems[0]}</span> :props.filteredData.filter(item => item.employee_type !== 'employee').map((item) => {
+              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8"> {props.translatedMenuItems[2]}</span> :props.filteredData.filter(item => item.employee_type !== 'employee').map((item) => {
                
                 const handleCopyClick = () => {
                   const emailElement = document.createElement('textarea');
@@ -168,8 +168,8 @@ function handleSetCurrentUser(item) {
                         <div class=" flex flex-row   w-full justify-between">
                        
                         {/* <div class=" text-xs  font-medium font-poppins">Department   </div> */}
-                      <div class=" flex justify-start text-xs  font-poppins">{item.department === null ?  translatedMenuItems[1] :item.department}</div>
-                      <div class=" flex justify-end text-xs  font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[1] :item.roleTypeName}</div>
+                      <div class=" flex justify-start text-xs  font-poppins">{item.department === null ?  props.translatedMenuItems[1] :item.department}</div>
+                      <div class=" flex justify-end text-xs  font-poppins">{item.roleTypeName  === null ?   props.translatedMenuItems[1] :item.roleTypeName}</div>
            </div> 
                    
                        <div class="  text-xs  font-poppins mt-1 "><PhoneIcon  className="!text-icon cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
@@ -188,10 +188,10 @@ function handleSetCurrentUser(item) {
       </div>
           </div>
           <div className=" flex flex-row justify-between w-full items-center">
-          <div class=" flex justify-start text-xs mt-1 font-bold font-poppins "> {translatedMenuItems[2]}: &nbsp;   <span>
+          <div class=" flex justify-start text-xs mt-1 font-bold font-poppins "> {props.translatedMenuItems[4]}: &nbsp;   <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
-                        : <span class="text-[red]" > {translatedMenuItems[3]} </span>}
+                        : <span class="text-[red]" > {props.translatedMenuItems[5]} </span>}
                       </span>
          </div>
          <div class=" flex justify-end  mt-1 items-center text-xs  font-poppins ">
@@ -215,7 +215,7 @@ function handleSetCurrentUser(item) {
                                     handleSetCurrentEmployeeId(item);
                                     props.handleNotifyDrawer(true);
                                    }}
-                              >  {translatedMenuItems[9]}
+                              >  {props.translatedMenuItems[11]}
                                  
                               </Button>): (  <Button
                                   type="primary"
@@ -224,7 +224,7 @@ function handleSetCurrentUser(item) {
                                     handleSetCurrentEmployeeId(item);
                                     props.handleNotifyDrawer(true);
                                    }}
-                              >{translatedMenuItems[6]}
+                              >{props.translatedMenuItems[8]}
                               </Button>)}
 
             </div>
@@ -241,7 +241,7 @@ function handleSetCurrentUser(item) {
                 handleSetCurrentEmployeeId(item)
               }}
             >
-               <Tooltip title= {translatedMenuItems[4]}>
+               <Tooltip title= {props.translatedMenuItems[6]}>
               <MonitorHeartIcon className="!text-icon cursor-pointer text-[#df9697]" />
               </Tooltip>
      </span>
@@ -261,7 +261,7 @@ function handleSetCurrentUser(item) {
                 count={item.noOfDocPending}
                 overflowCount={999}
               > 
-                  <Tooltip title= {translatedMenuItems[5]}>
+                  <Tooltip title= {props.translatedMenuItems[7]}>
               <InsertDriveFileIcon  className="!text-base cursor-pointer"/>
               </Tooltip>
               </Badge>
@@ -281,7 +281,7 @@ function handleSetCurrentUser(item) {
            </div>
          
            <div class="  text-xs  font-poppins ml-[0.15rem]">
-            <Tooltip title= {translatedMenuItems[7]}>
+            <Tooltip title= {props.translatedMenuItems[9]}>
               <BadgeIcon   className=" !text-base cursor-pointer text-[#709ab3]"
                 onClick={() => {
                     props.handleOnboardingEmployeeModal(true);
@@ -293,7 +293,7 @@ function handleSetCurrentUser(item) {
            </div>
            <div class="  text-xs  font-poppins ml-[0.15rem]">
            {user.userUpdateInd === true || user.role === "ADMIN"  ? (
-            <Tooltip title= {translatedMenuItems[8]}>
+            <Tooltip title= {props.translatedMenuItems[10]}>
               <BorderColorIcon
                 className=" !text-base cursor-pointer text-[tomato]"
                 onClick={() => {
@@ -325,6 +325,7 @@ function handleSetCurrentUser(item) {
        currentEmployeeId={currentEmployeeId}
         updateEmployeeModal={props.updateEmployeeModal}
         handleUpdateEmployeeModal={props.handleUpdateEmployeeModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
                <StepperEmployeeModal
                 translateText={props.translateText}
@@ -337,6 +338,7 @@ function handleSetCurrentUser(item) {
        onboardingEmployeeModal={props.onboardingEmployeeModal}
         handleOnboardingEmployeeModal={props.handleOnboardingEmployeeModal}
         handleSetCurrentEmployeeId={props.handleSetCurrentEmployeeId}
+        translatedMenuItems={props.translatedMenuItems}
       />
               <EmployeeDrawerForAdmin
                translateText={props.translateText}
@@ -344,6 +346,7 @@ function handleSetCurrentUser(item) {
       employeeId={currentEmployeeId}
         handleEmployeeDrawerForAdmin={handleEmployeeDrawerForAdmin}
         employeeDrawerVisibleForAdmin={employeeDrawerVisibleForAdmin}
+        translatedMenuItems={props.translatedMenuItems}
       />
             <EmployeePulseDrawerModal
              translateText={props.translateText}
@@ -355,6 +358,7 @@ function handleSetCurrentUser(item) {
         documentsByEmployeeId={props.documentsByEmployeeId}
         addDrawerEmployeePulseModal={props.addDrawerEmployeePulseModal}
         handleEmployeePulseDrawerModal={props.handleEmployeePulseDrawerModal}
+        translatedMenuItems={props.translatedMenuItems}
         // candidateByUserId={this.props.candidateByUserId}
       />
                <EmployeeDocumentDrawerModal
@@ -364,13 +368,15 @@ function handleSetCurrentUser(item) {
         employeeName={currentEmployeeId}
         addDrawerEmployeeDocumentModal={props.addDrawerEmployeeDocumentModal}
         handleEmployeeDocumentDrawerModal={props.handleEmployeeDocumentDrawerModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <OpenNotifyDrawer
        translateText={props.translateText}
        selectedLanguage={props.selectedLanguage}
       currentEmployeeId={currentEmployeeId}
        openNotifydrwr={props.openNotifydrwr} 
-       handleNotifyDrawer={props.handleNotifyDrawer}/>
+       handleNotifyDrawer={props.handleNotifyDrawer}
+       translatedMenuItems={props.translatedMenuItems}/>
   </Suspense>
             </>
       

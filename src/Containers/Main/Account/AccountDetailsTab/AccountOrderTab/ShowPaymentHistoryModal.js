@@ -8,6 +8,8 @@ class ShowPaymentHistoryModal extends Component {
         const {
             showPaymentHistoryModal,
             handlePaymentHistory,
+            selectedLanguage,
+            translateText,
             ...formProps
         } = this.props;
         return (
@@ -26,6 +28,8 @@ class ShowPaymentHistoryModal extends Component {
                     <Suspense fallback={<BundleLoader />}>
                         <OrderPaymentTable 
                         particularRowData={this.props.particularRowData} 
+                        selectedLanguage={selectedLanguage}
+                        translateText={translateText}
                         translatedMenuItems={this.props.translatedMenuItems}
                         />
                     </Suspense>

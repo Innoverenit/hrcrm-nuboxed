@@ -289,7 +289,7 @@ selectedLanguage={props.selectedLanguage}
              
             </Suspense>
           </TabPane>
-          <TabPane
+          {/* <TabPane
             tab={
               <>
                <HourglassFullIcon className="text-blue-500  !text-icon" />
@@ -299,9 +299,9 @@ selectedLanguage={props.selectedLanguage}
             > 
              </Badge>
                 <span class="!text-tab font-poppins ">
-                {translatedMenuItems[2]}  
+                {translatedMenuItems[2]}   */}
                   {/* Activity */}
-                </span>
+                {/* </span>
                
                 {activeKey === "3" && (
                   <>
@@ -319,15 +319,15 @@ selectedLanguage={props.selectedLanguage}
               </>
             }
             key="3"
-          >
-            <Suspense fallback={"Loading ..."}>
-              {" "}
+//           > */}
+{/* // >            <Suspense fallback={"Loading ..."}>
+//               {" "} */}
               {/* <InvestorTimeLine
 
 investorDetails={props.investorDetails}
               /> */}
-            </Suspense>
-          </TabPane>
+            {/* </Suspense>
+          </TabPane */}
 
           <TabPane
             tab={
@@ -445,7 +445,7 @@ investorDetails={props.investorDetails}
                      opencreateDealModal={opencreateDealModal}
                      handleDealModal={handleDealModal}
                      />
-           <InvestorActivityModal
+           {/* <InvestorActivityModal
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}
             customerId={props. customerId }
@@ -458,7 +458,7 @@ investorDetails={props.investorDetails}
        investor={props.investorDetails}
        callActivityModal={props.callActivityModal}
        handleCallActivityModal={props.handleCallActivityModal}
-        />
+        /> */}
 
        
       </Suspense>

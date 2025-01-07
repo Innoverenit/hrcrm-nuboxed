@@ -24,6 +24,10 @@ const initialState = {
   fetchingOrderCustomerError: false,
   orderCustomerList:[],
 
+  fetchingCoorderByUser: false,
+          fetchingCoorderByUserError: false,
+  coOrderListByUser: [],
+
   addingTicket:false,
   addingTicketError:false,
 
@@ -122,6 +126,10 @@ const initialState = {
   fetchingOrderRecords: false,
   fetchingOrderRecordsError: false,
   orderRecordData: {},
+
+  fetchingOpportunityUser: false,
+  ffetchingOpportunityUserError: false,
+  coOppoListByUser:[],
 
   fetchingProcureRecords: false,
   fetchingProcureRecordsError: false,
@@ -3142,6 +3150,38 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingCustomerByUser: false,
         fetchingCustomerByUserError: true,
       };
+
+      case types.GET_COORDER_BY_USER_REQUEST:
+        return { ...state, fetchingCoorderByUser: true };
+      case types.GET_COORDER_BY_USER_SUCCESS:
+        return {
+          ...state,
+          fetchingCoorderByUser: false,
+          coOrderListByUser: [...state.coOrderListByUser, ...action.payload],
+        };
+      case types.GET_COORDER_BY_USER_FAILURE:
+        return {
+          ...state,
+          fetchingCoorderByUser: false,
+          fetchingCoorderByUserError: true,
+        };
+
+        case types.GET_OPPORTUNITY_BY_USER_REQUEST:
+          return { ...state, fetchingOpportunityUser: true };
+        case types.GET_OPPORTUNITY_BY_USER_SUCCESS:
+          return {
+            ...state,
+            fetchingOpportunityUser: false,
+            coOppoListByUser: action.payload,
+          };
+        case types.GET_OPPORTUNITY_BY_USER_FAILURE:
+          return {
+            ...state,
+            fetchingOpportunityUser: false,
+            ffetchingOpportunityUserError: true,
+          };
+  
+
 
     case types.GET_COMPLETE_ORDERS_REQUEST:
       return { ...state, fetchingCompleteOrders: true };

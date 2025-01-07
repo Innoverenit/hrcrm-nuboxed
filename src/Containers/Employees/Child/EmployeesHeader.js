@@ -32,14 +32,16 @@ class EmployeesHeader extends Component {
                 handleDropdownChange={this.props.handleDropdownChange}
                 handleFilterChange={this.props.handleFilterChange}
                 filter={this.props.filter}
-                setCurrentData={this.props.setCurrentData}
+                setCurrentData={this.props.setCurrentData}                        
+            translatedMenuItems={this.props.translatedMenuItems}
               />
             }
             rightComponent={
               <EmployeesActionRight 
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}
-              handleEmployeeModal={handleEmployeeModal} />
+              handleEmployeeModal={handleEmployeeModal}
+              translatedMenuItems={this.props.translatedMenuItems} />
             }
           />
           </Suspense>

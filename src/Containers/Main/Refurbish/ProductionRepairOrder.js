@@ -189,20 +189,20 @@ function ProductionRepairOrder(props) {
       </div>
                     <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">
                         <div className="w-[3.5rem] max-md:w-[3.5rem] "></div>
-                        <div className=" w-[18.92rem] max-md:w-[18.92rem] ">
-                        <DynamicFeedIcon className='!text-base mr-1  text-[#3F37C9]'/>  {translatedMenuItems[0]} ID {/* Order ID */}
+                        <div className=" w-[18.92rem] text-[#00A2E8] truncate test-sm max-md:w-[18.92rem] ">
+                        <DynamicFeedIcon className='!text-icon mr-1  '/>  {translatedMenuItems[0]} ID {/* Order ID */}
                           </div>
-                        <div className=" w-[16.12rem] max-md:w-[16.12rem] ">
+                        <div className=" w-[16.12rem] truncate max-md:w-[16.12rem] ">
                         <DateRangeIcon className='!text-icon text-[#92dce5] '  /> {translatedMenuItems[1]} 
                          {/* Due Date/> */}
                         </div>
-                        <div className=" w-[14.1rem] max-md:w-[14.1rem]">
-                        <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/*"Lead" /> */}
+                        <div className=" w-[14.1rem] truncate max-md:w-[14.1rem]">
+                        <ContactsIcon className='!text-icon mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/*"Lead" /> */}
                         </div>
-                        <div className="w-[10.8rem] max-md:w-[10.8rem]">
+                        <div className="w-[10.8rem] truncate max-md:w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' />   {translatedMenuItems[3]} {/* Status */}
                           </div>
-                        <div className="w-[10.1rem] max-md:w-[10.1rem]"></div>
+                        <div className="w-[10.1rem] truncate max-md:w-[10.1rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -247,13 +247,6 @@ function ProductionRepairOrder(props) {
                                                         </span>
                                                     ) : null}
                                                 </div>
-                        
-
-                                                {/* <div className=" flex font-medium  md:w-[37.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-sm  font-poppins">
-                                                    {item.repairCompletePhoneCount}/{item.totalPhone}
-                                                </div>
-                                            </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                               
@@ -261,16 +254,12 @@ function ProductionRepairOrder(props) {
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
-
-                                                </div>
-                                                
+                                               </div>                                  
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.repairInProgressPhoneCount} {item.repairStatus}
                                                     </div>
-
-                                                </div>
-                                           
+                                                </div>                                    
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center  max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
@@ -299,7 +288,6 @@ function ProductionRepairOrder(props) {
 
                                                     </div>
                                                 </div>
-
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.reason}
@@ -317,7 +305,6 @@ function ProductionRepairOrder(props) {
                                                                 props.handleProductionNotesModal(true);
                                                             }}
                                                         />
-
                                                     </Tooltip>
                                                 </div>
                                             </div>
@@ -346,11 +333,7 @@ function ProductionRepairOrder(props) {
             </div>
         </>
     )
-
-
-
 }
-
 
 const mapStateToProps = ({ refurbish, auth }) => ({
     locationId: auth.userDetails.locationId,

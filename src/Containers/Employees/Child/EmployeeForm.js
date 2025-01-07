@@ -466,7 +466,7 @@ function EmployeeForm(props) {
                   </div>
 
                   <div class=" flex justify-between" >
-                    <div class=" w-[70%] flex flex-col max-sm:w-wk">
+                    <div class=" w-[70%] flex flex-col max-sm:w-wk ">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[4]}</div>
                       <Field
                         isRequired

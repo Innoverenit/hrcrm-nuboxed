@@ -1,4 +1,4 @@
-import React, {  useEffect,useState } from "react";
+import React, {  useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select,Switch,Tooltip} from "antd";
@@ -98,6 +98,10 @@ props.getInvestorCurrency();
     const [contract, setContract] = useState(false);
     const [loading, setLoading] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [transcript, setTranscript] = useState('');
+        const [isListening, setIsListening] = useState(false);
+          const recognitionRef = useRef(null);
+    
 
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
@@ -254,16 +258,42 @@ props.getInvestorCurrency();
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+    useEffect(() => {
+        if (!('webkitSpeechRecognition' in window)) {
+          console.log('Browser does not support speech recognition.');
+          return;
+        }
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+    
+      recognition.onresult = (event) => {
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          }
+        }
+        finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+    
+        // Ensure the final transcript is appended only once
+        setTranscript((prevTranscript) => {
+          setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+          return prevTranscript + ' ' + finalTranscript;
+        });
+      };
+    
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+    
+      recognitionRef.current = recognition;
+    
+      return () => {
+        recognition.stop();
+      };
+    }, []);
 
     return (
       <>
@@ -345,6 +375,7 @@ props.getInvestorCurrency();
                 sectorId: selectedSector,
                 source:selectedSource,
                 firstMeetingDate: `${newEndDate}T20:00:00Z`,
+                notes: text,
               },
               props.userId,
               () => handleReset(resetForm)

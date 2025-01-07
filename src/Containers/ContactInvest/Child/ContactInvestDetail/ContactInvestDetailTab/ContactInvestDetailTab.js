@@ -50,6 +50,7 @@ class ContactInvestDetailTab extends Component {
         "1325",//2"Upload Document"
         "1165",//3"Activity"
        "104", // "Create"
+       "316",//notes
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -227,7 +228,8 @@ class ContactInvestDetailTab extends Component {
                                     <NoteAltIcon
                 className=" !text-icon cursor-pointer text-green-800 "
               />
-                                   Notes
+                                    {this.state.translatedMenuItems[5]}
+                                    {/* Notes */}
                                       </span>
                                 </span>
                                 

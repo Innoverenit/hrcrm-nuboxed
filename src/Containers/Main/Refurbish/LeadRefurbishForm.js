@@ -65,7 +65,7 @@ function LeadRefurbishForm(props) {
         props.addLeadInRefurbish({
             teamLeadUserId: technician,
             teamLeadAssignedBy:props.userId,
-        }, props.rowData.orderPhoneId, handleCallback())
+        }, props.rowData.orderPhoneId)
     }
     const handleCallback = () => {
         // props.getProductionOrderId(props.userId)

@@ -2499,6 +2499,13 @@ export const OpportunityReducer = (state = initialState, action) => {
             return recruit;
           }
         }),
+        allOpportunity: state.allOpportunity.map((recruit, i) => {
+          if (recruit.opportunityId === action.payload.opportunityId) {
+            return action.payload;
+          } else {
+            return recruit;
+          }
+        }),
       };
     case types.LINK_OPPORTUNITY_FAILURE:
       return {

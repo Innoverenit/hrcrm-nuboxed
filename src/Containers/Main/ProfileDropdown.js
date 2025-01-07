@@ -143,6 +143,18 @@ const ProfileMenu = ({ logout, navigate }) => (
             Logout
           </a>
         </StyledMenuItem>
+
+        <StyledMenuItem key="5">
+          <a 
+           href="#"
+         onClick={() => {
+          navigate("/permissions");
+        }}
+          >
+            <LogoutIcon className="!text-icon" />
+            Permission
+          </a>
+        </StyledMenuItem>
         <Menu.Divider />
       </StyledMenu>
     </MainWrapper>

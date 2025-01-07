@@ -399,6 +399,8 @@ const ReceivedTable = (props) => {
         rowData={rowData}
         receivedOrdeIdModal={props.receivedOrdeIdModal}
         handleReceivedOrderIdModal={props.handleReceivedOrderIdModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <ReceivedMismatchModal
         rowData={rowData}

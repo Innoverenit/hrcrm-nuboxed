@@ -6,6 +6,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
+import {getCrm} from "../../../Leads/LeadsAction"
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries ,getAllDialCodeList} from "../../../Auth/AuthAction";
@@ -91,6 +92,11 @@ function CustomerCardList(props) {
   const [loading, setLoading] = useState(true);
   const [editableField, setEditableField] = useState(null); 
   const [editingValue, setEditingValue] = useState("");
+    const [touchcrm, setTouchcrm] = useState(false);
+    const [touchSector, setTouchSector] = useState(false);
+    const [touchDialCode, setTouchDialCode] = useState(false);
+     const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+      const [selectedAssign, setSelectedAssign] = useState();
 
   console.log(props.viewType)
 
@@ -138,10 +144,10 @@ function CustomerCardList(props) {
     
       props.emptyCustomer()
       props.getCustomerListByUserId(props.userId, page, "creationdate");
-   props.getCountries();
-  //  props.getSources(props.orgId);
-   props.getSectors();
-   props.getAllDialCodeList()
+  //  props.getCountries();
+  // //  props.getSources(props.orgId);
+  //  props.getSectors();
+  //  props.getAllDialCodeList()
   }, []);
 
   useEffect(() => {
@@ -230,7 +236,7 @@ function CustomerCardList(props) {
     }
     }, 100);
   };
-
+ 
   const {
     fetchingCustomers,
     customerByUserId,
@@ -263,13 +269,6 @@ function CustomerCardList(props) {
     const { customerId, field } = editableField;
     const updatedData = {};
     let mappedField = field;
-    // if (field === 'shipByName') {
-    //   mappedField = 'shipById'; 
-    // } else if (field === 'dialCode2') {
-    //   mappedField = 'dialCode';
-    // } else if (field === 'shipperName') {
-    //   mappedField = 'name';
-    // }
     updatedData[mappedField] = editingValue;
     props.updateCustomer(updatedData,customerId)
     setEditableField(null);
@@ -288,19 +287,45 @@ function CustomerCardList(props) {
       let mappedField = field;
     
       // Map the field to the correct key if needed
-      // if (field === 'countryDialCode') {
-      //   mappedField = 'shipById'; 
-      // } if (field === 'dialCode') {
-      //   mappedField = 'dialCode';
-      // } else if (field === 'shipperName') {
-      //   mappedField = 'name';
-      // }
+      if (field === 'sector') {
+        mappedField = 'sectorId'; 
+      } if (field === 'dialcCode') {
+        mappedField = 'dialCcode';
+      } else if (field === 'shipperName') {
+        mappedField = 'name';
+      }
       updatedData[mappedField] = value; // Update the value with selected option
       props.updateCustomer(updatedData,customerId)
       setEditableField(null);
       setEditingValue("");
     
   };
+  const handleAssignChange = (customerId,value) => {
+
+    props.updateProspectUser(customerId,value);
+    setIsAssignDropdownVisible(null); // Hide the dropdown after the request
+  };
+  const handleSelectAssignFocus = () => {
+        if (!touchcrm) {
+          props.getCrm()
+          setTouchcrm(true);
+        }
+      };
+  
+      const handleSelectSectorFocus = () => {
+        if (!touchSector) {
+          props.getSectors();
+          setTouchSector(true);
+        }
+      }
+  
+      const handleSelectDialCodeFocus = () => {
+        if (!touchDialCode) {
+          props.getAllDialCodeList();
+          setTouchDialCode(true);
+        }
+      }
+
 console.log(page)
 console.log(props.userId)
 if (loading) {
@@ -485,6 +510,7 @@ if (loading) {
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   onBlur={() => handleEditRowField(null, null, null)}
+  onFocus={handleSelectDialCodeFocus}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
@@ -540,16 +566,41 @@ className="cursor-pointer text-xs font-poppins">
                       <div className=" flex   max-sm:w-auto  w-[12.41rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
-                          {item.sector}
+                          {/* {item.sector} */}
+                            <div>
+                          {editableField?.customerId === item.customerId && editableField?.field === 'sector' ? (
+                            <Select
+                            style={{ width: "10rem" }}
+                            value={editingValue}
+                            onChange={handleChangeRowSelectItem} 
+                            onBlur={() => handleEditRowField(null, null, null)}
+                            autoFocus
+                            onFocus={handleSelectSectorFocus}
+                          >
+                          {props.sectors.map((country) => (
+                             <Option key={country.sectorId} value={country.sectorId}>
+                            {country.sectorName}
+                             </Option>
+                           ))}
+                          </Select>
+                          ) : (
+                          <div onClick={() => 
+                          handleEditRowField(item.customerId, 'sector', item.sector)} 
+                          className="cursor-pointer text-xs font-poppins">
+                          {item.sector || "Update..."}
+                          
+                          </div>         
+                                                  )}
+                                                </div>
                         </div>
                       </div>
                 
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  w-[10.215rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      {/* <div className=" flex max-sm:w-auto  w-[10.215rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm  ">
                           {item.source}
                         </div>
-                      </div>
+                      </div> */}
                       <div className=" flex   max-sm:w-auto w-[9.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
@@ -584,27 +635,56 @@ className="cursor-pointer text-xs font-poppins">
                       <div className=" flex  max-sm:w-auto   w-[6.30rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm  ">
-                          <div>
-                            {item.assignedTo === null ? (
-                              <div class="text-xs  font-poppins">No Data</div>
-                            ) : (
-                              <>                           
-                                  <div
-                                  style={{cursor:"pointer"}}                              
-                                onClick={() => {
-                                  handleSetCurrentCustomerId(true);
-                                  props.handleLeadsSubscriptionModal(item);
-                                      }}
-                                  >
-                                  <MultiAvatar2
-                                    primaryTitle={item.assignedTo}
-                                    imgWidth={"1.8rem"}
-                                    imgHeight={"1.8rem"}
-                                  />
-                                  </div>                         
-                              </>
-                            )}
-                          </div>
+                         <div class=" text-xs  font-poppins">
+                                                     {item.assignedTo === null ? (
+                                 "None"
+                               ) : (
+                                                     <div>
+                                  {isAssignDropdownVisible === item.customerId ? (
+                                   <Select
+                                     style={{ width: "8rem" }}
+                                     value={selectedAssign}          
+                                     onChange={(value) => {
+                                       setSelectedAssign(value); 
+                                       handleAssignChange(item.customerId,value); 
+                                     }}
+                                      onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+                                      onFocus={handleSelectAssignFocus}
+                                     autoFocus
+                                   >
+                                      {props.crmAllData.map(customer => (
+                                          <Option key={customer.employeeId} value={customer.employeeId}>
+                                           <div className="flex">
+                                            <MultiAvatar
+                                   primaryTitle={customer.empName} 
+                                   imageId={item.imageId}
+                                             imageURL={item.imageURL}
+                                             imgWidth={"1.8rem"}
+                                             imgHeight={"1.8rem"} 
+                                 />
+                                           <span>{customer.empName}</span> 
+                                           </div>
+                                          </Option>
+                                        ))}
+                                   </Select>
+                                 ):(
+                                   <div 
+                                   onClick={() => {
+                                     setIsAssignDropdownVisible(item.customerId); 
+                                     setSelectedAssign(item.assignedTo); 
+                                     }}  
+                                   className="cursor-pointer"
+                                 >
+                                   <MultiAvatar2
+                                   primaryTitle={item.assignedTo}
+                                   imgWidth={"1.8rem"}
+                                   imgHeight={"1.8rem"}
+                                 />   
+                                 </div>  
+                                                       )}  
+                             </div>
+                                )}
+                                                     </div>
                         </div>
                       </div>                   
                       <div className=" flex  w-[10.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
@@ -805,7 +885,8 @@ const mapStateToProps = ({
   sector,
   opportunity,
   employee,
-  source
+  source,
+  leads
 }) => ({
   userId: auth.userDetails.userId,
   updateUserModal:customer.updateUserModal,
@@ -826,6 +907,7 @@ const mapStateToProps = ({
   // updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
   employees: employee.employees,
+  crmAllData:leads.crmAllData,
   // countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
@@ -861,7 +943,8 @@ const mapDispatchToProps = (dispatch) =>
       handleAddressCutomerModal,
       deleteCustomer,
       updateCustomer,
-      getAllDialCodeList
+      getAllDialCodeList,
+      getCrm
     },
     dispatch
   );

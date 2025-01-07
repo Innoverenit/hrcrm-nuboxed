@@ -8,7 +8,8 @@ class OrderHeader extends Component {
             viewType,
             setOrderViewType,
             activeKey,
-            activeKey1
+            activeKey1,
+            translatedMenuItems
         } = this.props;
         return (
             <div>
@@ -22,6 +23,7 @@ class OrderHeader extends Component {
                             handleViewChange={this.props.handleViewChange}
                             activeKey={activeKey}
                             activeKey1={activeKey1}
+                            translatedMenuItems={translatedMenuItems}
                         />
                     }
                 // rightComponent={<SuppliersActionRight />}

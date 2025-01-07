@@ -10,9 +10,6 @@ const AddProjectsModal =lazy(()=> import('./Child/AddProjectsModal'));
 const ProjectsHeader =lazy(()=> import('./Child/ProjectsHeader'));
 const ProjectsTable =lazy(()=> import('./Child/ProjectsTable'));
 
- 
-
-
 class Projects extends Component {
 
   state = { currentData: "" };

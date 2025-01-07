@@ -2,7 +2,7 @@ import { DatePicker, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getCountries } from "../../Auth/AuthAction";
+//import { getCountries } from "../../Auth/AuthAction";
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { addAttendence, getAttendanceList, addLocationDetails } from "../../Customer/CustomerAction";
@@ -15,12 +15,16 @@ const { Option } = Select;
 function StartStop(props) {
   const [selectedOtherValues, setSelectedOtherValues] = useState(props.attendanceByList?.other ||null);
   const [isLoading, setIsLoading] = useState(true);
+    const [touchedCountry, setTouchedCountry] = useState(false);
+  const [isLoadingCountry, setIsLoadingCountry] = useState(false);
   const [otherInclude, setOtherInclude] = useState([]);
   const [touched, setTouched] = useState(false);
   const [startInd, setStartInd] = useState(false);
   const [drop1, setDrop1] = useState(props.attendanceByList?.location || "");
   const [mandatoryCountry, setMandatoryCountry] = useState(props.attendanceByList?.country || "");
   const [country, setAllCountry] = useState("");
+
+  const [countryData, setCountryData] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
 
   // const returnDate = `${selectedDate}T20:00:00Z`;
@@ -46,9 +50,9 @@ function StartStop(props) {
     fetchData();
   }, [props.userId]);
 
-  useEffect(() => {
-    props.getCountries();
-  }, []);
+  // useEffect(() => {
+  //   props.getCountries();
+  // }, []);
 
   useEffect(() => {
    
@@ -122,6 +126,38 @@ function StartStop(props) {
     setMandatoryCountry(value);
   };
 
+  const handleSelectCountryFocus = () => {
+    if (!touchedCountry) {
+      fetchCountry();
+      // fetchSector();
+
+      setTouchedCountry(true);
+    }
+  };
+
+    const fetchCountry = async () => {
+      setIsLoadingCountry(true);
+      try {
+     
+  
+        const apiEndpoint = `${base_url}/countries`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setCountryData(data);
+      } catch (error) {
+        console.error('Error fetching customers:', error);
+      } finally {
+        setIsLoadingCountry(false);
+      }
+    };
+
   const handleAllCountry = (value) => {
     setAllCountry(value);
   };
@@ -183,13 +219,15 @@ function StartStop(props) {
             className="customize-select  w-40"
             value={mandatoryCountry}
             onChange={handleMandatoryCountry}
+            loading={isLoadingCountry}
             disabled={startInd === true}
+            onFocus={handleSelectCountryFocus}
             
             placeholder="Select Country"
           >
             <Option value="">Select Country</Option>
             <Option value="Others">Others</Option>
-            {props.countries.map((item) => (
+            {countryData.map((item) => (
               <Option key={item.country_name} value={item.country_name}>
                 {item.country_name}
               </Option>
@@ -240,7 +278,7 @@ function StartStop(props) {
 const mapStateToProps = ({ customer, auth, countrys }) => ({
   userId: auth.userDetails.userId,
   attendanceByList: customer.attendanceByList,
-  countries: auth.countries,
+  // countries: auth.countries,
   country: countrys.country,
   token: auth.token,
 });
@@ -250,7 +288,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addAttendence,
       getAttendanceList,
-      getCountries,
+      // getCountries,
       addLocationDetails,
     },
     dispatch

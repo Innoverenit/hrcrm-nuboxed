@@ -22,36 +22,34 @@ const EmployeesActionLeft = (props) => {
   const [isRecording, setIsRecording] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
- 
-
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-       "949", //  "Active Users",
-        "228", //  "All"   
-        "1238", // "Search By Name"   
-       "289",  // Creation Date
-       "954",  // All Locations
-       "955",  // All Departments
-     "1706" //  sort
-        ];
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
+  //      "949", //  "Active Users",
+  //       "228", //  "All"   
+  //       "1238", // "Search By Name"   
+  //      "289",  // Creation Date
+  //      "954",  // All Locations
+  //      "955",  // All Departments
+  //    "1706" //  sort
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
   const {
     transcript,
     listening,
@@ -67,6 +65,7 @@ const EmployeesActionLeft = (props) => {
     }
     }, [ transcript]);
 
+    
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
@@ -167,7 +166,7 @@ const EmployeesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={translatedMenuItems[1]}
+        title={props.translatedMenuItems[56]}
       > 
        <Badge
           size="small"
@@ -192,7 +191,7 @@ const EmployeesActionLeft = (props) => {
           </Badge> 
       </Tooltip>
   
-      <Tooltip title={translatedMenuItems[1]}>
+      <Tooltip title={props.translatedMenuItems[56]}>
       <Badge
           size="small"
           count={
@@ -210,7 +209,7 @@ const EmployeesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
-            <div class="text-white ">{translatedMenuItems[1]}</div>
+            <div class="text-white ">{props.translatedMenuItems[56]}</div>
             </Avatar>
           </span>
           </Badge>
@@ -218,7 +217,7 @@ const EmployeesActionLeft = (props) => {
 
       <div class=" ml-6  w-72">
       <Input
-     placeholder={translatedMenuItems[2]}
+     placeholder={props.translatedMenuItems[57]}
       width={"100%"}
             suffix={suffix}
              onBlur={handleSearch}  
@@ -230,8 +229,8 @@ const EmployeesActionLeft = (props) => {
       </div>
    
         <div  class=" w-[35%]  ml-2">
-          <StyledSelect placeholder={translatedMenuItems[6]}  defaultValue={translatedMenuItems[1]} onChange={(e)  => props.handleFilterChange(e)}>
-          <Option value="cretiondate">{translatedMenuItems[3]}</Option>
+          <StyledSelect placeholder={props.translatedMenuItems[61]}  defaultValue={props.translatedMenuItems[56]} onChange={(e)  => props.handleFilterChange(e)}>
+          <Option value="cretiondate">{props.translatedMenuItems[58]}</Option>
           <Option value="AtoZ">A To Z</Option>
             <Option value="ZtoA">Z To A</Option>
            
@@ -246,7 +245,7 @@ const EmployeesActionLeft = (props) => {
                      onChange={props.handleLocationChange}
                      value={props.selectedLocation}
                   >
-                    <option value="">{translatedMenuItems[4]}</option>
+                    <option value="">{props.translatedMenuItems[59]}</option>
                     {props.showLocation.map((item) => {
                       return (
                         <option value={item.locationName}>
@@ -265,7 +264,7 @@ const EmployeesActionLeft = (props) => {
                      value={props.selectedDepartment}
                     //  disabled={!props.selectedLocation}
                   >
-                    <option value="">{translatedMenuItems[5]}</option>
+                    <option value="">{props.translatedMenuItems[60]}</option>
                     {props.departments.map((item) => {
                       return (
                         <option value={item.departmentName}>

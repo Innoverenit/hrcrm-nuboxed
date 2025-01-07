@@ -97,7 +97,7 @@ function AddPhoneExcel(props) {
                                     <div class=" flex justify-between">
                                         <div class="w-[45%]">
                                             <Field
-                                                label="Units"
+                                                label= {props.translatedMenuItems[125]}
                                                 name="totalPhoneCount"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -133,7 +133,7 @@ function AddPhoneExcel(props) {
                                     htmlType="submit"
                                     loading={props.addingCar}
                                 >
-                                    Finish
+                                     {props.translatedMenuItems[141]}  
                                 </Button>
                             </div>
                         </Form>

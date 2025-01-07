@@ -250,6 +250,20 @@ class LocationForm extends Component {
                         />
                       </div>
                     </div>
+                    <div class=" w-[47%] mt-2" >
+                      <div class="font-bold text-xs font-poppins">
+                      {this.state.translatedMenuItems[6]} {/* Billing  */}
+                      <LocalAtmIcon  className="!text-icon text-[#001219]"/></div>
+                      <div>
+                        <Switch
+                          style={{ width: "6.25em" }}
+                          checked={this.state.billing}
+                          onChange={this.handleBilling}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
@@ -282,39 +296,9 @@ class LocationForm extends Component {
                     </div>
                   </div>
                   <div class=" flex">
-                  <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs font-poppins">
-                      {this.state.translatedMenuItems[5]}{/* Retail */}
-                      <PointOfSaleIcon  className="!text-icon text-[#005F73]"/></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.retail}
-                          onChange={this.handleRetail}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div>
-               
+                 
                   </div>
-                  <div class=" flex">
-                  <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs font-poppins">
-                      {this.state.translatedMenuItems[6]} {/* Billing  */}
-                      <LocalAtmIcon  className="!text-icon text-[#001219]"/></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.billing}
-                          onChange={this.handleBilling}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div>           
-                  
-                </div>
+                 
                   <div className="flex  items-center mt-4">
         <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">
         {this.state.translatedMenuItems[7]}{/* 3rd Party Location */}
@@ -368,7 +352,7 @@ class LocationForm extends Component {
       </div>
       : ( null)}  
                 </div>
-                <div class="h-full w-[45%] max-sm:w-wk mt-2">
+                <div class="h-full w-[45%] max-sm:w-wk">
                   <div class=" w-full" >
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">{this.state.translatedMenuItems[12]} </div>
                     <Field

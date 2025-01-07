@@ -128,12 +128,21 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
           type: types.ADD_INVESTOR_SUCCESS,
           payload: res.data,
         });
-        Swal.fire({
-          icon: 'success',
-          title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500,
-        })
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Created Successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -1383,7 +1392,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         },
       })
       .then((res) => {
-        dispatch(getInvestorShare(investorId));
+        // dispatch(getInvestorShare(investorId));
         dispatch({
           type: types.INVESTOR_SHARE_UPDATE_SUCCESS,
           payload: res.data,

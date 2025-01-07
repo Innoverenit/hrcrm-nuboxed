@@ -852,12 +852,14 @@ const CompleteOrderTable = (props) => {
                     handleOrderDetailsModal={props.handleOrderDetailsModal}
                     addOrderDetailsModal={props.addOrderDetailsModal} 
                     translatedMenuItems={props.translatedMenuItems}
+                    contextType={props.contextType}
                     />
                 <StatusOfOrderModal
                     handleStatusOfOrder={props.handleStatusOfOrder}
                     addStatusOfOrder={props.addStatusOfOrder}
                     particularRowData={particularRowData}
                     translatedMenuItems={props.translatedMenuItems}
+                    contextType={props.contextType}
                 />
                 <PaidButtonModal
                     type={props.type}
@@ -865,6 +867,7 @@ const CompleteOrderTable = (props) => {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                     translatedMenuItems={props.translatedMenuItems}
+                    contextType={props.contextType}
                 />
                 <AccountproductionModal
                     particularRowData={particularRowData}

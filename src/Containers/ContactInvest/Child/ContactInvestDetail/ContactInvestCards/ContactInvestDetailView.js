@@ -17,28 +17,28 @@ class ContactInvestDetailView extends Component {
     return (
       <>
         <ContactInvestItemRow 
-          label="Company"
-     
+      
+          label={this.props.translatedMenuItems[0]}
           value={tagWithCompany} />
         <ContactInvestItemRow 
-          label="Department"
         
+          label={this.props.translatedMenuItems[1]}
           value={department} />
         <ContactInvestItemRow  
-          label="Designation"
-       
+    
+          label={this.props.translatedMenuItems[2]}
           value={designation} />
 <ContactInvestItemRow 
-          label="Source"
-        
+      
+          label={this.props.translatedMenuItems[3]}
           value={source} />
         <ContactInvestItemRow
-        label="Email" 
-        
+     
+        label={this.props.translatedMenuItems[4]}
           value={emailId} />
         <ContactInvestItemRow 
-        label="Mobile #" 
-         
+   
+        label={this.props.translatedMenuItems[5]}
           value={mobileNumber} />
       </>
     );

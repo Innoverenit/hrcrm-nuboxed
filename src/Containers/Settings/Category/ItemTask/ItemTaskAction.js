@@ -60,7 +60,7 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
          
           Swal.fire({
             icon: 'success',
-            title: 'Type added Successfully!',
+            title: 'Successfully!',
             showConfirmButton: false,
             timer: 1500,
           });

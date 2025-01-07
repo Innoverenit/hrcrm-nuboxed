@@ -11,7 +11,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"; 
-import { Tooltip, Select,Checkbox,Input } from "antd";
+import { Tooltip, Select,Checkbox,Input,Switch  } from "antd";
 import dayjs from "dayjs";
 import ScoreIcon from '@mui/icons-material/Score';
 import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
@@ -77,7 +77,7 @@ function InvestorCardList(props) {
   const [editingValue, setEditingValue] = useState(""); 
   const [touchedSector, setTouchedSector] = useState(false);
   const [touchedSource, setTouchedSource] = useState(false);
-
+const [touchedAssign, setTouchedAssign] = useState(false);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -264,6 +264,12 @@ function InvestorCardList(props) {
       setTouchedSource(true);
     }
   };
+ const handleSelectAssignFocus = () => {
+    if (!touchedAssign) {
+      props.getAllEmployeelist();
+      setTouchedAssign(true);
+    }
+  };
 
   const {
     fetchingInvestors,
@@ -357,6 +363,7 @@ function InvestorCardList(props) {
         
         { !fetchingInvestors && investorsbyId.length === 0 ?<EmptyPage />:investorsbyId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
+        const Category=item.pvtAndIntunlInd?"Institutional":"Private";
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -394,7 +401,7 @@ function InvestorCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex   w-[10.5rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
+                                <div className=" flex   w-[10.5rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center h-8">
                                 <div>
 
                                                    <MultiAvatar
@@ -452,7 +459,32 @@ function InvestorCardList(props) {
                                 <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] truncate w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                 {/* Sector                     */}
                                     <div class="text-xs  font-poppins ml-gap  max-sm:text-sm">   
-                                    {item.sector}
+                                    {/* {item.sector} */}
+                                       <div>
+                                    {editableField?.investorId === item.investorId && editableField?.field === 'sector' ? (
+                                      <Select
+                                      style={{ width: "10rem" }}
+                                      value={editingValue}
+                                      onChange={handleChangeRowSelectItem} 
+                                      onBlur={() => handleEditRowField(null, null, null)}
+                                      onFocus={handleSelectSectorFocus}
+                                      autoFocus
+                                    >
+                                    {props.sectors.map((item) => (
+                                       <Option key={item.sectorId} value={item.sectorId}>
+                                      {item.sectorName}
+                                       </Option>
+                                     ))}
+                                    </Select>
+                                    ) : (
+                                    <div onClick={() => 
+                                    handleEditRowField(item.investorId, 'sector', item.sector)} 
+                                    className="cursor-pointer text-xs font-poppins">
+                                    {item.sector || "Update..."}
+                                    
+                                    </div>         
+                                                            )}
+                                                          </div>
                                     </div>
                                 </div>
                                                                                                                                                   
@@ -475,14 +507,61 @@ function InvestorCardList(props) {
                                     {/* # Category */}
 
                                     <div class="text-xs justify-center ml-gap  font-poppins  max-sm:text-sm">
-                                    {item.category}
+                                    {/* {item.category} */}
+                                    <div>
+  {editableField?.investorId === item.investorId && editableField?.field === 'Category' ? (
+    <Switch
+      style={{ width: "6.25em", marginLeft: "0.625em" }}
+      onChange={(checked) => handleContract(checked, item.investorId)}
+      checked={Category === "Institutional"} // Assuming `category` has values like "Institutional" or "Private"
+      checkedChildren="Institutional"
+      unCheckedChildren="Private"
+      onBlur={() => handleEditRowField(null, null, null)}
+      autoFocus
+    />
+  ) : (
+    <div
+      onClick={() =>
+        handleEditRowField(item.investorId, 'Category', Category)
+      }
+      className="cursor-pointer text-xs font-poppins"
+    >
+      {Category || "Update..."}
+    </div>
+  )}
+</div>
                                     </div>
                                 </div>
                                 <div className=" flex items-center truncate h-8 ml-gap bg-[#eef2f9] w-[6.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs ml-gap font-poppins  max-sm:text-sm">
-                                    {item.source}
+                                    {/* {item.source} */}
+                                      <div>
+                                    {editableField?.investorId === item.investorId && editableField?.field === 'source' ? (
+                                      <Select
+                                      style={{ width: "7rem" }}
+                                      value={editingValue}
+                                      onChange={handleChangeRowSelectItem} 
+                                      onBlur={() => handleEditRowField(null, null, null)}
+                                      onFocus={handleSelectSourceFocus}
+                                      autoFocus
+                                    >
+                                    {props.sources.map((item) => (
+                                       <Option key={item.sourceId} value={item.sourceId}>
+                                      {item.name}
+                                       </Option>
+                                     ))}
+                                    </Select>
+                                    ) : (
+                                    <div onClick={() => 
+                                    handleEditRowField(item.investorId, 'source', item.source)} 
+                                    className="cursor-pointer text-xs font-poppins">
+                                    {item.source || "Update..."}
+                                    
+                                    </div>         
+                                                            )}
+                                                          </div>
                                     </div>
                                 </div>
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -540,26 +619,57 @@ function InvestorCardList(props) {
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins  max-sm:text-sm">                                    
-                                    <span>
-              {item.assignedTo === null ? (
-                "None"
-              ) : (
-                <>
-                {/* {item.assignedTo === item.ownerName ? (
-                  
-                  null
-                ) : ( */}
-                  <Tooltip title={item.assignedTo}> 
-                <MultiAvatar2
-                  primaryTitle={item.assignedTo}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-                   </Tooltip>
-                {/* )} */}
-                </>
-              )}
-            </span>          
+                                  <span>
+                                               {item.assignedTo === null ? (
+                                                 "None"
+                                               ) : (
+                                                 <>
+                                              {editableField?.investorId === item.investorId && editableField?.field === 'assignedTo' ? (
+                                   <Select
+                                   style={{ width: "10rem" }}
+                                   value={editingValue}
+                                   onChange={handleChangeRowSelectItem} 
+                                   onBlur={() => handleEditRowField(null, null, null)}
+                                   onFocus={handleSelectAssignFocus}
+                                   autoFocus
+                                 >
+                                 {props.allEmployeeList.map((item) => (
+                                    <Option key={item.employeeId} value={item.employeeId}>
+                                    <div className="flex">
+                                                     <MultiAvatar
+                                            primaryTitle={item.empName} 
+                                            imageId={item.imageId}
+                                                      imageURL={item.imageURL}
+                                                      imgWidth={"1.8rem"}
+                                                      imgHeight={"1.8rem"} 
+                                          />
+                                                    <span>{item.empName}</span> 
+                                                    </div>
+                                    </Option>
+                                  ))}
+                                 </Select>
+                                 ) : (
+                                 <div onClick={() => 
+                                 handleEditRowField(item.investorId, 'assignedTo', item.assignedTo)} 
+                                 className="cursor-pointer text-xs font-poppins">
+                                 <MultiAvatar2
+                                           primaryTitle={item.assignedTo}
+                                           imgWidth={"1.8rem"}
+                                           imgHeight={"1.8rem"}
+                                         /> 
+                                 </div>         
+                                                         )}
+                                                   {/* <Tooltip title={item.assignedTo}> 
+                                                 <MultiAvatar2
+                                                   primaryTitle={item.assignedTo}
+                                                   imgWidth={"1.8rem"}
+                                                   imgHeight={"1.8rem"}
+                                                 />
+                                                    </Tooltip> */}
+                                                    
+                                                 </>
+                                               )}
+                                             </span>           
                                     </div>
                                 </div>
                                 
@@ -736,12 +846,17 @@ function InvestorCardList(props) {
 // }
 const mapStateToProps = ({
   auth,
+  source,
   customer,
   sector,
   opportunity,
   employee,
+  sectors,
   investor
 }) => ({
+  allEmployeeList:investor.allEmployeeList,
+  sectors: sector.sectors,
+  sources: source.sources,
   userId: auth.userDetails.userId,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
   addDrawerInvestorContactModal:investor.addDrawerInvestorContactModal,

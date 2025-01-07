@@ -4,9 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getShipperByShipperId } from "./ShipperAction";
 import {  MainWrapper } from "../../../Components/UI/Layout";
-
 import { BundleLoader } from "../../../Components/Placeholder";
-
 const ShipperDetailsHeader =lazy(()=>import("./ShipperDetailsHeader"));
 const ShipperDetailsRight =lazy(()=>import("./ShipperDetails/ShipperDetailsTab/ShipperDetailsRight"));
 const ShipperDetailsLeft =lazy(()=>import("./ShipperDetails/ShipperDetailsLeft"));
@@ -53,16 +51,7 @@ function ShipperDetails (props) {
       
           fetchMenuTranslations();
         }, [props.selectedLanguage]);
-  // componentDidMount() {
-  //  props.getShipperByShipperId(props.match.params.shipperId);
-  //  fetchMenuTranslations();
-  // }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.selectedLanguage !== props.selectedLanguage) {
-  //     fetchMenuTranslations();
-  //   }
-  // }
-
+  
     const { shipper, fetchingShipperDetailsByShipperId } = props;
     return (
       <>

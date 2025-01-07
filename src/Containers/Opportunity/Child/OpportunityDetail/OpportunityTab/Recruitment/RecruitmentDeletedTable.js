@@ -62,6 +62,13 @@ import SubTableClickCandidate from "../Recruitment/SubTableClickCandidate";
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import GroupsIcon from '@mui/icons-material/Groups';
+import EmptyPage from "../../../../../Main/EmptyPage";
 class RecruitmentDeletedTable extends Component {
  
   constructor(props) {
@@ -199,1006 +206,1006 @@ class RecruitmentDeletedTable extends Component {
 
     console.log("?>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<", this.state.stageList);
     console.log(this.props.recruitByOpportunityId.length && this.props.recruitByOpportunityId[0].recruiterNames)
-    const columns = [
-      {
-        title: "",
-        width: "2%",
-        render: (name, item, i) => {
-          const data = `Requirement ID : ${item.recruitmentId}`
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//     const columns = [
+//       {
+//         title: "",
+//         width: "2%",
+//         render: (name, item, i) => {
+//           const data = `Requirement ID : ${item.recruitmentId}`
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <Tooltip
-              // className="ant-tooltip-inner"
-              // placement="rightTop" 
-              overlayStyle={{ maxWidth: '300px', }}
+//               },
+//             },
+//             children: (
+//               <Tooltip
+//               // className="ant-tooltip-inner"
+//               // placement="rightTop" 
+//               overlayStyle={{ maxWidth: '300px', }}
 
-              title={data}
-            >
-              <span
-                // onClick={() => handleReasonOfDelete(item.orderId)}
-                style={{
-                  // color:
-                  //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
-                  cursor: "pointer",
-                }}
-              >
-                <i class="fa fa-info-circle"></i>
-              </span>
-            </Tooltip>
-            ),
-          };
+//               title={data}
+//             >
+//               <span
+//                 // onClick={() => handleReasonOfDelete(item.orderId)}
+//                 style={{
+//                   // color:
+//                   //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
+//                   cursor: "pointer",
+//                 }}
+//               >
+//                 <i class="fa fa-info-circle"></i>
+//               </span>
+//             </Tooltip>
+//             ),
+//           };
          
-        },
-      },
-      {
-        title: "Job ID",
-        width: "11%",
-        dataIndex: "jobOrder",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//         },
+//       },
+//       {
+//         title: "Job ID",
+//         width: "11%",
+//         dataIndex: "jobOrder",
+//         render: (name, item, i) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <>
-                <Badge count={item.number} style={{ right: "1px" }}>
-                  <span             
-                  >
+//               },
+//             },
+//             children: (
+//               <>
+//                 <Badge count={item.number} style={{ right: "1px" }}>
+//                   <span             
+//                   >
 
-                    {`${item.jobOrder} `} &nbsp;
+//                     {`${item.jobOrder} `} &nbsp;
 
 
-                  </span>
-                </Badge>
-              </>
-            ),
-          };
+//                   </span>
+//                 </Badge>
+//               </>
+//             ),
+//           };
          
-        },
+//         },
 
-      },
+//       },
 
-      // {
-      //   title:"",
-      //     width: "8%",
-      //   dataIndex:"number",
+//       // {
+//       //   title:"",
+//       //     width: "8%",
+//       //   dataIndex:"number",
 
-      // },
-      {
-        title: "Requirement",
+//       // },
+//       {
+//         title: "Requirement",
         
-        dataIndex: "requirementName",
-        width: "13%",
-        render: (name, item, i) => {
-          const currentdate = dayjs().format("DD/MM/YYYY");
-          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          console.log(item);
+//         dataIndex: "requirementName",
+//         width: "13%",
+//         render: (name, item, i) => {
+//           const currentdate = dayjs().format("DD/MM/YYYY");
+//           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+//           console.log(item);
 
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <>
-              <span
-                onClick={() => {            
-                 this.props.handleAddRequiremenDetailtModal(true);
-                 this.props.setCurrentOpportunityRecruitMentData(item);
-                  }}
-                style={{
-                  cursor: "pointer",                  
-                  color: "blue",
-                }}
-              >
-                {/* {`${item.requirementName} `} */}
+//               },
+//             },
+//             children: (
+//               <>
+//               <span
+//                 onClick={() => {            
+//                  this.props.handleAddRequiremenDetailtModal(true);
+//                  this.props.setCurrentOpportunityRecruitMentData(item);
+//                   }}
+//                 style={{
+//                   cursor: "pointer",                  
+//                   color: "blue",
+//                 }}
+//               >
+//                 {/* {`${item.requirementName} `} */}
 
-                <Tooltip title={item.requirementName}>
-                  {elipsize(item.requirementName, 20)}
-                </Tooltip>
+//                 <Tooltip title={item.requirementName}>
+//                   {elipsize(item.requirementName, 20)}
+//                 </Tooltip>
 
-              </span>
-              &nbsp;&nbsp;
-              {date === currentdate ? (
-                <span
-                  style={{
-                    color: "tomato",
-                    fontWeight: "bold",
-                  }}
-                >
-                  New
-                </span>
-              ) : null}
-            </>
-            ),
-          };
+//               </span>
+//               &nbsp;&nbsp;
+//               {date === currentdate ? (
+//                 <span
+//                   style={{
+//                     color: "tomato",
+//                     fontWeight: "bold",
+//                   }}
+//                 >
+//                   New
+//                 </span>
+//               ) : null}
+//             </>
+//             ),
+//           };
 
          
-        },
-      },
-      {
-        title: "Category",
-        dataIndex: "category",
-        width: "9%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//         },
+//       },
+//       {
+//         title: "Category",
+//         dataIndex: "category",
+//         width: "9%",
+//         render: (name, item, i) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children: <span>{item.category}</span>,
-          };
-        },
+//             children: <span>{item.category}</span>,
+//           };
+//         },
 
-      },
-      // {
-      //   title: "Created",
-      //   width: "7%",
-      //   dataIndex: "recruitOwner",
-      //   render: (name, item, i) => {
-      //     return {
-      //       props: {
-      //         style: {
-      //           background:
-      //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //               ? "rgb(158 183 223)"
-      //               : null,
+//       },
+//       // {
+//       //   title: "Created",
+//       //   width: "7%",
+//       //   dataIndex: "recruitOwner",
+//       //   render: (name, item, i) => {
+//       //     return {
+//       //       props: {
+//       //         style: {
+//       //           background:
+//       //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//       //               ? "rgb(158 183 223)"
+//       //               : null,
 
-      //         },
-      //       },
+//       //         },
+//       //       },
   
-      //       children: <span>
-      //          <SubTitle>
-      //         <Tooltip title={item.recruitOwner}>
-      //           <MultiAvatar
-      //             primaryTitle={item.recruitOwner}
-      //             // imageId={item.imageId}
-      //             // imageURL={item.imageURL}
-      //             imgWidth={"2.1em"}
-      //             imgHeight={"2.1em"}
-      //           />
-      //         </Tooltip>
-      //       </SubTitle>
-      //       </span>,
-      //     };
+//       //       children: <span>
+//       //          <SubTitle>
+//       //         <Tooltip title={item.recruitOwner}>
+//       //           <MultiAvatar
+//       //             primaryTitle={item.recruitOwner}
+//       //             // imageId={item.imageId}
+//       //             // imageURL={item.imageURL}
+//       //             imgWidth={"2.1em"}
+//       //             imgHeight={"2.1em"}
+//       //           />
+//       //         </Tooltip>
+//       //       </SubTitle>
+//       //       </span>,
+//       //     };
         
-      //   },
-      // },
+//       //   },
+//       // },
 
-      {
-        title:"Created",
-        width: "7%",
-         dataIndex: "recruitOwner",
-         render: (text, item) => {
-         return <>
-         {/* {item.assignedTo === item.ownerName ? "" : item.assignedTo}  */}
-         <Tooltip title={item.recruitOwner}>
-            <span>
-              <MultiAvatar
-                primaryTitle={item.recruitOwner}
-                // imageId={item.ownerImageId}
-                //  imageURL={item.imageURL}
-                imgWidth={"2.1em"}
-                imgHeight={"2.1em"}
-              />
-              </span>
-             </Tooltip>      
+//       {
+//         title:"Created",
+//         width: "7%",
+//          dataIndex: "recruitOwner",
+//          render: (text, item) => {
+//          return <>
+//          {/* {item.assignedTo === item.ownerName ? "" : item.assignedTo}  */}
+//          <Tooltip title={item.recruitOwner}>
+//             <span>
+//               <MultiAvatar
+//                 primaryTitle={item.recruitOwner}
+//                 // imageId={item.ownerImageId}
+//                 //  imageURL={item.imageURL}
+//                 imgWidth={"2.1em"}
+//                 imgHeight={"2.1em"}
+//               />
+//               </span>
+//              </Tooltip>      
          
-         </>
-        },
+//          </>
+//         },
          
-      },
-      // {
-      //   title: "Recruiter",
-      //   width: "7%",
-      //   render: (name, item, i) => {
-      //     return {
-      //       props: {
-      //         style: {
-      //           background:
-      //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //               ? "rgb(158 183 223)"
-      //               : null,
+//       },
+//       // {
+//       //   title: "Recruiter",
+//       //   width: "7%",
+//       //   render: (name, item, i) => {
+//       //     return {
+//       //       props: {
+//       //         style: {
+//       //           background:
+//       //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//       //               ? "rgb(158 183 223)"
+//       //               : null,
 
-      //         },
-      //       },
+//       //         },
+//       //       },
   
-      //       children: 
+//       //       children: 
             
-      //         <>
+//       //         <>
         
               
-      //          <FlexContainer justifyContect="space-evenly">
-      //          {item.recruiterList && item.recruiterList.map((item, i) => {
-      //            return (
-      //             <Tooltip
-      //             title={item.fullName}
-      //          >
-      //             <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}>
-      //           <MultiAvatar
-      //            primaryTitle={item.fullName||""}
-      //             // imageId={item.imageId}
-      //             // imageURL={item.imageURL}
-      //             imgWidth={"2.1em"}
-      //             imgHeight={"2.1em"}
-      //           />
-      //           </div>
-      //         </Tooltip>
-      //            );
-      //       })} 
-      //       </FlexContainer>
-      //       </>
+//       //          <FlexContainer justifyContect="space-evenly">
+//       //          {item.recruiterList && item.recruiterList.map((item, i) => {
+//       //            return (
+//       //             <Tooltip
+//       //             title={item.fullName}
+//       //          >
+//       //             <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}>
+//       //           <MultiAvatar
+//       //            primaryTitle={item.fullName||""}
+//       //             // imageId={item.imageId}
+//       //             // imageURL={item.imageURL}
+//       //             imgWidth={"2.1em"}
+//       //             imgHeight={"2.1em"}
+//       //           />
+//       //           </div>
+//       //         </Tooltip>
+//       //            );
+//       //       })} 
+//       //       </FlexContainer>
+//       //       </>
             
               
            
-      //     };
+//       //     };
         
-      //   },
-      // },
+//       //   },
+//       // },
 
-      {
-        title: "Recruiter",
-        width: "11%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//       {
+//         title: "Recruiter",
+//         width: "11%",
+//         render: (name, item, i) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children: 
+//             children: 
             
-              <>
+//               <>
        
                   
-        <Avatar.Group maxCount={2} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-        {item.recruiterList && item.recruiterList.map((item, i) => {
-          const data=item.fullName.split("")[0].toUpperCase()
-          console.log("datas",data)
-                 return (
-                  <Tooltip title={item.fullName}>
+//         <Avatar.Group maxCount={2} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
+//         {item.recruiterList && item.recruiterList.map((item, i) => {
+//           const data=item.fullName.split("")[0].toUpperCase()
+//           console.log("datas",data)
+//                  return (
+//                   <Tooltip title={item.fullName}>
        
-        <Avatar style={{ backgroundColor: '#f56a00' }}>{data}</Avatar> 
-        </Tooltip> 
-                 )
+//         <Avatar style={{ backgroundColor: '#f56a00' }}>{data}</Avatar> 
+//         </Tooltip> 
+//                  )
 
-     })} 
+//      })} 
     
-    </Avatar.Group>
+//     </Avatar.Group>
      
     
                 
             
-            </>
+//             </>
             
               
            
-          };
+//           };
         
-        },
-      },
-      {
-        title: "Created On",
-        width: "10%",
-        dataIndex: "creationDate",
-        render: (text, item) => {
-          const creationDate = dayjs(item.creationDate).format("L");
+//         },
+//       },
+//       {
+//         title: "Created On",
+//         width: "10%",
+//         dataIndex: "creationDate",
+//         render: (text, item) => {
+//           const creationDate = dayjs(item.creationDate).format("L");
 
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children: <span>
+//             children: <span>
               
-           {creationDate}
-            </span>,
-          };
+//            {creationDate}
+//             </span>,
+//           };
         
           
-        },
-      },
+//         },
+//       },
 
 
 
 
 
-      {
-        title: "Start",
-        width: "9%",
-        render: (name, item, i) => {
-          console.log(item);
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//       {
+//         title: "Start",
+//         width: "9%",
+//         render: (name, item, i) => {
+//           console.log(item);
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children:<span>{dayjs(item.avilableDate).format("L")}</span>
-          };
+//             children:<span>{dayjs(item.avilableDate).format("L")}</span>
+//           };
         
-        },
-        sorter: (a, b) => {
-          if (a.avilableDate < b.avilableDate) {
-            return -1;
-          }
-          if (a.avilableDate > b.avilableDate) {
-            return 1;
-          }
-          return 0;
-        },
-      },
-      {
-        title:"Duration",
-        width: "8%",
-        render: (text, item) => {
-          //const getDate = (date) => dayjs(date, 'DD/MM/YYYY').startOf('month')
-const diff = Math.abs(dayjs(item.availableDate).diff(dayjs(item.endDate), 'months'));
-const date=diff+1
-         // const availableDate = dayjs(item.availableDate).subtract(item.endDate);
-          return <>
-          {/* {item.availableDate === null ? "None" : */}
-            <span>
-              {/* {dayjs(item.availableDate).subtract(item.endDate).month()} */}
-              {date} months
-            </span>
-          {/* } */}
-        </>
-        },
+//         },
+//         sorter: (a, b) => {
+//           if (a.avilableDate < b.avilableDate) {
+//             return -1;
+//           }
+//           if (a.avilableDate > b.avilableDate) {
+//             return 1;
+//           }
+//           return 0;
+//         },
+//       },
+//       {
+//         title:"Duration",
+//         width: "8%",
+//         render: (text, item) => {
+//           //const getDate = (date) => dayjs(date, 'DD/MM/YYYY').startOf('month')
+// const diff = Math.abs(dayjs(item.availableDate).diff(dayjs(item.endDate), 'months'));
+// const date=diff+1
+//          // const availableDate = dayjs(item.availableDate).subtract(item.endDate);
+//           return <>
+//           {/* {item.availableDate === null ? "None" : */}
+//             <span>
+//               {/* {dayjs(item.availableDate).subtract(item.endDate).month()} */}
+//               {date} months
+//             </span>
+//           {/* } */}
+//         </>
+//         },
         
-      },
-      {
-        //title: "Rate/hr",
-        title:"Billing"
-       ,
-        dataIndex: "billing",
-        width: "8%",
-        //   defaultSortOrder: "descend",
-        // sorter: (a, b) => a.billing - b.billing,
-        render: (name, item, i) => {
-          console.log(item);
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//       },
+//       {
+//         //title: "Rate/hr",
+//         title:"Billing"
+//        ,
+//         dataIndex: "billing",
+//         width: "8%",
+//         //   defaultSortOrder: "descend",
+//         // sorter: (a, b) => a.billing - b.billing,
+//         render: (name, item, i) => {
+//           console.log(item);
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children:<span>{item.billing} {item.currency}</span>
-          };
+//             children:<span>{item.billing} {item.currency}</span>
+//           };
         
-        },
-      },
-  {
-        title: "Skill Set"
-       ,
+//         },
+//       },
+//   {
+//         title: "Skill Set"
+//        ,
 
-        width: "15%",
-        render: (name, item, i) => {
-          console.log(this.props.SkillList);
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//         width: "15%",
+//         render: (name, item, i) => {
+//           console.log(this.props.SkillList);
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children: <span>
-            <RecruitmentFilter
-              handleSkillsetChoose={this.handleSkillsetChoose}
-              // topicsByCandidateId={this.props.topicsByCandidateId}
-              SkillList={item.skillSetList}
-              name={this.state.skillSetData}
-              skillName={item.skillName}
-              candidatetList={item.candidatetList}
-              fullName={item.fullName}
+//             children: <span>
+//             <RecruitmentFilter
+//               handleSkillsetChoose={this.handleSkillsetChoose}
+//               // topicsByCandidateId={this.props.topicsByCandidateId}
+//               SkillList={item.skillSetList}
+//               name={this.state.skillSetData}
+//               skillName={item.skillName}
+//               candidatetList={item.candidatetList}
+//               fullName={item.fullName}
           
-            />
-          </span>,
-          };
+//             />
+//           </span>,
+//           };
           
-        },
-      },
+//         },
+//       },
      
-      {
-        title: "",
-        width: "3%",
-        render: (name, item, i) => {
-          console.log(this.state.skillSetData)
-          // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//       {
+//         title: "",
+//         width: "3%",
+//         render: (name, item, i) => {
+//           console.log(this.state.skillSetData)
+//           // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children: 
-            <>
-            {(this.state.skillSetData || item.skillName) &&
-              <span
-                // type="edit"
-                style={{ cursor: "pointer", color: "tomato",fontSize:"15px" }}
-                onClick={() => {
-                  this.props.LinkSkillsRecruit({
-                    opportunityId: item.opportunityId,
-                    stageId: item.stageId,
-                    recruitmentProcessId: item.recruitmentProcessId,
-                    skillName: this.state.skillSetData || item.skillName,
-                    recruitmentId: item.recruitmentId,
-                    profileId: item.profileId,
-                  });
-                  this.props.getRecruiter(
-                    this.state.skillSetData || item.skillName,
-                    item.recruitmentId,
-                    item.opportunityId,
+//             children: 
+//             <>
+//             {(this.state.skillSetData || item.skillName) &&
+//               <span
+//                 // type="edit"
+//                 style={{ cursor: "pointer", color: "tomato",fontSize:"15px" }}
+//                 onClick={() => {
+//                   this.props.LinkSkillsRecruit({
+//                     opportunityId: item.opportunityId,
+//                     stageId: item.stageId,
+//                     recruitmentProcessId: item.recruitmentProcessId,
+//                     skillName: this.state.skillSetData || item.skillName,
+//                     recruitmentId: item.recruitmentId,
+//                     profileId: item.profileId,
+//                   });
+//                   this.props.getRecruiter(
+//                     this.state.skillSetData || item.skillName,
+//                     item.recruitmentId,
+//                     item.opportunityId,
 
 
 
-                  );
-                  this.handleCandidateDataSet(item);
-                  this.props.handleRecruiterModal(true);
-                }}
-              >
-                <PsychologyAltIcon 
-                style={{fontSize:"0.8rem",cursor:"pointer"}}
-                 />
-              </span>
-            }
-          </>
-          };
+//                   );
+//                   this.handleCandidateDataSet(item);
+//                   this.props.handleRecruiterModal(true);
+//                 }}
+//               >
+//                 <PsychologyAltIcon 
+//                 style={{fontSize:"0.8rem",cursor:"pointer"}}
+//                  />
+//               </span>
+//             }
+//           </>
+//           };
           
-        }
-      },
+//         }
+//       },
 
-      {
-        title: "",
-        width: "2%",
-        render: (name, item, i) => {
-          //           const arr=[item];
-          // let finalData=""
-          //           arr.forEach((item)=>{
-          // finalData=`${item}`
-          //           })
-          //           console.log(finalData)
-        //   const data = this.props.skillsCount
-        //   let result = Object.keys(data).map(key => {
-        //     return ({ name: key, value: data[key] })
-        //   }
-        //   )
-        //   const newArray = result.map(element => {
-        //     return `${element.name}  
-        // -${element.value}`
-        //   });
+//       {
+//         title: "",
+//         width: "2%",
+//         render: (name, item, i) => {
+//           //           const arr=[item];
+//           // let finalData=""
+//           //           arr.forEach((item)=>{
+//           // finalData=`${item}`
+//           //           })
+//           //           console.log(finalData)
+//         //   const data = this.props.skillsCount
+//         //   let result = Object.keys(data).map(key => {
+//         //     return ({ name: key, value: data[key] })
+//         //   }
+//         //   )
+//         //   const newArray = result.map(element => {
+//         //     return `${element.name}  
+//         // -${element.value}`
+//         //   });
 
-        //   let text = newArray.toString() + "\r\n";
-        //   console.log(text)
+//         //   let text = newArray.toString() + "\r\n";
+//         //   console.log(text)
 
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
+//               },
+//             },
   
-            children:<span>
-                <Tooltip
-              // title={text}
-              style={{ whiteSpace: 'pre-line' }}
-            >
-              <span
-                style={{
-                  // color:
-                  //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
-                  cursor: "pointer",
-                  marginLeft: "-4px",
-                  fontSize:"large"
-                }}
-                onClick={() => {
+//             children:<span>
+//                 <Tooltip
+//               // title={text}
+//               style={{ whiteSpace: 'pre-line' }}
+//             >
+//               <span
+//                 style={{
+//                   // color:
+//                   //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
+//                   cursor: "pointer",
+//                   marginLeft: "-4px",
+//                   fontSize:"large"
+//                 }}
+//                 onClick={() => {
                  
-                  this.props.getSkillsCount(
-                    item.recruitmentId,
-                    this.props.organizationId,
+//                   this.props.getSkillsCount(
+//                     item.recruitmentId,
+//                     this.props.organizationId,
 
 
-                   );
-                   this.props.handleBarChartOrderModal(true);
-                }}
+//                    );
+//                    this.props.handleBarChartOrderModal(true);
+//                 }}
 
 
 
-              >
+//               >
 
-                <HelpIcon  style={{fontSize:"0.8rem",cursor:"pointer"}}/>
-              </span>
-            </Tooltip>
-            </span>
-          };
+//                 <HelpIcon  style={{fontSize:"0.8rem",cursor:"pointer"}}/>
+//               </span>
+//             </Tooltip>
+//             </span>
+//           };
 
          
-        },
-      },
+//         },
+//       },
 
-  //     {
-  //       title:"",
-  //         width: "3%",
-  //     render:(name,item,i)=>{
-  //       console.log(this.state.skillSetData)
-  //     // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
-  //     return(
-  //       <>
-  //       {(this.state.skillSetData || item.skillName) && 
-  //       <span
-  //       // type="edit"
-  //       style={{ cursor: "pointer",color:"tomato" }}
-  //       onClick={() => {
-  //            this.props.LinkSkillsRecruit({
-  //                   opportunityId: item.opportunityId,
-  //                   stageId: item.stageId,
-  //                   recruitmentProcessId: item.recruitmentProcessId,
-  //                   skillName:this.state.skillSetData || item.skillName,
-  //                   recruitmentId: item.recruitmentId,
-  //                   profileId: item.profileId,
-  //                 });
-  //                 this.props.getRecruiter(
-  //                    this.state.skillSetData || item.skillName,
-  //                     item.profileId,
-  //                    item.opportunityId,
+//   //     {
+//   //       title:"",
+//   //         width: "3%",
+//   //     render:(name,item,i)=>{
+//   //       console.log(this.state.skillSetData)
+//   //     // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
+//   //     return(
+//   //       <>
+//   //       {(this.state.skillSetData || item.skillName) && 
+//   //       <span
+//   //       // type="edit"
+//   //       style={{ cursor: "pointer",color:"tomato" }}
+//   //       onClick={() => {
+//   //            this.props.LinkSkillsRecruit({
+//   //                   opportunityId: item.opportunityId,
+//   //                   stageId: item.stageId,
+//   //                   recruitmentProcessId: item.recruitmentProcessId,
+//   //                   skillName:this.state.skillSetData || item.skillName,
+//   //                   recruitmentId: item.recruitmentId,
+//   //                   profileId: item.profileId,
+//   //                 });
+//   //                 this.props.getRecruiter(
+//   //                    this.state.skillSetData || item.skillName,
+//   //                     item.profileId,
+//   //                    item.opportunityId,
                      
 
                    
-  //                 );
-  //                 this.handleCandidateDataSet(item);
-  //             this.props.handleRecruiterModal(true);
-  //       }}
-  //       >
-  //     
-  //       </span>
-  //         }
-  //       </>
-  //     )
-  //   }
-  // },
+//   //                 );
+//   //                 this.handleCandidateDataSet(item);
+//   //             this.props.handleRecruiterModal(true);
+//   //       }}
+//   //       >
+//   //     
+//   //       </span>
+//   //         }
+//   //       </>
+//   //     )
+//   //   }
+//   // },
 
 
 
-      // {
-      //   title: "Talent",
-      //   dataIndex: "candidatetList",
-      //   width: "12%",
-      //   render: (name, item, i) => {
-      //     return {
-      //       props: {
-      //         style: {
-      //           background:
-      //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //               ? "rgb(158 183 223)"
-      //               : null,
+//       // {
+//       //   title: "Talent",
+//       //   dataIndex: "candidatetList",
+//       //   width: "12%",
+//       //   render: (name, item, i) => {
+//       //     return {
+//       //       props: {
+//       //         style: {
+//       //           background:
+//       //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//       //               ? "rgb(158 183 223)"
+//       //               : null,
 
-      //         },
-      //       },
-      //       children: (
-      //         <span>
-      //         {/* <CandidateLoadMore
-      //         candidatetList={item.candidatetList}
-      //         handleClickCandidateName={this.handleClickCandidateName}
-      //         candidateNo={item.candidateNo}
-      //         fullName={item.fullName}
-      //         /> */}
-      //          <FlexContainer justifyContect="space-evenly">
-      //           {item.candidatetList && item.candidatetList.map((candidate, i) => {
-      //             console.log(candidate)
-      //             return (
+//       //         },
+//       //       },
+//       //       children: (
+//       //         <span>
+//       //         {/* <CandidateLoadMore
+//       //         candidatetList={item.candidatetList}
+//       //         handleClickCandidateName={this.handleClickCandidateName}
+//       //         candidateNo={item.candidateNo}
+//       //         fullName={item.fullName}
+//       //         /> */}
+//       //          <FlexContainer justifyContect="space-evenly">
+//       //           {item.candidatetList && item.candidatetList.map((candidate, i) => {
+//       //             console.log(candidate)
+//       //             return (
                     
-      //               <Tooltip
-      //               title={candidate.fullName}
-      //           >
-      //               <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}
-      //                onClick={() => {
-      //                 this.handleClickCandidateName(item.recruitmentId)
-      //                 this.props.getCandidateRequirement(
-      //                    item.recruitmentId, 
+//       //               <Tooltip
+//       //               title={candidate.fullName}
+//       //           >
+//       //               <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}
+//       //                onClick={() => {
+//       //                 this.handleClickCandidateName(item.recruitmentId)
+//       //                 this.props.getCandidateRequirement(
+//       //                    item.recruitmentId, 
     
-      //                 );
-      //                 }}
+//       //                 );
+//       //                 }}
                  
-      //               >
+//       //               >
                       
-      //                   <MultiAvatar
-      //                      primaryTitle={candidate.fullName||""}
-      //                     // imageId={item.imageId}
-      //                     // imageURL={item.imageURL}
-      //                     imgWidth={"30"}
-      //                     imgHeight={"30"}
-      //                   />
-      //                 </div>
-      //                  </Tooltip>
+//       //                   <MultiAvatar
+//       //                      primaryTitle={candidate.fullName||""}
+//       //                     // imageId={item.imageId}
+//       //                     // imageURL={item.imageURL}
+//       //                     imgWidth={"30"}
+//       //                     imgHeight={"30"}
+//       //                   />
+//       //                 </div>
+//       //                  </Tooltip>
   
-      //             );                 
-      //           })} 
-      //           <div
-      //           // style={{ 
-      //           //   margin: "2px", 
-      //           //   borderRadius: "50%",
-      //           //   cursor:"pointer" ,
-      //           //   background:
-      //           //   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //           //     ? "rgb(158 183 223)"
-      //           //     : null,
+//       //             );                 
+//       //           })} 
+//       //           <div
+//       //           // style={{ 
+//       //           //   margin: "2px", 
+//       //           //   borderRadius: "50%",
+//       //           //   cursor:"pointer" ,
+//       //           //   background:
+//       //           //   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//       //           //     ? "rgb(158 183 223)"
+//       //           //     : null,
               
-      //           onClick={() => {
-      //             this.handleClickCandidateName(item.recruitmentId)
-      //             this.props.getCandidateRequirement(
-      //                item.recruitmentId, 
+//       //           onClick={() => {
+//       //             this.handleClickCandidateName(item.recruitmentId)
+//       //             this.props.getCandidateRequirement(
+//       //                item.recruitmentId, 
 
-      //             );
-      //             }}
-      //           >   
-      //          {item.candidateNo} 
-      //          </div>           
-      //          </FlexContainer>
-      //       </span>
-      //       ),
-      //     };
-      //   },
-      //  },
+//       //             );
+//       //             }}
+//       //           >   
+//       //          {item.candidateNo} 
+//       //          </div>           
+//       //          </FlexContainer>
+//       //       </span>
+//       //       ),
+//       //     };
+//       //   },
+//       //  },
 
-       {
-        title: "Talent",
-        dataIndex: "candidatetList",
-        width: "14%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//        {
+//         title: "Talent",
+//         dataIndex: "candidatetList",
+//         width: "14%",
+//         render: (name, item, i) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <>
+//               },
+//             },
+//             children: (
+//               <>
               
               
-                    <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}
-                     onClick={() => {
-                      this.handleClickCandidateName(item.recruitmentId)
-                      this.props.getCandidateRequirement(item.recruitmentId,);
-                      this.props.getRequirementOwner(item.recruitmentId,);
-                      }}
+//                     <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}
+//                      onClick={() => {
+//                       this.handleClickCandidateName(item.recruitmentId)
+//                       this.props.getCandidateRequirement(item.recruitmentId,);
+//                       this.props.getRequirementOwner(item.recruitmentId,);
+//                       }}
                  
-                    >
-                      <Avatar.Group maxCount={7} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-        {item.candidatetList && item.candidatetList.map((candidate, i)=> {
-          const data1=candidate.fullName.split("")[0].toUpperCase()
-          console.log("datas",data1)
-                 return (
-                  <Tooltip title={candidate.fullName}>
+//                     >
+//                       <Avatar.Group maxCount={7} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
+//         {item.candidatetList && item.candidatetList.map((candidate, i)=> {
+//           const data1=candidate.fullName.split("")[0].toUpperCase()
+//           console.log("datas",data1)
+//                  return (
+//                   <Tooltip title={candidate.fullName}>
        
-        <Avatar style={{ backgroundColor: '#f56a00' }}>{data1}</Avatar> 
-        </Tooltip> 
-                 )
+//         <Avatar style={{ backgroundColor: '#f56a00' }}>{data1}</Avatar> 
+//         </Tooltip> 
+//                  )
 
-     })} 
-          <div
-                // style={{ 
-                //   margin: "2px", 
-                //   borderRadius: "50%",
-                //   cursor:"pointer" ,
-                //   background:
-                //   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                //     ? "rgb(158 183 223)"
-                //     : null,
+//      })} 
+//           <div
+//                 // style={{ 
+//                 //   margin: "2px", 
+//                 //   borderRadius: "50%",
+//                 //   cursor:"pointer" ,
+//                 //   background:
+//                 //   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                 //     ? "rgb(158 183 223)"
+//                 //     : null,
               
-                onClick={() => {
-                  this.handleClickCandidateName(item.recruitmentId)
-                  this.props.getCandidateRequirement(
-                     item.recruitmentId, 
+//                 onClick={() => {
+//                   this.handleClickCandidateName(item.recruitmentId)
+//                   this.props.getCandidateRequirement(
+//                      item.recruitmentId, 
 
-                  );
-                  }}
-                >   
-               {item.candidateNo} 
-               </div>
+//                   );
+//                   }}
+//                 >   
+//                {item.candidateNo} 
+//                </div>
     
-    </Avatar.Group>
+//     </Avatar.Group>
                       
                        
-                      </div>
+//                       </div>
                        
                       
   
                 
                            
              
-            </>
-            ),
-          };
-        },
-       },
+//             </>
+//             ),
+//           };
+//         },
+//        },
      
-      {
-        title: "Sponsor",
+//       {
+//         title: "Sponsor",
      
-        dataIndex: "sponserName",
-        width: "7%",
-        render: (text, item) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//         dataIndex: "sponserName",
+//         width: "7%",
+//         render: (text, item) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children:
-            <Tooltip
-            title={`${item.sponserName}`}
-         > 
-            <span>
+//               },
+//             },
+//             children:
+//             <Tooltip
+//             title={`${item.sponserName}`}
+//          > 
+//             <span>
               
-               <MultiAvatar
-                 primaryTitle={item.sponserName||""}
-                  // imageId={item.imageId}
-                  // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
-                />
+//                <MultiAvatar
+//                  primaryTitle={item.sponserName||""}
+//                   // imageId={item.imageId}
+//                   // imageURL={item.imageURL}
+//                   imgWidth={"2.1em"}
+//                   imgHeight={"2.1em"}
+//                 />
                
-              {/* {item.sponserName} */}
-              </span>,
-              </Tooltip>
-          };
+//               {/* {item.sponserName} */}
+//               </span>,
+//               </Tooltip>
+//           };
          
-        },
-      },
-      {
-        title: "",
-        dataIndex: "callType",
-        width: "2%",
-        render: (name, item, i) => {
-          const close =
-            this.state.show === true && this.state.profileId === item.profileId;
+//         },
+//       },
+//       {
+//         title: "",
+//         dataIndex: "callType",
+//         width: "2%",
+//         render: (name, item, i) => {
+//           const close =
+//             this.state.show === true && this.state.profileId === item.profileId;
 
-            return {
-              props: {
-                style: {
-                  background:
-                     this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                      ? "rgb(158 183 223)"
-                      : null,
+//             return {
+//               props: {
+//                 style: {
+//                   background:
+//                      this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                       ? "rgb(158 183 223)"
+//                       : null,
   
-                },
-              },
-              children: (
-                <>
-                {item.candidateName ? (
-                  <>
-                    {close ? (
-                      <Tooltip title="Close Details"
+//                 },
+//               },
+//               children: (
+//                 <>
+//                 {item.candidateName ? (
+//                   <>
+//                     {close ? (
+//                       <Tooltip title="Close Details"
                         
-                      >
-                        <VisibilityOffIcon
-                          type="eye-invisible"
-                          onClick={() => this.handleCloseIconClick()}
-                          style={{
-                            fontSize: "1.125em",
-                            color:
-                              this.state.show === true &&
-                              this.state.profileId === item.profileId &&
-                              "#1890ff",
-                          }}
-                          size="30"
-                        />
-                      </Tooltip>
-                    ) : (
-                      <>
-                        <Tooltip title="Access Details"
-                        >
-                          <VisibilityIcon
-                            type="eye"
-                            onClick={() =>
-                              this.handleIconClick(
-                                item.profileId,
-                                item.candidateId,
-                                item.stageList
-                              )
-                            }
-                            style={{
-                              fontSize: "1.125em",
-                              color:
-                                this.state.show === true &&
-                                this.state.profileId === item.profileId &&
-                                "#1890ff",
-                            }}
-                            size="30"
-                          />
-                        </Tooltip>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <></>
-                )}
-              </>
-              ),
-            };
+//                       >
+//                         <VisibilityOffIcon
+//                           type="eye-invisible"
+//                           onClick={() => this.handleCloseIconClick()}
+//                           style={{
+//                             fontSize: "1.125em",
+//                             color:
+//                               this.state.show === true &&
+//                               this.state.profileId === item.profileId &&
+//                               "#1890ff",
+//                           }}
+//                           size="30"
+//                         />
+//                       </Tooltip>
+//                     ) : (
+//                       <>
+//                         <Tooltip title="Access Details"
+//                         >
+//                           <VisibilityIcon
+//                             type="eye"
+//                             onClick={() =>
+//                               this.handleIconClick(
+//                                 item.profileId,
+//                                 item.candidateId,
+//                                 item.stageList
+//                               )
+//                             }
+//                             style={{
+//                               fontSize: "1.125em",
+//                               color:
+//                                 this.state.show === true &&
+//                                 this.state.profileId === item.profileId &&
+//                                 "#1890ff",
+//                             }}
+//                             size="30"
+//                           />
+//                         </Tooltip>
+//                       </>
+//                     )}
+//                   </>
+//                 ) : (
+//                   <></>
+//                 )}
+//               </>
+//               ),
+//             };
 
           
-        },
-      },
-      {
-        title: "",
-        width: "2%",
-        render: (name, item, i) => {
+//         },
+//       },
+//       {
+//         title: "",
+//         width: "2%",
+//         render: (name, item, i) => {
 
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <>
-              {/* {item.approveInd || item.rejectInd ? null : ( */}
-              {this.props.user.userType !== "USER" && this.props.user.department !== "Recruiter" && ( 
-              <BorderColorIcon
-                type="edit"
-                style={{ cursor: "pointer",fontSize:"0.8rem" }}
-                onClick={() => {
-                  this.props.handleAddRequirementModal(true);
-                  this.props.setCurrentOpportunityRecruitMentData(item);
+//               },
+//             },
+//             children: (
+//               <>
+//               {/* {item.approveInd || item.rejectInd ? null : ( */}
+//               {this.props.user.userType !== "USER" && this.props.user.department !== "Recruiter" && ( 
+//               <BorderColorIcon
+//                 type="edit"
+//                 style={{ cursor: "pointer",fontSize:"0.8rem" }}
+//                 onClick={() => {
+//                   this.props.handleAddRequirementModal(true);
+//                   this.props.setCurrentOpportunityRecruitMentData(item);
 
-                }}
-              />
-              )}
-              {/* )} */}
-            </>
-            ),
-          };
+//                 }}
+//               />
+//               )}
+//               {/* )} */}
+//             </>
+//             ),
+//           };
          
-        },
-      },
-      {
-        title: "",
-        dataIndex: "id",
-        width: "2%",
-        render: (name, item, i) => {
-          return (
-            <Tooltip title='Click to Close'>
+//         },
+//       },
+//       {
+//         title: "",
+//         dataIndex: "id",
+//         width: "2%",
+//         render: (name, item, i) => {
+//           return (
+//             <Tooltip title='Click to Close'>
        
-            <span
-             onClick={() => {
-              this.props.LinkClosedRequirement(
-                item.recruitmentId,
-                this.handleCallback
-                // this.props.organizationId,
+//             <span
+//              onClick={() => {
+//               this.props.LinkClosedRequirement(
+//                 item.recruitmentId,
+//                 this.handleCallback
+//                 // this.props.organizationId,
   
   
-              );
-              // item.opportunityId
-            }}
+//               );
+//               // item.opportunityId
+//             }}
          
-            >
-              <LockOpenIcon    
-               style={{  fontSize: "0.8rem",
-               cursor: "pointer",}}
-               />
-               </span>
+//             >
+//               <LockOpenIcon    
+//                style={{  fontSize: "0.8rem",
+//                cursor: "pointer",}}
+//                />
+//                </span>
   
-        </Tooltip>
+//         </Tooltip>
              
-          );
-        },
-      },
+//           );
+//         },
+//       },
 
-      {
-        title: "",
-        dataIndex: "id",
-        width: "2%",
-        render: (name, item, i) => {
-          return {
-            props: {
-              style: {
-                background:
-                   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-                    ? "rgb(158 183 223)"
-                    : null,
+//       {
+//         title: "",
+//         dataIndex: "id",
+//         width: "2%",
+//         render: (name, item, i) => {
+//           return {
+//             props: {
+//               style: {
+//                 background:
+//                    this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
+//                     ? "rgb(158 183 223)"
+//                     : null,
 
-              },
-            },
-            children: (
-              <StyledPopconfirm
-              title="Do you want to delete?"
-              onConfirm={() =>
-                this.props.deleteRequirementData(
-                  item.recruitmentId,
+//               },
+//             },
+//             children: (
+//               <StyledPopconfirm
+//               title="Do you want to delete?"
+//               onConfirm={() =>
+//                 this.props.deleteRequirementData(
+//                   item.recruitmentId,
 
-                )
-              }
-            >
-              {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-              {this.props.user.userType !== "USER" && this.props.user.department !== "Recruiter" && ( 
-              <DeleteIcon type="delete"
+//                 )
+//               }
+//             >
+//               {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+//               {this.props.user.userType !== "USER" && this.props.user.department !== "Recruiter" && ( 
+//               <DeleteIcon type="delete"
        
-                style={{ cursor: "pointer",fontSize:"0.8rem", color: "red" }}
-              />
-              )}
-              {/* )} */}
-            </StyledPopconfirm>
-            ),
-          };
+//                 style={{ cursor: "pointer",fontSize:"0.8rem", color: "red" }}
+//               />
+//               )}
+//               {/* )} */}
+//             </StyledPopconfirm>
+//             ),
+//           };
         
-        },
-      },
+//         },
+//       },
 
-    ];
+//     ];
 
 
 
@@ -1206,7 +1213,138 @@ const date=diff+1
     const tableHeight = tab && tab.offsetHeight - 100;
     return (
       <>
-        <StyledTable
+       <div className=' flex   sticky  z-auto'>
+     <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+     <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
+        <div className=" flex justify-between w-[100%] !text-lm font-bold font-poppins">
+      
+        <div className="  w-[2.02rem]">   </div>
+        <div className="  w-[15.7rem] text-sm text-[#00A2E8]  truncate ">            
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />
+        {/* {translatedMenuItems[0]} */}
+        Job ID
+     
+        </div>
+        <div className=" w-[14.9rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />  
+        {/* {translatedMenuItems[1]} */}
+        Requirement
+          </div>
+        <div className="   w-[15.9rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
+        {/* {translatedMenuItems[2]} */}
+        Sponsor
+        </div>
+        <div className="  w-[15.6rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>
+        {/* {translatedMenuItems[3]} */}
+        # Positions
+        </div>
+        <div className="   w-[15.99rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
+        {/* {translatedMenuItems[4]} */}
+        Submitted</div> 
+        <div className="  w-[15.8rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        {/* {translatedMenuItems[5]} */}
+        Selected </div>
+        <div className=" w-[16.1rem] truncate ">   <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />
+        {/* {translatedMenuItems[6]} */}
+        OnBoarded</div>
+        <div className="   w-[16.3rem] truncate  "> <ContactsIcon className="!text-icon mr-1 "/>
+        {/* {translatedMenuItems[7]} */}
+        Recruiter</div>
+        <div className="  w-[13.2rem] truncate "> <DateRangeIcon className="!text-icon  mr-1"/>
+        {/* {translatedMenuItems[8]} */}
+        Talent</div>
+        <div className="   w-[14.01rem] truncate "><GroupsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
+        {/* {translatedMenuItems[8]} */}
+        Website</div> 
+        <div className="  w-[14.02rem] truncate "> <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/>
+        {/* {translatedMenuItems[10]} */}
+        Monster</div>
+         </div>    
+      </div>
+      { !this.props.fetchingAllRecruitmentDetailsByOppId && this.props.allRecruitmentDetailsByOppId.length ===0 ?<EmptyPage/>: this.props.allRecruitmentDetailsByOppId.map((item, index) => {
+    return (
+        <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+           >
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+              <div class="flex  w-[3.1rem] items-center justify-start  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+              <div className='text-xs ml-gap font-poppins'>
+              {/* {item.jobOrder} */}
+           </div>
+                </div>
+                </div>
+                <div class="flex  w-[8.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+           {/* {item.recruiterName} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.3rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+        
+          {/* {item.sponserName} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+          {/* {item.number} */}
+          </div>
+          </div> 
+          <div class="flex  w-[7.3rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+         {/* {item.offered} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.4rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+        {/* {item.closedPosition} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.5rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'>
+       {/* {item.onBoardNo} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.6rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+         
+          </div>
+          </div> 
+          <div class="flex  w-[8.7rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs font-poppins'> 
+           {/* {item.candidatetList} */}
+          </div>
+          </div> 
+          <div class="flex  w-[8.8rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+         
+          </div>
+          </div> 
+          <div class="flex  w-[7.1rem]  ml-gap items-center justify-center h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  font-poppins'>
+    
+          </div>
+          </div> 
+          <div class="flex  w-[7.2rem]  ml-gap items-center justify-start h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+           
+           <div className='text-xs  ml-gap font-poppins'>
+      
+          </div>
+          </div> 
+        
+                </div>             
+    ) }
+            )} 
+      </div>    
+      </div>
+        {/* <StyledTable
           // rowKey={(record) =>record.profileId}
           rowKey="profileId"
           scroll={{ y: 220 }}
@@ -1226,7 +1364,7 @@ const date=diff+1
           }
           onChange={console.log("call onChangeHere...")}
         
-        />
+        /> */}
         <Suspense fallback={"Loading"}>
             {this.state.subTableVisible && (
               <SubTableClickCandidate

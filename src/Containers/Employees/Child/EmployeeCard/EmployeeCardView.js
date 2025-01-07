@@ -5,29 +5,29 @@ const InternalUserdata = lazy(() => import("../EmployeeCard/InternalUserdata"));
 const { TabPane } = Tabs;
 
 const InternalExternalTabs = (props) => {
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-         "989",
-         "990"      
-        ];
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
+  //        "989",
+  //        "990"      
+  //       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
   // Function to render the content based on the active tab
   const renderTabContent = (key) => {
     switch (key) {
@@ -38,7 +38,8 @@ const InternalExternalTabs = (props) => {
             <InternalUserdata
             filteredData={props.filteredData}
             translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}
+            selectedLanguage={props.selectedLanguage}            
+            translatedMenuItems={props.translatedMenuItems}
             /></Suspense>
        
           </div>
@@ -51,6 +52,7 @@ const InternalExternalTabs = (props) => {
               filteredData={props.filteredData}
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
             /></Suspense>
        
           </div>
@@ -62,10 +64,10 @@ const InternalExternalTabs = (props) => {
 
   return (
     <Tabs defaultActiveKey="1">
-      <TabPane tab={translatedMenuItems[0]} key="1">
+      <TabPane tab={props.translatedMenuItems[0]} key="1">
         {renderTabContent('1')}
       </TabPane>
-      <TabPane tab={translatedMenuItems[1]} key="2">
+      <TabPane tab={props.translatedMenuItems[1]} key="2">
         {renderTabContent('2')}
       </TabPane>
     </Tabs>

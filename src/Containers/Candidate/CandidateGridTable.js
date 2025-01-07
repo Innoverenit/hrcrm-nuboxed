@@ -11,7 +11,6 @@ import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import WalletIcon from '@mui/icons-material/Wallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import Box from "@mui/material/Box";
 import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import CandidateRowEmailModal from "./Child/CandidateRowEmailModal";
 import SkillsLoadMore from "../Candidate/Child/CandidateTable/SkillsLoadMore";
@@ -894,7 +893,7 @@ function CandidateGridTable(props) {
                 height={400}
             >
     
-                   <Box sx={{ height: "50em", width: "100%" }}>
+                   <div>
                
               
         <DataGrid
@@ -918,7 +917,7 @@ function CandidateGridTable(props) {
         components={{Toolbar:GridToolbar}}
       />
           
-      </Box>
+      </div>
       </InfiniteScroll>
   
       {/* <StyledTable

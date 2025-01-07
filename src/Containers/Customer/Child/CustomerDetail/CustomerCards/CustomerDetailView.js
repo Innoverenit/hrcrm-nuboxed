@@ -16,11 +16,21 @@ class CustomerDetailView extends Component {
       <>
         
 
-<CustomerItemRow label="Address" value={addressdata||""} />
-        <CustomerItemRow label="Street" value={addressdata1||""} />
-        <CustomerItemRow label="City" value={addressdata2||""} />
-        <CustomerItemRow label="State" value={addressdata3||""} />
-        <CustomerItemRow label="Pin Code" value={addressdata4||""} />
+<CustomerItemRow 
+ label={this.props.translatedMenuItems[5]}
+ value={addressdata||""} />
+        <CustomerItemRow 
+       label={this.props.translatedMenuItems[6]}
+         value={addressdata1||""} />
+        <CustomerItemRow 
+        label={this.props.translatedMenuItems[7]}
+        value={addressdata2||""} />
+        <CustomerItemRow
+        label={this.props.translatedMenuItems[8]}
+         value={addressdata3||""} />
+        <CustomerItemRow 
+        label={this.props.translatedMenuItems[9]}
+         value={addressdata4||""} />
       </>
     );
   }

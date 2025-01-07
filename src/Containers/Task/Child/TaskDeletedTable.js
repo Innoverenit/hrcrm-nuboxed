@@ -22,7 +22,7 @@ import {
   handleTaskProjectDrawerModal
 } from "../TaskAction";
 import Highlighter from "react-highlight-words";
-import Box from "@mui/material/Box";
+
 import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -638,7 +638,7 @@ class TaskDeletedTable extends React.Component {
     return (
       <>
         
-        <Box sx={{ height: "50em", width: "100%" }}>
+ 
         <DataGrid
       getRowId={(row) => row.taskId}
         rows={ taskDeleteList}
@@ -650,7 +650,7 @@ class TaskDeletedTable extends React.Component {
         //experimentalFeatures={{ newEditingApi: true }}
         // components={{Toolbar:GridToolbar}}
       />
-      </Box>
+ 
           {/* <StyledTable
             columns={columns}
             dataSource={taskListRangeByUserId}

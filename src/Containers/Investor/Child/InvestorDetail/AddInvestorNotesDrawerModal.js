@@ -24,7 +24,7 @@ class AddInvestorNotesDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             
             <MainNotes
-             type="customer"
+             type="investor"
              uniqueId={this.props.RowData.investorId}
             />
           </Suspense>

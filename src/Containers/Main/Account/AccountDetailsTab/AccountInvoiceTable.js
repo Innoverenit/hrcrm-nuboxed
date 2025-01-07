@@ -466,7 +466,7 @@ function AccountInvoiceTable(props) {
                               </div>
                               <div className=" flex ml-1 items-center bg-[#eef2f9] h-8 justify-end  w-[15.04rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                 <div class="items-center justify-center  ">
-                                  <Tooltip title="">
+                                  <Tooltip title={props.translatedMenuItems[23]}>
                                     <PaidIcon
                                       className="!text-icon cursor-pointer text-[#e5625e]"
                                       onClick={() => {
@@ -537,6 +537,7 @@ function AccountInvoiceTable(props) {
         addPaidButtonModal={props.addPaidButtonModal}
         handlePaidModal={props.handlePaidModal}
         activeTab={props.activeTab}
+        contextType={props.contextType}
       />
       <InvoiceStatusDrawer
         selectedLanguage={props.selectedLanguage}

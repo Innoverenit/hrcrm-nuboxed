@@ -13,10 +13,16 @@ class EmployeeAboutCard extends Component {
                     {({ viewType }, toggleViewType) => (
                         viewType === 'view'
                             ? <EmployeeAboutView
+                                translateText={this.props.translateText}
+                               selectedLanguage={this.props.selectedLanguage}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 singleEmployee={singleEmployee}
                                 toggleViewType={toggleViewType}
                             />
                             : <EmployeeAboutEdit
+                               translateText={this.props.translateText}
+                               selectedLanguage={this.props.selectedLanguage}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 singleEmployee={singleEmployee}
                                 toggleViewType={toggleViewType}
                             />

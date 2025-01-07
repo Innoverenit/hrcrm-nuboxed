@@ -6,7 +6,17 @@ const initialState = {
     fetchingOrganisationReportError: false,
     organisationReportData: [],
 
+    gettingReportLeads: false,
+    gettingReportLeadsError: false,
+    reportLeads:[],
 
+    gettingReportEvent: false,
+    gettingReportEventError: false,
+    reportEvent:[],
+
+    gettingReportLeadsOrg: false,
+          gettingReportLeadsOrgError: true,
+          reportLeadsOrg:[],
 
     fetchingReportsAttendence:false,
     fetchingReportsAttendenceError:false,
@@ -16,6 +26,22 @@ const initialState = {
      fetchingAllReportInvestorsError: false,
      allReportInvestors:[],
 
+
+     gettingReportConvertOrg: false,
+     gettingReportConvertOrgError: false,
+     reportConvertedOrg:[],
+
+     gettingReportConvert: false,
+     gettingReportConvertError: false,
+     reportConverted:[],
+
+     gettingReportCall: false,
+     gettingReportCallError: false,
+     reportCall:[],
+
+     gettingReportCallOrg: false,
+     gettingReportCallOrgError: false,
+     reportCallOrg:[],
 
 
      fetchingReportsProductivity:false,
@@ -76,8 +102,8 @@ const initialState = {
             value: "MTD",
             starter: false,
             isSelected: false,
-            startDate: dayjs().startOf("month").toISOString(),
-            endDate: dayjs().toISOString(),
+            startDate: dayjs().toISOString() ,
+            endDate: dayjs().startOf("month").toISOString() ,
         },
         {
             id: 3,
@@ -85,23 +111,20 @@ const initialState = {
             value: "QTD",
             starter: false,
             isSelected: false,
-            startDate: dayjs().startOf("week").toISOString(),
-            endDate: dayjs().toISOString(),
+            startDate: dayjs().endOf("month").toISOString(),
+            endDate: dayjs().startOf("month").toISOString(),
         },
     
         {
-            id: 4,
-            type: "Yesterday",
-            value: "YTD",
-            starter: false,
-            isSelected: false,
-            startDate: dayjs()
-                .subtract(1, "days")
+          id: 4,
+          type: "Year",
+          value: "YTD",
+          starter: false,
+          isSelected: false,
+          startDate: dayjs().endOf("year").toISOString(),
+          endDate: dayjs().startOf("year").toISOString(), 
 
-                .toISOString(),
-            endDate: dayjs().toISOString(),
-        },
-     
+      },
         // {
         //     id: 3,
         //     type: "Last7days",
@@ -269,6 +292,128 @@ export const reportReducer = (state = initialState, action) => {
         gettingReportProspect: false,
         gettingReportProspectError: true,
       };
+
+      case types.GET_REPORT_LEAD_REQUEST:
+      return { ...state, gettingReportLeads: true };
+
+    case types.GET_REPORT_LEAD_SUCCESS:
+      return {
+        ...state,
+        gettingReportLeads: false,
+        reportLeads: action.payload,
+      };
+
+    case types.GET_REPORT_LEAD_FAILURE:
+      return {
+        ...state,
+        gettingReportLeads: false,
+        gettingReportLeadsError: true,
+      };
+
+      case types.GET_REPORT_LEAD_ORG_REQUEST:
+        return { ...state, gettingReportLeadsOrg: true };
+  
+      case types.GET_REPORT_LEAD_ORG_SUCCESS:
+        return {
+          ...state,
+          gettingReportLeadsOrg: false,
+          reportLeadsOrg: action.payload,
+        };
+  
+      case types.GET_REPORT_LEAD_ORG_FAILURE:
+        return {
+          ...state,
+          gettingReportLeadsOrg: false,
+          gettingReportLeadsOrgError: true,
+        };
+
+        case types.GET_REPORT_CONVERT_ORG_REQUEST:
+          return { ...state, gettingReportConvertOrg: true };
+    
+        case types.GET_REPORT_CONVERT_ORG_SUCCESS:
+          return {
+            ...state,
+            gettingReportConvertOrg: false,
+            reportConvertedOrg: action.payload,
+          };
+    
+        case types.GET_REPORT_CONVERT_ORG_FAILURE:
+          return {
+            ...state,
+            gettingReportConvertOrg: false,
+            gettingReportConvertOrgError: true,
+          };
+
+          case types.GET_REPORT_CONVERT_REQUEST:
+          return { ...state, gettingReportConvert: true };
+    
+        case types.GET_REPORT_CONVERT_SUCCESS:
+          return {
+            ...state,
+            gettingReportConvert: false,
+            reportConverted: action.payload,
+          };
+    
+        case types.GET_REPORT_CONVERT_FAILURE:
+          return {
+            ...state,
+            gettingReportConvert: false,
+            gettingReportConvertError: true,
+          };
+
+          case types.GET_REPORT_CALL_REQUEST:
+          return { ...state, gettingReportCall: true };
+    
+        case types.GET_REPORT_CALL_SUCCESS:
+          return {
+            ...state,
+            gettingReportCall: false,
+            reportCall: action.payload,
+          };
+    
+        case types.GET_REPORT_CALL_FAILURE:
+          return {
+            ...state,
+            gettingReportCall: false,
+            gettingReportCallError: true,
+          };
+
+          case types.GET_REPORT_CALLORG_REQUEST:
+            return { ...state, gettingReportCallOrg: true };
+      
+          case types.GET_REPORT_CALLORG_SUCCESS:
+            return {
+              ...state,
+              gettingReportCallOrg: false,
+              reportCallOrg: action.payload,
+            };
+      
+          case types.GET_REPORT_CALLORG_FAILURE:
+            return {
+              ...state,
+              gettingReportCallOrg: false,
+              gettingReportCallOrgError: true,
+            };
+
+            case types.GET_REPORT_EVENT_REQUEST:
+            return { ...state, gettingReportEvent: true };
+      
+          case types.GET_REPORT_EVENT_SUCCESS:
+            return {
+              ...state,
+              gettingReportEvent: false,
+              reportEvent: action.payload,
+            };
+      
+          case types.GET_REPORT_EVENT_FAILURE:
+            return {
+              ...state,
+              gettingReportEvent: false,
+              gettingReportEventError: true,
+            };
+
+             case types.EMPTY_EVENT_TABLE:
+                    return { ...state,  reportEvent: [] };
 
 
         case types.SET_SELECTED_REPORT_TYPE:

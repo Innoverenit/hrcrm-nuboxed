@@ -39,6 +39,7 @@ import {
   updateSubOrderAwb,
   handlePIModal,
 } from "../../AccountAction";
+import {handleProductionNotesModal} from "../../../Refurbish/RefurbishAction";
 import { Badge, Button, Input, Select, Tooltip } from "antd";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import { CurrencySymbol } from "../../../../../Components/Common";
@@ -47,8 +48,10 @@ import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPag
 import { PersonAddAlt1 } from "@mui/icons-material";
 import PIOPenModal from "./PIOPenModal";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { base_url2 } from "../../../../../Config/Auth";
 import { BundleLoader } from "../../../../../Components/Placeholder";
+import RefurbishNoteAll from "../../../Refurbish/RefurbishNoteAll";
 const SubOrderList = lazy(() => import("./SubOrderList"));
 const AddLocationInOrder = lazy(() => import("./AddLocationInOrder"));
 const AccountOrderDetailsModal = lazy(() =>
@@ -65,6 +68,11 @@ const { Option } = Select;
 
 const AccountOrderTable = (props) => {
   const [page, setPage] = useState(0);
+ const [editableField, setEditableField] = useState(null);
+  const [editingValue, setEditingValue] = useState("");
+  const [accountRepairUrgent,setaccountRepairUrgent]=useState([]);
+  const [accountRepairNormal,setaccountRepairNormal]=useState([]);
+
   useEffect(() => {
     setPage(page + 1);
     props.getOrderRecords(props.distributorId, "repair");
@@ -155,7 +163,76 @@ const AccountOrderTable = (props) => {
       console.error("Error fetching PDF:", error);
     }
   };
+  useEffect(() => {
+    setaccountRepairUrgent(props.highDistributorOrder);
+  }, [props.highDistributorOrder]);
 
+  useEffect(() => {
+    setaccountRepairNormal(props.lowDistributorOrder);
+  }, [props.lowDistributorOrder]);
+
+
+  const handleEditRowField = (orderId, field, currentValue) => {
+    setEditableField({ orderId, field });
+    setEditingValue(currentValue);
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { orderId,distributorId, field } = editableField;
+    if (editingValue.trim() === "") {
+      return;
+    }
+    const updatedData = {
+      orderPhoneId: orderId,
+      customerPriceInd: true,
+    };
+    let mappedField = field;
+    // if (field === "clientName") {
+    //   mappedField = "clientId";
+    // } else if (field === "dcategoryName") {
+    //   mappedField = "dcategory";
+    // }
+    updatedData[mappedField] = editingValue;
+    try {
+      const response = await axios.put(
+        `${base_url2}/phoneOrder/updatePrice/${orderId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setaccountRepairUrgent((prevData) =>
+        prevData.map((cat) =>
+          cat.orderId === orderId ? response.data : cat
+        )
+      );
+      setaccountRepairNormal((prevData) =>
+        prevData.map((cat) =>
+          cat.orderId === orderId ? response.data : cat
+        )
+      );
+      setEditableField(null);
+      setEditingValue("");
+      Swal.fire({
+        icon: "success",
+        title: "Update successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleUpdateSubmit();
+    }
+  };
   return (
     <>
       <div className=" flex sticky   z-auto">
@@ -227,7 +304,7 @@ const AccountOrderTable = (props) => {
             </div>
           </div>
           <InfiniteScroll
-            dataLength={props.highDistributorOrder.length}
+            dataLength={accountRepairUrgent.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={
@@ -240,9 +317,9 @@ const AccountOrderTable = (props) => {
             height={"35vh"}
             style={{ scrollbarWidth: "thin" }}
           >
-            {props.highDistributorOrder.length ? (
+            {accountRepairUrgent.length ? (
               <>
-                {props.highDistributorOrder.map((item) => {
+                {accountRepairUrgent.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   return (
@@ -366,11 +443,11 @@ const AccountOrderTable = (props) => {
                             </div>
 
                             <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 w-[8.05rem] max-md:w-[8.05rem] max-sm:flex-row  max-sm:justify-between  ">
-                              <div class=" text-xs  font-poppins">
+                              <div class="flex text-xs  font-poppins">
                                 <CurrencySymbol
                                   currencyType={item.orderCurrencyName}
                                 />{" "}
-                                {visible &&
+                                {/* {visible && 
                                 item.orderId === particularRowData.orderId ? (
                                   <Input
                                     type="text"
@@ -381,38 +458,39 @@ const AccountOrderTable = (props) => {
                                   />
                                 ) : (
                                   (item.offerPrice / 1000).toFixed(2)
-                                )}
-                                k
+                                )} */}
+                                 {editableField?.orderId ===
+                                                                    item.orderId &&
+                                                                  editableField?.field === "offerPrice" ? (
+                                                                    <Input
+                                                                      type="text"
+                                                                      className="h-7 w-[4rem] text-xs"
+                                                                      value={editingValue}
+                                                                      onChange={handleChangeRowItem}
+                                                                      onBlur={handleUpdateSubmit}
+                                                                      // onKeyDown={handleKeyDown}
+                                                                      autoFocus
+                                                                    />
+                                                                  ) : (
+                                                                    <div
+                                                                      onClick={() =>
+                                                                        handleEditRowField(
+                                                                          item.orderId,
+                                                                          "offerPrice",
+                                                                          item.offerPrice
+                                                                        )
+                                                                      }
+                                                                      className="cursor-pointer !text-xs font-Poppins"
+                                                                    >
+                                                                      {(item.offerPrice / 1000).toFixed(2)} k
+                                                                    </div>
+                                                                  )} 
                               </div>
                             </div>
                           </div>
                           <div className=" flex  max-md:w-[6.06rem] w-[3.06rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
-                              {visible &&
-                              item.orderId === particularRowData.orderId ? (
-                                <>
-                                  <div className=" flex justify-between flex-col">
-                                    <Button
-                                      onClick={() => {
-                                        handleSubmitPrice();
-                                      }}
-                                    >
-                                      {props.translatedMenuItems[48]}{" "}
-                                      {/*Save"
-                                                                        /> */}
-                                    </Button>
-                                    <Button
-                                      onClick={() =>
-                                        handleUpdateRevisePrice(false)
-                                      }
-                                    >
-                                      {props.translatedMenuItems[49]}{" "}
-                                      {/*Cancel"
-                                                                    /> */}
-                                    </Button>
-                                  </div>
-                                </>
-                              ) : item.qcStartInd === 3 &&
+                               {item.qcStartInd === 3 &&
                                 item.priceConfirmInd === false ? (
                                 <Tooltip title={props.translatedMenuItems[50]}>
                                   <PublishedWithChangesIcon
@@ -484,7 +562,8 @@ const AccountOrderTable = (props) => {
                           <div class="flex items-center  justify-end w-[9.6rem]  ml-gap bg-[#eef2f9] h-8">
                             <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                               <div>
-                                <Tooltip
+                                {props.userDetails.piInd && (
+                                  <Tooltip
                                   title={props.translatedMenuItems[54]}
                                   // "PI List"
                                 >
@@ -498,6 +577,8 @@ const AccountOrderTable = (props) => {
                                     PI
                                   </span>
                                 </Tooltip>
+                                )}
+                                
                               </div>
                               <div>
                                 <Tooltip
@@ -509,7 +590,7 @@ const AccountOrderTable = (props) => {
                                   <NoteAltIcon
                                     className="!text-icon cursor-pointer text-[green]"
                                     onClick={() => {
-                                      props.handleNotesModalInOrder(true);
+                                      props.handleProductionNotesModal(true);
                                       handleSetParticularOrderData(item);
                                     }}
                                   />
@@ -535,8 +616,8 @@ const AccountOrderTable = (props) => {
 
                               <div>
                                 <Tooltip
-                                  title={props.translatedMenuItems[55]}
-                                  // "Collection"
+                                  title={props.translatedMenuItems[23]}
+                                  // "Payment"
                                 >
                                   <PaidIcon
                                     className="!text-icon cursor-pointer text-[#e5625e]"
@@ -646,7 +727,7 @@ const AccountOrderTable = (props) => {
                   );
                 })}
               </>
-            ) : !props.highDistributorOrder.length &&
+            ) : !accountRepairUrgent.length &&
               !props.fetchingDistributorOfHigh ? (
               <NodataFoundPage />
             ) : null}
@@ -725,11 +806,11 @@ const AccountOrderTable = (props) => {
           </div>
           {/* <div class="overflow-x-auto h-[64vh]"> */}
           <InfiniteScroll
-            dataLength={props.highDistributorOrder.length}
-            next={handleLoadMore}
+            dataLength={accountRepairNormal.length}
+            next={handleLoadMoreLow}
             hasMore={hasMore}
             loader={
-              props.fetchingDistributorOfHigh ? (
+              props.fetchingDistributorOfLow ? (
                 <div style={{ textAlign: "center" }}>
                   <BundleLoader />
                 </div>
@@ -738,9 +819,9 @@ const AccountOrderTable = (props) => {
             height={"35vh"}
             style={{ scrollbarWidth: "thin" }}
           >
-            {props.highDistributorOrder.length ? (
+            {accountRepairNormal.length ? (
               <>
-                {props.highDistributorOrder.map((item) => {
+                {accountRepairNormal.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   return (
@@ -864,53 +945,43 @@ const AccountOrderTable = (props) => {
                             </div>
 
                             <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 w-[8.05rem] max-md:w-[8.05rem] max-sm:flex-row  max-sm:justify-between  ">
-                              <div class=" text-xs  font-poppins">
+                              <div class="flex text-xs  font-poppins">
                                 <CurrencySymbol
                                   currencyType={item.orderCurrencyName}
                                 />{" "}
-                                {visible &&
-                                item.orderId === particularRowData.orderId ? (
-                                  <Input
-                                    type="text"
-                                    value={price}
-                                    onChange={(e) =>
-                                      handleChange(e.target.value)
-                                    }
-                                  />
-                                ) : (
-                                  (item.offerPrice / 1000).toFixed(2)
-                                )}
-                                k
+                                {editableField?.orderId ===
+                                                                    item.orderId &&
+                                                                  editableField?.field === "offerPrice" ? (
+                                                                    <Input
+                                                                      type="text"
+                                                                      className="h-7 w-[4rem] text-xs"
+                                                                      value={editingValue}
+                                                                      onChange={handleChangeRowItem}
+                                                                      onBlur={handleUpdateSubmit}
+                                                                      // onKeyDown={handleKeyDown}
+                                                                      autoFocus
+                                                                    />
+                                                                  ) : (
+                                                                    <div
+                                                                      onClick={() =>
+                                                                        handleEditRowField(
+                                                                          item.orderId,
+                                                                          "offerPrice",
+                                                                          item.offerPrice
+                                                                        )
+                                                                      }
+                                                                      className="cursor-pointer !text-xs font-Poppins"
+                                                                    >
+                                                                      {(item.offerPrice / 1000).toFixed(2)} k
+                                                                    </div>
+                                                                  )}
+                                
                               </div>
                             </div>
                           </div>
                           <div className=" flex  max-md:w-[6.06rem] w-[3.06rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
-                              {visible &&
-                              item.orderId === particularRowData.orderId ? (
-                                <>
-                                  <div className=" flex justify-between flex-col">
-                                    <Button
-                                      onClick={() => {
-                                        handleSubmitPrice();
-                                      }}
-                                    >
-                                      {props.translatedMenuItems[48]}{" "}
-                                      {/*Save"
-                                                                        /> */}
-                                    </Button>
-                                    <Button
-                                      onClick={() =>
-                                        handleUpdateRevisePrice(false)
-                                      }
-                                    >
-                                      {props.translatedMenuItems[49]}{" "}
-                                      {/*Cancel"
-                                                                    /> */}
-                                    </Button>
-                                  </div>
-                                </>
-                              ) : item.qcStartInd === 3 &&
+                              {item.qcStartInd === 3 &&
                                 item.priceConfirmInd === false ? (
                                 <Tooltip title={props.translatedMenuItems[50]}>
                                   <PublishedWithChangesIcon
@@ -985,6 +1056,7 @@ const AccountOrderTable = (props) => {
                           <div class="flex items-center  justify-end w-[9.6rem]  ml-gap bg-[#eef2f9] h-8">
                             <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                               <div>
+                              {props.userDetails.piInd && (
                                 <Tooltip
                                   title={props.translatedMenuItems[54]}
                                   // "PI List"
@@ -998,7 +1070,7 @@ const AccountOrderTable = (props) => {
                                   >
                                     PI
                                   </span>
-                                </Tooltip>
+                                </Tooltip>)}
                               </div>
                               <div>
                                 <Tooltip
@@ -1010,7 +1082,7 @@ const AccountOrderTable = (props) => {
                                   <NoteAltIcon
                                     className="!text-icon cursor-pointer text-[green]"
                                     onClick={() => {
-                                      props.handleNotesModalInOrder(true);
+                                      props.handleProductionNotesModal(true);
                                       handleSetParticularOrderData(item);
                                     }}
                                   />
@@ -1147,8 +1219,8 @@ const AccountOrderTable = (props) => {
                   );
                 })}
               </>
-            ) : !props.highDistributorOrder.length &&
-              !props.fetchingDistributorOfHigh ? (
+            ) : !accountRepairNormal.length &&
+              !props.fetchingDistributorOfLow ? (
               <NodataFoundPage />
             ) : null}
           </InfiniteScroll>
@@ -1180,6 +1252,11 @@ const AccountOrderTable = (props) => {
         handleNotesModalInOrder={props.handleNotesModalInOrder}
         translatedMenuItems={props.translatedMenuItems}
       />
+       <RefurbishNoteAll
+                           rowData={particularRowData}
+                           productioNoteModal={props.productioNoteModal}
+                          handleProductionNotesModal={props.handleProductionNotesModal}
+                          />
       <AccountOrderDetailsModal
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}
@@ -1187,6 +1264,7 @@ const AccountOrderTable = (props) => {
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal}
         translatedMenuItems={props.translatedMenuItems}
+        contextType={props.contextType}
       />
       <StatusOfOrderModal
         selectedLanguage={props.selectedLanguage}
@@ -1195,6 +1273,7 @@ const AccountOrderTable = (props) => {
         addStatusOfOrder={props.addStatusOfOrder}
         particularRowData={particularRowData}
         translatedMenuItems={props.translatedMenuItems}
+        contextType={props.contextType}
       />
       <PaidButtonModal
         distributorId={props.distributorId}
@@ -1206,6 +1285,8 @@ const AccountOrderTable = (props) => {
         particularRowData={particularRowData}
         activeTab={props.activeTab}
         translatedMenuItems={props.translatedMenuItems}
+        modalTitleKey={23}
+        contextType={props.contextType}
       />
       <AccountproductionModal
         selectedLanguage={props.selectedLanguage}
@@ -1236,7 +1317,7 @@ const AccountOrderTable = (props) => {
     </>
   );
 };
-const mapStateToProps = ({ distributor, auth, departments }) => ({
+const mapStateToProps = ({ distributor, auth, refurbish }) => ({
   accountOrderProduction: distributor.accountOrderProduction,
   distributorOrder: distributor.distributorOrder,
   addNotesInOrder: distributor.addNotesInOrder,
@@ -1248,20 +1329,20 @@ const mapStateToProps = ({ distributor, auth, departments }) => ({
   addPaidButtonModal: distributor.addPaidButtonModal,
   orgId: auth.userDetails.organizationId,
   addpickupLocation: distributor.addpickupLocation,
-
   userId: auth.userDetails.userId,
-
+  userDetails: auth.userDetails,
   updatingSuborderAwb: distributor.updatingSuborderAwb,
   addingLocationInOrder: distributor.addingLocationInOrder,
   fetchingDistributorByDistributorId:
-    distributor.fetchingDistributorByDistributorId,
+  distributor.fetchingDistributorByDistributorId,
   highDistributorOrder: distributor.highDistributorOrder,
+  fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
   fetchingDistributorOfHigh: distributor.fetchingDistributorOfHigh,
   mediumdistributorOrder: distributor.mediumdistributorOrder,
-  fetchingDistributorOfMedium: distributor.fetchingDistributorOfMedium,
   lowDistributorOrder: distributor.lowDistributorOrder,
   fetchingDistributorOfLow: distributor.fetchingDistributorOfLow,
   piButtonModal: distributor.piButtonModal,
+  productioNoteModal: refurbish.productioNoteModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1286,6 +1367,7 @@ const mapDispatchToProps = (dispatch) =>
       updateSubOrderAwb,
       getOrderRecords,
       handlePIModal,
+      handleProductionNotesModal
     },
     dispatch
   );

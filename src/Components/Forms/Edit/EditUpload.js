@@ -163,9 +163,9 @@ class EditUpload extends React.Component {
       file.flag = true;
       return false;
     }
-    const isLt2M = file.size / 1024 < 150; // Image size must be < 150KB
+    const isLt2M = file.size / 1024 < 15000; // Image size must be < 150KB
     if (!isLt2M) {
-      message.error("Image size must be smaller than 150KB!");
+      message.error("Image size must be smaller than 15MB!");
       file.flag = true;
       return false;
     }

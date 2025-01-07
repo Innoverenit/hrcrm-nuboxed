@@ -279,15 +279,15 @@ const handleLoadMore2 = () => {
           
       </div>
       <InfiniteScroll
-        dataLength={props.pitchDataHot.length}
-        next={handleLoadMore}
+        dataLength={props.pitchDataWarm.length}
+        next={handleLoadMore1}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
+        loader={props.fetchingPitchWarm?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchWarm && props.pitchDataWarm.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataWarm.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -711,15 +711,15 @@ const countryCode = item.countryAlpha2Code
           
       </div>
       <InfiniteScroll
-        dataLength={props.pitchDataHot.length}
-        next={handleLoadMore}
+        dataLength={props.pitchDataCold.length}
+        next={handleLoadMore2}
         hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div><BundleLoader/></div>:null}
+        loader={props.fetchingPitchCold?<div><BundleLoader/></div>:null}
         height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchCold && props.pitchDataCold.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataCold.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");

@@ -1,9 +1,6 @@
 import * as types from "./ProjectActionTypes";
 import axios from "axios";
 import { base_url } from "../../Config/Auth";
-// import { getEventsListByUserId } from "../Auth/AuthAction";
-
-
 
 export const handleProjectModal = (modalProps) => (dispatch) => {
   dispatch({
@@ -16,7 +13,6 @@ export const handleProjectModal = (modalProps) => (dispatch) => {
  */
  export const addProject = (project, cb) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;
-    // const { startDate, endDate } = getState("dashboard").dashboard;
     console.log("inside addProject");
     dispatch({
       type: types.ADD_PROJECT_REQUEST,
@@ -30,8 +26,6 @@ export const handleProjectModal = (modalProps) => (dispatch) => {
       })
       .then((res) => {
         console.log(res);
-        // dispatch(getEventsListByUserId(userId));
-        // dispatch(getEventListRangeByUserId(userId));
         dispatch({
           type: types.ADD_PROJECT_SUCCESS,
           payload: res.data,
@@ -75,12 +69,6 @@ export const updateProject = (projectId, data, cb) => (dispatch, getState) => {
         type: types.UPDATE_PROJECT_BY_ID_SUCCESS,
         payload: res.data,
       });
-      // dispatch({
-      //   type: UPDATE_TODOEVENT_SUCCESS,
-      //   payload: res.data
-      // })
-      // dispatch({type:UPDATE_EVENTS_LIST_BY_USER_ID_SUCCESS,
-      // payload:res.data})
       cb();
     })
     .catch((err) => {

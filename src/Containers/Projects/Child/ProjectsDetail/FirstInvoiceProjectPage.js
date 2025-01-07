@@ -1,17 +1,17 @@
 import { Field, Form, Formik } from 'formik'
-import React, {useEffect,useState} from 'react'
+import React, {useEffect,useState,lazy} from 'react'
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {updateInvoiceData} from "../../../Invoice/InvoiceAction"
-import { Button, Checkbox, Divider, Select } from 'antd';
+import { Button} from 'antd';
 import {getCandidatesTotalBillingsForInvoice} from "../../../Invoice/InvoiceAction"
 import {getProjectsData} from "../../ProjectsAction"
 import {getCustomerTask} from "../../../Task/TaskAction"
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-
 import { InputComponent } from '../../../../Components/Forms/Formik/InputComponent'
- import InvoiceListProjectTable from './InvoiceListProjectTable';
+
+const InvoiceListProjectTable =lazy(()=>import("./InvoiceListProjectTable"));
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const InvoiceSchema = Yup.object().shape({
   customerId: Yup.string().required("Input needed!"),
@@ -20,6 +20,7 @@ const InvoiceSchema = Yup.object().shape({
   year: Yup.string().required("Input needed!"),
  
 });
+
 
 function FirstInvoiceProjectPage(props) {
   useEffect(()=>{
@@ -129,15 +130,12 @@ onSubmit={(values, { resetForm }) => {
                           isRequired
                            name="customerId"
                           label="Customer"
-                          // isColumn
                            component={SelectComponent}
                            value={values.customerId}
-                          // defaultValue={customers}
                           options={
                             Array.isArray(customerData) ? customerData : []
                           }
                           onChange={handleChangeCustomer}
-                          // use12Hours
                           style={{
                             width: "100%",
                           }}
@@ -148,11 +146,7 @@ onSubmit={(values, { resetForm }) => {
                     <Field
                         isRequired
                     name="projectId"
-                    // selectType="contactListFilter"
-                    // isColumnWithoutNoCreate
                     label="Project"
-                     
-                    // component={SearchSelect}
                     component={SelectComponent}
                     //onChange={handleChangeProject}
                     options={
@@ -179,8 +173,7 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="month"
                         //label="Start "
-                        label="Month"
-                         
+                        label="Month"                        
                         isColumn
                         options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={SelectComponent}
@@ -197,12 +190,9 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="year"
                         //label="Start "
-                        label="Year"
-                          
+                        label="Year"                        
                         isColumn
-                        // options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={InputComponent}
-                        // value={values.startDate}
                         inlineLabel
                         style={{
                           width: "100%",

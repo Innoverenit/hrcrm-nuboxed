@@ -3,28 +3,24 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddAccountForm = lazy(() => import("./AddAccountForm"));
 
-
 const AddAccountModal = (props) => {
     const { addDistributorModal, handleDistributorModal, ...formProps } = props;
-    const handleClose = () => {
-        window.location.reload(true);
-    };
+
     return (
         <>
             <StyledDrawer
                 title="Customer"
-                width="60%"
+                width="50%"
                 visible={addDistributorModal}
-                onClose={() => {
-                 
-                    handleDistributorModal(false)
-                }}
+                onClose={() => { handleDistributorModal(false)}}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                     <AddAccountForm 
                   selectedLanguage={props.selectedLanguage}
-                  translateText={props.translateText}/>
+                  translateText={props.translateText}
+                  translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
             </StyledDrawer>
         </>

@@ -82,6 +82,7 @@ class RecruitmentTable extends Component {
       recruitmentId: "",
       customerId:"",
       jobOrder: "",
+      opportunityId:"",
       skillSetData: "",
       candidatePostData: {},
       searchText: "",
@@ -188,11 +189,12 @@ class RecruitmentTable extends Component {
     this.setState({ searchText: "" });
   };
 
-  handleClickCandidateName = (recruitmentId, jobOrder) => {
+  handleClickCandidateName = (recruitmentId, jobOrder,opportunityId) => {
     this.setState({
       subTableVisible: !this.state.subTableVisible,
       recruitmentId: recruitmentId,
       jobOrder: jobOrder,
+      opportunityId:opportunityId,
     });
   };
   handleClick = (customerId) => {
@@ -858,6 +860,7 @@ class RecruitmentTable extends Component {
                     this.handleClickCandidateName(
                       item.recruitmentId,
                       item.jobOrder,
+                      item.opportunityId
                     );
                     this.handleClick(item.customerId);
                     this.props.getCandidateRequirement(item.recruitmentId);
@@ -1225,6 +1228,7 @@ class RecruitmentTable extends Component {
         >
           <Suspense fallback={"Loading"}>
             <SubTableClickCandidate
+            opportunityId={this.state.opportunityId}
             customerId={this.state.customerId}
               requirementOwner={this.props.requirementOwner}
               fetchingCandidateRequirement={

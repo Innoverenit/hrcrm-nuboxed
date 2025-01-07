@@ -47,6 +47,8 @@ function OrderPhoneListById(props) {
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false);
+    const [loadingRow, setLoadingRow] = useState(null);
+
     const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
     const componentRefs = useRef([]);
@@ -274,8 +276,8 @@ function OrderPhoneListById(props) {
 
     function handleQCStatus(type, item) {
         setActive(type)
-        console.log(type)
-        console.log(item)
+        setLoadingRow(item.phoneId); 
+
         const data = {
             qcStatus: type,
             orderPhoneId: props.rowData.orderPhoneId,
@@ -284,6 +286,13 @@ function OrderPhoneListById(props) {
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
         props.updateQCStatus(data, item.phoneId, props.userId)
+        .then(() => {
+            setLoadingRow(null);
+          })
+          .catch((error) => {
+            console.error('Error updating QC status:', error);
+            setLoadingRow(null);
+          });
         if (type === "Complete") {
             setBackComplete(false)
         }
@@ -462,8 +471,9 @@ function OrderPhoneListById(props) {
                                                 
                                                 <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[2.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
+                                                        
                                                         <div>
-                                                        {props.updatingQCStatus && <span>Loading...</span>}
+                                                        {loadingRow === item.phoneId && props.updatingQCStatus && <span>Loading...</span>}
                                                             {props.rowData.qcInspectionInd === 1 ?
                                                                 <ButtonGroup>
                                                                     {item.qcStatus === "To Start" && <HourglassEmptyIcon

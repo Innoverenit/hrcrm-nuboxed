@@ -712,7 +712,7 @@ export const getDistributorOrderOfMedium = (distributorId, pageNo, type,ptype) =
     type: types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/priorityLowOrders/${distributorId}/${pageNo}/${type}/${ptype} `,
+    .get(`${base_url2}/phoneOrder/priorityMediumOrders/${distributorId}/${pageNo}/${type}/${ptype} `,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -740,7 +740,7 @@ export const getDistributorOrderOfLow = (distributorId, pageNo, type,ptype) => (
     type: types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/priorityMediumOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
+    .get(`${base_url2}/phoneOrder/priorityLowOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1236,6 +1236,61 @@ export const getCustomerByUser = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_CUSTOMER_BY_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getCorderUser = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_COORDER_BY_USER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/distributor/user/Dummy`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COORDER_BY_USER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COORDER_BY_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getOpportunityCUser = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_OPPORTUNITY_BY_USER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/distributor/user/DummyOppo`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPPORTUNITY_BY_USER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_OPPORTUNITY_BY_USER_FAILURE,
         payload: err,
       });
     });
@@ -3123,7 +3178,6 @@ export const startRepairInStatus = (data, id) => (dispatch) => {
 };
 
 export const updateOfferPrice = (data, orderPhoneId, id, cb) => (dispatch) => {
-  // debugger;
   dispatch({
     type: types.UPDATE_OFFER_PRICE_REQUEST,
   });

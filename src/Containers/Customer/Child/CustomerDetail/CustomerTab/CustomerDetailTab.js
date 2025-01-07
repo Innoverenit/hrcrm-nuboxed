@@ -360,7 +360,7 @@ translatedMenuItems={this.props.translatedMenuItems}
               
               </Suspense>
             </TabPane>      
-                  <TabPane
+                  {/* <TabPane
               tab={
                 <>
  <Badge
@@ -373,10 +373,10 @@ translatedMenuItems={this.props.translatedMenuItems}
                 
                   <span class="!text-tab ml-1">   
                           
-                         {this.state.translatedMenuItems[3]}                 
+                         {this.state.translatedMenuItems[3]}                  */}
           {/* Activity */}
                  
-                  </span>            
+                  {/* </span>            
                   {activeKey === "4" && (
                     <>
                       <Tooltip //title="Create"
@@ -390,15 +390,15 @@ translatedMenuItems={this.props.translatedMenuItems}
                        
                       />
                       </Tooltip>
-                    </>
-                  )}
+                    </> */}
+            {/* //       )}
                 
-                </>
-              }
-              key="4"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
+            //     </>
+            //   }
+            //   key="4"
+            // >
+            //   <Suspense fallback={"Loading ..."}>
+            //     {" "} */}
                 {/* <CustomerActivityTable
 
                  customer={this.props.customer}
@@ -406,8 +406,8 @@ translatedMenuItems={this.props.translatedMenuItems}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
                 /> */}
-              </Suspense>
-            </TabPane>
+              {/* </Suspense>
+            </TabPane> */}
             <TabPane
               tab={
                 <>
@@ -618,7 +618,7 @@ translatedMenuItems={this.props.translatedMenuItems}
             translateText={this.props.translateText}
           />
           
-          <AddCustomerActivityModal
+          {/* <AddCustomerActivityModal
            defaultValue={[{ label: name, value: customerId }]}
             customerId={{ value: customerId }}
             uniqueId={this.props.customer.customerId}
@@ -629,7 +629,7 @@ translatedMenuItems={this.props.translatedMenuItems}
             handleCallActivityModal={handleCallActivityModal}
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}
-          /> 
+          />  */}
           <CampaignDrawer
           customer={this.props.customer}
            openCampaigndrwr={this.props.openCampaigndrwr}

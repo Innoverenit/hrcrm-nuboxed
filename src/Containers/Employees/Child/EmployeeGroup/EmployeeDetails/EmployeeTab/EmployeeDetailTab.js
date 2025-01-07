@@ -140,7 +140,7 @@ console.log(this.props.singleEmployee)
           <TabPane
               tab={
                 <>
-                 <DirectionsRunIcon className=" !text-icon"/>
+                 <DirectionsRunIcon className=" !text-icon text-[#084c61]"/>
                 <span class="  !text-tab ml-1"> 
                 {this.state.translatedMenuItems[0]}   {/* Performance  */}
                    </span>
@@ -160,7 +160,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <SchoolIcon  className=" !text-icon" />
+                <SchoolIcon  className=" !text-icon text-[#42033D]" />
                   <span class=" font-poppins ml-1  !text-tab" >
                     
                   {this.state.translatedMenuItems[1]}     {/* Education */}
@@ -190,7 +190,7 @@ console.log(this.props.singleEmployee)
                   
                   {/* <HeadphonesIcon   className=" !text-icon" 
                   /> */}
-                  < ModelTrainingIcon className=" !text-icon" />
+                  < ModelTrainingIcon className="text-[#38302E] !text-icon" />
                    <span class="  !text-tab font-poppins ml-1" >
                    {this.state.translatedMenuItems[2]} {/* Training */}
                     
@@ -219,7 +219,7 @@ console.log(this.props.singleEmployee)
               tab={
                 <>
                   {/* <AccountBalanceIcon   className=" !text-icon"  /> */}
-                  <AccountBalanceIcon className=" !text-icon"/>
+                  <AccountBalanceIcon className="text-[#17BEBB] !text-icon"/>
                   <span class="  !text-tab font-poppins ml-1" >
                   {this.state.translatedMenuItems[3]}
                 
@@ -251,7 +251,7 @@ console.log(this.props.singleEmployee)
                 <>
                 
                 <PhoneIcon 
-                 className=" !text-icon"
+                 className=" !text-icon text-[#4D4B42]"
                  />
                   <span class="  !text-tab font-poppins ml-1">
                   {this.state.translatedMenuItems[4]}
@@ -282,7 +282,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <AccountBalanceIcon  className=" !text-icon"/>
+                <AccountBalanceIcon  className="text-[#02B67D] !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[5]}  {/* Bank Details */}
                   </span>
@@ -314,7 +314,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <RecentActorsIcon className=" !text-icon"/>
+                <RecentActorsIcon className="text-[#FF3366] !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[6]}  {/* Personal Details */}
                   </span>
@@ -342,7 +342,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <NoteAltIcon  className=" !text-icon"/>
+                <NoteAltIcon  className="text-[#2C67B5] !text-icon"/>
                   <span class="ml-1  !text-tab">  
                   {this.state.translatedMenuItems[7]} 
                   </span>
@@ -365,7 +365,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                 <PaymentIcon  className=" !text-icon"/>
+                 <PaymentIcon  className="text-[#564E4D] !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[8]} {/* Salary */}
                   </span>
@@ -394,7 +394,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <FileCopyIcon   className=" !text-icon" />
+                <FileCopyIcon   className="text-[#833470] !text-icon" />
                   <span class=" font-poppins ml-1  !text-tab">
                     
                   {this.state.translatedMenuItems[9]}   
@@ -438,7 +438,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <ContrastIcon className=" !text-icon"/>
+                <ContrastIcon className=" !text-icon text-[#72924F]"/>
                   <span class=" font-poppins ml-1  !text-tab">
                     
                    
@@ -511,7 +511,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                 <ApartmentIcon className="!text-icon "/>
+                 <ApartmentIcon className="!text-icon text-[#6150A5]"/>
                   <span class=" font-poppins ml-1  !text-tab">
                {this.state.translatedMenuItems[13]}
                   </span>
@@ -533,7 +533,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <ContactsIcon className=" !text-icon"/>
+                <ContactsIcon className=" !text-icon text-[#23E75D]"/>
                   <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[14]} 
                   </span>
@@ -572,7 +572,7 @@ console.log(this.props.singleEmployee)
               tab={
                 <>
                 
-               <WorkspacePremiumIcon className=" !text-icon"/>
+               <WorkspacePremiumIcon className="text-[#A74E25] !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">                  
                   {this.state.translatedMenuItems[16]} {/* Experience */}
                   </span>                 
@@ -593,7 +593,7 @@ console.log(this.props.singleEmployee)
             <TabPane
               tab={
                 <>
-                <SchoolIcon  className=" !text-icon"/>
+                <SchoolIcon  className="text-[#A43D51] !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">
                     
                {this.state.translatedMenuItems[17]}  {/* Visa */}

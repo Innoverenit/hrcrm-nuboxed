@@ -1,12 +1,14 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ProjectsTaskTable from "../TaskDetailTable/ProjectsTaskTable";
 import ProjectsTeamTable from "./ProjectsTeamTable";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import ProjectInvoiceTable from"./ProjectInvoiceTable"; 
 
 const TabPane = StyledTabs.TabPane;
 function handleRefreshPage() {
@@ -43,7 +45,6 @@ class ProjectDetailsTab extends Component {
   };
 
   componentDidMount() {
-  
   }
 
   componentWillUnmount() {
@@ -94,15 +95,28 @@ class ProjectDetailsTab extends Component {
             >
            <ProjectsTeamTable projectsById={this.props.projectsById}/>
             </TabPane>
-
-          
+            
+            <TabPane
+              tab={
+                <>              
+                  <span class=" ml-1">
+                  <ReceiptIcon className="!text-icon text-[#a9d8b8] mr-1" /> Invoice
+                  </span>
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                  
+                        //  tooltiptitle= {this.state.translatedMenuItems[7]}
+                         onClick={() => {
+                       
+                         }}                     
+                       />
+                </>
+              }
+              key="3"
+            >
+           <ProjectInvoiceTable projectsById={this.props.projectsById}/>
+            </TabPane>      
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}>
-   
-
-     
- 
         </Suspense>
       </>
     );

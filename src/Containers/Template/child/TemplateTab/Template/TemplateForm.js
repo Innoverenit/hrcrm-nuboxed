@@ -1,11 +1,9 @@
 import React, {  useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
-
+import { Button, Select} from "antd";
 import { Formik, Form, Field } from "formik";
 import {getCustomerListByUserId} from "../../../../Customer/CustomerAction"
-
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { EditorState, convertToRaw } from "draft-js";
@@ -17,19 +15,54 @@ import CustomOption from "../../../../Rules/Child/RulesTab/CustomOption";
 import { getSignatureInd } from "../../../../Settings/SettingsAction";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
+import { base_url, base_url2 } from "../../../../../Config/Auth";
 const TemplateSchema = Yup.object().shape({
-  type: Yup.string().required("Input needed!"),
+  // type: Yup.string().required("Input needed!"),
   subject: Yup.string().required("Input needed!"),
 });
+const { Option } = Select;  
 function TemplateForm(props) {
   const [editorState, seteditorState] = useState(EditorState.createEmpty());
   const [edit, setEdit] = useState(true);
   const [selectType, setSelectType] = useState("");
+  const [catalouge, setCatalouge] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+   const [touched, setTouched] = useState(false);
+ const [selectedCatlouge, setSelectedCatlouge] = useState(null);
 
   function handleFilterBy(value) {
     setSelectType(value);
   }
 
+  const fetchCatalouge = async () => {
+    setIsLoading(true);
+    try {
+      const apiEndpoint = `${base_url2}/product/all-product`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCatalouge(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchCatalouge();
+      setTouched(true);
+    }
+  };
+  const handleSelectChange = (productId) => {
+    setSelectedCatlouge(productId)
+  };
   function onEditorStateChange(editorState) {
     console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
     seteditorState(editorState);
@@ -96,6 +129,7 @@ function TemplateForm(props) {
           props.addTemplate({
             ...values,
             template: editText,
+            catalougeId:selectedCatlouge,
           });
         }}
       >
@@ -117,6 +151,7 @@ function TemplateForm(props) {
                 >
                   <div class=" flex justify-between" >
                     <div class=" flex flex-col" >
+                    <div class=" flex items-center  justify-between " >
                       <div class=" w-[90%]" >
                         <Field
                           isRequired
@@ -135,6 +170,24 @@ function TemplateForm(props) {
                           }}
                         />
                       </div>
+                      <div>
+                  <Select
+        showSearch
+      
+        placeholder= "Select Catalouge"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {catalouge.map(item => (
+          <Option key={item.productId} value={item.productId}>
+            {item.productFullName}
+          </Option>
+        ))}
+      </Select>
+                  </div>
+                  </div>
                       <div class=" w-[90%]">
                         <Field
                           isRequired
@@ -175,6 +228,7 @@ function TemplateForm(props) {
                       }}
                     />
                   </div>
+                 
                     </div>
                     <div class=" w-[50%]">
                       <Field
@@ -266,6 +320,7 @@ const mapStateToProps = ({ rule, settings,customer,auth }) => ({
   userId: auth.userDetails.userId,
   customerByUserId: customer.customerByUserId,
   signatureInd: settings.signatureInd && settings.signatureInd,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

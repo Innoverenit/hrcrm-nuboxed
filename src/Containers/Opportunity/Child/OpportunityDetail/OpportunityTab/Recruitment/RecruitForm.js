@@ -5,6 +5,7 @@ import { Button, Switch,Select } from "antd";
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";
+import { Checkbox } from 'antd';
 import dayjs from "dayjs";
 import {
   getTalentRoles,
@@ -43,6 +44,7 @@ const OpportunitySchema = Yup.object().shape({
 
 function RecruitForm(props) {
   const [typeData1, setTypeData1] = useState(true);
+   const [selectedValues, setSelectedValues] = useState([]);
   const [typeData, setTypeData] = useState(false);
   const [workTypeData, setWorkTypeData] = useState(false);
          const [contact, setContact] = useState([]);
@@ -113,6 +115,10 @@ const roleNameOption = Array.isArray(props.talentRoles)
       value: item.contactId,
     };
   });
+  const onChange = (checkedValues) => {
+    setSelectedValues(checkedValues);
+    console.log('Selected values:', checkedValues);
+  };
 
   // function getStagesOptions(filterOptionKey, filterOptionValue) {
   //   const stagesOptions =
@@ -625,6 +631,13 @@ const fetchContact = async () => {
 
                   />
                 </div>
+                               <div>
+                      <Checkbox.Group onChange={onChange} value={selectedValues}>
+                        <Checkbox value="External">External</Checkbox>
+                        <Checkbox value="Internal">Internal</Checkbox>
+                        <Checkbox value="Both">Both</Checkbox>
+                      </Checkbox.Group>
+                    </div>  
                 
                 </FlexContainer>
                 <div class=" mt-3" style={{ marginTop: "1.25em" }} />

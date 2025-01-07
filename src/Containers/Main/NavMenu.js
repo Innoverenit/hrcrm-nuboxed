@@ -846,9 +846,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.leaveAccessInd === true   && user.moduleMapper.hrInd === true
         // || user.role === "ADMIN"
       ) && ( 
-        <Menu.Item key="/report" style={{ height: "1.45rem", display:"flex", 
-         color: selectedMenuItem === '/report' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
-          <Link to="/leave" onClick={() => handleSelect('/report')}>
+        <Menu.Item key="/leave" style={{ height: "1.45rem", display:"flex", 
+         color: selectedMenuItem === '/leave' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/leave" onClick={() => handleSelect('/leave')}>
             <LuggageIcon className="!text-base  text-[#e4eb2f]"/>
             <span class="text-white text-ls ml-1 ">
               {/* Leaves"  */}

@@ -9,12 +9,14 @@ class ContactInvestDetailsLeft extends Component {
       <>
         <div  class=" flex flex-col">  
  <ContactInvestOverViewCard contactInVestDetail={contactInVestDetail}
-    selectedLanguage={this.props.selectedLanguage}
-    translateText={this.props.translateText}
+ translateText={this.props.translateText}
+ selectedLanguage={this.props.selectedLanguage}
+ translatedMenuItems={this.props.translatedMenuItems}
  /> 
            <ContactInvestDetailCard contactInVestDetail={contactInVestDetail} 
-            selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
            />
         </div>
       </>

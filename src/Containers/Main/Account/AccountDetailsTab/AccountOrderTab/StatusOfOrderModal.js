@@ -31,6 +31,7 @@ class StatusOfOrderModal extends Component {
                         selectedLanguage={this.props.selectedLanguage}
                         translateText={this.props.translateText}
                         translatedMenuItems={this.props.translatedMenuItems}
+                        contextType={this.props.contextType}
                          />
                     </Suspense>
                 </StyledDrawer>

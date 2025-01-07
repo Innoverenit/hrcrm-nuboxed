@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
 import CarouselItem from "./CarouselItem";
 class AppLoginMessage extends Component {

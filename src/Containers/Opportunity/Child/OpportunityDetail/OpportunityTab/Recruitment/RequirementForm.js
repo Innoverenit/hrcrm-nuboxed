@@ -7,6 +7,7 @@ import {
   getProcessForRecruit,
 } from "../../../../../Settings/SettingsAction";
 import dayjs from "dayjs";
+import { Checkbox } from 'antd';
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
@@ -29,6 +30,7 @@ function RequirementForm(props) {
     }
     )
     const [typeData1, setTypeData1] = useState(true);
+    const [selectedValues, setSelectedValues] = useState([]);
     const [typeData, setTypeData] = useState(true);
    const [recruiterNames, setRecruters] = useState(recruiterOptionNameOption);
    const [partners, setPartners] = useState(partnerOptionNameOption);
@@ -93,6 +95,11 @@ function RequirementForm(props) {
     function handleReset(resetForm) {
       resetForm();
     }
+
+    const onChange = (checkedValues) => {
+      setSelectedValues(checkedValues);
+      console.log('Selected values:', checkedValues);
+    };
   //   console.log("world", recruiterNames)
     // if (!props.currentOpportunityRecruitmentData.requirementName) {
     //   return (<BundleLoader />)
@@ -498,7 +505,14 @@ function RequirementForm(props) {
 
                       />
                     </div>
-                  </div>     
+                  </div>  
+                  <div>
+      <Checkbox.Group onChange={onChange} value={selectedValues}>
+        <Checkbox value="External">External</Checkbox>
+        <Checkbox value="Internal">Internal</Checkbox>
+        <Checkbox value="Both">Both</Checkbox>
+      </Checkbox.Group>
+    </div>   
                   
                   <div class=" mt-1" />             
                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">

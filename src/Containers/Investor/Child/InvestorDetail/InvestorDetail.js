@@ -3,15 +3,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getInvestorDetailsById } from "../../InvestorAction";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-
+import { useParams } from "react-router-dom";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InvestorDetailRight=lazy(()=> import("./InvestorDetailRight"));
 const InvestorDetailLeft=lazy(()=> import("./InvestorDetailLeft"));
 const InvestorDetailHeader=lazy(()=> import("./InvestorDetailHeader"));
 
 function InvestorDetail (props) {
-    useEffect(()=> {
-    props.getInvestorDetailsById(props.match.params.investorId);
+  const { investorId } = useParams();
+  
+    useEffect(()=> {     
+    // props.getInvestorDetailsById(props.match.params.investorId);   
+    props.getInvestorDetailsById(investorId);
+
   },[]);
 
     const { investorDetails, fetchingInvestorDetailsById } = props;

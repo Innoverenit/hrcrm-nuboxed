@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch ,Select} from "antd";
 import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field, FastField,ErrorMessage } from "formik";
 import dayjs from "dayjs";
 import {
   useSpeechRecognition,
@@ -446,6 +446,12 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
       setTouchedInclude(true);
     }
   };
+  const formatToISOWithZ = (datetime) => {
+    const date = new Date(datetime);
+    const timezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const adjustedDate = new Date(date.getTime() - timezoneOffset);
+    return adjustedDate.toISOString();
+  };
    console.log("workflow",selectedWorkflow);
    console.log("recruitWorkflowTask",props.recruitWorkflowTask);
     return (
@@ -460,38 +466,29 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                   taskTypeId: "",
                   taskName: "",
                   documentId:"",
-                  
                   link:"",
                   taskTypeId:selectedTaskType,
                   taskChecklistId:selectedWorkflow,
                   fullName: "",
                   assignedDate: assignedDate || dayjs(),
-                 
                   projectName: "",
-               
                   taskChecklistId: "",
                   taskDescription: "",
                   timeZone: timeZone,
                   contact: "",
-                  startDate: startDate || dayjs(),
-                  endDate: endDate || null,
-                  endDate: dayjs(),
                   // included: [],
                   taskStatus: active,
-
                   priority: priority,
                   complexity: complexity,
                   unit: "",
-
                   department: "",
                   remindInd: reminder ? true : false,
                   remindTime: "",
                   level: "",
                   repeatInd: false,
-
                   ownerIds: [],
-                  startTime: startDate || null,
-                  endTime: endDate || null,
+                  startDate: '', 
+                  endDate: '',
                   value: "",
                   assignedTo: selectedOption ? selectedOption.employeeId:userId,                
                 }
@@ -501,78 +498,6 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
             ////debugger;
             console.log(values);
             console.log(values.startDate);
-
-            let timeZoneFirst = "GMT+05:30";
-
-            let mytimeZone = timeZoneFirst.substring(4, 10);
-            console.log(mytimeZone);
-
-            var a = mytimeZone.split(":");
-            console.log(a);
-            var timeZoneminutes = +a[0] * 60 + +a[1];
-            console.log(timeZoneminutes);
-            if (!values.endDate) {
-              values.endDate = values.startDate;
-            }
-            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
-            console.log(newStartDate);
-            //Time calculation
-            let firstStartTime = dayjs(values.startTime).format(
-              "HH:mm:ss.SSS[Z]"
-            ); // getting start time from form input
-            console.log(firstStartTime);
-
-            let firstStartHours = firstStartTime.substring(0, 5); // getting only hours and minutes
-            console.log(firstStartHours);
-
-            let timeEndPart = firstStartTime.substring(5, 13); // getting seconds and rest
-            console.log(timeEndPart);
-
-            var firstStartTimeSplit = firstStartHours.split(":"); // removing the colon
-            console.log(firstStartTimeSplit);
-
-            var minutes =
-              +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1]; // converting hours into minutes
-            console.log(minutes);
-
-            var firstStartTimeminutes = minutes - timeZoneminutes; // start time + time zone
-            console.log(firstStartTimeminutes);
-
-            let h = Math.floor(firstStartTimeminutes / 60); // converting to hours
-            let m = firstStartTimeminutes % 60;
-            h = h < 10 ? "0" + h : h;
-            m = m < 10 ? "0" + m : m;
-            let finalStartTime = `${h}:${m}`;
-            console.log(finalStartTime);
-
-            let newStartTime = `${finalStartTime}${timeEndPart}`;
-            console.log(newStartTime);
-
-            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
-            console.log(firstEndTime);
-            let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
-            console.log(firstEndHours);
-
-            var firstEndTimeSplit = firstEndHours.split(":"); // removing the colon
-            console.log(firstEndTimeSplit);
-            var endMinutes = +firstEndTimeSplit[0] * 60 + +firstEndTimeSplit[1]; // converting hours into minutes
-            console.log(endMinutes);
-            var firstEndTimeminutes = Math.abs(endMinutes - timeZoneminutes); // start time + time zone
-            console.log(firstEndTimeminutes);
-            let hr = Math.floor(firstEndTimeminutes / 60); // converting to hours
-            console.log(hr);
-            let mi = firstEndTimeminutes % 60;
-            console.log(hr);
-            hr = hr < 10 ? "0" + hr : hr;
-            mi = mi < 10 ? "0" + mi : mi;
-            let finalEndTime = `${hr}:${mi}`;
-            console.log(finalEndTime);
-            console.log(timeEndPart);
-            console.log(`${finalEndTime}${timeEndPart}`);
-
-            let newEndTime = `${finalEndTime}${timeEndPart}`;
-
             isEditing
               ? updateTask(
                   prefillTask.taskId,
@@ -582,11 +507,8 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                     taskStatus: active,
                     priority: priority,
                     complexity: complexity,
-
-                    startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
-                    startTime: 0,
-                    endTime: 0,
+                    startDate: formatToISOWithZ(values.startDate),
+                    endDate: formatToISOWithZ(values.endDate),
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
                 handleCallback
@@ -604,10 +526,8 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                     priority: priority,
                     complexity: complexity,
                     ownerIds: userId === userId ? [userId] : [],
-                    startDate: `${newStartDate}T20:00:00Z`,
-                    endDate: `${newEndDate}T20:00:00Z`,
-                    startTime: 0,
-                    endTime: 0,
+                    startDate: formatToISOWithZ(values.startDate),
+                    endDate: formatToISOWithZ(values.endDate),
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
                   handleCallback
@@ -692,34 +612,39 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                             inlineLabel
                           />
                         </div>
-                    <div class="  font-semibold text-[0.75rem]  w-[30.5%] ">
-                    {translatedMenuItems[2]} 
-                      <Field
-                        isRequired
-                        name="endDate"                    
-                        component={DatePicker}
-                        isColumn
-                        value={values.endDate || values.startDate}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                        disabledDate={(currentDate) => {
-                          if (values.startDate) {
-                            if (
-                              dayjs(currentDate).isBefore(
-                                dayjs(values.startDate)
-                              )
-                            ) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          }
-                        }}
-                      />
-                    </div>                 
-                  </div>                        
+                                       
+                  </div>     
+                  <div class="flex justify-between">
+                  <div class=" w-5/12 max-sm:w-wk">
+                            
+                            <div class=" text-xs font-bold font-poppins"> Start Date</div>   
+                                    <Field
+                          type="datetime-local"
+                           id="startDate"
+                           name="startDate"
+                           className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         />
+                         <ErrorMessage
+                           name="startDate"
+                           component="div"
+                           className="text-red-600 text-sm mt-1"
+                         />
+                                 </div>
+                                 <div class=" w-5/12 max-sm:w-wk">
+         {translatedMenuItems[2]} 
+            <Field
+                        type="datetime-local"
+                         id="endDate"
+                         name="endDate"
+                         className="bg-white border leading-none border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-white dark:border-[#e5dddd] dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       />
+                       <ErrorMessage
+                         name="endDate"
+                         component="div"
+                         className="text-red-600 text-sm mt-1"
+                       />
+         </div>    
+                    </div>                   
                   <div class="mt-3 flex justify-between w-full max-sm:flex-col">                
                   </div>            
 <div class=" flex justify-between ">

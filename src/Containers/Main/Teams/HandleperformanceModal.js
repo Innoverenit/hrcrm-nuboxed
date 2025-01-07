@@ -21,7 +21,7 @@ console.log(this.props.rowdata)
       <div>
         <StyledDrawer
         title={this.props.rowdata.fullName}
-          width="100%"
+          width="50%"
           visible={this.props.addDrawerPerformanceModal}
           destroyOnClose
           closable

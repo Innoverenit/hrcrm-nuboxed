@@ -1,17 +1,14 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import dayjs from "dayjs";
-import {Button,Input,Checkbox } from "antd";
+import {Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
 import {updateInvoiceData} from "../../../Invoice/InvoiceAction"
 import "jspdf-autotable";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { BundleLoader } from '../../../../Components/Placeholder';
-
-
 
 function InvoiceListProjectTable (props)  {
    
@@ -21,10 +18,6 @@ function InvoiceListProjectTable (props)  {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [selectedRow, setselectedRow] = useState([]);
-  
-
-
-
     const [rowdata, setrowData] = useState({});
 
     const onChange = (data) => {
@@ -39,11 +32,6 @@ function InvoiceListProjectTable (props)  {
     const [selectedValue, setselectedValue] = useState("");
     const [searchText, setSearchText] = useState("");
     const [searchedColumn, setSearchedColumn] = useState("");
-
-
-  
-    
-  
     const onSelectChange = (newSelectedRowKeys) => {
       console.log("selectedRowKeys changed: ", selectedRowKeys);
       setSelectedRowKeys(newSelectedRowKeys);

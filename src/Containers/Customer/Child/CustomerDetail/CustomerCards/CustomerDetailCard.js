@@ -13,6 +13,9 @@ class CustomerDetailCard extends Component {
               <CustomerDetailView
                 customer={customer}
                 toggleViewType={toggleViewType}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
               />
             ) : null
           }

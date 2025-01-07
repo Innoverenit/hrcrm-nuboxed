@@ -9,7 +9,7 @@ const AddMileageModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title="Add Locations"
+        title="Add Location"
      
         width={drawerWidth}
         visible={addlocationModal}

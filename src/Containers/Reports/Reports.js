@@ -1,7 +1,14 @@
 import React, {  Suspense, lazy,useState,useEffect } from "react";
 import { BundleLoader } from "../../Components/Placeholder";
 import { connect } from "react-redux";
-import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData } from "./ReportAction";
+import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData,getReportLeads,getReportLeadsOrg, 
+  getReportConvertedOrg,getReportConverted,
+  getReportCallOrg,
+  getReportCall,
+  getReportEvent,
+  emptyClearEvent
+
+} from "./ReportAction";
 import { bindActionCreators } from "redux";
 
 const ReportHeader =lazy(()=> import("./Child/ReportHeader"));
@@ -12,7 +19,8 @@ const buttonData = [
   { name: 'Task' },
   { name: 'Calls' },
   { name: 'Events'},
-  { name: 'Leads' },  
+  { name: 'Leads Generated' },  
+  { name: 'Leads Converted' },  
   { name: 'Prospect' },
   { name: 'Contact' },
   { name: 'Quotation'},
@@ -69,6 +77,33 @@ console.log(selectedTask)
    props.getReportProspect(props.userId,props.endDate,props.startDate);
     }else if(selectedCategory==="Task"){
       props.getReportTask(props.userId,props.endDate,props.startDate,selectedTask);
+    }else if(selectedCategory==="Leads Generated"){
+      if (userorgflipClick) {
+        props.getReportLeadsOrg(props.orgId,props.endDate,props.startDate);
+      } else {
+        props.getReportLeads(props.userId,props.endDate,props.startDate);
+      }
+    }else if(selectedCategory==="Leads Converted"){
+      if (userorgflipClick) {
+        props.getReportConvertedOrg(props.orgId,props.endDate,props.startDate);
+      } else {
+        props.getReportConverted(props.userId,props.endDate,props.startDate);
+      }
+    }
+    else if(selectedCategory==="Calls"){
+      if (userorgflipClick) {
+        props.getReportCallOrg(props.orgId,props.endDate,props.startDate);
+      } else {
+        props.getReportCall(props.userId,props.endDate,props.startDate);
+      }
+    }
+    else if(selectedCategory==="Events"){
+      if (userorgflipClick) {
+        props.getReportEvent(props.orgId,"org",props.endDate,props.startDate);
+      } else {
+        props.getReportEvent(props.userId,"user",props.endDate,props.startDate);
+      }
+      props.emptyClearEvent();
     }
 
     props.getTaskData(props.organizationId)
@@ -99,7 +134,8 @@ console.log(selectedTask)
       Task: props.user.basicAccessInd || props.user.role === "ADMIN",
       Calls: props.user.basicAccessInd || props.user.role === "ADMIN",
       Events: props.user.basicAccessInd || props.user.role === "ADMIN",
-      Leads: props.user.leadsAccessInd && props.user.crmInd,  
+      'Leads Generated': props.user.leadsAccessInd && props.user.crmInd,  
+      'Leads Converted': props.user.leadsAccessInd && props.user.crmInd,  
       Prospect: props.user.customerAccessInd && props.user.crmInd, 
       Contact: props.user.contactAccessInd && props.user.crmInd,
       Quotation: props.user.opportunityAccessInd && props.user.crmInd,
@@ -139,6 +175,18 @@ console.log(selectedTask)
           gettingReportTask={props.gettingReportTask}
           reportProspect={props.reportProspect}
           gettingReportProspect={props.gettingReportProspect}
+          reportLeads={props.reportLeads}
+          reportLeadsOrg={props.reportLeadsOrg}
+          reportConvertedOrg={props.reportConvertedOrg}
+          gettingReportConvertOrg={props.gettingReportConvertOrg}
+          gettingReportConvert={props.gettingReportConvert}
+          reportConverted={props.reportConverted}
+          gettingReportLeadsOrg={props.gettingReportLeadsOrg}
+          gettingReportLeads={props.gettingReportLeads}
+          reportCall={props.reportCall}
+          gettingReportCall={props.gettingReportCall}
+          reportCallOrg={props.reportCallOrg}
+          gettingReportCallOrg={props.gettingReportCallOrg}
           buttonData={buttonData}
           visibilityConditions={visibilityConditions}
           selectedCategory={selectedCategory}
@@ -150,6 +198,8 @@ console.log(selectedTask)
           handleButtonIcon={handleButtonIcon}
           UserOrgFlipClick={UserOrgFlipClick}
           userorgflipClick={userorgflipClick}
+          gettingReportEvent={props.gettingReportEvent}
+          reportEvent={props.reportEvent}
           />
         </Suspense>
       </React.Fragment>
@@ -163,6 +213,8 @@ const mapStateToProps = ({ auth, report }) => ({
   selectedReportType: report.selectedReportType,
   timeRangeType:report.timeRangeType,
   reportProspect:report.reportProspect,
+  reportLeads:report.reportLeads,
+  gettingReportLeads:report.gettingReportLeads,
   taskData:report.taskData,
   gettingReportProspect:report.gettingReportProspect,
   user: auth.userDetails,
@@ -174,7 +226,19 @@ const mapStateToProps = ({ auth, report }) => ({
   endDate: report.endDate,
   fiscalStartDate: auth.userDetails.fiscalMapper.fiscalStartDate,
   fiscalEndDate: auth.userDetails.fiscalMapper.fiscalEndDate,
-  selectedSubReportType: report.selectedSubReportType
+  selectedSubReportType: report.selectedSubReportType,
+  reportLeadsOrg:report.reportLeadsOrg,
+  gettingReportLeadsOrg:report.gettingReportLeadsOrg,
+  reportConvertedOrg:report.reportConvertedOrg,
+  gettingReportConvertOrg:report.gettingReportConvertOrg,
+  gettingReportConvert:report.gettingReportConvert,
+  reportConverted:report.reportConverted,
+  reportCall:report.reportCall,
+  gettingReportCall:report.gettingReportCall,
+  reportCallOrg:report.reportCallOrg,
+  gettingReportCallOrg:report.gettingReportCallOrg,
+  gettingReportEvent:report.gettingReportEvent,
+  reportEvent:report.reportEvent,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -184,7 +248,15 @@ const mapDispatchToProps = (dispatch) =>
       getTaskData,
       getAllReportInvestors,
       getReportProspect,
-      getReportTask
+      getReportTask,
+      getReportLeads,
+      getReportLeadsOrg,
+      getReportConvertedOrg,
+      getReportConverted,
+      getReportCallOrg,
+      getReportCall,
+      getReportEvent,
+      emptyClearEvent
     },
     dispatch
   );

@@ -36,7 +36,7 @@ class CategoryActivity extends Component {
 
     return (
       <div className="flex flex-nowrap">
-        <div class=" w-[70%]">
+        <div class=" w-[100%]">
           <TabsWrapper>
             <StyledTabs
               defaultActiveKey={activeKey}

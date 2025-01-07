@@ -48,12 +48,14 @@ class EmployeeDetailLeft extends Component {
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}/>
         <EmployeeAboutCard singleEmployee={singleEmployee}
-         translateText={this.props.translateText}
-         selectedLanguage={this.props.selectedLanguage} />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}/>
         {/* <EmployeeDetailMap singleEmployee={singleEmployee} /> */}
         <EmployeePersonalCard singleEmployee={singleEmployee} 
-         translateText={this.props.translateText}
-         selectedLanguage={this.props.selectedLanguage}/>
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}/>
       </div>
     );
   }
